@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-09-26T01:23:01.490Z",
+  "status": "passed",
+  "ports": [
+    2568,
+    5174
+  ],
+  "checks": [
+    "backend-ready",
+    "Vite-proxy-ready",
+    "WebSocket-handshake-through-Vite",
+    "active-client-disconnect",
+    "IPC-shutdown",
+    "supervisor-zero-exit",
+    "backend-graceful-stop-log",
+    "both-listeners-released",
+    "no-owned-descendant-processes-remain"
+  ],
+  "ownedProcessCount": 5,
+  "retainedService": "PostgreSQL on 127.0.0.1:5433 is intentionally independent"
+}

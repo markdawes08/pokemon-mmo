@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-09-26T01:22:58.283Z",
+  "checks": [
+    "ordinary-staged-trainer-cannot-enter-development-world",
+    "two-real-account-public-avatar-whitelist",
+    "same-tile-players-are-nonblocking",
+    "source-collision-and-walk-default-shift-running-timing",
+    "injected-coordinates-rejected",
+    "fast-input-does-not-queue-or-speed-up",
+    "duplicate-sequence-cannot-repeat-movement",
+    "source-door-arrow-warp-and-zone-membership",
+    "old-zone-input-rejected-after-transfer",
+    "indoor-running-disallowed",
+    "save-captures-authoritative-world-position",
+    "source-pallet-route-boundary",
+    "source-one-way-ledge-and-two-tile-jump",
+    "leave-and-reconnect-restore-committed-checkpoint",
+    "replacement-session-fences-stale-world-socket",
+    "visible-source-npc-occupancy-blocks-authoritative-step",
+    "revoked-session-cannot-send-world-input",
+    "fresh-os-process-restores-authenticated-world-checkpoint"
+  ],
+  "backendPids": [
+    22592,
+    13944
+  ],
+  "scope": "Real PostgreSQL, real cookie sessions and Colyseus, explicit development accounts only. World interaction is exploration; no battle or story mechanics."
+}

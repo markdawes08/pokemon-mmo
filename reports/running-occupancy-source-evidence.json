@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "scope": "P02 local preview running and active NPC occupancy",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "upstreamCommit": null,
+  "inputs": [
+    {
+      "path": "src/field_player_avatar.c",
+      "size": 67969,
+      "sha256": "d36588c4d02385393a5e8dc74d78f907944ca556700b5c67b39f8304f4dde08e",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/event_object_movement.c",
+      "size": 326145,
+      "sha256": "920f96b45569e702dd00997e7984effb3a7677ba2b68512b939eda69c2294254",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/bike.c",
+      "size": 14482,
+      "sha256": "39b63a7a80e7d861b4051245e9201506e7e023d39f68bdb66d39ec3681345253",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/metatile_behavior.c",
+      "size": 24340,
+      "sha256": "a1491016f9b6ee56c38fd66bf890dfcb5d37c7dc0dfda9fe7c0a5282376b9042",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/field_fadetransition.c",
+      "size": 25263,
+      "sha256": "6fa3cb3b827470de6c4942b0296bf823529faec41c6473ffe88675a44114851e",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/field_control_avatar.c",
+      "size": 40928,
+      "sha256": "305daa295f88ce682b2b1868700d2f76012c659cb0df2905e6177a51ee4e9b8d",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/data/object_events/object_event_anims.h",
+      "size": 37750,
+      "sha256": "a484f38af198398f763c1d5f239dddd4397bb4cc7eab48c2b2e992552d767b0e",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/metatile_behaviors.h",
+      "size": 3471,
+      "sha256": "88955bf5c4b8d702d01d28161017362a2617ee37dce7ef77c0e288bda379da75",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/maps/PalletTown/map.json",
+      "size": 4087,
+      "sha256": "2816338934241bac34f52dae8b101ac3add59e0ebdde3e3fb6575f3b525b01c3",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/maps/PalletTown_PlayersHouse_1F/map.json",
+      "size": 1745,
+      "sha256": "d0479076eff7f7832f7e9104ba2cef109afd907501ca0bc2c8e3fd870dd16509",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/maps/Route1/map.json",
+      "size": 1684,
+      "sha256": "11b1ad78ae12d7a61c35756281fd5127929f5f5155dc20022fbae147424c4869",
+      "matchesPinnedSnapshot": true
+    }
+  ],
+  "mapPermissionsAndNpcAnchors": [
+    {
+      "id": "MAP_PALLET_TOWN",
+      "allowRunning": true,
+      "sourceObjectAnchors": [
+        {
+          "graphicsId": "OBJ_EVENT_GFX_WOMAN_1",
+          "x": 3,
+          "y": 10,
+          "elevation": 3,
+          "movementType": "MOVEMENT_TYPE_WANDER_AROUND",
+          "visibilityFlag": "0"
+        },
+        {
+          "graphicsId": "OBJ_EVENT_GFX_FAT_MAN",
+          "x": 13,
+          "y": 17,
+          "elevation": 3,
+          "movementType": "MOVEMENT_TYPE_WANDER_AROUND",
+          "visibilityFlag": "0"
+        },
+        {
+          "graphicsId": "OBJ_EVENT_GFX_PROF_OAK",
+          "x": 10,
+          "y": 8,
+          "elevation": 3,
+          "movementType": "MOVEMENT_TYPE_FACE_UP",
+          "visibilityFlag": "FLAG_HIDE_OAK_IN_PALLET_TOWN"
+        }
+      ]
+    },
+    {
+      "id": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
+      "allowRunning": false,
+      "sourceObjectAnchors": [
+        {
+          "graphicsId": "OBJ_EVENT_GFX_MOM",
+          "x": 8,
+          "y": 4,
+          "elevation": 3,
+          "movementType": "MOVEMENT_TYPE_FACE_LEFT",
+          "visibilityFlag": "0"
+        }
+      ]
+    },
+    {
+      "id": "MAP_ROUTE1",
+      "allowRunning": true,
+      "sourceObjectAnchors": [
+        {
+          "graphicsId": "OBJ_EVENT_GFX_CLERK",
+          "x": 6,
+          "y": 28,
+          "elevation": 3,
+          "movementType": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
+          "visibilityFlag": "0"
+        },
+        {
+          "graphicsId": "OBJ_EVENT_GFX_BOY",
+          "x": 19,
+          "y": 16,
+          "elevation": 3,
+          "movementType": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+          "visibilityFlag": "0"
+        }
+      ]
+    }
+  ],
+  "running": {
+    "walkFrames": 16,
+    "walkPixelsPerFrame": 1,
+    "runFrames": 8,
+    "runPixelsPerFrame": 2,
+    "jumpFrames": 32,
+    "sourceFrameRate": 60,
+    "evidence": [
+      {
+        "path": "src/field_player_avatar.c",
+        "symbols": [
+          "PlayerNotOnBikeMoving",
+          "PlayerRun"
+        ],
+        "notes": "Collision, ledges and directional stairs resolve before free movement. Running requests require the B input and FLAG_SYS_B_DASH in original gameplay, then check current metatile running restrictions."
+      },
+      {
+        "path": "src/bike.c",
+        "symbols": [
+          "IsRunningDisallowed",
+          "MetatileBehaviorForbidsBiking"
+        ],
+        "notes": "Map allowRunning permission is checked first. MB_RUNNING_DISALLOWED blocks running on the current tile. Fortree bridge elevation behavior is outside these imported maps."
+      },
+      {
+        "path": "src/event_object_movement.c",
+        "symbols": [
+          "StartRunningAnim",
+          "sSpeedNormalStepFuncs",
+          "sSpeedFast1StepFuncs"
+        ],
+        "notes": "StartRunningAnim uses MOVE_SPEED_FAST_1: eight Step2 calls. Ordinary walking uses sixteen Step1 calls."
+      },
+      {
+        "path": "src/data/object_events/object_event_anims.h",
+        "symbols": [
+          "sAnim_RunSouth",
+          "sAnim_RunNorth",
+          "sAnim_RunWest",
+          "sAnim_RunEast"
+        ],
+        "notes": "Directional running animation has a 16-frame loop with command durations 5,3,5,3. Running uses separate frame indices 9 through17; east flips the west frames."
+      }
+    ]
+  },
+  "occupancy": {
+    "source": "src/event_object_movement.c",
+    "symbols": [
+      "DoesObjectCollideWithObjectAt",
+      "AreElevationsCompatible"
+    ],
+    "rule": "An active object at the candidate position collides when map and coordinates match and elevations match or either elevation is 0. Ordinary steps use the player current elevation for collision. Moving NPC callers would reserve both current and previous coordinates; this preview presents stationary occupants.",
+    "extraPreviewGuards": [
+      "Reject occupied ledge landing before starting the jump.",
+      "Reject occupied connected-map destination before the boundary step.",
+      "Reject occupied warp anchor and forced exterior door outward landing before beginning the transfer."
+    ]
+  },
+  "implementation": [
+    "packages/game-rules/src/index.ts",
+    "packages/game-rules/src/running-occupancy.test.ts"
+  ],
+  "verification": {
+    "status": "passed scoped checks",
+    "checkedAt": "2026-09-25 13:21 CDT",
+    "focusedCommand": ".tools/node-v24.21.0-win-x64/node.exe node_modules/vitest/vitest.mjs run packages/game-rules/src",
+    "focusedRulesTests": 32,
+    "newRunningOccupancyTests": 15,
+    "typecheck": "passed: npm.cmd run typecheck",
+    "lint": "passed: npm.cmd run lint",
+    "fullGate": "Owned by root verification; not asserted by this scoped report."
+  },
+  "limitations": [
+    "The user-requested default-run preference is a local preview override, not a completed Running Shoes story unlock. Shift-to-walk is a client input policy; rules default to walking when no option is supplied.",
+    "Doors retain 16-frame walking and ledges retain 32-frame jumps. Connected boundaries require both map headers to permit running.",
+    "NPC visibility and active occupancy are supplied by the presentation layer from imported source records. These rules do not infer flags, execute scripts, grant items, heal parties or persist progression.",
+    "Stationary NPC presentation does not implement source wandering or scripted relocation.",
+    "Server-authoritative simulation, dynamic occupancy races, other terrain classes and full source event semantics remain unimplemented."
+  ]
+}

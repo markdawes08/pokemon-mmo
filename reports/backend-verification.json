@@ -1,0 +1,50 @@
+{
+  "recordedAt": "2026-09-25T12:15:00-05:00",
+  "scope": "P01 server/database foundation; no accounts or gameplay",
+  "runtime": "Node 24.21.0 Windows x64",
+  "postgres": {
+    "version": "17.11",
+    "distribution": "EDB 17.11-4 Windows x64 binaries",
+    "url": "https://get.enterprisedb.com/postgresql/postgresql-17.11-4-windows-x64-binaries.zip",
+    "sha256": "b9424ee7bc60b52450ff910a3630225df32e633f3cb29c1d126d9299d59aea28",
+    "hashProvenance": "Measured official HTTPS download; pinned for subsequent installs, not a publisher-signed digest",
+    "bind": "127.0.0.1:5433",
+    "authentication": "SCRAM-SHA-256",
+    "dataDirectory": ".local/postgres",
+    "machineServiceInstalled": false
+  },
+  "verified": [
+    "Portable setup and cluster initialization",
+    "Native PostgreSQL start, stop, restart; migration metadata survives restart",
+    "Reviewed baseline SQL migration and repeat idempotency",
+    "Real test database transaction rollback and check constraint enforcement",
+    "Committed Drizzle row visible through independent PostgreSQL connection",
+    "Two Colyseus connections through uniform /socket prefix, distinct transport session IDs",
+    "Protocol version mismatch and injected join identity rejected",
+    "Hello/welcome and ping/pong contracts",
+    "Malformed payload and unsupported gameplay message errors",
+    "Untrusted Origin rejected with HTTP 403",
+    "Unavailable database pool causes readiness 503 and rejects new admission while liveness stays 200",
+    "Active rooms close with code 4001 on graceful server shutdown",
+    "PowerShell PTY Ctrl+C logs server_stopping/server_stopped; port 2568 can be rebound",
+    "Full TypeScript check; backend scoped ESLint; three Vitest configuration/contract tests"
+  ],
+  "commands": [
+    "node scripts/db.mjs setup",
+    "node scripts/db.mjs start",
+    "node scripts/db.mjs migrate",
+    "node scripts/db.mjs test",
+    "node scripts/db.mjs stop",
+    "node --import tsx apps/server/src/network-smoke.ts",
+    "node node_modules/vitest/vitest.mjs run apps/server/src/env.test.ts",
+    "node node_modules/typescript/bin/tsc --noEmit",
+    "node node_modules/eslint/bin/eslint.js apps/server packages/database packages/protocol scripts/db.mjs"
+  ],
+  "limitations": [
+    "Root owns browser, Vite proxy and built single-origin verification; record those separately",
+    "Compose alternative not exercised; portable Windows path verified",
+    "Only local-preview mode and loopback binding are supported; tester mode intentionally rejected",
+    "No account, character identity, persistent gameplay, reconnect recovery or shared-world implementation",
+    "PowerShell PTY interruption reports shell exit code 1 despite orderly application shutdown logs"
+  ]
+}

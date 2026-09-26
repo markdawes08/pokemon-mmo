@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "verifiedFiles": 21892,
+  "checks": [
+    "current included reference bytes match manifest",
+    "aggregate fingerprint matches lock",
+    "archive SHA256 matches lock",
+    "every archive entry matches path, size, and SHA256"
+  ],
+  "upstreamCommitVerified": false,
+  "romBuildVerified": false
+}

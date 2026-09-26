@@ -1,0 +1,40 @@
+{
+    "checkedAt":  "2026-09-26T01:28:33.2476996Z",
+    "session":  50469,
+    "backendStartedAt":  "2026-09-26T00:57:31.317Z",
+    "backend":  {
+                    "status":  "ready",
+                    "database":  "connected",
+                    "protocolVersion":  1
+                },
+    "proxy":  {
+                  "status":  "ready",
+                  "database":  "connected",
+                  "protocolVersion":  1
+              },
+    "listeners":  [
+                      {
+                          "LocalAddress":  "127.0.0.1",
+                          "LocalPort":  5433,
+                          "OwningProcess":  25988
+                      },
+                      {
+                          "LocalAddress":  "127.0.0.1",
+                          "LocalPort":  5173,
+                          "OwningProcess":  29096
+                      },
+                      {
+                          "LocalAddress":  "127.0.0.1",
+                          "LocalPort":  2567,
+                          "OwningProcess":  7688
+                      }
+                  ],
+    "migration":  "0005_world.sql",
+    "migrationSha256":  "4e89de22f3063b42bc46e34355a7152bd73b85467bd7dc0a717c2ccc708eb180",
+    "developmentAccountsSeeded":  false,
+    "databaseRetained":  true,
+    "testPort2570Free":  true,
+    "remainingBrowserTestProcesses":  [
+
+                                      ]
+}

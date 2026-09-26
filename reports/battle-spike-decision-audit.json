@@ -1,0 +1,459 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-25T21:55:59.589881+00:00",
+  "status": "bounded-three-batch-evidence-complete",
+  "selection": null,
+  "scope": "Independent final P03 bounded decision-gate audit; all three experiment batches have evidence. Full R1 mechanics, release load/soak and durable services remain unverified.",
+  "evidenceBasis": [
+    {
+      "path": "docs/PROJECT_PLAN.md",
+      "bytes": 83781,
+      "sha256": "128d8eeca45856b75ce25c95db0dd1216c4d7f7860dc0d2164700e2b24b80e55"
+    },
+    {
+      "path": "tools/battle-spike/turn-probe.ts",
+      "bytes": 24287,
+      "sha256": "1075ec7929a8b13e1e2206b3a0755f2d4ffc6752d9b88775d0cd57b1f3c34da6"
+    },
+    {
+      "path": "tools/battle-spike/c/adapter.h",
+      "bytes": 6268,
+      "sha256": "7590b25ef29fd742ec802b3767ed1c0f76d179bcc6686d511f6cde6f10c47d61"
+    },
+    {
+      "path": "tools/battle-spike/c/adapter.c",
+      "bytes": 12764,
+      "sha256": "ae76b7dfa26ee5836d49d54cdf65b5fc049cb694eca1a1fa6e8fcafade300e26"
+    },
+    {
+      "path": "tools/battle-spike/c/attack.inc",
+      "bytes": 9158,
+      "sha256": "320bd6d37c20a617dd92d0877702e91f3299b1affa52240d60cd182b71952ab4"
+    },
+    {
+      "path": "tools/battle-spike/c/lifecycle.inc",
+      "bytes": 6982,
+      "sha256": "864d8e46e658f68dac1acfbc1771ebeaf25fa975395c7530efb5a87209b55b8d"
+    },
+    {
+      "path": "tools/battle-spike/extract.py",
+      "bytes": 18320,
+      "sha256": "26a391b8cd05db4ea3513e91b5502b247d4391f163f1990a4b46c940ac8e4031"
+    },
+    {
+      "path": "reports/battle-spike-dependencies.json",
+      "bytes": 39936,
+      "sha256": "b63d0f18ed35a8496fa0f2e4d316aa2fc5744f0dd3ffdda83c67d95903cbf998"
+    },
+    {
+      "path": "reports/battle-spike-batch-2.json",
+      "bytes": 66389,
+      "sha256": "5d84c6f2b8f4184f4eda3e04c354bd0b8ccf2aa541fb95759a6c04eccc7d7a9d"
+    },
+    {
+      "path": "content/generated/server/gameplay.json",
+      "bytes": 111036,
+      "sha256": "d47ce3fa2c4c2c38e1cbae0b62f2c70ff502f06a267c7fa197d0f55bf4bd393a"
+    }
+  ],
+  "gateInterpretation": {
+    "source": "docs/PROJECT_PLAN.md Sections7,11(P03/P06),13",
+    "decisionBudget": "Three focused work batches; 24 actual engineering hours is a planning ceiling only if tracked. No tracked engineering-hour total is available.",
+    "mandatoryFallback": "If the bounded three-batch experiment fails its required outcomes within the decision budget, choose TypeScript through the same interface. Do not extend the spike indefinitely or maintain two production engines.",
+    "necessaryButInsufficient": "Passing logical snapshots/recovery alone is insufficient. All three batches must demonstrate real admitted mechanics, isolation, Node integration, measured memory/latency, no emulator and a comprehensible remaining extraction boundary.",
+    "fullR1IsNotThisGate": "Section7 explicitly says successful C reuse still requires full mechanics coverage and persistence integration. Missing R1 capture/items/real species do not automatically mandate fallback, but must have an honest extension boundary and remain unavailable until implemented.",
+    "hybridBoundary": "Audited TypeScript scheduling around real source commands can count as source reuse. It must be selected as that hybrid architecture, not presented as extraction of the full original battle engine. If future dependencies require abandoning this boundary or silently approximating mechanics, the evidence does not support that claim.",
+    "completeChoiceSet": "validateChoice is pure and advance accepts the complete required participant choice set. Collection/persistence of a partial pair before acknowledgment is later Section8 durable-service work; it is not an omitted already-accepted engine continuation. This must be implemented before live room/PvP admission."
+  },
+  "batch3RequiredEvidence": [
+    {
+      "id": "portable-state",
+      "required": "Versioned logical state independent of raw addresses/padding, containing host parties/active indices/phase/resume and every future-live core value, RNG state and draw count; reject engine/rules/content/schema mismatch and malformed cross-references.",
+      "status": "satisfied-for-admitted-profile"
+    },
+    {
+      "id": "continuation-replay",
+      "required": "Snapshots at ordinary choice, before-residual replacement, after-residual replacement and terminal boundaries restore in fresh instances/processes; replay accepted choices produces the same ordered events, final state and RNG. A same-module scratch-memory copy alone does not pass.",
+      "status": "satisfied-for-admitted-profile"
+    },
+    {
+      "id": "contract-boundary",
+      "required": "Six-method Node-facing contract binding, immutable configuration, accepted-choice identity/current-sequence checks, monotonic event IDs, strict viewer projection, and no persistent effects in pvp-copy.",
+      "status": "satisfied-for-admitted-profile"
+    },
+    {
+      "id": "failure-isolation",
+      "required": "Rejected or failed restore/advance does not commit host/core state; separate instances remain independent through save/restore/interleaving. Unsupported source service calls are errors, not successful noops.",
+      "status": "satisfied-for-admitted-profile"
+    },
+    {
+      "id": "resources",
+      "required": "Measure ordinary and exceptional admitted transitions, create/snapshot/restore, JSON sizes, per-instance linear memory and real process memory with a stated concurrent workload. Separate cold/warm costs and record hardware/runtime/build.",
+      "status": "satisfied-for-admitted-profile"
+    },
+    {
+      "id": "extension-audit",
+      "required": "List source and host omissions, concrete R1 dependencies and new state/services they require; select one production direction only after recovery and measurement results exist.",
+      "status": "satisfied-for-admitted-profile"
+    }
+  ],
+  "architecturalRisks": [
+    {
+      "id": "scheduler-growth",
+      "severity": "high",
+      "evidence": [
+        "tools/battle-spike/turn-probe.ts",
+        "tools/battle-spike/c/attack.inc",
+        "reports/battle-spike-lifecycle-audit.json"
+      ],
+      "finding": "The host re-expresses selected script order and replacement continuations; the complete script interpreter, attack canceller, move-end, faint and field-effect schedulers are absent. Source false residual comparator, extra RNG draws and KO timing already required explicit audit.",
+      "consequence": "New moves/abilities/items can add interleaved scripts, target changes or pending decisions that cannot safely be appended as isolated calls. Each admitted dependency needs an explicit source continuation/state design and fixtures."
+    },
+    {
+      "id": "checkpoint-expansion",
+      "severity": "high",
+      "evidence": [
+        "tools/battle-spike/c/adapter.h",
+        "tools/battle-spike/c/lifecycle_state.inc",
+        "tools/battle-spike/c/attack.inc"
+      ],
+      "finding": "The final source audit classifies all98 restricted translation-unit global declarations, and the logical checkpoint carries148 scalars plus host state with no pointers/struct bytes. Fields omitted/reset under the four-move profile can become live under Counter/MirrorCoat, multi-turn moves, traps, Substitute, additional statuses/items/abilities; this is not a serializer for the full original source engine.",
+      "consequence": "The logical checkpoint version and future-live audit must expand with admitted mechanics; reset-to-zero is not a general source-state serializer. Before-residual replacement specifically needs chosen actions/slots because the residual comparator reads incoming moves at the old chosen slot."
+    },
+    {
+      "id": "synthetic-entities",
+      "severity": "high",
+      "evidence": [
+        "tools/battle-spike/c/lifecycle_state.inc",
+        "content/generated/server/gameplay.json"
+      ],
+      "finding": "Current type rows use actor+1 IDs, GetMonData exposes presence/HP/egg only, abilities/items are NONE, and stats are caller fixtures. These are not legal persistent creatures or the source species database.",
+      "consequence": "Real species, personality/IV/EV/nature/stat creation, growth, legal move/ability selection and party identity must be integrated before real encounters. Full original encrypted storage is not required, but any projected service needs equivalent source semantics."
+    },
+    {
+      "id": "transaction-and-privacy",
+      "severity": "high",
+      "evidence": [
+        "packages/battle-core/src/contracts.ts",
+        "tools/battle-spike/turn-probe.ts",
+        "docs/PROJECT_PLAN.md Section8"
+      ],
+      "finding": "Logical restore and clone-before-transition provide tested process-independent replay and in-process failure atomicity. They do not implement database receipts/effect commits, activity fencing, partial-choice collection or unknown-commit recovery. Public contract projection is now whitelisted and tested; private diagnostic data must remain private.",
+      "consequence": "Durable services must independently enforce effect identities, copy-team policy and private viewer whitelists; diagnostic probe objects must never become room broadcasts or player input."
+    },
+    {
+      "id": "host-resources",
+      "severity": "medium",
+      "evidence": [
+        "tools/battle-spike/turn-probe.ts",
+        "reports/battle-spike-build.json"
+      ],
+      "finding": "Every contract call restores/validates a logical checkpoint and creates transient WASM instances. Current contract states are encoded logical snapshots rather than retained WASM sessions. Latest post-review contract cycle p95 is 9.2845ms, while a dense20-battle/25-transition contract wave p95 is 241.7059ms; prior local observations and variability are retained separately.",
+      "consequence": "Dense synchronous bursts can delay shared event-loop work; this experiment does not establish the50ms world-tick or including-persistence population gate. Profile redundant parse/restore/project work and schedule/yield or introduce workers only from measured need before broader load. TypeScript fallback alone would not remove this shared adapter cost. Short cleanup samples are not a60-minute soak."
+    },
+    {
+      "id": "portable-build-scope",
+      "severity": "medium",
+      "evidence": [
+        "tools/battle-spike/build.py",
+        "tools/battle-spike/extract.py"
+      ],
+      "finding": "Pinned Windows Zig extraction/rebuilds agree, but source layouts are projected and some source functions/branches are compiled yet unreachable under guards; trace-only fragments are not executable support.",
+      "consequence": "Compatibility must bind rules/content/checkpoint versions. Another OS/compiler/runtime and broader mechanics need their own validation; copied-function counts cannot be treated as coverage."
+    }
+  ],
+  "remainingR1Work": [
+    {
+      "group": "explicit-development-profile",
+      "required": "Choose the local-only legal seed team, items, safe map and named progression flags, plus every reachable encounter/move/level/evolution dependency. No silent level cap or assumed four-move content scope is authorized."
+    },
+    {
+      "group": "real-creature-and-encounter-generation",
+      "required": "Create source-defined Pokemon state/stats/nature/IV/EV/personality/abilities/legal PP/moves; implement server-owned encounter checks and weighted slots, per-encounter RNG/identity and suitable opponent choices. Source rate21 is not a per-step percent.",
+      "sourceEntryPoints": [
+        "src/pokemon.c:CreateMon",
+        "src/pokemon.c:CalculateMonStats",
+        "content/generated/server/gameplay.json:encounters"
+      ]
+    },
+    {
+      "group": "route1-minimum-closure",
+      "required": "Current Route1 Pidgey/Rattata at levels2..5/2..4 already require legal abilities and status-stage moves beyond the four-move probe. Growth or a starter seed adds further source closure.",
+      "sourceRows": [
+        {
+          "species": "SPECIES_PIDGEY",
+          "abilities": [
+            "ABILITY_KEEN_EYE",
+            "ABILITY_NONE"
+          ],
+          "initialEncounterMoveCandidates": [
+            {
+              "level": 1,
+              "move": {
+                "id": 33,
+                "symbol": "MOVE_TACKLE"
+              }
+            },
+            {
+              "level": 5,
+              "move": {
+                "id": 28,
+                "symbol": "MOVE_SAND_ATTACK"
+              }
+            }
+          ]
+        },
+        {
+          "species": "SPECIES_RATTATA",
+          "abilities": [
+            "ABILITY_RUN_AWAY",
+            "ABILITY_GUTS"
+          ],
+          "initialEncounterMoveCandidates": [
+            {
+              "level": 1,
+              "move": {
+                "id": 33,
+                "symbol": "MOVE_TACKLE"
+              }
+            },
+            {
+              "level": 1,
+              "move": {
+                "id": 39,
+                "symbol": "MOVE_TAIL_WHIP"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group": "item-run-capture",
+      "required": "Implement source Potion healing/consumption, PokeBall catch probability and capture transfer/storage/nickname decisions, plus legal flee/run behavior and exact RNG. Source item definitions alone do not execute these paths.",
+      "sourceEntryPoints": [
+        "src/battle_script_commands.c:Cmd_handleballthrow",
+        "src/battle_main.c:IsRunningFromBattleImpossible",
+        "src/battle_main.c:TryRunFromBattle"
+      ]
+    },
+    {
+      "group": "experience-loss-followups",
+      "required": "Implement source experience/EV awards, level/stat recalculation, move learning/evolution when reachable, full loss/blackout recovery and outstanding follow-up choices before ending activity.",
+      "sourceEntryPoints": [
+        "src/battle_script_commands.c:Cmd_getexp",
+        "src/pokemon.c:MonGainEVs",
+        "src/pokemon.c:TryIncrementMonLevel"
+      ]
+    },
+    {
+      "group": "authoritative-persistence-and-ui",
+      "required": "P04 accounts/activity ownership/receipts, P05 shared world, server-generated battle admission, authorized choices/AI, whitelisted ordered presentation, source records, atomic item/capture/reward effects and save/reconnect/restart. Two seeded accounts must complete the P06 loop; no such release is claimed by P03. Persist a partially submitted choice set before acknowledging it; the current engine only resolves complete accepted sets."
+    }
+  ],
+  "measurementPlan": {
+    "workload": "All15 independent batch2 fixture shapes/19 transitions, including normal attacks, misses, accuracy stages, poison, switches, both replacement continuations and terminal outcomes. Warm repeated create/advance/snapshot/JSON roundtrip/restore/project paths;20 simultaneously held battles for the Section13 R3 battle-count starting workload; bounded churn in a clean child process.",
+    "record": [
+      "hardware/OS/architecture/Node version",
+      "source and WASM fixture hashes",
+      "cold module load/compile time",
+      "per-operation sample count/min/median/p95/p99/max",
+      "snapshot encoded byte lengths",
+      "20-instance fixed linear bytes and process RSS/heap/external/arrayBuffers before/after retention and cleanup",
+      "bounded churn duration and memory samples",
+      "slow outlier case/phase IDs"
+    ],
+    "existingPlanTargets": {
+      "ordinaryBattleCommandP95Milliseconds": 100,
+      "ordinaryBattleCommandIncludesPersistence": true,
+      "r2ConcurrentBattles": 10,
+      "r3ConcurrentBattles": 20,
+      "worldTickP95Milliseconds": 25,
+      "worldTickP99Milliseconds": 50,
+      "soakMinutes": 60
+    },
+    "thresholdInterpretation": "Section7 sets no separate numeric C-spike memory/latency cutoff. Section13 targets are initial later release workloads, not existing production capacity. Engine-only compute is compared to100ms for headroom, without claiming the including-persistence gate. Short churn is not the60-minute soak. No new arbitrary threshold is made mandatory.",
+    "execution": "Completed on the exact final C hash for probe and six-method contract paths. All independently supplied golden observations also passed during measurement. See battle-spike-measurements.json for CPU/runtime, sample distribution, memory stages, outliers and exclusions."
+  },
+  "provisionalAssessment": "All bounded Section7 outcomes now have evidence: real source command arithmetic/lifecycle, audited hybrid sequencing, isolated logical state, cross-build/fresh-process replay, six-method Node contract, explicit privacy/effect guards and measured resource costs. The fallback clause is therefore not automatically triggered. The evidence supports choosing one C/WASM source-command core plus TypeScript orchestration, with a versioned admitted profile and the listed R1 extension work. It does not support declaring a full extracted source engine, portable cross-version migration, production persistence or release capacity. Broader performance and mechanics gates remain open; no second production mechanics engine should be retained.",
+  "recommendation": "Select C/WASM source-command reuse with explicit TypeScript orchestration through the single server battle contract. ADR-001 selection remains the parent decision; this report does not authorize broader mechanics or deployment.",
+  "batch3Evidence": [
+    {
+      "path": "tools/battle-spike/c/checkpoint.inc",
+      "bytes": 14245,
+      "sha256": "56b42ea09766e9e19f33abfa2876569eaf7f925124c9dceb0f71720adc29f6ed"
+    },
+    {
+      "path": "tools/battle-spike/engine.ts",
+      "bytes": 7501,
+      "sha256": "a9f594060ab36c4056cebe8c659ba8654a365659160cd1f13a58bd6a55f00991"
+    },
+    {
+      "path": "packages/battle-core/src/wasm-adapter.ts",
+      "bytes": 8778,
+      "sha256": "78e11b0ddab9f7fa603de3a247be988f6a610059b8df2e106ca72632c49b679d"
+    },
+    {
+      "path": "reports/battle-spike-build.json",
+      "bytes": 66571,
+      "sha256": "0846ceb9fc22349d66112ea36590875297449e0158755fc607e9a3f39bbbf6fd"
+    },
+    {
+      "path": "reports/battle-spike-state-audit.json",
+      "bytes": 46075,
+      "sha256": "74951a219020e2b46c62bfe103c9e80094d9cc911f28f005c31d342a13567227"
+    },
+    {
+      "path": "reports/battle-spike-checkpoint-tests.json",
+      "bytes": 2361,
+      "sha256": "676c0b60b070ced945a15bdc780175c4f4adeeb2f66bbe962dbb7d34aac836c2"
+    },
+    {
+      "path": "reports/battle-spike-recovery.json",
+      "bytes": 10932,
+      "sha256": "ea607e7b2d3a159dd0814ada30cceb3aa591a4c54e2aaf5c9d526d0f6e61b697"
+    },
+    {
+      "path": "reports/battle-spike-engine.json",
+      "bytes": 2085,
+      "sha256": "aff4473298f7af4b58b76e8d9220a5b711e85e36d4f351571f6dbbfa6aa98ee6"
+    },
+    {
+      "path": "reports/battle-spike-measurements.json",
+      "bytes": 15591,
+      "sha256": "e79cfd78c09586273aafa5311d2abc9cace2e0092201690926bb3745d385661b"
+    },
+    {
+      "path": "reports/verification.json",
+      "bytes": 1414,
+      "sha256": "dbee26f31d8891e049e2263e00cb44b7766dbbe56a50b30c28895e140d357d70"
+    }
+  ],
+  "verifiedOutcomes": {
+    "wasmBytes": 46120,
+    "wasmSha256": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724",
+    "classifiedRestrictedTranslationUnitGlobals": 98,
+    "unclassifiedRestrictedGlobals": 0,
+    "logicalCheckpointScalarWords": 148,
+    "rawRejectedCheckpoints": 60,
+    "recovery": {
+      "cases": 16,
+      "boundaries": 37,
+      "checkedSourceDraws": 120,
+      "crossBuildReplayedTransitions": 26,
+      "interleavedInstances": 37,
+      "interleavedTransitions": 26,
+      "freshProcess": {
+        "pid": 30780,
+        "parentPid": 28368,
+        "boundaries": 37,
+        "transitions": 26
+      },
+      "exhaustedCounterAtomicity": [
+        "transition sequence",
+        "event sequence",
+        "turn at after-residual replacement"
+      ]
+    },
+    "recoveryMalformedObjectCases": 33,
+    "recoveryNonObjectCases": 4,
+    "contract": {
+      "cases": 15,
+      "transitions": 19,
+      "goldenBoundaries": 34,
+      "crossBuildReplayedTransitions": 23,
+      "freshProcess": {
+        "pid": 10372,
+        "parentPid": 24592,
+        "boundaries": 34,
+        "transitions": 23
+      },
+      "policies": [
+        "pve with zero effects",
+        "pvp-copy with zero effects"
+      ],
+      "domainEffects": 0
+    },
+    "contractRejectedChoices": 7,
+    "contractRejectedSnapshots": 22,
+    "logicalSnapshotBytes": {
+      "count": 1360,
+      "min": 1066,
+      "median": 1083,
+      "p95": 1287,
+      "p99": 1298,
+      "max": 1298
+    },
+    "contractEnvelopeJsonBytes": {
+      "count": 1360,
+      "min": 2188,
+      "median": 2218,
+      "p95": 2514,
+      "p99": 2526,
+      "max": 2526
+    },
+    "ordinaryTurnProbeP95Milliseconds": 0.5028000000002066,
+    "ordinaryTurnContractCycleP95Milliseconds": 9.284499999999753,
+    "contractRestoreP95Milliseconds": 1.100100000000566,
+    "interleavedTwentyContractBattleWaveMilliseconds": {
+      "count": 20,
+      "min": 178.44800000000032,
+      "median": 204.09199999999873,
+      "p95": 241.70589999999993,
+      "p99": 250.40049999999974,
+      "max": 250.40049999999974
+    },
+    "transitionsPerConcurrentWave": 25,
+    "linearMemoryBytesPerProbe": 262144,
+    "heldTwentyProbeExternalDeltaBytes": 5243000,
+    "heldTwentyContractStateHeapDeltaBytes": 60248
+  },
+  "verificationScope": "The full nine-stage gate completed at 2026-09-25T21:53:44.992Z with25 development-browser scenarios. The private turn-counter precommit guard then passed affected lint/typecheck/battle rechecks at 2026-09-25T21:54:47.014394+00:00. Final focused reports and benchmark implementation hashes match current sources. No new built-browser run, production persistence, release capacity or60-minute soak is claimed.",
+  "measurementVariability": {
+    "priorLocalObservations": [
+      {
+        "auditCheckedAt": "2026-09-25T21:48:41.238485+00:00",
+        "ordinaryTurnProbeP95Milliseconds": 0.8856999999998152,
+        "ordinaryTurnContractCycleP95Milliseconds": 12.77009999999973,
+        "twentyContractWaveP95Milliseconds": 306.82520000000113
+      },
+      {
+        "auditCheckedAt": "2026-09-25T21:51:55.864976+00:00",
+        "ordinaryTurnProbeP95Milliseconds": 1.0421000000005733,
+        "ordinaryTurnContractCycleP95Milliseconds": 13.420099999999366,
+        "twentyContractWaveP95Milliseconds": 286.96569999999883
+      }
+    ],
+    "currentMeasurementCheckedAt": "2026-09-25T21:54:37.089Z",
+    "caveat": "Local repeated runs show scheduling, allocator and GC variability. Reported percentiles describe these samples on this machine, not fixed production latency or capacity. Dense synchronous contract waves remain a scheduling/validation risk even when isolated command percentiles are low. No extra benchmark was run for this manual refresh."
+  },
+  "evidenceRefresh": {
+    "method": "Final manual audit refresh after reviewing all nine verification stages and the subsequent affected lint/typecheck/battle recheck. Hashes were recomputed from reviewed files and benchmark implementation hashes matched current source; this is not an automated architecture-decision gate.",
+    "verificationCheckedAt": "2026-09-25T21:53:44.992Z",
+    "observedPassedStages": [
+      "doctor",
+      "lint",
+      "typecheck",
+      "test:unit",
+      "test:integration",
+      "content:check",
+      "battle:spike",
+      "build",
+      "test:e2e"
+    ],
+    "fullProjectGateCompleteAtRefresh": true,
+    "postReviewRecheck": {
+      "checkedAt": "2026-09-25T21:54:47.014394+00:00",
+      "status": "passed",
+      "reason": "Final review fixed unsafe turn-counter increment before candidate commit; added a replacement-boundary regression that failed before the guard and passed after.",
+      "commands": [
+        "npm.cmd run lint",
+        "npm.cmd run typecheck",
+        "npm.cmd run battle:spike"
+      ],
+      "browserRerunRequired": false,
+      "scope": "Private host-only guard; existing completed 25-scenario browser suite and built artifacts unaffected."
+    },
+    "measurementCheckedAt": "2026-09-25T21:54:37.089Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "checkedAt": "2026-09-26T23:33:28.196Z",
+  "status": "passed",
+  "origin": "http://127.0.0.1:5173",
+  "scope": "User-requested persistent local testing accounts; normal auth and game permissions",
+  "accounts": [
+    {
+      "email": "admin1@pokewaterblue.test",
+      "trainer": "ADMINA"
+    },
+    {
+      "email": "admin2@pokewaterblue.test",
+      "trainer": "ADMINB"
+    }
+  ],
+  "checks": [
+    "two-isolated-contexts-UI-sign-in",
+    "explicit-shared-world-entry",
+    "reciprocal-nearby-trainers",
+    "movement-observed-by-second-player",
+    "both-world-saves-confirmed",
+    "leaving-removes-presence",
+    "no-browser-errors"
+  ],
+  "startingLocations": [
+    {
+      "trainer": "ADMINA",
+      "map": "Pallet Town",
+      "x": 9,
+      "y": 12
+    },
+    {
+      "trainer": "ADMINB",
+      "map": "Pallet Town",
+      "x": 10,
+      "y": 12
+    }
+  ],
+  "credentials": "Kept in .local/.env.admin-test-accounts; no passwords in this report",
+  "finalVerifiedAt": "2026-09-26T23:34:44.542Z",
+  "persistedTrainers": [
+    {
+      "name": "ADMINA",
+      "stage": "development-fixture",
+      "activity": "recovering",
+      "map_id": "MAP_PALLET_TOWN",
+      "position_x": 9,
+      "position_y": 12,
+      "active_lease": false
+    },
+    {
+      "name": "ADMINB",
+      "stage": "development-fixture",
+      "activity": "recovering",
+      "map_id": "MAP_PALLET_TOWN",
+      "position_x": 10,
+      "position_y": 12,
+      "active_lease": false
+    }
+  ],
+  "credentialFileHttpStatus": 403
+}

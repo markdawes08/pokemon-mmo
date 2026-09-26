@@ -1,0 +1,2783 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-26T01:23:05.017Z",
+  "status": "passed",
+  "batch": 2,
+  "scope": "Private synthetic singles, two party members per side; source commands with bounded host turn scheduling, not a production BattleEngine",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "wasmSha256": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724",
+  "fixtureSha256": "0be73649f9a2eac497ae04a6ea84d6db3d0a9cca3e84d43456e6888c5595bd2c",
+  "transcripts": [
+    {
+      "id": "ordinary-attacks-and-pp-two-turns",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 4012700850,
+            "parties": [
+              [
+                {
+                  "hp": 32,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 33,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    24
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 5,
+                "afterType": 7,
+                "damage": 7,
+                "flags": 0,
+                "hpDealt": 7,
+                "targetHP": 33,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 7
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 33
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 55,
+              "result": {
+                "baseDamage": 7,
+                "afterCritical": 7,
+                "afterType": 10,
+                "damage": 8,
+                "flags": 0,
+                "hpDealt": 8,
+                "targetHP": 32,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 24
+                },
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 8
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 32
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "state": {
+            "sequence": 2,
+            "turn": 3,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 665201893,
+            "parties": [
+              [
+                {
+                  "hp": 23,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    33
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 27,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    23
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 5,
+                "afterType": 7,
+                "damage": 6,
+                "flags": 0,
+                "hpDealt": 6,
+                "targetHP": 27,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 33
+                },
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 6
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 27
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 55,
+              "result": {
+                "baseDamage": 7,
+                "afterCritical": 7,
+                "afterType": 10,
+                "damage": 9,
+                "flags": 0,
+                "hpDealt": 9,
+                "targetHP": 23,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 23
+                },
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 9
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 23
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tackle-miss-consumes-pp-only-one-attack-draw",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 3654965739,
+            "parties": [
+              [
+                {
+                  "hp": 32,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    24
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 1,
+                "hpDealt": 0,
+                "targetHP": 40,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 55,
+              "result": {
+                "baseDamage": 7,
+                "afterCritical": 7,
+                "afterType": 10,
+                "damage": 8,
+                "flags": 0,
+                "hpDealt": 8,
+                "targetHP": 32,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 24
+                },
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 8
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 32
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "critical-knockout-victory-cancels-opponent",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 1,
+            "phase": "ended",
+            "resume": null,
+            "outcome": "won",
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 2478993009,
+            "parties": [
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 0,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 10,
+                "afterType": 15,
+                "damage": 14,
+                "flags": 0,
+                "hpDealt": 10,
+                "targetHP": 0,
+                "critical": 2
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 14
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "kind": "faint",
+              "actor": 1,
+              "partyIndex": 0,
+              "commands": [
+                {
+                  "type": 4,
+                  "battler": 1,
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "kind": "outcome",
+              "outcome": "won"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speed-tie-actions-and-residual-resort",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 204300520,
+            "parties": [
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 34,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                1,
+                0
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 1,
+                "hpDealt": 0,
+                "targetHP": 40,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 5,
+                "afterType": 7,
+                "damage": 6,
+                "flags": 0,
+                "hpDealt": 6,
+                "targetHP": 34,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 6
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                1,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quick-attack-priority-beats-speed",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 4012700850,
+            "parties": [
+              [
+                {
+                  "hp": 32,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    29
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 31,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    24
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 98,
+              "result": {
+                "baseDamage": 6,
+                "afterCritical": 6,
+                "afterType": 9,
+                "damage": 9,
+                "flags": 0,
+                "hpDealt": 9,
+                "targetHP": 31,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 29
+                },
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 9
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 31
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 55,
+              "result": {
+                "baseDamage": 7,
+                "afterCritical": 7,
+                "afterType": 10,
+                "damage": 8,
+                "flags": 0,
+                "hpDealt": 8,
+                "targetHP": 32,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 24
+                },
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 8
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 32
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voluntary-switch-cleans-volatiles-preserves-bench-burn",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              1,
+              0
+            ],
+            "rngState": 3805062638,
+            "parties": [
+              [
+                {
+                  "hp": 40,
+                  "status1": 16,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                },
+                {
+                  "hp": 33,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "switch",
+              "actor": 0,
+              "from": 0,
+              "to": 1,
+              "forced": false
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 5,
+                "afterType": 7,
+                "damage": 7,
+                "flags": 0,
+                "hpDealt": 7,
+                "targetHP": 33,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 7
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 33
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "state": {
+            "sequence": 2,
+            "turn": 3,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 1742452232,
+            "parties": [
+              [
+                {
+                  "hp": 35,
+                  "status1": 16,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                },
+                {
+                  "hp": 33,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    33
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "switch",
+              "actor": 0,
+              "from": 1,
+              "to": 0,
+              "forced": false
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 1,
+                "hpDealt": 0,
+                "targetHP": 40,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 33
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "residual",
+              "actor": 0,
+              "status": 16,
+              "commands": [
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 5
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 35
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn-residual-faint-and-forced-replacement",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 1,
+            "phase": "replacement",
+            "resume": "after-residual",
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 4231221723,
+            "parties": [
+              [
+                {
+                  "hp": 0,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                },
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 36,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 3,
+                "afterCritical": 3,
+                "afterType": 4,
+                "damage": 4,
+                "flags": 0,
+                "hpDealt": 4,
+                "targetHP": 36,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 4
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 36
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 3,
+                "afterCritical": 3,
+                "afterType": 4,
+                "damage": 3,
+                "flags": 0,
+                "hpDealt": 3,
+                "targetHP": 4,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 3
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 4
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "residual",
+              "actor": 0,
+              "status": 16,
+              "commands": [
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 5
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "kind": "faint",
+              "actor": 0,
+              "partyIndex": 0,
+              "commands": [
+                {
+                  "type": 4,
+                  "battler": 0,
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "state": {
+            "sequence": 2,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              1,
+              0
+            ],
+            "rngState": 4012700850,
+            "parties": [
+              [
+                {
+                  "hp": 0,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                },
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 36,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "switch",
+              "actor": 0,
+              "from": 0,
+              "to": 1,
+              "forced": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poison-powder-infliction-and-residual-loss",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 1,
+            "phase": "ended",
+            "resume": null,
+            "outcome": "lost",
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 3805062638,
+            "parties": [
+              [
+                {
+                  "hp": 0,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 26,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                1,
+                0
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 77,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 0,
+                "hpDealt": 0,
+                "targetHP": 5,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 34
+                },
+                {
+                  "type": 4,
+                  "battler": 0,
+                  "value": 8
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 10,
+                "afterType": 15,
+                "damage": 14,
+                "flags": 0,
+                "hpDealt": 14,
+                "targetHP": 26,
+                "critical": 2
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 14
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 26
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                1,
+                0
+              ]
+            },
+            {
+              "kind": "residual",
+              "actor": 0,
+              "status": 8,
+              "commands": [
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 5
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "kind": "faint",
+              "actor": 0,
+              "partyIndex": 0,
+              "commands": [
+                {
+                  "type": 4,
+                  "battler": 0,
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "kind": "outcome",
+              "outcome": "lost"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poison-powder-steel-immunity-skips-accuracy",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 3805062638,
+            "parties": [
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 35,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                1,
+                0
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 77,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 8,
+                "hpDealt": 0,
+                "targetHP": 40,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 5,
+                "afterType": 5,
+                "damage": 5,
+                "flags": 0,
+                "hpDealt": 5,
+                "targetHP": 35,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 5
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 35
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                1,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "attack-knockout-replacement-before-incoming-residual",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 1,
+            "phase": "replacement",
+            "resume": "before-residual",
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 2478993009,
+            "parties": [
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 0,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                },
+                {
+                  "hp": 40,
+                  "status1": 16,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 10,
+                "afterType": 15,
+                "damage": 14,
+                "flags": 0,
+                "hpDealt": 10,
+                "targetHP": 0,
+                "critical": 2
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 14
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "kind": "faint",
+              "actor": 1,
+              "partyIndex": 0,
+              "commands": [
+                {
+                  "type": 4,
+                  "battler": 1,
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "state": {
+            "sequence": 2,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              1
+            ],
+            "rngState": 1138087056,
+            "parties": [
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 0,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                },
+                {
+                  "hp": 35,
+                  "status1": 16,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    35
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "switch",
+              "actor": 1,
+              "from": 0,
+              "to": 1,
+              "forced": true
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "residual",
+              "actor": 1,
+              "status": 16,
+              "commands": [
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 5
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 35
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first-residual-terminal-stops-second-burn",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 1,
+            "phase": "ended",
+            "resume": null,
+            "outcome": "lost",
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 24691,
+            "parties": [
+              [
+                {
+                  "hp": 0,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 3,
+                  "status1": 16,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 77,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 32,
+                "hpDealt": 0,
+                "targetHP": 3,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 77,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 32,
+                "hpDealt": 0,
+                "targetHP": 3,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "residual",
+              "actor": 0,
+              "status": 16,
+              "commands": [
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 5
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "kind": "faint",
+              "actor": 0,
+              "partyIndex": 0,
+              "commands": [
+                {
+                  "type": 4,
+                  "battler": 0,
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "kind": "outcome",
+              "outcome": "lost"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "already-poisoned-powder-deducts-pp-without-accuracy",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 3805062638,
+            "parties": [
+              [
+                {
+                  "hp": 33,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 35,
+                  "status1": 8,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 77,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 0,
+                "hpDealt": 0,
+                "targetHP": 40,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 5,
+                "afterType": 7,
+                "damage": 7,
+                "flags": 0,
+                "hpDealt": 7,
+                "targetHP": 33,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 7
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 33
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "residual",
+              "actor": 1,
+              "status": 8,
+              "commands": [
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 5
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 35
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accuracy-evasion-stages-floor-to-forty",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 3861917907,
+            "parties": [
+              [
+                {
+                  "hp": 34,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    4,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    8
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 1,
+                "hpDealt": 0,
+                "targetHP": 40,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 5,
+                "afterType": 7,
+                "damage": 6,
+                "flags": 0,
+                "hpDealt": 6,
+                "targetHP": 34,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 6
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "foresight-ignores-evasion-but-retains-accuracy-drop",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 3445993924,
+            "parties": [
+              [
+                {
+                  "hp": 27,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    4,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 34,
+                  "status1": 0,
+                  "status2": 536870912,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    8
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 5,
+                "afterType": 7,
+                "damage": 6,
+                "flags": 0,
+                "hpDealt": 6,
+                "targetHP": 34,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 1,
+                  "value": 6
+                },
+                {
+                  "type": 2,
+                  "battler": 1,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 5,
+                "afterCritical": 10,
+                "afterType": 15,
+                "damage": 13,
+                "flags": 0,
+                "hpDealt": 13,
+                "targetHP": 27,
+                "critical": 2
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 34
+                },
+                {
+                  "type": 1,
+                  "battler": 0,
+                  "value": 13
+                },
+                {
+                  "type": 2,
+                  "battler": 0,
+                  "value": 27
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poison-powder-accuracy-miss-combines-failure-flags",
+      "status": "passed",
+      "steps": [
+        {
+          "state": {
+            "sequence": 1,
+            "turn": 2,
+            "phase": "choice",
+            "resume": null,
+            "outcome": null,
+            "active": [
+              0,
+              0
+            ],
+            "rngState": 522823614,
+            "parties": [
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ],
+              [
+                {
+                  "hp": 40,
+                  "status1": 0,
+                  "status2": 0,
+                  "stages": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ],
+                  "pp": [
+                    34
+                  ]
+                }
+              ]
+            ]
+          },
+          "events": [
+            {
+              "kind": "order",
+              "phase": "actions",
+              "actors": [
+                0,
+                1
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 0,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 77,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 33,
+                "hpDealt": 0,
+                "targetHP": 40,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 0,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "attack",
+              "actor": 1,
+              "partyIndex": 0,
+              "slot": 0,
+              "move": 33,
+              "result": {
+                "baseDamage": 0,
+                "afterCritical": 0,
+                "afterType": 0,
+                "damage": 0,
+                "flags": 1,
+                "hpDealt": 0,
+                "targetHP": 40,
+                "critical": 1
+              },
+              "commands": [
+                {
+                  "type": 3,
+                  "battler": 1,
+                  "value": 34
+                }
+              ]
+            },
+            {
+              "kind": "order",
+              "phase": "residual",
+              "actors": [
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "interleavedBattles": 15,
+  "interleavedSteps": 19,
+  "terminalGuards": 3,
+  "replacementGuards": 2,
+  "cRejections": [
+    {
+      "id": "actor-outside-singles",
+      "status": "passed"
+    },
+    {
+      "id": "zero-speed",
+      "status": "passed"
+    },
+    {
+      "id": "unused-hp-stage",
+      "status": "passed"
+    },
+    {
+      "id": "stage-overflow",
+      "status": "passed"
+    },
+    {
+      "id": "unsupported-paralysis",
+      "status": "passed"
+    },
+    {
+      "id": "unsupported-ember",
+      "status": "passed"
+    },
+    {
+      "id": "move-slot-overflow",
+      "status": "passed"
+    },
+    {
+      "id": "pp-above-source-base",
+      "status": "passed"
+    },
+    {
+      "id": "order-slot-overflow",
+      "status": "passed"
+    },
+    {
+      "id": "attack-slot-overflow",
+      "status": "passed"
+    },
+    {
+      "id": "empty-move-slot",
+      "status": "passed"
+    },
+    {
+      "id": "living-mon-faint",
+      "status": "passed"
+    },
+    {
+      "id": "party-side-overflow",
+      "status": "passed"
+    },
+    {
+      "id": "party-slot-overflow",
+      "status": "passed"
+    },
+    {
+      "id": "party-HP-sum-overflow",
+      "status": "passed"
+    }
+  ],
+  "postMutationInjectedFaultAtomicity": "passed",
+  "rawFaintedGuards": 3,
+  "rawTerminalGuards": 14,
+  "checks": [
+    "independent-source-turn-transcripts",
+    "same-seed-repeatability",
+    "expanded-state-interleaving",
+    "ordered-controller-events",
+    "source-order-and-RNG-boundaries",
+    "invalid-choice-no-state-change",
+    "faint-replacement-phases",
+    "terminal-state-guards",
+    "returned-state-does-not-alias",
+    "raw-C-admission-guards",
+    "injected-post-mutation-transport-fault-does-not-commit"
+  ],
+  "remaining": [
+    "production BattleEngine adapter and selected approach",
+    "portable versioned snapshot/restore and deterministic replay gate",
+    "full-path resource measurements",
+    "real species/abilities/items and R1 dependency closure",
+    "experience/capture/inventory/save domain effects and persistence",
+    "battle UI and server-authoritative encounter integration"
+  ]
+}

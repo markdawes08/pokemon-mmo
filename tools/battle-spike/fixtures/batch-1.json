@@ -1,0 +1,2192 @@
+{
+  "schemaVersion": 1,
+  "scope": "batch-1-damage-and-hp-kernel",
+  "profile": "firered-private",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "provenance": "Synthetic battle-stat inputs and literal expected values independently derived from inspected pinned source. No expected result is read from compiled probe output. This is not a complete attack/turn transcript.",
+  "rngStateSemantics": "Initial state is full u32 gRngValue for internal restore; not SeedRng(u16) or a client-controlled live seed.",
+  "controllerEventSemantics": {
+    "1": "Original BtlController_EmitHealthBarUpdate request (capped10000), immediately acknowledged by host",
+    "2": "Original BtlController_EmitSetMonData REQUEST_HP_BATTLE containing newHP"
+  },
+  "fixedScope": {
+    "moves": [
+      33,
+      55
+    ],
+    "accuracyRoll": false,
+    "criticalRoll": false,
+    "criticalMultiplierSupplied": [
+      1,
+      2
+    ],
+    "rngDrawsPerKernel": 1,
+    "hpCommit": true,
+    "ppCommit": false,
+    "faintingPipeline": false,
+    "items": "none",
+    "abilities": "none",
+    "weather": "none",
+    "battleFormat": "single",
+    "scriptDamageMultiplier": 1
+  },
+  "rngCases": [
+    {
+      "id": "lcg-state-00000000",
+      "initialState": 0,
+      "draws": [
+        {
+          "value": 0,
+          "state": 24691
+        },
+        {
+          "value": 59774,
+          "state": 3917380458
+        },
+        {
+          "value": 21105,
+          "state": 1383151765
+        },
+        {
+          "value": 12720,
+          "state": 833674724
+        },
+        {
+          "value": 36418,
+          "state": 2386711175
+        }
+      ]
+    },
+    {
+      "id": "lcg-state-00000001",
+      "initialState": 1,
+      "draws": [
+        {
+          "value": 16838,
+          "state": 1103539936
+        },
+        {
+          "value": 44065,
+          "state": 2887849427
+        },
+        {
+          "value": 53998,
+          "state": 3538875722
+        },
+        {
+          "value": 8119,
+          "state": 532110581
+        },
+        {
+          "value": 31203,
+          "state": 2044959428
+        }
+      ]
+    },
+    {
+      "id": "lcg-state-00001234",
+      "initialState": 4660,
+      "draws": [
+        {
+          "value": 19915,
+          "state": 1305213079
+        },
+        {
+          "value": 57697,
+          "state": 3781245630
+        },
+        {
+          "value": 17216,
+          "state": 1128286041
+        },
+        {
+          "value": 65521,
+          "state": 4294041432
+        },
+        {
+          "value": 49689,
+          "state": 3256436971
+        }
+      ]
+    },
+    {
+      "id": "lcg-state-0000ffff",
+      "initialState": 65535,
+      "draws": [
+        {
+          "value": 3239,
+          "state": 212275718
+        },
+        {
+          "value": 49476,
+          "state": 3242516737
+        },
+        {
+          "value": 36520,
+          "state": 2393406432
+        },
+        {
+          "value": 49851,
+          "state": 3267059411
+        },
+        {
+          "value": 60126,
+          "state": 3940420170
+        }
+      ]
+    },
+    {
+      "id": "lcg-state-12345678",
+      "initialState": 305419896,
+      "draws": [
+        {
+          "value": 2929,
+          "state": 192004491
+        },
+        {
+          "value": 34026,
+          "state": 2229936802
+        },
+        {
+          "value": 55690,
+          "state": 3649731437
+        },
+        {
+          "value": 62688,
+          "state": 4108329948
+        },
+        {
+          "value": 9860,
+          "state": 646229279
+        }
+      ]
+    },
+    {
+      "id": "lcg-state-ffffffff",
+      "initialState": 4294967295,
+      "draws": [
+        {
+          "value": 48698,
+          "state": 3191476742
+        },
+        {
+          "value": 9947,
+          "state": 651944193
+        },
+        {
+          "value": 53747,
+          "state": 3522395104
+        },
+        {
+          "value": 17322,
+          "state": 1135238867
+        },
+        {
+          "value": 41633,
+          "state": 2728462922
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "tackle-neutral-physical-stat-selection",
+      "input": {
+        "seed": 0,
+        "move": 33,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 10,
+            "type2": 10,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 12,
+            "type2": 12,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 5,
+        "damage": 5,
+        "flags": 0,
+        "hpDealt": 5,
+        "targetHP": 25,
+        "physicalDmg": 5,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 5
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 25
+          }
+        ]
+      },
+      "derivation": "Physical uses Attack12 / Defense9, ignoring SpAttack13 / SpDefense8: floor(floor(12*35*4/9)/50)+2=5. No STAB/type change; seed0 first draw0 gives100%."
+    },
+    {
+      "id": "tackle-stab-and-random-floor",
+      "input": {
+        "seed": 1,
+        "move": 33,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 0,
+            "type2": 0,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 12,
+            "type2": 12,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 7,
+        "damage": 6,
+        "flags": 0,
+        "hpDealt": 6,
+        "targetHP": 24,
+        "physicalDmg": 6,
+        "specialDmg": 0,
+        "rngState": 1103539936,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 6
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 24
+          }
+        ]
+      },
+      "derivation": "Base5; STAB floor(5*15/10)=7. Seed1 output16838 yields94%; floor(7*94/100)=6."
+    },
+    {
+      "id": "tackle-duplicate-defender-type-once",
+      "input": {
+        "seed": 0,
+        "move": 33,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 0,
+            "type2": 0,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 5,
+            "type2": 5,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 3,
+        "damage": 3,
+        "flags": 4,
+        "hpDealt": 3,
+        "targetHP": 27,
+        "physicalDmg": 3,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 3
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 27
+          }
+        ]
+      },
+      "derivation": "Base5 -> STAB7 -> Rock floor(7*5/10)=3. Duplicate Rock type processed once; resisted flag4."
+    },
+    {
+      "id": "tackle-two-resistances-floor-each",
+      "input": {
+        "seed": 0,
+        "move": 33,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 0,
+            "type2": 0,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 5,
+            "type2": 8,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 1,
+        "damage": 1,
+        "flags": 4,
+        "hpDealt": 1,
+        "targetHP": 29,
+        "physicalDmg": 1,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 1
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 29
+          }
+        ]
+      },
+      "derivation": "Base5 -> STAB7 -> Rock3 -> Steel1. Round after each type relationship. Repeated resistance retains flag4."
+    },
+    {
+      "id": "tackle-ghost-immunity-still-consumes-rng",
+      "input": {
+        "seed": 1,
+        "move": 33,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 0,
+            "type2": 0,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 7,
+            "type2": 7,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 0,
+        "damage": 0,
+        "flags": 8,
+        "hpDealt": 0,
+        "targetHP": 30,
+        "physicalDmg": 0,
+        "specialDmg": 0,
+        "rngState": 1103539936,
+        "events": []
+      },
+      "derivation": "STAB7 then Normal/Ghost immunity0. Random multiplier still draws16838, advances state1103539936. No HP events; HP unchanged."
+    },
+    {
+      "id": "tackle-foresight-skips-ghost-immunity",
+      "input": {
+        "seed": 1,
+        "move": 33,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 0,
+            "type2": 0,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 7,
+            "type2": 7,
+            "status1": 0,
+            "status2": 536870912,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 7,
+        "damage": 6,
+        "flags": 0,
+        "hpDealt": 6,
+        "targetHP": 24,
+        "physicalDmg": 6,
+        "specialDmg": 0,
+        "rngState": 1103539936,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 6
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 24
+          }
+        ]
+      },
+      "derivation": "Target STATUS2_FORESIGHT (1<<29) stops type table before Normal/Ghost tail immunity. STAB7 *94% floors6."
+    },
+    {
+      "id": "tackle-physical-minimum-before-plus-two",
+      "input": {
+        "seed": 0,
+        "move": 33,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 1,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 1,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 10,
+            "type2": 10,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 999,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 12,
+            "type2": 12,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 3,
+        "afterCritical": 3,
+        "afterType": 3,
+        "damage": 3,
+        "flags": 0,
+        "hpDealt": 3,
+        "targetHP": 27,
+        "physicalDmg": 3,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 3
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 27
+          }
+        ]
+      },
+      "derivation": "floor(floor(1*35*2/999)/50)=0; physical branch clamps1, then function returns1+2=3."
+    },
+    {
+      "id": "water-gun-special-minimum-has-no-physical-clamp",
+      "input": {
+        "seed": 0,
+        "move": 55,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 1,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 1,
+            "spDefense": 10,
+            "type1": 10,
+            "type2": 10,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 999,
+            "type1": 0,
+            "type2": 0,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 2,
+        "afterCritical": 2,
+        "afterType": 2,
+        "damage": 2,
+        "flags": 0,
+        "hpDealt": 2,
+        "targetHP": 28,
+        "physicalDmg": 0,
+        "specialDmg": 2,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 2
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 28
+          }
+        ]
+      },
+      "derivation": "Special floor(floor(1*40*2/999)/50)=0 and returns0+2=2; no physical minimum clamp. No STAB/type changes."
+    },
+    {
+      "id": "water-gun-special-stab-super-effective",
+      "input": {
+        "seed": 0,
+        "move": 55,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 999,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 11,
+            "type2": 11,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 999,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 10,
+            "type2": 10,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 7,
+        "afterCritical": 7,
+        "afterType": 20,
+        "damage": 20,
+        "flags": 2,
+        "hpDealt": 20,
+        "targetHP": 10,
+        "physicalDmg": 0,
+        "specialDmg": 20,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 20
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 10
+          }
+        ]
+      },
+      "derivation": "Water is special: SpAttack13*40*4 / SpDefense8=260; floor(/50)+2=7, independent of Attack999/Defense999. STAB floor(7*1.5)=10; Fire2x=20."
+    },
+    {
+      "id": "water-gun-source-table-order-net-neutral-rounding",
+      "input": {
+        "seed": 0,
+        "move": 55,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 10,
+            "type2": 10,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 5,
+            "type2": 12,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 7,
+        "afterCritical": 7,
+        "afterType": 6,
+        "damage": 6,
+        "flags": 0,
+        "hpDealt": 6,
+        "targetHP": 24,
+        "physicalDmg": 0,
+        "specialDmg": 6,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 6
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 24
+          }
+        ]
+      },
+      "derivation": "No STAB, base7. Source Water/Grass resistance precedes Water/Rock weakness despite target type1 Rock: floor(7/2)=3, then3*2=6. Flags4 cleared by super-effective; net flag0."
+    },
+    {
+      "id": "tackle-burn-before-plus-two",
+      "input": {
+        "seed": 0,
+        "move": 33,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 0,
+            "type2": 0,
+            "status1": 16,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 12,
+            "type2": 12,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 3,
+        "afterCritical": 3,
+        "afterType": 4,
+        "damage": 4,
+        "flags": 0,
+        "hpDealt": 4,
+        "targetHP": 26,
+        "physicalDmg": 4,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 4
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 26
+          }
+        ]
+      },
+      "derivation": "Pre-addition intermediate3; burn halves to1 before +2, returning3. STAB floor(3*1.5)=4."
+    },
+    {
+      "id": "water-gun-burn-does-not-halve-special",
+      "input": {
+        "seed": 0,
+        "move": 55,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 11,
+            "type2": 11,
+            "status1": 16,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 10,
+            "type2": 10,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 7,
+        "afterCritical": 7,
+        "afterType": 20,
+        "damage": 20,
+        "flags": 2,
+        "hpDealt": 20,
+        "targetHP": 10,
+        "physicalDmg": 0,
+        "specialDmg": 20,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 20
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 10
+          }
+        ]
+      },
+      "derivation": "Same Water Gun base7/STAB10/Fire20 as unburned. Burn reduction exists only in physical branch."
+    },
+    {
+      "id": "tackle-critical-ignores-unfavorable-stages",
+      "input": {
+        "seed": 0,
+        "move": 33,
+        "crit": 2,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 0,
+            "type2": 0,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              4,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 12,
+            "type2": 12,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              8,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 5,
+        "afterCritical": 10,
+        "afterType": 15,
+        "damage": 15,
+        "flags": 0,
+        "hpDealt": 15,
+        "targetHP": 15,
+        "physicalDmg": 15,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 15
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 15
+          }
+        ]
+      },
+      "derivation": "Critical ignores Attack stage4 (-2) and Defense stage8 (+2), retaining12/9. Base5*crit2=10, STAB15."
+    },
+    {
+      "id": "tackle-critical-retains-beneficial-stages",
+      "input": {
+        "seed": 1,
+        "move": 33,
+        "crit": 2,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 0,
+            "type2": 0,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              8,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 12,
+            "type2": 12,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              4,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 18,
+        "afterCritical": 36,
+        "afterType": 54,
+        "damage": 50,
+        "flags": 0,
+        "hpDealt": 30,
+        "targetHP": 0,
+        "physicalDmg": 30,
+        "specialDmg": 0,
+        "rngState": 1103539936,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 50
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 0
+          }
+        ]
+      },
+      "derivation": "Critical keeps Attack stage8:12*20/10=24 and Defense stage4:floor(9*10/20)=4. floor(floor(24*35*4/4)/50)+2=18; crit36; STAB54;94% floors50. Target30 loses30; healthbar requests50."
+    },
+    {
+      "id": "tackle-noncritical-applies-unfavorable-stages",
+      "input": {
+        "seed": 0,
+        "move": 33,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 0,
+            "type2": 0,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              4,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 12,
+            "type2": 12,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              8,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 3,
+        "afterCritical": 3,
+        "afterType": 4,
+        "damage": 4,
+        "flags": 0,
+        "hpDealt": 4,
+        "targetHP": 26,
+        "physicalDmg": 4,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 4
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 26
+          }
+        ]
+      },
+      "derivation": "Attack12/2=6, Defense9*2=18. floor(floor(6*35*4/18)/50)=0; physical minimum1 then+2=3; STAB4."
+    },
+    {
+      "id": "water-gun-critical-special-stage-selection",
+      "input": {
+        "seed": 4660,
+        "move": 55,
+        "crit": 2,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 11,
+            "type2": 11,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              8,
+              6,
+              6,
+              4,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 10,
+            "type2": 10,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              4,
+              6,
+              6,
+              8,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 7,
+        "afterCritical": 14,
+        "afterType": 42,
+        "damage": 37,
+        "flags": 2,
+        "hpDealt": 30,
+        "targetHP": 0,
+        "physicalDmg": 0,
+        "specialDmg": 30,
+        "rngState": 1305213079,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 37
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 0
+          }
+        ]
+      },
+      "derivation": "Crit ignores SpAttack stage4 and SpDefense stage8; Attack/Defense stages irrelevant. Base7*2=14; STAB21; Fire42; seed0x1234 output19915 gives89%, floor37."
+    },
+    {
+      "id": "water-gun-type-and-random-minimum-one",
+      "input": {
+        "seed": 1,
+        "move": 55,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 1,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 1,
+            "spDefense": 10,
+            "type1": 10,
+            "type2": 10,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 999,
+            "type1": 12,
+            "type2": 11,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 2,
+        "afterCritical": 2,
+        "afterType": 1,
+        "damage": 1,
+        "flags": 4,
+        "hpDealt": 1,
+        "targetHP": 29,
+        "physicalDmg": 0,
+        "specialDmg": 1,
+        "rngState": 1103539936,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 1
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 29
+          }
+        ]
+      },
+      "derivation": "Base2; Water resistance1, Grass resistance0 clamps1. Random94% computes0 and clamps1 again."
+    },
+    {
+      "id": "water-gun-overkill-hp-event-raw-damage",
+      "input": {
+        "seed": 0,
+        "move": 55,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 5,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 12,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 11,
+            "type2": 11,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 7,
+            "maxHP": 30,
+            "attack": 10,
+            "defense": 9,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 10,
+            "type2": 10,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 7,
+        "afterCritical": 7,
+        "afterType": 20,
+        "damage": 20,
+        "flags": 2,
+        "hpDealt": 7,
+        "targetHP": 0,
+        "physicalDmg": 0,
+        "specialDmg": 7,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 20
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 0
+          }
+        ]
+      },
+      "derivation": "Damage20 vs7HP. Original healthbar event requests20; datahpupdate applies7, records special damage7, setsHP0. No fainting pipeline."
+    },
+    {
+      "id": "tackle-healthbar-command-clamps-large-damage",
+      "input": {
+        "seed": 0,
+        "move": 33,
+        "crit": 1,
+        "battlers": [
+          {
+            "level": 100,
+            "hp": 30,
+            "maxHP": 30,
+            "attack": 999,
+            "defense": 10,
+            "spAttack": 13,
+            "spDefense": 10,
+            "type1": 0,
+            "type2": 0,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "level": 5,
+            "hp": 500,
+            "maxHP": 500,
+            "attack": 10,
+            "defense": 1,
+            "spAttack": 10,
+            "spDefense": 8,
+            "type1": 12,
+            "type2": 12,
+            "status1": 0,
+            "status2": 0,
+            "stages": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "baseDamage": 29372,
+        "afterCritical": 29372,
+        "afterType": 44058,
+        "damage": 44058,
+        "flags": 0,
+        "hpDealt": 500,
+        "targetHP": 0,
+        "physicalDmg": 500,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 10000
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 0
+          }
+        ]
+      },
+      "derivation": "floor(999*35*42/1/50)+2=29372; STAB44058. Healthbar caps presentation amount10000; datahpupdate applies500HP, records physical damage500 andHP0."
+    }
+  ],
+  "rejections": [
+    {
+      "id": "reject-unsupported-growl",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_damage",
+        "args": [
+          45,
+          1
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-critical-multiplier-zero",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_damage",
+        "args": [
+          33,
+          0
+        ]
+      },
+      "expectedStatus": 1,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-out-of-range-stat-stage",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_stage",
+        "args": [
+          0,
+          1,
+          13
+        ]
+      },
+      "expectedStatus": 1,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-nonneutral-speed-stage",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_stage",
+        "args": [
+          0,
+          3,
+          7
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-out-of-range-battler-index",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_stage",
+        "args": [
+          2,
+          1,
+          6
+        ]
+      },
+      "expectedStatus": 1,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-zero-defense-stat",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_battler",
+        "args": [
+          1,
+          5,
+          30,
+          30,
+          10,
+          0,
+          10,
+          8,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      "expectedStatus": 1,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-mystery-type",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_battler",
+        "args": [
+          1,
+          5,
+          30,
+          30,
+          10,
+          9,
+          10,
+          8,
+          9,
+          9,
+          0,
+          0
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-poison-status",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_battler",
+        "args": [
+          0,
+          5,
+          30,
+          30,
+          12,
+          10,
+          13,
+          10,
+          10,
+          10,
+          8,
+          0
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-substitute-volatile",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_battler",
+        "args": [
+          1,
+          5,
+          30,
+          30,
+          10,
+          9,
+          10,
+          8,
+          12,
+          12,
+          0,
+          16777216
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-attacker-ability",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_capabilities",
+        "args": [
+          66,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-defender-ability",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_capabilities",
+        "args": [
+          0,
+          26,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-attacker-item",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_capabilities",
+        "args": [
+          0,
+          0,
+          13,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-defender-item",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_capabilities",
+        "args": [
+          0,
+          0,
+          0,
+          13,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-weather",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_capabilities",
+        "args": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-battle-flags",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_capabilities",
+        "args": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-attacker-side-status",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_capabilities",
+        "args": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-defender-side-status",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [],
+      "call": {
+        "name": "spike_set_capabilities",
+        "args": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "expectedStatus": 2,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-stage-modified-zero-defense",
+      "setupCase": "tackle-healthbar-command-clamps-large-damage",
+      "before": [
+        {
+          "name": "spike_set_stage",
+          "args": [
+            1,
+            2,
+            0
+          ]
+        }
+      ],
+      "call": {
+        "name": "spike_damage",
+        "args": [
+          33,
+          1
+        ]
+      },
+      "expectedStatus": 6,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    },
+    {
+      "id": "reject-stage-modified-zero-special-defense",
+      "setupCase": "tackle-neutral-physical-stat-selection",
+      "before": [
+        {
+          "name": "spike_set_battler",
+          "args": [
+            1,
+            5,
+            30,
+            30,
+            10,
+            9,
+            10,
+            1,
+            12,
+            12,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "spike_set_stage",
+          "args": [
+            1,
+            5,
+            0
+          ]
+        }
+      ],
+      "call": {
+        "name": "spike_damage",
+        "args": [
+          55,
+          1
+        ]
+      },
+      "expectedStatus": 6,
+      "unchanged": [
+        "rngState",
+        "battlerHP",
+        "controllerEvents"
+      ]
+    }
+  ],
+  "rejectionSemantics": "Reset and configure from setupCase input without executing damage; apply before calls (all expected status0), then capture state, execute call and require expectedStatus. RNG, bothHP values and controller events must match the captured state. These are lowlevel experiment admission checks, not complete battle-choice validation."
+}

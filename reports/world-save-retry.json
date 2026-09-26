@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-09-26T01:27:40.464Z",
+  "scope": "Real authenticated hello immediately precedes Save, producing actual server BUSY; malformed Save gets real INVALID_MESSAGE",
+  "busyResponses": 1,
+  "identicalSaveAttempts": 2,
+  "receiptsWritten": 1,
+  "invalidSaveAttempts": 1,
+  "attemptsAfterInvalidResponse": 0,
+  "invalidSaveReceipts": 0
+}

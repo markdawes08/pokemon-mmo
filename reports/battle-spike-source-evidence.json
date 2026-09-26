@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-25T20:06:42.068308+00:00",
+  "status": "independent-source-and-fixture-inspection-pass",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "upstreamCommit": null,
+  "scope": "P03 first bounded damage/HP extraction batch. Independent source trace and literal expected fixtures only; this report is not compiler, WASM runtime, original-ROM, full-turn or production-engine verification.",
+  "inputs": [
+    {
+      "path": "src/random.c",
+      "size": 323,
+      "sha256": "e7e90cc070d1fbf09579f5f91762cd8875d5bbe1d7a90f468bcd870df73b9de2",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/random.h",
+      "size": 669,
+      "sha256": "8a6049183598b2d865b5ff522abdb3d0e94012a127d724af46b9b7b69803f5b9",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/pokemon.c",
+      "size": 221865,
+      "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/battle_script_commands.c",
+      "size": 355862,
+      "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/battle_util.c",
+      "size": 136791,
+      "sha256": "87cf810eb2d58361d1beb1537b3bd71c9160a77c2a17d703399f6ed373bb5720",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/battle_main.c",
+      "size": 171904,
+      "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/battle_scripts_1.s",
+      "size": 138642,
+      "sha256": "27e9c39f3147b05e5ba2ed36ca0c89fcdc9b26718778083bd362c582de800034",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/data/battle_moves.h",
+      "size": 121457,
+      "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/battle.h",
+      "size": 21838,
+      "sha256": "bf64a16fb4e660f8a326eb352a511bb9e8fd54a74ebb03e328c08d5a23e5d8fa",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/battle.h",
+      "size": 16440,
+      "sha256": "b9d0493af4629d450050637e9aace63b684b282f841bed2a0d97b1d71e9d55e3",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/pokemon.h",
+      "size": 10894,
+      "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/moves.h",
+      "size": 10249,
+      "sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194",
+      "matchesPinnedSnapshot": true
+    }
+  ],
+  "fixtureArtifact": {
+    "path": "tools/battle-spike/fixtures/batch-1.json",
+    "sha256": "f89f9e5d3caf3dc373eac86146e2416038fe3f3273cb57b0adc6a95ce3f09fff",
+    "damageCases": 19,
+    "rngSequences": 6,
+    "drawsPerSequence": 5,
+    "method": "Hand-selected synthetic battle-stat inputs and literal damage/type/flag results from inspected original functions; independent Python positive-integer arithmetic and tiny Tackle/Water type table checked those values. RNG expected values use unbounded integer multiply/add then explicit modulo2^32. No compiled probe output was consulted.",
+    "rejections": 19,
+    "rejectionProvenance": "Expected statuses reflect the explicitly bounded ABI admission contract; unlike positive damage values they are adapter policy, not claimed original-game error codes."
+  },
+  "rng": {
+    "source": "src/random.c:Random and include/random.h:ISO_RANDOMIZE1",
+    "multiplier": 1103515245,
+    "increment": 24691,
+    "stateWidth": 32,
+    "output": "Upper16 bits after updating state",
+    "stateUpdate": "(state*1103515245+24691) mod2^32",
+    "seedDistinction": "Original SeedRng accepts u16. Fixture initialState is an internal fullu32 gRngValue assignment/restore, not a claim that SeedRng accepts32 bits. Live seed must be server-controlled.",
+    "drawOrdering": "The selected post-accuracy/critical-choice kernel calls Random exactly once in ApplyRandomDmgMultiplier, including immune damage0. A full turn has earlier conditional draws and is not covered.",
+    "firstDrawExamples": [
+      {
+        "initialState": 0,
+        "value": 0,
+        "state": 24691
+      },
+      {
+        "initialState": 1,
+        "value": 16838,
+        "state": 1103539936
+      },
+      {
+        "initialState": 305419896,
+        "value": 2929,
+        "state": 192004491
+      },
+      {
+        "initialState": 4294967295,
+        "value": 48698,
+        "state": 3191476742
+      }
+    ]
+  },
+  "selectedMoves": [
+    {
+      "symbol": "MOVE_TACKLE",
+      "id": 33,
+      "power": 35,
+      "type": "TYPE_NORMAL",
+      "category": "physical",
+      "accuracy": 95,
+      "pp": 35,
+      "effect": "EFFECT_HIT"
+    },
+    {
+      "symbol": "MOVE_WATER_GUN",
+      "id": 55,
+      "power": 40,
+      "type": "TYPE_WATER",
+      "category": "special",
+      "accuracy": 100,
+      "pp": 25,
+      "effect": "EFFECT_HIT"
+    }
+  ],
+  "damageSemantics": {
+    "sources": [
+      "src/pokemon.c:CalculateBaseDamage",
+      "src/pokemon.c:APPLY_STAT_MOD",
+      "src/pokemon.c:gStatStageRatios",
+      "src/battle_script_commands.c:Cmd_damagecalc",
+      "src/battle_script_commands.c:Cmd_typecalc",
+      "src/battle_script_commands.c:ModulateDmgByType",
+      "src/battle_script_commands.c:ApplyRandomDmgMultiplier"
+    ],
+    "category": "include/battle.h uses type<TYPE_MYSTERY for physical and type>TYPE_MYSTERY for special. Category is by source move type, not a modern per-move category.",
+    "arithmetic": "Battle stats are u16; damage/damageHelper are s32. Ratios and divisions truncate at each source operation. Fixtures remain nonnegative and far below signed32 overflow, so independent floor division matches C truncation; negative/overflow behavior is not validated here.",
+    "neutralFormula": "floor(floor(adjustedAttack * power * (floor(2*level/5)+2) / adjustedDefense)/50), then branch modifiers and final+2.",
+    "critical": "Critical multiplier1/2 is supplied. On critical2, ignore attacker negative/neutral relevant stage and defender positive/neutral relevant stage; retain beneficial attack rises/defense drops. Cmd_damagecalc multiplies returned base by supplied critical and script damage multiplier.",
+    "burn": "Physical branch halves the pre+2 intermediate before its minimum1 clamp. Special branch does not apply this burn reduction.",
+    "minimumDifference": "Physical zero intermediate is clamped1 then final+2 -> base3. Special zero intermediate goes directly to final+2 -> base2.",
+    "stab": "After critical scaling, multiply damage15 then divide10 when either attacker type matches, once only.",
+    "typeOrder": "Iterate original type relationships in table order. Process duplicate defender types once. Water/Grass resistance precedes Water/Rock weakness: base7 withoutSTAB becomes3 then6, even when defender type1Rock/type2Grass; a single net multiplier would incorrectly preserve7.",
+    "typeMinimum": "After any nonzero relationship multiplier, a rounded zero becomes1. Zero multiplier remains immune0.",
+    "foresight": "Target STATUS2_FORESIGHT stops table at TYPE_FORESIGHT marker before Normal/Ghost and Fighting/Ghost immunities.",
+    "random": "Drawupper16; percentage100-(draw%16). Multiply current nonzero damage by percentage, divide100, clamp rounded zero1. Immune zero remains0 but consumes the draw.",
+    "zeroDefense": "A synthetic defense1 with stage0 reduces to0. Adapter must reject before source division, not execute a WASM integer-division trap."
+  },
+  "hpAndControllerEvents": {
+    "sources": [
+      "src/battle_script_commands.c:Cmd_healthbarupdate",
+      "src/battle_script_commands.c:Cmd_datahpupdate"
+    ],
+    "ordering": "Original healthbar update request occurs before original HP-data update request. Immediate host acknowledgement replaces native presentation waits for this experiment.",
+    "healthbar": "Signed16 presentation request is raw damage capped10000; it is not capped by currentHP.",
+    "commit": "For supported positive damage, hpDealt=min(damage,currentHP), targetHP=max(0,currentHP-damage), and source physical or special damage history records actualHPdealt.",
+    "immunity": "MOVE_RESULT_NO_EFFECT prevents HP/controller events. Source no-effect bookkeeping marks special-status dmg0xFFFF; hpDealt and physical/special damage records remain zero in a reset case.",
+    "overkillExample": {
+      "damage": 20,
+      "initialHP": 7,
+      "healthbarRequest": 20,
+      "newHP": 0,
+      "hpDealt": 7,
+      "specialDmg": 7
+    },
+    "largeDamageExample": {
+      "damage": 44058,
+      "initialHP": 500,
+      "healthbarRequest": 10000,
+      "newHP": 0,
+      "hpDealt": 500,
+      "physicalDmg": 500
+    },
+    "limit": "HP reaching0 is not proof of faint processing, replacement choice, victory, loss, experience, ownership or durable outcomes."
+  },
+  "originalAttackPipeline": {
+    "source": "data/battle_scripts_1.s:BattleScript_EffectHit through BattleScript_MoveEnd",
+    "commands": [
+      "attackcanceler",
+      "accuracycheck",
+      "attackstring",
+      "ppreduce",
+      "critcalc",
+      "damagecalc",
+      "typecalc",
+      "adjustnormaldamage",
+      "attackanimation",
+      "waitanimation",
+      "effectivenesssound",
+      "hitanimation",
+      "waitstate",
+      "healthbarupdate",
+      "datahpupdate",
+      "critmessage",
+      "waitmessage",
+      "resultmessage",
+      "waitmessage",
+      "seteffectwithchance",
+      "tryfaintmon",
+      "moveendall",
+      "end"
+    ],
+    "note": "Batch1 selects only damage/type/random and HP-update work; it does not execute this entire script or its earlier RNG/PP behavior."
+  },
+  "remainingDependencies": [
+    {
+      "area": "Original command scheduling/presentation",
+      "source": "src/battle_script_commands.c:Cmd_attackstring,Cmd_ppreduce,Cmd_attackanimation,Cmd_waitanimation,Cmd_healthbarupdate,Cmd_datahpupdate",
+      "coupling": "Commands inspect gBattleControllerExecFlags and return while controllers work. They use gBattlescriptCurrInstr and script stacks; move animations, messages and HP writes emit controller requests. Full extraction needs an explicit event/ack/scheduling boundary."
+    },
+    {
+      "area": "Base damage services",
+      "source": "src/pokemon.c:CalculateBaseDamage",
+      "coupling": "Held-item lookups, Enigma Berry data, badge flags/player side, battle flags, ability field queries, weather, party-alive counts and gBattleResources flags affect arithmetic. Batch1 may answer only explicitly absent capabilities; unexpected queries must fail rather than silently supply defaults."
+    },
+    {
+      "area": "Mutable globals and pointers",
+      "source": "include/battle.h; src/battle_main.c; src/battle_script_commands.c",
+      "coupling": "gBattleMons, gCurrentMove, gBattleMoveDamage, gBattleMovePower, gCritMultiplier, gMoveResultFlags, gBattlerAttacker/Target, gStatuses3, gProtectStructs, gSpecialStatuses, gBattleStruct, gBattleResources, gBattleScripting and gRngValue need isolated instances or complete per-battle context. Original pointers/controller buffers are not a durable snapshot format."
+    },
+    {
+      "area": "Effects and termination",
+      "source": "src/battle_util.c:AtkCanceller_UnableToUseMove,AbilityBattleEffects; data/battle_scripts_1.s effect pipeline",
+      "coupling": "Status/action cancellation, ability/item effects, secondary effects, switching, end-of-turn processing and faint/victory/loss remain necessary batch2 work. Seeded damage alone does not close battle mechanics."
+    },
+    {
+      "area": "Host/durable integration",
+      "source": "docs/PROJECT_PLAN.md section7",
+      "coupling": "Versioned create/validate/advance/snapshot/restore/project contract, ordered stable events and domain effect identities remain distinct from native globals. Persistence, protocol projection and live RNG secrecy require separate verification."
+    }
+  ],
+  "decisionBoundary": "This evidence can support batch1 observations only. P03 success and ADR-001 selection require the remaining representative mechanics, two interleaved battles, deterministic replay/snapshot-restore, Node integration and measured resources without shared-state contamination.",
+  "fixedExperimentScope": {
+    "moves": [
+      33,
+      55
+    ],
+    "accuracyRoll": false,
+    "criticalRoll": false,
+    "criticalMultiplierSupplied": [
+      1,
+      2
+    ],
+    "rngDrawsPerKernel": 1,
+    "hpCommit": true,
+    "ppCommit": false,
+    "faintingPipeline": false,
+    "items": "none",
+    "abilities": "none",
+    "weather": "none",
+    "battleFormat": "single",
+    "scriptDamageMultiplier": 1
+  }
+}

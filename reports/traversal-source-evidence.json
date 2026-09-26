@@ -1,0 +1,386 @@
+{
+  "schemaVersion": 1,
+  "profile": "firered-private",
+  "scope": "P02 local three-area exploration preview only",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "upstreamCommit": null,
+  "inspectionMethod": "Direct little-endian u16 map block and u32 metatile attribute decoding with Python struct, separate from importer; all inspected source bytes checked against pinned per-file manifest. Numeric fixtures are asserted in packages/game-rules/src/traversal.test.ts.",
+  "inputs": [
+    {
+      "path": "data/layouts/PalletTown/map.bin",
+      "size": 960,
+      "sha256": "b709c6d47d6006ff6402026496a9d0d9caab19a4515b02517eaf049c5f7bf2e0",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/layouts/PalletTown_PlayersHouse_1F/map.bin",
+      "size": 260,
+      "sha256": "f485f064e2464ebc81bb525960529e4222c2613c55addf8be5b8f8a06891d93c",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/layouts/Route1/map.bin",
+      "size": 1920,
+      "sha256": "9463ad026e56bc9bbe4b533bf8284217c7b6da16ccc2126e055ffc6f1e3da65c",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/layouts/layouts.json",
+      "size": 158096,
+      "sha256": "1e8fdf737b31d269d0b918d4ed88bec8c2701bc7b1cbae2b2e3938bdea3de394",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/maps/PalletTown/map.json",
+      "size": 4087,
+      "sha256": "2816338934241bac34f52dae8b101ac3add59e0ebdde3e3fb6575f3b525b01c3",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/maps/PalletTown_PlayersHouse_1F/map.json",
+      "size": 1745,
+      "sha256": "d0479076eff7f7832f7e9104ba2cef109afd907501ca0bc2c8e3fd870dd16509",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/maps/Route1/map.json",
+      "size": 1684,
+      "sha256": "11b1ad78ae12d7a61c35756281fd5127929f5f5155dc20022fbae147424c4869",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/tilesets/primary/building/metatile_attributes.bin",
+      "size": 2560,
+      "sha256": "c609529ecdf1b443b75f144fd733f353a8ddaeb3584ab018a369bb2bea8da5d4",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/tilesets/primary/general/metatile_attributes.bin",
+      "size": 2560,
+      "sha256": "1f62a949da41adca90ad36ca3597754bee953a8f21781f32aedf6158922c89cb",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/tilesets/secondary/generic_building_1/metatile_attributes.bin",
+      "size": 96,
+      "sha256": "f3eeab19d3b86637c293fd535a3a3de6c22238c7efd126e79c74a0ada34ac637",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/tilesets/secondary/pallet_town/metatile_attributes.bin",
+      "size": 356,
+      "sha256": "8af5fbc8c32e5d0de4fe66735603d46ecd3506c42fcbe8b6cac744496a25203a",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/metatile_behaviors.h",
+      "size": 3471,
+      "sha256": "88955bf5c4b8d702d01d28161017362a2617ee37dce7ef77c0e288bda379da75",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/event_object_movement.c",
+      "size": 326145,
+      "sha256": "920f96b45569e702dd00997e7984effb3a7677ba2b68512b939eda69c2294254",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/field_control_avatar.c",
+      "size": 40928,
+      "sha256": "305daa295f88ce682b2b1868700d2f76012c659cb0df2905e6177a51ee4e9b8d",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/field_fadetransition.c",
+      "size": 25263,
+      "sha256": "6fa3cb3b827470de6c4942b0296bf823529faec41c6473ffe88675a44114851e",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/field_player_avatar.c",
+      "size": 67969,
+      "sha256": "d36588c4d02385393a5e8dc74d78f907944ca556700b5c67b39f8304f4dde08e",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/fieldmap.c",
+      "size": 28166,
+      "sha256": "bbe15c7af1059a9f796dddaca28bdaaf206b715895029e189fa6ae012272ce68",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/metatile_behavior.c",
+      "size": 24340,
+      "sha256": "a1491016f9b6ee56c38fd66bf890dfcb5d37c7dc0dfda9fe7c0a5282376b9042",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/overworld.c",
+      "size": 103643,
+      "sha256": "df352e738b56856765aec65adc6fdea0a4b25fe567bc760d4ce2d34afc6ff7e2",
+      "matchesPinnedSnapshot": true
+    }
+  ],
+  "landmarks": [
+    {
+      "mapId": "MAP_PALLET_TOWN",
+      "x": 6,
+      "y": 7,
+      "raw": 1699,
+      "metatile": 675,
+      "collision": 1,
+      "elevation": 0,
+      "behavior": 105,
+      "attributes": 536871017
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN",
+      "x": 6,
+      "y": 8,
+      "raw": 12950,
+      "metatile": 662,
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0,
+      "attributes": 0
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN",
+      "x": 12,
+      "y": 0,
+      "raw": 12966,
+      "metatile": 678,
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0,
+      "attributes": 0
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN",
+      "x": 9,
+      "y": 11,
+      "raw": 1026,
+      "metatile": 2,
+      "collision": 1,
+      "elevation": 0,
+      "behavior": 132,
+      "attributes": 536871044
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
+      "x": 4,
+      "y": 8,
+      "raw": 12307,
+      "metatile": 19,
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 101,
+      "attributes": 536871013
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
+      "x": 5,
+      "y": 8,
+      "raw": 12308,
+      "metatile": 20,
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0,
+      "attributes": 536870912
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
+      "x": 3,
+      "y": 9,
+      "raw": 1050,
+      "metatile": 26,
+      "collision": 1,
+      "elevation": 0,
+      "behavior": 0,
+      "attributes": 536870912
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
+      "x": 4,
+      "y": 7,
+      "raw": 12289,
+      "metatile": 1,
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0,
+      "attributes": 0
+    },
+    {
+      "mapId": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
+      "x": 10,
+      "y": 2,
+      "raw": 12317,
+      "metatile": 29,
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 108,
+      "attributes": 536871020
+    },
+    {
+      "mapId": "MAP_ROUTE1",
+      "x": 12,
+      "y": 39,
+      "raw": 12301,
+      "metatile": 13,
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 2,
+      "attributes": 16777730
+    },
+    {
+      "mapId": "MAP_ROUTE1",
+      "x": 12,
+      "y": 30,
+      "raw": 12508,
+      "metatile": 220,
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0,
+      "attributes": 0
+    },
+    {
+      "mapId": "MAP_ROUTE1",
+      "x": 12,
+      "y": 31,
+      "raw": 1175,
+      "metatile": 151,
+      "collision": 1,
+      "elevation": 0,
+      "behavior": 59,
+      "attributes": 536870971
+    },
+    {
+      "mapId": "MAP_ROUTE1",
+      "x": 12,
+      "y": 32,
+      "raw": 12508,
+      "metatile": 220,
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0,
+      "attributes": 0
+    },
+    {
+      "mapId": "MAP_ROUTE1",
+      "x": 12,
+      "y": 0,
+      "raw": 12508,
+      "metatile": 220,
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0,
+      "attributes": 0
+    }
+  ],
+  "rules": [
+    {
+      "source": "src/event_object_movement.c",
+      "symbols": [
+        "GetCollisionAtCoords",
+        "IsElevationMismatchAt",
+        "ObjectEventUpdateElevation"
+      ],
+      "behavior": "Collision bits block ordinary steps. Source elevation0 permits mismatch; target0 and15 permit mismatch. Either current/previous tile elevation15 prevents updating current elevation."
+    },
+    {
+      "source": "src/field_player_avatar.c",
+      "symbols": [
+        "CheckForObjectEventCollision",
+        "ShouldJumpLedge",
+        "PlayerJumpLedge"
+      ],
+      "behavior": "Matching directional ledges override their collision bits and select the two-tile jump. The preview also validates bounded imported landing terrain."
+    },
+    {
+      "source": "src/event_object_movement.c",
+      "symbols": [
+        "MovementAction_Jump2Down_Step0",
+        "sJumpY_High",
+        "DoJumpSpriteMovement"
+      ],
+      "behavior": "Two-tile high jump is 32 frames at 60 Hz, horizontal 1 pixel/frame; 16-entry high jump height table advances every 2 frames.",
+      "highJumpY": [
+        -4,
+        -6,
+        -8,
+        -10,
+        -11,
+        -12,
+        -12,
+        -12,
+        -11,
+        -10,
+        -9,
+        -8,
+        -6,
+        -4,
+        0,
+        0
+      ]
+    },
+    {
+      "source": "src/field_control_avatar.c",
+      "symbols": [
+        "TryDoorWarp",
+        "TryArrowWarp",
+        "IsDirectionalStairWarpMetatileBehavior",
+        "GetWarpEventAtPosition",
+        "SetupWarp"
+      ],
+      "behavior": "North-facing door entry checks the tile in front before collision. Arrow and directional stair warps check current tile and outward direction. Warp destinations use source zero-based destination event indices; event elevation 0 matches any current elevation."
+    },
+    {
+      "source": "src/overworld.c",
+      "symbols": [
+        "GetAdjustedInitialDirection"
+      ],
+      "behavior": "Door destinations face south; arrow and stair destinations face opposite their outward direction."
+    },
+    {
+      "source": "src/field_fadetransition.c",
+      "symbols": [
+        "SetUpWarpExitTask",
+        "Task_ExitDoor",
+        "Task_ExitNonAnimDoor",
+        "Task_ExitNonDoor"
+      ],
+      "behavior": "Exterior door arrival walks one tile south. House south arrow arrival remains on source destination (4,8); no immediate warp executes."
+    },
+    {
+      "source": "src/fieldmap.c",
+      "symbols": [
+        "SetPositionFromConnection",
+        "CameraMove",
+        "IsCoordInConnectingMap",
+        "GetMapConnectionAtPos"
+      ],
+      "behavior": "Connected edge coordinates subtract source connection offset along shared edge. Preview rejects coordinates outside loaded destination bounds or wrong connection direction."
+    }
+  ],
+  "verifiedChecks": {
+    "commands": [
+      "npm.cmd run verify"
+    ],
+    "outcome": "passed",
+    "vitestTests": 26,
+    "pythonTests": 15,
+    "newTraversalTests": 14,
+    "browserTestsDevelopment": 9,
+    "browserTestsBuilt": 9,
+    "checkedAt": "2026-09-25T17:53:36.785670+00:00"
+  },
+  "limitations": [
+    "No server authority, NPC collisions, NPC/script execution, wild encounters or persistent story state.",
+    "PalletTown Oak scene coordinate triggers are intentionally bypassed only in the labeled exploration preview.",
+    "Source interior normal floor duplicate warp (5,8) and blocked warp (3,9) do not fire; actual exit is south arrow4,8.",
+    "Upstairs source directional stairs (10,2) permits standing then reports unavailable 2F on east input.",
+    "Ledge landing validation is conservative for bounded preview; it is not a complete object-event simulation.",
+    "This rules evidence verifies walking and jump timing, not the renderer door animation. Transfer durationFrames 16 denotes interpolation; full original wipe/fade timing and audio remain outside these rules.",
+    "No source NPCs, water capabilities, map scripts or unavailable destination content are implemented."
+  ]
+}

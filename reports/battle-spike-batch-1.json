@@ -1,0 +1,649 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-26T01:23:04.777Z",
+  "status": "passed",
+  "batch": 1,
+  "scope": "Post-accuracy Tackle/Water Gun damage and HP-command kernel; not a complete attack, turn or production engine",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "wasmSha256": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724",
+  "fixtureSha256": "f89f9e5d3caf3dc373eac86146e2416038fe3f3273cb57b0adc6a95ce3f09fff",
+  "damageFixtures": [
+    {
+      "id": "tackle-neutral-physical-stat-selection",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 5,
+        "damage": 5,
+        "flags": 0,
+        "hpDealt": 5,
+        "targetHP": 25,
+        "physicalDmg": 5,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 5
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 25
+          }
+        ]
+      }
+    },
+    {
+      "id": "tackle-stab-and-random-floor",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 7,
+        "damage": 6,
+        "flags": 0,
+        "hpDealt": 6,
+        "targetHP": 24,
+        "physicalDmg": 6,
+        "specialDmg": 0,
+        "rngState": 1103539936,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 6
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 24
+          }
+        ]
+      }
+    },
+    {
+      "id": "tackle-duplicate-defender-type-once",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 3,
+        "damage": 3,
+        "flags": 4,
+        "hpDealt": 3,
+        "targetHP": 27,
+        "physicalDmg": 3,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 3
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 27
+          }
+        ]
+      }
+    },
+    {
+      "id": "tackle-two-resistances-floor-each",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 1,
+        "damage": 1,
+        "flags": 4,
+        "hpDealt": 1,
+        "targetHP": 29,
+        "physicalDmg": 1,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 1
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 29
+          }
+        ]
+      }
+    },
+    {
+      "id": "tackle-ghost-immunity-still-consumes-rng",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 0,
+        "damage": 0,
+        "flags": 8,
+        "hpDealt": 0,
+        "targetHP": 30,
+        "physicalDmg": 0,
+        "specialDmg": 0,
+        "rngState": 1103539936,
+        "events": []
+      }
+    },
+    {
+      "id": "tackle-foresight-skips-ghost-immunity",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 5,
+        "afterCritical": 5,
+        "afterType": 7,
+        "damage": 6,
+        "flags": 0,
+        "hpDealt": 6,
+        "targetHP": 24,
+        "physicalDmg": 6,
+        "specialDmg": 0,
+        "rngState": 1103539936,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 6
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 24
+          }
+        ]
+      }
+    },
+    {
+      "id": "tackle-physical-minimum-before-plus-two",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 3,
+        "afterCritical": 3,
+        "afterType": 3,
+        "damage": 3,
+        "flags": 0,
+        "hpDealt": 3,
+        "targetHP": 27,
+        "physicalDmg": 3,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 3
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 27
+          }
+        ]
+      }
+    },
+    {
+      "id": "water-gun-special-minimum-has-no-physical-clamp",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 2,
+        "afterCritical": 2,
+        "afterType": 2,
+        "damage": 2,
+        "flags": 0,
+        "hpDealt": 2,
+        "targetHP": 28,
+        "physicalDmg": 0,
+        "specialDmg": 2,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 2
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 28
+          }
+        ]
+      }
+    },
+    {
+      "id": "water-gun-special-stab-super-effective",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 7,
+        "afterCritical": 7,
+        "afterType": 20,
+        "damage": 20,
+        "flags": 2,
+        "hpDealt": 20,
+        "targetHP": 10,
+        "physicalDmg": 0,
+        "specialDmg": 20,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 20
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 10
+          }
+        ]
+      }
+    },
+    {
+      "id": "water-gun-source-table-order-net-neutral-rounding",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 7,
+        "afterCritical": 7,
+        "afterType": 6,
+        "damage": 6,
+        "flags": 0,
+        "hpDealt": 6,
+        "targetHP": 24,
+        "physicalDmg": 0,
+        "specialDmg": 6,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 6
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 24
+          }
+        ]
+      }
+    },
+    {
+      "id": "tackle-burn-before-plus-two",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 3,
+        "afterCritical": 3,
+        "afterType": 4,
+        "damage": 4,
+        "flags": 0,
+        "hpDealt": 4,
+        "targetHP": 26,
+        "physicalDmg": 4,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 4
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 26
+          }
+        ]
+      }
+    },
+    {
+      "id": "water-gun-burn-does-not-halve-special",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 7,
+        "afterCritical": 7,
+        "afterType": 20,
+        "damage": 20,
+        "flags": 2,
+        "hpDealt": 20,
+        "targetHP": 10,
+        "physicalDmg": 0,
+        "specialDmg": 20,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 20
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 10
+          }
+        ]
+      }
+    },
+    {
+      "id": "tackle-critical-ignores-unfavorable-stages",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 5,
+        "afterCritical": 10,
+        "afterType": 15,
+        "damage": 15,
+        "flags": 0,
+        "hpDealt": 15,
+        "targetHP": 15,
+        "physicalDmg": 15,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 15
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 15
+          }
+        ]
+      }
+    },
+    {
+      "id": "tackle-critical-retains-beneficial-stages",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 18,
+        "afterCritical": 36,
+        "afterType": 54,
+        "damage": 50,
+        "flags": 0,
+        "hpDealt": 30,
+        "targetHP": 0,
+        "physicalDmg": 30,
+        "specialDmg": 0,
+        "rngState": 1103539936,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 50
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "tackle-noncritical-applies-unfavorable-stages",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 3,
+        "afterCritical": 3,
+        "afterType": 4,
+        "damage": 4,
+        "flags": 0,
+        "hpDealt": 4,
+        "targetHP": 26,
+        "physicalDmg": 4,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 4
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 26
+          }
+        ]
+      }
+    },
+    {
+      "id": "water-gun-critical-special-stage-selection",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 7,
+        "afterCritical": 14,
+        "afterType": 42,
+        "damage": 37,
+        "flags": 2,
+        "hpDealt": 30,
+        "targetHP": 0,
+        "physicalDmg": 0,
+        "specialDmg": 30,
+        "rngState": 1305213079,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 37
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "water-gun-type-and-random-minimum-one",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 2,
+        "afterCritical": 2,
+        "afterType": 1,
+        "damage": 1,
+        "flags": 4,
+        "hpDealt": 1,
+        "targetHP": 29,
+        "physicalDmg": 0,
+        "specialDmg": 1,
+        "rngState": 1103539936,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 1
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 29
+          }
+        ]
+      }
+    },
+    {
+      "id": "water-gun-overkill-hp-event-raw-damage",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 7,
+        "afterCritical": 7,
+        "afterType": 20,
+        "damage": 20,
+        "flags": 2,
+        "hpDealt": 7,
+        "targetHP": 0,
+        "physicalDmg": 0,
+        "specialDmg": 7,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 20
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "tackle-healthbar-command-clamps-large-damage",
+      "status": "passed",
+      "observed": {
+        "baseDamage": 29372,
+        "afterCritical": 29372,
+        "afterType": 44058,
+        "damage": 44058,
+        "flags": 0,
+        "hpDealt": 500,
+        "targetHP": 0,
+        "physicalDmg": 500,
+        "specialDmg": 0,
+        "rngState": 24691,
+        "events": [
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 10000
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 0
+          }
+        ]
+      }
+    }
+  ],
+  "rngSequences": 6,
+  "rngDrawAssertions": 30,
+  "rejectionFixtures": [
+    {
+      "id": "reject-unsupported-growl",
+      "status": "passed"
+    },
+    {
+      "id": "reject-critical-multiplier-zero",
+      "status": "passed"
+    },
+    {
+      "id": "reject-out-of-range-stat-stage",
+      "status": "passed"
+    },
+    {
+      "id": "reject-nonneutral-speed-stage",
+      "status": "passed"
+    },
+    {
+      "id": "reject-out-of-range-battler-index",
+      "status": "passed"
+    },
+    {
+      "id": "reject-zero-defense-stat",
+      "status": "passed"
+    },
+    {
+      "id": "reject-mystery-type",
+      "status": "passed"
+    },
+    {
+      "id": "reject-poison-status",
+      "status": "passed"
+    },
+    {
+      "id": "reject-substitute-volatile",
+      "status": "passed"
+    },
+    {
+      "id": "reject-attacker-ability",
+      "status": "passed"
+    },
+    {
+      "id": "reject-defender-ability",
+      "status": "passed"
+    },
+    {
+      "id": "reject-attacker-item",
+      "status": "passed"
+    },
+    {
+      "id": "reject-defender-item",
+      "status": "passed"
+    },
+    {
+      "id": "reject-weather",
+      "status": "passed"
+    },
+    {
+      "id": "reject-battle-flags",
+      "status": "passed"
+    },
+    {
+      "id": "reject-attacker-side-status",
+      "status": "passed"
+    },
+    {
+      "id": "reject-defender-side-status",
+      "status": "passed"
+    },
+    {
+      "id": "reject-stage-modified-zero-defense",
+      "status": "passed"
+    },
+    {
+      "id": "reject-stage-modified-zero-special-defense",
+      "status": "passed"
+    }
+  ],
+  "checks": [
+    "independent-literal-source-fixtures",
+    "same-state-repeatability",
+    "source-controller-events",
+    "unsupported-input-rejection",
+    "initialization-and-zero-HP-guards",
+    "two-instance-kernel-interleaving",
+    "no-WASM-host-imports",
+    "fixed-private-linear-memory",
+    "independent-identical-builds"
+  ],
+  "preliminaryMeasurements": {
+    "node": "24.21.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "loadAndCompileMilliseconds": 0.7561000000000035,
+    "wasmBytes": 46120,
+    "linearMemoryBytesPerInstance": 262144,
+    "sourceBattlePokemonStructBytes": 88,
+    "instanceSamples": 25,
+    "instanceMedianMilliseconds": 0.02420000000000755,
+    "instanceP95Milliseconds": 0.037700000000000955,
+    "executionSamples": 500,
+    "sourceCommandMedianMilliseconds": 0.0006000000000199179,
+    "sourceCommandP95Milliseconds": 0.0010000000000047748,
+    "scope": "Local exploratory kernel costs; excludes full battle state, process overhead, persistence, networking and production workload"
+  },
+  "remaining": [
+    "Production battle engine or full source scheduler/interpreter",
+    "other moves, secondary statuses, sleep, freeze, paralysis or toxic",
+    "abilities and held items",
+    "weather, screens, badges, traded disobedience and doubles",
+    "substitute, healing, recoil and other residual effects",
+    "full faint counters/friendship/experience/rewards and capture",
+    "encrypted Pokemon storage, persistence, production snapshot/restore and engine selection"
+  ]
+}

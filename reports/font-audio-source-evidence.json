@@ -1,0 +1,376 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-25T19:10:08.924529+00:00",
+  "status": "bounded-source-inspection-pass",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "scope": "Independent source inspection and importer fixtures; not original-ROM, browser playback or full P02 fidelity verification.",
+  "font": {
+    "id": "firered-latin-normal",
+    "source": {
+      "font": "FONT_NORMAL",
+      "graphics": "graphics/fonts/latin_normal.png",
+      "widths": "src/text.c:sFontNormalLatinGlyphWidths",
+      "charmap": "charmap.txt",
+      "palette": "graphics/text_window/stdpal_0.pal"
+    },
+    "glyphCount": 142,
+    "glyphCellPixels": [
+      16,
+      16
+    ],
+    "lineHeight": 15,
+    "englishAddedLetterSpacing": 0,
+    "foregroundRGBA": [
+      98,
+      98,
+      98,
+      255
+    ],
+    "shadowRGBA": [
+      213,
+      213,
+      205,
+      255
+    ],
+    "backgroundSourceIndices": [
+      0,
+      3
+    ],
+    "backgroundExportRGBA": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "accentFixture": {
+      "character": "?",
+      "glyph": {
+        "code": 172,
+        "x": 192,
+        "y": 160,
+        "width": 6,
+        "height": 14,
+        "advance": 6
+      },
+      "pixelLegend": {
+        ".": "transparent",
+        "#": "foreground",
+        "s": "shadow"
+      },
+      "rows": [
+        "......",
+        "......",
+        "......",
+        "..##s.",
+        ".#ss..",
+        "......",
+        ".###s.",
+        "#sss#s",
+        "#####s",
+        "#ssss.",
+        "s####s",
+        ".ssss.",
+        "......",
+        "......"
+      ]
+    },
+    "fixtureTest": "tools/content-import/test_font_export.py",
+    "focusedFixtureResult": "7 tests passed before this source inspection report",
+    "limitations": [
+      "This preview uses the source neutral normal Latin font and neutral message colors for every speaker; gender-specific fonts/colors are not selected.",
+      "Only mapped printable English/Latin glyphs and explicit line breaks are supported. Japanese, named symbol tokens and runtime text control codes are not rendered.",
+      "Glyph pixels and advances are source-derived; instant display, message frame and pagination remain preview presentation."
+    ]
+  },
+  "audio": {
+    "songs": [
+      {
+        "id": "MUS_PALLET",
+        "midiPath": "sound/songs/midi/mus_pallet.mid",
+        "assemblyPath": "sound/songs/midi/mus_pallet.s",
+        "midiFormat": 1,
+        "midiTicksPerQuarter": 24,
+        "midiTempoEvents": [
+          {
+            "tick": 0,
+            "microsecondsPerQuarter": 681818
+          }
+        ],
+        "exportTempoBpm": 88,
+        "trackNoteCounts": [
+          115,
+          78,
+          115,
+          68,
+          66,
+          78
+        ],
+        "trackEndTicks": [
+          1536,
+          1536,
+          1536,
+          1536,
+          1536,
+          1536
+        ],
+        "exportDurationSeconds": 43.63636363636363,
+        "exportLoopStartSeconds": 0.0,
+        "exportLoopEndSeconds": 43.63636363636363,
+        "allMidiNoteOnTicksKeysVelocitiesMatchExport": true,
+        "scope": "All note onset times, pitches, velocities, note gate durations and total duration verified against canonical MIDI. Source assembly controls remain the bounded playback authority.",
+        "allMidiNoteGateDurationsMatchExport": true,
+        "sourceReverb": 50
+      },
+      {
+        "id": "SE_SELECT",
+        "midiPath": "sound/songs/midi/se_select.mid",
+        "assemblyPath": "sound/songs/midi/se_select.s",
+        "midiFormat": 1,
+        "midiTicksPerQuarter": 24,
+        "midiTempoEvents": [
+          {
+            "tick": 0,
+            "microsecondsPerQuarter": 200000
+          }
+        ],
+        "exportTempoBpm": 300,
+        "trackNoteCounts": [
+          5
+        ],
+        "trackEndTicks": [
+          18
+        ],
+        "exportDurationSeconds": 0.15,
+        "exportLoopStartSeconds": null,
+        "exportLoopEndSeconds": null,
+        "allMidiNoteOnTicksKeysVelocitiesMatchExport": true,
+        "scope": "All note onset times, pitches, velocities, note gate durations and total duration verified against canonical MIDI. Source assembly controls remain the bounded playback authority.",
+        "allMidiNoteGateDurationsMatchExport": true,
+        "sourceReverb": 50
+      }
+    ],
+    "samples": [
+      {
+        "path": "sound/direct_sound_samples/sc88pro_nylon_str_guitar.wav",
+        "pcmFormat": "unsigned 8-bit mono",
+        "sampleRateHz": 6689,
+        "frames": 8030,
+        "midiRootKey": 60,
+        "loopStartFrame": 5779,
+        "smplInclusiveLoopEndFrame": 8029,
+        "agblExclusiveLoopEndFrame": 8029,
+        "agbpPitch": 6850048,
+        "sourceRateHz": 6689.5
+      },
+      {
+        "path": "sound/direct_sound_samples/sc88pro_string_ensemble_60.wav",
+        "pcmFormat": "unsigned 8-bit mono",
+        "sampleRateHz": 13379,
+        "frames": 13716,
+        "midiRootKey": 60,
+        "loopStartFrame": 4301,
+        "smplInclusiveLoopEndFrame": 13715,
+        "agblExclusiveLoopEndFrame": 13715,
+        "agbpPitch": 13700096,
+        "sourceRateHz": 13379.0
+      },
+      {
+        "path": "sound/direct_sound_samples/sc88pro_string_ensemble_72.wav",
+        "pcmFormat": "unsigned 8-bit mono",
+        "sampleRateHz": 6689,
+        "frames": 8971,
+        "midiRootKey": 60,
+        "loopStartFrame": 4433,
+        "smplInclusiveLoopEndFrame": 8970,
+        "agblExclusiveLoopEndFrame": 8970,
+        "agbpPitch": 6850048,
+        "sourceRateHz": 6689.5
+      },
+      {
+        "path": "sound/direct_sound_samples/sd90_classical_detuned_ep1_high.wav",
+        "pcmFormat": "unsigned 8-bit mono",
+        "sampleRateHz": 13379,
+        "frames": 5016,
+        "midiRootKey": 60,
+        "loopStartFrame": 4401,
+        "smplInclusiveLoopEndFrame": 5015,
+        "agblExclusiveLoopEndFrame": 5015,
+        "agbpPitch": 13700096,
+        "sourceRateHz": 13379.0
+      },
+      {
+        "path": "sound/direct_sound_samples/sd90_classical_detuned_ep1_low.wav",
+        "pcmFormat": "unsigned 8-bit mono",
+        "sampleRateHz": 13379,
+        "frames": 9815,
+        "midiRootKey": 60,
+        "loopStartFrame": 9406,
+        "smplInclusiveLoopEndFrame": 9814,
+        "agblExclusiveLoopEndFrame": 9814,
+        "agbpPitch": 13700096,
+        "sourceRateHz": 13379.0
+      }
+    ],
+    "mixerEvidencePaths": [
+      "sound/MPlayDef.s",
+      "sound/songs/midi/midi.cfg",
+      "sound/voice_groups.inc",
+      "sound/keysplit_tables.inc",
+      "asm/macros/music_voice.inc",
+      "src/m4a.c",
+      "tools/wav2agb/wav_file.cpp",
+      "tools/wav2agb/converter.cpp"
+    ],
+    "wavInterpretation": "agbp overrides rounded sample rate with pitch /1024. agbl overrides the smpl inclusive endpoint with the source exclusive loop endpoint. Playback buffer loop offsets divide source frame positions by decoded WAV sampleRate.",
+    "limitations": [
+      "Web Audio sample resampling, continuous envelope ramps and stereo pan approximate the GBA mixer.",
+      "PSG duty and pitch/sweep are reconstructed; hardware quantization, channel stealing and exact envelope clocks are not emulated.",
+      "Source reverb is recorded but not rendered; map transitions stop/start with a short browser gain fade.",
+      "Only MUS_PALLET and SE_SELECT and their required source commands/voices are exported."
+    ],
+    "fixtureTest": "tools/content-import/test_audio_export.py",
+    "focusedFixtureResult": "3 tests passed: independent MIDI comparison of all 525 note onset times, keys, velocities, gate durations and total track durations; explicit rejection of unsupported commands, midstream tempo changes and truncated WAV."
+  },
+  "consumedPinnedInputs": [
+    {
+      "path": "asm/macros/music_voice.inc",
+      "bytes": 4876,
+      "sha256": "71d50496d8baa86e04139d3e0a39ef3a42232093862fb4db0f3540b78db28f55"
+    },
+    {
+      "path": "charmap.txt",
+      "bytes": 21853,
+      "sha256": "4da662317b3b5109a52064f9012d85b644d1dbf0f3f24243374aeef4cf25f061"
+    },
+    {
+      "path": "graphics/fonts/latin_normal.png",
+      "bytes": 3470,
+      "sha256": "ab9bc0e79857c1584b267c8955beb0422e40ca52cc081a5455ad8a328edde324"
+    },
+    {
+      "path": "graphics/text_window/stdpal_0.pal",
+      "bytes": 215,
+      "sha256": "70ab69e7734b8af44e5acdea76b75dd9bf4fd861651d9df4c5409d753fc9dfcc"
+    },
+    {
+      "path": "include/characters.h",
+      "bytes": 12798,
+      "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98"
+    },
+    {
+      "path": "sound/MPlayDef.s",
+      "bytes": 8203,
+      "sha256": "392efd915b2613cfc96d6cfe16d323b8dd38a5bd434f6ec0018bf0eb0be053dc"
+    },
+    {
+      "path": "sound/direct_sound_data.inc",
+      "bytes": 41909,
+      "sha256": "dff5cf383b7a93e80c3de38099fe3a8cc2aeb856a1c13aab8030e03ba1f74e81"
+    },
+    {
+      "path": "sound/direct_sound_samples/sc88pro_nylon_str_guitar.wav",
+      "bytes": 8166,
+      "sha256": "401e3ccbbfdb57f5c6318426730fbb95af9aae96b09a80af3673c14909bd8e99"
+    },
+    {
+      "path": "sound/direct_sound_samples/sc88pro_string_ensemble_60.wav",
+      "bytes": 13852,
+      "sha256": "393da5125fb3857e2d14217da62740f1add3bcf307f3e07bf2ef612eb88945cd"
+    },
+    {
+      "path": "sound/direct_sound_samples/sc88pro_string_ensemble_72.wav",
+      "bytes": 9108,
+      "sha256": "7d1af5489685eb818fb3b8f9b75991f11c84605644c8ee3eb0beb1196ad654d9"
+    },
+    {
+      "path": "sound/direct_sound_samples/sd90_classical_detuned_ep1_high.wav",
+      "bytes": 5152,
+      "sha256": "6214ca7c0f4685220b1dc9b48f15d8b68a17229e199a06020c4fa0258b0cbd79"
+    },
+    {
+      "path": "sound/direct_sound_samples/sd90_classical_detuned_ep1_low.wav",
+      "bytes": 9952,
+      "sha256": "ab3b8444a1c106d1c704a7d877020a2cbb6742a9920e30fee51f909f87b77fd6"
+    },
+    {
+      "path": "sound/keysplit_tables.inc",
+      "bytes": 6460,
+      "sha256": "3b532f0a9ce75d2bf0272962e5009a46ed37268d4eef34f55796e6597e8bdaaf"
+    },
+    {
+      "path": "sound/songs/midi/midi.cfg",
+      "bytes": 20338,
+      "sha256": "49b3a0b5a2809ccd8b504da3bedfb0f5168afd073b94ef6c10a3904e1ea62560"
+    },
+    {
+      "path": "sound/songs/midi/mus_pallet.mid",
+      "bytes": 5402,
+      "sha256": "2d4e76ac15a5fe64802fa59799893c265ba9e4c9fb78627407aeec074b097a23"
+    },
+    {
+      "path": "sound/songs/midi/mus_pallet.s",
+      "bytes": 34069,
+      "sha256": "4eb4eaae09742c7541f71c359c4f2c8516aed718bfea4a117be10748d235f5b7"
+    },
+    {
+      "path": "sound/songs/midi/se_select.mid",
+      "bytes": 107,
+      "sha256": "f5393c12d1e28a551db9dae8278dc6f499151fb730c01a0ad08d413ff5adc10b"
+    },
+    {
+      "path": "sound/songs/midi/se_select.s",
+      "bytes": 1146,
+      "sha256": "679bcd7f3b3ad3ca86785d5d93d6777ed915a94744b27233c229ef95c646e707"
+    },
+    {
+      "path": "sound/voice_groups.inc",
+      "bytes": 350619,
+      "sha256": "d9d0e2f962e792362c18f523475b1d0d3c724a7d5adde07e2ad67276a0f2cde7"
+    },
+    {
+      "path": "src/m4a.c",
+      "bytes": 46383,
+      "sha256": "db6bea72be02870e19a9c95f5895c6f34b75af36e6bf7f3b75b10f5b4877fe92"
+    },
+    {
+      "path": "src/new_menu_helpers.c",
+      "bytes": 27834,
+      "sha256": "d115f81a76f93ba1a34894acd58f266a1920215784176f94188e4bad8ba51b1c"
+    },
+    {
+      "path": "src/text.c",
+      "bytes": 63210,
+      "sha256": "5696f49443eeaaac74b530421ac7f0cbfc71996c557399583788111c322dd80c"
+    },
+    {
+      "path": "src/text_printer.c",
+      "bytes": 16043,
+      "sha256": "075af562bb87de25773e9dcee93d8180c84083209aede0ed6f02343f94f5823e"
+    },
+    {
+      "path": "src/text_window.c",
+      "bytes": 7580,
+      "sha256": "acf6f9262e1684530109a428394a6cfaae00db3c6445d4c81b3ca3bab58fb591"
+    },
+    {
+      "path": "src/text_window_graphics.c",
+      "bytes": 3401,
+      "sha256": "2d942eac492959fbd5d0585a7a704e6a7e9dba11f27edf892d67ce57d072634e"
+    },
+    {
+      "path": "tools/gbagfx/font.c",
+      "bytes": 12132,
+      "sha256": "51bb0669069f65b8426c3dc5f61fae245fb5fde7f98304f4e5fbd581451fe0b9"
+    },
+    {
+      "path": "tools/wav2agb/converter.cpp",
+      "bytes": 16069,
+      "sha256": "717d3ba8897af54425226104ca2441e2483584b05d15950279667c2950146664"
+    },
+    {
+      "path": "tools/wav2agb/wav_file.cpp",
+      "bytes": 14498,
+      "sha256": "a511c1253b854d08052c3a9824f204034e12667f1e67e3175ee881c69df14aa6"
+    }
+  ]
+}

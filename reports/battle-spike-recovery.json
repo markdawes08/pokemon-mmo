@@ -1,0 +1,409 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-26T01:23:05.827Z",
+  "status": "passed",
+  "scope": "P03 batch 3 private synthetic-profile recovery; no live battle persistence or cross-version migration",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "wasmSha256": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724",
+  "fixtureSha256": "0be73649f9a2eac497ae04a6ea84d6db3d0a9cca3e84d43456e6888c5595bd2c",
+  "expectations": "Unmodified independently source-derived batch-two state/event goldens and literal RNG traces, checked against exact LCG arithmetic.",
+  "derivedCases": [
+    {
+      "id": "recovery-nonzero-selected-slot-controls-incoming-residual-priority",
+      "basedOn": "attack-knockout-replacement-before-incoming-residual",
+      "derivation": "Move the defender selected Tackle to slot 1 and prepend unselected Quick Attack with 30 PP to both defender party rows. Only slot and PP-array positions change; original literal mechanics, events, RNG traces and residual order stay unchanged. Losing slot 1 would give incoming Quick Attack the wrong residual priority."
+    }
+  ],
+  "cases": 16,
+  "boundaries": 37,
+  "checkedSourceDraws": 120,
+  "crossBuildReplayedTransitions": 26,
+  "interleavedInstances": 37,
+  "interleavedTransitions": 26,
+  "freshProcess": {
+    "pid": 29040,
+    "parentPid": 2700,
+    "boundaries": 37,
+    "transitions": 26
+  },
+  "aliasChecks": [
+    "snapshot output",
+    "restore input"
+  ],
+  "rejectedCheckpoints": [
+    "wrong-envelope-version",
+    "wrong-profile",
+    "wrong-source",
+    "extra-hidden-state",
+    "extra-host-field",
+    "extra-core-field",
+    "wrong-core-version",
+    "negative-word",
+    "fractional-word",
+    "word-overflow",
+    "truncated-core",
+    "trailing-core",
+    "bad-core-magic",
+    "bad-core-header-version",
+    "bad-core-header-count",
+    "nonzero-reserved-header",
+    "core-host-boundary-mismatch",
+    "invalid-active-slot",
+    "host-core-HP-mismatch",
+    "host-core-PP-mismatch",
+    "host-core-stage-mismatch",
+    "host-core-status-mismatch",
+    "host-core-speed-mismatch",
+    "phase-resume-mismatch",
+    "phase-outcome-mismatch",
+    "negative-sequence",
+    "zero-turn",
+    "envelope-core-RNG-mismatch",
+    "envelope-core-draw-mismatch",
+    "unsafe-draw-count",
+    "core-seed-RNG-proof-mismatch",
+    "joint-RNG-corruption",
+    "joint-draw-corruption"
+  ],
+  "rejectedNonObjects": 4,
+  "exhaustedCounterAtomicity": [
+    "transition sequence",
+    "event sequence",
+    "turn at after-residual replacement"
+  ],
+  "boundaryObservations": [
+    {
+      "id": "ordinary-attacks-and-pp-two-turns@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 24691,
+      "checkpointBytes": 1074
+    },
+    {
+      "id": "ordinary-attacks-and-pp-two-turns@1",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 10,
+      "rngState": 4012700850,
+      "checkpointBytes": 1091
+    },
+    {
+      "id": "ordinary-attacks-and-pp-two-turns@2",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 19,
+      "rngState": 665201893,
+      "checkpointBytes": 1091
+    },
+    {
+      "id": "tackle-miss-consumes-pp-only-one-attack-draw@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 3874366757,
+      "checkpointBytes": 1089
+    },
+    {
+      "id": "tackle-miss-consumes-pp-only-one-attack-draw@1",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 7,
+      "rngState": 3654965739,
+      "checkpointBytes": 1090
+    },
+    {
+      "id": "critical-knockout-victory-cancels-opponent@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 3636179389,
+      "checkpointBytes": 1083
+    },
+    {
+      "id": "critical-knockout-victory-cancels-opponent@1",
+      "phase": "ended",
+      "resume": null,
+      "outcome": "won",
+      "draws": 5,
+      "rngState": 2478993009,
+      "checkpointBytes": 1083
+    },
+    {
+      "id": "speed-tie-actions-and-residual-resort@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 1103539936,
+      "checkpointBytes": 1082
+    },
+    {
+      "id": "speed-tie-actions-and-residual-resort@1",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 9,
+      "rngState": 204300520,
+      "checkpointBytes": 1080
+    },
+    {
+      "id": "quick-attack-priority-beats-speed@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 24691,
+      "checkpointBytes": 1072
+    },
+    {
+      "id": "quick-attack-priority-beats-speed@1",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 10,
+      "rngState": 4012700850,
+      "checkpointBytes": 1089
+    },
+    {
+      "id": "voluntary-switch-cleans-volatiles-preserves-bench-burn@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 24691,
+      "checkpointBytes": 1283
+    },
+    {
+      "id": "voluntary-switch-cleans-volatiles-preserves-bench-burn@1",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 6,
+      "rngState": 3805062638,
+      "checkpointBytes": 1281
+    },
+    {
+      "id": "voluntary-switch-cleans-volatiles-preserves-bench-burn@2",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 8,
+      "rngState": 1742452232,
+      "checkpointBytes": 1285
+    },
+    {
+      "id": "burn-residual-faint-and-forced-replacement@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 24691,
+      "checkpointBytes": 1261
+    },
+    {
+      "id": "burn-residual-faint-and-forced-replacement@1",
+      "phase": "replacement",
+      "resume": "after-residual",
+      "outcome": null,
+      "draws": 9,
+      "rngState": 4231221723,
+      "checkpointBytes": 1287
+    },
+    {
+      "id": "burn-residual-faint-and-forced-replacement@2",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 10,
+      "rngState": 4012700850,
+      "checkpointBytes": 1280
+    },
+    {
+      "id": "poison-powder-infliction-and-residual-loss@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 24691,
+      "checkpointBytes": 1066
+    },
+    {
+      "id": "poison-powder-infliction-and-residual-loss@1",
+      "phase": "ended",
+      "resume": null,
+      "outcome": "lost",
+      "draws": 6,
+      "rngState": 3805062638,
+      "checkpointBytes": 1079
+    },
+    {
+      "id": "poison-powder-steel-immunity-skips-accuracy@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 24691,
+      "checkpointBytes": 1068
+    },
+    {
+      "id": "poison-powder-steel-immunity-skips-accuracy@1",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 6,
+      "rngState": 3805062638,
+      "checkpointBytes": 1083
+    },
+    {
+      "id": "attack-knockout-replacement-before-incoming-residual@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 3636179389,
+      "checkpointBytes": 1279
+    },
+    {
+      "id": "attack-knockout-replacement-before-incoming-residual@1",
+      "phase": "replacement",
+      "resume": "before-residual",
+      "outcome": null,
+      "draws": 5,
+      "rngState": 2478993009,
+      "checkpointBytes": 1298
+    },
+    {
+      "id": "attack-knockout-replacement-before-incoming-residual@2",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 6,
+      "rngState": 1138087056,
+      "checkpointBytes": 1284
+    },
+    {
+      "id": "first-residual-terminal-stops-second-burn@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 24691,
+      "checkpointBytes": 1068
+    },
+    {
+      "id": "first-residual-terminal-stops-second-burn@1",
+      "phase": "ended",
+      "resume": null,
+      "outcome": "lost",
+      "draws": 1,
+      "rngState": 24691,
+      "checkpointBytes": 1066
+    },
+    {
+      "id": "already-poisoned-powder-deducts-pp-without-accuracy@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 24691,
+      "checkpointBytes": 1068
+    },
+    {
+      "id": "already-poisoned-powder-deducts-pp-without-accuracy@1",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 6,
+      "rngState": 3805062638,
+      "checkpointBytes": 1085
+    },
+    {
+      "id": "accuracy-evasion-stages-floor-to-forty@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 2207055181,
+      "checkpointBytes": 1082
+    },
+    {
+      "id": "accuracy-evasion-stages-floor-to-forty@1",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 7,
+      "rngState": 3861917907,
+      "checkpointBytes": 1083
+    },
+    {
+      "id": "foresight-ignores-evasion-but-retains-accuracy-drop@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 2207055181,
+      "checkpointBytes": 1098
+    },
+    {
+      "id": "foresight-ignores-evasion-but-retains-accuracy-drop@1",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 10,
+      "rngState": 3445993924,
+      "checkpointBytes": 1102
+    },
+    {
+      "id": "poison-powder-accuracy-miss-combines-failure-flags@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 3874366757,
+      "checkpointBytes": 1083
+    },
+    {
+      "id": "poison-powder-accuracy-miss-combines-failure-flags@1",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 4,
+      "rngState": 522823614,
+      "checkpointBytes": 1081
+    },
+    {
+      "id": "recovery-nonzero-selected-slot-controls-incoming-residual-priority@0",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 1,
+      "rngState": 3636179389,
+      "checkpointBytes": 1321
+    },
+    {
+      "id": "recovery-nonzero-selected-slot-controls-incoming-residual-priority@1",
+      "phase": "replacement",
+      "resume": "before-residual",
+      "outcome": null,
+      "draws": 5,
+      "rngState": 2478993009,
+      "checkpointBytes": 1340
+    },
+    {
+      "id": "recovery-nonzero-selected-slot-controls-incoming-residual-priority@2",
+      "phase": "choice",
+      "resume": null,
+      "outcome": null,
+      "draws": 6,
+      "rngState": 1138087056,
+      "checkpointBytes": 1326
+    }
+  ]
+}

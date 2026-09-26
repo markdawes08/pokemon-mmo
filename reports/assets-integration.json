@@ -1,0 +1,43 @@
+{
+  "verifiedAt": "2026-09-26T01:22:26.752Z",
+  "status": "passed",
+  "checks": [
+    "ordinary-trainer-has-no-granted-assets",
+    "owner-only-asset-selection",
+    "concurrent-seed-applies-once",
+    "source-profile-values-and-public-whitelist",
+    "seed-does-not-affect-second-character",
+    "persisted-identity-stats-and-source-legal-moves",
+    "fixture-remains-recovering-with-explicit-saved-location",
+    "permanent-business-key-survives-receipt-cleanup-and-new-command",
+    "active-lease-refuses-offline-seed",
+    "profile-save-preserves-assets-and-replay-does-not-rewind",
+    "same-command-different-mutation-payload-rejected",
+    "unsupported-profile-explicitly-rejected",
+    "rollback-keeps-all-assets-outcome-audit-and-revision-atomic",
+    "rollback-retry-same-command",
+    "unknown-rollback-retries-without-duplicate-grant",
+    "unknown-commit-queries-committed-outcome",
+    "offline-seed-refuses-existing-progression",
+    "creature-identity-iv-ev-hp-status-bounds",
+    "party-six-storage-fourteen-by-thirty-and-one-location",
+    "ownership-source-foreign-keys-and-permanent-provenance",
+    "source-pp-with-ppups-and-move-slot-bounds",
+    "inventory-quantity-pocket-capacity-and-wallet-bounds",
+    "private-story-values-and-cross-owner-outcomes",
+    "outcome-audit-content-immutability-and-deletion-restrict",
+    "revoked-session-cannot-read-owned-assets",
+    "story-operational-data-never-enters-public-projection",
+    "seed-cli-production-tester-nonlocal-and-unknown-profile-guards",
+    "two-fresh-cli-processes-seed-once",
+    "fresh-process-recovers-private-owned-projection",
+    "database-outage-never-promises-assets"
+  ],
+  "scope": "Separate real PostgreSQL test database. Explicit offline fixture only; no live economy or battle mechanics.",
+  "failureInjection": "Real COMMIT/ROLLBACK followed by simulated lost acknowledgement; not a network partition or machine-crash test.",
+  "childPids": [
+    8992,
+    2988,
+    29128
+  ]
+}

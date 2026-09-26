@@ -1,0 +1,44 @@
+{
+    "checkedAt":  "2026-09-26T23:26:16.2190394Z",
+    "status":  "passed",
+    "scope":  "Operational restart only; no application code changes",
+    "priorObservation":  "No listeners at 5173, 2567 or 5433, and no matching project Node processes",
+    "launch":  {
+                   "launchedAt":  "2026-09-26T23:24:48.3377622Z",
+                   "launcherPid":  6064,
+                   "mode":  "hidden-background",
+                   "command":  "node scripts/run.mjs dev",
+                   "stdout":  "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.local\\dev-20260926-182448.stdout.log",
+                   "stderr":  "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.local\\dev-20260926-182448.stderr.log"
+               },
+    "listeners":  [
+                      {
+                          "LocalAddress":  "127.0.0.1",
+                          "LocalPort":  5433,
+                          "OwningProcess":  12300
+                      },
+                      {
+                          "LocalAddress":  "127.0.0.1",
+                          "LocalPort":  5173,
+                          "OwningProcess":  18592
+                      },
+                      {
+                          "LocalAddress":  "127.0.0.1",
+                          "LocalPort":  2567,
+                          "OwningProcess":  7712
+                      }
+                  ],
+    "backend":  {
+                    "status":  "ready",
+                    "database":  "connected",
+                    "protocolVersion":  1
+                },
+    "proxy":  {
+                  "status":  "ready",
+                  "database":  "connected",
+                  "protocolVersion":  1
+              },
+    "pageStatus":  200,
+    "browserCheck":  "Passed: two browser contexts reach the real proxy handshake and render source content (1 test, 8.0 seconds; line reporter preserves full-gate report)",
+    "fullGateReportPreserved":  true
+}

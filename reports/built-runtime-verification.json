@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-09-25T19:51:36.442Z",
+  "status": "passed",
+  "port": 2570,
+  "checks": [
+    "built-single-origin-ready",
+    "twenty-five-browser-tests",
+    "graceful-ipc-shutdown",
+    "test-listener-released"
+  ]
+}

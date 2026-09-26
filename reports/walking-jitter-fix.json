@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-09-25T18:07:28.183434+00:00",
+  "status": "passed",
+  "scope": "Walking jitter follow-up; no new content or gameplay scope",
+  "cause": "Fractional container transform was rounded differently from pixel-rounded follow camera",
+  "fix": "Snap shared render/follow anchor on tween updates; keep stored tween interpolation and local jump lift",
+  "checks": [
+    "lint",
+    "typecheck",
+    "production build",
+    "11 Chromium browser scenarios"
+  ],
+  "before": "walking-jitter-before.json",
+  "after": [
+    "walking-stability.json",
+    "ledge-camera-stability.json"
+  ],
+  "browserReport": "walking-jitter-browser-tests.json",
+  "builtBrowserRerun": false
+}

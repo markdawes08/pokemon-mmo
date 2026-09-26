@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "reference": {
+    "repositoryUrl": "https://github.com/pret/pokefirered",
+    "upstreamCommit": null,
+    "revisionStatus": "unknown: supplied source directory has no Git metadata; Git explicitly deferred by user",
+    "localPath": "C:/Users/mrkda/Projects/pokefirered-master",
+    "dirtyState": "unknown against upstream; exact local included bytes are pinned below"
+  },
+  "selectedBuild": {
+    "game": "FIRERED",
+    "revision": 0,
+    "language": "ENGLISH",
+    "evidence": "config.mk:3-5"
+  },
+  "fingerprint": {
+    "algorithm": "sha256",
+    "value": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "manifest": "reports/source-manifest.json"
+  },
+  "snapshot": {
+    "path": "reference/source-f0300f9079bac985.zip",
+    "sha256": "3b7febc1edafa1ae5083a5c1a04ac65026aa8319c7d0d811ab8ae1d991424e5d",
+    "format": "zip",
+    "private": true
+  },
+  "scope": {
+    "profile": "firered-private",
+    "normalCampaign": "through Champion and source-defined normal Sevii/postgame",
+    "eventOnly": "inventory and preserve source gates; disabled unless separately configured",
+    "deferred": "original wireless/link presentation/minigames/distribution/external connectivity; see reports/source-scope.json"
+  },
+  "capturePolicy": {
+    "includes": "all supplied regular files except explicit compiled outputs, saves, caches, metadata, and original-ROM toolchain trees; existing generated input assets are retained",
+    "excludedDirectories": [
+      ".cache",
+      ".git",
+      ".idea",
+      ".vscode",
+      "__pycache__",
+      "build",
+      "node_modules"
+    ],
+    "excludedTreePrefixes": [
+      "tools/agbcc/",
+      "tools/binutils/"
+    ],
+    "excludedSuffixes": [
+      ".dll",
+      ".elf",
+      ".exe",
+      ".map",
+      ".o",
+      ".pyc",
+      ".sav",
+      ".sgm"
+    ],
+    "otherExclusions": [
+      "non-data/*.gba",
+      "*.ssN / *.saN / *.sgN",
+      "cmake-build-* / build-cmake-*"
+    ],
+    "upstreamCleanlinessVerified": false,
+    "romBuildVerified": false
+  }
+}

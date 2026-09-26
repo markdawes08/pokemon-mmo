@@ -1,0 +1,13 @@
+{
+  "name": "@pokewaterblue/client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@colyseus/sdk": "0.18.4",
+    "@pokewaterblue/protocol": "*",
+    "@pokewaterblue/content-schema": "*",
+    "@pokewaterblue/game-rules": "*",
+    "phaser": "3.90.0"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-26T01:23:06.824Z",
+  "status": "passed",
+  "scope": "Real six-method private WASM adapter against source goldens; no live room or database integration",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "wasmSha256": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724",
+  "fixtureSha256": "0be73649f9a2eac497ae04a6ea84d6db3d0a9cca3e84d43456e6888c5595bd2c",
+  "cases": 15,
+  "transitions": 19,
+  "goldenBoundaries": 34,
+  "crossBuildReplayedTransitions": 23,
+  "freshProcess": {
+    "pid": 24860,
+    "parentPid": 31584,
+    "boundaries": 34,
+    "transitions": 23
+  },
+  "rejectedAcceptedChoices": [
+    "missing-actor",
+    "duplicate-actor",
+    "unknown-actor",
+    "wrong-battle",
+    "stale-sequence",
+    "forged-unavailable-slot",
+    "forged-current-active-switch"
+  ],
+  "rejectedSnapshots": [
+    "extra-envelope-hidden-state",
+    "wrong-engine",
+    "wrong-engine-version",
+    "wrong-rules-version",
+    "wrong-content",
+    "wrong-engine-state-version",
+    "wrong-snapshot-version",
+    "wrong-RNG-battle",
+    "wrong-RNG-version",
+    "counter-inner-outer-mismatch",
+    "event-inner-outer-mismatch",
+    "draw-inner-outer-mismatch",
+    "RNG-inner-outer-mismatch",
+    "noncanonical-base64",
+    "truncated-payload",
+    "malformed-JSON",
+    "invalid-UTF8",
+    "noncanonical-JSON-whitespace",
+    "inner-hidden-state",
+    "inner-wrong-profile",
+    "unsupported-domain-effect",
+    "extra-participant"
+  ],
+  "projection": "Exact whitelist checked for both participants at every golden boundary, including perspective-correct outcome, legal replacement choice, opponent HP percentage and no opponent reserve/moves/stats or RNG/continuation/core state.",
+  "immutableInputs": [
+    "create config/party/RNG",
+    "submitted choice",
+    "accepted choices",
+    "advance snapshot",
+    "snapshot output",
+    "restore input",
+    "projection output"
+  ],
+  "policies": [
+    "pve with zero effects",
+    "pvp-copy with zero effects"
+  ],
+  "domainEffects": 0
+}

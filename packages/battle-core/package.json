@@ -1,0 +1,8 @@
+{
+  "name": "@pokewaterblue/battle-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/contracts.ts", "./wasm-adapter": "./src/wasm-adapter.ts" },
+  "dependencies": { "zod": "4.6.5" }
+}

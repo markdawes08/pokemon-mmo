@@ -1,0 +1,951 @@
+{
+  "schemaVersion": 3,
+  "scope": "P03 batch 3 restricted turn commands, portable checkpoint and bounded host projection",
+  "status": "Dependency trace; not a full source battle closure or production engine",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "upstreamCommit": null,
+  "sourceInputs": [
+    {
+      "path": "data/battle_scripts_1.s",
+      "bytes": 138642,
+      "sha256": "27e9c39f3147b05e5ba2ed36ca0c89fcdc9b26718778083bd362c582de800034"
+    },
+    {
+      "path": "include/battle.h",
+      "bytes": 21838,
+      "sha256": "bf64a16fb4e660f8a326eb352a511bb9e8fd54a74ebb03e328c08d5a23e5d8fa"
+    },
+    {
+      "path": "include/battle_controllers.h",
+      "bytes": 9872,
+      "sha256": "051ebf096d6538d1cc7ea321dacf5d3e9e54f0d4edc9ddeb29996242de618120"
+    },
+    {
+      "path": "include/battle_main.h",
+      "bytes": 3483,
+      "sha256": "22ee8ad8174831ae7cb0c8c1ac2946011a88e2aedb5c621901f67a37a444630c"
+    },
+    {
+      "path": "include/battle_util.h",
+      "bytes": 4765,
+      "sha256": "38d93e081d1886494489c0fc44bf7d77c0753b096a29f2f327a6b2909b112370"
+    },
+    {
+      "path": "include/constants/abilities.h",
+      "bytes": 2407,
+      "sha256": "1c1b93de5d5ff65d8b3066e9b40229b5d30e02842e587e3851a1d708ece1292b"
+    },
+    {
+      "path": "include/constants/battle.h",
+      "bytes": 16440,
+      "sha256": "b9d0493af4629d450050637e9aace63b684b282f841bed2a0d97b1d71e9d55e3"
+    },
+    {
+      "path": "include/constants/battle_move_effects.h",
+      "bytes": 6489,
+      "sha256": "fa15e285903818cc3cc7ecb2ca32c11d8317b14d261ca2d1caf44e614b53828a"
+    },
+    {
+      "path": "include/constants/battle_script_commands.h",
+      "bytes": 6756,
+      "sha256": "2365a9d5581325edcf41bf654ebbe70df6dea89defdf4f51bb0c962637444b30"
+    },
+    {
+      "path": "include/constants/battle_string_ids.h",
+      "bytes": 20327,
+      "sha256": "4766f2d31c75a31c0cc2e2dfc7be80b9887820ca3153aabdfb93cb2c3419f246"
+    },
+    {
+      "path": "include/constants/flags.h",
+      "bytes": 95397,
+      "sha256": "45f31e4dc3d42c1054463974cd31b1173bdd4cb6d9f94b2cdbf2c88b0f745493"
+    },
+    {
+      "path": "include/constants/global.h",
+      "bytes": 3785,
+      "sha256": "7ecf4a63c7be65328135a75f8620786e40343bbe7688e7017e6d780526fd6a0c"
+    },
+    {
+      "path": "include/constants/hold_effects.h",
+      "bytes": 2637,
+      "sha256": "e763fdbbef19ba6999a7151094cf26734323414237ebb1afcf2f453f65c2f661"
+    },
+    {
+      "path": "include/constants/items.h",
+      "bytes": 12436,
+      "sha256": "af17276346eaecc5a10ac60f14b22c33332ec8c6fb0ec82895bdc3649b678138"
+    },
+    {
+      "path": "include/constants/moves.h",
+      "bytes": 10249,
+      "sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194"
+    },
+    {
+      "path": "include/constants/opponents.h",
+      "bytes": 39946,
+      "sha256": "01ae04c7fd3837c818f1b9ef082313cfeee4c9d3907441b4e192865a626247ee"
+    },
+    {
+      "path": "include/constants/pokemon.h",
+      "bytes": 10894,
+      "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5"
+    },
+    {
+      "path": "include/constants/species.h",
+      "bytes": 12982,
+      "sha256": "ec3f9f9c2717dcd453aa7a27506c32e1e6ca067864534dee494695d74344c51a"
+    },
+    {
+      "path": "include/constants/trainers.h",
+      "bytes": 20887,
+      "sha256": "5f6e6585ba511fcf11f970f60132f45db35caf6cec9f6ae56b6bc57b979366c9"
+    },
+    {
+      "path": "include/gba/defines.h",
+      "bytes": 2518,
+      "sha256": "4356e895d7108dedd2c788bbbe98e0948778712a4ea6374193bdc1a851efe69b"
+    },
+    {
+      "path": "include/global.h",
+      "bytes": 25663,
+      "sha256": "044325b90e7c79146cc0cf73d31b6be3e4840059e2e778b63d9b5448fe538429"
+    },
+    {
+      "path": "include/pokemon.h",
+      "bytes": 16352,
+      "sha256": "a6881fee07ae10f57ebf3ec7af1cabd2e900d8ba8d3da644313c087d16e1617e"
+    },
+    {
+      "path": "include/random.h",
+      "bytes": 669,
+      "sha256": "8a6049183598b2d865b5ff522abdb3d0e94012a127d724af46b9b7b69803f5b9"
+    },
+    {
+      "path": "src/battle_anim_mons.c",
+      "bytes": 70676,
+      "sha256": "fcb002acc48b8cd6b8cf8b7eddcb3034d721ff5887eb6bdeedfe183b7b3908bb"
+    },
+    {
+      "path": "src/battle_main.c",
+      "bytes": 171904,
+      "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928"
+    },
+    {
+      "path": "src/battle_script_commands.c",
+      "bytes": 355862,
+      "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3"
+    },
+    {
+      "path": "src/battle_util.c",
+      "bytes": 136791,
+      "sha256": "87cf810eb2d58361d1beb1537b3bd71c9160a77c2a17d703399f6ed373bb5720"
+    },
+    {
+      "path": "src/data/battle_moves.h",
+      "bytes": 121457,
+      "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384"
+    },
+    {
+      "path": "src/pokemon.c",
+      "bytes": 221865,
+      "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec"
+    },
+    {
+      "path": "src/random.c",
+      "bytes": 323,
+      "sha256": "e7e90cc070d1fbf09579f5f91762cd8875d5bbe1d7a90f468bcd870df73b9de2"
+    },
+    {
+      "path": "src/util.c",
+      "bytes": 7141,
+      "sha256": "de0b72b691ec879404be2391a4dfa4d6b5b633d3a919351e1693c88ad671bf09"
+    }
+  ],
+  "verbatimFunctions": [
+    {
+      "source": "src/battle_main.c",
+      "name": "SwitchInClearSetData",
+      "kind": "function",
+      "startLine": 2329,
+      "endLine": 2431,
+      "sha256": "7a3b7c40cca85c737910d084e2b2f67f8a0068de152eec81eb2563d617fead5b",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "FaintClearSetData",
+      "kind": "function",
+      "startLine": 2433,
+      "endLine": 2517,
+      "sha256": "9560401a3b8591db13933576ebd17a25a301a877aadd5f719e0c74d7945dbe0c",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_cleareffectsonfaint",
+      "kind": "function",
+      "startLine": 2930,
+      "endLine": 2943,
+      "sha256": "b759dcf1bcc433fee7cf8c03704a90992b46ad3303aa628f24397a11ea3998ce",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_checkteamslost",
+      "kind": "function",
+      "startLine": 3385,
+      "endLine": 3467,
+      "sha256": "b0a1e3744072a1184923e6c9c5463609c8c78dc760c08641544df1dffe840cb5",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/random.c",
+      "name": "Random",
+      "kind": "function",
+      "startLine": 9,
+      "endLine": 13,
+      "sha256": "868090dd32cd8d0f456eee9ad5fd86edb49cdf8419f6c9f21a94e85360e59bd5",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_anim_mons.c",
+      "name": "GetBattlerSide",
+      "kind": "function",
+      "startLine": 821,
+      "endLine": 824,
+      "sha256": "5634e59214c17c85023fb96558900f4dc38991d8e6bb7c43f722a52fb35f1e55",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_anim_mons.c",
+      "name": "GetBattlerPosition",
+      "kind": "function",
+      "startLine": 826,
+      "endLine": 829,
+      "sha256": "207075ffa2b62c289d0e8da51bfefb3957753da66757cf4ccf36cf580630200e",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_anim_mons.c",
+      "name": "GetBattlerAtPosition",
+      "kind": "function",
+      "startLine": 831,
+      "endLine": 839,
+      "sha256": "05bf9a22cf6b4c8f8e1cff16ca6ee4bb88cc5162b9fef1ee934c2008e2f4c96d",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_util.c",
+      "name": "GetBattlerForBattleScript",
+      "kind": "function",
+      "startLine": 37,
+      "endLine": 76,
+      "sha256": "2b8bcf0d00f1a91fc136de019fe092997a6796743a6b8943f3a879009fe38306",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/pokemon.c",
+      "name": "CalculateBaseDamage",
+      "kind": "function",
+      "startLine": 2385,
+      "endLine": 2649,
+      "sha256": "bf20a4481918bd14924a689a6fe11c42b7c4cb3dd7e77d46c7333268f6a7a4c1",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_damagecalc",
+      "kind": "function",
+      "startLine": 1209,
+      "endLine": 1223,
+      "sha256": "a32c1bb37d7c901188456e2c629f50a4f982ea9181e2f45215c9952b867e863e",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "ModulateDmgByType",
+      "kind": "function",
+      "startLine": 1240,
+      "endLine": 1272,
+      "sha256": "20db473e8141feed1360e9e856bd8433db39aa9446b19b872aba273c3bbd7d3d",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_typecalc",
+      "kind": "function",
+      "startLine": 1274,
+      "endLine": 1343,
+      "sha256": "669f91a1dd0748c64876eb937b73034bc89b18d5ceed0b77c816edbf291e53dd",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "ApplyRandomDmgMultiplier",
+      "kind": "function",
+      "startLine": 1558,
+      "endLine": 1570,
+      "sha256": "53b2f09e8355da6965a21bad4c103cad0cba2693c06f99c0b7707e2185404b06",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_healthbarupdate",
+      "kind": "function",
+      "startLine": 1708,
+      "endLine": 1742,
+      "sha256": "bac009a1ee40cf7ebc74268a25ed303161a7f57063a35aa764733d68556da8a8",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_datahpupdate",
+      "kind": "function",
+      "startLine": 1744,
+      "endLine": 1868,
+      "sha256": "ab745395a57a7b0e83206355ea0b74fea19e648ebfa71b06e12b3880a113eb66",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "GetWhoStrikesFirst",
+      "kind": "function",
+      "startLine": 3400,
+      "endLine": 3530,
+      "sha256": "af41c49b333346e1f06f0f028a425aaf84d2920c499a75d4e366ebef8991155f",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "TurnValuesCleanUp",
+      "kind": "function",
+      "startLine": 3623,
+      "endLine": 3655,
+      "sha256": "d3d0811ce9fb9621895e838b1cb4e4ebe36262e98784882b9ead0bb3928d74f9",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "SpecialStatusesClear",
+      "kind": "function",
+      "startLine": 3657,
+      "endLine": 3667,
+      "sha256": "4490a4eff52f754f8a79718379803c33ea2764f76ac106eff4183af33e2ee4bb",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "TrySetDestinyBondToHappen",
+      "kind": "function",
+      "startLine": 7910,
+      "endLine": 7920,
+      "sha256": "685d8621f846b3c1eab313d00118ea8ef5cde1a830c7fa1eb6e787cc95b0f574",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "CheckWonderGuardAndLevitate",
+      "kind": "function",
+      "startLine": 1345,
+      "endLine": 1418,
+      "sha256": "29124ca4e7aca5eeaf5ebd0f52c39efbcc904e2d09a94b11736fc73bed3fa60e",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "JumpIfMoveFailed",
+      "kind": "function",
+      "startLine": 913,
+      "endLine": 929,
+      "sha256": "4cf438df0de3abdb9191ee125847b7c4b91afb3799403ea51b6de97ae7bddb42",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "JumpIfMoveAffectedByProtect",
+      "kind": "function",
+      "startLine": 945,
+      "endLine": 956,
+      "sha256": "c9c221d510aeab2fb3d303a0717652237d8f4884091ec2cbc4889567356a6f92",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "AccuracyCalcHelper",
+      "kind": "function",
+      "startLine": 958,
+      "endLine": 1001,
+      "sha256": "a2d8c21c6f96e3c3b77f577b9844286d14bc751b98610e0aa23e910d12617f0b",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_accuracycheck",
+      "kind": "function",
+      "startLine": 1003,
+      "endLine": 1106,
+      "sha256": "2499108c3cf0300ae4753bc1201091a1968b2bdc875d793e41e9dd04738b0071",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_ppreduce",
+      "kind": "function",
+      "startLine": 1122,
+      "endLine": 1168,
+      "sha256": "25386ce320470506ca722624c45d5a2e033a5b215e7cad62e0714caaf8b3f7bb",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_critcalc",
+      "kind": "function",
+      "startLine": 1170,
+      "endLine": 1207,
+      "sha256": "c20a32b75483d70a9a2035722e072b751a96f11227f7f76dcd40c6088f4070d7",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_adjustnormaldamage",
+      "kind": "function",
+      "startLine": 1577,
+      "endLine": 1617,
+      "sha256": "1545b3b56afa1af71e764f890fb949da19422d026813f44dfdd68c0c150c6127",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_seteffectwithchance",
+      "kind": "function",
+      "startLine": 2774,
+      "endLine": 2805,
+      "sha256": "e6b46682ecb3deb45a692082832a7b2012b286ba16ace6bea4a0bec988a05e29",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_jumpifstatus",
+      "kind": "function",
+      "startLine": 2945,
+      "endLine": 2955,
+      "sha256": "702d37c76a4b715d3a57d6c99b7f4cad07c94a3b9a2d16b6a1c3f01d0a2b9b4a",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_jumpiftype",
+      "kind": "function",
+      "startLine": 3101,
+      "endLine": 3111,
+      "sha256": "94bfdc2d97b0fcd93ac9c645e0137f7e6ec219535c9b93266319a0a09fac749d",
+      "transformation": "none; complete selected source text retained"
+    }
+  ],
+  "partialSourceFragments": [
+    {
+      "source": "src/battle_util.c",
+      "name": "DoBattlerEndTurnEffects:ENDTURN_POISON",
+      "kind": "complete-case",
+      "startLine": 805,
+      "endLine": 815,
+      "sha256": "0fa272e7ab4469e2a407edaef37c59ac71b9b0652cf01b0a5686b0a6dc7c4f2f",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_util.c",
+      "name": "DoBattlerEndTurnEffects:ENDTURN_BURN",
+      "kind": "complete-case",
+      "startLine": 830,
+      "endLine": 840,
+      "sha256": "728d84e18d0bc72a272a2595c2ee1ea48ffb8b0794ce0b1ee769f279d82824f8",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "SetMoveEffect:primary-status-prefix",
+      "kind": "function-prefix",
+      "startLine": 2110,
+      "endLine": 2393,
+      "sha256": "76afce1d86ba1c1a6560188f52da2c2eb4fa18c50fe3ae4ac3152a7f71d9fae8",
+      "transformation": "Original prefix and full primary-status branch retained; non-primary else replaced by explicit dependency error. Admission permits only primary poison."
+    }
+  ],
+  "nonCompiledSequenceEvidence": [
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_EffectHit",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 239,
+      "endLine": 243,
+      "sha256": "556bbc03721a5127862dc4aca13c826565a76fe4ba4ad84ec1b0aa65d0b56fb0",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_MoveEnd",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 270,
+      "endLine": 273,
+      "sha256": "76abbd25aefd0cafb302cf3d4a651667eed0621506dfd10dc4063cd14b610535",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_PrintMoveMissed",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 276,
+      "endLine": 278,
+      "sha256": "cfa5b439f214085d906cd61935a464ae02abfaeb3dadeb57d096aae6fa75cc7b",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_MoveMissedPause",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 279,
+      "endLine": 280,
+      "sha256": "e3a1eab21320e2d8a8e26ddc50100e78779feb901e00c7060aba76ea2911e251",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_MoveMissed",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 281,
+      "endLine": 286,
+      "sha256": "0e7bfaea7b06dd059ba203c0dd105e29d4da3c037838a88a0b6db9d0eb1d2108",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_EffectPoison",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 984,
+      "endLine": 1004,
+      "sha256": "3e6134bea9a5da1d4f437a7aa2a621ccce0e0c214c46f7e5e2077caec8181ef3",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_AlreadyPoisoned",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 708,
+      "endLine": 713,
+      "sha256": "fdd5b34268cf35c35470edccdeb1933ef25ae7999dbe0fb8d3f90218c6bd1b47",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_ButItFailed",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 2054,
+      "endLine": 2060,
+      "sha256": "4eabfd2623f22029fdd1d5937b454497f14b546e15b1854155be1a57217d5ee9",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_NotAffected",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 2061,
+      "endLine": 2067,
+      "sha256": "b407c5bd25855f89ab4c4fbe5140b5e316d3787950b250ed399fda8f035d2ccc",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_PoisonTurnDmg",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 3676,
+      "endLine": 3678,
+      "sha256": "4f38804daf48d244fc71ff21577e6d688352165da6ccab2e2b079d7cd3df8f20",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_BurnTurnDmg",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 3690,
+      "endLine": 3694,
+      "sha256": "0827349e1051270ab4c423be867b913c525c85d22475308acb3cbddc6ddac19e",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_DoTurnDmg",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 3681,
+      "endLine": 3686,
+      "sha256": "77ebe6471b54f9cb07732fb100629c73d22022032820ce8859a8c7547c080a69",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_FaintAttacker",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 2801,
+      "endLine": 2809,
+      "sha256": "ea9fc13bdd07524978103f4764aaf422f71d4c0f1fb9bd098833a2d2e3c0342d",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_FaintTarget",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 2810,
+      "endLine": 2818,
+      "sha256": "a818972ddd69a416e612c5768bb4793bcccfd656f1f9bd85bf1ba6b121561f7d",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_HandleFaintedMon",
+      "kind": "script-evidence-not-compiled",
+      "startLine": 2824,
+      "endLine": 2834,
+      "sha256": "9c4b03bd8306e83cba59b79d51e07877b0ec1685290513ffdd9155f3babf9cb6",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "SetActionsAndBattlersTurnOrder",
+      "kind": "function-evidence-not-compiled",
+      "startLine": 3532,
+      "endLine": 3621,
+      "sha256": "5b46cccd8cb4ca427509c449b0edc0ecf43a3267227d48d3627e48862f59161c",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "BattleTurnPassed",
+      "kind": "function-evidence-not-compiled",
+      "startLine": 2953,
+      "endLine": 3000,
+      "sha256": "b79adfb12dce9eb531f04b1dd396fde19189aa9300f9637c67282ca42d53f628",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "HandleAction_TryFinish",
+      "kind": "function-evidence-not-compiled",
+      "startLine": 4433,
+      "endLine": 4440,
+      "sha256": "433c3f3d7be8a4858d3f1ea65128238ca1abaaacbaa1224d23c5008059fd402f",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "HandleEndTurn_ContinueBattle",
+      "kind": "function-evidence-not-compiled",
+      "startLine": 2929,
+      "endLine": 2951,
+      "sha256": "07e6a16591061890c4157796886f60238298399c95b0f6976d500c4e51acaa5d",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_util.c",
+      "name": "DoFieldEndTurnEffects",
+      "kind": "function-evidence-not-compiled",
+      "startLine": 466,
+      "endLine": 718,
+      "sha256": "fef9d4a88a55961d1c2547a1a812277334418fd68c28e1969726a04d0bb4b7ef",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_util.c",
+      "name": "AtkCanceller_UnableToUseMove",
+      "kind": "function-evidence-not-compiled",
+      "startLine": 1253,
+      "endLine": 1540,
+      "sha256": "b8e1de04f1f2b456979e6a2a5cc768e1c7887894c910f79fba039d97976fd032",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_attackcanceler",
+      "kind": "function-evidence-not-compiled",
+      "startLine": 819,
+      "endLine": 911,
+      "sha256": "3109ac8aaecef3267f4e420e7d01e079b3f37fa962e823790701d0c49646b625",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_end",
+      "kind": "function-evidence-not-compiled",
+      "startLine": 3798,
+      "endLine": 3803,
+      "sha256": "4ba5943f5a8695f949ab7ce93cebeb63085e40b8ff9a55c52b4f2d4731028544",
+      "transformation": "none; complete selected source text retained"
+    }
+  ],
+  "sourceDeclarations": [
+    {
+      "source": "include/pokemon.h",
+      "name": "BattlePokemon",
+      "kind": "struct",
+      "startLine": 170,
+      "endLine": 206,
+      "sha256": "81e927a5a07add5a9b4835da80080ba628cd75b2e9e0391e49f9698b46defe2b",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "include/pokemon.h",
+      "name": "BattleMove",
+      "kind": "struct",
+      "startLine": 238,
+      "endLine": 249,
+      "sha256": "19b2b44bb279b90178ca5cb8d2d590516784bbbac2fb1b7811f274d525b62150",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "include/battle.h",
+      "name": "ResourceFlags",
+      "kind": "struct",
+      "startLine": 132,
+      "endLine": 135,
+      "sha256": "7791c60967f01a586decc8e413b27420e0591b5c84593ce3730b7bb3cb32866c",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "include/battle.h",
+      "name": "DisableStruct",
+      "kind": "struct",
+      "startLine": 139,
+      "endLine": 172,
+      "sha256": "f54ccc0751a785376f05e526dee92c8081be0653e5d7324672363a9aa9bcb5f2",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "include/battle.h",
+      "name": "ProtectStruct",
+      "kind": "struct",
+      "startLine": 176,
+      "endLine": 211,
+      "sha256": "3128d1097e2a46d38669f9d7ad36dc26bfac12f39c35b59811dd6ac059194943",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "include/battle.h",
+      "name": "SpecialStatus",
+      "kind": "struct",
+      "startLine": 215,
+      "endLine": 233,
+      "sha256": "d62855605e479025240e773ac1556b021dec4de5bdb390720d893e6af9d00db0",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "include/battle.h",
+      "name": "BattleScripting",
+      "kind": "struct",
+      "startLine": 498,
+      "endLine": 524,
+      "sha256": "c17546534cc71a006ad32db6d23137e9cecf8165ad34c4139db52aaf5c6f87ec",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "include/battle.h",
+      "name": "SideTimer",
+      "kind": "struct",
+      "startLine": 237,
+      "endLine": 251,
+      "sha256": "09b113707a6006a6910218d90313135387f6dc6c79433779b319da384f09dc5b",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "StatFractions",
+      "kind": "struct",
+      "startLine": 564,
+      "endLine": 568,
+      "sha256": "a8ac8882bb888493b721ae5da67cdfe880e0985f5dbaeafb1ee59414fd4e8e1d",
+      "transformation": "none; complete selected source text retained"
+    }
+  ],
+  "sourceTableNames": [
+    "gStatStageRatios",
+    "sHoldEffectToType",
+    "gTypeEffectiveness",
+    "gBattleMoves",
+    "gBitTable",
+    "sAccuracyStageRatios",
+    "sCriticalHitChance",
+    "sStatusFlagsForMoveEffects"
+  ],
+  "transformations": [
+    "Complete selected functions are unedited. SetMoveEffect retains its original function prefix and complete primary-status branch; its non-primary else branch is replaced by an explicit unsupported-dependency failure. Adapter admission permits only primary poison.",
+    "BattlePokemon, BattleMove, ResourceFlags, DisableStruct, ProtectStruct, SpecialStatus, BattleScripting, SideTimer and StatFractions retain complete source declarations.",
+    "BattleStruct projects dynamic type, chosen move positions, synchronize effect, wrapping/history/choice and residual cursor fields; BattleResources, EnigmaBerry and BattleResults project only consulted fields. Pokemon party rows and two synthetic SpeciesInfo baseline-type rows are adapter layouts, not original encrypted party data, species identities or memory snapshots.",
+    "Original HP, PP and status controller calls append typed events and acknowledge immediately, without graphics, controller buffers, or presentation waits.",
+    "Only explicit empty-item, empty-ability-field and absent-badge queries have adapter answers; unexpected source service calls set an error and the host rejects the transition.",
+    "The adapter projects EffectHit/EffectPoison command order and selected script branch flags. Full source attack cancellation, script interpreter, moveend/faint scheduler and replacement flow are not compiled; admitted actors are obeying and have no disabling status, volatile condition, item, ability or field effect.",
+    "TurnValuesCleanUp and SpecialStatusesClear are copied intact. begin_turn places the bounded cleanup and source Random action-selection draw at the host selection boundary; this is not the complete original scheduler.",
+    "source_sequence_evidence.txt records pinned original scripts and scheduler/cancellation functions for audit only; evidence-not-compiled fragments do not run in the WASM.",
+    "After the unchanged Random definition, a macro routes every later Random call to an adapter counter which calls the original once and counts draws. Source function text and RNG arithmetic remain unchanged; counter overflow rejects the host transition.",
+    "Checkpoint v1 serializes 148 explicitly named u32 scalar words at admitted host boundaries, validates all fields before mutation, and reconstructs pointers/unsupported empty context on import. It is profile-specific and contains no native pointers or struct bytes. Omitted scratch is reset before future use; the source-state audit records that argument.",
+    "SwitchInClearSetData, FaintClearSetData, Cmd_cleareffectsonfaint and Cmd_checkteamslost retain complete original source function bodies.",
+    "Only the complete ENDTURN_POISON and ENDTURN_BURN case blocks from DoBattlerEndTurnEffects are copied into SpikeSourceResidualCase. The enclosing full scheduler and its other effect cases are not implemented by this wrapper.",
+    "Poison/Burn script symbols are identity markers; the adapter transports their original healthbar/datahp command path with passive-damage flags. It does not execute text, animation, full faint/replacement scripts or end2 callbacks.",
+    "Party HP/species/egg access for Cmd_checkteamslost uses explicitly projected in-memory party records. It is not original encrypted Pokemon storage or persistence.",
+    "FaintClearSetData reads its unchanged source type-restoration expression from a projected three-row SpeciesInfo array. Synthetic actor + 1 indices store admitted baseline fixture types; they are not source species IDs or the source species database.",
+    "Party presence tokens and fixture HP are validated before storage. Eligible side HP totals above 65535 reject instead of overflowing the original Cmd_checkteamslost u16 accumulator; this admits all real Gen III totals but not every synthetic u16-per-mon stress state."
+  ],
+  "executedPaths": {
+    "damageAttack": [
+      "Cmd_accuracycheck",
+      "Cmd_ppreduce",
+      "Cmd_critcalc",
+      "Cmd_damagecalc / CalculateBaseDamage",
+      "Cmd_typecalc / ModulateDmgByType",
+      "Cmd_adjustnormaldamage / ApplyRandomDmgMultiplier",
+      "Cmd_healthbarupdate",
+      "Cmd_datahpupdate",
+      "Cmd_seteffectwithchance"
+    ],
+    "poisonPowder": [
+      "Cmd_ppreduce",
+      "Cmd_jumpifstatus / Cmd_jumpiftype source script order",
+      "Cmd_accuracycheck",
+      "SetMoveEffect retained primary-status prefix"
+    ],
+    "order": [
+      "GetWhoStrikesFirst(0,1,FALSE) for two moves",
+      "Switch partition projected from source SetActionsAndBattlersTurnOrder with no tie draw",
+      "GetWhoStrikesFirst(0,1,FALSE) for residual ordering retains chosen priorities"
+    ],
+    "lifecycle": [
+      "SwitchInClearSetData",
+      "Cmd_cleareffectsonfaint / FaintClearSetData",
+      "DoBattlerEndTurnEffects complete ENDTURN_POISON or ENDTURN_BURN case",
+      "Cmd_healthbarupdate / Cmd_datahpupdate with source passive flags",
+      "Cmd_checkteamslost"
+    ],
+    "turnCleanup": [
+      "TurnValuesCleanUp(FALSE)",
+      "SpecialStatusesClear",
+      "Explicit bounded communication/marker/action cleanup at host selection boundary"
+    ]
+  },
+  "rngBoundary": {
+    "seed": "Full u32 gRngValue after omitted intro effects, immediately before first action-selection draw; not SeedRng(u16).",
+    "selection": "Random draw at initial selection and after completed nonterminal turns; earlier intro TRUE speed comparison omitted.",
+    "damageHit": "accuracy, critical, variance, secondary chance: four draws even when secondary effect byte is zero",
+    "damageMiss": "accuracy only; PP still deducted",
+    "poisonPowder": "one accuracy draw when source prechecks permit it; no critical/variance/secondary draw",
+    "ties": "source action and residual comparator can each consume a draw; switches are not speed-sorted for actions",
+    "residual": "poison/burn damage consumes no RNG"
+  },
+  "hostProjection": {
+    "party": "Synthetic one/two-member side fixtures; active selection and bench HP/status/PP kept by TypeScript.",
+    "replacement": "Attack KO cancels remaining singles actions and resolves forced replacement before residuals; residual KO resolves afterward.",
+    "faintBoundary": "Copied status clearing and cleanup only; no full tryfaint counters, friendship, exp or replacement script interpreter.",
+    "candidateTransaction": "Fresh WASM instance restored from versioned logical scalar state plus validated host continuation; errors discard candidate. No raw linear-memory copy.",
+    "checkpoint": "Core v1 148 explicit u32 values plus host profile/source envelope; four settled host boundaries only. Full state classification and expansion obligations are in battle-spike-state-audit.json."
+  },
+  "adapterServices": {
+    "items": "ITEM_NONE only; original NONE hold effect and zero parameter",
+    "badges": "Only badge 01/03/05/07 queries, false in explicit empty-badge context",
+    "abilities": "Named field-presence and absorbing queries in empty ability/status3 context; other services tripwire",
+    "GetMonData": "Projected party records expose SPECIES, HP and IS_EGG only; source outcome sum retained with preflight overflow guard",
+    "speciesTypes": "Two synthetic actor-index baseline type records, no actual creature identity claim",
+    "BattleScriptPush": "Only primary Poison Powder status-script continuation transport; no nested script interpreter",
+    "BattleScriptExecute": "Only poison/burn residual identity markers; host transports their HP command path",
+    "controllers": "HPbar type1, HPset type2, PPset type3, statusset type4; exact field pointers and sizes checked; immediate acknowledgment"
+  },
+  "admission": {
+    "moves": [
+      33,
+      55,
+      98,
+      77
+    ],
+    "levels": [
+      1,
+      100
+    ],
+    "stats": [
+      1,
+      999
+    ],
+    "status1": [
+      0,
+      8,
+      16
+    ],
+    "status2": [
+      0,
+      536870912
+    ],
+    "types": "0..17 excluding Mystery9",
+    "stages": "0..12; unused HP stage neutral6",
+    "context": "Two obeying actors, no abilities/items/weather/badges/side effects or disabling volatile conditions.",
+    "guards": [
+      "reset/configuration required",
+      "effective zero defense rejected before RNG/PP",
+      "host defenses >=4 across all admitted stages",
+      "party u16 HP accumulator overflow rejected",
+      "HP0 attack/residual and terminal gameplay mutations rejected",
+      "direct RNG export remains diagnostic"
+    ],
+    "legacyABI": "Batch-one damage API remains Tackle/Water Gun only with supplied critical1/2 and previous stricter status/stage admission."
+  },
+  "supported": [
+    "Retained batch-one Tackle/Water Gun supplied-critical damage ABI",
+    "Batch-two Tackle, Water Gun and Quick Attack source accuracy, PP, critical, damage, type, variance and secondary-chance draw",
+    "Poison Powder source precondition predicates, accuracy and primary-poison application prefix",
+    "Source speed/priority comparison, tie RNG and retained-priority end-turn comparison",
+    "Source switch/faint cleanup, complete poison/burn residual cases and team HP outcome predicate",
+    "Source HP/PP/status calls as bounded ordered events with host-projected turn/party orchestration"
+  ],
+  "remainingDependencyGroups": [
+    "Production battle engine or full source scheduler/interpreter",
+    "other moves, secondary statuses, sleep, freeze, paralysis or toxic",
+    "abilities and held items",
+    "weather, screens, badges, traded disobedience and doubles",
+    "substitute, healing, recoil and other residual effects",
+    "full faint counters/friendship/experience/rewards and capture",
+    "encrypted Pokemon storage, persistence, production snapshot/restore and engine selection"
+  ],
+  "implementationFiles": [
+    {
+      "path": "tools/battle-spike/extract.py",
+      "sha256": "26a391b8cd05db4ea3513e91b5502b247d4391f163f1990a4b46c940ac8e4031"
+    },
+    {
+      "path": "tools/battle-spike/lifecycle_extract.py",
+      "sha256": "541393877d70b478bd8957026b06d0a75ba6de9d519c9b5439137f810c8f1d86"
+    },
+    {
+      "path": "tools/battle-spike/c/adapter.h",
+      "sha256": "7590b25ef29fd742ec802b3767ed1c0f76d179bcc6686d511f6cde6f10c47d61"
+    },
+    {
+      "path": "tools/battle-spike/c/adapter.c",
+      "sha256": "ae76b7dfa26ee5836d49d54cdf65b5fc049cb694eca1a1fa6e8fcafade300e26"
+    },
+    {
+      "path": "tools/battle-spike/c/attack.inc",
+      "sha256": "320bd6d37c20a617dd92d0877702e91f3299b1affa52240d60cd182b71952ab4"
+    },
+    {
+      "path": "tools/battle-spike/c/lifecycle.inc",
+      "sha256": "864d8e46e658f68dac1acfbc1771ebeaf25fa975395c7530efb5a87209b55b8d"
+    },
+    {
+      "path": "tools/battle-spike/c/lifecycle_state.inc",
+      "sha256": "f2f56263f461ba0c297c5cdba4739fb9585d2961a24bdf7c01328dd8165accd6"
+    },
+    {
+      "path": "tools/battle-spike/c/rng_hook.inc",
+      "sha256": "462975c72f2fa36f30c3c80a469698a9f45518774bce5eeb980736dcb9ab8e15"
+    },
+    {
+      "path": "tools/battle-spike/c/checkpoint.inc",
+      "sha256": "56b42ea09766e9e19f33abfa2876569eaf7f925124c9dceb0f71720adc29f6ed"
+    }
+  ],
+  "stateAudit": "reports/battle-spike-state-audit.json",
+  "checkpointChecks": "reports/battle-spike-checkpoint-tests.json",
+  "verificationBoundary": "Current build/runtime reports prove only this restricted slice. All restricted translation-unit globals are classified; full original-engine state/mechanics closure is not claimed. Recovery/adapter/measurement reports and ADR-001 record the final experiment evidence and decision."
+}

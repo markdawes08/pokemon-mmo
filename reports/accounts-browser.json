@@ -1,0 +1,20 @@
+{
+  "verifiedAt": "2026-09-26T01:23:45.989Z",
+  "runtime": "Built client served by fresh source backend on random loopback port",
+  "database": "Separate TEST_DATABASE_URL; exact owned fixture emails removed after tests",
+  "results": [
+    {
+      "title": "real account creation, trainer save and reload preserve profile while map walking remains unsaved",
+      "status": "passed"
+    },
+    {
+      "title": "two real browser accounts are isolated and a second tab replaces the first trainer connection",
+      "status": "passed"
+    },
+    {
+      "title": "sign-out revokes the real session and a narrow screen supports sign-in and trainer controls",
+      "status": "passed"
+    }
+  ],
+  "passed": true
+}

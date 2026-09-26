@@ -1,0 +1,331 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-25T20:43:31.012355+00:00",
+  "status": "independent-source-and-fixture-inspection-pass",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "upstreamCommit": null,
+  "scope": "P03 batch2 bounded turn oracle and source trace only. No compiled probe output is used to derive expectations. This report does not by itself prove execution, isolation, complete FireRed mechanics, portable snapshot/restore or production backend selection.",
+  "inputs": [
+    {
+      "path": "src/random.c",
+      "size": 323,
+      "sha256": "e7e90cc070d1fbf09579f5f91762cd8875d5bbe1d7a90f468bcd870df73b9de2",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/random.h",
+      "size": 669,
+      "sha256": "8a6049183598b2d865b5ff522abdb3d0e94012a127d724af46b9b7b69803f5b9",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/pokemon.c",
+      "size": 221865,
+      "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/battle_script_commands.c",
+      "size": 355862,
+      "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/battle_util.c",
+      "size": 136791,
+      "sha256": "87cf810eb2d58361d1beb1537b3bd71c9160a77c2a17d703399f6ed373bb5720",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/battle_main.c",
+      "size": 171904,
+      "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "data/battle_scripts_1.s",
+      "size": 138642,
+      "sha256": "27e9c39f3147b05e5ba2ed36ca0c89fcdc9b26718778083bd362c582de800034",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/data/battle_moves.h",
+      "size": 121457,
+      "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/battle.h",
+      "size": 21838,
+      "sha256": "bf64a16fb4e660f8a326eb352a511bb9e8fd54a74ebb03e328c08d5a23e5d8fa",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/battle.h",
+      "size": 16440,
+      "sha256": "b9d0493af4629d450050637e9aace63b684b282f841bed2a0d97b1d71e9d55e3",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/pokemon.h",
+      "size": 10894,
+      "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/moves.h",
+      "size": 10249,
+      "sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194",
+      "matchesPinnedSnapshot": true
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "tools/battle-spike/fixtures/batch-2.json",
+      "sha256": "0be73649f9a2eac497ae04a6ea84d6db3d0a9cca3e84d43456e6888c5595bd2c"
+    },
+    {
+      "path": "tools/battle-spike/fixtures/generate_batch_2.py",
+      "sha256": "1033f9d25221625d6f630c12d86b433db453c988ff189317cd73abf1fb818e2b"
+    }
+  ],
+  "fixtureCounts": {
+    "cases": 15,
+    "steps": 19
+  },
+  "oracle": {
+    "method": "Separate Python integer arithmetic plus explicit source script ordering generates checked-in literal JSON. It imports no application, probe, compiled-module or extraction code. Hand-checked miss/critical/terminal/status-block/resume anchors are asserted before writing.",
+    "syntheticInputs": true,
+    "seedBoundary": "Initialseed is fullu32 internal RNGstate immediately before initial action-selection draw; not client-selected live seed or SeedRng(u16).",
+    "types": "GenIII move type category, original ordered type chart, positive integer truncation; inherited batch1 anchors for Tackle/WaterGun base damage.",
+    "hostEvents": "order/attack/switch/residual/faint/outcome are normalized experiment observations. commands retain source controller requests1healthbar,2HPset,3PPset,4statusset; labels are not original-game wire protocol."
+  },
+  "admittedMoves": [
+    {
+      "id": 33,
+      "symbol": "MOVE_TACKLE",
+      "power": 35,
+      "accuracy": 95,
+      "pp": 35,
+      "type": "TYPE_NORMAL",
+      "priority": 0
+    },
+    {
+      "id": 55,
+      "symbol": "MOVE_WATER_GUN",
+      "power": 40,
+      "accuracy": 100,
+      "pp": 25,
+      "type": "TYPE_WATER",
+      "priority": 0
+    },
+    {
+      "id": 98,
+      "symbol": "MOVE_QUICK_ATTACK",
+      "power": 40,
+      "accuracy": 100,
+      "pp": 30,
+      "type": "TYPE_NORMAL",
+      "priority": 1
+    },
+    {
+      "id": 77,
+      "symbol": "MOVE_POISON_POWDER",
+      "power": 0,
+      "accuracy": 75,
+      "pp": 35,
+      "type": "TYPE_POISON",
+      "priority": 0
+    }
+  ],
+  "sourceFindings": [
+    {
+      "topic": "RNGstate",
+      "source": "src/random.c:Random; include/random.h:ISO_RANDOMIZE1",
+      "finding": "Update(state*1103515245+24691) mod2^32, returnupper16. Original SeedRng is16bit; explicit internal restorestate is32bit."
+    },
+    {
+      "topic": "Turnseed",
+      "source": "src/battle_main.c initialactionselection and BattleTurnPassed",
+      "finding": "gRandomTurnNumber=Random at initial action-selection and after a completed nonterminal turn. Terminal returns before nextselectiondraw. Pending replacement defers completion until resumed."
+    },
+    {
+      "topic": "Actionorder",
+      "source": "src/battle_main.c:SetActionsAndBattlersTurnOrder/GetWhoStrikesFirst",
+      "finding": "Manual switches are placed first by battlerindex and excluded from speedcomparison. Otherwise priority then source adjustedSpeed; an equal-speed/equal-priority comparison draws Random and odd return swapsactors. Non-ties do not draw."
+    },
+    {
+      "topic": "Residualorder",
+      "source": "src/battle_util.c:DoFieldEndTurnEffects ENDTURN_ORDER",
+      "finding": "Rebuild order and call GetWhoStrikesFirst(...FALSE), so chosen move priority is retained and equal speeds can consume a separate draw even when no residual is active. Reusing action order would corrupt RNGstate."
+    },
+    {
+      "topic": "Damagehit",
+      "source": "data/battle_scripts_1.s:BattleScript_HitFromAccCheck throughBattleScript_MoveEnd; src/battle_script_commands.c",
+      "finding": "Neutral admitted hit draws accuracy, critical, variance, secondary in that order. Accuracy condition Random()%100+1>calc meansmiss; critical denominator16 at neutralstage; variance100-(Random()%16). PP decrements via original command."
+    },
+    {
+      "topic": "Zerosecondary",
+      "source": "src/battle_script_commands.c:Cmd_seteffectwithchance",
+      "finding": "Random()%100<=percentChance is evaluated before checking MOVE_EFFECT_BYTE, so effect0 Tackle/WaterGun/QuickAttack still consume the draw. This is preserved even though no secondary effect can execute."
+    },
+    {
+      "topic": "Damagemiss",
+      "source": "data/battle_scripts_1.s:BattleScript_PrintMoveMissed",
+      "finding": "Miss branch executes attackstring andppreduce, thenends; accuracy is its sole action RNGdraw. It does not rollcritical/variance/secondary."
+    },
+    {
+      "topic": "PoisonPowder",
+      "source": "data/battle_scripts_1.s:BattleScript_EffectPoison;src/data/battle_moves.h:MOVE_POISON_POWDER",
+      "finding": "PP first, thenexistingstatus/type/ability/substitute prechecks. An eligible target receives one75%-accuracydraw and directprimarypoison; no critical/variance/secondarydraw. Poison/Steel typeprechecks skipaccuracy; no later-generation Grass/powder immunity is assumed."
+    },
+    {
+      "topic": "Statusresidual",
+      "source": "src/battle_util.c:DoBattlerEndTurnEffects ENDTURN_POISON/ENDTURN_BURN;data/battle_scripts_1.s:BattleScript_DoTurnDmg",
+      "finding": "For livingactive poisoned/burned mon, maxHP/8 truncates withminimum1. HitmarkerPASSIVE_DAMAGE prevents direct physical/special damage-history effects. HP update precedes faint and teams-lost checks. Benchmon doesnotreceive residual."
+    },
+    {
+      "topic": "Faintcleanup",
+      "source": "src/battle_script_commands.c:Cmd_cleareffectsonfaint;src/battle_main.c:FaintClearSetData",
+      "finding": "Original command clearsstatus1 and emitsstatus0, thenfunctionclearsstatus2/stages/tracking and restores species types. CallingonlyFaintClearSetData would incorrectly retain persistentstatus."
+    },
+    {
+      "topic": "Voluntaryswitch",
+      "source": "src/battle_main.c:SwitchInClearSetData;originalpartyvsBattlePokemon state separation",
+      "finding": "Non-BatonPass switchclearsstages/status2/volatiletracking. Persistentstatus1, HP andPP survive; hostparty projection discards battle-onlyvolatiles onoutgoing aswell."
+    },
+    {
+      "topic": "AttackKOreplacement",
+      "source": "Cmd_end->HandleAction_TryFinish->HandleFaintedMonActions->BattleScript_HandleFaintedMon/FaintedMonSendOutNew",
+      "finding": "A nonterminal attackKO promptsreplacementbeforeendturn; source singles cancelallactions afterward. Incoming active canreceive the ensuing residual. Batchfixture recordsbefore-residual continuation."
+    },
+    {
+      "topic": "ResidualKOreplacement",
+      "source": "src/battle_main.c:BattleTurnPassed and src/battle_util.c:DoBattlerEndTurnEffects/HandleFaintedMonActions",
+      "finding": "A firstKOduringresidual reachesreplacementafterthe residualphase completes; incomingmon mustnotrepeat it. Terminalcheck canendimmediately afterstatusdamage. Batchfixture recordsafter-residual continuation."
+    },
+    {
+      "topic": "Outcome",
+      "source": "src/battle_script_commands.c:Cmd_checkteamslost",
+      "finding": "TeamHP evaluation includes livingbenchrecords; experimentparty sum mustavoid originalu16 totaloverflow. Won/lost reflects side0 perspective. Rewards, capture, experience and choice UI are outside the bounded host."
+    },
+    {
+      "topic": "AccuracyStages",
+      "source": "src/battle_script_commands.c:sAccuracyStageRatios/Cmd_accuracycheck",
+      "finding": "Source uses decimalratios (e.g43/100 atstage2), not a modern exactfraction substitutedafterthefact. Clampacc+6-evasion0..12; targetForesight insteadusesattackeraccuracystage. Ratio*moveaccuracy truncatesbeforecomparing Random()%100+1."
+    },
+    {
+      "topic": "MoveResultFlags",
+      "source": "include/constants/battle.h:195-201;data/battle_scripts_1.s:BattleScript_ButItFailed",
+      "finding": "MISSED1, FAILED32 (1<<5), FOE_ENDURED64. PoisonPowder blocked by existingburn setsFAILED32; eligiblePowderaccuracymiss includesMISSED1|FAILED32=33. Already-poisoned earlybranch leavesflags0."
+    }
+  ],
+  "caseDerivations": [
+    {
+      "id": "ordinary-attacks-and-pp-two-turns",
+      "derivation": "Tackle35 physical base5/STAB7 versus WaterGun40 special base7/STAB10. Non-tied speed; each hit consumes accuracy, critical, variance and zero-effect secondary draws. Repeated turns preserve actual HP/PP and next-selection seed.",
+      "rngTrace": "All draws withbefore/value/after are literal in each expectedstep."
+    },
+    {
+      "id": "tackle-miss-consumes-pp-only-one-attack-draw",
+      "derivation": "Seed58 initial gRandomTurnNumber59118; first accuracy597 yields98>95. Tackle misses but source miss script decrementsPP35 to34. No critical/variance/secondary draws for the missed move.",
+      "rngTrace": "All draws withbefore/value/after are literal in each expectedstep."
+    },
+    {
+      "id": "critical-knockout-victory-cancels-opponent",
+      "derivation": "Seed50: initial55483, accuracy60736 ->37 hit, critical27392 divisible16 ->2x, variance44789 ->95%, secondary37826. Base5*2=10, STAB15, floor(15*95/100)=14. Target10HP faints; opponentPP remains35; terminal RNG2478993009, no residual/next-selection draw.",
+      "rngTrace": "All draws withbefore/value/after are literal in each expectedstep."
+    },
+    {
+      "id": "speed-tie-actions-and-residual-resort",
+      "derivation": "Seed1 action tie draw44065 is odd ->actor1 first; its accuracy53998 yields99 and Tackle misses. Source residual ordering performs a separate tie comparison after action RNG. Both tie draws are recorded, even without active residual status.",
+      "rngTrace": "All draws withbefore/value/after are literal in each expectedstep."
+    },
+    {
+      "id": "quick-attack-priority-beats-speed",
+      "derivation": "QuickAttack priority1 beats WaterGun priority0 despite speed5<30. Both source action and residual comparators use chosen move priority; QuickAttack base6/STAB9 before variance.",
+      "rngTrace": "All draws withbefore/value/after are literal in each expectedstep."
+    },
+    {
+      "id": "voluntary-switch-cleans-volatiles-preserves-bench-burn",
+      "derivation": "Switch actions precede attacks without speed RNG; incoming mon receives attack. Original active Attack stage12 and Foresight are cleared on leaving/return, but burn/HP/PP persist. Benched burn causes no residual; after switching back, active burn appliesmaxHP40/8=5.",
+      "rngTrace": "All draws withbefore/value/after are literal in each expectedstep."
+    },
+    {
+      "id": "burn-residual-faint-and-forced-replacement",
+      "derivation": "Initially burned active7HP attacks then survives a minimal opponentTackle before its5HP burn residual. Faint clears persistent/volatile status and stages. Replacement pauses after residual; incoming healthy bench receives no residual from the already-completed phase. Next-selection RNG waits until replacement.",
+      "rngTrace": "All draws withbefore/value/after are literal in each expectedstep."
+    },
+    {
+      "id": "poison-powder-infliction-and-residual-loss",
+      "derivation": "Seed0 initialdraw0 then Powder accuracy59774 gives75, exactly hitting source75 threshold. PP35->34 and targetstatus8, no critical/variance/secondary draw. Target then lands a criticalTackle14. Its maxHP40 poison residual5 removes final5HP, faintstatus clears0, terminal loss RNG3805062638.",
+      "rngTrace": "All draws withbefore/value/after are literal in each expectedstep."
+    },
+    {
+      "id": "poison-powder-steel-immunity-skips-accuracy",
+      "derivation": "Source PoisonPowder script deductsPP before TYPE_STEEL precheck, then jumpsNotAffected. PP34, flag8, no accuracy RNG and no status change. OpponentTackle therefore consumes the next RNG value otherwise used by accuracy.",
+      "rngTrace": "All draws withbefore/value/after are literal in each expectedstep."
+    },
+    {
+      "id": "attack-knockout-replacement-before-incoming-residual",
+      "derivation": "The same14-damage criticalKO has a living opponent reserve. After attack, pausebefore-residual and cancel remaining queued action. Replace with burned reserve40HP, source residual phase then applies5 ->35. This differs from residual-originKO replacement.",
+      "rngTrace": "All draws withbefore/value/after are literal in each expectedstep."
+    },
+    {
+      "id": "first-residual-terminal-stops-second-burn",
+      "derivation": "Both3HP/max40 burn, eachPoisonPowder is blocked by existingburn. Both spendPP, flagsFAILED32, noaccuracydraw. Actor0faster residual5faints, terminal loss immediately stops actor1 residual. Actor1remains3HP/burn16; RNG stays24691 afterinitialdraw. No simultaneousdamage/draw invented.",
+      "rngTrace": "Literal expectedsteps include every RNGbefore/value/after."
+    },
+    {
+      "id": "already-poisoned-powder-deducts-pp-without-accuracy",
+      "derivation": "SourceAlreadyPoisoned branch occurs afterPPbutbeforeaccuracy and doesnotsetFAILED. Target remainsstatus8, attackdiagnosticflags0; controllercommand onlyPP34. OpponentTackle uses next untouched RNG thennormalpoisonresidual.",
+      "rngTrace": "Literal expectedsteps include every RNGbefore/value/after."
+    },
+    {
+      "id": "accuracy-evasion-stages-floor-to-forty",
+      "derivation": "Attackeraccuracy4 anddefenderevasion8 givebuff4+6-8=2. Source ratio43/100 timesTackle95 truncates40. Seed2 firstaccuracy28355 gives56, whichmisses.",
+      "rngTrace": "Literal expectedsteps include every RNGbefore/value/after."
+    },
+    {
+      "id": "foresight-ignores-evasion-but-retains-accuracy-drop",
+      "derivation": "Same seed/stats, targetForesight makesbuffattackeraccuracy4, source60/100 times95 gives57. Roll56hits. This verifiesForesight ignoresevasionwithout removingthe attackeraccuracydrop.",
+      "rngTrace": "Literal expectedsteps include every RNGbefore/value/after."
+    },
+    {
+      "id": "poison-powder-accuracy-miss-combines-failure-flags",
+      "derivation": "Seed58 afterinitialdraw givesaccuracy597 ->roll98>75. PowderfirstdeductsPP34, accuracysetsMISSED1 thenButItFailed addsFAILED32 ->33; targetnotpoisoned, noadditionalactionRNG. Thisexplicitlychecksstatus-move failureflags againstoriginalconstants.",
+      "rngTrace": "Literalexpectedsteprecords alldraws."
+    }
+  ],
+  "isolation": {
+    "caseIds": [
+      "ordinary-attacks-and-pp-two-turns",
+      "burn-residual-faint-and-forced-replacement"
+    ],
+    "schedule": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "expectation": "Every step matches the same literal standalone transcript, including RNG and all party summaries."
+  },
+  "limitations": [
+    "Separate host scheduler is bounded to admitted single-battle choices; it is not an arbitrary original script interpreter.",
+    "No abilities, helditems, weather, badges, screens, doubles, toxic counters, paralysis/confusion/sleep, othermoves, PP Ups, Struggle, experience or durable domain effects.",
+    "The separate fixtureoracle intentionally models no unsupported branch; adapter rejection and noncommitting failure paths require runtime tests.",
+    "Independent goldens support representative batch2 verification only. Productionportable snapshots/replay/resource workloadgate and ADR-001 selection remain batch3."
+  ]
+}

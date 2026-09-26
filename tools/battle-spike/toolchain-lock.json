@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "tool": "zig",
+  "version": "0.16.0",
+  "purpose": "Optional local P03 C-to-WASM experiment compiler; not a runtime game dependency",
+  "source": "https://ziglang.org/download/index.json",
+  "platform": "win32-x64",
+  "url": "https://ziglang.org/download/0.16.0/zig-x86_64-windows-0.16.0.zip",
+  "bytes": 97217739,
+  "sha256": "68659eb5f1e4eb1437a722f1dd889c5a322c9954607f5edcf337bc3684a75a7e",
+  "directory": "zig-x86_64-windows-0.16.0",
+  "executable": "zig.exe"
+}

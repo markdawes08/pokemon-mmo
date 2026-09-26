@@ -1,0 +1,123 @@
+{
+  "checkedAt": "2026-09-26T01:26:55.228Z",
+  "mode": "run",
+  "scope": "Actual player WebGL quad vertices during focused keyboard movement; test-only passive renderer instrumentation",
+  "observations": [
+    {
+      "direction": "ArrowUp",
+      "movingRenderFrames": 59,
+      "renderedBounds": [
+        "112,40,128,72"
+      ],
+      "animationFrames": [
+        "12",
+        "13",
+        "14"
+      ],
+      "firstFramesByStep": [
+        "12",
+        "12",
+        "12",
+        "12",
+        "12",
+        "12",
+        "12"
+      ],
+      "cameraTravel": {
+        "x": 0,
+        "y": 111
+      },
+      "fractionalAnchorSamples": 0,
+      "sampleIntervalMs": {
+        "min": 11.799999997019768,
+        "max": 25
+      }
+    },
+    {
+      "direction": "ArrowDown",
+      "movingRenderFrames": 35,
+      "renderedBounds": [
+        "112,40,128,72"
+      ],
+      "animationFrames": [
+        "9",
+        "11",
+        "10"
+      ],
+      "firstFramesByStep": [
+        "9",
+        "9",
+        "9",
+        "9"
+      ],
+      "cameraTravel": {
+        "x": 0,
+        "y": 62
+      },
+      "fractionalAnchorSamples": 0,
+      "sampleIntervalMs": {
+        "min": 11.899999998509884,
+        "max": 24
+      }
+    },
+    {
+      "direction": "ArrowLeft",
+      "movingRenderFrames": 56,
+      "renderedBounds": [
+        "112,40,128,72"
+      ],
+      "animationFrames": [
+        "15",
+        "17",
+        "16"
+      ],
+      "firstFramesByStep": [
+        "15",
+        "15",
+        "15",
+        "15",
+        "15",
+        "15",
+        "15"
+      ],
+      "cameraTravel": {
+        "x": 111,
+        "y": 0
+      },
+      "fractionalAnchorSamples": 0,
+      "sampleIntervalMs": {
+        "min": 9.400000005960464,
+        "max": 28.600000001490116
+      }
+    },
+    {
+      "direction": "ArrowRight",
+      "movingRenderFrames": 47,
+      "renderedBounds": [
+        "112,40,128,72"
+      ],
+      "animationFrames": [
+        "15",
+        "16",
+        "17"
+      ],
+      "firstFramesByStep": [
+        "15",
+        "15",
+        "15",
+        "15",
+        "15",
+        "15"
+      ],
+      "cameraTravel": {
+        "x": 94,
+        "y": 0
+      },
+      "fractionalAnchorSamples": 0,
+      "sampleIntervalMs": {
+        "min": 14.599999994039536,
+        "max": 34.20000000298023
+      }
+    }
+  ]
+}

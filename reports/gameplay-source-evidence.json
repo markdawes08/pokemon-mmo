@@ -1,0 +1,402 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-25T19:34:03.635864+00:00",
+  "status": "independent-source-inspection-pass",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "upstreamCommit": null,
+  "scope": "Independently inspected source records and numeric semantics for the bounded Pallet/Route 1 reference export. This report does not verify gameplay, battle execution, capture odds, generated records or browser rendering.",
+  "inputs": [
+    {
+      "path": "src/data/wild_encounters.json",
+      "size": 706967,
+      "sha256": "a6399199987e1bdf8502e9bfdcfc9d8ad57d74df206d22ba20f020492bd3bf7c",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/wild_encounter.c",
+      "size": 24781,
+      "sha256": "06021f7ef390bbb49a7801ca44def3a67380c53e5ab5fd211e472fc53b10ca8f",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/data/pokemon/species_info.h",
+      "size": 342600,
+      "sha256": "9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/data/pokemon/level_up_learnsets.h",
+      "size": 182027,
+      "sha256": "d6563a88fa893d1433a02027cb13ba9574a6828a96b1a730b1d767fd7c5a0cc6",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/data/pokemon/evolution.h",
+      "size": 12282,
+      "sha256": "a7d05352fb5b7039b8851049bc9575dc8eaa4450bf9964d03b7857db98c32d3c",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/data/pokemon/experience_tables.h",
+      "size": 22610,
+      "sha256": "9a236761640676e251b76b7950b86e5881ee23dfe920ca27bbe47b4541542731",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/data/battle_moves.h",
+      "size": 121457,
+      "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/data/items.h",
+      "size": 222118,
+      "sha256": "419cccd4ca8475d8b863978ee47a6ffeb304e7425cb73481209ba7b9f2fc3b4b",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/data/pokemon/item_effects.h",
+      "size": 12207,
+      "sha256": "d249420ab4751c60b1ae246895dcee5bdfb5bae18f52a9c37975c6f7fb5d0d25",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/battle_main.c",
+      "size": 171904,
+      "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "src/battle_script_commands.c",
+      "size": 355862,
+      "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/pokemon.h",
+      "size": 10894,
+      "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/moves.h",
+      "size": 10249,
+      "sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/items.h",
+      "size": 12436,
+      "sha256": "af17276346eaecc5a10ac60f14b22c33332ec8c6fb0ec82895bdc3649b678138",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/constants/species.h",
+      "size": 12982,
+      "sha256": "ec3f9f9c2717dcd453aa7a27506c32e1e6ca067864534dee494695d74344c51a",
+      "matchesPinnedSnapshot": true
+    },
+    {
+      "path": "include/battle_main.h",
+      "size": 3483,
+      "sha256": "22ee8ad8174831ae7cb0c8c1ac2946011a88e2aedb5c621901f67a37a444630c",
+      "matchesPinnedSnapshot": true
+    }
+  ],
+  "route1": {
+    "source": "src/data/wild_encounters.json:sRoute1_FireRed",
+    "map": "MAP_ROUTE1",
+    "method": "land",
+    "sourceEncounterRate": 21,
+    "encounterRateMeaning": "Source step-encounter parameter; not a direct 21% chance per step.",
+    "slotWeights": [
+      20,
+      20,
+      10,
+      10,
+      10,
+      10,
+      5,
+      5,
+      4,
+      4,
+      1,
+      1
+    ],
+    "slots": [
+      {
+        "index": 0,
+        "weight": 20,
+        "min_level": 3,
+        "max_level": 3,
+        "species": "SPECIES_PIDGEY"
+      },
+      {
+        "index": 1,
+        "weight": 20,
+        "min_level": 3,
+        "max_level": 3,
+        "species": "SPECIES_RATTATA"
+      },
+      {
+        "index": 2,
+        "weight": 10,
+        "min_level": 3,
+        "max_level": 3,
+        "species": "SPECIES_PIDGEY"
+      },
+      {
+        "index": 3,
+        "weight": 10,
+        "min_level": 3,
+        "max_level": 3,
+        "species": "SPECIES_RATTATA"
+      },
+      {
+        "index": 4,
+        "weight": 10,
+        "min_level": 2,
+        "max_level": 2,
+        "species": "SPECIES_PIDGEY"
+      },
+      {
+        "index": 5,
+        "weight": 10,
+        "min_level": 2,
+        "max_level": 2,
+        "species": "SPECIES_RATTATA"
+      },
+      {
+        "index": 6,
+        "weight": 5,
+        "min_level": 3,
+        "max_level": 3,
+        "species": "SPECIES_PIDGEY"
+      },
+      {
+        "index": 7,
+        "weight": 5,
+        "min_level": 3,
+        "max_level": 3,
+        "species": "SPECIES_RATTATA"
+      },
+      {
+        "index": 8,
+        "weight": 4,
+        "min_level": 4,
+        "max_level": 4,
+        "species": "SPECIES_PIDGEY"
+      },
+      {
+        "index": 9,
+        "weight": 4,
+        "min_level": 4,
+        "max_level": 4,
+        "species": "SPECIES_RATTATA"
+      },
+      {
+        "index": 10,
+        "weight": 1,
+        "min_level": 5,
+        "max_level": 5,
+        "species": "SPECIES_PIDGEY"
+      },
+      {
+        "index": 11,
+        "weight": 1,
+        "min_level": 4,
+        "max_level": 4,
+        "species": "SPECIES_RATTATA"
+      }
+    ],
+    "speciesWeightTotals": {
+      "SPECIES_PIDGEY": 50,
+      "SPECIES_RATTATA": 50
+    },
+    "levelWeights": {
+      "SPECIES_PIDGEY": {
+        "3": 35,
+        "2": 10,
+        "4": 4,
+        "5": 1
+      },
+      "SPECIES_RATTATA": {
+        "3": 35,
+        "2": 10,
+        "4": 5
+      }
+    },
+    "weightMeaning": "Share conditional on selecting a land encounter; not a complete runtime RNG model."
+  },
+  "species": {
+    "bulbasaur": {
+      "source": "src/data/pokemon/species_info.h:SPECIES_BULBASAUR",
+      "id": 1,
+      "stats": {
+        "hp": 45,
+        "attack": 49,
+        "defense": 49,
+        "speed": 45,
+        "spAttack": 65,
+        "spDefense": 65
+      },
+      "types": [
+        "TYPE_GRASS",
+        "TYPE_POISON"
+      ],
+      "catchRate": 45,
+      "expYield": 64,
+      "growthRate": "GROWTH_MEDIUM_SLOW",
+      "abilities": [
+        "ABILITY_OVERGROW",
+        "ABILITY_NONE"
+      ]
+    }
+  },
+  "learnsets": {
+    "source": "src/data/pokemon/level_up_learnsets.h",
+    "bulbasaurLevel15InOrder": [
+      {
+        "level": 15,
+        "move": "MOVE_POISON_POWDER",
+        "id": 77
+      },
+      {
+        "level": 15,
+        "move": "MOVE_SLEEP_POWDER",
+        "id": 79
+      }
+    ],
+    "rattataLevel20": "MOVE_FOCUS_ENERGY",
+    "raticateLevel20": "MOVE_SCARY_FACE",
+    "note": "Repeated move entries and same-level order must be preserved; do not deduplicate whole learnsets."
+  },
+  "evolutions": {
+    "source": "src/data/pokemon/evolution.h",
+    "method": "EVO_LEVEL",
+    "entries": [
+      [
+        "SPECIES_BULBASAUR",
+        16,
+        "SPECIES_IVYSAUR"
+      ],
+      [
+        "SPECIES_IVYSAUR",
+        32,
+        "SPECIES_VENUSAUR"
+      ],
+      [
+        "SPECIES_CHARMANDER",
+        16,
+        "SPECIES_CHARMELEON"
+      ],
+      [
+        "SPECIES_CHARMELEON",
+        36,
+        "SPECIES_CHARIZARD"
+      ],
+      [
+        "SPECIES_SQUIRTLE",
+        16,
+        "SPECIES_WARTORTLE"
+      ],
+      [
+        "SPECIES_WARTORTLE",
+        36,
+        "SPECIES_BLASTOISE"
+      ],
+      [
+        "SPECIES_PIDGEY",
+        18,
+        "SPECIES_PIDGEOTTO"
+      ],
+      [
+        "SPECIES_PIDGEOTTO",
+        36,
+        "SPECIES_PIDGEOT"
+      ],
+      [
+        "SPECIES_RATTATA",
+        20,
+        "SPECIES_RATICATE"
+      ]
+    ]
+  },
+  "moves": {
+    "tackle": {
+      "source": "src/data/battle_moves.h:MOVE_TACKLE",
+      "id": 33,
+      "power": 35,
+      "accuracy": 95,
+      "pp": 35,
+      "type": "TYPE_NORMAL",
+      "effect": "EFFECT_HIT"
+    },
+    "note": "Effect identifiers are source bindings only. Their import does not implement battle behavior."
+  },
+  "items": {
+    "source": "src/data/items.h and src/data/pokemon/item_effects.h",
+    "pokeBall": {
+      "id": 4,
+      "price": 200,
+      "pocket": "POCKET_POKE_BALLS"
+    },
+    "potion": {
+      "id": 13,
+      "price": 300,
+      "pocket": "POCKET_ITEMS",
+      "recoveryHP": 20,
+      "effectBytesSource": {
+        "4": "ITEM4_HEAL_HP",
+        "6": 20
+      }
+    },
+    "antidote": {
+      "price": 100,
+      "effectBytesSource": {
+        "3": "ITEM3_POISON"
+      }
+    },
+    "note": "Source function bindings and encoded effect bytes remain private. Reference descriptions confer no ownership or usable item behavior."
+  },
+  "experience": {
+    "source": "src/data/pokemon/experience_tables.h",
+    "explicitInitialEntries": [
+      0,
+      1
+    ],
+    "mediumSlow": {
+      "id": 3,
+      "formula": "(6 * n^3) / 5 - 15 * n^2 + 100 * n - 140, using C integer division for each division",
+      "level2": 9,
+      "level5": 135,
+      "level100": 1059860
+    },
+    "mediumFast": {
+      "id": 0,
+      "level5": 125,
+      "level100": 1000000
+    },
+    "semantics": "Use explicit level 0/1 entries. Apply integer division at each source division, including nested Erratic/Fluctuating terms; do not evaluate every curve by floating-point formula and round only at the end."
+  },
+  "typeChart": {
+    "source": "src/battle_main.c:gTypeEffectiveness and src/battle_script_commands.c type matching",
+    "multipliersInTenths": {
+      "normal": 10,
+      "resisted": 5,
+      "superEffective": 20,
+      "immune": 0
+    },
+    "genIIIExamples": {
+      "ghostToSteel": 5,
+      "darkToSteel": 5
+    },
+    "sentinels": [
+      "TYPE_FORESIGHT",
+      "TYPE_ENDTABLE"
+    ],
+    "foresightSemantics": "TYPE_FORESIGHT precedes Normal-to-Ghost and Fighting-to-Ghost immunities. Target Foresight skips these tail immunities. Sentinel records are not ordinary types.",
+    "duplicateTypes": "Source applies the second defender type only if it differs from the first."
+  },
+  "browserFixtures": "tests/e2e/field-guide.spec.ts; verification results are recorded separately after execution"
+}

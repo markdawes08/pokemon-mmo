@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-26T00:01:35.194908+00:00",
+  "status": "verified-persistence-fixture-only",
+  "profileId": "r1-squirtle-v1",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "upstreamRevision": "unknown; byte snapshot pinned",
+  "privateGameplaySha256": "d47ce3fa2c4c2c38e1cbae0b62f2c70ff502f06a267c7fa197d0f55bf4bd393a",
+  "palletMapSha256": "74fca5a87d5b217034adb2b8139a3d10520f78cbea6ba1d93f8bd06f1deab6f4",
+  "sourceFiles": [
+    {
+      "path": "include/constants/global.h",
+      "sha256": "7ecf4a63c7be65328135a75f8620786e40343bbe7688e7017e6d780526fd6a0c",
+      "bytes": 3785,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "include/pokemon_storage_system.h",
+      "sha256": "d98c839ab2eeaa0e6c16e4ffdee53d404b074c6ffffa76384f26bd00ceffd537",
+      "bytes": 1837,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "include/constants/pokemon.h",
+      "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5",
+      "bytes": 10894,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "src/pokemon.c",
+      "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec",
+      "bytes": 221865,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "src/money.c",
+      "sha256": "4565f73262c3bef947f24e1d94d6f81389e2b5b549fc425ecbb48ae6ae4ecedd",
+      "bytes": 3446,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "src/item.c",
+      "sha256": "117c3d29617bd779db7c32332ab75fe5859f02ee6165a047508558977a88d01a",
+      "bytes": 17534,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "src/new_game.c",
+      "sha256": "55f03492ea90ee853550a40008089d44ca59c28cb47b8aa10aa2494e8d8608cc",
+      "bytes": 4328,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "src/data/pokemon/species_info.h",
+      "sha256": "9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e",
+      "bytes": 342600,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "src/data/pokemon/level_up_learnsets.h",
+      "sha256": "d6563a88fa893d1433a02027cb13ba9574a6828a96b1a730b1d767fd7c5a0cc6",
+      "bytes": 182027,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "src/data/battle_moves.h",
+      "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384",
+      "bytes": 121457,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "src/data/items.h",
+      "sha256": "419cccd4ca8475d8b863978ee47a6ffeb304e7425cb73481209ba7b9f2fc3b4b",
+      "bytes": 222118,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "src/data/pokemon/experience_tables.h",
+      "sha256": "9a236761640676e251b76b7950b86e5881ee23dfe920ca27bbe47b4541542731",
+      "bytes": 22610,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "data/layouts/PalletTown/map.bin",
+      "sha256": "b709c6d47d6006ff6402026496a9d0d9caab19a4515b02517eaf049c5f7bf2e0",
+      "bytes": 960,
+      "matchesPinnedSourceManifest": true
+    },
+    {
+      "path": "data/maps/PalletTown/map.json",
+      "sha256": "2816338934241bac34f52dae8b101ac3add59e0ebdde3e3fb6575f3b525b01c3",
+      "bytes": 4087,
+      "matchesPinnedSourceManifest": true
+    }
+  ],
+  "fixture": {
+    "species": {
+      "id": 7,
+      "symbol": "SPECIES_SQUIRTLE"
+    },
+    "level": 5,
+    "experience": 135,
+    "ability": {
+      "id": 67,
+      "symbol": "ABILITY_TORRENT"
+    },
+    "personality": 25,
+    "nature": {
+      "id": 0,
+      "symbol": "NATURE_HARDY",
+      "derivation": "personality modulo 25"
+    },
+    "otId": 1,
+    "otName": "selected trainer name",
+    "ivs": {
+      "hp": 15,
+      "attack": 15,
+      "defense": 15,
+      "speed": 15,
+      "spAttack": 15,
+      "spDefense": 15
+    },
+    "evs": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "speed": 0,
+      "spAttack": 0,
+      "spDefense": 0
+    },
+    "stats": {
+      "hp": 20,
+      "attack": 10,
+      "defense": 12,
+      "speed": 10,
+      "spAttack": 10,
+      "spDefense": 12
+    },
+    "friendship": 70,
+    "status": "healthy",
+    "moves": [
+      {
+        "id": 33,
+        "name": "TACKLE",
+        "learnLevel": 1,
+        "pp": 35,
+        "ppUps": 0
+      },
+      {
+        "id": 39,
+        "name": "TAIL WHIP",
+        "learnLevel": 4,
+        "pp": 30,
+        "ppUps": 0
+      }
+    ],
+    "inventory": [
+      {
+        "id": 13,
+        "name": "POTION",
+        "quantity": 5,
+        "pocket": "POCKET_ITEMS"
+      },
+      {
+        "id": 4,
+        "name": "POKE BALL",
+        "quantity": 5,
+        "pocket": "POCKET_POKE_BALLS"
+      }
+    ],
+    "money": 3000,
+    "mapId": "MAP_PALLET_TOWN",
+    "x": 10,
+    "y": 12,
+    "tile": {
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0,
+      "eventOccupied": false
+    },
+    "flags": [
+      "development:r1-squirtle-v1:initialized"
+    ],
+    "variables": [
+      {
+        "key": "development:r1-squirtle-v1:version",
+        "value": 1
+      }
+    ]
+  },
+  "sourceFacts": [
+    {
+      "path": "include/constants/global.h",
+      "lines": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        78
+      ],
+      "claim": "Party size 6; bag slots ITEMS42 KEY_ITEMS30 POKE_BALLS13 TM_CASE58 BERRY_POUCH43."
+    },
+    {
+      "path": "include/pokemon_storage_system.h",
+      "lines": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "claim": "14 boxes, 5x6 = 30 creatures per box."
+    },
+    {
+      "path": "include/constants/pokemon.h",
+      "lines": [
+        138,
+        187,
+        233,
+        234
+      ],
+      "claim": "Hardy index0; max level100; EV per-stat255 and total510."
+    },
+    {
+      "path": "src/pokemon.c",
+      "lines": [
+        1362,
+        2093,
+        2102,
+        2265,
+        3898,
+        5020
+      ],
+      "claim": "Hardy neutral; source floor stat formulas; level-up starting moves; PP bonus calculation; nature = personality %25."
+    },
+    {
+      "path": "src/item.c",
+      "lines": [
+        184,
+        218
+      ],
+      "claim": "Bag item stack maximum999."
+    },
+    {
+      "path": "src/money.c",
+      "lines": [
+        8
+      ],
+      "claim": "Money maximum999999."
+    },
+    {
+      "path": "src/new_game.c",
+      "lines": [
+        128
+      ],
+      "claim": "Source new-game money3000."
+    },
+    {
+      "path": "src/data/pokemon/level_up_learnsets.h",
+      "lines": [
+        101
+      ],
+      "claim": "Squirtle knows Tackle at1 and TailWhip at4; Bubble arrives7, WaterGun13."
+    }
+  ],
+  "choicesAndLimitations": [
+    "Profile is an explicit local operator fixture, never normal character creation or source story completion.",
+    "Species, starting moves, PP, friendship, experience and stats follow source definitions/formulas; fixed IV15/EV0/personality25/OT1, item quantities5 and safe Pallet anchor are deterministic development choices.",
+    "Pallet anchor is verified clear/non-event source tile, not a source new-game spawn.",
+    "Only named development markers are granted; no source story flags, script claims, trainer victory, capture or battle outcome is fabricated.",
+    "Content registry references enforce source version and structural integrity. Species/ability/move learnability and stat/experience formulas remain service contracts; SQL does not implement all gameplay legality.",
+    "14x30 and six-slot constraints are persistence capacities; storage transfer UI/gameplay is absent.",
+    "World, battles, items, capture, leveling, full scripts and trade recovery remain unavailable.",
+    "Source files were read only; these checks do not replace the full independent content gate."
+  ],
+  "verification": {
+    "command": "node node_modules/vitest/vitest.mjs run apps/server/src/development-profile.test.ts",
+    "result": "3 passed",
+    "checks": [
+      "Pinned bytes load and source-correct initial profile",
+      "Wrong source fingerprint / missing move reject",
+      "Blocked/occupied fixture anchor reject",
+      "Persistence profile rejects requested gameplay operations"
+    ]
+  }
+}

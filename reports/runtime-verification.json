@@ -1,0 +1,16 @@
+﻿{
+  "checkedAt": "2026-09-25T17:21:25Z",
+  "scope": "P01 and partial P02 local preview",
+  "powershellCtrlC": {
+    "command": "npm.cmd run dev (PORT=2569, CLIENT_PORT=5175)",
+    "status": "passed",
+    "evidence": ["Observed server_stopping and server_stopped logs after PTY Ctrl+C", "Observed coordinated client/backend stopped message", "Verified both 2569 and 5175 listeners were released", "npm.cmd batch prompt answered Y; PowerShell reported its interrupted-command exit code 1"]
+  },
+  "builtPreview": {
+    "command": "npm.cmd run start (PORT=2570); TEST_BASE_URL=http://127.0.0.1:2570 npm.cmd run test:e2e",
+    "status": "passed",
+    "browserTests": 3,
+    "evidence": "reports/browser-tests-built.json",
+    "cleanup": "Stopped only the owned built-test backend PID after checks; the normal development preview remains running."
+  }
+}

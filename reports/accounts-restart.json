@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-09-26T01:23:30.471Z",
+  "backendPids": [
+    15752,
+    14180
+  ],
+  "port": 2570,
+  "checks": [
+    "two-distinct-built-backend-processes",
+    "real-cookie-session-survives-restart",
+    "trainer-identity-revision-and-save-survive",
+    "old-memory-ticket-rejected",
+    "connection-generation-increases",
+    "same-command-replay-after-restart-applies-once",
+    "both-graceful-shutdowns-release-listener"
+  ],
+  "scope": "Real local PostgreSQL and built backend, explicit test accounts; graceful restart, not machine-crash or database failover."
+}

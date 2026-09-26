@@ -1,0 +1,22 @@
+{
+  "name": "@pokewaterblue/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@colyseus/core": "0.18.16",
+    "@colyseus/schema": "5.0.34",
+    "@colyseus/ws-transport": "0.18.3",
+    "@pokewaterblue/database": "0.1.0",
+    "@pokewaterblue/content-schema": "0.1.0",
+    "@pokewaterblue/game-rules": "0.1.0",
+    "@pokewaterblue/protocol": "0.1.0",
+    "better-auth": "1.7.6",
+    "express": "5.2.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@colyseus/sdk": "0.18.4",
+    "@types/express": "5.0.6"
+  }
+}

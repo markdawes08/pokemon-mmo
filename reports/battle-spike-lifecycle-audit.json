@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent pinned-source lifecycle audit for P03 batch 2; not a full-engine verification report.",
+  "sourceRevision": "unknown upstream revision; exact local source hashes verified against source-lock.json",
+  "status": "Source inspection and bounded lifecycle extraction completed. Runtime batch validation is recorded separately in battle-spike batch reports.",
+  "inputs": [
+    {
+      "path": "src/battle_util.c",
+      "bytes": 136791,
+      "sha256": "87cf810eb2d58361d1beb1537b3bd71c9160a77c2a17d703399f6ed373bb5720"
+    },
+    {
+      "path": "src/battle_main.c",
+      "bytes": 171904,
+      "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928"
+    },
+    {
+      "path": "src/battle_script_commands.c",
+      "bytes": 355862,
+      "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3"
+    },
+    {
+      "path": "data/battle_scripts_1.s",
+      "bytes": 138642,
+      "sha256": "27e9c39f3147b05e5ba2ed36ca0c89fcdc9b26718778083bd362c582de800034"
+    }
+  ],
+  "inspectedFragments": [
+    {
+      "source": "src/battle_util.c",
+      "name": "ENDTURN_POISON",
+      "kind": "enum",
+      "startLine": 720,
+      "endLine": 742,
+      "sha256": "c1a7564e7cca827e43792faa0e399ef149688e405d6e9ebd62d129ec423d5bd6",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "SwitchInClearSetData",
+      "kind": "function",
+      "startLine": 2329,
+      "endLine": 2431,
+      "sha256": "7a3b7c40cca85c737910d084e2b2f67f8a0068de152eec81eb2563d617fead5b",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "FaintClearSetData",
+      "kind": "function",
+      "startLine": 2433,
+      "endLine": 2517,
+      "sha256": "9560401a3b8591db13933576ebd17a25a301a877aadd5f719e0c74d7945dbe0c",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_cleareffectsonfaint",
+      "kind": "function",
+      "startLine": 2930,
+      "endLine": 2943,
+      "sha256": "b759dcf1bcc433fee7cf8c03704a90992b46ad3303aa628f24397a11ea3998ce",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_checkteamslost",
+      "kind": "function",
+      "startLine": 3385,
+      "endLine": 3467,
+      "sha256": "b0a1e3744072a1184923e6c9c5463609c8c78dc760c08641544df1dffe840cb5",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_util.c",
+      "name": "DoBattlerEndTurnEffects:ENDTURN_POISON",
+      "kind": "complete-case",
+      "startLine": 805,
+      "endLine": 815,
+      "sha256": "0fa272e7ab4469e2a407edaef37c59ac71b9b0652cf01b0a5686b0a6dc7c4f2f",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_util.c",
+      "name": "DoBattlerEndTurnEffects:ENDTURN_BURN",
+      "kind": "complete-case",
+      "startLine": 830,
+      "endLine": 840,
+      "sha256": "728d84e18d0bc72a272a2595c2ee1ea48ffb8b0794ce0b1ee769f279d82824f8",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "BattleTurnPassed",
+      "kind": "function",
+      "startLine": 2953,
+      "endLine": 3000,
+      "sha256": "b79adfb12dce9eb531f04b1dd396fde19189aa9300f9637c67282ca42d53f628",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "TryDoEventsBeforeFirstTurn",
+      "kind": "function",
+      "startLine": 2856,
+      "endLine": 2927,
+      "sha256": "c221fe69735669f294da7141f6e5ed1f89a8d1537b6fc6e6e3f1997209cb5f97",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "GetWhoStrikesFirst",
+      "kind": "function",
+      "startLine": 3400,
+      "endLine": 3530,
+      "sha256": "af41c49b333346e1f06f0f028a425aaf84d2920c499a75d4e366ebef8991155f",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_main.c",
+      "name": "HandleAction_TryFinish",
+      "kind": "function",
+      "startLine": 4433,
+      "endLine": 4440,
+      "sha256": "433c3f3d7be8a4858d3f1ea65128238ca1abaaacbaa1224d23c5008059fd402f",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_util.c",
+      "name": "DoFieldEndTurnEffects",
+      "kind": "function",
+      "startLine": 466,
+      "endLine": 718,
+      "sha256": "fef9d4a88a55961d1c2547a1a812277334418fd68c28e1969726a04d0bb4b7ef",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_util.c",
+      "name": "DoBattlerEndTurnEffects",
+      "kind": "function",
+      "startLine": 744,
+      "endLine": 1062,
+      "sha256": "986ef30b11ba470597efe5825b5bc0ba8e45def2713dfc32627981074f802c3d",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_util.c",
+      "name": "HandleFaintedMonActions",
+      "kind": "function",
+      "startLine": 1144,
+      "endLine": 1221,
+      "sha256": "35009fe987efa5452157b11e0d0780d6028ae73378219f873020657a1d503365",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_util.c",
+      "name": "HasNoMonsToSwitch",
+      "kind": "function",
+      "startLine": 1542,
+      "endLine": 1600,
+      "sha256": "d618067d08e52026681ee8aa7029ac298f2beb9eff326f828a60cada862373f3",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_tryfaintmon",
+      "kind": "function",
+      "startLine": 2831,
+      "endLine": 2917,
+      "sha256": "ebcd2d6184fa6337c7f72334ed88762700e7001e5817614b8d9f5217d7915403",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "SetMoveEffect",
+      "kind": "function",
+      "startLine": 2110,
+      "endLine": 2772,
+      "sha256": "598bd8783b375bf055b951e4924f036d917ef244fd6d939c2dc676db06a24607",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_seteffectwithchance",
+      "kind": "function",
+      "startLine": 2774,
+      "endLine": 2805,
+      "sha256": "e6b46682ecb3deb45a692082832a7b2012b286ba16ace6bea4a0bec988a05e29",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_getswitchedmondata",
+      "kind": "function",
+      "startLine": 4452,
+      "endLine": 4465,
+      "sha256": "5c741031ad3fc5db1f28fb566a56dd842ae87b4615fe4c7c622e934cfa71bebe",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_switchindataupdate",
+      "kind": "function",
+      "startLine": 4467,
+      "endLine": 4510,
+      "sha256": "e5b98cce2db040ae298b076b4460226fe15c1686fafcd3584688cc8174f185c2",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_jumpifcantswitch",
+      "kind": "function",
+      "startLine": 4536,
+      "endLine": 4614,
+      "sha256": "4e16e1f05d504e8179e53e9a25f4b2eeb59d111251c4200bebf40a4f2be1212e",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "src/battle_script_commands.c",
+      "name": "Cmd_cancelallactions",
+      "kind": "function",
+      "startLine": 5591,
+      "endLine": 5599,
+      "sha256": "41158e1591c1a312340853896f0269222ff81fe18e209bbf89bd8a0e90b8e16e",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_HandleFaintedMon",
+      "kind": "audit-script-sequence",
+      "startLine": 2824,
+      "endLine": 2889,
+      "sha256": "3e23cdd63cd58b0cd33873f2b78217bca93c7154d4f2aff9b925f2ed423303ab",
+      "transformation": "none; complete selected source text retained"
+    },
+    {
+      "source": "data/battle_scripts_1.s",
+      "name": "BattleScript_PoisonTurnDmg",
+      "kind": "audit-script-sequence",
+      "startLine": 3676,
+      "endLine": 3694,
+      "sha256": "a71a734495261c4b0ccd3db388ed7231d42b764a1d53b2a2cb6ed4772cc6c429",
+      "transformation": "none; complete selected source text retained"
+    }
+  ],
+  "extractionBoundary": [
+    "SwitchInClearSetData, FaintClearSetData, Cmd_cleareffectsonfaint and Cmd_checkteamslost retain complete original source function bodies.",
+    "Only the complete ENDTURN_POISON and ENDTURN_BURN case blocks from DoBattlerEndTurnEffects are copied into SpikeSourceResidualCase. The enclosing full scheduler and its other effect cases are not implemented by this wrapper.",
+    "Poison/Burn script symbols are identity markers; the adapter transports their original healthbar/datahp command path with passive-damage flags. It does not execute text, animation, full faint/replacement scripts or end2 callbacks.",
+    "Party HP/species/egg access for Cmd_checkteamslost uses explicitly projected in-memory party records. It is not original encrypted Pokemon storage or persistence.",
+    "FaintClearSetData reads its unchanged source type-restoration expression from a projected three-row SpeciesInfo array. Synthetic actor + 1 indices store admitted baseline fixture types; they are not source species IDs or the source species database.",
+    "Party presence tokens and fixture HP are validated before storage. Eligible side HP totals above 65535 reject instead of overflowing the original Cmd_checkteamslost u16 accumulator; this admits all real Gen III totals but not every synthetic u16-per-mon stress state."
+  ],
+  "hostObligations": [
+    {
+      "topic": "Incoming switch transport",
+      "source": "src/battle_script_commands.c:4452-4510",
+      "finding": "Original switch commands obtain and copy a BattlePokemon controller buffer, restore source types and ability, handle item state, then invoke SwitchInClearSetData. This probe transports admitted incoming records in its private host; it does not execute the full storage/controller/switch script path."
+    },
+    {
+      "topic": "Switch legality",
+      "source": "src/battle_script_commands.c:4536-4610",
+      "finding": "Legal replacements are living nonempty non-egg party records other than the current active slot. Source wrap, escape-prevention and rooted restrictions must reject or be implemented. HasNoMonsToSwitch returns FALSE early for singles and is not a singles legality implementation."
+    },
+    {
+      "topic": "Attack KO timing",
+      "source": "src/battle_main.c:4433-4440; data/battle_scripts_1.s:2824-2889; src/battle_script_commands.c:5591-5600",
+      "finding": "The source action-finish path processes faint replacements before normal end-turn effects. Its singles replacement script cancels all remaining actions. A bounded host must pause for a legal replacement after an attack KO, prevent the replacement from inheriting the defeated actor action, and only then continue the pending residual phase."
+    },
+    {
+      "topic": "Residual KO timing",
+      "source": "src/battle_main.c:2953-2999; data/battle_scripts_1.s:3676-3693",
+      "finding": "Each ordered residual invokes faint handling and checkteamslost immediately. Terminal outcome stops subsequent residual processing. When a reserve exists, residual replacement choices follow completion of the residual effects phase, unlike the action KO replacement pause."
+    },
+    {
+      "topic": "Residual ordering source quirk",
+      "source": "src/battle_util.c:482-497",
+      "finding": "DoFieldEndTurnEffects calls GetWhoStrikesFirst with FALSE, so selected move priority participates in residual ordering. Preserve that argument and its speed-tie RNG draw; do not substitute a speed-only or player-first comparator."
+    },
+    {
+      "topic": "Turn RNG",
+      "source": "src/battle_main.c:2926,2999",
+      "finding": "An action-selection-start Random draw is stored as gRandomTurnNumber at initial setup and after each continuing turn. This is additional to attack accuracy, critical, damage, secondary-effect and speed-tie RNG. Neither burn nor ordinary poison residual arithmetic draws RNG."
+    },
+    {
+      "topic": "Residual flags and source arithmetic",
+      "source": "src/battle_util.c:744-840; data/battle_scripts_1.s:3680-3689",
+      "finding": "The complete poison/burn cases compute integer maxHP / 8 with minimum one only for a living affected battler. Healthbar/datahp commands need IGNORE_SUBSTITUTE, PASSIVE_DAMAGE, GRUDGE and SKIP_DMG_TRACK as selected by the original scheduler/script path; stale move-result immunity flags must be cleared first. Do not run attack type, critical, damage-randomization or damage-history paths."
+    },
+    {
+      "topic": "Faint boundary",
+      "source": "src/battle_script_commands.c:2831-2943; src/battle_main.c:2433-2517",
+      "finding": "Cmd_cleareffectsonfaint clears status1 and emits a status update before complete FaintClearSetData. This does not implement Cmd_tryfaintmon, faint counters, friendship, experience, Destiny Bond/Grudge or the full replacement script. Those remain excluded or explicit host obligations."
+    },
+    {
+      "topic": "Outcome and stress fixture bounds",
+      "source": "src/battle_script_commands.c:3385-3467",
+      "finding": "Cmd_checkteamslost sums each full six-slot party eligible HP using u16; nonempty eggs are ignored. Player zero gives LOST=2, enemy zero gives WON=1, both give DREW=3. Active battler HP alone cannot decide outcome. Projected party setter rejects eligible totals above 65535 before mutation so synthetic stress fixtures cannot overflow this source sum."
+    },
+    {
+      "topic": "Status source boundary and RNG",
+      "source": "src/battle_script_commands.c:2110-2400,2774-2805",
+      "finding": "Primary status application requires its original common guards, case and shared statusChanged tail; setting a fixture status bit is initialization only. Cmd_seteffectwithchance uses Random()%100 <= percentChance and evaluates that draw before testing a zero effect byte. Preserve the source comparison and evaluation order."
+    }
+  ],
+  "notClaimed": [
+    "Production battle adapter or room integration",
+    "Original encrypted Pokemon storage or real species identity for synthetic fixtures",
+    "Entire battle script interpreter or GBA execution loop",
+    "All statuses, abilities, items, switch hazards, weather, doubles or persistence effects",
+    "Batch 3 snapshot/restore, deterministic replay or a selected ADR-001 production approach"
+  ],
+  "section7Assessment": "The bounded source path can support the second experiment batch if independently derived attack/switch/status/faint/residual/outcome and interleaved-instance fixtures pass. It does not satisfy the three-batch decision gate by itself."
+}

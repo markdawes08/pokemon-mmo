@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "taskIds": 62,
+  "scopeInventoryRepeatSha256": "d1b422f5dcc18accb518f336f1af1d20b7132424edd467ddf04e2ce0e7289fe7",
+  "checks": [
+    "all plan task IDs appear exactly once",
+    "scope inventory deterministic on repeated discovery"
+  ]
+}

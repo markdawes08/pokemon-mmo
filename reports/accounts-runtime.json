@@ -1,0 +1,20 @@
+{
+  "devSession": 32963,
+  "scope": "Final P04 backend loaded; PostgreSQL retained",
+  "recoveryTestPortReleased": 2570,
+  "listeners": {
+    "5433": 25988,
+    "2567": 24748,
+    "5173": 31600
+  },
+  "mode": "local-preview",
+  "status": "passed",
+  "checkedAt": "2026-09-25T22:21:50.5654225Z",
+  "checks": [
+    "both-preview-origins-ready",
+    "anonymous-account-access-rejected",
+    "final-backend-restarted",
+    "PostgreSQL-retained",
+    "test-port-released"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "verifiedAt": "2026-09-26T01:22:17.844Z",
+  "database": "isolated loopback test database",
+  "server": "fresh in-process listener; clean server recreation",
+  "scope": "P04 account and staged trainer profile only",
+  "assertions": [
+    "anonymous-account-character-ticket-rejected",
+    "exact-http-and-websocket-origin-guards",
+    "two-real-better-auth-cookie-sessions",
+    "server-name-validation-and-one-character-per-account",
+    "idempotent-creation-and-changed-payload-conflict",
+    "two-account-profile-isolation",
+    "wrong-character-ticket-rejected",
+    "stolen-ticket-cookie-binding",
+    "ticket-one-use-and-expiry",
+    "character-protocol-mismatch-rejected",
+    "strict-private-room-projections-and-compatibility",
+    "save-once-same-command-retry",
+    "changed-payload-and-stale-revision-rejected",
+    "malformed-and-unsupported-gameplay-rejected",
+    "second-tab-replaces-old-generation-and-cannot-mutate",
+    "reconnect-restores-profile-and-command-receipt",
+    "expired-and-revoked-http-and-active-socket-sessions-rejected",
+    "server-restart-preserves-session-character-and-receipt",
+    "local-renderer-position-not-persisted",
+    "login-rate-limit-and-bounded-auth-body",
+    "database-outage-fails-closed-without-profile-mutation"
+  ],
+  "limitations": [
+    "No authoritative overworld, party, inventory, story, or battle persistence.",
+    "Commit acknowledgement/publication failures are injected in accounts-store-smoke; separate built-process graceful restart is checked by test:recovery. Machine crash and database failover are untested."
+  ]
+}

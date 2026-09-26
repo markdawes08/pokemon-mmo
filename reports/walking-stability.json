@@ -1,0 +1,115 @@
+{
+  "checkedAt": "2026-09-26T01:26:47.459Z",
+  "mode": "walk",
+  "scope": "Actual player WebGL quad vertices during focused keyboard movement; test-only passive renderer instrumentation",
+  "observations": [
+    {
+      "direction": "ArrowUp",
+      "movingRenderFrames": 61,
+      "renderedBounds": [
+        "112,40,128,72"
+      ],
+      "animationFrames": [
+        "5",
+        "1",
+        "6"
+      ],
+      "firstFramesByStep": [
+        "5",
+        "6",
+        "5",
+        "6"
+      ],
+      "cameraTravel": {
+        "x": 0,
+        "y": 63
+      },
+      "fractionalAnchorSamples": 0,
+      "sampleIntervalMs": {
+        "min": 12.799999997019768,
+        "max": 25.700000002980232
+      }
+    },
+    {
+      "direction": "ArrowDown",
+      "movingRenderFrames": 57,
+      "renderedBounds": [
+        "112,40,128,72"
+      ],
+      "animationFrames": [
+        "3",
+        "0",
+        "4"
+      ],
+      "firstFramesByStep": [
+        "3",
+        "4",
+        "3",
+        "4"
+      ],
+      "cameraTravel": {
+        "x": 0,
+        "y": 64
+      },
+      "fractionalAnchorSamples": 0,
+      "sampleIntervalMs": {
+        "min": 14.300000004470348,
+        "max": 27.5
+      }
+    },
+    {
+      "direction": "ArrowLeft",
+      "movingRenderFrames": 56,
+      "renderedBounds": [
+        "112,40,128,72"
+      ],
+      "animationFrames": [
+        "7",
+        "2",
+        "8"
+      ],
+      "firstFramesByStep": [
+        "7",
+        "8",
+        "7",
+        "8"
+      ],
+      "cameraTravel": {
+        "x": 63,
+        "y": 0
+      },
+      "fractionalAnchorSamples": 0,
+      "sampleIntervalMs": {
+        "min": 6.699999995529652,
+        "max": 25.80000000447035
+      }
+    },
+    {
+      "direction": "ArrowRight",
+      "movingRenderFrames": 56,
+      "renderedBounds": [
+        "112,40,128,72"
+      ],
+      "animationFrames": [
+        "7",
+        "2",
+        "8"
+      ],
+      "firstFramesByStep": [
+        "7",
+        "8",
+        "7",
+        "8"
+      ],
+      "cameraTravel": {
+        "x": 63,
+        "y": 0
+      },
+      "fractionalAnchorSamples": 0,
+      "sampleIntervalMs": {
+        "min": 4.600000001490116,
+        "max": 29.399999998509884
+      }
+    }
+  ]
+}

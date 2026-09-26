@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-09-26T01:04:57.226Z",
+  "results": [
+    {
+      "stage": "doctor",
+      "status": "passed"
+    },
+    {
+      "stage": "lint",
+      "status": "passed"
+    },
+    {
+      "stage": "typecheck",
+      "status": "passed"
+    },
+    {
+      "stage": "test:unit",
+      "status": "passed"
+    },
+    {
+      "stage": "test:integration",
+      "status": "passed"
+    },
+    {
+      "stage": "content:check",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:spike",
+      "status": "passed"
+    },
+    {
+      "stage": "build",
+      "status": "passed"
+    },
+    {
+      "stage": "test:recovery",
+      "status": "passed"
+    },
+    {
+      "stage": "test:e2e",
+      "status": "failed",
+      "message": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.tools\\node-v24.21.0-win-x64\\node.exe C:\\Users\\mrkda\\Projects\\pokewaterblue\\node_modules\\@playwright\\test\\cli.js test failed (1)"
+    }
+  ],
+  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 development-fixture shared movement; R1 battles and story gameplay not implemented"
+}

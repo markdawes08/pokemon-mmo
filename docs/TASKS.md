@@ -1,0 +1,166 @@
+# Ordered tasks
+
+Updated: 2026-09-26. Status values: `todo`, `in_progress`, `blocked`, `verified`, `deferred`. Each ID inherits its phase/dependencies and acceptance gate below. Evidence is required before `verified`. A partial task remains open even when a useful subset works.
+
+Operational recovery on September 26: restarted the stopped local client/backend/database in a hidden background process. HTTP/readiness and one existing two-browser-context rendering/WebSocket check passed; reports/runtime-recovery.json and STATUS record current PIDs/logs. No application changes or phase-status changes; next work remains P05 reconnect grace.
+
+User-requested testing setup on September 26: created ADMINA and ADMINB with separate local logins and the standard development fixture, without elevated permissions. Live two-browser sign-in, shared presence/movement, saving and leaving verified; accounts persist for user testing. See reports/admin-test-accounts.json and RUNBOOK. No phase statuses changed; next implementation remains P05 reconnect grace.
+
+Eleventh-pass result: bounded shared development exploration verified. Full ten-stage gate passed at 2026-09-26T01:28:07.942Z: 86 Vitest, 49 Python, 27 world storage groups, 18 world network groups and 35 browser scenarios. P05 remains partial for transport grace and general private story overlays; see ADR-012.
+
+Tenth-pass result: relational owned assets, source-pinned local Squirtle fixture and owner-only party/bag display verified. Full ten-stage gate passed at 2026-09-26T00:20:45.993Z: 86 Vitest, 49 Python, 30 asset integration groups and 31 browser scenarios, alongside retained profile/battle/recovery checks. P04-03 remains partial for activity-specific script/battle/trade persistence; next is bounded P05 movement.
+
+Ninth-pass result: P04 local accounts, staged trainer creation/selection and durable profile command foundations are verified. Better Auth/PostgreSQL sessions, generation fencing, replay/rollback/unknown-commit recovery, two-account privacy and separate built-process restart pass. Full ten-stage gate: 80 Vitest, 49 Python, 34 storage checks, 21 account/network groups and 28 browser scenarios. P04-03 remains in progress for the wider core asset/story model and local fixture command; P02/R1 remain incomplete. Map movement is still local and unsaved. No Git or deployment.
+
+## P00: Baseline, scope, and environment
+
+Dependencies: none. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p00-baseline-scope-and-environment).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P00-01 | verified | Inspect the actual folders, branch, dirty state, tools, and existing instructions. Preserve user changes. | docs/ENVIRONMENT.md; AGENTS.md | Root inspected folder/tools and AGENTS; no Git permitted. |
+| P00-02 | verified | Create the continuity files and root AGENTS.md; copy this specification into `docs/PROJECT_PLAN.md`. | docs/; AGENTS.md | Canonical plan and continuity files created; second pass resumed from these records on 2026-09-25. |
+| P00-03 | verified | Pin the reference source and create `source-lock.json`; inventory source paths and build variants. | source-lock.json; reports/source-verification.json | Accepted snapshot baseline replaces upstream SHA; archive recreated identically and checked. |
+| P00-04 | verified | Record dependency compatibility and exact tool versions. Choose the local PostgreSQL route. | docs/ENVIRONMENT.md; package-lock.json | Exact tools/database route recorded; lockfile, build and runtime compatibility verified locally. |
+| P00-05 | verified | Create the scope/feature ledger, distinguishing normal FireRed content, unused records, event gating, and deferred link features. | reports/source-scope.json | Initial structural ledger distinguishes scope, event/link facilities, empty/unreferenced records and build branches; reachability pending. |
+
+## P01: Workspace foundation and executable contracts
+
+Dependencies: P00. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p01-workspace-foundation-and-executable-contracts).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P01-01 | verified | Create npm workspaces, strict TS configuration, lockfile, package boundaries, Python environment, and root scripts. | reports/verification.json; package-lock.json | Strict workspaces, portable runtimes, Python environment and root scripts verified on this Windows machine. |
+| P01-02 | verified | Add a placeholder Phaser scene, backend health/readiness, and a versioned protocol handshake. | reports/browser-tests.json; reports/backend-verification.json | Real preview client, health/readiness and versioned handshake passed through Vite proxy; no accounts/gameplay implied. |
+| P01-03 | verified | Configure local PostgreSQL, baseline migrations, validated environment, and coordinated development processes. | reports/backend-verification.json; reports/runtime-verification.json | Native PostgreSQL setup/start/stop/restart, migrations, environment validation and coordinated processes verified. |
+| P01-04 | verified | Implement structured errors/logs, test databases, Vitest/Playwright setup, and a clean build. | reports/verification.json; reports/browser-tests-built.json | Lint/typecheck/build, 74 Vitest + 49 Python tests, real test database and 25 development Chromium scenarios passed in the seventh pass; fifth-pass built evidence retained. |
+| P01-05 | verified | Implement meaningful network smoke tests and verify Ctrl+C shutdown. Document the exact start/stop commands. | reports/supervisor-verification.json; reports/runtime-verification.json | Network negative paths and actual PTY Ctrl+C passed; owned child processes/test listeners released. RUNBOOK documents commands. |
+
+## P02: Content importer and accurate local overworld
+
+Dependencies: P01. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p02-content-importer-and-accurate-local-overworld).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P02-01 | in_progress | Implement source discovery, map block/metatile/palette decoding, manifest generation, and structural tests. | content/generated/manifests/content-manifest.json; tools/content-import/test_import_content.py | Three-map conversion, border layers, exact warp anchors, topology validation and reproducibility implemented; broader discovery/dependency closure remains open. |
+| P02-02 | in_progress | Import player/NPC sprites, representative animations, fonts, and the required map dependency closure. | content/generated/manifests/content-manifest.json; reports/browser-tests.json | 18 player frames, five visible NPC graphics/poses, flowers/door and 142 normal Latin font glyphs exported/rendered. Six messages use source glyphs and accessible text. Native NPC movement, other text styles/effects and remaining dependency closure are still missing. |
+| P02-03 | in_progress | Implement tile movement, layer occlusion, elevation/collision, doors, boundaries, camera, input focus, and integer scaling. | packages/game-rules/src/traversal.test.ts; tests/e2e/traversal.spec.ts; tests/e2e/walking-stability.spec.ts; reports/running-shoes-browser-tests.json | Traversal, NPC occupancy, default walk/Shift run/release, indoor restriction, dialogue blocking, render stability and stride phase passed within the fifth-pass 25-scenario development/built suites. Full source behavior and other elevation priorities remain incomplete. |
+| P02-04 | verified | Implement a debug map overlay and one animated map feature; prototype one music track and one SFX. | content/generated/manifests/content-manifest.json; reports/font-audio-source-evidence.json; reports/audio-lifecycle-browser.json; reports/audio-select-browser.json | Collision/event overlay, flower/door animation, Pallet music and SELECT sound prototypes implemented and checked. Source note/sample fixtures, audible browser output, mute/volume/retry and lifecycle handlers passed; exact GBA audio and remaining tracks are outside this prototype gate. |
+| P02-05 | in_progress | Add reproducibility and visual fixtures; expose unsupported dependencies explicitly. | content/generated/manifests/inventory.json; content/generated/manifests/content-manifest.json; reports/browser-tests.json | 148 pinned inputs/75 outputs; independent rebuild, topology/graphics/dialogue/glyph/audio-source checks passed. Five outside-scope destinations and stateful interactions remain explicit. All 25 development and 25 built-browser scenarios passed. No original-game comparison or full closure claimed. |
+| P02-06 | in_progress | Export and validate the structured gameplay data needed by R1, including creature/move/item/encounter references, with a parser strategy that extends to the full inventory. | reports/gameplay-source-evidence.json; content/generated/server/gameplay.json; package/importer fixtures; reports/browser-tests-built.json | 14 species, 44 level-up moves, nine evolutions, five private items, seven abilities, two growth curves, 18 types/110 relationships and one 12-slot Route 1 table exported and validated. Public Field guide is read-only. r1-squirtle-v1 persistence fixture selected in the tenth pass; effect implementation and full required battle/story closure remain open. |
+
+## P03: Battle backend decision
+
+Dependencies: P01. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p03-battle-backend-decision).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P03-01 | verified | Specify the battle interface and golden fixture format; trace original dependencies. | packages/battle-core/src/contracts.ts; source fixtures/dependency and state-audit reports | Six-method contract, versioned RNG/snapshots, ordered event/effect identities and strict public views; selected adapter implements the bounded interface. |
+| P03-02 | verified | Execute the bounded C/WASM experiment defined in Section 7. | reports/battle-spike-build.json; batch-1/batch-2/recovery/engine reports; tools/battle-spike/README.md | All three focused batches complete for admitted source paths. Real attacks, switches, statuses, fainting, residuals/outcomes, replay/restore and Node integration; no emulator or live game claim. |
+| P03-03 | verified | Measure isolation, snapshot/replay behavior, memory, latency, and remaining dependencies. | reports/battle-spike-recovery.json; battle-spike-checkpoint-tests.json; battle-spike-state-audit.json; battle-spike-measurements.json; battle-spike-decision-audit.json | Portable logical restore across builds/processes, 37 recovery boundaries, 60 raw negatives, 98 classified globals and measured full-contract costs. Dense synchronous bursts need later optimization; no database/soak/population gate passed. |
+| P03-04 | verified | Record the decision and implement the selected adapter skeleton without maintaining two production engines. | docs/DECISIONS.md ADR-001; packages/battle-core/src/wasm-adapter.ts; tools/battle-spike/engine.ts; reports/battle-spike-engine.json | Selected source C/WASM commands plus audited TS orchestration. Six operations, 34 golden boundaries, strict viewer projections, forged/stale choice rejection and zero-effects policy pass. Four-move private profile only; full mechanics/persistence remain P06 work. |
+
+## P04: Accounts, characters, and durable command infrastructure
+
+Dependencies: P01. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p04-accounts-characters-and-durable-command-infrastructure).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P04-01 | verified | Integrate auth, browser session flow, account UI, and server-owned character selection. | auth.ts; account-api.ts; character-room.ts; accounts.ts; reports/accounts-network.json; reports/accounts-browser.json | Better Auth 1.7.6, HttpOnly cookies, local account UI and one staged trainer/account. Cookie-bound one-use tickets; two-account privacy and desktop/390px checks pass. Opening story/real gameplay not started. |
+| P04-02 | verified | Implement character registry, activity state, connection generation, leases/fencing, and serialized domain commands. | character-service.ts; character-room.ts; reports/accounts-store-verification.json; reports/accounts-network.json | Staged recovering activity, persisted lease/connection generations, bounded serialized profile commands and transactional auth-session fencing. Replaced/expired connections cannot save. Gameplay activity transitions arrive with their owning phases. |
+| P04-03 | in_progress | Implement core database tables, migrations, command receipts, revisions, business uniqueness keys, and commit-to-memory recovery. | migrations/0002_auth.sql through 0004_assets.sql; database README; accounts-store-verification.json; assets-integration.json | Bounded auth/profile and owned creature/party/storage/inventory/wallet/story/outcome foundation implemented, with permanent fixture uniqueness, source-pinned db:seed:dev and private display. Activity-specific battle/script/trade records and durable gameplay effects remain with their owning phases. |
+| P04-04 | verified | Test duplicate commands, replacement logins, transaction rollback, unknown commit outcome, and database unavailability. | reports/accounts-store-verification.json; accounts-network.json; accounts-restart.json; assets-integration.json; assets-browser.json | Profile checks retained (34 store/21 network); 30 asset groups verify capacity/ownership/immutable source refs, permanent replay after receipt cleanup, real COMMIT/ROLLBACK lost acknowledgements, isolated CLI races/fresh-process reads and outages. Three asset browser scenarios pass in an isolated backend OS process; full gate passes. |
+
+## P05: Shared authoritative overworld
+
+Dependencies: P02, P04. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p05-shared-authoritative-overworld).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P05-01 | verified | Add zone rooms, public avatar projections, sequenced directional input, validation, and interpolation. | reports/world-network.json; world-browser.json; world-rendering.json; ADR-012 | Bounded three-map logical zones over the private character transport, public whitelist and nonblocking avatars pass. Separate routable zone rooms are a deferred topology change. |
+| P05-02 | in_progress | Implement movement checkpoints, safe map transfer, activity restrictions, and reconnection snapshots. | reports/world-store.json; world-network.json; world-browser.json | Five-second/Save/leave/transfer checkpoints, uncertain commits, one destination and fresh-process recovery verified. Planned sixty-second transport reconnect grace remains open. |
+| P05-03 | in_progress | Separate private story overlays from shared presence; test nonblocking player movement. | reports/world-network.json; world-browser.json; ADR-012 | Private data stays out of presence and players are nonblocking. Only the named fixture initial NPC view exists; general player-specific story overlays remain P07 work. |
+| P05-04 | verified | Reject speed/teleport attempts, stale-zone input, malformed packets, and hidden-state access. | reports/world-store.json; world-network.json; world-browser.json | Bounded three-map fixture: directional-only input, timing, duplicate/stale generations, session/lease/ownership, map-byte compatibility and strict public projections pass. No broader load/security audit claimed. |
+
+## P06: Persistent PvE vertical slice, R1
+
+Dependencies: P03, P05. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p06-persistent-pve-vertical-slice-r1).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P06-01 | todo | Implement server-generated encounters, a basic battle presentation, legal commands, party state, and ordered events. | Pending | Not started; verify the phase gate before closing. |
+| P06-02 | todo | Implement attack/switch/item/run paths needed for the slice; use real source behavior for supported moves. | Pending | Not started; verify the phase gate before closing. |
+| P06-03 | todo | Implement capture, experience, fainting/loss, terminal outcome transactions, and pending nickname/storage decisions. | Pending | Not started; verify the phase gate before closing. |
+| P06-04 | todo | Implement one server-owned NPC interaction and save confirmation. | Pending | Not started; verify the phase gate before closing. |
+| P06-05 | todo | Run the R1 scenario and failure-injection checks before, during, and after durable outcomes. | Pending | Not started; verify the phase gate before closing. |
+
+## P07: Opening campaign through Brock
+
+Dependencies: P06. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p07-opening-campaign-through-brock).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P07-01 | todo | Implement script compiler/interpreter foundations, command/special registries, checkpoints, and private story NPCs. | Pending | Not started; verify the phase gate before closing. |
+| P07-02 | todo | Implement bedroom/start sequence, names, starter selection, rival battle, parcel delivery, Pokédex progression, and early route/trainer events. | Pending | Not started; verify the phase gate before closing. |
+| P07-03 | todo | Implement inventory menus, party management, PC storage, healing, shops, money, early move learning/evolution, blackout/respawn, and relevant field interactions. | Pending | Not started; verify the phase gate before closing. |
+| P07-04 | todo | Expand import scope through Viridian Forest and Pewter Gym, including all required interiors and side interactions. | Pending | Not started; verify the phase gate before closing. |
+| P07-05 | todo | Verify all starter/rival branches and players sharing a map at different story states. | Pending | Not started; verify the phase gate before closing. |
+
+## P08: Multiplayer interactions and private alpha, R2
+
+Dependencies: P07. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p08-multiplayer-interactions-and-private-alpha-r2).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P08-01 | todo | Implement nearby trade negotiation, versioned confirmations, atomic exchange, capacity/eligibility checks, and trade evolution consequences. | Pending | Not started; verify the phase gate before closing. |
+| P08-02 | todo | Implement direct PvP challenge, consent, team-copy policy, private choices, deadlines, disconnect handling, and battle restoration. | Pending | Not started; verify the phase gate before closing. |
+| P08-03 | todo | Implement presence/local chat, mute/block/report, rate limits, and basic operator diagnostics. | Pending | Not started; verify the phase gate before closing. |
+| P08-04 | todo | Test cancel/confirm races, duplicate requests, two-tab abuse, stale leases, rollback, and crash-after-commit scenarios. | Pending | Not started; verify the phase gate before closing. |
+| P08-05 | todo | Package a reproducible local/private test build and run alpha load/soak scenarios. | Pending | Not started; verify the phase gate before closing. |
+
+## P09: Complete mechanics and script support
+
+Dependencies: P08. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p09-complete-mechanics-and-script-support).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P09-01 | todo | Complete full-scope structured gameplay exports and required battle effects, trainer AI, battle formats, items/abilities, capture variants, and Gen III numeric semantics. | Pending | Not started; verify the phase gate before closing. |
+| P09-02 | todo | Complete move learning, evolution, Pokédex, Day Care/breeding where applicable, friendship, party/storage capacity, and relevant step counters. | Pending | Not started; verify the phase gate before closing. |
+| P09-03 | todo | Complete traversal, transport, fishing, Safari rules, puzzles, story barriers, map patches, and remaining used native specials. | Pending | Not started; verify the phase gate before closing. |
+| P09-04 | todo | Complete game menus, input/settings, fonts/text effects, map/battle animations, music/SFX, and audio lifecycle. | Pending | Not started; verify the phase gate before closing. |
+| P09-05 | todo | Map every required mechanic to source evidence, meaningful fixtures, affected content, and implementation status. | Pending | Not started; verify the phase gate before closing. |
+
+## P10: Full campaign and postgame content
+
+Dependencies: P09, with area imports allowed earlier. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p10-full-campaign-and-postgame-content).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P10-01 | todo | Expand in area batches: early Kanto to Cerulean/Vermilion, central routes and Celadon/Lavender, Fuchsia/Saffron, Cinnabar/Viridian, Victory Road/Indigo Plateau, then Sevii/postgame. | Pending | Not started; verify the phase gate before closing. |
+| P10-02 | todo | For every area, verify entrances/exits, required events, optional interiors, trainers, encounters, items, shops, healing, puzzles, story branches, and relevant return visits. | Pending | Not started; verify the phase gate before closing. |
+| P10-03 | todo | Cover Game Corner, Safari Zone, optional caves/legendaries, transport, and source-defined postgame facilities. | Pending | Not started; verify the phase gate before closing. |
+| P10-04 | todo | Produce graph/reachability reports and investigate unreachable required records, invalid warps, and unresolved scripts. | Pending | Not started; verify the phase gate before closing. |
+| P10-05 | todo | Complete a normal new-game-to-Champion run and the agreed postgame; exercise alternate starter/rival and failure paths with targeted scenarios. | Pending | Not started; verify the phase gate before closing. |
+
+## P11: Hardening, recovery, and complete private game, R3
+
+Dependencies: P10. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p11-hardening-recovery-and-complete-private-game-r3).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P11-01 | todo | Run fresh-clone setup on Windows, deployment build on Linux, and browser coverage. Resolve environment-specific failures. | Pending | Not started; verify the phase gate before closing. |
+| P11-02 | todo | Rehearse schema/content upgrades, backup restoration, server shutdown/restart, and recovery of battles/scripts/trades. | Pending | Not started; verify the phase gate before closing. |
+| P11-03 | todo | Run load and soak tests, measure limits, fix leaks/backpressure, and document supported capacity for the measured deployment. | Pending | Not started; verify the phase gate before closing. |
+| P11-04 | todo | Complete release checklist, runbook, operator procedures, known-issues list, and content/mechanics evidence. | Pending | Not started; verify the phase gate before closing. |
+| P11-05 | todo | Re-run critical end-to-end scenarios and review all deferred/blocked tasks against R3 scope. | Pending | Not started; verify the phase gate before closing. |
+
+## P12: Optional original-content public release
+
+Dependencies: R3 or a separately agreed product scope. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p12-optional-original-content-public-release).
+
+| ID | Status | Outcome | Evidence | Notes |
+|---|---|---|---|---|
+| P12-01 | deferred | Define and implement the original-content profile with provenance for code, art, audio, names, text, maps, and data. | None | Optional public release is not authorized; not part of private R3 completion. |
+| P12-02 | deferred | Make the public build fail if reference-profile content or disallowed provenance is included. Verify the actual built bundle. | None | Optional public release is not authorized; not part of private R3 completion. |
+| P12-03 | deferred | Choose hosting, spending limits, domain, authentication recovery/email provider, moderation process, and release policies. | None | Optional public release is not authorized; not part of private R3 completion. |
+| P12-04 | deferred | Prepare deployment and rollback, test it in the authorized environment, and publish only when authorized. | None | Optional public release is not authorized; not part of private R3 completion. |

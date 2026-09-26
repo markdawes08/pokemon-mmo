@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-09-26T00:20:45.993Z",
+  "results": [
+    {
+      "stage": "doctor",
+      "status": "passed"
+    },
+    {
+      "stage": "lint",
+      "status": "passed"
+    },
+    {
+      "stage": "typecheck",
+      "status": "passed"
+    },
+    {
+      "stage": "test:unit",
+      "status": "passed"
+    },
+    {
+      "stage": "test:integration",
+      "status": "passed"
+    },
+    {
+      "stage": "content:check",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:spike",
+      "status": "passed"
+    },
+    {
+      "stage": "build",
+      "status": "passed"
+    },
+    {
+      "stage": "test:recovery",
+      "status": "passed"
+    },
+    {
+      "stage": "test:e2e",
+      "status": "passed"
+    }
+  ],
+  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts, staged profiles, relational assets, explicit developer fixture and private display; R1 gameplay not implemented"
+}

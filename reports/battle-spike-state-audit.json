@@ -1,0 +1,975 @@
+{
+  "schemaVersion": 1,
+  "status": "classified-for-admitted-profile",
+  "profile": "firered-synthetic-singles-v1",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "wasmSha256": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724",
+  "scope": "All 98 translation-unit global declarations in this restricted C module, including constants/optimizer-elidable declarations; not all globals in the full FireRed battle engine.",
+  "inventoryMethod": "Clang JSON AST top-level VarDecl inventory cross-checked with explicit per-name policy. Zig 0.16 emitted a complete AST but its syntax-only driver returned FileNotFound for the intentionally absent object; actual code build success is independently recorded in battle-spike-build.json.",
+  "globalCount": 98,
+  "unclassifiedGlobals": [],
+  "categories": {
+    "immutable-module-data": 21,
+    "partially-serialized": 4,
+    "omitted-reset-before-future-read": 2,
+    "reconstructed-empty-context": 12,
+    "reconstructed-local-pointers": 3,
+    "omitted-output-only": 1,
+    "serialized": 8,
+    "omitted-profile-dead-markers": 1,
+    "omitted-command-scratch": 18,
+    "serialized-active-slots": 8,
+    "reconstructed-invariants": 4,
+    "reconstructed-script-pointer": 1,
+    "serialized-projected-party": 2,
+    "serialized-synthetic-baseline": 1,
+    "omitted-presentation-cursors": 2,
+    "omitted-consumed-observations": 3,
+    "omitted-transport-staging": 7
+  },
+  "globals": [
+    {
+      "name": "BattleScript_PoisonTurnDmg",
+      "cType": "const u8[1]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "BattleScript_BurnTurnDmg",
+      "cType": "const u8[1]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "gBattleMons",
+      "cType": "struct BattlePokemon[4]",
+      "category": "partially-serialized",
+      "reason": "Actors 0/1 retain level, HP/maxHP, five combat stats, current/base types, status1/status2, all eight stages, four moves/PP. Synthetic species actor+1 is reconstructed; ability/item and unused IV/identity/party fields are zero. Actors 2/3 are excluded. Supplied computed stats, not unimplemented breeding/identity fields, drive the admitted moves."
+    },
+    {
+      "name": "gProtectStructs",
+      "cType": "struct ProtectStruct[4]",
+      "category": "partially-serialized",
+      "reason": "Actors 0/1 retain physical/special damage and source battlers, targetNotAffected and notFirstStrike. All other flags are excluded by admission and reconstructed zero; protected/endured/noValidMoves/helpingHand are checked on export. None of the four moves can set excluded protection or inability flags."
+    },
+    {
+      "name": "gSpecialStatuses",
+      "cType": "struct SpecialStatus[4]",
+      "category": "omitted-reset-before-future-read",
+      "reason": "Attack/selection clears the struct. Passive HP updates do not use it to alter damage/HP and skip its attack-damage writes. No admitted action reads retained prior-hit special status to choose future mechanics."
+    },
+    {
+      "name": "gDisableStructs",
+      "cType": "struct DisableStruct[4]",
+      "category": "partially-serialized",
+      "reason": "Only isFirstTurn is retained. Other disable/lock-on/recharge/substitute/mimic fields stay zero under admitted moves; relevant export guards check recharge/substitute/mimic. Broader status or move effects would make omitted fields live."
+    },
+    {
+      "name": "gBattleScripting",
+      "cType": "struct BattleScripting",
+      "category": "omitted-reset-before-future-read",
+      "reason": "Attack sets damage multiplier1 and its selected effect before use. Presentation counters are unexecuted. Residual/switch/faint transport does not consume prior presentation state; canonical reset reproduces the admitted continuation."
+    },
+    {
+      "name": "gSideTimers",
+      "cType": "struct SideTimer[2]",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "sResourceFlags",
+      "cType": "struct ResourceFlags",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "sBattleStruct",
+      "cType": "struct BattleStruct",
+      "category": "partially-serialized",
+      "reason": "chosenMovePositions for actors0/1 are serialized. Dynamic type is fixed zero. Wrapping, choice/history arrays and Synchronize effect are outside admitted item/ability/volatile effects. Residual cursor is selected anew for each actor. Other projected fields reconstruct zero."
+    },
+    {
+      "name": "sBattleResources",
+      "cType": "struct BattleResources",
+      "category": "reconstructed-local-pointers",
+      "reason": "Pointers and pointer-bearing records bind to fresh instance-local sBattleStruct/sBattleResources/sResourceFlags. No address, offset or struct byte is serialized."
+    },
+    {
+      "name": "gBattleStruct",
+      "cType": "struct BattleStruct *",
+      "category": "reconstructed-local-pointers",
+      "reason": "Pointers and pointer-bearing records bind to fresh instance-local sBattleStruct/sBattleResources/sResourceFlags. No address, offset or struct byte is serialized."
+    },
+    {
+      "name": "gBattleResources",
+      "cType": "struct BattleResources *",
+      "category": "reconstructed-local-pointers",
+      "reason": "Pointers and pointer-bearing records bind to fresh instance-local sBattleStruct/sBattleResources/sResourceFlags. No address, offset or struct byte is serialized."
+    },
+    {
+      "name": "gEnigmaBerries",
+      "cType": "struct EnigmaBerry[4]",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "gBattleResults",
+      "cType": "struct BattleResults",
+      "category": "omitted-output-only",
+      "reason": "Projected playerMonWasDamaged observation is written but never drives any admitted future command or host public view."
+    },
+    {
+      "name": "gRngValue",
+      "cType": "u32",
+      "category": "serialized",
+      "reason": "Exact scalar RNG state, original seed, safe-integer draw count and selected turn number. Seed/count/state relation is validated without consuming draws."
+    },
+    {
+      "name": "gBattleTypeFlags",
+      "cType": "u32",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "gHitMarker",
+      "cType": "u32",
+      "category": "omitted-profile-dead-markers",
+      "reason": "Attack replaces markers with zero. Residual establishes and clears required passive/skip/ignore flags. Remaining Synchronize marker after poison cannot dispatch an ability in the empty-ability profile. No checkpoint suspends a source script."
+    },
+    {
+      "name": "gBattleControllerExecFlags",
+      "cType": "u32",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "sRngInitialSeed",
+      "cType": "u32",
+      "category": "serialized",
+      "reason": "Exact scalar RNG state, original seed, safe-integer draw count and selected turn number. Seed/count/state relation is validated without consuming draws."
+    },
+    {
+      "name": "sRngDrawsLo",
+      "cType": "u32",
+      "category": "serialized",
+      "reason": "Exact scalar RNG state, original seed, safe-integer draw count and selected turn number. Seed/count/state relation is validated without consuming draws."
+    },
+    {
+      "name": "sRngDrawsHi",
+      "cType": "u32",
+      "category": "serialized",
+      "reason": "Exact scalar RNG state, original seed, safe-integer draw count and selected turn number. Seed/count/state relation is validated without consuming draws."
+    },
+    {
+      "name": "gStatuses3",
+      "cType": "u32[4]",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "gCurrentMove",
+      "cType": "u16",
+      "category": "serialized",
+      "reason": "Current move, chosen action IDs and terminal outcome persist. Chosen slots are also preserved in sBattleStruct; FALSE residual ordering after replacement reads the incoming move at that old chosen slot."
+    },
+    {
+      "name": "gBattleMovePower",
+      "cType": "u16",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gDynamicBasePower",
+      "cType": "u16",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "gBattleWeather",
+      "cType": "u16",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "gBattleMoveDamage",
+      "cType": "s32",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gHpDealt",
+      "cType": "s32",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gTakenDmg",
+      "cType": "s32[4]",
+      "category": "serialized-active-slots",
+      "reason": "Slots 0/1 retained as scalar history observations. Slots 2/3 are reconstructed zero and unreachable with gBattlersCount=2. Broader move mechanics would require another inventory audit."
+    },
+    {
+      "name": "gSideStatuses",
+      "cType": "u16[2]",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "gLastLandedMoves",
+      "cType": "u16[4]",
+      "category": "serialized-active-slots",
+      "reason": "Slots 0/1 retained as scalar history observations. Slots 2/3 are reconstructed zero and unreachable with gBattlersCount=2. Broader move mechanics would require another inventory audit."
+    },
+    {
+      "name": "gLastHitByType",
+      "cType": "u16[4]",
+      "category": "serialized-active-slots",
+      "reason": "Slots 0/1 retained as scalar history observations. Slots 2/3 are reconstructed zero and unreachable with gBattlersCount=2. Broader move mechanics would require another inventory audit."
+    },
+    {
+      "name": "gBattlerAttacker",
+      "cType": "u8",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gBattlerTarget",
+      "cType": "u8",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gActiveBattler",
+      "cType": "u8",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gBattlersCount",
+      "cType": "u8",
+      "category": "reconstructed-invariants",
+      "reason": "Successful import initializes exactly actors0/1, count2 and fixed source positions0/1. Absent slots receive reset defaults. Export requires configured actors and correct count/positions."
+    },
+    {
+      "name": "gEffectBattler",
+      "cType": "u8",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gBattlerFainted",
+      "cType": "u8",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gCritMultiplier",
+      "cType": "u8",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gMoveResultFlags",
+      "cType": "u8",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gLastUsedAbility",
+      "cType": "u8",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "gBattlerPositions",
+      "cType": "u8[4]",
+      "category": "reconstructed-invariants",
+      "reason": "Successful import initializes exactly actors0/1, count2 and fixed source positions0/1. Absent slots receive reset defaults. Export requires configured actors and correct count/positions."
+    },
+    {
+      "name": "gTakenDmgByBattler",
+      "cType": "u8[4]",
+      "category": "serialized-active-slots",
+      "reason": "Slots 0/1 retained as scalar history observations. Slots 2/3 are reconstructed zero and unreachable with gBattlersCount=2. Broader move mechanics would require another inventory audit."
+    },
+    {
+      "name": "gBattleCommunication",
+      "cType": "u8[8]",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gBattlescriptCurrInstr",
+      "cType": "const u8 *",
+      "category": "reconstructed-script-pointer",
+      "reason": "Canonical initial script pointer is installed by reset. Every future admitted command sets its script buffer before reading. All prior controller events have already been consumed at host checkpoint boundaries; no suspended source instruction is supported."
+    },
+    {
+      "name": "BattleScript_SubstituteFade",
+      "cType": "const u8[1]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "gCurrMovePos",
+      "cType": "u8",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gPotentialItemEffectBattler",
+      "cType": "u8",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "gChosenActionByBattler",
+      "cType": "u8[4]",
+      "category": "serialized",
+      "reason": "Current move, chosen action IDs and terminal outcome persist. Chosen slots are also preserved in sBattleStruct; FALSE residual ordering after replacement reads the incoming move at that old chosen slot."
+    },
+    {
+      "name": "gRandomTurnNumber",
+      "cType": "u16",
+      "category": "serialized",
+      "reason": "Exact scalar RNG state, original seed, safe-integer draw count and selected turn number. Seed/count/state relation is validated without consuming draws."
+    },
+    {
+      "name": "gLastUsedItem",
+      "cType": "u16",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "gPlayerParty",
+      "cType": "struct Pokemon[6]",
+      "category": "serialized-projected-party",
+      "reason": "All six projected species-presence/HP/egg rows per side are retained. They can be stale/empty at nonterminal boundaries and are rewritten from host party data before every outcome query. Terminal projection and outcome must agree."
+    },
+    {
+      "name": "gEnemyParty",
+      "cType": "struct Pokemon[6]",
+      "category": "serialized-projected-party",
+      "reason": "All six projected species-presence/HP/egg rows per side are retained. They can be stale/empty at nonterminal boundaries and are rewritten from host party data before every outcome query. Terminal projection and outcome must agree."
+    },
+    {
+      "name": "gSpeciesInfo",
+      "cType": "struct SpeciesInfo[3]",
+      "category": "serialized-synthetic-baseline",
+      "reason": "Rows1/2 supplied baseline types are retained and must equal current types in this profile. Row0 is zero. This is a three-row adapter projection, not real source species identities or the full SpeciesInfo table."
+    },
+    {
+      "name": "gActionSelectionCursor",
+      "cType": "u8[4]",
+      "category": "omitted-presentation-cursors",
+      "reason": "Source switch/faint cleanup writes these UI cursor arrays to zero. Actual admitted command selection uses serialized gChosenActionByBattler/chosenMovePositions, not these cursors."
+    },
+    {
+      "name": "gMoveSelectionCursor",
+      "cType": "u8[4]",
+      "category": "omitted-presentation-cursors",
+      "reason": "Source switch/faint cleanup writes these UI cursor arrays to zero. Actual admitted command selection uses serialized gChosenActionByBattler/chosenMovePositions, not these cursors."
+    },
+    {
+      "name": "gLastHitBy",
+      "cType": "u8[4]",
+      "category": "serialized-active-slots",
+      "reason": "Slots 0/1 retained as scalar history observations. Slots 2/3 are reconstructed zero and unreachable with gBattlersCount=2. Broader move mechanics would require another inventory audit."
+    },
+    {
+      "name": "gBattlerPartyIndexes",
+      "cType": "u8[4]",
+      "category": "reconstructed-empty-context",
+      "reason": "No admitted move/context sets abilities, items, weather, screens, badges, doubles, sports, dynamic power or asynchronous controller state. These values reset to zero; relevant capability fields are checked on export. Party-index service paths are unexecuted in this projection."
+    },
+    {
+      "name": "gLastMoves",
+      "cType": "u16[4]",
+      "category": "serialized-active-slots",
+      "reason": "Slots 0/1 retained as scalar history observations. Slots 2/3 are reconstructed zero and unreachable with gBattlersCount=2. Broader move mechanics would require another inventory audit."
+    },
+    {
+      "name": "gLastResultingMoves",
+      "cType": "u16[4]",
+      "category": "serialized-active-slots",
+      "reason": "Slots 0/1 retained as scalar history observations. Slots 2/3 are reconstructed zero and unreachable with gBattlersCount=2. Broader move mechanics would require another inventory audit."
+    },
+    {
+      "name": "gLastPrintedMoves",
+      "cType": "u16[4]",
+      "category": "serialized-active-slots",
+      "reason": "Slots 0/1 retained as scalar history observations. Slots 2/3 are reconstructed zero and unreachable with gBattlersCount=2. Broader move mechanics would require another inventory audit."
+    },
+    {
+      "name": "gBattleOutcome",
+      "cType": "u8",
+      "category": "serialized",
+      "reason": "Current move, chosen action IDs and terminal outcome persist. Chosen slots are also preserved in sBattleStruct; FALSE residual ordering after replacement reads the incoming move at that old chosen slot."
+    },
+    {
+      "name": "BattleScript_PSNPrevention",
+      "cType": "const u8[1]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "BattleScript_BRNPrevention",
+      "cType": "const u8[1]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "BattleScript_PRLZPrevention",
+      "cType": "const u8[1]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sStatusScript",
+      "cType": "const u8[1]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sMoveEffectBS_Ptrs",
+      "cType": "const u8 *const[60]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "gStatStageRatios",
+      "cType": "const u8[13][2]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sHoldEffectToType",
+      "cType": "const u8[17][2]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "gTypeEffectiveness",
+      "cType": "const u8[336]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "gBattleMoves",
+      "cType": "const struct BattleMove[355]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "gBitTable",
+      "cType": "const u32[32]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sAccuracyStageRatios",
+      "cType": "const struct StatFractions[13]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sCriticalHitChance",
+      "cType": "const u16[5]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sStatusFlagsForMoveEffects",
+      "cType": "const u32[60]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sStatus",
+      "cType": "s32",
+      "category": "omitted-consumed-observations",
+      "reason": "Status and prior controller event queue are command observations, already consumed by host transitions. Successful restore starts with OK/empty events; subsequent commands emit new events. Host eventSequence is serialized outside C. Invalid imports preserve existing observations."
+    },
+    {
+      "name": "sBaseDamage",
+      "cType": "s32",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "sAfterCritical",
+      "cType": "s32",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "sAfterType",
+      "cType": "s32",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "sInitialized",
+      "cType": "u8",
+      "category": "reconstructed-invariants",
+      "reason": "Successful import initializes exactly actors0/1, count2 and fixed source positions0/1. Absent slots receive reset defaults. Export requires configured actors and correct count/positions."
+    },
+    {
+      "name": "sConfigured",
+      "cType": "u8[2]",
+      "category": "reconstructed-invariants",
+      "reason": "Successful import initializes exactly actors0/1, count2 and fixed source positions0/1. Absent slots receive reset defaults. Export requires configured actors and correct count/positions."
+    },
+    {
+      "name": "sEvents",
+      "cType": "struct SpikeEvent[16]",
+      "category": "omitted-consumed-observations",
+      "reason": "Status and prior controller event queue are command observations, already consumed by host transitions. Successful restore starts with OK/empty events; subsequent commands emit new events. Host eventSequence is serialized outside C. Invalid imports preserve existing observations."
+    },
+    {
+      "name": "sEventCount",
+      "cType": "u32",
+      "category": "omitted-consumed-observations",
+      "reason": "Status and prior controller event queue are command observations, already consumed by host transitions. Successful restore starts with OK/empty events; subsequent commands emit new events. Host eventSequence is serialized outside C. Invalid imports preserve existing observations."
+    },
+    {
+      "name": "sDamageScript",
+      "cType": "const u8[2]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sTargetScript",
+      "cType": "const u8[3]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sFailedScript",
+      "cType": "const u8[1]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sCommandScript",
+      "cType": "u8[16]",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "sResidualScript",
+      "cType": "u8",
+      "category": "omitted-command-scratch",
+      "reason": "Future command wrappers set actor/target/script and clear or compute arithmetic/effect observations before relevant use. These are not promised last-command diagnostics in a restored checkpoint. Host snapshots store logical continuation separately."
+    },
+    {
+      "name": "sLifecycleActorScript",
+      "cType": "const u8[3]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sLifecycleTeamsScript",
+      "cType": "const u8[5]",
+      "category": "immutable-module-data",
+      "reason": "Pinned source constant/table or adapter script identity marker. Rebuilt in each compatible module; addresses are never in checkpoints."
+    },
+    {
+      "name": "sCheckpointExport",
+      "cType": "u32[148]",
+      "category": "omitted-transport-staging",
+      "reason": "Checkpoint scalar buffers, duplicate/presence tracking and readiness are transport state. They have no gameplay semantics and reset on successful import. Validation precedes every gameplay mutation."
+    },
+    {
+      "name": "sCheckpointImport",
+      "cType": "u32[148]",
+      "category": "omitted-transport-staging",
+      "reason": "Checkpoint scalar buffers, duplicate/presence tracking and readiness are transport state. They have no gameplay semantics and reset on successful import. Validation precedes every gameplay mutation."
+    },
+    {
+      "name": "sCheckpointSeen",
+      "cType": "u8[148]",
+      "category": "omitted-transport-staging",
+      "reason": "Checkpoint scalar buffers, duplicate/presence tracking and readiness are transport state. They have no gameplay semantics and reset on successful import. Validation precedes every gameplay mutation."
+    },
+    {
+      "name": "sCheckpointExportReady",
+      "cType": "u8",
+      "category": "omitted-transport-staging",
+      "reason": "Checkpoint scalar buffers, duplicate/presence tracking and readiness are transport state. They have no gameplay semantics and reset on successful import. Validation precedes every gameplay mutation."
+    },
+    {
+      "name": "sCheckpointImportReady",
+      "cType": "u8",
+      "category": "omitted-transport-staging",
+      "reason": "Checkpoint scalar buffers, duplicate/presence tracking and readiness are transport state. They have no gameplay semantics and reset on successful import. Validation precedes every gameplay mutation."
+    },
+    {
+      "name": "sCheckpointImportBad",
+      "cType": "u8",
+      "category": "omitted-transport-staging",
+      "reason": "Checkpoint scalar buffers, duplicate/presence tracking and readiness are transport state. They have no gameplay semantics and reset on successful import. Validation precedes every gameplay mutation."
+    },
+    {
+      "name": "sCheckpointImportBoundary",
+      "cType": "u32",
+      "category": "omitted-transport-staging",
+      "reason": "Checkpoint scalar buffers, duplicate/presence tracking and readiness are transport state. They have no gameplay semantics and reset on successful import. Validation precedes every gameplay mutation."
+    }
+  ],
+  "checkpoint": {
+    "version": 1,
+    "magic": "0x57424350",
+    "wordCount": 148,
+    "wireValues": "Explicit unsigned 32-bit integer values; host JSON encoding independent of byte order/native layout",
+    "header": [
+      {
+        "index": 0,
+        "name": "magic"
+      },
+      {
+        "index": 1,
+        "name": "version"
+      },
+      {
+        "index": 2,
+        "name": "wordCount"
+      },
+      {
+        "index": 3,
+        "name": "boundary"
+      },
+      {
+        "index": 4,
+        "name": "rngState"
+      },
+      {
+        "index": 5,
+        "name": "rngDrawsLo"
+      },
+      {
+        "index": 6,
+        "name": "rngDrawsHi"
+      },
+      {
+        "index": 7,
+        "name": "randomTurnNumber"
+      },
+      {
+        "index": 8,
+        "name": "outcome"
+      },
+      {
+        "index": 9,
+        "name": "chosenAction0"
+      },
+      {
+        "index": 10,
+        "name": "chosenAction1"
+      },
+      {
+        "index": 11,
+        "name": "chosenSlot0"
+      },
+      {
+        "index": 12,
+        "name": "chosenSlot1"
+      },
+      {
+        "index": 13,
+        "name": "currentMove"
+      },
+      {
+        "index": 14,
+        "name": "initialSeed"
+      },
+      {
+        "index": 15,
+        "name": "reservedZero"
+      }
+    ],
+    "actors": {
+      "base": 16,
+      "count": 2,
+      "stride": 48,
+      "fields": [
+        {
+          "offset": 0,
+          "name": "level"
+        },
+        {
+          "offset": 1,
+          "name": "hp"
+        },
+        {
+          "offset": 2,
+          "name": "maxHP"
+        },
+        {
+          "offset": 3,
+          "name": "attack"
+        },
+        {
+          "offset": 4,
+          "name": "defense"
+        },
+        {
+          "offset": 5,
+          "name": "spAttack"
+        },
+        {
+          "offset": 6,
+          "name": "spDefense"
+        },
+        {
+          "offset": 7,
+          "name": "speed"
+        },
+        {
+          "offset": 8,
+          "name": "type1"
+        },
+        {
+          "offset": 9,
+          "name": "type2"
+        },
+        {
+          "offset": 10,
+          "name": "status1"
+        },
+        {
+          "offset": 11,
+          "name": "status2"
+        },
+        {
+          "offset": 12,
+          "name": "baseType1"
+        },
+        {
+          "offset": 13,
+          "name": "baseType2"
+        },
+        {
+          "offset": 14,
+          "name": "stage0"
+        },
+        {
+          "offset": 15,
+          "name": "stage1"
+        },
+        {
+          "offset": 16,
+          "name": "stage2"
+        },
+        {
+          "offset": 17,
+          "name": "stage3"
+        },
+        {
+          "offset": 18,
+          "name": "stage4"
+        },
+        {
+          "offset": 19,
+          "name": "stage5"
+        },
+        {
+          "offset": 20,
+          "name": "stage6"
+        },
+        {
+          "offset": 21,
+          "name": "stage7"
+        },
+        {
+          "offset": 22,
+          "name": "move0"
+        },
+        {
+          "offset": 23,
+          "name": "move1"
+        },
+        {
+          "offset": 24,
+          "name": "move2"
+        },
+        {
+          "offset": 25,
+          "name": "move3"
+        },
+        {
+          "offset": 26,
+          "name": "pp0"
+        },
+        {
+          "offset": 27,
+          "name": "pp1"
+        },
+        {
+          "offset": 28,
+          "name": "pp2"
+        },
+        {
+          "offset": 29,
+          "name": "pp3"
+        },
+        {
+          "offset": 30,
+          "name": "reservedZero30"
+        },
+        {
+          "offset": 31,
+          "name": "reservedZero31"
+        },
+        {
+          "offset": 32,
+          "name": "physicalDmg"
+        },
+        {
+          "offset": 33,
+          "name": "specialDmg"
+        },
+        {
+          "offset": 34,
+          "name": "physicalBattlerId"
+        },
+        {
+          "offset": 35,
+          "name": "specialBattlerId"
+        },
+        {
+          "offset": 36,
+          "name": "targetNotAffected"
+        },
+        {
+          "offset": 37,
+          "name": "notFirstStrike"
+        },
+        {
+          "offset": 38,
+          "name": "takenDmgU32Bits"
+        },
+        {
+          "offset": 39,
+          "name": "takenDmgBy"
+        },
+        {
+          "offset": 40,
+          "name": "lastLandedMove"
+        },
+        {
+          "offset": 41,
+          "name": "lastHitByType"
+        },
+        {
+          "offset": 42,
+          "name": "lastMove"
+        },
+        {
+          "offset": 43,
+          "name": "lastResultingMove"
+        },
+        {
+          "offset": 44,
+          "name": "lastPrintedMove"
+        },
+        {
+          "offset": 45,
+          "name": "lastHitBy"
+        },
+        {
+          "offset": 46,
+          "name": "disableIsFirstTurn"
+        },
+        {
+          "offset": 47,
+          "name": "reservedZero47"
+        }
+      ]
+    },
+    "party": {
+      "base": 112,
+      "sideCount": 2,
+      "sideStride": 18,
+      "slots": 6,
+      "slotStride": 3,
+      "fields": [
+        "speciesPresence",
+        "hp",
+        "isEgg"
+      ]
+    },
+    "boundaries": {
+      "0": "choice after selection RNG",
+      "1": "replacement before residual processing",
+      "2": "replacement after residual processing",
+      "3": "terminal"
+    },
+    "boundaryAuthority": "Host phase/resume declares the boundary; C verifies HP/outcome/action/profile consistency. The core alone cannot distinguish every host continuation. Host-C cross-validation is required.",
+    "restoration": "Validate every scalar and all words-present flags before mutation; copy scalar staging locally; reset to fresh instance defaults; assign logical fields without calling source commands/RNG or replaying inputs.",
+    "atomicity": "Invalid stage/word/version/count/relationship leaves existing gameplay state and events unchanged. Status and transport staging may change. Successful import deliberately replaces the state and clears consumed observations."
+  },
+  "rng": {
+    "sourceBodyUnchanged": true,
+    "hook": "Macro alias after original Random definition routes every later source/adapter call to a wrapper which calls original once and counts it.",
+    "initialBoundary": "After omitted intro effects and before first selection draw",
+    "maxDrawCount": 9007199254740991,
+    "validation": "O(64) modular affine LCG composition validates initialSeed + exact draw count against current state. It consumes no gameplay draw; runtime RNG remains source Random.",
+    "wrapPolicy": "Low word rolls into high word; safe-integer count limit rejects before another original draw. Parent host drops any failed transition."
+  },
+  "futureBehaviorArgument": [
+    "Preserve active stats/types/status/stages/moves/PP, baseline types, RNG state/count and outcome.",
+    "Preserve selected actions AND old chosen slots across before-residual replacement: source FALSE comparator looks up the newly active move at the retained slot.",
+    "Restore histories carried by public raw state getters; other command diagnostics/events are consumed observations, not checkpoint promises.",
+    "Reconstruct fixed count/positions/empty capabilities and local pointers; reset excluded or overwritten scratch.",
+    "Host serializes parties, active indices, turn/transition/event counters, phase/resume, outcome and profile/source envelope. C party projection can be stale and is overwritten before source outcome queries."
+  ],
+  "expansionObligation": [
+    "Adding any move, item, ability, status, volatile effect, double battle or resumable source script requires a new read/write audit before enabling it.",
+    "If a previously omitted field can affect a future branch, include it logically and bump checkpoint/profile version with an explicit compatibility or migration policy. Do not reuse v1 for broader semantics.",
+    "Source function/service additions must retain fail-closed admission. No unknown dependency may be answered with generic zero/success.",
+    "Repeat all checkpoint mutation, golden replay, replacement/terminal restoration and interleaving checks with new state categories."
+  ],
+  "limitations": [
+    "No full-source memory/global closure claim",
+    "No raw linear-memory snapshot or native pointer serialization",
+    "No suspend/resume within original C scripts or pending controller acknowledgments",
+    "No cryptographic authentication or historical reachability proof for imported checkpoints",
+    "Schema validity is for trusted server state; host validates cross-layer consistency before loading a fresh private instance"
+  ],
+  "implementationFiles": [
+    {
+      "path": "tools/battle-spike/c/adapter.h",
+      "sha256": "7590b25ef29fd742ec802b3767ed1c0f76d179bcc6686d511f6cde6f10c47d61"
+    },
+    {
+      "path": "tools/battle-spike/c/adapter.c",
+      "sha256": "ae76b7dfa26ee5836d49d54cdf65b5fc049cb694eca1a1fa6e8fcafade300e26"
+    },
+    {
+      "path": "tools/battle-spike/c/attack.inc",
+      "sha256": "320bd6d37c20a617dd92d0877702e91f3299b1affa52240d60cd182b71952ab4"
+    },
+    {
+      "path": "tools/battle-spike/c/lifecycle_state.inc",
+      "sha256": "f2f56263f461ba0c297c5cdba4739fb9585d2961a24bdf7c01328dd8165accd6"
+    },
+    {
+      "path": "tools/battle-spike/c/lifecycle.inc",
+      "sha256": "864d8e46e658f68dac1acfbc1771ebeaf25fa975395c7530efb5a87209b55b8d"
+    },
+    {
+      "path": "tools/battle-spike/c/rng_hook.inc",
+      "sha256": "462975c72f2fa36f30c3c80a469698a9f45518774bce5eeb980736dcb9ab8e15"
+    },
+    {
+      "path": "tools/battle-spike/c/checkpoint.inc",
+      "sha256": "56b42ea09766e9e19f33abfa2876569eaf7f925124c9dceb0f71720adc29f6ed"
+    }
+  ],
+  "verificationReports": [
+    "reports/battle-spike-checkpoint-tests.json",
+    "reports/battle-spike-batch-1.json",
+    "reports/battle-spike-batch-2.json"
+  ]
+}

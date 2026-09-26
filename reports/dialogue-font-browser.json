@@ -1,0 +1,85 @@
+{
+  "checkedAt": "2026-09-26T01:24:07.014Z",
+  "width": 216,
+  "height": 30,
+  "inkPixels": 1450,
+  "mismatchedPixels": 0,
+  "imageRendering": "pixelated",
+  "atlasPaths": [
+    "/content/fonts/dialogue.png"
+  ],
+  "glyphDraws": 61,
+  "accentDraws": 1,
+  "accented": {
+    "advance": 6,
+    "code": 27,
+    "height": 14,
+    "width": 6,
+    "x": 176,
+    "y": 16
+  },
+  "layouts": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "screen": {
+        "x": 280,
+        "y": 201,
+        "width": 720,
+        "height": 480
+      },
+      "panel": {
+        "x": 292,
+        "y": 480.734375,
+        "width": 696,
+        "height": 188.265625
+      },
+      "bitmap": {
+        "x": 310,
+        "y": 526.625,
+        "width": 648,
+        "height": 90
+      },
+      "canvas": {
+        "x": 280,
+        "y": 201,
+        "width": 720,
+        "height": 480
+      },
+      "scale": 3
+    },
+    {
+      "viewport": {
+        "width": 650,
+        "height": 720
+      },
+      "screen": {
+        "x": 85,
+        "y": 167,
+        "width": 480,
+        "height": 320
+      },
+      "panel": {
+        "x": 93,
+        "y": 348.59375,
+        "width": 464,
+        "height": 130.40625
+      },
+      "bitmap": {
+        "x": 105,
+        "y": 379.1875,
+        "width": 432,
+        "height": 60
+      },
+      "canvas": {
+        "x": 85,
+        "y": 167,
+        "width": 480,
+        "height": 320
+      },
+      "scale": 2
+    }
+  ]
+}
