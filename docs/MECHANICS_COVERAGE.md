@@ -1,5 +1,47 @@
 # Mechanics coverage
 
+## Twenty-second-pass private tactics: verified
+
+The separate `firered-family-tactics-v1` profile extends the retained eight-species,
+one-through-six-player party model from 16 to 21 family moves, plus automatic
+Struggle. Super Fang and Endeavor execute source fixed-damage command order;
+Rapid Spin executes its normal hit and certain cleanup effect. Wrapping, Leech
+Seed and Spikes remain unadmitted, so only the empty-cleanup branch is reachable.
+Rain Dance creates temporary rain in battle, preserves the source damage modifier,
+and expires it after source field ordering and before battler residuals. Repeated
+Rain Dance fails without refreshing the timer. Initial weather remains clear.
+Whirlwind executes the ordinary-wild level test and ends either side's battle
+with source outcome 5 (`forced-escape`); it does not shuffle reserves or award XP.
+
+Checkpoint six retains 512 logical words, including rain flags and duration.
+Source switching, pending faint decisions, exact RNG, current roster state and
+private provenance remain recoverable. The host weather event observes state
+after each nonflinched Rain Dance attempt, including a failed repeat; the attack
+flags retain failure. No event alone claims a successful weather change.
+
+Focused evidence on SHA256 `662633e05265663a20a02141939c4fdc78ef0be27d53df99507596280a216f5c`:
+two matching 93,348-byte builds, 344 independent source cases, 759 transitions and
+5,775 checked RNG draws. All 1,103 host and 1,103 raw boundaries recovered across
+builds and fresh processes, replaying 1,699 future transitions per path. There
+are 92 host and 63 raw rejection checks, 11 candidate-failure checks and nine
+timeout-bounded exhaustion checks. Exact raw-word equality checks recovery;
+the independent oracle supplies mechanical observations and persistent roster
+expectations, not every scratch word. Nine earlier WASM artifacts and 2,628
+retained literal cases remain unchanged. Reports: [build](../reports/battle-tactics-build.json),
+[mechanics](../reports/battle-tactics-verification.json), [recovery](../reports/battle-tactics-recovery.json)
+and [integration](../reports/battle-tactics-integration.json). The full twenty-stage gate passed at 2026-10-01T02:04:15.254Z with native exit 0, including all 39 browser scenarios. Integration passed 15 groups, 14 capture-party handoffs, 115 restores and 98 transitions; all 79 HTTP boundary checks passed across 73 built files.
+
+Protect, Skull Bash, Pursuit and Mirror Move still fail whole-roster admission,
+including benched or exhausted moves. Protect's source four-entry success table
+and unclamped counter require an explicit compatibility decision before its
+repeated-use behavior can be implemented. Charging, switch interception and
+copied-move history need their own source continuations. No level cap or move
+stripping is used. Other weather, trainer/double battles, party-aware reward
+application, durable ownership and live battle entry remain unavailable. See
+[the source boundary](../tools/battle-tactics/README.md). No release milestone is closed.
+
+## Earlier mechanics evidence
+
 The P00 source inventory records discovered command/special names and source paths, not executable support. The eighth pass completes the bounded three-batch P03 experiment and supplies a six-method server adapter skeleton. P03 selects source-command WASM with audited TypeScript scheduling; the eighth-pass full verification gate and post-review affected checks passed.
 
 The ninth pass adds local Better Auth accounts and a separately persisted trainer profile foundation. A profile remains `awaiting-new-game`/`recovering` without a world location, party or assets. Saving confirms the profile revision and timestamp only. The ten-stage verification passed at 2026-09-25T22:19:52Z with 80 Vitest tests, 49 Python tests, 34 store checks, 21 network assertion groups and 28 browser scenarios (25 development-preview and three built-client account scenarios). The earlier renderer and battle evidence below retains its original bounded scope; the full P04-03 gameplay data model and R1 remain incomplete.

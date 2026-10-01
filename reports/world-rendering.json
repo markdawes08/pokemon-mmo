@@ -1,8 +1,8 @@
 {
   "status": "passed",
-  "verifiedAt": "2026-09-30T15:47:32.223Z",
+  "verifiedAt": "2026-10-01T02:03:32.641Z",
   "scope": "Passive Phaser local-player container sampling; unmodified ordered WebSocket frames delayed 0,15,70,25ms",
-  "frames": 99,
+  "frames": 62,
   "travelPixels": 64,
   "monotonic": true
 }

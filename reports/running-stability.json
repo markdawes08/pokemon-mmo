@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-09-30T15:47:06.358Z",
+  "checkedAt": "2026-10-01T02:03:02.431Z",
   "mode": "run",
   "scope": "Actual player WebGL quad vertices during focused keyboard movement; test-only passive renderer instrumentation",
   "observations": [
     {
       "direction": "ArrowUp",
-      "movingRenderFrames": 67,
+      "movingRenderFrames": 68,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -29,13 +29,13 @@
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 13.799999999813735,
-        "max": 18.200000000186265
+        "min": 14.599999994039536,
+        "max": 19.80000000447035
       }
     },
     {
       "direction": "ArrowDown",
-      "movingRenderFrames": 38,
+      "movingRenderFrames": 37,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -56,13 +56,13 @@
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 15.200000000186265,
-        "max": 18
+        "min": 10.299999997019768,
+        "max": 22.399999998509884
       }
     },
     {
       "direction": "ArrowLeft",
-      "movingRenderFrames": 68,
+      "movingRenderFrames": 65,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -81,18 +81,18 @@
         "15"
       ],
       "cameraTravel": {
-        "x": 112,
+        "x": 110,
         "y": 0
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 15.099999999627471,
-        "max": 18.100000001490116
+        "min": 13.099999994039536,
+        "max": 20.599999994039536
       }
     },
     {
       "direction": "ArrowRight",
-      "movingRenderFrames": 67,
+      "movingRenderFrames": 68,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -116,8 +116,8 @@
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 15,
-        "max": 18.09999999962747
+        "min": 12.700000002980232,
+        "max": 19.700000002980232
       }
     }
   ]

@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-01T02:04:15.274868+00:00",
+  "commands": [
+    {
+      "stage": "verify",
+      "exitCode": 0
+    }
+  ],
+  "log": ".local\\twentysecond-verify.log",
+  "status": "passed"
+}

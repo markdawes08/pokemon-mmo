@@ -16,8 +16,8 @@ def replace(path,old,new):
     if text.count(old)!=1:raise ValueError('Changed party extension seam: '+str(path.name)+' '+old[:80])
     path.write_text(text.replace(old,new),encoding='utf-8',newline='\n')
 
-def extract(out):
-    family.extract(out,party=True)
+def extract(out, *, tactics=False):
+    family.extract(out,party=True,tactics=tactics)
     report=json.loads((out/'extraction-manifest.json').read_text())
     source=base.Extraction()
     # All changes below are to this new private build output, never old C.

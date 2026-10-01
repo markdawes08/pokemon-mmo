@@ -19,8 +19,9 @@ MOVES=('TACKLE','TAIL_WHIP','SAND_ATTACK','WATER_GUN','BUBBLE','WITHDRAW','QUICK
        'WING_ATTACK','HYDRO_PUMP','BITE','HYPER_FANG','AGILITY','FEATHER_DANCE','SCARY_FACE','FOCUS_ENERGY')
 
 
-def extract(out, *, party=False):
-    report=route.extract(out,family=True,party=party)
+def extract(out, *, party=False, tactics=False):
+    report=route.extract(out,family=True,party=party,tactics=tactics)
+    moves=MOVES+('SUPER_FANG','ENDEAVOR','RAPID_SPIN','RAIN_DANCE','WHIRLWIND') if tactics else MOVES
     source=base.Extraction()
     # The common engine has complete source tables. Expand only its projected
     # real identity/type table; the source validator has complete species rows.
@@ -47,7 +48,7 @@ def extract(out, *, party=False):
     for name in SPECIES:data.append(source.block('src/data/pokemon/level_up_learnsets.h','s'+name+'LevelUpLearnset','table'))
     data.append('static const u16 *const gLevelUpLearnsets[NUM_SPECIES]={'+','.join('[SPECIES_'+name.upper()+']=s'+name+'LevelUpLearnset' for name in SPECIES)+'};\n')
     text=source.read('src/data/battle_moves.h');data.append('static const struct {u8 pp;} gBattleMoves[MOVES_COUNT]={\n')
-    for name in MOVES:
+    for name in moves:
         start=text.index('    [MOVE_'+name+'] =');end=text.index('\n    [',start+1)
         field=re.search(r'        \.pp = [^,]+,',text[start:end])
         if not field:raise ValueError('Missing PP')

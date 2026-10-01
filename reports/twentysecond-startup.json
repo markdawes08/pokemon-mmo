@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-01T01:42:07.902812+00:00",
+  "detachedStartup": {
+    "status": "rejected-before-execution",
+    "reason": "Automatic approval review: blocked by policy; no more specific reason supplied"
+  },
+  "foregroundStartup": {
+    "status": "started",
+    "toolSessionId": 24597,
+    "mode": "foreground tool-managed process"
+  },
+  "scope": "No approval policy, permission settings, or startup security controls were changed."
+}

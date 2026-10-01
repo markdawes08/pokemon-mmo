@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-01T01:53:52.532135+00:00",
+  "commands": [
+    {
+      "stage": "lint",
+      "exitCode": 0
+    },
+    {
+      "stage": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "stage": "battle:tactics",
+      "exitCode": 0
+    }
+  ],
+  "log": ".local\\twentysecond-focused.log",
+  "status": "passed"
+}

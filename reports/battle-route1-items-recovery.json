@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "passed",
-  "checkedAt": "2026-09-30T15:42:52.149Z",
+  "checkedAt": "2026-10-01T01:56:58.059Z",
   "crossBuildRestores": 46,
   "crossBuildReplayedTransitions": 32,
   "rejectedCheckpoints": [
@@ -27,8 +27,8 @@
   ],
   "interleavedTransitions": 4,
   "freshProcess": {
-    "parentPid": 11796,
-    "pid": 24948,
+    "parentPid": 30824,
+    "pid": 7444,
     "checkpoints": 46,
     "replayedTransitions": 32
   },

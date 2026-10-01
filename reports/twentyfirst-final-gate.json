@@ -1,0 +1,82 @@
+{
+  "checkedAt": "2026-09-30T15:48:11.208Z",
+  "results": [
+    {
+      "stage": "doctor",
+      "status": "passed"
+    },
+    {
+      "stage": "lint",
+      "status": "passed"
+    },
+    {
+      "stage": "typecheck",
+      "status": "passed"
+    },
+    {
+      "stage": "test:unit",
+      "status": "passed"
+    },
+    {
+      "stage": "test:integration",
+      "status": "passed"
+    },
+    {
+      "stage": "content:check",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:spike",
+      "status": "passed"
+    },
+    {
+      "stage": "encounter:check",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:route1",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:progression",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:loss",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:capture",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:evolution",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:family",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:party",
+      "status": "passed"
+    },
+    {
+      "stage": "build",
+      "status": "passed"
+    },
+    {
+      "stage": "test:boundaries",
+      "status": "passed"
+    },
+    {
+      "stage": "test:recovery",
+      "status": "passed"
+    },
+    {
+      "stage": "test:e2e",
+      "status": "passed"
+    }
+  ],
+  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 encounter factory, real-team Route 1 battle mechanics, victory progression, blackout, capture and evolution continuations plus diagnostic family combat and party switching/faint decisions; live R1 battles, persistent outcomes and story gameplay not implemented"
+}

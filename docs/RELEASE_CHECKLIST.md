@@ -2,6 +2,25 @@
 
 Current target: P00/P01 foundation and the bounded P03 decision/adapter remain verified. P02/P04/P05/P06 remain partial overall. The named local fixture supports authoritative three-map shared exploration, checkpoints and transport recovery. Private source encounter generation and real-team battle mechanics add P06 foundations, with no live battle admission or persistent outcomes. The anonymous renderer remains unsaved. No R1/R2/R3 release milestone has passed; STATUS records the current gate.
 
+Twenty-second-pass verified evidence: the separate private tactics profile adds
+Super Fang, Endeavor, Rapid Spin, Rain Dance and ordinary-wild Whirlwind, bringing
+the supported family moveset to 21 plus automatic Struggle. Two builds agree at
+93,348 bytes, SHA256 `662633e05265663a20a02141939c4fdc78ef0be27d53df99507596280a216f5c`.
+Independent checks passed 344 source cases, 759 transitions, 5,775 RNG draws and
+1,103 host/raw boundaries; each recovery path replayed 1,699 future transitions
+across builds and fresh processes. There are 92 host and 63 raw rejection checks,
+11 candidate-failure checks and nine bounded exhaustion checks. The nine earlier
+artifacts and 2,628 literal cases remain unchanged. See
+[the tactics verification](../reports/battle-tactics-verification.json),
+[integration](../reports/battle-tactics-integration.json) and
+[source scope](../tools/battle-tactics/README.md). The full twenty-stage gate passed at 2026-10-01T02:04:15.254Z with native exit 0, including 86 Vitest tests, 49 Python tests and all 39 browser scenarios. This does not complete an R1 release milestone.
+
+Protect, Skull Bash, Pursuit and Mirror Move remain explicitly unsupported.
+The tactics profile preserves private diagnostic/pending-ownership provenance;
+no account, database, live battle or durable result path is enabled. Whirlwind's
+source `forced-escape` is a no-reward wild terminal, not trainer-party switching.
+Complete party-aware results and durable/live application remain required for R1.
+
 Historical tenth-pass evidence: all ten verification stages passed at 2026-09-26T00:20:45.993Z, including 86 Vitest tests, 49 Python tests, 30 asset integration groups and 31 browser scenarios (25 development renderer + 6 isolated built-client account/asset scenarios). Relational asset/story/outcome records, permanent fixture replay protection and the source-pinned local seed are verified for their bounded scope. The asset browser suite uses a separate owned backend process after the first full run exposed shared library rate counters; production limits remain unchanged. Both graceful shutdown and listener release pass. P04-03 remains partial for actual battle/script/trade activity records and effects. See ADR-011, assets-integration.json, assets-browser.json and development-profile-source.json.
 
 | Gate | Status | Evidence / missing work |
@@ -11,7 +30,7 @@ Historical tenth-pass evidence: all ten verification stages passed at 2026-09-26
 | P02 accurate local overworld | Incomplete | Three-map navigation, stationary NPCs, six messages, source normal font, run/walk controls, Pallet/SELECT audio and Field guide passed all 25 fifth-pass dev/built scenarios. P02-04 animation/audio prototypes are verified. Native NPC/script behavior, full text/audio coverage, full R1 dependency closure and executable gameplay remain incomplete; P02-06 definitions are partial. |
 | P03 battle choice | Verified for the bounded decision and adapter skeleton | Source-command WASM plus audited TypeScript scheduling is the selected architecture; all three bounded batches, the full gate and affected post-review checks passed. Versioned logical recovery, exact RNG/event replay, Node six-method contract, privacy/isolation and local resource measurements have evidence. ADR-001 records the decision boundary; four-move synthetic coverage is not full source mechanics or live battle integration. |
 | P04 durable accounts | Partial overall; P04-01/02/04 verified for the bounded profile foundation | Accounts and staged trainer creation, session/lease ownership, serialized profile commands, receipts/revisions, revocation, rollback, unknown-commit recovery, two-account isolation and restart passed the ten-stage gate. Owned creature/party/storage, inventory/wallet, story primitives, permanent outcomes and db:seed:dev are implemented and have focused verification. P04-03 remains in progress for activity-specific script/battle/trade records and durable effects. |
-| R1 (P06) | Incomplete | Accounts, shared presence/movement and exploration checkpoint/reconnect are verified. Private encounter and real-team Fight/Run mechanics have separate evidence. Private Potion/Poke Ball, victory progression, loss/capture/evolution continuations and eight-species/16-move diagnostic family combat now pass. Private party switching and faint decisions now pass as well. Nine remaining family moves, complete party-aware result handling, authoritative interaction, live battle presentation, normal team admission, durable ownership/world application and battle activity/outcomes remain missing. |
+| R1 (P06) | Incomplete | Accounts, shared presence/movement and exploration checkpoint/reconnect are verified. Private encounter, Fight/Run/Potion/Poke Ball, progression/loss/capture/evolution continuations and eight-species party combat have separate evidence. Focused tactics checks extend family coverage to 21 moves with fixed damage, Rapid Spin, rain and ordinary-wild Whirlwind. Protect, Skull Bash, Pursuit, Mirror Move, complete party-aware results, authoritative interaction, live battle presentation, normal team admission, durable ownership/world application and battle activity/outcomes remain missing. |
 | R2 (P08) | Incomplete | Normal Brock progression, trade/direct PvP, recovery and operator verification. |
 | R3 (P11) | Incomplete | Full normal campaign/postgame and all final definition-of-done evidence. |
 | Optional public release | Not authorized | Separate content profile/release decision required. |

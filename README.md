@@ -90,6 +90,7 @@ the running browser preview.
 | `npm.cmd run battle:evolution` | Verify private evolution decisions and resulting stats, names, dex and moves |
 | `npm.cmd run battle:family` | Verify private eight-species family combat and source-result diagnostic bridges |
 | `npm.cmd run battle:party` | Verify private party switching, faint decisions and coherent capture-party diagnostics |
+| `npm.cmd run battle:tactics` | Verify private rain, fixed damage, Rapid Spin and wild Whirlwind mechanics |
 | `npm.cmd run content:check` | Rebuild independently and verify generated hashes |
 | `npm.cmd run build` | Build the client and backend |
 | `npm.cmd run start` | Serve the built preview at http://127.0.0.1:2567 |
@@ -109,9 +110,11 @@ See [the experiment notes](tools/battle-spike/README.md) for its verified scope
 and remaining mechanics and persistence requirements.
 
 Private Route 1 combat, victory progression, blackout, capture and evolution continuations
-build on that architecture. A separate eight-species/16-move family profile now verifies
-combat using their supported results as private diagnostics. A party profile now adds
-one-to-six-member switching and recoverable faint/replacement decisions. These proposals
-do not apply account assets or world changes. Nine remaining moves, party-aware result
-handling, durable ownership, arrival scripts and battle application remain necessary before live play;
-see [current status](docs/STATUS.md).
+build on that architecture. The retained family and party profiles verify eight-species
+combat, one-to-six-member switching and recoverable faint/replacement decisions.
+The separate [tactics profile](tools/battle-tactics/README.md) extends coverage to 21 family
+moves with Super Fang, Endeavor, Rapid Spin, Rain Dance and ordinary-wild Whirlwind.
+These are private diagnostics; they do not apply account assets or world changes.
+Protect, Skull Bash, Pursuit, Mirror Move, complete party-aware results, durable ownership,
+arrival scripts and live battle application remain necessary. See [current status](docs/STATUS.md)
+for verified gates and remaining work.

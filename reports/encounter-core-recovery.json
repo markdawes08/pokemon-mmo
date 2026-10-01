@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "passed",
-  "checkedAt": "2026-09-30T15:42:48.929Z",
+  "checkedAt": "2026-10-01T01:56:54.459Z",
   "scope": "Private factory logical checkpoints; no database, live room, or cross-version migration",
   "goldenBoundaries": 417,
   "crossBuildRestores": 417,
@@ -9,8 +9,8 @@
   "invalidSeedShapes": 6,
   "invalidStepShapes": 4,
   "freshProcess": {
-    "pid": 19332,
-    "parentPid": 9444,
+    "pid": 30160,
+    "parentPid": 16368,
     "checkpoints": 93,
     "replayedSteps": 530
   },

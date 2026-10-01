@@ -91,7 +91,7 @@ The default database listener is `127.0.0.1:5433`. To select another free port o
 
 ## Checks and built preview
 
-`npm.cmd run verify` runs seventeen stages: doctor, lint, typecheck, TypeScript/Python tests, database/network/asset/world/supervisor integration, independent content rebuild, the original C/WASM battle experiment, encounter factory, real-team Route 1 battle mechanics, victory progression, blackout continuation, capture continuation, evolution continuation, build, public/private file boundaries, built-backend account recovery and browser tests. Failures fail the command. Detailed results are under `reports/`; the full current run is `reports/verification.json`.
+`npm.cmd run verify` runs twenty stages: doctor, lint, typecheck, TypeScript/Python tests, database/network/asset/world/supervisor integration, independent content rebuild, the original C/WASM battle experiment, encounter factory, real-team Route 1 battle mechanics, victory progression, blackout continuation, capture continuation, evolution continuation, family combat, party switching, tactics, build, public/private file boundaries, built-backend account recovery and browser tests. Failures fail the command. Detailed results are under `reports/`; the full current run is `reports/verification.json`.
 
 The account integration checks use a separate loopback `TEST_DATABASE_URL` ending in `_test` and remove only their generated fixtures. `npm.cmd run test:recovery` requires a current build and free port 2570; it starts two separate built backend processes, verifies session/profile/receipt recovery, and shuts them down. Account browser scenarios serve the built client through an isolated backend on a random test port; asset browser scenarios use a separate owned backend OS process to isolate the auth library rate-limit state; the other browser scenarios use the normal preview or `TEST_BASE_URL`. Run `npm.cmd run build` before standalone `test:e2e` or `test:recovery`. Neither command seeds user accounts into the normal development database.
 
@@ -103,7 +103,7 @@ The account integration checks use a separate loopback `TEST_DATABASE_URL` endin
 
 ## Optional battle experiment toolchain
 
-`npm.cmd run battle:setup` downloads the pinned Zig 0.16.0 Windows x64 archive from its official source, verifies its size/SHA256 and installs it under `.tools/`. No PATH, registry or system service changes are made. This compiler is required for the current sixteen-stage `verify`; ordinary `dev`/`start` use existing generated content without it.
+`npm.cmd run battle:setup` downloads the pinned Zig 0.16.0 Windows x64 archive from its official source, verifies its size/SHA256 and installs it under `.tools/`. No PATH, registry or system service changes are made. This compiler is required for the current twenty-stage `verify`; ordinary `dev`/`start` use existing generated content without it.
 
 `npm.cmd run battle:spike` verifies the compiler receipt, extracts pinned C inputs twice and compiles identical private WASM modules. It runs damage/RNG and turn goldens, C checkpoint rejection, logical recovery across independent builds/fresh Node processes, the six-method adapter and resource measurements. Reports are `reports/battle-spike-*.json`; outputs stay under `.local/battle-spike`. Missing tools, incompatible checkpoints and unsupported states fail clearly. Measurement output is observational and varies with machine load; it does not assert the later database/population/soak gates. No grass encounters, inventory effects or live saves are enabled. See [the experiment README](../tools/battle-spike/README.md) and [ADR-001](DECISIONS.md#adr-001---battle-implementation).
 
@@ -111,7 +111,7 @@ The account integration checks use a separate loopback `TEST_DATABASE_URL` endin
 
 `npm.cmd run battle:route1` independently builds the private real-team profile twice, checks retained Fight/Run and new Potion/Poke Ball source fixtures, verifies capture/inventory checkpoint recovery and exercises the existing six-method adapter. The captured result stops at pending disposition; it does not grant an owned creature. Run `encounter:check` first when its artifacts are absent. Source fixtures are test-only evidence; the command neither logs into testing accounts nor writes their assets. Outputs stay under `.local/battle-route1`, with evidence in `reports/battle-route1-*.json`. See [the profile scope](../tools/battle-route1/README.md) and ADR-015/016. Old real-profile snapshots are rejected after the version upgrade; no durable battle migration is implied.
 
-`npm.cmd run test:boundaries` requires completed `battle:spike`, `encounter:check`, `battle:route1`, `battle:progression`, `battle:loss`, `battle:capture`, `battle:evolution` and `build` outputs. It scans the built public tree for private paths/WASM/selected identifiers, then starts an isolated Vite server on an ephemeral loopback port. Real private files must return HTTP 403 for direct, raw and URL requests, while the app and public content remain available. The server is closed afterward. Reports: `client-bundle-check.json` and `private-client-boundary.json`. This is a focused package/content boundary check, not a general security audit.
+`npm.cmd run test:boundaries` requires completed `battle:spike`, `encounter:check`, `battle:route1`, `battle:progression`, `battle:loss`, `battle:capture`, `battle:evolution`, `battle:family`, `battle:party`, `battle:tactics` and `build` outputs. It scans the built public tree for private paths/WASM/selected identifiers, then starts an isolated Vite server on an ephemeral loopback port. Real private files must return HTTP 403 for direct, raw and URL requests, while the app and public content remain available. The server is closed afterward. Reports: `client-bundle-check.json` and `private-client-boundary.json`. This is a focused package/content boundary check, not a general security audit.
 
 
 Thirteenth-pass verification: Full twelve-stage gate passed at 2026-09-27T01:05:06.972Z. 86 Vitest tests, 49 Python tests, 34 profile storage checks, 21 account/network groups, 30 asset groups, 27 world storage groups, 18 world network groups, 17 reconnect groups, retained battle checks, built account recovery and all 39 browser scenarios passed. The new encounter gate passed 43 independent creature cases, 17 transcripts/374 steps, 417 cross-build checkpoint boundaries and 93 fresh-process restores. The public boundary gate passed 31 HTTP checks and scanned 73 built files. Reports: encounter-core-verification.json, encounter-core-recovery.json, private-client-boundary.json, verification.json and encounter-runtime.json. This is a private encounter foundation; live R1 battles, captured assets and durable battle activity remain unimplemented.
@@ -177,3 +177,37 @@ Run `npm.cmd run battle:party` after the retained engine dependency gates (see t
 Full nineteen-stage gate passed at 2026-09-30T15:48:11.208Z with native exit 0: 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all eight prior private engine gates, fresh-process account recovery and all 39 browser scenarios. The party gate passed 220 independent source-literal cases, 529 accepted transitions and 4,036 RNG draws. All 749 host and 749 raw boundaries recovered across independent builds and fresh processes, replaying 1,282 future transitions per host/raw path. Rejection checks passed for 80 host and 53 raw cases, with 6 candidate-failure checks and 6 timeout-bounded exhaustion checks. Integration passed 11 groups, 14 coherent capture-party handoffs, 103 restores and 89 diagnostic transitions. Public boundaries passed 73 HTTP checks across 73 built files. All eight previous WASM artifacts and 2,408 retained literal cases remain byte-identical.
 
 The app was relaunched during this pass after both endpoints were unavailable. Current process ownership and shutdown instructions are in STATUS; reports/battle-party-runtime.json records post-gate health and read-only testing-account preservation. Logs: .local/twentyfirst-focused.log and .local/twentyfirst-verify.log. Portable Python orchestration captures native exit codes directly in reports/twentyfirst-*-exit-status.json, avoiding the prior PowerShell stderr-redirection ambiguity.
+
+## Private tactics checks
+
+Run `npm.cmd run battle:tactics` after all nine retained private engine checks,
+ending with `battle:party`. The [tactics README](../tools/battle-tactics/README.md)
+lists the clean-output order; `npm.cmd run verify` includes it automatically.
+The command builds twice, verifies independent source mechanics and raw/host
+recovery, then checks coherent capture-party and source-learned/evolved diagnostic
+inputs. Outputs stay in `.local/battle-tactics/`; reports are
+`reports/battle-tactics-*.json`. No database migration, account login, fixture
+reset or development-server restart is required for this private command.
+
+`firered-family-tactics-v1` retains the party profile's eight species, up to six
+player members, switches and faint decisions. It adds Super Fang, Endeavor,
+Rapid Spin, Rain Dance and ordinary-wild Whirlwind for 21 family moves plus
+automatic Struggle. Battle-created rain survives recovery and switches, expires
+at the source field boundary, and cannot be supplied as initial weather.
+Whirlwind's `forced-escape` ends combat without a reward or reserve shuffle.
+The weather event reports observed state after a nonflinched Rain Dance attempt;
+a failed repeat reports unchanged rain while attack flags retain failure.
+
+Focused checks passed 344 source cases, 759 transitions and 1,103 host/raw
+boundaries on the matching 93,348-byte builds. Each recovery path replayed 1,699
+future transitions across independent builds and fresh processes. Rejection,
+candidate rollback and bounded exhaustion checks passed. The full twenty-stage gate passed at 2026-10-01T02:04:15.254Z with native exit 0, including all 39 browser scenarios; see STATUS and `reports/verification.json`. Historical gate results above retain their original scope.
+
+Protect, Skull Bash, Pursuit and Mirror Move remain rejected in every occupied
+move slot, including the bench and moves with no PP. Broader weather, hazards,
+trapping, trainer/double battles and party-aware result application are excluded.
+Capture/evolution proofs remain pending ownership; this tool grants no account
+assets, live battle entry or durable effects. Preserve ADMINA/ADMINB and use
+STATUS for current process ownership rather than historical runtime paragraphs.
+
+The resumed app uses foreground tool session 24597, with output streamed to that session. Current PIDs and coordinated shutdown are in STATUS; reports/battle-tactics-runtime.json records post-gate readiness and read-only account preservation. Logs: .local/twentysecond-focused.log and .local/twentysecond-verify.log; portable Python orchestration records native exits in reports/twentysecond-*-exit-status.json.
