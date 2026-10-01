@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-01T01:56:37.472Z",
+  "checkedAt": "2026-10-01T02:46:29.119Z",
   "status": "passed",
   "batch": 2,
   "scope": "Private synthetic singles, two party members per side; source commands with bounded host turn scheduling, not a production BattleEngine",

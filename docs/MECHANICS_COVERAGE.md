@@ -1,5 +1,37 @@
 # Mechanics coverage
 
+## Twenty-third-pass private charge continuation: verified
+
+`firered-family-charge-v1` adds Skull Bash to the tactics profile for 22 family
+moves plus automatic Struggle, retaining eight species, up to six player members,
+the ordinary wild opponent and battle-created rain. Source first-turn PP, charging
+effect and Defense increase run without attack RNG. The forced release clears
+the lock before accuracy and uses no second PP, even if the original PP reached
+zero. Flinch cancels the lock; faint/switch cleanup and the inert source locked
+move value remain distinct. A wild lock skips move-selection RNG. The player
+acknowledges the forced turn with its current `continue-charge` decision; Run,
+switch, another move and Struggle are unavailable while locked.
+
+Checkpoint seven retains 512 words, including active lock, selected slot,
+`gLockedMoves`, `chargingTurn` and remembered target. A wild release follows the
+opposing actor through a pending party replacement. The charge event observes
+current lock state, including cancellation; it does not imply damage. These
+are private diagnostics, with no account ownership, live entry or durable
+result application. Ten earlier artifacts and 2,972 literal cases are retained.
+
+Focused integration passed 19 groups, 14 coherent capture-party handoffs,
+128 restored boundaries, 109 diagnostic transitions and 25 faint decisions.
+See [integration](../reports/battle-charge-integration.json) and
+[source scope](../tools/battle-charge/README.md). Full twenty-one-stage gate passed at 2026-10-01T02:55:13.834Z with native exit 0: 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all ten prior private engine gates, fresh-process account recovery and all 39 browser scenarios. The charge gate passed 410 independent source-literal cases, 937 accepted transitions and 6,964 RNG draws. All 1,347 host and 1,347 raw boundaries recovered across independent builds and fresh processes, replaying 2,080 future transitions per host/raw path. Rejection checks passed for 113 host and 78 raw cases, with 18 candidate-failure checks and 14 timeout-bounded exhaustion checks. Integration passed 19 groups, 14 coherent capture-party handoffs, 128 restores and 109 diagnostic transitions. Public boundaries passed 85 HTTP checks across 73 built files. All ten previous WASM artifacts and 2,972 retained literal cases remain byte-identical.
+
+Protect, Pursuit and Mirror Move still fail whole-roster admission. The separate
+[Protect audit](../reports/protect-source-audit.json) records read-only source
+and existing local compiled-artifact evidence. Those compiled bytes are pinned
+separately from the source snapshot; no new ROM build, emulator run or Protect
+implementation is claimed. Its out-of-bounds C table behavior still needs an
+explicit portable compatibility policy. Earlier evidence below keeps its
+original profile scope and pins.
+
 ## Twenty-second-pass private tactics: verified
 
 The separate `firered-family-tactics-v1` profile extends the retained eight-species,

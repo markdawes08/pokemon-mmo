@@ -11,8 +11,8 @@ party=importlib.util.module_from_spec(spec);spec.loader.exec_module(party)
 base=party.base
 replace=party.replace
 
-def extract(out):
-    party.extract(out,tactics=True)
+def extract(out, *, charge=False):
+    party.extract(out,tactics=True,charge=charge)
     report=json.loads((out/'extraction-manifest.json').read_text())
     source=base.Extraction()
     replace(out/'battle_spike.c','#define WATERBLUE_PARTY 1','#define WATERBLUE_TACTICS 1\n#define WATERBLUE_PARTY 1')

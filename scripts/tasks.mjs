@@ -142,7 +142,7 @@ async function command(name, args) {
     case 'start': return serve(true);
     case 'build': return build();
     case 'typecheck': return tool('typescript/bin/tsc', '--noEmit');
-    case 'lint': return tool('eslint/bin/eslint.js', 'apps', 'packages', 'scripts', 'tools/battle-spike', 'tools/encounter-core', 'tools/battle-route1', 'tools/battle-progression', 'tools/battle-loss', 'tools/battle-capture', 'tools/battle-evolution', 'tools/battle-family', 'tools/battle-party', 'tools/battle-tactics', '*.config.ts', '*.config.mjs');
+    case 'lint': return tool('eslint/bin/eslint.js', 'apps', 'packages', 'scripts', 'tools/battle-spike', 'tools/encounter-core', 'tools/battle-route1', 'tools/battle-progression', 'tools/battle-loss', 'tools/battle-capture', 'tools/battle-evolution', 'tools/battle-family', 'tools/battle-party', 'tools/battle-tactics', 'tools/battle-charge', '*.config.ts', '*.config.mjs');
     case 'test:unit':
       await tool('vitest/vitest.mjs', 'run');
       return run(python, ['-m', 'unittest', 'discover', '-s', 'tools/content-import', '-p', 'test_*.py', '-v']);
@@ -198,6 +198,10 @@ async function command(name, args) {
       await run(python, ['tools/battle-tactics/build.py']);
       await js('--import', 'tsx', 'tools/battle-tactics/verify.ts');
       return js('--import', 'tsx', 'tools/battle-tactics/verify-integration.ts');
+    case 'battle:charge':
+      await run(python, ['tools/battle-charge/build.py']);
+      await js('--import', 'tsx', 'tools/battle-charge/verify.ts');
+      return js('--import', 'tsx', 'tools/battle-charge/verify-integration.ts');
     case 'battle:spike':
       await run(python, ['tools/battle-spike/build.py']);
       await js('--import', 'tsx', 'tools/battle-spike/verify.ts');
@@ -214,11 +218,11 @@ async function command(name, args) {
     case 'content:check': return converter('check', ...args);
     case 'verify': {
       const results = [];
-      for (const stage of ['doctor', 'lint', 'typecheck', 'test:unit', 'test:integration', 'content:check', 'battle:spike', 'encounter:check', 'battle:route1', 'battle:progression', 'battle:loss', 'battle:capture', 'battle:evolution', 'battle:family', 'battle:party', 'battle:tactics', 'build', 'test:boundaries', 'test:recovery', 'test:e2e']) {
+      for (const stage of ['doctor', 'lint', 'typecheck', 'test:unit', 'test:integration', 'content:check', 'battle:spike', 'encounter:check', 'battle:route1', 'battle:progression', 'battle:loss', 'battle:capture', 'battle:evolution', 'battle:family', 'battle:party', 'battle:tactics', 'battle:charge', 'build', 'test:boundaries', 'test:recovery', 'test:e2e']) {
         console.log(`\n[verify] ${stage}`);
         try { await command(stage, []); results.push({ stage, status: 'passed' }); }
         catch (error) { results.push({ stage, status: 'failed', message: error.message }); throw error; }
-        finally { await mkdir('reports', { recursive: true }); await writeFile('reports/verification.json', JSON.stringify({ checkedAt: new Date().toISOString(), results, scope: 'P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 encounter factory, real-team Route 1 battle mechanics, victory progression, blackout, capture and evolution continuations plus diagnostic family combat and party switching/faint decisions and five further family moves with rain/forced escape; live R1 battles, persistent outcomes and story gameplay not implemented' }, null, 2) + '\n'); }
+        finally { await mkdir('reports', { recursive: true }); await writeFile('reports/verification.json', JSON.stringify({ checkedAt: new Date().toISOString(), results, scope: 'P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 encounter factory, real-team Route 1 battle mechanics, victory progression, blackout, capture and evolution continuations plus diagnostic family combat and party switching/faint decisions and five further family moves with rain/forced escape and Skull Bash charging/forced continuation; live R1 battles, persistent outcomes and story gameplay not implemented' }, null, 2) + '\n'); }
       }
       return;
     }

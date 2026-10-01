@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-01T01:58:37.417Z",
+  "status": "passed",
+  "wasmSha256": "662633e05265663a20a02141939c4fdc78ef0be27d53df99507596280a216f5c",
+  "crossBuildHostBoundaries": 1103,
+  "crossBuildRawBoundaries": 1103,
+  "replayedTransitions": 1699,
+  "replayedRawTransitions": 1699,
+  "freshProcess": {
+    "parentPid": 31724,
+    "status": "passed",
+    "pid": 33284,
+    "hostBoundaries": 1103,
+    "rawBoundaries": 1103,
+    "transitions": 1699,
+    "rawTransitions": 1699
+  },
+  "candidateFailures": 11,
+  "candidateFailureChecks": [
+    "event counter overflow after source execution",
+    "switch candidate publication failure",
+    "rain-five-turns-repeat-and-recast:0 publication failure",
+    "rain-five-turns-repeat-and-recast:4 publication failure",
+    "whirlwind-actor-0-levels-60-60-success-True:0 publication failure",
+    "first-draw-candidate-rollback",
+    "next-ai-candidate-rollback",
+    "faint-escape-candidate-rollback",
+    "replacement-next-turn-candidate-rollback",
+    "force-gate-after-PP-candidate-rollback",
+    "rain-cast-and-field-tick-next-ai-candidate-rollback"
+  ],
+  "exhaustion": {
+    "status": "passed",
+    "pid": 25260,
+    "checks": [
+      "raw-depleted-slot-loop-traps",
+      "raw-empty-slot-loop-traps",
+      "first-draw-candidate-rollback",
+      "next-ai-candidate-rollback",
+      "faint-escape-candidate-rollback",
+      "replacement-next-turn-candidate-rollback",
+      "raw-lower-level-force-gate-traps-after-last-accuracy-draw",
+      "force-gate-after-PP-candidate-rollback",
+      "rain-cast-and-field-tick-next-ai-candidate-rollback"
+    ]
+  },
+  "scope": "Logical recovery and candidate isolation only; no authentication, DB acknowledgement or durable receipt claim."
+}

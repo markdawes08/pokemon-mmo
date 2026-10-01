@@ -1,0 +1,3150 @@
+{
+  "checkedAt": "2026-10-01T02:49:26.205Z",
+  "status": "passed",
+  "profile": "firered-family-charge-v1",
+  "wasmSha256": "c2d5ac7786979cf0288ab624f5c8a7b81516c7c34458ceddd54923de99541151",
+  "fixtureSha256": "167b44266ca4b5d2bfffd9f9919d6d9b7ab60dc92688bb7ca7ca98e96e3cd54c",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "independence": "Independent test-only source arithmetic and charging/scheduling oracle; no production-generated expectations or original-ROM comparison",
+  "sourceCases": 410,
+  "transitions": 937,
+  "checkedDraws": 6964,
+  "hostBoundaries": 1347,
+  "rawBoundaries": 1347,
+  "replayedTransitions": 2080,
+  "replayedRawTransitions": 2080,
+  "hostRejectionChecks": 113,
+  "rawRejectionChecks": 78,
+  "candidateFailures": 18,
+  "candidateFailureChecks": [
+    "event counter overflow after source execution",
+    "switch candidate publication failure",
+    "rain-five-turns-repeat-and-recast:0 publication failure",
+    "rain-five-turns-repeat-and-recast:4 publication failure",
+    "whirlwind-actor-0-levels-60-60-success-True:0 publication failure",
+    "charge-last-PP-release-before-Struggle:0 publication failure",
+    "charge-last-PP-release-before-Struggle:1 publication failure",
+    "flinch-cancels-charge-second-no-PP-or-accuracy:1 publication failure",
+    "wild-charge-retained-over-player-pre-residual-recoil-faint:2 publication failure",
+    "first-draw-candidate-rollback",
+    "next-ai-candidate-rollback",
+    "faint-escape-candidate-rollback",
+    "replacement-next-turn-candidate-rollback",
+    "force-gate-after-PP-candidate-rollback",
+    "rain-cast-and-field-tick-next-ai-candidate-rollback",
+    "first-charge-PP-defense-lock-next-ai-candidate-rollback",
+    "release-cleared-lock-before-critical-candidate-rollback",
+    "wild-release-candidate-rollback"
+  ],
+  "exhaustion": {
+    "status": "passed",
+    "pid": 28764,
+    "checks": [
+      "raw-depleted-slot-loop-traps",
+      "raw-empty-slot-loop-traps",
+      "first-draw-candidate-rollback",
+      "next-ai-candidate-rollback",
+      "faint-escape-candidate-rollback",
+      "replacement-next-turn-candidate-rollback",
+      "raw-lower-level-force-gate-traps-after-last-accuracy-draw",
+      "force-gate-after-PP-candidate-rollback",
+      "rain-cast-and-field-tick-next-ai-candidate-rollback",
+      "first-charge-PP-defense-lock-next-ai-candidate-rollback",
+      "release-cleared-lock-before-critical-candidate-rollback",
+      "raw-PP0-release-traps-at-next-draw-without-retry-loop",
+      "raw-locked-wild-chooser-needs-no-draw-even-at-limit",
+      "wild-release-candidate-rollback"
+    ]
+  },
+  "interleavedTransitions": 7,
+  "saturationChecks": 2,
+  "negatives": [
+    "input:unsupported bench whole moveset 119",
+    "input:unsupported bench whole moveset 182",
+    "input:unsupported bench whole moveset 228",
+    "input:empty party",
+    "input:seven members",
+    "input:all fainted",
+    "input:fainted status uncleared",
+    "input:dead wild",
+    "input:foreign bench species",
+    "input:wrong bench cached stats",
+    "input:wrong ability",
+    "input:bench PP cap",
+    "input:empty bonus",
+    "input:bonus cap",
+    "input:IV cap",
+    "input:EV cap",
+    "input:basis beyond EV",
+    "input:held item",
+    "input:weather",
+    "input:unavailable bench status 1",
+    "input:unavailable bench status 4",
+    "input:unavailable bench status 24",
+    "input:unavailable bench status 32",
+    "input:unavailable bench status 64",
+    "input:unavailable bench status 128",
+    "input:unavailable bench status 4294967295",
+    "choice:{\"kind\":\"switch\",\"partyIndex\":0}",
+    "choice:{\"kind\":\"switch\",\"partyIndex\":2}",
+    "choice:{\"kind\":\"switch\",\"partyIndex\":-1}",
+    "choice:{\"kind\":\"switch\",\"partyIndex\":6}",
+    "choice:{\"kind\":\"switch\",\"partyIndex\":1,\"seed\":1}",
+    "choice:{\"kind\":\"replace\",\"partyIndex\":1,\"decisionId\":\"0000000000000000000000000000000000000000000000000000000000000000\"}",
+    "choice:{\"kind\":\"attempt-run\",\"decisionId\":\"0000000000000000000000000000000000000000000000000000000000000000\"}",
+    "choice:{\"kind\":\"item\",\"itemId\":13}",
+    "choice:{\"kind\":\"item\",\"itemId\":4}",
+    "choice:{\"kind\":\"move\",\"slot\":4}",
+    "choice:{\"kind\":\"struggle\"}",
+    "duplicate/foreign/empty actors",
+    "checkpoint:version",
+    "checkpoint:reserved",
+    "checkpoint:missing intro",
+    "checkpoint:capture marker",
+    "checkpoint:wide run counter",
+    "checkpoint:party size",
+    "checkpoint:active outside party",
+    "checkpoint:sent outside party",
+    "checkpoint:switch counter overflow",
+    "checkpoint:unearned pending",
+    "checkpoint:unearned decision",
+    "checkpoint:faint mask",
+    "checkpoint:tail reserved",
+    "checkpoint:bench immutable XP",
+    "checkpoint:bench cached stats",
+    "checkpoint:phantom roster",
+    "checkpoint:bench party HP projection",
+    "checkpoint:hidden enemy bench",
+    "checkpoint:unavailable flinch",
+    "checkpoint:unsupported volatile",
+    "checkpoint:unlearned focus",
+    "checkpoint:bench PP refill",
+    "checkpoint:RNG state",
+    "checkpoint:RNG count",
+    "checkpoint:wild choice",
+    "checkpoint:sequence relation",
+    "checkpoint:turn relation",
+    "checkpoint:live provenance",
+    "checkpoint:bag injection",
+    "checkpoint:friendship before faint",
+    "checkpoint:unused bench HP decreases without participation",
+    "checkpoint:unused bench PP decreases without participation",
+    "checkpoint:clear with timer",
+    "checkpoint:rain without timer",
+    "checkpoint:permanent rain",
+    "checkpoint:downpour",
+    "checkpoint:duration overflow",
+    "checkpoint:unticked choice rain",
+    "checkpoint:weather without source move",
+    "checkpoint:forced escape wrong source move",
+    "checkpoint:forced escape PP never spent",
+    "checkpoint:forced escape outcome alias",
+    "input:unsupported state hazards",
+    "input:unsupported state wrap",
+    "input:unsupported state leechSeed",
+    "input:unsupported state protect",
+    "input:unsupported state charging",
+    "input:unsupported state lastTakenMove",
+    "input:unsupported state weatherDuration",
+    "checkpoint:missing active lock value",
+    "checkpoint:foreign locked move",
+    "checkpoint:wrong retained slot",
+    "checkpoint:source target self",
+    "checkpoint:transient charging flag at choice",
+    "checkpoint:charging flag outside bool",
+    "checkpoint:reserved charge tail",
+    "checkpoint:charge marked Struggle fallback",
+    "checkpoint:unsupported combined volatile",
+    "checkpoint:charge restored without admission PP spent",
+    "checkpoint:charge wild-charge-retained-over-player-pre-residual-recoil-faint:1 cannot retain action 2",
+    "checkpoint:charge wild-charge-retained-over-player-pre-residual-recoil-faint:1 cannot retain action 3",
+    "checkpoint:charge charge-Whirlwind-terminal-retains-lock:1 cannot retain action 2",
+    "checkpoint:charge charge-Whirlwind-terminal-retains-lock:1 cannot retain action 3",
+    "locked choice:{\"kind\":\"move\",\"slot\":0}",
+    "locked choice:{\"kind\":\"struggle\"}",
+    "locked choice:{\"kind\":\"run\"}",
+    "locked choice:{\"kind\":\"switch\",\"partyIndex\":1}",
+    "locked choice:{\"kind\":\"continue-charge\",\"decisionId\":\"0000000000000000000000000000000000000000000000000000000000000000\"}",
+    "locked choice:{\"kind\":\"continue-charge\",\"decisionId\":\"74fe8b2e997ad0e4f1709aca453fd602e228c52bbfdffc6bed606dcf26889b8e\",\"slot\":0}",
+    "released acknowledgement cannot replay",
+    "old charge acknowledgement cannot release later lock",
+    "pending action fences:faint-speed-escape-false:1",
+    "pending action fences:faint-speed-escape-false:2",
+    "failed faint escape cannot reroll",
+    "duplicate pending decisions cannot apply twice"
+  ],
+  "rawNegatives": [
+    "version",
+    "reserved",
+    "flinch",
+    "bad status",
+    "foreign ability",
+    "foreign species",
+    "unknown move",
+    "PP cap",
+    "bonus cap",
+    "invalid stage",
+    "capture marker",
+    "roster count",
+    "roster count overflow",
+    "active missing",
+    "sent missing active",
+    "sent unknown",
+    "switch counter",
+    "pending wrong boundary",
+    "decision without prompt",
+    "phantom bench",
+    "full bench stat mismatch",
+    "active roster HP mismatch",
+    "bench HP projection mismatch",
+    "hidden wild bench",
+    "faint mask",
+    "tail reserved",
+    "clear timer",
+    "zero rain timer",
+    "permanent rain",
+    "downpour",
+    "overflow rain timer",
+    "unsettled cast timer",
+    "forced end cannot tick field again",
+    "forced outcome requires Whirlwind",
+    "forced selected Whirlwind source PP never spent",
+    "forced outcome selected valid different move",
+    "missing active lock value",
+    "foreign locked move",
+    "wrong retained slot",
+    "source target self",
+    "transient charging flag at choice",
+    "charging flag outside bool",
+    "reserved charge tail",
+    "charge marked Struggle fallback",
+    "unsupported combined volatile",
+    "charge wild-charge-retained-over-player-pre-residual-recoil-faint:1 cannot retain action 2",
+    "charge wild-charge-retained-over-player-pre-residual-recoil-faint:1 cannot retain action 3",
+    "charge charge-Whirlwind-terminal-retains-lock:1 cannot retain action 2",
+    "charge charge-Whirlwind-terminal-retains-lock:1 cannot retain action 3",
+    "locked raw order action 1",
+    "locked raw order action 2",
+    "import staging:duplicate",
+    "import staging:out-of-range",
+    "import staging:incomplete",
+    "invalid switch 0/0",
+    "invalid switch 2/0",
+    "invalid switch 6/0",
+    "invalid switch 1/1",
+    "invalid switch 1/2",
+    "mon:species",
+    "mon:stat u16",
+    "mon:status",
+    "mon:unsupported move",
+    "mon:XP",
+    "mon:cached stat",
+    "mon:ability slot",
+    "mon:IV",
+    "mon:EV",
+    "mon:PP",
+    "mon:PP bonuses",
+    "mon:held",
+    "mon:Pokerus",
+    "mon:basis",
+    "mon staging:duplicate",
+    "mon staging:out-of-range",
+    "mon staging:incomplete",
+    "raw failed escape cannot reroll",
+    "raw faint friendship cannot apply twice"
+  ],
+  "retained": {
+    "tools/battle-route1/fixtures/source-cases.json": "6e8127ab6bac381bb62266c0d6df1f3d0814cda5ba54a026ad01e40e920f48ac",
+    "tools/battle-route1/fixtures/items-cases.json": "1d1e05e66692787c0cbefd4ebe389ab7bc691097578e73cfd486fb21e5aa91d1",
+    "tools/battle-progression/fixtures/source-cases.json": "23101fd4be7533cea2e64c055d80fc15f3170be86d4ba52f418d8d7bacc7e27c",
+    "tools/battle-loss/fixtures/source-cases.json": "dbfe309e1a8ce56fdf691710858785756f910c3502c926935112632c5d93cd1b",
+    "tools/battle-capture/fixtures/source-cases.json": "47a4b1ebf06bfc055a25fd119834f76c4f4243afe6ceddb5ac49c968e37c8c3c",
+    "tools/battle-evolution/fixtures/source-cases.json": "9e629febd8845dc6e281164f6ee93ff964dab6d11f186754832ac19002307c8f",
+    "tools/battle-family/fixtures/source-cases.json": "e8aea6e37946e3201d86a181f36e4d1bc00e102dca4e8e7b8564698295f64ed3",
+    "tools/battle-party/fixtures/source-cases.json": "4db4ff56299e5b8ef5a5a77035c0419095333a61d40060a5997b612946b22c32",
+    "tools/battle-tactics/fixtures/source-cases.json": "03736f527ee900a22c061844046ea39672001788bc85f3a7bcd5d294e65a1653",
+    ".local/battle-spike/primary/probe.wasm": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724",
+    ".local/encounter-core/primary/encounter.wasm": "8b46d731fdf20c16213a6cb7dc9e1e14dccbd3a65fe4c4ac45d3e70c8a885bd2",
+    ".local/battle-route1/primary/route1.wasm": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02",
+    ".local/battle-progression/primary/progression.wasm": "33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539",
+    ".local/battle-loss/primary/loss.wasm": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a",
+    ".local/battle-capture/primary/capture.wasm": "1e6b16390cdaa4906c01b391c30984735a22e998f548e9ff7de44d890865a60b",
+    ".local/battle-evolution/primary/evolution.wasm": "1585f15e7aef6a5ed952cbf3f17041d5382163e39f51c3b1ed3ac65f41495c5c",
+    ".local/battle-family/primary/family.wasm": "810a16bcc7b714426edb80f933deaf8afefb65240c95464980d03e4f92a28e65",
+    ".local/battle-party/primary/party.wasm": "4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9",
+    ".local/battle-tactics/primary/tactics.wasm": "662633e05265663a20a02141939c4fdc78ef0be27d53df99507596280a216f5c"
+  },
+  "cases": [
+    {
+      "id": "single-control-move-16-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-move-17-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-move-28-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-move-33-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "single-control-move-39-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-move-44-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "single-control-move-55-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "single-control-move-56-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "single-control-move-97-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-move-98-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-move-110-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-move-116-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-move-145-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "single-control-move-158-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-move-184-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-move-297-source",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-species-7-both-sides",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 48
+    },
+    {
+      "id": "single-control-species-8-both-sides",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 48
+    },
+    {
+      "id": "single-control-species-9-both-sides",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 48
+    },
+    {
+      "id": "single-control-species-16-both-sides",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 48
+    },
+    {
+      "id": "single-control-species-17-both-sides",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 48
+    },
+    {
+      "id": "single-control-species-18-both-sides",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 48
+    },
+    {
+      "id": "single-control-species-19-both-sides",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 48
+    },
+    {
+      "id": "single-control-species-20-both-sides",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 48
+    },
+    {
+      "id": "single-control-nature-0-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-1-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-2-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-3-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-4-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-5-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-6-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-7-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-8-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-9-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-10-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-11-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-12-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-13-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-14-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-15-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-16-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-17-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-18-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-19-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-20-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-21-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-22-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-23-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-nature-24-water",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-torrent-7-threshold-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-torrent-7-threshold0",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-torrent-7-threshold1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-torrent-8-threshold-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-torrent-8-threshold0",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-torrent-8-threshold1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-torrent-9-threshold-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-torrent-9-threshold0",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-torrent-9-threshold1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-guts-19-ability0-status0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-19-ability0-status8",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-19-ability0-status16",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-19-ability1-status0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-19-ability1-status8",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-19-ability1-status16",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-20-ability0-status0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-20-ability0-status8",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-20-ability0-status16",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-20-ability1-status0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-20-ability1-status8",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-guts-20-ability1-status16",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-burn-special-unaffected",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "single-control-keen-eye-accuracy-only",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-stage-limit-110",
+      "status": "passed",
+      "transitions": 9,
+      "outcome": null,
+      "draws": 48
+    },
+    {
+      "id": "single-control-stage-limit-97",
+      "status": "passed",
+      "transitions": 9,
+      "outcome": null,
+      "draws": 48
+    },
+    {
+      "id": "single-control-stage-limit-297",
+      "status": "passed",
+      "transitions": 9,
+      "outcome": null,
+      "draws": 53
+    },
+    {
+      "id": "single-control-stage-limit-184",
+      "status": "passed",
+      "transitions": 9,
+      "outcome": null,
+      "draws": 53
+    },
+    {
+      "id": "single-control-stage-limit-39",
+      "status": "passed",
+      "transitions": 9,
+      "outcome": null,
+      "draws": 53
+    },
+    {
+      "id": "single-control-stage-limit-28",
+      "status": "passed",
+      "transitions": 9,
+      "outcome": null,
+      "draws": 53
+    },
+    {
+      "id": "single-control-focus-energy-repeat-and-critical",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 26
+    },
+    {
+      "id": "single-control-priority-over-faster-opponent",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-equal-priority-speed-tie",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 35
+    },
+    {
+      "id": "single-control-agility-changes-later-order",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-secondary-145-residue0",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 12
+    },
+    {
+      "id": "single-control-secondary-145-residue10",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 14
+    },
+    {
+      "id": "single-control-secondary-145-residue11",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 16
+    },
+    {
+      "id": "single-control-secondary-145-residue99",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 11
+    },
+    {
+      "id": "single-control-secondary-44-residue0",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-secondary-44-residue30",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 14
+    },
+    {
+      "id": "single-control-secondary-44-residue31",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 19
+    },
+    {
+      "id": "single-control-secondary-44-residue99",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 11
+    },
+    {
+      "id": "single-control-secondary-158-residue0",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-secondary-158-residue10",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 16
+    },
+    {
+      "id": "single-control-secondary-158-residue11",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 14
+    },
+    {
+      "id": "single-control-secondary-158-residue99",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 8
+    },
+    {
+      "id": "single-control-flinch-fast-prevents-pp-and-rng",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "single-control-flinch-slow-cannot-delay-next-turn",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-flinch-can-cancel-focus-energy",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-flinch-can-cancel-automatic-struggle",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 6
+    },
+    {
+      "id": "single-control-residual-8-three-turns",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-residual-8-first-faint-stops-other",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "won",
+      "draws": 4
+    },
+    {
+      "id": "single-control-residual-16-three-turns",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "single-control-residual-16-first-faint-stops-other",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "won",
+      "draws": 4
+    },
+    {
+      "id": "single-control-run-away-slower-no-run-draw",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "ran",
+      "draws": 4
+    },
+    {
+      "id": "single-control-run-guts-slower-fail-then-success",
+      "status": "passed",
+      "transitions": 5,
+      "outcome": "ran",
+      "draws": 23
+    },
+    {
+      "id": "single-control-run-ignores-agility-stages",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-wild-empty-and-zero-pp-retry",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 9
+    },
+    {
+      "id": "single-control-last-pp-then-struggle",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 35
+    },
+    {
+      "id": "single-control-both-struggle-no-ai-draw",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 29
+    },
+    {
+      "id": "single-control-struggle-double-faint",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "draw",
+      "draws": 4
+    },
+    {
+      "id": "single-control-focus-faint-clears-status2",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "lost",
+      "draws": 4
+    },
+    {
+      "id": "single-control-normal-critical-ignores-negative-attack",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": "won",
+      "draws": 39
+    },
+    {
+      "id": "single-control-miss-33",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 17
+    },
+    {
+      "id": "single-control-miss-56",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 12
+    },
+    {
+      "id": "single-control-miss-158",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 21
+    },
+    {
+      "id": "single-control-miss-184",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 21
+    },
+    {
+      "id": "single-control-level-boundary-7-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-7-100",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-8-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-8-100",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-9-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-9-100",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-16-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-16-100",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-17-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-17-100",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-18-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-18-100",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-19-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-19-100",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-20-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-level-boundary-20-100",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "single-control-iv-boundary-0",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-iv-boundary-31",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "single-control-cached-ev-provenance-no-battle-recalculation",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "party-2-switch-index-1",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-3-switch-index-1",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-3-switch-index-2",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-4-switch-index-1",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-4-switch-index-2",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-4-switch-index-3",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-5-switch-index-1",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-5-switch-index-2",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-5-switch-index-3",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-5-switch-index-4",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-6-switch-index-1",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-6-switch-index-2",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-6-switch-index-3",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-6-switch-index-4",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "party-6-switch-index-5",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "first-living-0",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "first-living-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "first-living-2",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "first-living-3",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "first-living-4",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "first-living-5",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "outgoing-status-0-no-bench-residual",
+      "status": "passed",
+      "transitions": 5,
+      "outcome": null,
+      "draws": 35
+    },
+    {
+      "id": "outgoing-status-8-no-bench-residual",
+      "status": "passed",
+      "transitions": 5,
+      "outcome": null,
+      "draws": 35
+    },
+    {
+      "id": "outgoing-status-16-no-bench-residual",
+      "status": "passed",
+      "transitions": 5,
+      "outcome": null,
+      "draws": 35
+    },
+    {
+      "id": "switch-before-quick-attack",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "switch-action-tie-no-draw",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "forced-before-residual-index-1",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "forced-before-residual-index-2",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "forced-before-residual-index-3",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "forced-before-residual-index-4",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "forced-before-residual-index-5",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "double-prompt-new-replacement-8-residual",
+      "status": "passed",
+      "transitions": 6,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "post-residual-replacement-8-not-damaged-twice",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "double-prompt-new-replacement-16-residual",
+      "status": "passed",
+      "transitions": 6,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "post-residual-replacement-16-not-damaged-twice",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "forced-incoming-slot-priority-residual",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "forced-incoming-empty-slot-residual",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fainted-runaway-no-draw",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": "ran",
+      "draws": 8
+    },
+    {
+      "id": "faint-speed-escape-false",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 25
+    },
+    {
+      "id": "faint-speed-escape-true",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": "ran",
+      "draws": 9
+    },
+    {
+      "id": "struggle-double-ko-with-living-bench-wins",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "won",
+      "draws": 7
+    },
+    {
+      "id": "fainted-faster-escape-no-draw",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": "ran",
+      "draws": 8
+    },
+    {
+      "id": "faint-friendship-gap-0-band-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-0-band-1",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-0-band-4",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-0-band-5",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-0-band-99",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-0-band-100",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-0-band-199",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-0-band-200",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-0-band-255",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-29-band-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-29-band-1",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-29-band-4",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-29-band-5",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-29-band-99",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-29-band-100",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-29-band-199",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-29-band-200",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-29-band-255",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-30-band-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-30-band-1",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-30-band-4",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-30-band-5",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-30-band-99",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-30-band-100",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-30-band-199",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-30-band-200",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "faint-friendship-gap-30-band-255",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "switch-source-species-7-ability-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 35
+    },
+    {
+      "id": "switch-source-species-8-ability-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "switch-source-species-9-ability-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "switch-source-species-16-ability-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "switch-source-species-17-ability-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "switch-source-species-18-ability-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "switch-source-species-19-ability-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "switch-source-species-19-ability-1",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "switch-source-species-20-ability-0",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "switch-source-species-20-ability-1",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "six-party-total-exhaustion",
+      "status": "passed",
+      "transitions": 16,
+      "outcome": "lost",
+      "draws": 49
+    },
+    {
+      "id": "struggle-clears-fallback-residual-reads-quick-slot",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "wild-last-pp-retained-through-prompt",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 13
+    },
+    {
+      "id": "both-residual-faint-with-bench-wins-no-prompt",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "won",
+      "draws": 5
+    },
+    {
+      "id": "incoming-exhausted-quick-struggle",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "switch-keen-eye-blocks-sand-attack",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "switch-torrent-current-hp",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "fang-target-hp-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "won",
+      "draws": 6
+    },
+    {
+      "id": "fang-target-hp-2",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-target-hp-3",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-target-hp-4",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-target-hp-7",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-target-hp-99",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-target-hp-100",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-target-hp-213",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-status-0-ability-0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-status-0-ability-1",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-status-8-ability-0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-status-8-ability-1",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-status-16-ability-0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-status-16-ability-1",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "fang-miss-spends-pp-no-critical-or-variance",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 21
+    },
+    {
+      "id": "endeavor-hp-difference--1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 6
+    },
+    {
+      "id": "endeavor-hp-difference-0",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 6
+    },
+    {
+      "id": "endeavor-hp-difference-1",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "endeavor-hp-difference-70",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "endeavor-faster-hit-changes-difference",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "endeavor-accuracy-miss-after-pp",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 12
+    },
+    {
+      "id": "endeavor-fixed-not-scaled-status-0",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "endeavor-fixed-not-scaled-status-8",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "endeavor-fixed-not-scaled-status-16",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "spin-species-7-no-secondary-draw",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "spin-species-8-no-secondary-draw",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "spin-species-9-no-secondary-draw",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "spin-knockout-still-certain-effect",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "won",
+      "draws": 7
+    },
+    {
+      "id": "spin-accuracy-miss-no-certain-effect",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "new-move-162-source-PP-bonus-3",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "flinch-cancels-new-move-162",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "new-move-283-source-PP-bonus-3",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "flinch-cancels-new-move-283",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "new-move-229-source-PP-bonus-3",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "flinch-cancels-new-move-229",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "new-move-240-source-PP-bonus-3",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "flinch-cancels-new-move-240",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "new-move-18-source-PP-bonus-3",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "flinch-cancels-new-move-18",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "rain-five-turns-repeat-and-recast",
+      "status": "passed",
+      "transitions": 7,
+      "outcome": null,
+      "draws": 60
+    },
+    {
+      "id": "wild-rain-no-accuracy-or-damage-rng",
+      "status": "passed",
+      "transitions": 6,
+      "outcome": null,
+      "draws": 23
+    },
+    {
+      "id": "rain-water-55-species-7-torrent-False",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-water-55-species-7-torrent-True",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-water-55-species-8-torrent-False",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-water-55-species-8-torrent-True",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-water-55-species-9-torrent-False",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-water-55-species-9-torrent-True",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-wild-water-55",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-water-56-species-7-torrent-False",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "rain-water-56-species-7-torrent-True",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "rain-water-56-species-8-torrent-False",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "rain-water-56-species-8-torrent-True",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "rain-water-56-species-9-torrent-False",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-water-56-species-9-torrent-True",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-wild-water-56",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-water-145-species-7-torrent-False",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-water-145-species-7-torrent-True",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-water-145-species-8-torrent-False",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-water-145-species-8-torrent-True",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-water-145-species-9-torrent-False",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-water-145-species-9-torrent-True",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-wild-water-145",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-1",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-2",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-rounded-base-nature-3",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-4",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-5",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-6",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-7",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-rounded-base-nature-8",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-9",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-10",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-rounded-base-nature-11",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-rounded-base-nature-12",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-13",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-rounded-base-nature-14",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-rounded-base-nature-15",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-16",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-17",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-rounded-base-nature-18",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-19",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-20",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-21",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-22",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-rounded-base-nature-23",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-rounded-base-nature-24",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "rain-guts-status-8-switch-preserves-weather",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "rain-post-residual-faint-8",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-pre-residual-faint-8",
+      "status": "passed",
+      "transitions": 5,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "rain-guts-status-16-switch-preserves-weather",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "rain-post-residual-faint-16",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-pre-residual-faint-16",
+      "status": "passed",
+      "transitions": 5,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "rain-fifth-turn-water-still-boosted",
+      "status": "passed",
+      "transitions": 6,
+      "outcome": null,
+      "draws": 35
+    },
+    {
+      "id": "rain-new-cast-paused-at-five-before-residual",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "rain-expiry-before-post-residual-faint",
+      "status": "passed",
+      "transitions": 8,
+      "outcome": null,
+      "draws": 53
+    },
+    {
+      "id": "whirlwind-actor-0-levels-60-60-success-True",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "whirlwind-actor-0-levels-100-60-success-True",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "whirlwind-actor-0-levels-20-100-success-True",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 6
+    },
+    {
+      "id": "whirlwind-actor-0-levels-20-100-success-False",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 27
+    },
+    {
+      "id": "whirlwind-actor-0-levels-60-100-success-True",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 6
+    },
+    {
+      "id": "whirlwind-actor-0-levels-60-100-success-False",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 27
+    },
+    {
+      "id": "whirlwind-actor-1-levels-60-60-success-True",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "whirlwind-actor-1-levels-100-60-success-True",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "whirlwind-actor-1-levels-20-100-success-True",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 6
+    },
+    {
+      "id": "whirlwind-actor-1-levels-20-100-success-False",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 27
+    },
+    {
+      "id": "whirlwind-actor-1-levels-60-100-success-True",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 6
+    },
+    {
+      "id": "whirlwind-actor-1-levels-60-100-success-False",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 27
+    },
+    {
+      "id": "whirlwind-lower-boundary-roll-52",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 7
+    },
+    {
+      "id": "whirlwind-lower-boundary-roll-53",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "whirlwind-lower-boundary-roll-54",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 4
+    },
+    {
+      "id": "whirlwind-lower-boundary-roll-55",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 4
+    },
+    {
+      "id": "whirlwind-lower-boundary-roll-255",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 4
+    },
+    {
+      "id": "wild-whirlwind-party-1-ends-not-shuffles",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "wild-whirlwind-party-2-ends-not-shuffles",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "wild-whirlwind-party-3-ends-not-shuffles",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "wild-whirlwind-party-4-ends-not-shuffles",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "wild-whirlwind-party-5-ends-not-shuffles",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "wild-whirlwind-party-6-ends-not-shuffles",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "wild-whirlwind-targets-incoming-switch",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 6
+    },
+    {
+      "id": "whirlwind-negative-priority-even-agility",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": "forced-escape",
+      "draws": 15
+    },
+    {
+      "id": "rain-forced-end-no-timer-tick",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": "forced-escape",
+      "draws": 16
+    },
+    {
+      "id": "rain-run-no-timer-tick",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": "ran",
+      "draws": 15
+    },
+    {
+      "id": "whirlwind-keen-eye-accuracy-retained",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 7
+    },
+    {
+      "id": "charge-species-7-actor-0",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "charge-species-7-actor-1",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "charge-species-8-actor-0",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 24
+    },
+    {
+      "id": "charge-species-8-actor-1",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "charge-species-9-actor-0",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 35
+    },
+    {
+      "id": "charge-species-9-actor-1",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 35
+    },
+    {
+      "id": "charge-slot-0-actor-0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-slot-0-actor-1",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-slot-1-actor-0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-slot-1-actor-1",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "charge-slot-2-actor-0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-slot-2-actor-1",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-slot-3-actor-0",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-slot-3-actor-1",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "charge-PP-bonus-0-single-spend",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-PP-bonus-1-single-spend",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-PP-bonus-2-single-spend",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-PP-bonus-3-single-spend",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-last-PP-release-before-Struggle",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "wild-charge-last-PP-release-before-Struggle",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 14
+    },
+    {
+      "id": "charge-withdraw-capped-defense-still-locks",
+      "status": "passed",
+      "transitions": 8,
+      "outcome": null,
+      "draws": 45
+    },
+    {
+      "id": "charge-status-0-damage-and-residual",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-status-8-damage-and-residual",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-status-16-damage-and-residual",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-0-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-1-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-2-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-3-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-4-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-5-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-6-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-7-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-8-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-9-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-10-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-11-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-12-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-13-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-14-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-15-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-16-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-17-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-18-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-19-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-20-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-21-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-22-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-23-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-nature-24-source-damage",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "charge-defense-applies-before-slower-attack",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": "won",
+      "draws": 14
+    },
+    {
+      "id": "charge-defense-applies-after-faster-attack",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 22
+    },
+    {
+      "id": "charge-release-miss-clears-lock-with-no-second-PP",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": null,
+      "draws": 41
+    },
+    {
+      "id": "flinch-cancels-charge-first-no-PP-or-accuracy",
+      "status": "passed",
+      "transitions": 2,
+      "outcome": "lost",
+      "draws": 14
+    },
+    {
+      "id": "flinch-cancels-charge-second-no-PP-or-accuracy",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": "lost",
+      "draws": 35
+    },
+    {
+      "id": "both-charge-same-turn-no-wild-reroll",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 45
+    },
+    {
+      "id": "wild-charge-hits-incoming-voluntary-switch",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 16
+    },
+    {
+      "id": "charge-release-then-switch-retains-inert-lockedMove",
+      "status": "passed",
+      "transitions": 7,
+      "outcome": null,
+      "draws": 45
+    },
+    {
+      "id": "player-charge-faints-from-residual-8",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "wild-charge-retained-over-player-post-residual-faint-8",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "player-charge-faints-from-residual-16",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 10
+    },
+    {
+      "id": "wild-charge-retained-over-player-post-residual-faint-16",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": null,
+      "draws": 15
+    },
+    {
+      "id": "wild-charge-retained-over-player-pre-residual-recoil-faint",
+      "status": "passed",
+      "transitions": 4,
+      "outcome": "lost",
+      "draws": 12
+    },
+    {
+      "id": "charge-terminal-opponent-residual-faint-retains-first-turn",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "won",
+      "draws": 4
+    },
+    {
+      "id": "charge-Whirlwind-terminal-retains-lock",
+      "status": "passed",
+      "transitions": 1,
+      "outcome": "forced-escape",
+      "draws": 5
+    },
+    {
+      "id": "charge-rain-ticks-both-turns",
+      "status": "passed",
+      "transitions": 3,
+      "outcome": null,
+      "draws": 18
+    },
+    {
+      "id": "charge-rain-expires-before-release",
+      "status": "passed",
+      "transitions": 6,
+      "outcome": null,
+      "draws": 35
+    }
+  ],
+  "scope": "Private source party diagnostics only. Source literals are not original-ROM evidence, authenticated saves, durable ownership or complete 25-move gameplay."
+}

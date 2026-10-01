@@ -91,7 +91,7 @@ The default database listener is `127.0.0.1:5433`. To select another free port o
 
 ## Checks and built preview
 
-`npm.cmd run verify` runs twenty stages: doctor, lint, typecheck, TypeScript/Python tests, database/network/asset/world/supervisor integration, independent content rebuild, the original C/WASM battle experiment, encounter factory, real-team Route 1 battle mechanics, victory progression, blackout continuation, capture continuation, evolution continuation, family combat, party switching, tactics, build, public/private file boundaries, built-backend account recovery and browser tests. Failures fail the command. Detailed results are under `reports/`; the full current run is `reports/verification.json`.
+`npm.cmd run verify` runs twenty-one stages: doctor, lint, typecheck, TypeScript/Python tests, database/network/asset/world/supervisor integration, independent content rebuild, the original C/WASM battle experiment, encounter factory, real-team Route 1 battle mechanics, victory progression, blackout continuation, capture continuation, evolution continuation, family combat, party switching, tactics, charge continuation, build, public/private file boundaries, built-backend account recovery and browser tests. Failures fail the command. Detailed results are under `reports/`; the full current run is `reports/verification.json`.
 
 The account integration checks use a separate loopback `TEST_DATABASE_URL` ending in `_test` and remove only their generated fixtures. `npm.cmd run test:recovery` requires a current build and free port 2570; it starts two separate built backend processes, verifies session/profile/receipt recovery, and shuts them down. Account browser scenarios serve the built client through an isolated backend on a random test port; asset browser scenarios use a separate owned backend OS process to isolate the auth library rate-limit state; the other browser scenarios use the normal preview or `TEST_BASE_URL`. Run `npm.cmd run build` before standalone `test:e2e` or `test:recovery`. Neither command seeds user accounts into the normal development database.
 
@@ -103,7 +103,7 @@ The account integration checks use a separate loopback `TEST_DATABASE_URL` endin
 
 ## Optional battle experiment toolchain
 
-`npm.cmd run battle:setup` downloads the pinned Zig 0.16.0 Windows x64 archive from its official source, verifies its size/SHA256 and installs it under `.tools/`. No PATH, registry or system service changes are made. This compiler is required for the current twenty-stage `verify`; ordinary `dev`/`start` use existing generated content without it.
+`npm.cmd run battle:setup` downloads the pinned Zig 0.16.0 Windows x64 archive from its official source, verifies its size/SHA256 and installs it under `.tools/`. No PATH, registry or system service changes are made. This compiler is required for the current twenty-one-stage `verify`; ordinary `dev`/`start` use existing generated content without it.
 
 `npm.cmd run battle:spike` verifies the compiler receipt, extracts pinned C inputs twice and compiles identical private WASM modules. It runs damage/RNG and turn goldens, C checkpoint rejection, logical recovery across independent builds/fresh Node processes, the six-method adapter and resource measurements. Reports are `reports/battle-spike-*.json`; outputs stay under `.local/battle-spike`. Missing tools, incompatible checkpoints and unsupported states fail clearly. Measurement output is observational and varies with machine load; it does not assert the later database/population/soak gates. No grass encounters, inventory effects or live saves are enabled. See [the experiment README](../tools/battle-spike/README.md) and [ADR-001](DECISIONS.md#adr-001---battle-implementation).
 
@@ -111,7 +111,7 @@ The account integration checks use a separate loopback `TEST_DATABASE_URL` endin
 
 `npm.cmd run battle:route1` independently builds the private real-team profile twice, checks retained Fight/Run and new Potion/Poke Ball source fixtures, verifies capture/inventory checkpoint recovery and exercises the existing six-method adapter. The captured result stops at pending disposition; it does not grant an owned creature. Run `encounter:check` first when its artifacts are absent. Source fixtures are test-only evidence; the command neither logs into testing accounts nor writes their assets. Outputs stay under `.local/battle-route1`, with evidence in `reports/battle-route1-*.json`. See [the profile scope](../tools/battle-route1/README.md) and ADR-015/016. Old real-profile snapshots are rejected after the version upgrade; no durable battle migration is implied.
 
-`npm.cmd run test:boundaries` requires completed `battle:spike`, `encounter:check`, `battle:route1`, `battle:progression`, `battle:loss`, `battle:capture`, `battle:evolution`, `battle:family`, `battle:party`, `battle:tactics` and `build` outputs. It scans the built public tree for private paths/WASM/selected identifiers, then starts an isolated Vite server on an ephemeral loopback port. Real private files must return HTTP 403 for direct, raw and URL requests, while the app and public content remain available. The server is closed afterward. Reports: `client-bundle-check.json` and `private-client-boundary.json`. This is a focused package/content boundary check, not a general security audit.
+`npm.cmd run test:boundaries` requires completed `battle:spike`, `encounter:check`, `battle:route1`, `battle:progression`, `battle:loss`, `battle:capture`, `battle:evolution`, `battle:family`, `battle:party`, `battle:tactics`, `battle:charge` and `build` outputs. It scans the built public tree for private paths/WASM/selected identifiers, then starts an isolated Vite server on an ephemeral loopback port. Real private files must return HTTP 403 for direct, raw and URL requests, while the app and public content remain available. The server is closed afterward. Reports: `client-bundle-check.json` and `private-client-boundary.json`. This is a focused package/content boundary check, not a general security audit.
 
 
 Thirteenth-pass verification: Full twelve-stage gate passed at 2026-09-27T01:05:06.972Z. 86 Vitest tests, 49 Python tests, 34 profile storage checks, 21 account/network groups, 30 asset groups, 27 world storage groups, 18 world network groups, 17 reconnect groups, retained battle checks, built account recovery and all 39 browser scenarios passed. The new encounter gate passed 43 independent creature cases, 17 transcripts/374 steps, 417 cross-build checkpoint boundaries and 93 fresh-process restores. The public boundary gate passed 31 HTTP checks and scanned 73 built files. Reports: encounter-core-verification.json, encounter-core-recovery.json, private-client-boundary.json, verification.json and encounter-runtime.json. This is a private encounter foundation; live R1 battles, captured assets and durable battle activity remain unimplemented.
@@ -211,3 +211,31 @@ assets, live battle entry or durable effects. Preserve ADMINA/ADMINB and use
 STATUS for current process ownership rather than historical runtime paragraphs.
 
 The resumed app uses foreground tool session 24597, with output streamed to that session. Current PIDs and coordinated shutdown are in STATUS; reports/battle-tactics-runtime.json records post-gate readiness and read-only account preservation. Logs: .local/twentysecond-focused.log and .local/twentysecond-verify.log; portable Python orchestration records native exits in reports/twentysecond-*-exit-status.json.
+
+## Private Skull Bash checks
+
+Run `npm.cmd run battle:charge` after the ten retained private engine gates,
+ending with `battle:tactics`; the full `verify` orders them automatically.
+The [charge README](../tools/battle-charge/README.md) lists the clean-output
+sequence. Outputs remain under `.local/battle-charge/`, with reports under
+`reports/battle-charge-*.json`. No database migration, account login, fixture
+reset or live battle entry is involved.
+
+The new profile admits 22 family moves plus automatic Struggle. Skull Bash's
+first turn spends PP and raises Defense, then the player has only the current
+sequence-fenced `continue-charge` acknowledgement. A locked release remains
+valid at zero PP and spends no additional PP. Wild continuation skips move
+selection RNG; its target remains the opposing actor after a party replacement.
+Flinch and faint cleanup release the active lock. Snapshot/restore retains the
+source's distinct active bit, inert locked move and charging-turn state.
+
+Focused integration passed 19 groups, 14 coherent handoffs, 128 restores,
+109 transitions and 25 faint decisions. Full twenty-one-stage gate passed at 2026-10-01T02:55:13.834Z with native exit 0: 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all ten prior private engine gates, fresh-process account recovery and all 39 browser scenarios. The charge gate passed 410 independent source-literal cases, 937 accepted transitions and 6,964 RNG draws. All 1,347 host and 1,347 raw boundaries recovered across independent builds and fresh processes, replaying 2,080 future transitions per host/raw path. Rejection checks passed for 113 host and 78 raw cases, with 18 candidate-failure checks and 14 timeout-bounded exhaustion checks. Integration passed 19 groups, 14 coherent capture-party handoffs, 128 restores and 109 diagnostic transitions. Public boundaries passed 85 HTTP checks across 73 built files. All ten previous WASM artifacts and 2,972 retained literal cases remain byte-identical. Historical gates above retain their original scope.
+Protect, Pursuit and Mirror Move remain rejected, including benched/exhausted
+slots. The separate [Protect audit](../reports/protect-source-audit.json) records
+source and separately pinned existing compiled artifacts without implementing
+Protect, rebuilding the ROM or executing it. Source-result proposals remain
+unowned diagnostics; complete party-aware results and durable/live application
+are still required. Preserve the existing user testing accounts.
+
+The foreground development process was retained throughout this pass. Current process ownership is in STATUS; reports/battle-charge-runtime.json records post-gate health and read-only testing-account preservation. Focused/full logs are .local/twentythird-focused.log and .local/twentythird-verify.log; reports/twentythird-*-exit-status.json records native exits.

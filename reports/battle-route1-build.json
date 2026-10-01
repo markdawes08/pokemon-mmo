@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-01T01:56:55.741034+00:00",
+  "checkedAt": "2026-10-01T02:46:47.927101+00:00",
   "status": "passed",
   "profile": "firered-route1-singles-v2",
   "scope": "Private source mechanics; not live battle or persistence",
@@ -2439,7 +2439,7 @@
       },
       {
         "path": "tools/battle-route1/extract.py",
-        "sha256": "b96205fc7bdc00e426c74917729a75f0a3cb9cda38d0384687225888db446855"
+        "sha256": "8bc144097f49189517601e71d3547dffc4797f8650c3a2fe203bc0632a30d369"
       },
       {
         "path": "tools/battle-route1/item_extract.py",

@@ -8,7 +8,7 @@ import { createServer } from 'vite';
 const root = process.cwd();
 const dist = resolve(root, 'apps/client/dist');
 const privateMarkers = ['privateEngineState', 'sRoute1_FireRed', 'encounterRateBuff', 'encounter_checkpoint', 'firered-route1-singles-v1', 'firered-route1-singles-v2',
-  'firered-route1-progression-v1', 'firered-route1-loss-v1', 'firered-route1-capture-v1', 'firered-route1-evolution-v1', 'firered-family-singles-v1', 'firered-family-party-v1', 'firered-family-tactics-v1', 'character_leases', 'command_receipts', 'password_hash', 'BETTER_AUTH_SECRET', 'DATABASE_URL'];
+  'firered-route1-progression-v1', 'firered-route1-loss-v1', 'firered-route1-capture-v1', 'firered-route1-evolution-v1', 'firered-family-singles-v1', 'firered-family-party-v1', 'firered-family-tactics-v1', 'firered-family-charge-v1', 'character_leases', 'command_receipts', 'password_hash', 'BETTER_AUTH_SECRET', 'DATABASE_URL'];
 const files = [], sha256 = {};
 async function inspect(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -17,7 +17,7 @@ async function inspect(directory) {
     if (entry.isDirectory()) { await inspect(path); continue; }
     assert(entry.isFile());
     const name = relative(dist, path).replaceAll('\\', '/');
-    assert(!/(?:^|\/)(?:server|database|encounter-core|battle-spike|battle-route1|battle-progression|battle-loss|battle-capture|battle-evolution|battle-family|battle-party|battle-tactics)(?:\/|$)|\.wasm$/i.test(name), `Private public artifact: ${name}`);
+    assert(!/(?:^|\/)(?:server|database|encounter-core|battle-spike|battle-route1|battle-progression|battle-loss|battle-capture|battle-evolution|battle-family|battle-party|battle-tactics|battle-charge)(?:\/|$)|\.wasm$/i.test(name), `Private public artifact: ${name}`);
     const bytes = await readFile(path);
     if (['.js', '.json', '.html', '.css', '.map'].includes(extname(path))) {
       const contents = bytes.toString('utf8');
@@ -56,6 +56,7 @@ try {
     'tools/battle-family/engine.ts', '.local/battle-family/primary/family.wasm',
     'tools/battle-party/engine.ts', '.local/battle-party/primary/party.wasm',
     'tools/battle-tactics/engine.ts', '.local/battle-tactics/primary/tactics.wasm',
+    'tools/battle-charge/engine.ts', '.local/battle-charge/primary/charge.wasm',
     'packages/content-schema/src/gameplay-server.ts', 'reports/encounter-dependencies.json', '.local/database.json']) {
     const absolute = resolve(root, path).replaceAll('\\', '/');
     assert((await stat(absolute)).isFile(), `Boundary test requires a real file: ${path}`);

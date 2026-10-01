@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-01T01:59:03.207Z",
+  "checkedAt": "2026-10-01T02:49:57.673Z",
   "status": "passed",
   "scope": "Selected real private files denied by Vite for direct, raw and URL requests; public app assets retained. No account login or mutation.",
   "requests": [
@@ -395,6 +395,42 @@
     },
     {
       "path": ".local/battle-tactics/primary/tactics.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-charge/engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-charge/engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-charge/engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-charge/primary/charge.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-charge/primary/charge.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-charge/primary/charge.wasm",
       "suffix": "?url",
       "method": "GET",
       "status": 403

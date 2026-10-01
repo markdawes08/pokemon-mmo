@@ -26,6 +26,7 @@
     "battle:family": "node scripts/run.mjs battle:family",
     "battle:party": "node scripts/run.mjs battle:party",
     "battle:tactics": "node scripts/run.mjs battle:tactics",
+    "battle:charge": "node scripts/run.mjs battle:charge",
     "encounter:check": "node scripts/run.mjs encounter:check",
     "test:boundaries": "node scripts/run.mjs test:boundaries",
     "verify": "node scripts/run.mjs verify",

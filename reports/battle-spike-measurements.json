@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-01T01:56:52.331Z",
+  "checkedAt": "2026-10-01T02:46:44.571Z",
   "status": "measured",
   "batch": 3,
   "scope": "Private four-move source/host probe and six-method contract including logical checkpoint paths; no database, network, room or production load",
@@ -70,7 +70,7 @@
     "measuredRounds": 40,
     "heldBattleCount": 20,
     "churnCycles": 10,
-    "workloadMilliseconds": 6426.860900000001,
+    "workloadMilliseconds": 6600.9597,
     "concurrentWaves": 20,
     "transitionsPerConcurrentWave": 25,
     "restoredBoundaryCounts": {
@@ -81,175 +81,175 @@
     },
     "timingBoundary": "Operations exclude independent golden assertions and surrounding benchmark work. Probe advance includes host validation, logical checkpoint restoration into a candidate instance and source execution. Contract cycles include both choice validations, advance, both viewer projections, snapshot validation and JSON preparation for a commit, without a database. Restore receives parsed logical JSON."
   },
-  "moduleLoadAndCompileMilliseconds": 1.0823000000000036,
+  "moduleLoadAndCompileMilliseconds": 0.9047999999999945,
   "operationMilliseconds": {
     "create": {
       "count": 600,
-      "min": 0.035700000000133514,
-      "median": 0.0545999999999367,
-      "p95": 0.21300000000064756,
-      "p99": 0.8726000000006024,
-      "max": 25.140300000000025
+      "min": 0.03530000000000655,
+      "median": 0.048699999999826105,
+      "p95": 0.35239999999976135,
+      "p99": 0.6579999999999018,
+      "max": 1.3575000000000728
     },
     "snapshot": {
       "count": 1360,
-      "min": 0.03720000000021173,
-      "median": 0.04610000000002401,
-      "p95": 0.1734999999998763,
-      "p99": 0.39059999999972206,
-      "max": 4.076999999999316
+      "min": 0.03739999999970678,
+      "median": 0.044599999999945794,
+      "p95": 0.19390000000021246,
+      "p99": 0.5239000000001397,
+      "max": 1.195299999999861
     },
     "snapshot-json-encode": {
       "count": 1360,
-      "min": 0.0036000000000058208,
-      "median": 0.006300000000010186,
-      "p95": 0.01959999999962747,
-      "p99": 0.02819999999974243,
-      "max": 0.2559000000001106
+      "min": 0.0032999999998537533,
+      "median": 0.005199999999831562,
+      "p95": 0.020399999999881402,
+      "p99": 0.029800000000250293,
+      "max": 0.2363999999997759
     },
     "snapshot-json-decode": {
       "count": 1360,
-      "min": 0.004500000000007276,
-      "median": 0.007899999999608553,
-      "p95": 0.027100000000018554,
-      "p99": 0.040199999999913416,
-      "max": 4.098300000000563
+      "min": 0.004600000000209548,
+      "median": 0.006999999999834472,
+      "p95": 0.0316000000002532,
+      "p99": 0.03900000000066939,
+      "max": 0.19439999999985957
     },
     "restore": {
       "count": 1360,
-      "min": 0.08819999999991524,
-      "median": 0.11419999999998254,
-      "p95": 0.4918999999999869,
-      "p99": 1.539600000000064,
-      "max": 7.7905000000000655
+      "min": 0.0864000000001397,
+      "median": 0.10579999999981737,
+      "p95": 0.5980999999992491,
+      "p99": 0.9665999999997439,
+      "max": 4.100599999999758
     },
     "advance-turn": {
       "count": 680,
-      "min": 0.10989999999992506,
-      "median": 0.1413000000000011,
-      "p95": 0.6027999999996609,
-      "p99": 1.5246999999999389,
-      "max": 2.4562000000000808
+      "min": 0.10750000000007276,
+      "median": 0.13220000000001164,
+      "p95": 0.7112000000006446,
+      "p99": 1.8481999999994514,
+      "max": 4.3895000000002256
     },
     "inspect": {
       "count": 760,
       "min": 0.0003999999998995918,
       "median": 0.0007000000000516593,
       "p95": 0.0024999999995998223,
-      "p99": 0.004500000000007276,
-      "max": 0.045600000000376895
+      "p99": 0.004399999999805004,
+      "max": 0.020499999999628926
     },
     "advance-replacement": {
       "count": 80,
-      "min": 0.11810000000014043,
-      "median": 0.13730000000009568,
-      "p95": 0.5509000000001834,
-      "p99": 1.5977999999995518,
-      "max": 1.5977999999995518
+      "min": 0.11509999999998399,
+      "median": 0.13040000000000873,
+      "p95": 0.7982999999994718,
+      "p99": 1.352100000000064,
+      "max": 1.352100000000064
     },
     "contract-create": {
       "count": 600,
-      "min": 0.1914000000001579,
-      "median": 0.25670000000002346,
-      "p95": 0.9214000000001761,
-      "p99": 2.640400000000227,
-      "max": 12.725500000000466
+      "min": 0.18630000000030122,
+      "median": 0.2260999999998603,
+      "p95": 1.4837999999999738,
+      "p99": 2.1649999999999636,
+      "max": 4.877800000000207
     },
     "contract-snapshot": {
       "count": 1360,
-      "min": 0.2300000000000182,
-      "median": 0.3007999999999811,
-      "p95": 1.1836000000002969,
-      "p99": 2.040100000000166,
-      "max": 3.9786999999996624
+      "min": 0.2240999999999076,
+      "median": 0.2682999999997264,
+      "p95": 1.55600000000004,
+      "p99": 2.091299999999592,
+      "max": 4.538399999999456
     },
     "contract-json-encode": {
       "count": 1360,
-      "min": 0.0028999999999541615,
-      "median": 0.004000000000132786,
-      "p95": 0.01010000000042055,
-      "p99": 0.013199999999415013,
-      "max": 0.18960000000015498
+      "min": 0.002599999999802094,
+      "median": 0.003500000000030923,
+      "p95": 0.011000000000422006,
+      "p99": 0.016400000000430737,
+      "max": 0.3996999999999389
     },
     "contract-json-decode": {
       "count": 1360,
-      "min": 0.005099999999856664,
-      "median": 0.006900000000086948,
-      "p95": 0.020399999999426655,
-      "p99": 0.026600000000144064,
-      "max": 0.2035000000000764
+      "min": 0.0052999999998064595,
+      "median": 0.006600000000162254,
+      "p95": 0.021799999999529973,
+      "p99": 0.025900000000547152,
+      "max": 0.475800000000163
     },
     "contract-restore": {
       "count": 1360,
-      "min": 0.22759999999993852,
-      "median": 0.2898999999999887,
-      "p95": 1.0559000000002925,
-      "p99": 1.89850000000024,
-      "max": 9.433899999999994
+      "min": 0.22139999999990323,
+      "median": 0.2615000000000691,
+      "p95": 1.497599999999693,
+      "p99": 2.158599999999751,
+      "max": 9.193199999999706
     },
     "contract-validate-choice": {
       "count": 1440,
-      "min": 0.2238999999999578,
-      "median": 0.2956000000001495,
-      "p95": 1.1566000000002532,
-      "p99": 3.122200000000703,
-      "max": 18.576100000000224
+      "min": 0.2183999999997468,
+      "median": 0.25900000000001455,
+      "p95": 1.572400000000016,
+      "p99": 2.3505999999997584,
+      "max": 5.39049999999952
     },
     "contract-advance-turn": {
       "count": 680,
-      "min": 0.5891000000001441,
-      "median": 0.786200000000008,
-      "p95": 2.6340000000000146,
-      "p99": 5.979099999999562,
-      "max": 21.324800000000323
+      "min": 0.5720999999998639,
+      "median": 0.6853999999999587,
+      "p95": 3.4187000000001717,
+      "p99": 5.310699999999997,
+      "max": 11.177599999999984
     },
     "contract-project": {
       "count": 1520,
-      "min": 0.4240999999997257,
-      "median": 0.5869999999999891,
-      "p95": 1.9623000000001412,
-      "p99": 3.271700000000237,
-      "max": 11.477200000000266
+      "min": 0.41720000000032087,
+      "median": 0.5190000000000055,
+      "p95": 2.59020000000055,
+      "p99": 3.444499999999607,
+      "max": 6.475499999999556
     },
     "contract-snapshot-for-commit": {
       "count": 760,
-      "min": 0.25,
-      "median": 0.33399999999983265,
-      "p95": 1.162399999999252,
-      "p99": 2.426600000000235,
-      "max": 10.927599999999984
+      "min": 0.25060000000007676,
+      "median": 0.2980000000002292,
+      "p95": 1.618800000000192,
+      "p99": 2.466400000000249,
+      "max": 6.64429999999993
     },
     "contract-json-for-commit": {
       "count": 760,
-      "min": 0.003699999999753345,
-      "median": 0.004299999999943793,
-      "p95": 0.010900000000219734,
-      "p99": 0.01710000000002765,
-      "max": 0.030099999999947613
+      "min": 0.0032999999998537533,
+      "median": 0.003899999999703141,
+      "p95": 0.011599999999816646,
+      "p99": 0.016200000000026193,
+      "max": 0.2209000000002561
     },
     "contract-turn-cycle": {
       "count": 680,
-      "min": 2.225500000000011,
-      "median": 2.9450999999999112,
-      "p95": 9.60590000000002,
-      "p99": 22.203300000000127,
-      "max": 50.21639999999934
+      "min": 2.1705000000001746,
+      "median": 2.543800000000033,
+      "p95": 12.252800000000207,
+      "p99": 16.83510000000024,
+      "max": 25.172999999999774
     },
     "contract-advance-replacement": {
       "count": 80,
-      "min": 0.6201000000000931,
-      "median": 0.7213000000001557,
-      "p95": 2.518899999999576,
-      "p99": 3.5726999999997133,
-      "max": 3.5726999999997133
+      "min": 0.6077000000000226,
+      "median": 0.6820999999999913,
+      "p95": 3.029099999999744,
+      "p99": 5.21730000000025,
+      "max": 5.21730000000025
     },
     "contract-replacement-cycle": {
       "count": 80,
-      "min": 2.146700000000237,
-      "median": 2.5645999999999276,
-      "p95": 8.69170000000031,
-      "p99": 21.267100000000028,
-      "max": 21.267100000000028
+      "min": 2.121699999999919,
+      "median": 2.338300000000345,
+      "p95": 10.855100000000675,
+      "p99": 18.14800000000014,
+      "max": 18.14800000000014
     }
   },
   "snapshotJsonBytes": {
@@ -270,91 +270,91 @@
   },
   "interleavedTwentyBattleWaveMilliseconds": {
     "count": 20,
-    "min": 8.463400000000547,
-    "median": 21.82390000000032,
-    "p95": 39.21759999999995,
-    "p99": 41.25410000000011,
-    "max": 41.25410000000011
+    "min": 10.365099999999984,
+    "median": 20.060600000000704,
+    "p95": 29.70809999999983,
+    "p99": 30.436100000000806,
+    "max": 30.436100000000806
   },
   "interleavedTwentyContractBattleWaveMilliseconds": {
     "count": 20,
-    "min": 166.89260000000104,
-    "median": 188.41739999999936,
-    "p95": 211.38940000000002,
-    "p99": 212.77840000000106,
-    "max": 212.77840000000106
+    "min": 190.84790000000066,
+    "median": 218.32589999999982,
+    "p95": 251.01370000000134,
+    "p99": 252.35899999999947,
+    "max": 252.35899999999947
   },
   "outliers": [
     {
       "operation": "contract-turn-cycle",
-      "milliseconds": 50.21639999999934,
-      "fixture": "already-poisoned-powder-deducts-pp-without-accuracy",
-      "phase": "choice"
-    },
-    {
-      "operation": "contract-turn-cycle",
-      "milliseconds": 36.50920000000042,
-      "fixture": "burn-residual-faint-and-forced-replacement",
-      "phase": "choice"
-    },
-    {
-      "operation": "contract-turn-cycle",
-      "milliseconds": 25.503600000000006,
-      "fixture": "poison-powder-steel-immunity-skips-accuracy",
-      "phase": "choice"
-    },
-    {
-      "operation": "create",
-      "milliseconds": 25.140300000000025,
-      "fixture": "voluntary-switch-cleans-volatiles-preserves-bench-burn",
-      "phase": "choice"
-    },
-    {
-      "operation": "contract-turn-cycle",
-      "milliseconds": 23.609699999999975,
+      "milliseconds": 25.172999999999774,
       "fixture": "ordinary-attacks-and-pp-two-turns",
       "phase": "choice"
     },
     {
       "operation": "contract-turn-cycle",
-      "milliseconds": 23.4387999999999,
-      "fixture": "quick-attack-priority-beats-speed",
+      "milliseconds": 19.18579999999929,
+      "fixture": "poison-powder-accuracy-miss-combines-failure-flags",
       "phase": "choice"
     },
     {
       "operation": "contract-turn-cycle",
-      "milliseconds": 22.79970000000003,
-      "fixture": "accuracy-evasion-stages-floor-to-forty",
+      "milliseconds": 18.68449999999939,
+      "fixture": "speed-tie-actions-and-residual-resort",
       "phase": "choice"
     },
     {
       "operation": "contract-turn-cycle",
-      "milliseconds": 22.203300000000127,
-      "fixture": "accuracy-evasion-stages-floor-to-forty",
-      "phase": "choice"
-    },
-    {
-      "operation": "contract-advance-turn",
-      "milliseconds": 21.324800000000323,
-      "fixture": "already-poisoned-powder-deducts-pp-without-accuracy",
+      "milliseconds": 18.68029999999999,
+      "fixture": "foresight-ignores-evasion-but-retains-accuracy-drop",
       "phase": "choice"
     },
     {
       "operation": "contract-replacement-cycle",
-      "milliseconds": 21.267100000000028,
-      "fixture": "burn-residual-faint-and-forced-replacement",
-      "phase": "replacement:after-residual"
+      "milliseconds": 18.14800000000014,
+      "fixture": "attack-knockout-replacement-before-incoming-residual",
+      "phase": "replacement:before-residual"
     },
     {
-      "operation": "contract-validate-choice",
-      "milliseconds": 18.576100000000224,
-      "fixture": "already-poisoned-powder-deducts-pp-without-accuracy",
+      "operation": "contract-turn-cycle",
+      "milliseconds": 17.637800000000425,
+      "fixture": "tackle-miss-consumes-pp-only-one-attack-draw",
       "phase": "choice"
     },
     {
       "operation": "contract-turn-cycle",
-      "milliseconds": 18.52469999999994,
-      "fixture": "speed-tie-actions-and-residual-resort",
+      "milliseconds": 17.26610000000028,
+      "fixture": "poison-powder-steel-immunity-skips-accuracy",
+      "phase": "choice"
+    },
+    {
+      "operation": "contract-turn-cycle",
+      "milliseconds": 16.83510000000024,
+      "fixture": "attack-knockout-replacement-before-incoming-residual",
+      "phase": "choice"
+    },
+    {
+      "operation": "contract-turn-cycle",
+      "milliseconds": 16.7809000000002,
+      "fixture": "accuracy-evasion-stages-floor-to-forty",
+      "phase": "choice"
+    },
+    {
+      "operation": "contract-turn-cycle",
+      "milliseconds": 15.988399999999729,
+      "fixture": "voluntary-switch-cleans-volatiles-preserves-bench-burn",
+      "phase": "choice"
+    },
+    {
+      "operation": "contract-turn-cycle",
+      "milliseconds": 15.05119999999988,
+      "fixture": "poison-powder-infliction-and-residual-loss",
+      "phase": "choice"
+    },
+    {
+      "operation": "contract-turn-cycle",
+      "milliseconds": 14.998899999999594,
+      "fixture": "first-residual-terminal-stops-second-burn",
       "phase": "choice"
     }
   ],
@@ -362,123 +362,123 @@
     "linearBytesPerInstance": 262144,
     "linearBytesForHeldInstances": 5242880,
     "beforeHeld": {
-      "rss": 212791296,
-      "heapTotal": 156598272,
-      "heapUsed": 16661328,
+      "rss": 215244800,
+      "heapTotal": 157384704,
+      "heapUsed": 16838912,
       "external": 9427210,
       "arrayBuffers": 1339663
     },
     "withHeld": {
-      "rss": 212070400,
-      "heapTotal": 156598272,
-      "heapUsed": 16862448,
+      "rss": 215728128,
+      "heapTotal": 157646848,
+      "heapUsed": 17038992,
       "external": 14670210,
       "arrayBuffers": 1339743
     },
     "afterRelease": {
-      "rss": 211836928,
-      "heapTotal": 156598272,
-      "heapUsed": 16535296,
+      "rss": 215498752,
+      "heapTotal": 157646848,
+      "heapUsed": 16707608,
       "external": 9427250,
       "arrayBuffers": 1339663
     },
     "withContractStates": {
-      "rss": 212627456,
-      "heapTotal": 156598272,
-      "heapUsed": 16595864,
+      "rss": 215937024,
+      "heapTotal": 157384704,
+      "heapUsed": 16775984,
       "external": 9427250,
       "arrayBuffers": 1339663
     },
     "afterContractRelease": {
-      "rss": 211759104,
-      "heapTotal": 156598272,
-      "heapUsed": 16556080,
+      "rss": 216317952,
+      "heapTotal": 157384704,
+      "heapUsed": 16737328,
       "external": 9427250,
       "arrayBuffers": 1339663
     },
-    "heldRssDeltaBytes": -720896,
-    "heldHeapDeltaBytes": 201120,
-    "contractStateHeapDeltaBytes": 60568,
+    "heldRssDeltaBytes": 483328,
+    "heldHeapDeltaBytes": 200080,
+    "contractStateHeapDeltaBytes": 68376,
     "churnCycles": 10,
-    "churnMilliseconds": 538.4279999999999,
+    "churnMilliseconds": 537.9117000000006,
     "churnMemory": [
       {
         "cycle": 1,
-        "rss": 211959808,
-        "heapTotal": 156598272,
-        "heapUsed": 16555752,
+        "rss": 215531520,
+        "heapTotal": 157384704,
+        "heapUsed": 16734632,
         "external": 9427250,
         "arrayBuffers": 1339663
       },
       {
         "cycle": 2,
-        "rss": 213286912,
-        "heapTotal": 156860416,
-        "heapUsed": 16566840,
+        "rss": 216489984,
+        "heapTotal": 157384704,
+        "heapUsed": 16743104,
         "external": 9427250,
         "arrayBuffers": 1339663
       },
       {
         "cycle": 3,
-        "rss": 211595264,
-        "heapTotal": 156860416,
-        "heapUsed": 16593280,
+        "rss": 216047616,
+        "heapTotal": 157384704,
+        "heapUsed": 16770904,
         "external": 9427250,
         "arrayBuffers": 1339663
       },
       {
         "cycle": 4,
-        "rss": 211578880,
-        "heapTotal": 156860416,
-        "heapUsed": 16558416,
+        "rss": 216047616,
+        "heapTotal": 157384704,
+        "heapUsed": 16735280,
         "external": 9427250,
         "arrayBuffers": 1339663
       },
       {
         "cycle": 5,
-        "rss": 212230144,
-        "heapTotal": 156860416,
-        "heapUsed": 16595384,
+        "rss": 216825856,
+        "heapTotal": 157384704,
+        "heapUsed": 16745096,
         "external": 9427250,
         "arrayBuffers": 1339663
       },
       {
         "cycle": 6,
-        "rss": 212410368,
-        "heapTotal": 156860416,
-        "heapUsed": 16545024,
+        "rss": 216166400,
+        "heapTotal": 157384704,
+        "heapUsed": 16790248,
         "external": 9427250,
         "arrayBuffers": 1339663
       },
       {
         "cycle": 7,
-        "rss": 212275200,
-        "heapTotal": 156860416,
-        "heapUsed": 16525408,
+        "rss": 216195072,
+        "heapTotal": 157384704,
+        "heapUsed": 16789800,
         "external": 9427250,
         "arrayBuffers": 1339663
       },
       {
         "cycle": 8,
-        "rss": 212299776,
-        "heapTotal": 156860416,
-        "heapUsed": 16521064,
+        "rss": 215969792,
+        "heapTotal": 157384704,
+        "heapUsed": 16757080,
         "external": 9427250,
         "arrayBuffers": 1339663
       },
       {
         "cycle": 9,
-        "rss": 212738048,
-        "heapTotal": 156860416,
-        "heapUsed": 16483320,
+        "rss": 216489984,
+        "heapTotal": 157384704,
+        "heapUsed": 16721312,
         "external": 9427250,
         "arrayBuffers": 1339663
       },
       {
         "cycle": 10,
-        "rss": 214183936,
-        "heapTotal": 156860416,
-        "heapUsed": 16494248,
+        "rss": 215703552,
+        "heapTotal": 157384704,
+        "heapUsed": 16696888,
         "external": 9427250,
         "arrayBuffers": 1339663
       }
@@ -494,13 +494,13 @@
     "separateSpikeMemoryOrLatencyCutoffSpecified": false
   },
   "assessment": {
-    "ordinaryTurnEngineP95Milliseconds": 0.6027999999996609,
-    "ordinaryTurnContractCycleP95Milliseconds": 9.60590000000002,
+    "ordinaryTurnEngineP95Milliseconds": 0.7112000000006446,
+    "ordinaryTurnContractCycleP95Milliseconds": 12.252800000000207,
     "engineP95Below100Milliseconds": true,
     "contractCycleP95Below100Milliseconds": true,
     "includingPersistenceTargetVerified": false,
     "sixtyMinuteSoakVerified": false,
     "statement": "Engine-only headroom is an observation, not a pass of the later persistence-inclusive server latency or population gate. No production engine is selected by this script."
   },
-  "childWallMilliseconds": 12844.6707
+  "childWallMilliseconds": 13511.412
 }

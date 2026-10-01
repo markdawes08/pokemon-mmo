@@ -1,9 +1,9 @@
 {
   "status": "passed",
-  "verifiedAt": "2026-10-01T02:04:11.056Z",
+  "verifiedAt": "2026-10-01T02:55:09.849Z",
   "scope": "Induced client delivery stall with real native socket; this is not server failure evidence",
   "pendingSaveAttempts": 1,
-  "discardedSdkMessages": 46,
+  "discardedSdkMessages": 45,
   "explicitLeaveEnabled": true,
   "graceCancelled": true,
   "originalSaveDeadlineCancelled": true

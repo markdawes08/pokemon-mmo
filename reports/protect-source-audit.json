@@ -1,0 +1,248 @@
+{
+  "checkedAt": "2026-10-01T02:30:01.068237+00:00",
+  "status": "audited-not-implemented",
+  "scope": "Read-only source and existing local compiled-artifact audit. No reference writes, ROM execution, emulator comparison, new original-ROM build, or gameplay implementation.",
+  "referencePath": "C:/Users/mrkda/Projects/pokefirered-master",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "upstreamCommit": null,
+  "artifacts": [
+    {
+      "path": "pokefirered.gba",
+      "bytes": 16777216,
+      "sha256": "3d0c79f1627022e18765766f6cb5ea067f6b5bf7dca115552189ad65a5c3a8ac",
+      "sha1": "41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc",
+      "includedInSourceFingerprint": false
+    },
+    {
+      "path": "pokefirered.elf",
+      "bytes": 14641332,
+      "sha256": "bbe723fd5723f311f45b1d5db7a71e9f0284dd54f57ab0f700162d7a88346b5e",
+      "sha1": "7d5872d061d5edb949605f3cb82a9abdcf977c6f",
+      "includedInSourceFingerprint": false
+    },
+    {
+      "path": "pokefirered.map",
+      "bytes": 2417480,
+      "sha256": "d51ffb4bef90ac2c8b4af2e15e3c5505411171a0777d7a127665be1a345acbdf",
+      "sha1": "c2fba6310b634c1e805e4020ff2b629e1b72f75d",
+      "includedInSourceFingerprint": false
+    },
+    {
+      "path": "build/firered/src/battle_script_commands.o",
+      "bytes": 151300,
+      "sha256": "67f7b117b98855694b85009cf4c4c309aacf9325a70ccc040aba6bb3018380ba",
+      "sha1": "8ef1c4c6586a6888818eabc7016e5c09cd5b7373",
+      "includedInSourceFingerprint": false
+    },
+    {
+      "path": "README.md",
+      "bytes": 1149,
+      "sha256": "ab59004406fa7c682aed5f7d034e527ac9b9c8cf4a0257920b1340bc25e99f3d",
+      "sha1": "244f4148d28b8fe9e46f786b9a9923e406d32c6d",
+      "includedInSourceFingerprint": true
+    },
+    {
+      "path": "include/battle.h",
+      "bytes": 21838,
+      "sha256": "bf64a16fb4e660f8a326eb352a511bb9e8fd54a74ebb03e328c08d5a23e5d8fa",
+      "sha1": "8c407f08d69325f869e841cadb3ee426ac225ccf",
+      "includedInSourceFingerprint": true
+    },
+    {
+      "path": "src/battle_script_commands.c",
+      "bytes": 355862,
+      "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3",
+      "sha1": "103524f6b5d015ffda002d108964a33e5a71768f",
+      "includedInSourceFingerprint": true
+    },
+    {
+      "path": "src/battle_main.c",
+      "bytes": 171904,
+      "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928",
+      "sha1": "1286306df051d4168f806b5d5e83d79027ad71ed",
+      "includedInSourceFingerprint": true
+    },
+    {
+      "path": "data/battle_scripts_1.s",
+      "bytes": 138642,
+      "sha256": "27e9c39f3147b05e5ba2ed36ca0c89fcdc9b26718778083bd362c582de800034",
+      "sha1": "ba9d1e6493b0d23467170e5db2fdd0104e9580b6",
+      "includedInSourceFingerprint": true
+    },
+    {
+      "path": "src/random.c",
+      "bytes": 323,
+      "sha256": "e7e90cc070d1fbf09579f5f91762cd8875d5bbe1d7a90f468bcd870df73b9de2",
+      "sha1": "1f0460ba459b70da42bcc7c00fade31b973b2f81",
+      "includedInSourceFingerprint": true
+    }
+  ],
+  "pinCoverage": {
+    "sourceManifest": "reports/source-manifest.json",
+    "sourceIncludedFilesVerified": true,
+    "compiledArtifactsInBaseline": false,
+    "reason": "source-lock explicitly excludes build/, .elf/.map/.o and non-data/*.gba. The original source fingerprint and snapshot do not authenticate these compiled artifacts; the hashes in this audit pin the separately observed files.",
+    "sourceLockRomBuildVerifiedRemainsFalse": true
+  },
+  "romTarget": {
+    "name": "English FireRed revision 0 as selected by source-lock",
+    "advertisedBy": "README.md:7",
+    "readmeSha1": "41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc",
+    "matchesAdvertisedSha1": true,
+    "claimLimit": "Matches the target hash advertised by the pinned local README. No new reproduction build or external provenance verification was performed."
+  },
+  "sourceSemantics": {
+    "counter": "include/battle.h:144 protectUses is an ordinary u8, not a saturating bitfield",
+    "table": "src/battle_script_commands.c:701 four u16 entries:65535,32767,16383,8191",
+    "command": "src/battle_script_commands.c:6220-6252 resets when last resulting move is not Protect/Detect/Endure; indexes by protectUses; compares table value >= Random() before testing notLastTurn; increments on success and resets on failure; no clamp",
+    "persistentPriorMove": "src/battle_script_commands.c:4250-4259 records gCurrentMove in gLastResultingMoves for obeying moves, allowing a consecutive Protect chain",
+    "turnReset": "src/battle_main.c:3623-3655 TurnValuesCleanUp clears ProtectStruct, not protectUses in DisableStruct",
+    "fullCounterResets": [
+      "src/battle_main.c:2224-2226 battle start clears DisableStruct",
+      "src/battle_main.c:2382-2384 switch clears DisableStruct",
+      "src/battle_main.c:2457-2459 faint clears DisableStruct"
+    ],
+    "otherNamedUse": "src/battle_ai_script_commands.c:1856 reads the counter; no modification",
+    "reachability": "Four successful consecutive attempts while acting before the opponent and without switching/fainting leave protectUses=4. Protect has enough PP, priority3, and no ordinary-turn clamp/reset. The fifth attempt reads beyond the declared four-entry C array. This is a source control-flow reachability argument, not an executed original-game RNG transcript.",
+    "sourceCUndefinedBehavior": "Out-of-bounds C access cannot be assigned portable semantics by copying the C table. A fresh WASM compile may have a different layout/optimization."
+  },
+  "compiledEvidence": {
+    "format": "32-bit little-endian ARM ELF; Thumb code",
+    "symbols": [
+      {
+        "name": "Cmd_setprotectlike",
+        "address": "0x08026f68",
+        "size": 316,
+        "romOffset": "0x26f68",
+        "elfRomBytesEqual": true,
+        "bytesSha256": "08db5727798fb73eae35d4dbabfd4f3aae80e69f4d69e9a1a26a8210aa7ec7bf"
+      },
+      {
+        "name": "sProtectSuccessRates",
+        "address": "0x082507e0",
+        "size": 8,
+        "romOffset": "0x2507e0",
+        "elfRomBytesEqual": true,
+        "bytesSha256": "d69dbedb5815425bf82a3b82b87f3f5d9deb37057411520d3753bd9c4a71d1c5"
+      },
+      {
+        "name": "sMovesForbiddenToCopy",
+        "address": "0x082507e8",
+        "size": 40,
+        "romOffset": "0x2507e8",
+        "elfRomBytesEqual": true,
+        "bytesSha256": "2a6787ecef12af2403518bdd4b13fada892131445477d9f21a13750c32218904"
+      }
+    ],
+    "mapEvidence": [
+      "pokefirered.map:5466-5467 places battle_script_commands.o .text at0x0801d760 size0x108dc",
+      "pokefirered.map:21110-21112 places battle_script_commands.o .rodata at 0x0825011c size 0x780, ending at 0x0825089c exclusive",
+      "pokefirered.map:21114-21115 places battle_controller_player.o .rodata at 0x0825089c size 0xf0, ending at 0x0825098c exclusive",
+      "pokefirered.map:21116-21117 places battle_anim_smokescreen.o .rodata at 0x0825098c size 0xa8, ending at 0x08250a34 exclusive"
+    ],
+    "tool": {
+      "path": "C:/devkitPro/devkitARM/bin/arm-none-eabi-objdump.exe",
+      "sha256": "a2a292472aedd1fcfb5cbba3d97420a09c4c09153c6ce58237feafbcaf7a22ca",
+      "operation": "read-only disassembly, no execution"
+    },
+    "instructions": [
+      "8026fb6:\t7a04      \tldrb\tr4, [r0, #8]",
+      "8026fb8:\t0064      \tlsls\tr4, r4, #1",
+      "8026fba:\t18a4      \tadds\tr4, r4, r2",
+      "8026fbc:\tf01d ff84 \tbl\t8044ec8 <Random>",
+      "8026fc0:\t8821      \tldrh\tr1, [r4, #0]",
+      "8026fc6:\t4281      \tcmp\tr1, r0",
+      "8026fc8:\td348      \tbcc.n\t802705c <Cmd_setprotectlike+0xf4>",
+      "8026fca:\t2e00      \tcmp\tr6, #0",
+      "8026fcc:\td046      \tbeq.n\t802705c <Cmd_setprotectlike+0xf4>",
+      "802702a:\t7a08      \tldrb\tr0, [r1, #8]",
+      "802702c:\t3001      \tadds\tr0, #1",
+      "802702e:\t7208      \tstrb\tr0, [r1, #8]",
+      "8027048:\t082507e0 \t.word\t0x082507e0",
+      "802706c:\t7201      \tstrb\tr1, [r0, #8]"
+    ],
+    "interpretation": "ldrb reads the unbounded byte counter; lsls #1 forms a halfword index; adds table base; Random executes; ldrh dereferences that address with no range check; comparison and notLastTurn follow; success adds1 then strb wraps at256.",
+    "first24Halfwords": [
+      65535,
+      32767,
+      16383,
+      8191,
+      118,
+      165,
+      166,
+      102,
+      65534,
+      68,
+      243,
+      182,
+      197,
+      203,
+      194,
+      214,
+      168,
+      266,
+      289,
+      270,
+      343,
+      271,
+      264,
+      65535
+    ],
+    "firstOobEntry": {
+      "counter": 4,
+      "address": "0x082507e8",
+      "value": 118,
+      "sourceNeighbor": "sMovesForbiddenToCopy[0] = MOVE_METRONOME"
+    },
+    "fifthAttemptPredicate": "When notLastTurn, success iff Random() <=118; 119 possible u16 results out of65536, conditional on reaching the attempt. No new probability clamp is inferred.",
+    "entireByteCounterLookup": {
+      "entries": 256,
+      "bytes": 512,
+      "romOffsetStart": "0x2507e0",
+      "romOffsetEndExclusive": "0x2509e0",
+      "sha256": "977c6928a398eab83f1b9d0ff8b5a2d4ee4c88d1beae6872da7fe5265a87bce1",
+      "mappedObjectExtents": [
+        {
+          "object": "src/battle_script_commands.o",
+          "section": ".rodata",
+          "sectionStart": "0x0825011c",
+          "sectionEndExclusive": "0x0825089c",
+          "lookupStart": "0x082507e0",
+          "lookupEndExclusive": "0x0825089c",
+          "counterFirst": 0,
+          "counterLast": 93,
+          "bytes": 188
+        },
+        {
+          "object": "src/battle_controller_player.o",
+          "section": ".rodata",
+          "sectionStart": "0x0825089c",
+          "sectionEndExclusive": "0x0825098c",
+          "lookupStart": "0x0825089c",
+          "lookupEndExclusive": "0x0825098c",
+          "counterFirst": 94,
+          "counterLast": 213,
+          "bytes": 240
+        },
+        {
+          "object": "src/battle_anim_smokescreen.o",
+          "section": ".rodata",
+          "sectionStart": "0x0825098c",
+          "sectionEndExclusive": "0x08250a34",
+          "lookupStart": "0x0825098c",
+          "lookupEndExclusive": "0x082509e0",
+          "counterFirst": 214,
+          "counterLast": 255,
+          "bytes": 84
+        }
+      ],
+      "claimLimit": "The 512-byte range is present in the pinned local ROM and crosses three mapped object .rodata sections: battle_script_commands.o for counter indices 0..93, battle_controller_player.o for 94..213, and battle_anim_smokescreen.o for 214..255. It does not fit within battle_script_commands.o alone. No claim that every counter value has a reachable whole-game RNG path is made."
+    }
+  },
+  "recommendation": "Keep Protect outside the Skull Bash implementation. A future explicitly versioned FireRed-ROM compatibility policy can read/derive the bounded256-entry lookup from this pinned artifact and retain the exact byte counter, resets, inclusive comparison and RNG call order. Do not invent a capped success chance. Separately verify all lookup boundaries, original-game behavior/provenance as required, checkpoint state and policy binding before admission.",
+  "implemented": false,
+  "fullRomCopied": false,
+  "filesWritten": [
+    "reports/protect-source-audit.json"
+  ]
+}
