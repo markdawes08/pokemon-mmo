@@ -1,0 +1,137 @@
+{
+  "checkedAt": "2026-09-30T15:42:53.091Z",
+  "status": "passed",
+  "scope": "Private source fixture/encounter/six-method battle integration; no database, live room, public UI or asset writes",
+  "profileId": "r1-squirtle-v1",
+  "contentHash": "d47ce3fa2c4c2c38e1cbae0b62f2c70ff502f06a267c7fa197d0f55bf4bd393a",
+  "compatibility": {
+    "contractVersion": 1,
+    "snapshotVersion": 1,
+    "engineId": "firered-source-commands",
+    "engineVersion": "build-8c9af15372c2472e6b0e55aa9f9df5fa9ff811c5a1ac780a74ef27f4f9446cbb",
+    "rulesVersion": "firered-route1-singles-v2",
+    "contentFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "engineStateVersion": 3,
+    "rngAlgorithm": "firered-lcg32",
+    "rngVersion": 1
+  },
+  "checks": [
+    "all-twelve-source-slots-real-fixture-admission-and-natural-terminal-play",
+    "owner-only-projection-hides-enemy-details-and-rng",
+    "detached-inputs-and-deterministic-restore",
+    "ordered-events-and-zero-persistent-effects",
+    "field-pending-encounter-remains-unchanged",
+    "depleted-real-player-hp-and-pp-remain-depleted",
+    "struggle-only-when-all-player-pp-exhausted",
+    "escape-uses-real-opponent-and-terminal-contract",
+    "invalid-hp-pp-nonpending-foreign-and-corrupt-encounters-rejected",
+    "forged-stale-duplicate-and-unsupported-command-rejection"
+  ],
+  "scenarios": [
+    {
+      "slot": 0,
+      "species": 16,
+      "level": 3,
+      "turns": 4,
+      "outcome": "won",
+      "transitions": 4
+    },
+    {
+      "slot": 1,
+      "species": 19,
+      "level": 3,
+      "turns": 3,
+      "outcome": "won",
+      "transitions": 3
+    },
+    {
+      "slot": 2,
+      "species": 16,
+      "level": 3,
+      "turns": 4,
+      "outcome": "won",
+      "transitions": 4
+    },
+    {
+      "slot": 3,
+      "species": 19,
+      "level": 3,
+      "turns": 4,
+      "outcome": "won",
+      "transitions": 4
+    },
+    {
+      "slot": 4,
+      "species": 16,
+      "level": 2,
+      "turns": 3,
+      "outcome": "won",
+      "transitions": 3
+    },
+    {
+      "slot": 5,
+      "species": 19,
+      "level": 2,
+      "turns": 3,
+      "outcome": "won",
+      "transitions": 3
+    },
+    {
+      "slot": 6,
+      "species": 16,
+      "level": 3,
+      "turns": 4,
+      "outcome": "won",
+      "transitions": 4
+    },
+    {
+      "slot": 7,
+      "species": 19,
+      "level": 3,
+      "turns": 3,
+      "outcome": "won",
+      "transitions": 3
+    },
+    {
+      "slot": 8,
+      "species": 16,
+      "level": 4,
+      "turns": 4,
+      "outcome": "won",
+      "transitions": 4
+    },
+    {
+      "slot": 9,
+      "species": 19,
+      "level": 4,
+      "turns": 4,
+      "outcome": "won",
+      "transitions": 4
+    },
+    {
+      "slot": 10,
+      "species": 16,
+      "level": 5,
+      "turns": 5,
+      "outcome": "won",
+      "transitions": 5
+    },
+    {
+      "slot": 11,
+      "species": 19,
+      "level": 4,
+      "turns": 4,
+      "outcome": "won",
+      "transitions": 4
+    }
+  ],
+  "transitions": 45,
+  "escapeAttempts": 1,
+  "remaining": [
+    "additional items",
+    "party switching",
+    "experience/EV/level progression",
+    "owned capture/loss effects",
+    "durable battle activity and live admission"
+  ]
+}

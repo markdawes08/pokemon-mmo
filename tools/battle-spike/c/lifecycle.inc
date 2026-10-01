@@ -72,9 +72,14 @@ static s32 LifecycleReady(u32 actor)
     if (actor >= 2) return Fail(SPIKE_INVALID_ARGUMENT);
     if (!sConfigured[actor]) return Fail(SPIKE_NOT_READY);
     if (gBattleOutcome) return Fail(SPIKE_NOT_READY);
+#ifdef WATERBLUE_ROUTE1
+    if (!Route1Identity(actor, gBattleMons[actor].species, gBattleMons[actor].ability)) return Fail(SPIKE_UNSUPPORTED);
+    if (gBattleControllerExecFlags || gBattleTypeFlags || gBattleWeather || gBattleMons[actor].item != ITEM_NONE)
+#else
     if (gBattleMons[actor].species != actor + 1) return Fail(SPIKE_UNEXPECTED_DEPENDENCY);
     if (gBattleControllerExecFlags || gBattleTypeFlags || gBattleWeather
         || gBattleMons[actor].ability != ABILITY_NONE || gBattleMons[actor].item != ITEM_NONE)
+#endif
         return Fail(SPIKE_UNSUPPORTED);
     if (gBattleMons[actor].status1 != 0 && gBattleMons[actor].status1 != STATUS1_POISON
         && gBattleMons[actor].status1 != STATUS1_BURN) return Fail(SPIKE_UNSUPPORTED);

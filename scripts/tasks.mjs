@@ -142,7 +142,7 @@ async function command(name, args) {
     case 'start': return serve(true);
     case 'build': return build();
     case 'typecheck': return tool('typescript/bin/tsc', '--noEmit');
-    case 'lint': return tool('eslint/bin/eslint.js', 'apps', 'packages', 'scripts', 'tools/battle-spike', '*.config.ts', '*.config.mjs');
+    case 'lint': return tool('eslint/bin/eslint.js', 'apps', 'packages', 'scripts', 'tools/battle-spike', 'tools/encounter-core', 'tools/battle-route1', 'tools/battle-progression', 'tools/battle-loss', 'tools/battle-capture', 'tools/battle-evolution', 'tools/battle-family', 'tools/battle-party', '*.config.ts', '*.config.mjs');
     case 'test:unit':
       await tool('vitest/vitest.mjs', 'run');
       return run(python, ['-m', 'unittest', 'discover', '-s', 'tools/content-import', '-p', 'test_*.py', '-v']);
@@ -154,10 +154,46 @@ async function command(name, args) {
       await js('--import', 'tsx', 'tests/integration/assets-smoke.ts');
       await js('--import', 'tsx', 'tests/integration/world-store-smoke.ts');
       await js('--import', 'tsx', 'tests/integration/world-smoke.ts');
+      await js('--import', 'tsx', 'tests/integration/reconnect-smoke.ts');
       return js('tests/integration/supervisor-smoke.mjs');
     case 'test:e2e': return tool('@playwright/test/cli.js', 'test', ...args);
     case 'test:recovery': return js('--import', 'tsx', 'tests/integration/accounts-restart-smoke.ts');
+    case 'test:boundaries': return js('scripts/check-private-client.mjs');
+    case 'encounter:check':
+      await run(python, ['tools/encounter-core/build.py']);
+      await js('--import', 'tsx', 'tools/encounter-core/dependencies.ts');
+      return js('--import', 'tsx', 'tools/encounter-core/verify.ts');
     case 'battle:setup': return run(python, ['scripts/bootstrap-battle-toolchain.py']);
+    case 'battle:route1':
+      await run(python, ['tools/battle-route1/build.py']);
+      await js('--import', 'tsx', 'tools/battle-route1/verify.ts');
+      await js('--import', 'tsx', 'tools/battle-route1/verify-items.ts');
+      await js('--import', 'tsx', 'tools/battle-route1/verify-integration.ts');
+      return js('--import', 'tsx', 'tools/battle-route1/verify-items-integration.ts');
+    case 'battle:progression':
+      await run(python, ['tools/battle-progression/build.py']);
+      await js('--import', 'tsx', 'tools/battle-progression/verify.ts');
+      return js('--import', 'tsx', 'tools/battle-progression/verify-integration.ts');
+    case 'battle:loss':
+      await run(python, ['tools/battle-loss/build.py']);
+      await js('--import', 'tsx', 'tools/battle-loss/verify.ts');
+      return js('--import', 'tsx', 'tools/battle-loss/verify-integration.ts');
+    case 'battle:capture':
+      await run(python, ['tools/battle-capture/build.py']);
+      await js('--import', 'tsx', 'tools/battle-capture/verify.ts');
+      return js('--import', 'tsx', 'tools/battle-capture/verify-integration.ts');
+    case 'battle:evolution':
+      await run(python, ['tools/battle-evolution/build.py']);
+      await js('--import', 'tsx', 'tools/battle-evolution/verify.ts');
+      return js('--import', 'tsx', 'tools/battle-evolution/verify-integration.ts');
+    case 'battle:family':
+      await run(python, ['tools/battle-family/build.py']);
+      await js('--import', 'tsx', 'tools/battle-family/verify.ts');
+      return js('--import', 'tsx', 'tools/battle-family/verify-integration.ts');
+    case 'battle:party':
+      await run(python, ['tools/battle-party/build.py']);
+      await js('--import', 'tsx', 'tools/battle-party/verify.ts');
+      return js('--import', 'tsx', 'tools/battle-party/verify-integration.ts');
     case 'battle:spike':
       await run(python, ['tools/battle-spike/build.py']);
       await js('--import', 'tsx', 'tools/battle-spike/verify.ts');
@@ -174,11 +210,11 @@ async function command(name, args) {
     case 'content:check': return converter('check', ...args);
     case 'verify': {
       const results = [];
-      for (const stage of ['doctor', 'lint', 'typecheck', 'test:unit', 'test:integration', 'content:check', 'battle:spike', 'build', 'test:recovery', 'test:e2e']) {
+      for (const stage of ['doctor', 'lint', 'typecheck', 'test:unit', 'test:integration', 'content:check', 'battle:spike', 'encounter:check', 'battle:route1', 'battle:progression', 'battle:loss', 'battle:capture', 'battle:evolution', 'battle:family', 'battle:party', 'build', 'test:boundaries', 'test:recovery', 'test:e2e']) {
         console.log(`\n[verify] ${stage}`);
         try { await command(stage, []); results.push({ stage, status: 'passed' }); }
         catch (error) { results.push({ stage, status: 'failed', message: error.message }); throw error; }
-        finally { await mkdir('reports', { recursive: true }); await writeFile('reports/verification.json', JSON.stringify({ checkedAt: new Date().toISOString(), results, scope: 'P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 development-fixture shared movement; R1 battles and story gameplay not implemented' }, null, 2) + '\n'); }
+        finally { await mkdir('reports', { recursive: true }); await writeFile('reports/verification.json', JSON.stringify({ checkedAt: new Date().toISOString(), results, scope: 'P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 encounter factory, real-team Route 1 battle mechanics, victory progression, blackout, capture and evolution continuations plus diagnostic family combat and party switching/faint decisions; live R1 battles, persistent outcomes and story gameplay not implemented' }, null, 2) + '\n'); }
       }
       return;
     }

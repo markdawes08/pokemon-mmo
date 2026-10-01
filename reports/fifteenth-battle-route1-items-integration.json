@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-09-28T17:55:10.370Z",
+  "status": "passed",
+  "scope": "Private six-method Potion/Poke Ball integration; no database, account, room, owned capture grant or field acknowledgement",
+  "compatibility": {
+    "contractVersion": 1,
+    "snapshotVersion": 1,
+    "engineId": "firered-source-commands",
+    "engineVersion": "build-8c9af15372c2472e6b0e55aa9f9df5fa9ff811c5a1ac780a74ef27f4f9446cbb",
+    "rulesVersion": "firered-route1-singles-v2",
+    "contentFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "engineStateVersion": 3,
+    "rngAlgorithm": "firered-lcg32",
+    "rngVersion": 1
+  },
+  "checks": [
+    "canonical-inventory-and-depleted-admission",
+    "no-effect-and-empty-item-rejection-without-state-change",
+    "potion-heals-before-wild-action-and-consumes-one",
+    "restored-item-action-is-deterministic-and-stale-command-rejected",
+    "failed-ball-consumes-once-and-wild-acts",
+    "successful-ball-handoff-preserves-real-identity-and-stops-combat",
+    "capture-projection-excludes-private-creature-fields",
+    "capture-checkpoint-forgery-rejected",
+    "inventory-bounds-and-false-healing-restore-rejected",
+    "unsupported-item-target-and-old-profile-rejected",
+    "fixture-and-field-state-unchanged"
+  ],
+  "captures": [
+    {
+      "seed": 3,
+      "speciesId": 16,
+      "abilityId": 51,
+      "level": 3
+    },
+    {
+      "seed": 10,
+      "speciesId": 16,
+      "abilityId": 51,
+      "level": 3
+    },
+    {
+      "seed": 11,
+      "speciesId": 16,
+      "abilityId": 51,
+      "level": 3
+    },
+    {
+      "seed": 14,
+      "speciesId": 19,
+      "abilityId": 50,
+      "level": 3
+    },
+    {
+      "seed": 17,
+      "speciesId": 16,
+      "abilityId": 51,
+      "level": 3
+    },
+    {
+      "seed": 26,
+      "speciesId": 16,
+      "abilityId": 51,
+      "level": 3
+    },
+    {
+      "seed": 28,
+      "speciesId": 19,
+      "abilityId": 62,
+      "level": 3
+    }
+  ],
+  "failedThrows": 22,
+  "pending": [
+    "capture owner/met/nickname metadata",
+    "party/storage placement",
+    "durable item/capture effects",
+    "experience/progression/loss",
+    "live battle admission"
+  ]
+}

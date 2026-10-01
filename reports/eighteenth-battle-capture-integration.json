@@ -1,0 +1,136 @@
+{
+  "checkedAt": "2026-09-29T02:40:22.951Z",
+  "status": "passed",
+  "scope": "Private source encounter/combat/capture proposals; no account ownership, world activity or database mutation",
+  "checks": [
+    "all-twelve-natural-source-slot-captures-receive-bound-metadata-and-party-placement",
+    "direct-and-progression-handoff-equivalence-with-distinct-bound-decision-identities",
+    "every-stage-recovery-detached-projections-and-stale-decision-atomicity",
+    "source-blank-and-padded-nicknames-and-maximum-length",
+    "already-seen-caught-and-saturated-stat-contexts",
+    "damaged-wild-with-spent-pp-and-potion-ball-costs-crosses-party-boundary-unchanged",
+    "actual-capture-data-exercises-explicit-diagnostic-pc-wrap-pp-restoration-and-full-capacity-guard",
+    "active-and-all-noncapture-outcomes-and-unbound-descriptors-rejected",
+    "explicit-source-context-and-text-guards",
+    "semantic-replay-rejects-rehashed-context-state-and-terminal-corruption",
+    "canonical-fixture-and-player-terminal-preserved",
+    "all-five-prior-wasm-modules-and757-retained-literal-fixtures-byte-identical"
+  ],
+  "naturalCaptures": [
+    {
+      "slot": 0,
+      "seed": 3,
+      "speciesId": 16,
+      "level": 3
+    },
+    {
+      "slot": 1,
+      "seed": 14,
+      "speciesId": 19,
+      "level": 3
+    },
+    {
+      "slot": 2,
+      "seed": 11,
+      "speciesId": 16,
+      "level": 3
+    },
+    {
+      "slot": 3,
+      "seed": 29,
+      "speciesId": 19,
+      "level": 3
+    },
+    {
+      "slot": 4,
+      "seed": 47,
+      "speciesId": 16,
+      "level": 2
+    },
+    {
+      "slot": 5,
+      "seed": 33,
+      "speciesId": 19,
+      "level": 2
+    },
+    {
+      "slot": 6,
+      "seed": 26,
+      "speciesId": 16,
+      "level": 3
+    },
+    {
+      "slot": 7,
+      "seed": 75,
+      "speciesId": 19,
+      "level": 3
+    },
+    {
+      "slot": 8,
+      "seed": 130,
+      "speciesId": 16,
+      "level": 4
+    },
+    {
+      "slot": 9,
+      "seed": 92,
+      "speciesId": 19,
+      "level": 4
+    },
+    {
+      "slot": 10,
+      "seed": 450,
+      "speciesId": 16,
+      "level": 5
+    },
+    {
+      "slot": 11,
+      "seed": 116,
+      "speciesId": 19,
+      "level": 4
+    }
+  ],
+  "terminalHandoffs": 23,
+  "stageRestores": 92,
+  "spentSeed": 0,
+  "rejectedOutcomes": [
+    "won",
+    "ran",
+    "lost",
+    "draw"
+  ],
+  "diagnosticPcDestination": {
+    "box": 0,
+    "slot": 29
+  },
+  "captureCompatibility": {
+    "profile": "firered-route1-capture-v1",
+    "abiVersion": 1,
+    "developmentPolicy": "r1-route1-capture-metadata-v1",
+    "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "wasmSha256": "1e6b16390cdaa4906c01b391c30984735a22e998f548e9ff7de44d890865a60b",
+    "hostSha256": "84dfba4031f2f6454fc823a5f11cfb6a7e1b8ed9310ff671cd6c6bd028b132fe",
+    "codecSha256": "00b48b20802dd03b1332eda16c5973b78c2f54ac4076f2ed8490161fcc26fe2e",
+    "progressionCompatibilitySha256": "97be2cb74b4511bbb258a6ed1eb6cf66a736a91a9ab4f4c6f3f305c3a3a0eeb5",
+    "battleCompatibilitySha256": "25921b79228da8291b4c8eedab1d8fdd26b6540c3b726057e03a1e8628d9a6b6",
+    "routeMapSha256": "d3cec4551bad92ccbaa4ff05dc6e7ef624eb78f0c0a63d9f00c88438316d6249"
+  },
+  "battleCompatibility": {
+    "contractVersion": 1,
+    "snapshotVersion": 1,
+    "engineId": "firered-source-commands",
+    "engineVersion": "build-8c9af15372c2472e6b0e55aa9f9df5fa9ff811c5a1ac780a74ef27f4f9446cbb",
+    "rulesVersion": "firered-route1-singles-v2",
+    "contentFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "engineStateVersion": 3,
+    "rngAlgorithm": "firered-lcg32",
+    "rngVersion": 1
+  },
+  "remaining": [
+    "durable capture metadata/dex/storage activity and atomic ownership grant",
+    "evolution completion",
+    "resulting-team combat coverage",
+    "durable blackout and arrival scripts",
+    "durable battle outcomes and live UI"
+  ]
+}

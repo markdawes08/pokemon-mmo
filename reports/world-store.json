@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "verifiedAt": "2026-09-26T01:22:33.738Z",
+  "verifiedAt": "2026-09-30T15:41:05.331Z",
   "checks": [
     "failed-before-transfer-commit-keeps-source-checkpoint",
     "failed-transfer-hides-runtime-until-reauthenticated-recovery",

@@ -1,0 +1,89 @@
+{
+  "checkedAt": "2026-09-29T02:46:09.708Z",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "client",
+      "status": "passed"
+    },
+    {
+      "name": "direct-ready",
+      "status": "passed"
+    },
+    {
+      "name": "proxied-ready",
+      "status": "passed"
+    },
+    {
+      "name": "retained-client-served",
+      "status": "passed"
+    },
+    {
+      "name": "user-testing-accounts-preserved-read-only",
+      "status": "passed"
+    },
+    {
+      "name": "three-loopback-listeners",
+      "status": "passed"
+    }
+  ],
+  "launch": {
+    "launchedAt": "2026-09-28T04:52:03.9527228Z",
+    "command": "node scripts/run.mjs dev",
+    "launcherPid": 30216,
+    "stderr": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.local\\dev-20260927-235203.stderr.log",
+    "mode": "hidden-background",
+    "stdout": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.local\\dev-20260927-235203.stdout.log"
+  },
+  "listeners": [
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 5433,
+      "OwningProcess": 20168
+    },
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 5173,
+      "OwningProcess": 25776
+    },
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 2567,
+      "OwningProcess": 31860
+    }
+  ],
+  "ordinaryTestingAccounts": [
+    {
+      "name": "ADMINA",
+      "stage": "development-fixture"
+    },
+    {
+      "name": "ADMINB",
+      "stage": "development-fixture"
+    }
+  ],
+  "scope": "Read-only live development health, current client marker, loopback listeners and existence of the user testing accounts. No user-account login, fixture reset, or gameplay mutation.",
+  "retainedDevelopmentNodeTree": [
+    {
+      "ProcessId": 30216,
+      "ParentProcessId": 10116,
+      "Name": "node.exe"
+    },
+    {
+      "ProcessId": 28640,
+      "ParentProcessId": 30216,
+      "Name": "node.exe"
+    },
+    {
+      "ProcessId": 31860,
+      "ParentProcessId": 28640,
+      "Name": "node.exe"
+    },
+    {
+      "ProcessId": 25776,
+      "ParentProcessId": 28640,
+      "Name": "node.exe"
+    }
+  ],
+  "testOwnedNodeOrZigRemaining": false
+}

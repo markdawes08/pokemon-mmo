@@ -34,10 +34,20 @@ struct BattleStruct {
     u8 dynamicMoveType, chosenMovePositions[4], synchronizeMoveEffect, wrappedBy[4], lastTakenMove[8];
     u16 lastTakenMoveFrom[4][4], choicedMove[4];
     u8 turnEffectsTracker;
+#ifdef WATERBLUE_ROUTE1
+    u8 runTries;
+#ifdef WATERBLUE_FAMILY
+    u8 atkCancellerTracker;
+#endif
+#endif
 };
 struct BattleResources { struct ResourceFlags *flags; };
 struct EnigmaBerry { u8 holdEffect; u8 holdEffectParam; };
-struct BattleResults { u8 playerMonWasDamaged; };
+struct BattleResults { u8 playerMonWasDamaged;
+#ifdef WATERBLUE_ROUTE1
+    u8 numHealingItemsUsed;
+#endif
+};
 
 static struct BattlePokemon gBattleMons[MAX_BATTLERS_COUNT];
 static struct ProtectStruct gProtectStructs[MAX_BATTLERS_COUNT];
@@ -71,7 +81,11 @@ static u16 gLastUsedItem;
 #include "lifecycle_state.inc"
 static const u8 BattleScript_PSNPrevention[] = {3}, BattleScript_BRNPrevention[] = {4}, BattleScript_PRLZPrevention[] = {5};
 static const u8 sStatusScript[] = {6};
-static const u8 *const sMoveEffectBS_Ptrs[NUM_MOVE_EFFECTS] = {[MOVE_EFFECT_POISON] = sStatusScript};
+static const u8 *const sMoveEffectBS_Ptrs[NUM_MOVE_EFFECTS] = {[MOVE_EFFECT_POISON] = sStatusScript
+#ifdef WATERBLUE_ROUTE1
+    , [MOVE_EFFECT_RECOIL_25] = sRecoilScript
+#endif
+};
 static void Unexpected(void);
 static void BattleScriptPush(const u8 *script);
 static void CancelMultiTurnMoves(u8 battler);
@@ -104,6 +118,9 @@ enum SpikeStatus {
     SPIKE_NOT_READY = 3, SPIKE_UNEXPECTED_DEPENDENCY = 4,
     SPIKE_EVENT_OVERFLOW = 5, SPIKE_UNSAFE_DEFENSE = 6
 };
+#ifdef WATERBLUE_ROUTE1
+#include "route1_declarations.inc"
+#endif
 
 u32 spike_abi_version(void);
 s32 spike_reset(u32 seed);

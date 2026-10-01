@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-09-27T00:17:34.492Z",
+  "results": [
+    {
+      "stage": "doctor",
+      "status": "passed"
+    },
+    {
+      "stage": "lint",
+      "status": "passed"
+    },
+    {
+      "stage": "typecheck",
+      "status": "passed"
+    },
+    {
+      "stage": "test:unit",
+      "status": "passed"
+    },
+    {
+      "stage": "test:integration",
+      "status": "failed",
+      "message": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.tools\\node-v24.21.0-win-x64\\node.exe --import tsx apps/server/src/accounts-smoke.ts failed (1)"
+    }
+  ],
+  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 shared movement and authenticated transport reconnect; R1 battles and story gameplay not implemented"
+}

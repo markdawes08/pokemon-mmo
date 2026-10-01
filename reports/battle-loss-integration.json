@@ -1,0 +1,137 @@
+{
+  "checkedAt": "2026-09-30T15:43:01.825Z",
+  "status": "passed",
+  "scope": "Private source encounter/battle/loss continuation only; field activity, accounts and world remain untouched",
+  "checks": [
+    "all-twelve-natural-slot-losses-faint-heal-debit-and-home-handoff",
+    "direct-and-pending-progression-bridge-equivalence",
+    "stage-replay-owner-projection-detached-state-and-duplicate-stage-atomicity",
+    "natural-three-turn-struggle-draw-follows-source-defeat-routing",
+    "depleted-wallet-is-retained-and-debited-only-once-with-source-clamp",
+    "source-healing-restores-pp-and-hp-without-refilling-bag-or-changing-xp-evs",
+    "actual-active-won-ran-and-captured-battles-rejected",
+    "explicit-development-context-and-semantic-checkpoint-guards",
+    "pinned-home-target-is-safe-and-faces-source-mom-without-applying-world-state",
+    "canonical-fixture-preserved",
+    "all-four-previous-wasm-modules-and-retained-combat-progression-fixtures-byte-identical"
+  ],
+  "naturalLosses": [
+    {
+      "slot": 0,
+      "speciesId": 16,
+      "level": 3,
+      "turns": 1
+    },
+    {
+      "slot": 1,
+      "speciesId": 19,
+      "level": 3,
+      "turns": 2
+    },
+    {
+      "slot": 2,
+      "speciesId": 16,
+      "level": 3,
+      "turns": 1
+    },
+    {
+      "slot": 3,
+      "speciesId": 19,
+      "level": 3,
+      "turns": 5
+    },
+    {
+      "slot": 4,
+      "speciesId": 16,
+      "level": 2,
+      "turns": 1
+    },
+    {
+      "slot": 5,
+      "speciesId": 19,
+      "level": 2,
+      "turns": 1
+    },
+    {
+      "slot": 6,
+      "speciesId": 16,
+      "level": 3,
+      "turns": 1
+    },
+    {
+      "slot": 7,
+      "speciesId": 19,
+      "level": 3,
+      "turns": 1
+    },
+    {
+      "slot": 8,
+      "speciesId": 16,
+      "level": 4,
+      "turns": 1
+    },
+    {
+      "slot": 9,
+      "speciesId": 19,
+      "level": 4,
+      "turns": 1
+    },
+    {
+      "slot": 10,
+      "speciesId": 16,
+      "level": 5,
+      "turns": 1
+    },
+    {
+      "slot": 11,
+      "speciesId": 19,
+      "level": 4,
+      "turns": 2
+    }
+  ],
+  "naturalDrawTurns": 3,
+  "terminalHandoffs": 20,
+  "stageRestores": 60,
+  "captureSeed": 3,
+  "rejectedOutcomes": [
+    "won",
+    "ran",
+    "captured"
+  ],
+  "safeSourceHome": {
+    "mapId": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
+    "x": 8,
+    "y": 5,
+    "elevation": 3
+  },
+  "lossCompatibility": {
+    "profile": "firered-route1-loss-v1",
+    "abiVersion": 1,
+    "developmentPolicy": "r1-pallet-mom-blackout-v1",
+    "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "wasmSha256": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a",
+    "hostSha256": "5ce4514dfde789f40b501e97b667dc7f7220016ebad371cbf9c4169fde104e08",
+    "progressionCompatibilitySha256": "97be2cb74b4511bbb258a6ed1eb6cf66a736a91a9ab4f4c6f3f305c3a3a0eeb5",
+    "battleCompatibilitySha256": "25921b79228da8291b4c8eedab1d8fdd26b6540c3b726057e03a1e8628d9a6b6",
+    "houseMapSha256": "0b171b0ce01c265e4db3cb3c1fc9d0041b18cef0d1977e0ebfb527746dab6452"
+  },
+  "battleCompatibility": {
+    "contractVersion": 1,
+    "snapshotVersion": 1,
+    "engineId": "firered-source-commands",
+    "engineVersion": "build-8c9af15372c2472e6b0e55aa9f9df5fa9ff811c5a1ac780a74ef27f4f9446cbb",
+    "rulesVersion": "firered-route1-singles-v2",
+    "contentFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "engineStateVersion": 3,
+    "rngAlgorithm": "firered-lcg32",
+    "rngVersion": 1
+  },
+  "remaining": [
+    "durable blackout application and arrival scripts",
+    "owned capture",
+    "evolution completion",
+    "broader combat closure",
+    "durable battle activity and outcomes",
+    "live battle UI"
+  ]
+}

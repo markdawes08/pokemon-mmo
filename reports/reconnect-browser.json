@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-09-30T15:45:55.265Z",
+  "passed": true,
+  "results": [
+    {
+      "title": "native transport resumes the same session with a fresh snapshot and no held-input replay",
+      "status": "passed"
+    },
+    {
+      "title": "lost Save acknowledgement is resolved only by explicit identical receipt retry after resume",
+      "status": "passed"
+    },
+    {
+      "title": "explicit Leave cancels scheduled resume and Sign out never reconnects",
+      "status": "passed"
+    },
+    {
+      "title": "a lost backend freezes recovery and explicit cancellation permits fresh process admission",
+      "status": "passed"
+    }
+  ],
+  "backendPids": [
+    27912,
+    29260
+  ],
+  "scope": "Built client, isolated native backend processes, test PostgreSQL accounts only. Native transport interruption and bounded test-only constructor failure preserve real cookie/Origin admission."
+}

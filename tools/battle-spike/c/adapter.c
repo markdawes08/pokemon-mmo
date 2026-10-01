@@ -61,6 +61,17 @@ static bool8 FlagGet(u16 flag)
 
 static u8 AbilityBattleEffects(u8 effect, u8 battler, u8 ability, u8 special, u16 move)
 {
+#ifdef WATERBLUE_ROUTE1
+    if (!Route1AbilityPair() || gStatuses3[0] || gStatuses3[1]) { Unexpected(); return 0; }
+    if (effect == ABILITYEFFECT_ABSORBING && battler < 2 && ability == 0 && special == 0 && Route1SupportedMove(move)) return 0;
+    if ((effect == ABILITYEFFECT_COUNT_ON_FIELD || effect == ABILITYEFFECT_COUNT_OTHER_SIDE)
+        && battler < 2 && ability == ABILITY_PRESSURE && special == 0 && move == 0) return 0;
+    if (battler == 0 && move == 0 && special == 0 && (ability == ABILITY_CLOUD_NINE || ability == ABILITY_AIR_LOCK)
+        && (effect == ABILITYEFFECT_CHECK_ON_FIELD || effect == ABILITYEFFECT_FIELD_SPORT)) return 0;
+    if (effect == ABILITYEFFECT_FIELD_SPORT && battler == 0 && ability == 0 && move == 0
+        && (special == ABILITYEFFECT_MUD_SPORT || special == ABILITYEFFECT_WATER_SPORT)) return 0;
+    Unexpected(); return 0;
+#else
     if (gBattleMons[0].ability == ABILITY_NONE && gBattleMons[1].ability == ABILITY_NONE
         && gStatuses3[0] == 0 && gStatuses3[1] == 0) {
         if (effect == ABILITYEFFECT_CHECK_ON_FIELD && battler == 0 && special == 0 && move == 0
@@ -74,12 +85,21 @@ static u8 AbilityBattleEffects(u8 effect, u8 battler, u8 ability, u8 special, u1
         || !((special == 0 && (ability == ABILITY_CLOUD_NINE || ability == ABILITY_AIR_LOCK))
              || (ability == 0 && (special == ABILITYEFFECT_MUD_SPORT || special == ABILITYEFFECT_WATER_SPORT)))) Unexpected();
     return 0; /* the admitted field contains no abilities or sports */
+#endif
 }
 
 /* These hooks must be unreachable under the admitted state. A hit fails. */
 static u8 CountAliveMonsInBattle(u8 caseId) { (void)caseId; Unexpected(); return 0; }
 static u8 AttacksThisTurn(u8 battler, u16 move) { (void)battler; (void)move; Unexpected(); return 0; }
+#ifdef WATERBLUE_ROUTE1
+static void RecordAbilityBattle(u8 battler, u8 ability)
+{
+    if (battler >= 2 || ability != gBattleMons[battler].ability || !Route1AbilityPair()) { Unexpected(); return; }
+    Emit(7, battler, ability);
+}
+#else
 static void RecordAbilityBattle(u8 battler, u8 ability) { (void)battler; (void)ability; Unexpected(); }
+#endif
 static void BattleScriptPushCursor(void) { Unexpected(); }
 static void PrepareStringBattle(u16 stringId, u8 battler) { (void)stringId; (void)battler; Unexpected(); }
 
@@ -139,6 +159,14 @@ s32 spike_reset(u32 seed)
     gCurrMovePos = gPotentialItemEffectBattler = gRandomTurnNumber = gLastUsedItem = 0;
     ResetLifecycle();
     ResetCheckpoint();
+#ifdef WATERBLUE_ROUTE1
+    sRoute1Started = 0;
+    Route1ResetItems();
+#ifdef WATERBLUE_FAMILY
+    FamilyReset();
+#endif
+    gCurrentTurnActionNumber = 0;
+#endif
     sBattleResources.flags = &sResourceFlags;
     gRngValue = seed;
     sRngInitialSeed = seed;
@@ -178,9 +206,16 @@ s32 spike_set_battler(u32 index, u32 level, u32 hp, u32 maxHP, u32 attack, u32 d
     mon->attack = attack; mon->defense = defense; mon->spAttack = spAttack; mon->spDefense = spDefense;
     mon->type1 = type1; mon->type2 = type2; mon->status1 = status1; mon->status2 = status2;
     mon->ability = ABILITY_NONE; mon->item = ITEM_NONE;
+#ifdef WATERBLUE_ROUTE1
+    mon->species = index == 0 ? SPECIES_SQUIRTLE : SPECIES_PIDGEY;
+    mon->ability = index == 0 ? ABILITY_TORRENT : ABILITY_KEEN_EYE;
+    gSpeciesInfo[mon->species].types[0] = type1;
+    gSpeciesInfo[mon->species].types[1] = type2;
+#else
     mon->species = index + 1;
     gSpeciesInfo[index + 1].types[0] = type1;
     gSpeciesInfo[index + 1].types[1] = type2;
+#endif
     sConfigured[index] = 1;
     return Fail(SPIKE_OK);
 }
@@ -294,6 +329,10 @@ s32 spike_get_battler(u32 index, u32 field)
     case 5: return gTakenDmg[index];
     case 6: return gTakenDmgByBattler[index];
     case 7: return gProtectStructs[index].targetNotAffected;
+#ifdef WATERBLUE_ROUTE1
+    case 8: return gBattleMons[index].species;
+    case 9: return gBattleMons[index].ability;
+#endif
     default: return -1;
     }
 }

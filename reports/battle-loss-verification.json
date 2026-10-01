@@ -1,0 +1,4029 @@
+{
+  "checkedAt": "2026-09-30T15:43:00.829Z",
+  "status": "passed",
+  "profile": "firered-route1-loss-v1",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "wasmSha256": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a",
+  "fixtureSha256": "dbfe309e1a8ce56fdf691710858785756f910c3502c926935112632c5d93cd1b",
+  "independence": "Test-only source-literal arithmetic and tables; no generated C/WASM or production host inputs used for expected results; no ROM/emulator claim",
+  "oracleReproduction": "Python --check passed without writes",
+  "scope": "Private source mechanical plan only; pending world/arrival scripts. No DB, owned effects, world movement or combat readmission.",
+  "sourceCases": 557,
+  "sourceHealLocations": 20,
+  "badgeMasks": 256,
+  "boundaries": 1671,
+  "transitions": 1114,
+  "replayedTransitions": 1671,
+  "interleavedTransitions": 4,
+  "candidateFailures": 2,
+  "hostRejectionChecks": 56,
+  "rawRejectionChecks": 39,
+  "settledDuplicateChecks": 557,
+  "retained": {
+    "tools/battle-route1/fixtures/source-cases.json": "6e8127ab6bac381bb62266c0d6df1f3d0814cda5ba54a026ad01e40e920f48ac",
+    "tools/battle-route1/fixtures/items-cases.json": "1d1e05e66692787c0cbefd4ebe389ab7bc691097578e73cfd486fb21e5aa91d1",
+    "tools/battle-progression/fixtures/source-cases.json": "23101fd4be7533cea2e64c055d80fc15f3170be86d4ba52f418d8d7bacc7e27c",
+    ".local/battle-route1/primary/route1.wasm": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02",
+    ".local/battle-progression/primary/progression.wasm": "33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539"
+  },
+  "negatives": [
+    "input:living sole participant",
+    "input:unknown reward option",
+    "input:level zero",
+    "input:level beyond source cap",
+    "input:XP level mismatch",
+    "input:friendship out of range",
+    "input:cached stats changed",
+    "input:source u16 maximum exceeded",
+    "input:noncanonical IV",
+    "input:EV cap",
+    "input:EV total cap",
+    "input:basis exceeds EV",
+    "input:future move",
+    "input:duplicate move",
+    "input:PP exceeds source maximum",
+    "input:PP Ups exceeds packed slot",
+    "input:unsupported held modifier",
+    "input:opponent zero",
+    "input:opponent above level100",
+    "input:foreign outcome",
+    "input:negative wallet",
+    "input:above source wallet",
+    "input:ninth badge",
+    "input:missing heal index",
+    "input:out-of-range heal index",
+    "input:unsupported Tower routing",
+    "input:unrecognized field flag bit",
+    "input:out-of-range source variable",
+    "input:out-of-range champion bit",
+    "input:out-of-range avatar byte",
+    "input:invalid cardinal direction",
+    "input:nonboolean direction flag",
+    "advance:{\"expectedSequence\":1}",
+    "advance:{\"expectedSequence\":2}",
+    "advance:{\"expectedSequence\":-1}",
+    "advance:{}",
+    "advance:{\"expectedSequence\":0,\"money\":0}",
+    "advance:already applied faint",
+    "advance:already applied whiteout",
+    "checkpoint:corrupt digest",
+    "checkpoint:wasmSha256",
+    "checkpoint:hostSha256",
+    "checkpoint:sourceFingerprint",
+    "checkpoint:battleCompatibilitySha256",
+    "checkpoint:progressionCompatibilitySha256",
+    "checkpoint:houseMapSha256",
+    "checkpoint:different policy",
+    "checkpoint:sequence rewound with completed words",
+    "checkpoint:sequence advanced with faint words",
+    "checkpoint:changed money",
+    "checkpoint:changed friendship",
+    "checkpoint:changed healed PP",
+    "checkpoint:changed respawn",
+    "checkpoint:changed field changes",
+    "checkpoint:truncated words",
+    "checkpoint:changed immutable context"
+  ],
+  "rawNegatives": [
+    "version",
+    "stage",
+    "uninitialized",
+    "reserved header",
+    "reserved tail",
+    "invalid last heal index zero",
+    "invalid last heal index21",
+    "invalid badge bit",
+    "invalid opponent level",
+    "invalid outcome",
+    "unsupported Tower",
+    "invalid field variable",
+    "invalid field bits",
+    "invalid direction",
+    "invalid boolean",
+    "wallet too wide",
+    "mon maximum exceeds u16",
+    "bad stat cache",
+    "bad IV",
+    "EV per-stat cap",
+    "basis above EV",
+    "future move",
+    "PP maximum",
+    "post-replay debit mismatch",
+    "post-replay destination mismatch",
+    "post-replay faint penalty mismatch",
+    "post-replay premature heal",
+    "import staging:duplicate",
+    "import staging:out-of-range",
+    "import staging:incomplete",
+    "input:zero heal",
+    "input:wide heal",
+    "input:living mon",
+    "input:wide stat",
+    "input:Tower override",
+    "input:reserved input",
+    "input staging:duplicate",
+    "input staging:out-of-range",
+    "input staging:incomplete"
+  ],
+  "cases": [
+    {
+      "id": "canonical-lost",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "canonical-draw",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-00",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-01",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-02",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-03",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-04",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-05",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-06",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-07",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-08",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-09",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-0a",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-0b",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-0c",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-0d",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-0e",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-0f",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-10",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-11",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-12",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-13",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-14",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-15",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-16",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-17",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-18",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-19",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-1a",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-1b",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-1c",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-1d",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-1e",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-1f",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-20",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-21",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-22",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-23",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-24",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-25",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-26",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-27",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-28",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-29",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-2a",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-2b",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-2c",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-2d",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-2e",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-2f",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-30",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-31",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-32",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-33",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-35",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-36",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-37",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-38",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-39",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-3a",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-3b",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-3c",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-3d",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-3e",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-3f",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-40",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-41",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-42",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-43",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-44",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-45",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-46",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-47",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-48",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-49",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-4a",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-4b",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-4c",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-4d",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-4e",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-4f",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-50",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-51",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-52",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-53",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-54",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-55",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-56",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-57",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-58",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-59",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-5a",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-5b",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-5c",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-5d",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-5e",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-5f",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-60",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-61",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-62",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-63",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-64",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-65",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-66",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-67",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-68",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-69",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-6a",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-6b",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-6c",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-6d",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-6e",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-6f",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-70",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-71",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-72",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-73",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-74",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-75",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-76",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-77",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-78",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-79",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-7a",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-7b",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-7c",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-7d",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-7e",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-7f",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-80",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-81",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-82",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-83",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-84",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-85",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-86",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-87",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-88",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-89",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-8a",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-8b",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-8c",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-8d",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-8e",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-8f",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-90",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-91",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-92",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-93",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-94",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-95",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-96",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-97",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-98",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-99",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-9a",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-9b",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-9c",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-9d",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-9e",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-9f",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-a0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-a1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-a2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-a3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-a4",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-a5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-a6",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-a7",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-a8",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-a9",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-aa",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ab",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ac",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ad",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ae",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-af",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-b0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-b1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-b2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-b3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-b4",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-b5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-b6",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-b7",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-b8",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-b9",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ba",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-bb",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-bc",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-bd",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-be",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-bf",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-c0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-c1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-c2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-c3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-c4",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-c5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-c6",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-c7",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-c8",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-c9",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ca",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-cb",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-cc",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-cd",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ce",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-cf",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-d0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-d1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-d2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-d3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-d4",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-d5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-d6",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-d7",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-d8",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-d9",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-da",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-db",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-dc",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-dd",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-de",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-df",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-e0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-e1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-e2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-e3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-e4",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-e5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-e6",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-e7",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-e8",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-e9",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ea",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-eb",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ec",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ed",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ee",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ef",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-f0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-f1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-f2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-f3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-f4",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-f5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-f6",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-f7",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-f8",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-f9",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-fa",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-fb",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-fc",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-fd",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-fe",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "badge-mask-ff",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 600,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges0-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges0-money7",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 7,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges0-money8",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 8,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges0-money9",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 8,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges0-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 8,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges1-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges1-money15",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 15,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges1-money16",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 16,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges1-money17",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 16,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges1-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 16,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges2-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges2-money23",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 23,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges2-money24",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 24,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges2-money25",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 24,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges2-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 24,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges3-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges3-money35",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 35,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges3-money36",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 36,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges3-money37",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 36,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges3-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 36,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges4-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges4-money47",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 47,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges4-money48",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 48,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges4-money49",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 48,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges4-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 48,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges5-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges5-money63",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 63,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges5-money64",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 64,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges5-money65",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 64,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges5-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 64,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges6-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges6-money79",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 79,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges6-money80",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges6-money81",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges6-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges7-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges7-money99",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 99,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges7-money100",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 100,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges7-money101",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 100,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges7-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 100,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges8-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges8-money119",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 119,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges8-money120",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges8-money121",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level1-badges8-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges0-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges0-money39",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 39,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges0-money40",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges0-money41",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges0-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges1-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges1-money79",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 79,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges1-money80",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges1-money81",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges1-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 80,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges2-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges2-money119",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 119,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges2-money120",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges2-money121",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges2-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 120,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges3-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges3-money179",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 179,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges3-money180",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges3-money181",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges3-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 180,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges4-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges4-money239",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 239,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges4-money240",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges4-money241",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges4-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 240,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges5-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges5-money319",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 319,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges5-money320",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges5-money321",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges5-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 320,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges6-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges6-money399",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 399,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges6-money400",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges6-money401",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges6-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges7-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges7-money499",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 499,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges7-money500",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges7-money501",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges7-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 500,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges8-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges8-money599",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 599,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges8-money600",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 600,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges8-money601",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 600,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level5-badges8-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 600,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges0-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges0-money799",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 799,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges0-money800",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 800,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges0-money801",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 800,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges0-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 800,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges1-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges1-money1599",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 1599,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges1-money1600",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 1600,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges1-money1601",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 1600,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges1-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 1600,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges2-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges2-money2399",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 2399,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges2-money2400",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 2400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges2-money2401",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 2400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges2-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 2400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges3-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges3-money3599",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 3599,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges3-money3600",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 3600,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges3-money3601",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 3600,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges3-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 3600,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges4-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges4-money4799",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 4799,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges4-money4800",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 4800,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges4-money4801",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 4800,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges4-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 4800,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges5-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges5-money6399",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 6399,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges5-money6400",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 6400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges5-money6401",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 6400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges5-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 6400,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges6-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges6-money7999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 7999,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges6-money8000",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 8000,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges6-money8001",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 8000,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges6-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 8000,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges7-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges7-money9999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 9999,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges7-money10000",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 10000,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges7-money10001",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 10000,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges7-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 10000,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges8-money0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 0,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges8-money11999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 11999,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges8-money12000",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 12000,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges8-money12001",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 12000,
+      "healerLocalId": 1
+    },
+    {
+      "id": "wallet-level100-badges8-money999999",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 12000,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship0-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 0,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship0-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 0,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship0-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 0,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship0-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 0,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship0-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 0,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship1-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship1-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship1-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship1-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship1-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship4-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship4-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship4-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship4-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 4,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship4-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 4,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship5-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship5-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship5-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship5-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship5-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship9-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship9-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship9-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship9-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship9-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship10-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship10-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship10-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship10-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship10-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship99-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship99-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship99-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship99-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship99-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship100-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship100-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship100-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship100-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship100-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship199-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship199-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship199-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship199-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship199-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 5,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship200-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship200-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship200-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship200-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 10,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship200-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 10,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship254-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship254-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship254-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship254-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 10,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship254-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 10,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship255-level5-opponent1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship255-level5-opponent5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship255-level5-opponent34",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship255-level5-opponent35",
+      "status": "passed",
+      "friendshipLoss": 10,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "faint-friendship255-level5-opponent100",
+      "status": "passed",
+      "friendshipLoss": 10,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status0-PPups0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status0-PPups1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status0-PPups2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status0-PPups3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status1-PPups0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status1-PPups1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status1-PPups2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status1-PPups3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status7-PPups0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status7-PPups1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status7-PPups2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status7-PPups3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status8-PPups0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status8-PPups1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status8-PPups2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status8-PPups3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status16-PPups0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status16-PPups1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status16-PPups2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status16-PPups3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status32-PPups0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status32-PPups1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status32-PPups2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status32-PPups3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status64-PPups0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status64-PPups1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status64-PPups2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status64-PPups3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status128-PPups0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status128-PPups1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status128-PPups2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status128-PPups3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status4294967295-PPups0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status4294967295-PPups1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status4294967295-PPups2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-status4294967295-PPups3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-packed-PPbonus-rotation0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-packed-PPbonus-rotation1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-packed-PPbonus-rotation2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-packed-PPbonus-rotation3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 96,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-1-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-1-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-2-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-2-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-3-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 3
+    },
+    {
+      "id": "last-heal-3-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 3
+    },
+    {
+      "id": "last-heal-4-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-4-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-5-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-5-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-6-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-6-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-7-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-7-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-8-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-8-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-9-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-9-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-10-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 2
+    },
+    {
+      "id": "last-heal-10-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 2
+    },
+    {
+      "id": "last-heal-11-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-11-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-12-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-12-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-13-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-13-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-14-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-14-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-15-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-15-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-16-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-16-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-17-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-17-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-18-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-18-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-19-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-19-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-20-brock0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "last-heal-20-brock1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "already-reset-field-state",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-flags-0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-flags-1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-flags-2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-flags-3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-flags-4",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-flags-5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-eliteFourFlags-0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-eliteFourFlags-1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-eliteFourFlags-2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-eliteFourFlags-3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-eliteFourFlags-4",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-championFlags-0",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-championFlags-1",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-championFlags-2",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-championFlags-3",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-championFlags-4",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-championFlags-5",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-route16",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-safariEntrance",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-questLogEntrance",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "clear-only-league",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-preserves-unrecalculated-EV-stat-cache",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 40,
+      "healerLocalId": 1
+    },
+    {
+      "id": "heal-preserves-capped-EVs-and-cached-maxHP",
+      "status": "passed",
+      "friendshipLoss": 1,
+      "moneyLoss": 800,
+      "healerLocalId": 1
+    }
+  ]
+}

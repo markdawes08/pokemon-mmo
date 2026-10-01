@@ -47,6 +47,7 @@ export class AdmissionTickets {
 
 export function installAccountApi(app: Application, dependencies: {
   auth: GameAuth; env: ServerEnv; origins: Set<string>; characters: CharacterService; assets: AssetService; tickets: AdmissionTickets; checkReady: () => Promise<void>;
+  sessionRevoked?: (sessionId: string) => void;
 }) {
   const { auth, env, origins, characters, assets, tickets, checkReady } = dependencies;
   let windowStart = Date.now(); let requests = 0;
@@ -80,7 +81,9 @@ export function installAccountApi(app: Application, dependencies: {
       if (body && Buffer.byteLength(body, 'utf8') > 8192) {
         response.status(400).json({ error: { code: 'INVALID_MESSAGE', message: 'The authentication body is too large.' } }); return;
       }
+      const signingOut = request.path === '/api/auth/sign-out' ? await readAccountSession(auth, headers) : null;
       const result = await auth.handler(new Request(new URL(request.originalUrl, env.BETTER_AUTH_URL), { method: request.method, headers, body }));
+      if (result.ok && signingOut) dependencies.sessionRevoked?.(signingOut.sessionId);
       response.status(result.status);
       for (const [key, value] of result.headers) if (key !== 'set-cookie' && key !== 'content-length' && key !== 'content-type') response.setHeader(key, value);
       const cookies = result.headers.getSetCookie();

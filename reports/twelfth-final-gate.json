@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-09-27T00:29:21.516Z",
+  "results": [
+    {
+      "stage": "doctor",
+      "status": "passed"
+    },
+    {
+      "stage": "lint",
+      "status": "passed"
+    },
+    {
+      "stage": "typecheck",
+      "status": "passed"
+    },
+    {
+      "stage": "test:unit",
+      "status": "passed"
+    },
+    {
+      "stage": "test:integration",
+      "status": "passed"
+    },
+    {
+      "stage": "content:check",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:spike",
+      "status": "passed"
+    },
+    {
+      "stage": "build",
+      "status": "passed"
+    },
+    {
+      "stage": "test:recovery",
+      "status": "passed"
+    },
+    {
+      "stage": "test:e2e",
+      "status": "passed"
+    }
+  ],
+  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 shared movement and authenticated transport reconnect; R1 battles and story gameplay not implemented"
+}

@@ -126,7 +126,7 @@ export class WorldScene extends Phaser.Scene {
     this.input.keyboard?.disableGlobalCapture();
     const options = { signal: this.listeners.signal };
     this.screen.addEventListener('keydown', event => {
-      if (this.menuOpen || this.worldState === 'disconnected') return;
+      if (this.menuOpen || this.worldState === 'disconnected' || this.worldState === 'reconnecting') return;
       if (event.altKey || event.ctrlKey || event.metaKey || document.hidden) return;
       const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
       this.runHeld = event.shiftKey;
@@ -407,9 +407,10 @@ export class WorldScene extends Phaser.Scene {
       this.sharedSnapshot = undefined;
       if (this.previewPosition) this.renderMap(this.previewPosition);
       this.previewPosition = undefined; this.report('Anonymous exploration preview · progress is not saved');
-    } else if (state === 'disconnected') {
+    } else if (state === 'disconnected' || state === 'reconnecting') {
       this.sharedSnapshot = undefined; this.avatar?.setY(0);
-      this.report('Shared world disconnected. Open Account to reconnect, or leave the shared world.');
+      this.report(state === 'reconnecting' ? 'Connection interrupted. Movement is paused while your trainer reconnects (up to 60 seconds).'
+        : 'Shared world disconnected. Open Account to reconnect, or leave the shared world.');
     }
     this.screen.dataset.worldMode = state; this.screen.dataset.worldReady = String(state === 'shared'); this.syncReadout();
   }

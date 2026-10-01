@@ -1,0 +1,29 @@
+{
+  "verifiedAt": "2026-09-30T15:39:44.109Z",
+  "backendPids": [
+    22396,
+    28012
+  ],
+  "workerPid": 15028,
+  "gracefulShutdown": true,
+  "runtime": "Built client and isolated source backend processes with explicit test PostgreSQL fixtures",
+  "results": [
+    {
+      "title": "ordinary trainers retain anonymous preview and cannot enter the seeded shared-world policy",
+      "status": "passed"
+    },
+    {
+      "title": "two real accounts see nonblocking avatars, source house transfers, and durable shared checkpoints",
+      "status": "passed"
+    },
+    {
+      "title": "modified map bytes refuse shared entry and leave the scene frozen",
+      "status": "passed"
+    },
+    {
+      "title": "Route 1 ledges, focus and menus stop input, and a fresh backend recovers the saved position",
+      "status": "passed"
+    }
+  ],
+  "passed": true
+}

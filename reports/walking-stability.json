@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-09-26T01:26:47.459Z",
+  "checkedAt": "2026-09-30T15:46:59.556Z",
   "mode": "walk",
   "scope": "Actual player WebGL quad vertices during focused keyboard movement; test-only passive renderer instrumentation",
   "observations": [
     {
       "direction": "ArrowUp",
-      "movingRenderFrames": 61,
+      "movingRenderFrames": 70,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -26,13 +26,13 @@
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 12.799999997019768,
-        "max": 25.700000002980232
+        "min": 14.899999999441206,
+        "max": 18.40000000037253
       }
     },
     {
       "direction": "ArrowDown",
-      "movingRenderFrames": 57,
+      "movingRenderFrames": 71,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -49,17 +49,17 @@
       ],
       "cameraTravel": {
         "x": 0,
-        "y": 64
+        "y": 63
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 14.300000004470348,
-        "max": 27.5
+        "min": 15,
+        "max": 17.90000000037253
       }
     },
     {
       "direction": "ArrowLeft",
-      "movingRenderFrames": 56,
+      "movingRenderFrames": 70,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -75,18 +75,18 @@
         "8"
       ],
       "cameraTravel": {
-        "x": 63,
+        "x": 64,
         "y": 0
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 6.699999995529652,
-        "max": 25.80000000447035
+        "min": 15.100000000558794,
+        "max": 18.09999999962747
       }
     },
     {
       "direction": "ArrowRight",
-      "movingRenderFrames": 56,
+      "movingRenderFrames": 70,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -102,13 +102,13 @@
         "8"
       ],
       "cameraTravel": {
-        "x": 63,
+        "x": 64,
         "y": 0
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 4.600000001490116,
-        "max": 29.399999998509884
+        "min": 15.200000000186265,
+        "max": 18.100000000558794
       }
     }
   ]

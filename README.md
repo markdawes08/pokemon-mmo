@@ -27,8 +27,12 @@ Reset position returns to the preview spawn. Movement is local and is not saved.
 Click **Account** to create a local account or sign in, choose a trainer name,
 and save its profile. An existing trainer can reconnect after a reload or backend
 restart. Connecting it in another tab replaces the previous trainer connection.
-Profiles are stored in PostgreSQL; opening story, shared movement and gameplay
-saves are still ahead. Email verification and password recovery are not connected.
+Profiles are stored in PostgreSQL. Trainers with the explicit development fixture
+can choose **Enter shared world** to see other signed-in trainers and move through
+the three supported maps. Shared positions save through checkpoints and Save;
+brief connection interruptions can resume within the fixed grace period.
+Opening story and battle gameplay remain unavailable. Email verification and
+password recovery are not connected.
 Expand **Saved party & bag** in Account to inspect your persisted records. New
 trainers start empty. A separate [local developer fixture](docs/RUNBOOK.md#local-development-fixture)
 can supply a source-defined Squirtle and starting items for upcoming development.
@@ -36,8 +40,9 @@ Walk north into Route 1 or enter the player's house through its door. The ground
 floor, return exit, route connections, and one-way ledges work in this preview.
 Five NPCs appear at their source starting positions and block occupied tiles.
 Simple source conversations and signs are readable; story-dependent interactions
-explain that they are unavailable. NPC wandering, story progression, battles,
-and online player presence are future work. Other destinations remain blocked.
+explain that they are unavailable. These simple interactions belong to the
+anonymous preview; shared dialogue, NPC wandering, story progression and battles
+remain future work. Other destinations remain blocked.
 
 Ctrl+C stops the client and backend. The local database retains its data.
 To stop it too: `npm.cmd run db:stop`.
@@ -77,6 +82,14 @@ the running browser preview.
 | `npm.cmd run test:recovery` | Verify saved accounts/profiles across two built backend processes |
 | `npm.cmd run battle:setup` | Install the pinned local C-to-WASM experiment compiler |
 | `npm.cmd run battle:spike` | Rebuild and verify the bounded headless source battle prototype |
+| `npm.cmd run encounter:check` | Verify private Route 1 encounter generation and recovery |
+| `npm.cmd run battle:route1` | Verify private real-team Fight/Run/Potion/Poke Ball mechanics |
+| `npm.cmd run battle:progression` | Verify private victory progression and move decisions |
+| `npm.cmd run battle:loss` | Verify private faint/blackout mechanics and pending world handoff |
+| `npm.cmd run battle:capture` | Verify private capture metadata, nickname and party/PC placement |
+| `npm.cmd run battle:evolution` | Verify private evolution decisions and resulting stats, names, dex and moves |
+| `npm.cmd run battle:family` | Verify private eight-species family combat and source-result diagnostic bridges |
+| `npm.cmd run battle:party` | Verify private party switching, faint decisions and coherent capture-party diagnostics |
 | `npm.cmd run content:check` | Rebuild independently and verify generated hashes |
 | `npm.cmd run build` | Build the client and backend |
 | `npm.cmd run start` | Serve the built preview at http://127.0.0.1:2567 |
@@ -94,3 +107,11 @@ encounters, party management and the battle UI remain later work. Owned asset
 records and their read-only account view are now implemented.
 See [the experiment notes](tools/battle-spike/README.md) for its verified scope
 and remaining mechanics and persistence requirements.
+
+Private Route 1 combat, victory progression, blackout, capture and evolution continuations
+build on that architecture. A separate eight-species/16-move family profile now verifies
+combat using their supported results as private diagnostics. A party profile now adds
+one-to-six-member switching and recoverable faint/replacement decisions. These proposals
+do not apply account assets or world changes. Nine remaining moves, party-aware result
+handling, durable ownership, arrival scripts and battle application remain necessary before live play;
+see [current status](docs/STATUS.md).

@@ -1,0 +1,5 @@
+﻿{
+    "nativeExitCode":  0,
+    "powerShellSuccess":  false,
+    "purpose":  "Reproduce stderr redirection of successful native process"
+}

@@ -1,0 +1,421 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.tools\\node-v24.21.0-win-x64\\node.exe",
+      "C:\\Users\\mrkda\\Projects\\pokewaterblue\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/reconnect.spec.ts",
+      "tests/e2e/world.spec.ts"
+    ],
+    "configFile": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\playwright.config.ts",
+    "rootDir": "C:/Users/mrkda/Projects/pokewaterblue/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/mrkda/Projects/pokewaterblue/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/mrkda/Projects/pokewaterblue/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/browser-tests.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/run.mjs dev",
+      "url": "http://127.0.0.1:5173",
+      "reuseExistingServer": true,
+      "timeout": 30000,
+      "gracefulShutdown": {
+        "signal": "SIGINT",
+        "timeout": 5000
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "reconnect.spec.ts",
+      "file": "reconnect.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "native transport resumes the same session with a fresh snapshot and no held-input replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 40000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7220,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:10:26.745Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52d77e2c54626c9984db-de43accde38ce3d18590",
+          "file": "reconnect.spec.ts",
+          "line": 50,
+          "column": 1
+        },
+        {
+          "title": "lost Save acknowledgement is resolved only by explicit identical receipt retry after resume",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 35000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4084,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:10:35.122Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52d77e2c54626c9984db-198e451286956445ab52",
+          "file": "reconnect.spec.ts",
+          "line": 76,
+          "column": 1
+        },
+        {
+          "title": "explicit Leave cancels scheduled resume and Sign out never reconnects",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8009,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:10:39.227Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52d77e2c54626c9984db-0b3f776b3626c225fb81",
+          "file": "reconnect.spec.ts",
+          "line": 91,
+          "column": 1
+        },
+        {
+          "title": "a lost backend freezes recovery and explicit cancellation permits fresh process admission",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 40000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 17523,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:10:47.257Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52d77e2c54626c9984db-89f4c954475ec66476d7",
+          "file": "reconnect.spec.ts",
+          "line": 120,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "world.spec.ts",
+      "file": "world.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "ordinary trainers retain anonymous preview and cannot enter the seeded shared-world policy",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1530,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:11:05.670Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7981c09d23e5ff0a958d-2de3b73734a44e988dc0",
+          "file": "world.spec.ts",
+          "line": 71,
+          "column": 1
+        },
+        {
+          "title": "two real accounts see nonblocking avatars, source house transfers, and durable shared checkpoints",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18086,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:11:08.263Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7981c09d23e5ff0a958d-d5c365789c57566f7180",
+          "file": "world.spec.ts",
+          "line": 83,
+          "column": 1
+        },
+        {
+          "title": "modified map bytes refuse shared entry and leave the scene frozen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2680,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:11:26.376Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7981c09d23e5ff0a958d-4966ddd5c934c768351f",
+          "file": "world.spec.ts",
+          "line": 134,
+          "column": 1
+        },
+        {
+          "title": "Route 1 ledges, focus and menus stop input, and a fresh backend recovers the saved position",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 30194,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#game')\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('#game') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('#game')\u001b[22m\n\u001b[2m    24 × locator resolved to <div id=\"game\" tabindex=\"0\" data-tile-x=\"12\" data-tile-y=\"34\" data-ready=\"true\" data-elevation=\"3\" class=\"game-screen\" data-moving=\"false\" data-nearby-count=\"0\" data-step-serial=\"25\" data-world-ready=\"true\" data-server-tile-x=\"12\" data-server-tile-y=\"34\" data-world-mode=\"shared\" data-map-id=\"MAP_ROUTE1\" data-movement-mode=\"walk\" data-transitioning=\"false\" data-dialogue-open=\"false\" data-step-duration-frames=\"16\" data-server-map-id=\"MAP_ROUTE1\" aria-label=\"Route 1 map. Arrows or W A S D move. Shift …>…</div>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#game')\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('#game') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('#game')\u001b[22m\n\u001b[2m    24 × locator resolved to <div id=\"game\" tabindex=\"0\" data-tile-x=\"12\" data-tile-y=\"34\" data-ready=\"true\" data-elevation=\"3\" class=\"game-screen\" data-moving=\"false\" data-nearby-count=\"0\" data-step-serial=\"25\" data-world-ready=\"true\" data-server-tile-x=\"12\" data-server-tile-y=\"34\" data-world-mode=\"shared\" data-map-id=\"MAP_ROUTE1\" data-movement-mode=\"walk\" data-transitioning=\"false\" data-dialogue-open=\"false\" data-step-duration-frames=\"16\" data-server-map-id=\"MAP_ROUTE1\" aria-label=\"Route 1 map. Arrows or W A S D move. Shift …>…</div>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\world.spec.ts:201:78",
+                    "location": {
+                      "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\world.spec.ts",
+                      "column": 78,
+                      "line": 201
+                    },
+                    "snippet": "  199 |   const committed = await savedPosition(character.id);\n  200 |   await page.getByRole('button', { name: 'Close account', exact: true }).click();\n> 201 |   await page.keyboard.down('ArrowDown'); await expect(page.locator('#game')).toHaveAttribute('data-moving', 'true');\n      |                                                                              ^\n  202 |   await backend.stop();\n  203 |   await expect(page.locator('#game')).toHaveAttribute('data-world-mode', 'disconnected');\n  204 |   const frozen = await page.locator('#game').getAttribute('data-tile-y'); await page.waitForTimeout(550);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\world.spec.ts",
+                        "column": 78,
+                        "line": 201
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#game')\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  10000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('#game') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('#game')\u001b[22m\n\u001b[2m    24 × locator resolved to <div id=\"game\" tabindex=\"0\" data-tile-x=\"12\" data-tile-y=\"34\" data-ready=\"true\" data-elevation=\"3\" class=\"game-screen\" data-moving=\"false\" data-nearby-count=\"0\" data-step-serial=\"25\" data-world-ready=\"true\" data-server-tile-x=\"12\" data-server-tile-y=\"34\" data-world-mode=\"shared\" data-map-id=\"MAP_ROUTE1\" data-movement-mode=\"walk\" data-transitioning=\"false\" data-dialogue-open=\"false\" data-step-duration-frames=\"16\" data-server-map-id=\"MAP_ROUTE1\" aria-label=\"Route 1 map. Arrows or W A S D move. Shift …>…</div>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n\n  199 |   const committed = await savedPosition(character.id);\n  200 |   await page.getByRole('button', { name: 'Close account', exact: true }).click();\n> 201 |   await page.keyboard.down('ArrowDown'); await expect(page.locator('#game')).toHaveAttribute('data-moving', 'true');\n      |                                                                              ^\n  202 |   await backend.stop();\n  203 |   await expect(page.locator('#game')).toHaveAttribute('data-world-mode', 'disconnected');\n  204 |   const frozen = await page.locator('#game').getAttribute('data-tile-y'); await page.waitForTimeout(550);\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\world.spec.ts:201:78"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-27T00:11:29.075Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\world-Route-1-ledges-focus-f4675-recovers-the-saved-position\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\world-Route-1-ledges-focus-f4675-recovers-the-saved-position\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\world-Route-1-ledges-focus-f4675-recovers-the-saved-position\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\world-Route-1-ledges-focus-f4675-recovers-the-saved-position\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\world.spec.ts",
+                    "column": 78,
+                    "line": 201
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "7981c09d23e5ff0a958d-6afb9fe5b237f15fb946",
+          "file": "world.spec.ts",
+          "line": 151,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-27T00:10:25.549Z",
+    "duration": 102777.176,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

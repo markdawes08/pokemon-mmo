@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-26T01:28:07.942Z",
+  "checkedAt": "2026-09-30T15:48:11.208Z",
   "results": [
     {
       "stage": "doctor",
@@ -30,7 +30,43 @@
       "status": "passed"
     },
     {
+      "stage": "encounter:check",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:route1",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:progression",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:loss",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:capture",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:evolution",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:family",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:party",
+      "status": "passed"
+    },
+    {
       "stage": "build",
+      "status": "passed"
+    },
+    {
+      "stage": "test:boundaries",
       "status": "passed"
     },
     {
@@ -42,5 +78,5 @@
       "status": "passed"
     }
   ],
-  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 development-fixture shared movement; R1 battles and story gameplay not implemented"
+  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 encounter factory, real-team Route 1 battle mechanics, victory progression, blackout, capture and evolution continuations plus diagnostic family combat and party switching/faint decisions; live R1 battles, persistent outcomes and story gameplay not implemented"
 }

@@ -217,9 +217,15 @@ try {
   await assert.rejects(sdk(bob.cookie).joinOrCreate(CHARACTER_ROOM, { protocolVersion: PROTOCOL_VERSION, ticket: pendingExpiredSessionTicket.ticket }), /AUTH_REQUIRED/);
   assert.equal((await error(bobSession.room, 'save', saveCommand(bobSession.snapshot))).code, 'AUTH_REQUIRED');
   const revokedCookie = alice.cookie;
+  // Signout now revokes live and suspended transports immediately. Subscribe
+  // before the HTTP request instead of sending a command after its socket closed.
+  const revokedError = message(reconnected.room, 'error');
+  const revokedClosed = leaveMessage(reconnected.room);
   assert.equal((await api('/api/auth/sign-out', alice.cookie, {})).response.status, 200);
   assert.equal((await api('/api/account', revokedCookie)).response.status, 401);
-  assert.equal((await error(reconnected.room, 'save', saveCommand(reconnected.snapshot))).code, 'AUTH_REQUIRED');
+  assert.equal(characterErrorSchema.parse(await revokedError).code, 'AUTH_REQUIRED');
+  assert.notEqual(await revokedClosed, 1000);
+  assert.equal(reconnected.room.connection.isOpen, false);
   assertions.push('expired-and-revoked-http-and-active-socket-sessions-rejected');
   const signin = await api('/api/auth/sign-in/email', '', { email: alice.credentials.email, password: alice.credentials.password });
   assert.equal(signin.response.status, 200); assert.deepEqual(signin.data, { ok: true }); alice.cookie = sessionCookie(signin.response);

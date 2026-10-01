@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-09-29T02:40:21.252Z",
+  "status": "passed",
+  "profile": "firered-route1-capture-v1",
+  "wasmSha256": "1e6b16390cdaa4906c01b391c30984735a22e998f548e9ff7de44d890865a60b",
+  "crossBuildHostBoundaries": 2584,
+  "crossBuildRawBoundaries": 2584,
+  "replayedTransitions": 3876,
+  "freshProcess": {
+    "pid": 25532,
+    "parentPid": 15008,
+    "hostBoundaries": 2584,
+    "rawBoundaries": 2584,
+    "transitions": 3876
+  },
+  "candidateFailures": 3,
+  "scope": "Sequence and decision fences prevent repeated local candidate effects. This is not durable grant deduplication or checkpoint authentication."
+}

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "checkedAt": "2026-09-30T15:42:48.929Z",
+  "scope": "Private Route1 source factory through ordinary wild held-item assignment; no battle introduction, live map, database, or battle commands",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "wasmSha256": "8b46d731fdf20c16213a6cb7dc9e1e14dccbd3a65fe4c4ac45d3e70c8a885bd2",
+  "hostSha256": "921a80847c3543c07ac17d756c393cc2649918701495c63e3dd900a7ed71641a",
+  "fixtureSha256": "684d9a73824782b5bc6ed02c78c3e762b797eb44aee1b12a9bcf1913fb25b936",
+  "fixtureReproducibility": "Independent Python --check passed without writing fixtures",
+  "independence": "Literal source constants and separate Python integer oracle; production extractor, wrapper and WASM are never executed or imported",
+  "adaptation": "Random32 is evaluated low-half first, then high-half, explicitly matching the chosen portable source adapter contract",
+  "originalGameOrEmulatorComparison": false,
+  "factoryCases": 43,
+  "stepTranscripts": 17,
+  "stepOperations": 374,
+  "checkedLiteralDraws": 4859,
+  "slots": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "natures": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "abilities": [
+    50,
+    51,
+    62
+  ],
+  "shinyPlayerOt": true,
+  "checks": [
+    "exact source creature identity, stats, IVs, nature, ability, gender, growth experience and legal PP",
+    "all slot threshold endpoints and fixed-level draw",
+    "personality rejection sampling and both RNG streams/counts",
+    "one held-item draw even when both items are NONE",
+    "cooldown threshold and five-percent early bypass",
+    "terrain behavior transition gate, no-encounter terrain and actual rate-buff threshold change",
+    "pending handoff cannot reroll; continuation consumes no RNG",
+    "walk/run equivalence and immutable private projections",
+    "version/digest/semantic rejection, isolated candidates, cross-build and fresh-process recovery"
+  ],
+  "sourceRecords": [
+    {
+      "path": "include/random.h",
+      "sha256": "8a6049183598b2d865b5ff522abdb3d0e94012a127d724af46b9b7b69803f5b9",
+      "evidence": "Random32 low-half first portability adaptation; both LCG addends"
+    },
+    {
+      "path": "src/random.c",
+      "sha256": "e7e90cc070d1fbf09579f5f91762cd8875d5bbe1d7a90f468bcd870df73b9de2",
+      "evidence": "Random: u32 multiply/add wrap and high-half return"
+    },
+    {
+      "path": "src/wild_encounter.c",
+      "sha256": "06021f7ef390bbb49a7801ca44def3a67380c53e5ab5fd211e472fc53b10ca8f",
+      "evidence": "ChooseWildMonIndex_Land 71; ChooseWildMonLevel 155; GenerateWildMon 226; rate/cooldown/step 302-439,661-784"
+    },
+    {
+      "path": "src/data/wild_encounters.h",
+      "sha256": "f879138f3b8756b5d5f686ff889ce7501d1da320f4a25dbefc13bd212a29f915",
+      "evidence": "FireRed Route1 rate21 and all twelve slots; cumulative weight endpoints"
+    },
+    {
+      "path": "src/pokemon.c",
+      "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec",
+      "evidence": "CreateMon/CreateBoxMon/CreateMonWithNature 1755-1875; stat calculation 2093-2170; initial moves 2265; nature 5404; held item 6032"
+    },
+    {
+      "path": "src/data/pokemon/species_info.h",
+      "sha256": "9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e",
+      "evidence": "Pidgey/Rattata base stats, growth, friendship70, abilities, zero held items"
+    },
+    {
+      "path": "src/data/pokemon/level_up_learnsets.h",
+      "sha256": "d6563a88fa893d1433a02027cb13ba9574a6828a96b1a730b1d767fd7c5a0cc6",
+      "evidence": "Pidgey Tackle1/SandAttack5; Rattata Tackle1/TailWhip1"
+    },
+    {
+      "path": "src/data/pokemon/experience_tables.h",
+      "sha256": "9a236761640676e251b76b7950b86e5881ee23dfe920ca27bbe47b4541542731",
+      "evidence": "MediumFast n^3; MediumSlow floor(6n^3/5)-15n^2+100n-140"
+    },
+    {
+      "path": "src/data/battle_moves.h",
+      "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384",
+      "evidence": "Tackle PP35; SandAttack PP15; TailWhip PP30"
+    }
+  ]
+}

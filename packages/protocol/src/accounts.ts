@@ -3,6 +3,7 @@ import { z } from 'zod';
 const counter = z.number().int().min(0).max(Number.MAX_SAFE_INTEGER);
 export const CHARACTER_ROOM = 'character' as const;
 export const CHARACTER_RULES_VERSION = 'character-foundation-v1' as const;
+export const CHARACTER_RECONNECT_GRACE_MS = 60_000;
 export const trainerNameSchema = z.string().trim().regex(/^[A-Za-z]{1,7}$/, 'Use 1–7 letters.').transform(value => value.toUpperCase());
 export const characterViewSchema = z.strictObject({
   id: z.uuid(), name: z.string().regex(/^[A-Z]{1,7}$/), revision: counter,
@@ -20,7 +21,7 @@ export const characterJoinSchema = z.strictObject({ protocolVersion: z.literal(1
 export const characterSnapshotSchema = z.strictObject({
   protocolVersion: z.literal(1), serverVersion: z.string().min(1).max(64),
   contentHash: z.string().regex(/^[0-9a-f]{64}$/), rulesVersion: z.literal(CHARACTER_RULES_VERSION),
-  character: characterViewSchema, connectionGeneration: counter.min(1),
+  character: characterViewSchema, connectionGeneration: counter.min(1), worldActive: z.boolean().optional(),
 });
 export const saveProfileCommandSchema = z.strictObject({
   commandId: z.uuid(), type: z.literal('save-profile'), version: z.literal(1),

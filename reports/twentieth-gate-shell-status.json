@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-09-29T05:20:12.577115+00:00",
+  "status": "reconciled",
+  "observedOuterShellExitCode": 1,
+  "fullGateNativeExitCodeCaptured": false,
+  "gateCompletedAt": "2026-09-29T05:18:28.129Z",
+  "passedStages": 18,
+  "browser": {
+    "startTime": "2026-09-29T05:13:27.233Z",
+    "duration": 300859.501,
+    "expected": 39,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "reproduction": {
+    "nativeExitCode": 0,
+    "powerShellSuccess": false,
+    "purpose": "Reproduce stderr redirection of successful native process"
+  },
+  "explanation": "PowerShell marks a successful native command unsuccessful when normal diagnostic stderr is redirected with *>; the full log contains a NativeCommandError for a passing Python unittest line. Every awaited verification stage and all 39 browser tests reported success. This is a shell-status discrepancy, not a failed stage.",
+  "scope": "No test or implementation edit was used to resolve the discrepancy."
+}

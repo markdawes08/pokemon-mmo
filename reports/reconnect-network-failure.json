@@ -1,0 +1,142 @@
+{
+  "status": "failed",
+  "verifiedAt": "2026-09-27T00:08:20.137Z",
+  "completedChecks": [
+    "manual-reconnect-wrong-cookie-or-origin-cannot-evict-live-owner",
+    "encoded-manual-reconnect-method-and-chunked-body-limit-enforced",
+    "native-drop-hides-peer-and-resumes-same-session-with-new-generation",
+    "offline-input-buffer-empty-and-no-movement-replay",
+    "missing-cookie-wrong-cookie-and-origin-cannot-steal-reconnect",
+    "manual-reconnect-negatives-preserve-rightful-resume-and-hide-admission-data",
+    "authenticated-manual-seat-lookup-preserves-rightful-auto-resume",
+    "repeated-drops-around-heartbeats-retain-one-live-owner",
+    "old-connection-generation-fenced-after-resume",
+    "profile-only-resume-does-not-reactivate-persisted-overworld",
+    "fresh-ticket-takeover-cancels-dropped-transport",
+    "revoked-cookie-cannot-resume-dropped-transport",
+    "expired-auth-session-cannot-resume",
+    "consented-room-leave-does-not-reserve-reconnect",
+    "real-sixty-second-grace-expires-and-failed-attempts-do-not-extend-deadline",
+    "expired-grace-requires-fresh-authenticated-admission"
+  ],
+  "message": "World backend must stop gracefully\n\ntrue !== false\n",
+  "stack": "AssertionError [ERR_ASSERTION]: World backend must stop gracefully\n\ntrue !== false\n\n    at WorldTestBackend.stop (C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\integration\\world-backend.ts:70:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async <anonymous> (C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\integration\\reconnect-smoke.ts:209:26)",
+  "backendLifecycle": [
+    {
+      "at": "2026-09-27T00:07:08.672Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-09-27T00:07:09.301Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-09-27T00:07:09.380Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-09-27T00:07:09.451Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-09-27T00:07:09.464Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-09-27T00:07:09.734Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-09-27T00:07:10.759Z",
+      "event": "character_transport_reconnected"
+    },
+    {
+      "at": "2026-09-27T00:07:11.873Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-09-27T00:07:12.882Z",
+      "event": "character_transport_reconnected"
+    },
+    {
+      "at": "2026-09-27T00:07:14.106Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-09-27T00:07:15.135Z",
+      "event": "character_transport_reconnected"
+    },
+    {
+      "at": "2026-09-27T00:07:16.390Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-09-27T00:07:17.411Z",
+      "event": "character_transport_reconnected"
+    },
+    {
+      "at": "2026-09-27T00:07:17.678Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-09-27T00:07:17.713Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-09-27T00:07:18.727Z",
+      "event": "character_transport_reconnected"
+    },
+    {
+      "at": "2026-09-27T00:07:19.080Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-09-27T00:07:19.223Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-09-27T00:07:19.225Z",
+      "event": "character_release_deferred"
+    },
+    {
+      "at": "2026-09-27T00:07:19.334Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-09-27T00:07:19.433Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-09-27T00:07:19.617Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-09-27T00:07:19.679Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-09-27T00:08:10.009Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-09-27T00:08:10.088Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-09-27T00:08:10.092Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-09-27T00:08:10.094Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-09-27T00:08:10.100Z",
+      "event": "server_stopped"
+    },
+    {
+      "at": "2026-09-27T00:08:20.098Z",
+      "event": "test_forced_termination"
+    }
+  ]
+}

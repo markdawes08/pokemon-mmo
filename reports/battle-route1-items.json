@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "checkedAt": "2026-09-30T15:42:52.149Z",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "wasmSha256": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02",
+  "fixtureSha256": "1d1e05e66692787c0cbefd4ebe389ab7bc691097578e73cfd486fb21e5aa91d1",
+  "fixtureReproducibility": "Independent Python --check passed without writes",
+  "old21LiteralBytesUnchanged": true,
+  "scope": "Private Potion and Poke Ball source mechanics; capture stops pending disposition before ownership, dex, nickname, rewards or database effects",
+  "independence": "Test-only Python source oracle and literal tables; no production generated tables, WASM or TypeScript used for expectations",
+  "sqrtBoundary": "Independent integer square root models source BIOS SWI8; no BIOS instruction or ROM/emulator comparison is claimed",
+  "schedulingAdaptation": "Existing deterministic headless clock retained; item actions precede wild moves without action-speed tie, residual tie and selection remain",
+  "originalGameOrEmulatorComparison": false,
+  "cases": 20,
+  "transitions": 26,
+  "goldenBoundaries": 46,
+  "checkedLiteralDraws": 235,
+  "hpOddsCases": 132,
+  "strictThresholdCases": 17,
+  "sqrtCases": 25,
+  "observations": [
+    {
+      "id": "potion-low-hp-clamps-to-maximum",
+      "status": "passed",
+      "turns": 1,
+      "outcome": null
+    },
+    {
+      "id": "potion-one-missing-hp",
+      "status": "passed",
+      "turns": 1,
+      "outcome": null
+    },
+    {
+      "id": "potion-priority-over-faster-wild",
+      "status": "passed",
+      "turns": 1,
+      "outcome": null
+    },
+    {
+      "id": "potion-tied-speed-skips-action-tie-retains-residual-tie",
+      "status": "passed",
+      "turns": 1,
+      "outcome": null
+    },
+    {
+      "id": "potion-repeat-consumes-exactly-one-each",
+      "status": "passed",
+      "turns": 2,
+      "outcome": null
+    },
+    {
+      "id": "potion-last-stock-and-empty-move-pp",
+      "status": "passed",
+      "turns": 2,
+      "outcome": null
+    },
+    {
+      "id": "potion-retains-tail-whip-and-sand-attack-stages-and-spent-pp",
+      "status": "passed",
+      "turns": 2,
+      "outcome": null
+    },
+    {
+      "id": "poke-ball-0-successful-shakes",
+      "status": "passed",
+      "turns": 1,
+      "outcome": null
+    },
+    {
+      "id": "poke-ball-1-successful-shakes",
+      "status": "passed",
+      "turns": 1,
+      "outcome": null
+    },
+    {
+      "id": "poke-ball-2-successful-shakes",
+      "status": "passed",
+      "turns": 1,
+      "outcome": null
+    },
+    {
+      "id": "poke-ball-3-successful-shakes",
+      "status": "passed",
+      "turns": 1,
+      "outcome": null
+    },
+    {
+      "id": "poke-ball-4-successful-shakes",
+      "status": "passed",
+      "turns": 1,
+      "outcome": "captured"
+    },
+    {
+      "id": "poke-ball-captures-rattata-real-identity",
+      "status": "passed",
+      "turns": 1,
+      "outcome": "captured"
+    },
+    {
+      "id": "poke-ball-after-attack-retains-damaged-hp-and-spent-pp",
+      "status": "passed",
+      "turns": 2,
+      "outcome": "captured"
+    },
+    {
+      "id": "poke-ball-failure-then-capture-keeps-spent-wild-pp",
+      "status": "passed",
+      "turns": 2,
+      "outcome": "captured"
+    },
+    {
+      "id": "poke-ball-last-stock-fails-and-wild-acts",
+      "status": "passed",
+      "turns": 1,
+      "outcome": null
+    },
+    {
+      "id": "poke-ball-failure-can-end-in-player-loss",
+      "status": "passed",
+      "turns": 1,
+      "outcome": "lost"
+    },
+    {
+      "id": "poke-ball-capture-allowed-with-no-player-move-pp",
+      "status": "passed",
+      "turns": 1,
+      "outcome": "captured"
+    },
+    {
+      "id": "potion-then-poke-ball-capture",
+      "status": "passed",
+      "turns": 2,
+      "outcome": "captured"
+    },
+    {
+      "id": "raw-one-hp-capture-threshold",
+      "status": "passed",
+      "turns": 1,
+      "outcome": "captured"
+    }
+  ],
+  "sourceRecords": [
+    {
+      "path": "src/data/pokemon/item_effects.h",
+      "sha256": "d249420ab4751c60b1ae246895dcee5bdfb5bae18f52a9c37975c6f7fb5d0d25",
+      "evidence": "Potion ITEM4_HEAL_HP with amount20"
+    },
+    {
+      "path": "src/party_menu.c",
+      "sha256": "8290dfd5b6444e743029ab76543ed5e4b5b32c1c2f475c686946545f934d5f9b",
+      "evidence": "ItemUseCB_MedicineStep applies effect before RemoveBagItem; no-effect remains selection"
+    },
+    {
+      "path": "src/pokemon.c",
+      "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec",
+      "evidence": "PokemonUseItemEffects living/non-full HP clamps healing; source GiveMonToPlayer party copy preserves HP/PP but is outside this profile"
+    },
+    {
+      "path": "src/item_use.c",
+      "sha256": "035ca3bdb70f5708dc8771d2bc6cc5450e775e3144278e7683aacba218cb9c98",
+      "evidence": "BattleUseFunc_PokeBallEtc removes one accepted ball; full party+storage rejects before removal"
+    },
+    {
+      "path": "src/battle_main.c",
+      "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928",
+      "evidence": "SetActionsAndBattlersTurnOrder partitions item before moves without action tie RNG; HandleAction_UseItem"
+    },
+    {
+      "path": "src/battle_script_commands.c",
+      "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3",
+      "evidence": "Cmd_handleballthrow catchRate/HP integer odds, nested Sqrt, strict four-shake loop"
+    },
+    {
+      "path": "data/battle_scripts_2.s",
+      "sha256": "83e1211907cc9a21cd1d94e65a065af5abf683d4e88e7ee690e78faf40651133",
+      "evidence": "SuccessBallThrow terminal CAUGHT; failed ShakeBallThrow finishes action and opponent continues"
+    },
+    {
+      "path": "src/data/pokemon/species_info.h",
+      "sha256": "9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e",
+      "evidence": "Both Pidgey and Rattata catchRate255"
+    },
+    {
+      "path": "include/battle_controllers.h",
+      "sha256": "051ebf096d6538d1cc7ea321dacf5d3e9e54f0d4edc9ddeb29996242de618120",
+      "evidence": "BALL_3_SHAKES_SUCCESS enum value4 denotes four successful comparisons"
+    },
+    {
+      "path": "src/libagbsyscall.s",
+      "sha256": "6d183afe7a31976b1e301dac4f2926df9e251a636cd2a197f56bc8296dc46e78",
+      "evidence": "Sqrt invokes BIOS SWI8; independent oracle uses integer square root"
+    }
+  ]
+}

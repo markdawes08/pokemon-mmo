@@ -10,6 +10,13 @@ export default defineConfig({
     host: '127.0.0.1',
     port: Number(process.env.CLIENT_PORT ?? '5173'),
     strictPort: true,
+    fs: {
+      // Retain Vite 8 defaults and exclude operational source/data from @fs.
+      deny: ['.env', '.env.*', '*.{crt,pem,key,p12,pfx,cer,der}', '.npmrc', '.yarnrc.yml', '**/.git/**',
+        '**/tools/**', '**/reports/**', '**/.local/!(client-public)', '**/.local/!(client-public)/**',
+        '**/content/generated/server/**', '**/apps/server/**', '**/packages/database/**',
+        '**/packages/battle-core/**', '**/packages/content-schema/src/gameplay-server.ts'],
+    },
     proxy: {
       '/api': { target: backend },
       '/matchmake': { target: backend },

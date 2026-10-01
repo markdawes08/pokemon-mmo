@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "checkedAt": "2026-09-30T15:42:51.243Z",
+  "scope": "Private exact Squirtle5 versus Route1 Pidgey/Rattata combat; no rewards, experience, capture, database or live transport",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "wasmSha256": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02",
+  "fixtureSha256": "6e8127ab6bac381bb62266c0d6df1f3d0814cda5ba54a026ad01e40e920f48ac",
+  "fixtureReproducibility": "Independent Python --check passed without writes",
+  "independence": "Separate source-literal Python arithmetic and pass13 independent encounter oracle; never obtains expectations from production WASM/driver",
+  "schedulingAdaptation": "Continue encounter general RNG after held-item draw; omit VBlank/presentation-frame RNG; retain mechanical intro comparison, selection, wild AI and end-turn draws",
+  "originalGameOrEmulatorComparison": false,
+  "cases": 21,
+  "transitions": 44,
+  "checkedLiteralDraws": 406,
+  "goldenBoundaries": 65,
+  "rawBoundaryPolicy": "rawBoundaryOverrides are explicit test-only mechanical states preserving real identity/stats; not claims of natural battle histories or admitted initial live state",
+  "observations": [
+    {
+      "id": "pidgey-real-team-victory",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 4,
+      "outcome": "won",
+      "rngDraws": 37
+    },
+    {
+      "id": "rattata-real-team-victory",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 3,
+      "outcome": "won",
+      "rngDraws": 25
+    },
+    {
+      "id": "tackle-miss",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 1,
+      "outcome": null,
+      "rngDraws": 27
+    },
+    {
+      "id": "tackle-critical",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 1,
+      "outcome": null,
+      "rngDraws": 18
+    },
+    {
+      "id": "tail-whip-changes-next-damage",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 3,
+      "outcome": "won",
+      "rngDraws": 27
+    },
+    {
+      "id": "tail-whip-stage-floor",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 7,
+      "outcome": "lost",
+      "rngDraws": 61
+    },
+    {
+      "id": "sand-attack-causes-miss",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 5,
+      "outcome": "lost",
+      "rngDraws": 37
+    },
+    {
+      "id": "initial-and-end-turn-speed-ties",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 2,
+      "outcome": null,
+      "rngDraws": 26
+    },
+    {
+      "id": "run-faster-without-roll",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 1,
+      "outcome": "ran",
+      "rngDraws": 3
+    },
+    {
+      "id": "run-equal-with-intro-tie-no-escape-roll",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 1,
+      "outcome": "ran",
+      "rngDraws": 5
+    },
+    {
+      "id": "run-slower-fails-then-succeeds",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 2,
+      "outcome": "ran",
+      "rngDraws": 10
+    },
+    {
+      "id": "last-player-pp-then-struggle",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 3,
+      "outcome": "won",
+      "rngDraws": 26
+    },
+    {
+      "id": "player-struggle-real-team",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 3,
+      "outcome": "won",
+      "rngDraws": 26
+    },
+    {
+      "id": "low-hp-player-loss",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 1,
+      "outcome": "lost",
+      "rngDraws": 11
+    },
+    {
+      "id": "raw-struggle-accuracy-miss",
+      "status": "passed",
+      "diagnosticBoundary": true,
+      "turns": 1,
+      "outcome": null,
+      "rngDraws": 10
+    },
+    {
+      "id": "raw-wild-exhausted-slot-rerolls",
+      "status": "passed",
+      "diagnosticBoundary": true,
+      "turns": 1,
+      "outcome": null,
+      "rngDraws": 28
+    },
+    {
+      "id": "raw-both-struggle-no-wild-choice-draw",
+      "status": "passed",
+      "diagnosticBoundary": true,
+      "turns": 1,
+      "outcome": null,
+      "rngDraws": 8
+    },
+    {
+      "id": "raw-struggle-recoil-self-ko",
+      "status": "passed",
+      "diagnosticBoundary": false,
+      "turns": 1,
+      "outcome": "lost",
+      "rngDraws": 6
+    },
+    {
+      "id": "raw-struggle-double-faint-order",
+      "status": "passed",
+      "diagnosticBoundary": true,
+      "turns": 1,
+      "outcome": "draw",
+      "rngDraws": 6
+    },
+    {
+      "id": "raw-struggle-overkill-recoil-uses-actual-hp",
+      "status": "passed",
+      "diagnosticBoundary": true,
+      "turns": 1,
+      "outcome": "won",
+      "rngDraws": 6
+    },
+    {
+      "id": "raw-run-byte-overflow",
+      "status": "passed",
+      "diagnosticBoundary": true,
+      "turns": 1,
+      "outcome": "ran",
+      "rngDraws": 3
+    }
+  ],
+  "sourceRecords": [
+    {
+      "path": "src/battle_main.c",
+      "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928",
+      "purpose": "TryDoEventsBeforeFirstTurn; HandleTurnActionSelectionState; GetWhoStrikesFirst; SetActionsAndBattlersTurnOrder; HandleAction_UseMove; TryRunFromBattle; BattleTurnPassed; VBlankCB_Battle"
+    },
+    {
+      "path": "src/battle_controller_opponent.c",
+      "sha256": "1b4393635fc4e199203829ad078bda665c9b9c82a487fe17fbd6cac12a5dba98",
+      "purpose": "OpponentHandleChooseMove: Random&3 retries empty slots; downstream selection retries zero PP"
+    },
+    {
+      "path": "src/battle_util.c",
+      "sha256": "87cf810eb2d58361d1beb1537b3bd71c9160a77c2a17d703399f6ed373bb5720",
+      "purpose": "TrySetCantSelectMoveBattleScript; AreAllMovesUnusable; DoFieldEndTurnEffects comparison even with no residuals"
+    },
+    {
+      "path": "src/battle_script_commands.c",
+      "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3",
+      "purpose": "Cmd_accuracycheck/critcalc/typecalc/datahpupdate; SetMoveEffect RECOIL25; Cmd_seteffectwithchance CERTAIN; ChangeStatBuffs; Cmd_checkteamslost"
+    },
+    {
+      "path": "src/pokemon.c",
+      "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec",
+      "purpose": "CalculateBaseDamage GenIII physical arithmetic; Guts/Torrent branches dormant in admitted healthy/no-water profile"
+    },
+    {
+      "path": "data/battle_scripts_1.s",
+      "sha256": "27e9c39f3147b05e5ba2ed36ca0c89fcdc9b26718778083bd362c582de800034",
+      "purpose": "EffectHit,EffectStatDown,EffectRecoil,MoveEffectRecoil,FaintAttacker,FaintTarget source command ordering"
+    },
+    {
+      "path": "src/data/battle_moves.h",
+      "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384",
+      "purpose": "Tackle35power/95accuracy; TailWhip/SandAttack status; Struggle50power/100accuracy/CERTAIN recoil"
+    }
+  ]
+}

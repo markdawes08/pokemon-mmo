@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-09-30T15:29:10.475074+00:00",
+  "commands": [
+    {
+      "stage": "lint",
+      "exitCode": 0
+    },
+    {
+      "stage": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "stage": "battle:party",
+      "exitCode": 0
+    }
+  ],
+  "log": ".local\\twentyfirst-focused.log",
+  "status": "passed"
+}

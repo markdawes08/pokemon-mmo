@@ -6,6 +6,7 @@ import { createServer } from 'node:net';
 export class WorldTestBackend {
   origin = '';
   readonly pids: number[] = [];
+  readonly lifecycleEvents: { at: string; event: string }[] = [];
   private child: ChildProcess | undefined;
   private exited: Promise<number | null> | undefined;
 
@@ -15,7 +16,22 @@ export class WorldTestBackend {
       cwd: process.cwd(), windowsHide: true, stdio: ['ignore', 'pipe', 'pipe', 'ipc'], env: { ...process.env, NODE_ENV: 'test', WORLD_TEST_PORT: this.origin ? new URL(this.origin).port : '0' },
     });
     this.child = child;
-    child.stdout!.resume(); child.stderr!.resume();
+    const observe = (stream: NonNullable<ChildProcess['stdout']>) => {
+      let pending = '';
+      stream.on('data', (chunk: Buffer) => {
+        pending += chunk.toString('utf8');
+        const lines = pending.split(/\r?\n/); pending = lines.pop()!.slice(-8192);
+        for (const line of lines) {
+          try {
+            const parsed = JSON.parse(line) as { event?: unknown };
+            // Retain controlled lifecycle event names only, never URLs, cookies,
+            // identifiers or arbitrary exception text from the backend stream.
+            if (typeof parsed.event === 'string' && /^[a-z_]{1,64}$/.test(parsed.event)) this.lifecycleEvents.push({ at: new Date().toISOString(), event: parsed.event });
+          } catch { /* Non-JSON framework output is deliberately omitted. */ }
+        }
+      });
+    };
+    observe(child.stdout!); observe(child.stderr!);
     assert(child.pid && child.pid !== process.pid); this.pids.push(child.pid);
     this.exited = new Promise(resolve => { child.once('exit', resolve); child.once('error', () => resolve(null)); });
     this.origin = await new Promise<string>((resolve, reject) => {
@@ -35,6 +51,7 @@ export class WorldTestBackend {
   async stop() {
     const child = this.child;
     if (!child) return;
+    this.lifecycleEvents.push({ at: new Date().toISOString(), event: 'test_shutdown_requested' });
     if (child.connected) child.send({ type: 'shutdown' }, () => {});
     let timer: ReturnType<typeof setTimeout> | undefined;
     let reaped = false, forced = false;
@@ -42,7 +59,7 @@ export class WorldTestBackend {
       const code = await new Promise<number | null>((resolve, reject) => {
         void this.exited!.then(value => { reaped = true; resolve(value); });
         timer = setTimeout(() => {
-          forced = true; child.kill();
+          forced = true; this.lifecycleEvents.push({ at: new Date().toISOString(), event: 'test_forced_termination' }); child.kill();
           timer = setTimeout(() => reject(new Error(`Owned world backend PID ${child.pid} failed to exit after termination.`)), 2000);
         }, 10_000);
       });
@@ -52,5 +69,20 @@ export class WorldTestBackend {
       });
       assert.equal(forced, false, 'World backend must stop gracefully'); assert.equal(code, 0);
     } finally { clearTimeout(timer); if (reaped) this.child = undefined; }
+  }
+
+  /** Kill only this helper's child to exercise process-loss recovery, never the shared preview. */
+  async crash() {
+    const child = this.child; assert(child?.pid && this.exited, 'No owned backend process to crash.');
+    child.kill('SIGKILL');
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    try {
+      await Promise.race([this.exited, new Promise<never>((_resolve, reject) => { timer = setTimeout(() => reject(new Error('Owned backend was not reaped after process-loss test.')), 5000); })]);
+      this.child = undefined;
+    } finally { clearTimeout(timer); }
+    await new Promise<void>((resolve, reject) => {
+      const probe = createServer(); probe.once('error', reject);
+      probe.listen(Number(new URL(this.origin).port), '127.0.0.1', () => probe.close(() => resolve()));
+    });
   }
 }

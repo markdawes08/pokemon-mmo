@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-09-26T01:23:04.557270+00:00",
+  "checkedAt": "2026-09-30T15:42:39.049841+00:00",
   "status": "passed",
   "scope": "P03 batch 3 restricted source turns and portable logical checkpoints; not a complete source battle engine",
   "toolchain": {
@@ -1553,18 +1553,18 @@
     "outputs": [
       {
         "path": "adapter.c",
-        "bytes": 12764,
-        "sha256": "ae76b7dfa26ee5836d49d54cdf65b5fc049cb694eca1a1fa6e8fcafade300e26"
+        "bytes": 14444,
+        "sha256": "904637b7ca7eb6be16ce2bc076aca037e28bbcb8eea7208406a9db531435c2fd"
       },
       {
         "path": "adapter.h",
-        "bytes": 6268,
-        "sha256": "7590b25ef29fd742ec802b3767ed1c0f76d179bcc6686d511f6cde6f10c47d61"
+        "bytes": 6578,
+        "sha256": "8dca35bdc81a5dcf1cdf56c2a2760f900a43bf70d7af1c788704fc788ef44c4f"
       },
       {
         "path": "attack.inc",
-        "bytes": 9158,
-        "sha256": "320bd6d37c20a617dd92d0877702e91f3299b1affa52240d60cd182b71952ab4"
+        "bytes": 10089,
+        "sha256": "1602f969788be81f6d785c2b64dbc07cc0bc02d5b9e39e8cba13e2067ed26ab8"
       },
       {
         "path": "battle_spike.c",
@@ -1573,8 +1573,8 @@
       },
       {
         "path": "checkpoint.inc",
-        "bytes": 14245,
-        "sha256": "56b42ea09766e9e19f33abfa2876569eaf7f925124c9dceb0f71720adc29f6ed"
+        "bytes": 18706,
+        "sha256": "e23cd42d02b64a811ab967d8e75ff493227cb8fab521ad0858f6e1919ac3191a"
       },
       {
         "path": "constants/abilities.h",
@@ -1648,18 +1648,18 @@
       },
       {
         "path": "lifecycle.inc",
-        "bytes": 6982,
-        "sha256": "864d8e46e658f68dac1acfbc1771ebeaf25fa975395c7530efb5a87209b55b8d"
+        "bytes": 7253,
+        "sha256": "50b4c3c2fe183965f00a76dc59ae192698f29a5fc09a24b028972936bd6ebd53"
       },
       {
         "path": "lifecycle_state.inc",
-        "bytes": 1164,
-        "sha256": "f2f56263f461ba0c297c5cdba4739fb9585d2961a24bdf7c01328dd8165accd6"
+        "bytes": 1342,
+        "sha256": "7056dff8efd563efa4c1c225feaf21761848f87e789766b222737a31f758d2a9"
       },
       {
         "path": "rng_hook.inc",
-        "bytes": 560,
-        "sha256": "462975c72f2fa36f30c3c80a469698a9f45518774bce5eeb980736dcb9ab8e15"
+        "bytes": 774,
+        "sha256": "acce406aaf585c6af911c416ca8190cd410d33b97f9a2d3f3c2bd18921c7de25"
       },
       {
         "path": "source_declarations.inc",

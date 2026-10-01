@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-09-27T01:05:06.972Z",
+  "results": [
+    {
+      "stage": "doctor",
+      "status": "passed"
+    },
+    {
+      "stage": "lint",
+      "status": "passed"
+    },
+    {
+      "stage": "typecheck",
+      "status": "passed"
+    },
+    {
+      "stage": "test:unit",
+      "status": "passed"
+    },
+    {
+      "stage": "test:integration",
+      "status": "passed"
+    },
+    {
+      "stage": "content:check",
+      "status": "passed"
+    },
+    {
+      "stage": "battle:spike",
+      "status": "passed"
+    },
+    {
+      "stage": "encounter:check",
+      "status": "passed"
+    },
+    {
+      "stage": "build",
+      "status": "passed"
+    },
+    {
+      "stage": "test:boundaries",
+      "status": "passed"
+    },
+    {
+      "stage": "test:recovery",
+      "status": "passed"
+    },
+    {
+      "stage": "test:e2e",
+      "status": "passed"
+    }
+  ],
+  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 Route 1 encounter factory; live R1 battles and story gameplay not implemented"
+}

@@ -22,7 +22,7 @@ export interface CharacterConnection {
   readonly activityId: string;
   readonly sessionId?: string;
 }
-export interface SessionProjection { character: CharacterView; connectionGeneration: number }
+export interface SessionProjection { character: CharacterView; connectionGeneration: number; worldActive: boolean }
 type WriteKind = 'create' | 'save' | 'world';
 /** Failure injection for the real-PostgreSQL integration executable only; rejected outside NODE_ENV=test. */
 export interface CharacterServiceTestHooks {
@@ -46,7 +46,7 @@ interface WorldRuntime {
   motion: WorldAvatar['motion']; transfer?: { move: Extract<PreviewMoveResult, { allowed: true; kind: 'transition' }>; from: WorldLocation; dueAt: number; durationMs: number };
   transition?: WorldTransition; lastCheckpointAt: number; dirty: boolean; detached: boolean;
 }
-interface Runtime { connection: CharacterConnection; character: CharacterView; frozen: boolean; world?: WorldRuntime; heartbeatAt: number }
+interface Runtime { connection: CharacterConnection; character: CharacterView; frozen: boolean; suspended: boolean; world?: WorldRuntime; heartbeatAt: number }
 export interface WorldProjection { avatar: WorldAvatar; zoneGeneration: number; lastInputSequence: number; transition?: WorldTransition }
 interface SaveOutcome { character: CharacterView; latest: CharacterView; replayed: boolean }
 class UnknownCommit extends Error {}
@@ -227,21 +227,91 @@ export class CharacterService {
         const connection = Object.freeze({ accountId, characterId, ownerId: this.ownerId, leaseGeneration, connectionGeneration, activityId: character.activityId, ...(sessionId ? { sessionId } : {}) });
         return { connection, character };
       });
-      this.runtimes.set(characterId, { ...acquired, frozen: false, heartbeatAt: Date.now() });
-      return { connection: acquired.connection, snapshot: { character: structuredClone(acquired.character), connectionGeneration: acquired.connection.connectionGeneration } };
+      this.runtimes.set(characterId, { ...acquired, frozen: false, suspended: false, heartbeatAt: Date.now() });
+      return { connection: acquired.connection, snapshot: { character: structuredClone(acquired.character), connectionGeneration: acquired.connection.connectionGeneration, worldActive: false } };
     }));
   }
 
   snapshot(connection: CharacterConnection): SessionProjection | null {
     const runtime = this.runtimes.get(connection.characterId);
     return runtime && !runtime.frozen && sameConnection(runtime.connection, connection)
-      ? { character: structuredClone(runtime.character), connectionGeneration: connection.connectionGeneration } : null;
+      ? { character: structuredClone(runtime.character), connectionGeneration: connection.connectionGeneration, worldActive: !!runtime.world } : null;
   }
 
   private runtime(connection: CharacterConnection): Runtime {
     const runtime = this.runtimes.get(connection.characterId);
     if (!runtime || !sameConnection(runtime.connection, connection)) fail('SESSION_REPLACED', 'This trainer connection was replaced. Reconnect to continue.');
     return runtime;
+  }
+
+  private assertTransport(runtime: Runtime) {
+    if (runtime.suspended) fail('RECONNECT_REQUIRED', 'The trainer transport is suspended. Wait for reconnection.');
+  }
+
+  /** Stop new commands synchronously, then settle only the already accepted source-timed movement. */
+  async suspendTransport(connection: CharacterConnection): Promise<void> {
+    const current = this.runtime(connection);
+    current.suspended = true;
+    this.hideWorld(connection);
+    return this.serial(connection.characterId, () => this.guarded(async () => {
+      const runtime = this.runtime(connection);
+      if (runtime.frozen) fail('RECONNECT_REQUIRED', 'The trainer must reload its committed state.');
+      try {
+        const world = runtime.world;
+        if (world) world.detached = true;
+        const dueAt = world?.transfer?.dueAt ?? (world?.motion ? world.motion.startedAt + world.motion.durationMs : 0);
+        if (dueAt > Date.now()) await new Promise<void>(done => setTimeout(done, Math.min(1000, dueAt - Date.now())));
+        this.finishMotion(runtime, Date.now());
+        if (runtime.world?.transfer) await this.checkpoint(runtime, runtime.world.transfer);
+        else if (runtime.world?.dirty) await this.checkpoint(runtime);
+      } catch (error) { runtime.frozen = true; throw error; }
+    }));
+  }
+
+  /** Same owner/activity, fresh transport generation. The queue prevents another local owner interleaving. */
+  async resumeTransport(connection: CharacterConnection, deadline: number): Promise<{ connection: CharacterConnection; snapshot: SessionProjection }> {
+    return this.serial(connection.characterId, () => this.guarded(async () => {
+      const runtime = this.runtime(connection);
+      if (!runtime.suspended || runtime.frozen || this.disposed || Date.now() >= deadline) fail('RECONNECT_REQUIRED', 'The transport reconnection window ended.');
+      const generation = connection.connectionGeneration + 1;
+      if (!Number.isSafeInteger(generation)) fail('RECONNECT_REQUIRED', 'Trainer generation capacity is exhausted.');
+      let row: CharacterRow | undefined;
+      try {
+        for (let attempt = 0; attempt < 2 && !row; attempt++) {
+          try {
+            row = await this.transaction(async client => {
+              await this.sessionLock(client, connection.accountId, connection.sessionId);
+              const found = await this.characterLock(client, connection.accountId, connection.characterId);
+              const result = await client.query<LeaseRow>('SELECT *, expires_at > clock_timestamp() AS active FROM character_leases WHERE character_id=$1 FOR UPDATE', [connection.characterId]);
+              const lease = result.rows[0];
+              if (!lease || lease.owner_id !== connection.ownerId || Number(lease.lease_generation) !== connection.leaseGeneration ||
+                  ![connection.connectionGeneration, generation].includes(Number(lease.connection_generation))) fail('SESSION_REPLACED', 'Another connection owns this trainer.');
+              if (!lease.active) fail('LEASE_EXPIRED', 'Trainer ownership expired.');
+              // The target generation also reconciles a lost COMMIT acknowledgement, without a movement receipt.
+              if (Number(lease.connection_generation) === connection.connectionGeneration) {
+                if (Date.now() >= deadline) fail('RECONNECT_REQUIRED', 'The transport reconnection window ended.');
+                await client.query("UPDATE character_leases SET connection_generation=$2,expires_at=clock_timestamp()+$3*interval '1 millisecond' WHERE character_id=$1", [connection.characterId, generation, this.leaseMs]);
+              }
+              return found;
+            });
+          } catch (error) { if (!(error instanceof UnknownCommit)) throw error; }
+        }
+        if (!row) fail('COMMAND_OUTCOME_UNKNOWN', 'Transport ownership could not be recovered. Reconnect explicitly.');
+        runtime.connection = Object.freeze({ ...connection, connectionGeneration: generation });
+        runtime.character = view(row);
+        runtime.heartbeatAt = Date.now();
+        // Presence remains hidden until the room accepts hello on the resumed transport.
+        if (runtime.world) { runtime.world = this.worldFromRow(row); runtime.world.detached = true; }
+        return { connection: runtime.connection, snapshot: { character: structuredClone(runtime.character), connectionGeneration: generation, worldActive: !!runtime.world } };
+      } catch (error) { runtime.frozen = true; throw error; }
+    }));
+  }
+
+  activateTransport(connection: CharacterConnection) {
+    const runtime = this.runtime(connection);
+    if (runtime.frozen || this.disposed) fail('RECONNECT_REQUIRED', 'The trainer must reconnect explicitly.');
+    runtime.suspended = false;
+    if (runtime.world) runtime.world.detached = false;
   }
 
   async heartbeat(connection: CharacterConnection): Promise<void> {
@@ -287,6 +357,7 @@ export class CharacterService {
     const hash = fingerprint({ type: command.type, version: command.version, activityId: command.activityId, expectedRevision: command.expectedRevision, payload: {} });
     return this.serial(connection.characterId, () => this.guarded(async () => {
       const runtime = this.runtime(connection);
+      this.assertTransport(runtime);
       this.finishMotion(runtime, Date.now());
       if (runtime.world?.transfer) fail('BUSY', 'Wait for the map transition before saving.');
       const savedLocation = runtime.world && !runtime.world.detached ? { ...runtime.world.location, direction: runtime.world.direction } : undefined;
@@ -397,7 +468,7 @@ export class CharacterService {
   worldProjection(connection: CharacterConnection, now = Date.now()): WorldProjection | null {
     const runtime = this.runtimes.get(connection.characterId);
     const world = runtime?.world;
-    if (!runtime || !world || world.detached || runtime.frozen || !sameConnection(runtime.connection, connection) || now - runtime.heartbeatAt >= this.leaseMs) return null;
+    if (!runtime || !world || world.detached || runtime.suspended || runtime.frozen || !sameConnection(runtime.connection, connection) || now - runtime.heartbeatAt >= this.leaseMs) return null;
     return structuredClone({ avatar: { id: runtime.character.id, name: runtime.character.name, ...world.location, direction: world.direction, motion: world.motion },
       zoneGeneration: world.zoneGeneration, lastInputSequence: world.lastInputSequence, ...(world.transition ? { transition: world.transition } : {}) });
   }
@@ -418,6 +489,7 @@ export class CharacterService {
     const command = parsed.data;
     return this.serial(connection.characterId, () => this.guarded(async () => {
       const runtime = this.runtime(connection);
+      this.assertTransport(runtime);
       const previous = runtime.world;
       const row = await this.worldCommand(runtime, 'enter', command);
       if (row.activity !== 'overworld') fail('RECONNECT_REQUIRED', 'That entry command belongs to an earlier activity. Refresh and enter again.');
@@ -435,6 +507,7 @@ export class CharacterService {
     if (!parsed.success) fail('INVALID_MESSAGE', 'Invalid shared world exit command.');
     return this.serial(connection.characterId, () => this.guarded(async () => {
       const runtime = this.runtime(connection);
+      this.assertTransport(runtime);
       this.finishMotion(runtime, Date.now());
       if (runtime.world?.transfer) fail('BUSY', 'Wait for the map transition before leaving.');
       const row = await this.worldCommand(runtime, 'leave', parsed.data);
@@ -494,6 +567,7 @@ export class CharacterService {
     if (!parsed.success) fail('INVALID_MESSAGE', 'Shared movement accepts only bounded directional input.');
     return this.serial(connection.characterId, () => this.guarded(async () => {
       const runtime = this.runtime(connection), world = runtime.world;
+      this.assertTransport(runtime);
       if (!world || world.detached || runtime.frozen) fail('RECONNECT_REQUIRED', 'Enter the shared world before moving.');
       // One read-only fence inside the serialized mutation boundary; no lease update or per-packet receipt.
       // Session revocation and takeover are observed even if a packet waited behind a durable save.
@@ -507,6 +581,7 @@ export class CharacterService {
         if (!lease.session_valid) fail('AUTH_REQUIRED', 'Your account session ended. Sign in again.');
         if (!lease.active) fail('LEASE_EXPIRED', 'Trainer ownership expired. Reconnect.');
       } catch (error) { runtime.frozen = true; throw error; }
+      this.assertTransport(runtime);
       const intent = parsed.data, now = Date.now();
       if (now - runtime.heartbeatAt >= this.leaseMs) { runtime.frozen = true; fail('LEASE_EXPIRED', 'Trainer ownership expired. Reconnect.'); }
       if (intent.connectionGeneration !== connection.connectionGeneration || intent.zoneGeneration !== world.zoneGeneration) fail('RECONNECT_REQUIRED', 'This movement belongs to an old connection or map.');
@@ -576,9 +651,9 @@ export class CharacterService {
   }
 
   async tickWorld(now = Date.now()): Promise<{ connection: CharacterConnection; error: unknown }[]> {
-    const results = await Promise.all([...this.runtimes.values()].filter(runtime => runtime.world && !runtime.world.detached && !runtime.frozen).map(runtime =>
+    const results = await Promise.all([...this.runtimes.values()].filter(runtime => runtime.world && !runtime.world.detached && !runtime.suspended && !runtime.frozen).map(runtime =>
       this.serial(runtime.connection.characterId, () => this.guarded(async () => {
-        if (!this.runtimes.has(runtime.connection.characterId) || this.runtimes.get(runtime.connection.characterId) !== runtime || !runtime.world || runtime.world.detached || runtime.frozen) return;
+        if (!this.runtimes.has(runtime.connection.characterId) || this.runtimes.get(runtime.connection.characterId) !== runtime || !runtime.world || runtime.world.detached || runtime.suspended || runtime.frozen) return;
         if (now - runtime.heartbeatAt >= this.leaseMs) { runtime.frozen = true; fail('LEASE_EXPIRED', 'Trainer ownership expired. Reconnect.'); }
         this.finishMotion(runtime, now);
         if (runtime.world.transfer && now >= runtime.world.transfer.dueAt) await this.checkpoint(runtime, runtime.world.transfer);

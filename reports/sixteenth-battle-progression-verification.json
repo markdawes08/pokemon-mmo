@@ -1,0 +1,1232 @@
+{
+  "checkedAt": "2026-09-28T18:28:54.394Z",
+  "status": "passed",
+  "profile": "firered-route1-progression-v1",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "wasmSha256": "33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539",
+  "fixtureSha256": "23101fd4be7533cea2e64c055d80fc15f3170be86d4ba52f418d8d7bacc7e27c",
+  "independence": "Source-literal Python formulas/tables only; does not read generated C/WASM or production host code",
+  "oracleReproduction": "Python --check passed without writes",
+  "comparisons": "Independent source-derived literals; no original-game, emulator or ROM comparison claimed",
+  "scope": "Private diagnostic progression; natural terminal bridge is independently checked by verify-integration.ts. No DB, owned rewards, evolution execution or combat readmission.",
+  "sourceCases": 159,
+  "coveredLevels": 100,
+  "decisions": 17,
+  "boundaries": 176,
+  "replayedDecisions": 27,
+  "rawContinuationBoundaries": 386,
+  "interleavedDecisions": 6,
+  "rejectionChecks": 53,
+  "rawRejectionChecks": 34,
+  "retained": {
+    "tools/battle-route1/fixtures/source-cases.json": "6e8127ab6bac381bb62266c0d6df1f3d0814cda5ba54a026ad01e40e920f48ac",
+    "tools/battle-route1/fixtures/items-cases.json": "1d1e05e66692787c0cbefd4ebe389ab7bc691097578e73cfd486fb21e5aa91d1",
+    ".local/battle-route1/primary/route1.wasm": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02"
+  },
+  "negatives": [
+    "input:unknown field",
+    "input:level zero",
+    "input:level above source cap",
+    "input:XP inconsistent with level",
+    "input:incorrect cached stat",
+    "input:HP above maximum",
+    "input:wider-than-source HP",
+    "input:fixed IV changed",
+    "input:EV per-stat cap",
+    "input:EV total cap",
+    "input:basis exceeds accrued EVs",
+    "input:basis/stat mismatch",
+    "input:unsupported species",
+    "input:unsupported ability",
+    "input:unsupported personality",
+    "input:unsupported OT",
+    "input:status modifier",
+    "input:held modifier",
+    "input:future move",
+    "input:hole between moves",
+    "input:duplicate move",
+    "input:PP above source base",
+    "input:PP Ups unsupported",
+    "input:friendship cap",
+    "input:foreign defeated species",
+    "input:foreign Route1 Rattata level",
+    "input:zero XP override",
+    "input:wide XP override",
+    "input:unsupported friendship ball",
+    "input:missing friendship context",
+    "decision:foreign decision",
+    "decision:replacement slot four",
+    "decision:replacement negative slot",
+    "decision:unknown decision",
+    "decision:extra decision field",
+    "decision:already consumed identity",
+    "decision:after completion",
+    "decision:pending evolution is not move choice",
+    "checkpoint:digest corruption",
+    "checkpoint:source binding",
+    "checkpoint:WASM binding",
+    "checkpoint:host binding",
+    "checkpoint:battle binding",
+    "checkpoint:policy binding",
+    "checkpoint:missing source state",
+    "checkpoint:truncated source state",
+    "checkpoint:changed remaining XP",
+    "checkpoint:changed move cursor",
+    "checkpoint:changed EV basis",
+    "checkpoint:missing decision history",
+    "checkpoint:duplicate decision history",
+    "checkpoint:changed decision result",
+    "checkpoint:changed immutable admission"
+  ],
+  "rawNegatives": [
+    "version",
+    "phase",
+    "remaining exceeds award",
+    "incorrect source award",
+    "defeated species",
+    "defeated level",
+    "mixed unknown friendship context",
+    "reserved header",
+    "uninitialized",
+    "invalid EV",
+    "invalid IV",
+    "incorrect cached stats",
+    "wide HP and maximum",
+    "wide stat",
+    "unknown move",
+    "wide PP",
+    "out-of-range cursor",
+    "pending choice empty move slot",
+    "pending choice move already known",
+    "pending learn requires level gain",
+    "first-move flag outside learn phase",
+    "level gain requires living recipient",
+    "level gain requires award",
+    "level gain requires known context",
+    "evolution cannot become silent completion",
+    "poisoned/incomplete import:duplicate",
+    "poisoned/incomplete import:out-of-range",
+    "poisoned/incomplete import:incomplete",
+    "rejected input:duplicate",
+    "rejected input:out-of-range",
+    "rejected input:incomplete",
+    "rejected input:wide HP",
+    "invalid raw replacement preserves state",
+    "required friendship context fails before XP chunk"
+  ],
+  "cases": [
+    {
+      "id": "natural-yield-16-2",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 15
+    },
+    {
+      "id": "natural-yield-16-3",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 23
+    },
+    {
+      "id": "natural-yield-16-4",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 31
+    },
+    {
+      "id": "natural-yield-16-5",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 39
+    },
+    {
+      "id": "natural-yield-19-2",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 16
+    },
+    {
+      "id": "natural-yield-19-3",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 24
+    },
+    {
+      "id": "natural-yield-19-4",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 32
+    },
+    {
+      "id": "level-1-to-2-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-2-to-3-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-3-to-4-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-4-to-5-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-5-to-6-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-6-to-7-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-7-to-8-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-8-to-9-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-9-to-10-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-10-to-11-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-11-to-12-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-12-to-13-exact-threshold",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-13-to-14-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-14-to-15-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-15-to-16-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-16-to-17-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-17-to-18-exact-threshold",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-18-to-19-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-19-to-20-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-20-to-21-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-21-to-22-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-22-to-23-exact-threshold",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-23-to-24-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-24-to-25-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-25-to-26-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-26-to-27-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-27-to-28-exact-threshold",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-28-to-29-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-29-to-30-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-30-to-31-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-31-to-32-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-32-to-33-exact-threshold",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-33-to-34-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-34-to-35-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-35-to-36-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-36-to-37-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-37-to-38-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-38-to-39-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-39-to-40-exact-threshold",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-40-to-41-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-41-to-42-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-42-to-43-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-43-to-44-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-44-to-45-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-45-to-46-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-46-to-47-exact-threshold",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-47-to-48-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-48-to-49-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-49-to-50-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-50-to-51-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-51-to-52-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-52-to-53-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-53-to-54-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-54-to-55-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-55-to-56-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-56-to-57-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-57-to-58-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-58-to-59-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-59-to-60-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-60-to-61-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-61-to-62-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-62-to-63-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-63-to-64-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-64-to-65-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-65-to-66-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-66-to-67-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-67-to-68-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-68-to-69-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-69-to-70-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-70-to-71-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-71-to-72-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-72-to-73-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-73-to-74-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-74-to-75-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-75-to-76-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-76-to-77-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-77-to-78-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-78-to-79-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-79-to-80-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-80-to-81-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-81-to-82-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-82-to-83-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-83-to-84-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-84-to-85-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-85-to-86-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-86-to-87-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-87-to-88-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-88-to-89-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-89-to-90-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-90-to-91-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-91-to-92-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-92-to-93-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-93-to-94-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-94-to-95-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-95-to-96-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-96-to-97-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-97-to-98-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-98-to-99-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-99-to-100-exact-threshold",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level-100-no-xp-or-ev",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 0
+    },
+    {
+      "id": "fainted-recipient-no-xp-or-ev",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 0
+    },
+    {
+      "id": "level6-threshold-offset--1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 39
+    },
+    {
+      "id": "level6-threshold-offset-0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 39
+    },
+    {
+      "id": "level6-threshold-offset-1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 39
+    },
+    {
+      "id": "ev-speed-0-other-0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 15
+    },
+    {
+      "id": "ev-speed-3-other-0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 15
+    },
+    {
+      "id": "ev-speed-75-other-0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 15
+    },
+    {
+      "id": "ev-speed-254-other-0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 15
+    },
+    {
+      "id": "ev-speed-255-other-0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 15
+    },
+    {
+      "id": "ev-speed-0-other-509",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 15
+    },
+    {
+      "id": "ev-speed-0-other-510",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 15
+    },
+    {
+      "id": "ev-speed-254-other-255",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 15
+    },
+    {
+      "id": "existing-delayed-stat-basis-no-level",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 15
+    },
+    {
+      "id": "existing-delayed-stat-basis-level-refresh",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-0-met0-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-0-met1-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-0-met1-luxury1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-98-met0-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-98-met1-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-98-met1-luxury1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-99-met0-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-99-met1-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-99-met1-luxury1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-100-met0-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-100-met1-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-100-met1-luxury1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-198-met0-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-198-met1-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-198-met1-luxury1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-199-met0-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-199-met1-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-199-met1-luxury1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-200-met0-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-200-met1-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-200-met1-luxury1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-254-met0-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-254-met1-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-254-met1-luxury1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-255-met0-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-255-met1-luxury0",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "friendship-255-met1-luxury1",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "water-gun-replace-0",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "water-gun-replace-1",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "water-gun-replace-2",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "water-gun-replace-3",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "water-gun-decline",
+      "status": "passed",
+      "boundaries": 2,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "multi-level-with-repeated-choice-and-remainder",
+      "status": "passed",
+      "boundaries": 6,
+      "phase": "pending-evolution",
+      "appliedExperience": 32767
+    },
+    {
+      "id": "level100-clips-leftover-award",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 2
+    },
+    {
+      "id": "preexisting-level16-no-new-evolution",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "level15-to16-pending-evolution",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "pending-evolution",
+      "appliedExperience": 1
+    },
+    {
+      "id": "learn-bubble-first-empty-slot-preserves-old-pp",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    },
+    {
+      "id": "learn-withdraw-first-empty-slot-preserves-old-pp",
+      "status": "passed",
+      "boundaries": 1,
+      "phase": "complete",
+      "appliedExperience": 1
+    }
+  ]
+}

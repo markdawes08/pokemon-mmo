@@ -1,7 +1,15 @@
 /* Profile-v1 portable logical checkpoint. No struct bytes or pointer values.
  * Only settled host choice/replacement/terminal boundaries are supported. */
+#ifdef WATERBLUE_FAMILY
+#define SPIKE_CHECKPOINT_VERSION 4
+#define SPIKE_CHECKPOINT_WORDS 154
+#elif defined(WATERBLUE_ROUTE1)
+#define SPIKE_CHECKPOINT_VERSION 3
+#define SPIKE_CHECKPOINT_WORDS 152
+#else
 #define SPIKE_CHECKPOINT_VERSION 1
 #define SPIKE_CHECKPOINT_WORDS 148
+#endif
 #define SPIKE_CHECKPOINT_MAGIC 0x57424350u
 static u32 sCheckpointExport[SPIKE_CHECKPOINT_WORDS];
 static u32 sCheckpointImport[SPIKE_CHECKPOINT_WORDS];
@@ -49,14 +57,33 @@ static s32 ValidateCheckpoint(const u32 *words)
 {
     if (words[0] != SPIKE_CHECKPOINT_MAGIC || words[1] != SPIKE_CHECKPOINT_VERSION
         || words[2] != SPIKE_CHECKPOINT_WORDS || words[3] > 3 || words[7] > 65535
-        || words[8] > 3 || words[15] != 0 || words[6] > 0x1FFFFFu)
+#ifdef WATERBLUE_ROUTE1
+        || (words[8] > B_OUTCOME_RAN && words[8] != B_OUTCOME_CAUGHT) || words[148] > 255 || words[149] != 1
+        || (words[8] == B_OUTCOME_CAUGHT
+            ? (words[150] != ITEM_POKE_BALL || words[151] != BALL_3_SHAKES_SUCCESS || words[9] != B_ACTION_USE_ITEM)
+            : (words[150] || words[151]))
+#else
+        || words[8] > 3
+#endif
+        || words[15] != 0 || words[6] > 0x1FFFFFu)
         return SPIKE_INVALID_ARGUMENT;
+#ifdef WATERBLUE_FAMILY
+    if ((words[3] != 0 && words[3] != 3) || words[8] > B_OUTCOME_RAN || words[150] || words[151]
+        || words[152] > 255 || words[153] > 255) return SPIKE_INVALID_ARGUMENT;
+#endif
     if (RngAfter(words[14], words[5], words[6]) != words[4]) return SPIKE_INVALID_ARGUMENT;
     if (!CheckpointMove(words[13])) return SPIKE_UNSUPPORTED;
     for (u32 actor = 0; actor < 2; actor++) {
         u32 action = words[9 + actor];
-        if (action != B_ACTION_USE_MOVE && action != B_ACTION_SWITCH && action != B_ACTION_NONE)
+        if (action != B_ACTION_USE_MOVE && action != B_ACTION_SWITCH && action != B_ACTION_NONE
+#ifdef WATERBLUE_ROUTE1
+            && action != B_ACTION_RUN && action != B_ACTION_USE_ITEM
+#endif
+            )
             return SPIKE_UNSUPPORTED;
+#ifdef WATERBLUE_FAMILY
+        if (action != B_ACTION_USE_MOVE && action != B_ACTION_NONE && action != B_ACTION_RUN) return SPIKE_UNSUPPORTED;
+#endif
         if (words[11 + actor] >= MAX_MON_MOVES) return SPIKE_INVALID_ARGUMENT;
         if (words[3] == 0 && action != B_ACTION_NONE) return SPIKE_INVALID_ARGUMENT;
         const u32 *mon = words + 16 + actor * 48;
@@ -71,7 +98,18 @@ static s32 ValidateCheckpoint(const u32 *words)
             || !CheckpointType(mon[12]) || !CheckpointType(mon[13])) return SPIKE_UNSUPPORTED;
         if (mon[8] != mon[12] || mon[9] != mon[13]) return SPIKE_UNSUPPORTED;
         if (mon[10] != 0 && mon[10] != STATUS1_POISON && mon[10] != STATUS1_BURN) return SPIKE_UNSUPPORTED;
+#ifdef WATERBLUE_FAMILY
+        if (mon[11] & ~STATUS2_FOCUS_ENERGY) return SPIKE_UNSUPPORTED;
+        if (mon[14+STAT_SPATK] != DEFAULT_STAT_STAGE || mon[14+STAT_SPDEF] != DEFAULT_STAT_STAGE
+            || mon[14+STAT_EVASION] != DEFAULT_STAT_STAGE || mon[14+STAT_ATK] > DEFAULT_STAT_STAGE
+            || mon[14+STAT_ACC] > DEFAULT_STAT_STAGE) return SPIKE_UNSUPPORTED;
+        if (mon[11] & STATUS2_FOCUS_ENERGY) {
+            bool8 known=FALSE;for(u32 slot=0;slot<4;slot++)if(mon[22+slot]==MOVE_FOCUS_ENERGY)known=TRUE;
+            if(!known)return SPIKE_UNSUPPORTED;
+        }
+#else
         if (mon[11] != 0 && mon[11] != STATUS2_FORESIGHT) return SPIKE_UNSUPPORTED;
+#endif
         if (mon[14] != DEFAULT_STAT_STAGE) return SPIKE_UNSUPPORTED;
         for (u32 stat = 0; stat < NUM_BATTLE_STATS; stat++) {
             if (mon[14 + stat] > MAX_STAT_STAGE) return SPIKE_INVALID_ARGUMENT;
@@ -80,9 +118,26 @@ static s32 ValidateCheckpoint(const u32 *words)
         if (mon[1] == 0 && (mon[10] != 0 || mon[11] != 0)) return SPIKE_INVALID_ARGUMENT;
         for (u32 slot = 0; slot < MAX_MON_MOVES; slot++) {
             if (!CheckpointMove(mon[22 + slot])) return SPIKE_UNSUPPORTED;
+#ifdef WATERBLUE_FAMILY
+            if (mon[26 + slot] > FamilyMaxPP(mon[22 + slot], words[152 + actor], slot)
+                || (!mon[22 + slot] && (words[152 + actor] & (3u << (slot * 2))))) return SPIKE_INVALID_ARGUMENT;
+            if (!FamilyLegalMove(mon[22+slot],mon[30],mon[0])) return SPIKE_UNSUPPORTED;
+            if (slot && mon[22+slot] && !mon[21+slot]) return SPIKE_UNSUPPORTED;
+            for(u32 prior=0;prior<slot;prior++)if(mon[22+slot]&&mon[22+slot]==mon[22+prior])return SPIKE_UNSUPPORTED;
+#else
             if (mon[26 + slot] > gBattleMoves[mon[22 + slot]].pp) return SPIKE_INVALID_ARGUMENT;
+#endif
         }
+#ifdef WATERBLUE_ROUTE1
+        if (!Route1Identity(actor, mon[30], mon[31]) || mon[47] > 1
+            || mon[8] != sRoute1Types[mon[30]][0] || mon[9] != sRoute1Types[mon[30]][1]) return SPIKE_UNSUPPORTED;
+        for (u32 slot = 0; slot < MAX_MON_MOVES; slot++) {
+            if (mon[22 + slot] == MOVE_STRUGGLE || (mon[47] && mon[26 + slot])) return SPIKE_INVALID_ARGUMENT;
+        }
+        if (mon[36] > 1 || mon[37] > 1 || mon[46] > 2
+#else
         if (mon[30] || mon[31] || mon[47] || mon[36] > 1 || mon[37] > 1 || mon[46] > 2
+#endif
             || !CheckpointActor(mon[34]) || !CheckpointActor(mon[35]) || !CheckpointActor(mon[39])
             || (mon[45] >= 2 && mon[45] != 255)) return SPIKE_INVALID_ARGUMENT;
         if (!CheckpointMove(mon[40]) || !CheckpointMove(mon[42]) || !CheckpointMove(mon[43])
@@ -92,13 +147,25 @@ static s32 ValidateCheckpoint(const u32 *words)
     if (words[3] == 0 && (!hp0 || !hp1 || words[8] != 0)) return SPIKE_INVALID_ARGUMENT;
     if ((words[3] == 1 || words[3] == 2) && ((hp0 && hp1) || words[8] != 0)) return SPIKE_INVALID_ARGUMENT;
     if (words[3] == 3 && words[8] == 0) return SPIKE_INVALID_ARGUMENT;
-    if (words[3] == 3 && (((words[8] & B_OUTCOME_LOST) && hp0)
+#ifdef WATERBLUE_ROUTE1
+    if ((words[8] == B_OUTCOME_RAN || words[8] == B_OUTCOME_CAUGHT)
+        && (words[3] != 3 || !hp0 || !hp1)) return SPIKE_INVALID_ARGUMENT;
+#endif
+    if (words[3] == 3
+#ifdef WATERBLUE_ROUTE1
+        && words[8] != B_OUTCOME_CAUGHT
+#endif
+        && (((words[8] & B_OUTCOME_LOST) && hp0)
         || ((words[8] & B_OUTCOME_WON) && hp1))) return SPIKE_INVALID_ARGUMENT;
     u32 total[2] = {0, 0};
     u32 present[2] = {0, 0};
     for (u32 side = 0; side < 2; side++) {
         for (u32 slot = 0; slot < PARTY_SIZE; slot++) {
             const u32 *row = words + 112 + side * 18 + slot * 3;
+#ifdef WATERBLUE_FAMILY
+            if(row[0]!=(slot==0?words[16+side*48+30]:0)
+                ||row[1]!=(slot==0?words[16+side*48+1]:0)||row[2])return SPIKE_UNSUPPORTED;
+#endif
             if (row[0] > 65535 || row[1] > 65535 || row[2] > 1
                 || (row[0] == 0 && (row[1] || row[2]))) return SPIKE_INVALID_ARGUMENT;
             if (row[0] && !row[2]) { total[side] += row[1]; present[side] = 1; }
@@ -110,7 +177,12 @@ static s32 ValidateCheckpoint(const u32 *words)
        were just read by Cmd_checkteamslost and must agree with its outcome. */
     if (words[3] == 3) {
         u32 outcome = (total[0] == 0 ? B_OUTCOME_LOST : 0) | (total[1] == 0 ? B_OUTCOME_WON : 0);
-        if (!present[0] || !present[1] || words[8] != outcome) return SPIKE_INVALID_ARGUMENT;
+        if (!present[0] || !present[1]) return SPIKE_INVALID_ARGUMENT;
+#ifdef WATERBLUE_ROUTE1
+        if (words[8] == B_OUTCOME_RAN || words[8] == B_OUTCOME_CAUGHT) { if (outcome) return SPIKE_INVALID_ARGUMENT; }
+        else
+#endif
+        if (words[8] != outcome) return SPIKE_INVALID_ARGUMENT;
     }
     return SPIKE_OK;
 }
@@ -123,9 +195,16 @@ static s32 CheckpointContext(void)
         || gSideStatuses[0] || gSideStatuses[1] || gStatuses3[0] || gStatuses3[1]
         || gBattleStruct->dynamicMoveType) return SPIKE_UNSUPPORTED;
     for (u32 actor = 0; actor < 2; actor++) {
+#ifdef WATERBLUE_ROUTE1
+        if (!Route1Identity(actor, gBattleMons[actor].species, gBattleMons[actor].ability) || gBattleMons[actor].item
+#else
         if (gBattleMons[actor].species != actor + 1 || gBattleMons[actor].ability || gBattleMons[actor].item
+#endif
             || gProtectStructs[actor].protected || gProtectStructs[actor].endured
-            || gProtectStructs[actor].noValidMoves || gProtectStructs[actor].helpingHand
+#ifndef WATERBLUE_ROUTE1
+            || gProtectStructs[actor].noValidMoves
+#endif
+            || gProtectStructs[actor].helpingHand
             || gDisableStructs[actor].mimickedMoves || gDisableStructs[actor].substituteHP
             || gDisableStructs[actor].rechargeTimer || sResourceFlags.flags[actor]) return SPIKE_UNSUPPORTED;
     }
@@ -144,6 +223,13 @@ s32 spike3_checkpoint_export(u32 boundary)
     words[4] = gRngValue; words[5] = sRngDrawsLo; words[6] = sRngDrawsHi;
     words[7] = gRandomTurnNumber; words[8] = gBattleOutcome;
     words[13] = gCurrentMove; words[14] = sRngInitialSeed;
+#ifdef WATERBLUE_ROUTE1
+    words[148] = gBattleStruct->runTries; words[149] = sRoute1Started;
+    words[150] = sCapturedBall; words[151] = sCapturedShakes;
+#ifdef WATERBLUE_FAMILY
+    words[152] = gBattleMons[0].ppBonuses; words[153] = gBattleMons[1].ppBonuses;
+#endif
+#endif
     for (u32 actor = 0; actor < 2; actor++) {
         words[9 + actor] = gChosenActionByBattler[actor];
         words[11 + actor] = gBattleStruct->chosenMovePositions[actor];
@@ -153,7 +239,12 @@ s32 spike3_checkpoint_export(u32 boundary)
         row[3] = mon->attack; row[4] = mon->defense; row[5] = mon->spAttack; row[6] = mon->spDefense;
         row[7] = mon->speed; row[8] = mon->type1; row[9] = mon->type2;
         row[10] = mon->status1; row[11] = mon->status2;
+#ifdef WATERBLUE_ROUTE1
+        row[12] = gSpeciesInfo[mon->species].types[0]; row[13] = gSpeciesInfo[mon->species].types[1];
+        row[30] = mon->species; row[31] = mon->ability; row[47] = gProtectStructs[actor].noValidMoves;
+#else
         row[12] = gSpeciesInfo[actor + 1].types[0]; row[13] = gSpeciesInfo[actor + 1].types[1];
+#endif
         for (u32 stat = 0; stat < NUM_BATTLE_STATS; stat++) row[14 + stat] = mon->statStages[stat];
         for (u32 slot = 0; slot < MAX_MON_MOVES; slot++) { row[22 + slot] = mon->moves[slot]; row[26 + slot] = mon->pp[slot]; }
         row[32] = gProtectStructs[actor].physicalDmg; row[33] = gProtectStructs[actor].specialDmg;
@@ -222,14 +313,28 @@ s32 spike3_import_commit(void)
     spike_reset(words[14]);
     gRngValue = words[4]; sRngDrawsLo = words[5]; sRngDrawsHi = words[6];
     gRandomTurnNumber = words[7]; gBattleOutcome = words[8]; gCurrentMove = words[13];
+#ifdef WATERBLUE_ROUTE1
+    gBattleStruct->runTries = words[148]; sRoute1Started = words[149];
+    sCapturedBall = words[150]; sCapturedShakes = words[151];
+#endif
     for (u32 actor = 0; actor < 2; actor++) {
         const u32 *row = words + 16 + actor * 48;
         struct BattlePokemon *mon = &gBattleMons[actor];
         mon->level = row[0]; mon->hp = row[1]; mon->maxHP = row[2];
         mon->attack = row[3]; mon->defense = row[4]; mon->spAttack = row[5]; mon->spDefense = row[6];
         mon->speed = row[7]; mon->type1 = row[8]; mon->type2 = row[9];
-        mon->status1 = row[10]; mon->status2 = row[11]; mon->species = actor + 1;
+        mon->status1 = row[10]; mon->status2 = row[11];
+#ifdef WATERBLUE_FAMILY
+        mon->ppBonuses = words[152 + actor];
+#endif
+#ifdef WATERBLUE_ROUTE1
+        mon->species = row[30]; mon->ability = row[31];
+        gSpeciesInfo[mon->species].types[0] = row[12]; gSpeciesInfo[mon->species].types[1] = row[13];
+        gProtectStructs[actor].noValidMoves = row[47];
+#else
+        mon->species = actor + 1;
         gSpeciesInfo[actor + 1].types[0] = row[12]; gSpeciesInfo[actor + 1].types[1] = row[13];
+#endif
         for (u32 stat = 0; stat < NUM_BATTLE_STATS; stat++) mon->statStages[stat] = row[14 + stat];
         for (u32 slot = 0; slot < MAX_MON_MOVES; slot++) { mon->moves[slot] = row[22 + slot]; mon->pp[slot] = row[26 + slot]; }
         gProtectStructs[actor].physicalDmg = row[32]; gProtectStructs[actor].specialDmg = row[33];

@@ -27,7 +27,7 @@ async function main() {
   try {
     const commandId = values.get('--command') ?? randomUUID();
     const result = await new AssetService(database).seedDevelopmentFixture({ characterId: values.get('--character')!, commandId, profileId: 'r1-squirtle-v1' });
-    console.log(JSON.stringify({ event: 'development-fixture', commandId, ...result, scope: 'Persisted development assets only; world movement and battles remain unavailable.' }));
+    console.log(JSON.stringify({ event: 'development-fixture', commandId, ...result, scope: 'Development assets persisted; explicit shared exploration is available. Battles remain unavailable.' }));
   } finally { await database.close(); }
 }
 

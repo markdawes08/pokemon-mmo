@@ -205,8 +205,14 @@ try {
   await database.pool.query("UPDATE characters SET map_id=$2,position_x=12,position_y=17,position_elevation=3,position_facing='east' WHERE id=$1", [bob.character.id, PALLET]);
   const npc = await join(bob.cookie, bob.character.id); await enter(npc); await step(npc, 'east'); position(npc, PALLET, 12, 17);
   checks.push('visible-source-npc-occupancy-blocks-authoritative-step');
+  const beforeRevocation = await checkpoint(bob.character.id);
+  const revocationError = message(npc.room, 'error');
+  let revokedCode: number | undefined; npc.room.onLeave(code => { revokedCode = code; });
   assert.equal((await api('/api/auth/sign-out', bob.cookie, {})).response.status, 200);
-  assert.equal((await error(npc, 'world-input', input(npc, 'west'))).code, 'AUTH_REQUIRED');
+  assert.equal(characterErrorSchema.parse(await revocationError).code, 'AUTH_REQUIRED');
+  await until(() => revokedCode !== undefined, 'signout immediately closes the world transport');
+  assert.notEqual(revokedCode, 1000); assert.equal(npc.room.connection.isOpen, false);
+  assert.deepEqual(await checkpoint(bob.character.id), beforeRevocation);
   checks.push('revoked-session-cannot-send-world-input');
   await save(replacement);
   await closeRooms(); await backend.stop();

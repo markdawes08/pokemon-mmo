@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-09-30T15:42:33.089Z",
+  "checks": [
+    "manual-reconnect-wrong-cookie-or-origin-cannot-evict-live-owner",
+    "encoded-manual-reconnect-method-and-chunked-body-limit-enforced",
+    "native-drop-hides-peer-and-resumes-same-session-with-new-generation",
+    "offline-input-buffer-empty-and-no-movement-replay",
+    "missing-cookie-wrong-cookie-and-origin-cannot-steal-reconnect",
+    "manual-reconnect-negatives-preserve-rightful-resume-and-hide-admission-data",
+    "authenticated-manual-seat-lookup-preserves-rightful-auto-resume",
+    "repeated-drops-around-heartbeats-retain-one-live-owner",
+    "old-connection-generation-fenced-after-resume",
+    "profile-only-resume-does-not-reactivate-persisted-overworld",
+    "fresh-ticket-takeover-cancels-dropped-transport",
+    "revoked-cookie-cannot-resume-dropped-transport",
+    "expired-auth-session-cannot-resume",
+    "consented-room-leave-does-not-reserve-reconnect",
+    "real-sixty-second-grace-expires-and-failed-attempts-do-not-extend-deadline",
+    "expired-grace-requires-fresh-authenticated-admission",
+    "shutdown-cancels-active-reconnect-grace-without-forced-termination"
+  ],
+  "graceElapsedMs": 60515,
+  "backendPids": [
+    11008
+  ],
+  "scope": "Real PostgreSQL, cookie sessions, native SDK WebSocket interruption and real elapsed sixty-second policy. Tokens remain only in process memory."
+}

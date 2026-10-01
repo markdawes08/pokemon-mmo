@@ -3,9 +3,18 @@
  * Party species values are presence tokens for source team-HP queries only.
  */
 struct Pokemon { u16 species, hp; u8 isEgg; };
-struct SpeciesInfo { u8 types[2]; };
+struct SpeciesInfo { u8 types[2];
+#ifdef WATERBLUE_ROUTE1
+    u8 catchRate;
+#endif
+};
 static struct Pokemon gPlayerParty[PARTY_SIZE], gEnemyParty[PARTY_SIZE];
+#ifdef WATERBLUE_ROUTE1
+static struct SpeciesInfo gSpeciesInfo[NUM_SPECIES];
+static const u8 sRecoilScript[] = {7};
+#else
 static struct SpeciesInfo gSpeciesInfo[3];
+#endif
 static u8 gActionSelectionCursor[MAX_BATTLERS_COUNT], gMoveSelectionCursor[MAX_BATTLERS_COUNT];
 static u8 gLastHitBy[MAX_BATTLERS_COUNT], gBattlerPartyIndexes[MAX_BATTLERS_COUNT];
 static u16 gLastMoves[MAX_BATTLERS_COUNT], gLastResultingMoves[MAX_BATTLERS_COUNT];

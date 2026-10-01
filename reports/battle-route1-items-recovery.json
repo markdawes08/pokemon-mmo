@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "checkedAt": "2026-09-30T15:42:52.149Z",
+  "crossBuildRestores": 46,
+  "crossBuildReplayedTransitions": 32,
+  "rejectedCheckpoints": [
+    "capture-descriptor-missing",
+    "capture-hp",
+    "capture-pp",
+    "capture-personality",
+    "capture-ivs",
+    "capture-stats",
+    "capture-false-ball",
+    "capture-fewer-shakes",
+    "capture-without-consumption",
+    "capture-unearned-extra-field",
+    "nonterminal-capture",
+    "nonterminal-ball-marker",
+    "initial-item-spend",
+    "inventory-over-cap",
+    "negative-inventory",
+    "old-profile",
+    "old-core-version",
+    "healed-without-spent-potion",
+    "two-items-in-one-transition"
+  ],
+  "interleavedTransitions": 4,
+  "freshProcess": {
+    "parentPid": 11796,
+    "pid": 24948,
+    "checkpoints": 46,
+    "replayedTransitions": 32
+  },
+  "candidateFailures": [
+    "heal-then-wild-rng-trap-rolls-back-potion-and-hp",
+    "partial-shake-rng-trap-rolls-back-ball-and-capture"
+  ],
+  "noEffectAndInvalidChoiceAtomicity": true,
+  "terminalCaptureStableAndDetached": true,
+  "rawNegativeAtomicity": [
+    "no-effect-potion",
+    "unsupported-item",
+    "captured-wrong-ball",
+    "captured-missing-shake",
+    "captured-missing-ball",
+    "nonterminal-capture-tail"
+  ],
+  "trustedBoundary": "Private logical continuation checkpoints permit valid handcrafted state. Capture remains a pending-disposition descriptor; no ownership, dex, nickname, storage allocation, rewards or DB effects are executed."
+}

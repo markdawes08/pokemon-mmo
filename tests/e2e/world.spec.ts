@@ -172,6 +172,7 @@ test('Route 1 ledges, focus and menus stop input, and a fresh backend recovers t
   expect(await receipts()).toBe(beforeSaveReceipts + 1);
   await writeFile('reports/world-save-retry.json', `${JSON.stringify({ status: 'passed', verifiedAt: new Date().toISOString(), scope: 'Real authenticated hello immediately precedes Save, producing actual server BUSY; malformed Save gets real INVALID_MESSAGE', busyResponses: retriedSave.busyErrors, identicalSaveAttempts: retriedSave.frames.length, receiptsWritten: 1, invalidSaveAttempts: invalidSave.frames.length, attemptsAfterInvalidResponse: 0, invalidSaveReceipts: 0 }, null, 2)}\n`);
   await page.getByRole('button', { name: 'Close account', exact: true }).click();
+  await expect(page.locator('#game')).toBeFocused();
   await step(page, 'ArrowUp'); await position(page, ROUTE, 12, 39);
   await page.keyboard.down('Shift'); await page.keyboard.down('ArrowUp'); await page.waitForTimeout(2600);
   await page.keyboard.up('ArrowUp'); await page.keyboard.up('Shift'); await position(page, ROUTE, 12, 32);
@@ -198,6 +199,7 @@ test('Route 1 ledges, focus and menus stop input, and a fresh backend recovers t
   await expect(page.locator('#account-status')).toContainText('checkpointed');
   const committed = await savedPosition(character.id);
   await page.getByRole('button', { name: 'Close account', exact: true }).click();
+  await expect(page.locator('#game')).toBeFocused();
   await page.keyboard.down('ArrowDown'); await expect(page.locator('#game')).toHaveAttribute('data-moving', 'true');
   await backend.stop();
   await expect(page.locator('#game')).toHaveAttribute('data-world-mode', 'disconnected');
@@ -215,16 +217,19 @@ test('Route 1 ledges, focus and menus stop input, and a fresh backend recovers t
   await openAccount(page, false); await armSaveProbe(page, 'stall');
   const stalledSaveStarted = Date.now(); await page.locator('#account-save').click();
   await expect(page.locator('#account-status')).toContainText('Saving trainer');
-  await expect(page.locator('#game')).toHaveAttribute('data-world-mode', 'disconnected', { timeout: 10_000 });
+  await expect(page.locator('#game')).toHaveAttribute('data-world-mode', 'reconnecting', { timeout: 10_000 });
+  await expect(page.locator('#account-connect')).toBeDisabled();
+  await expect(page.locator('#account-world-leave')).toBeEnabled();
+  await page.locator('#account-world-leave').click();
+  await expect(page.locator('#game')).toHaveAttribute('data-world-mode', 'preview');
   await expect(page.locator('#account-connect')).toBeEnabled();
-  await expect(page.locator('#account-connect')).toHaveText('Reconnect trainer');
-  await expect(page.locator('#account-status')).toHaveText('Shared world connection lost. Reconnect to continue.');
+  await expect(page.locator('#account-status')).toHaveText('Shared world left. Anonymous exploration is unsaved.');
   // Pass the original eight-second Save deadline. Cancelled timers must not
   // replace the loss message or strand the controls after this induced client stall.
   await page.waitForTimeout(Math.max(0, stalledSaveStarted + 8500 - Date.now()));
-  await expect(page.locator('#account-status')).toHaveText('Shared world connection lost. Reconnect to continue.');
+  await expect(page.locator('#account-status')).toHaveText('Shared world left. Anonymous exploration is unsaved.');
   await expect(page.locator('#account-connect')).toBeEnabled();
   const stalledSave = await saveProbe(page);
   expect(stalledSave.frames).toHaveLength(1); expect(stalledSave.stalledMessages).toBeGreaterThan(0);
-  await writeFile('reports/world-save-watchdog.json', `${JSON.stringify({ status: 'passed', verifiedAt: new Date().toISOString(), scope: 'Induced client delivery stall with real native socket; this is not server failure evidence', pendingSaveAttempts: 1, discardedSdkMessages: stalledSave.stalledMessages, reconnectEnabled: true, originalSaveDeadlineCancelled: true }, null, 2)}\n`);
+  await writeFile('reports/world-save-watchdog.json', `${JSON.stringify({ status: 'passed', verifiedAt: new Date().toISOString(), scope: 'Induced client delivery stall with real native socket; this is not server failure evidence', pendingSaveAttempts: 1, discardedSdkMessages: stalledSave.stalledMessages, explicitLeaveEnabled: true, graceCancelled: true, originalSaveDeadlineCancelled: true }, null, 2)}\n`);
 });

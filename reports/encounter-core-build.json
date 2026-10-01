@@ -1,0 +1,1370 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-30T15:42:47.922281+00:00",
+  "status": "passed",
+  "scope": "Private source Route 1 encounter factory only; no live encounter, battle, or durable admission",
+  "toolchain": {
+    "schemaVersion": 1,
+    "tool": "zig",
+    "version": "0.16.0",
+    "purpose": "Optional local P03 C-to-WASM experiment compiler; not a runtime game dependency",
+    "source": "https://ziglang.org/download/index.json",
+    "platform": "win32-x64",
+    "url": "https://ziglang.org/download/0.16.0/zig-x86_64-windows-0.16.0.zip",
+    "bytes": 97217739,
+    "sha256": "68659eb5f1e4eb1437a722f1dd889c5a322c9954607f5edcf337bc3684a75a7e",
+    "directory": "zig-x86_64-windows-0.16.0",
+    "executable": "zig.exe",
+    "executableSha256": "086ce9d47ba42f33a514e1a6e04eb1d4a8fa1d75e0868e0213caad447c91e864"
+  },
+  "target": "wasm32-freestanding",
+  "optimization": "-O2",
+  "debugInfo": false,
+  "stackBytes": 65536,
+  "abiVersion": 1,
+  "checkpointWords": 44,
+  "exports": [
+    "encounter_abi_version",
+    "encounter_reset",
+    "encounter_step",
+    "encounter_generate",
+    "encounter_state_word_count",
+    "encounter_state_get",
+    "encounter_creature_get",
+    "encounter_import_begin",
+    "encounter_import_set",
+    "encounter_import_commit"
+  ],
+  "importsExpected": [],
+  "fixedLinearMemoryBytes": 262144,
+  "independentBuilds": 2,
+  "wasm": ".local/encounter-core/primary/encounter.wasm",
+  "wasmBytes": 26468,
+  "wasmSha256": "8b46d731fdf20c16213a6cb7dc9e1e14dccbd3a65fe4c4ac45d3e70c8a885bd2",
+  "extraction": {
+    "schemaVersion": 1,
+    "profile": "firered-route1-encounter-v1",
+    "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "upstreamCommit": null,
+    "selectedBuild": {
+      "game": "FIRERED",
+      "revision": 0,
+      "language": "ENGLISH",
+      "evidence": "config.mk:3-5"
+    },
+    "inputs": [
+      {
+        "path": "include/constants/abilities.h",
+        "bytes": 2407,
+        "sha256": "1c1b93de5d5ff65d8b3066e9b40229b5d30e02842e587e3851a1d708ece1292b"
+      },
+      {
+        "path": "include/constants/battle.h",
+        "bytes": 16440,
+        "sha256": "b9d0493af4629d450050637e9aace63b684b282f841bed2a0d97b1d71e9d55e3"
+      },
+      {
+        "path": "include/constants/flags.h",
+        "bytes": 95397,
+        "sha256": "45f31e4dc3d42c1054463974cd31b1173bdd4cb6d9f94b2cdbf2c88b0f745493"
+      },
+      {
+        "path": "include/constants/global.h",
+        "bytes": 3785,
+        "sha256": "7ecf4a63c7be65328135a75f8620786e40343bbe7688e7017e6d780526fd6a0c"
+      },
+      {
+        "path": "include/constants/hold_effects.h",
+        "bytes": 2637,
+        "sha256": "e763fdbbef19ba6999a7151094cf26734323414237ebb1afcf2f453f65c2f661"
+      },
+      {
+        "path": "include/constants/items.h",
+        "bytes": 12436,
+        "sha256": "af17276346eaecc5a10ac60f14b22c33332ec8c6fb0ec82895bdc3649b678138"
+      },
+      {
+        "path": "include/constants/metatile_behaviors.h",
+        "bytes": 3471,
+        "sha256": "88955bf5c4b8d702d01d28161017362a2617ee37dce7ef77c0e288bda379da75"
+      },
+      {
+        "path": "include/constants/moves.h",
+        "bytes": 10249,
+        "sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194"
+      },
+      {
+        "path": "include/constants/opponents.h",
+        "bytes": 39946,
+        "sha256": "01ae04c7fd3837c818f1b9ef082313cfeee4c9d3907441b4e192865a626247ee"
+      },
+      {
+        "path": "include/constants/pokemon.h",
+        "bytes": 10894,
+        "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5"
+      },
+      {
+        "path": "include/constants/species.h",
+        "bytes": 12982,
+        "sha256": "ec3f9f9c2717dcd453aa7a27506c32e1e6ca067864534dee494695d74344c51a"
+      },
+      {
+        "path": "include/constants/trainers.h",
+        "bytes": 20887,
+        "sha256": "5f6e6585ba511fcf11f970f60132f45db35caf6cec9f6ae56b6bc57b979366c9"
+      },
+      {
+        "path": "include/constants/vars.h",
+        "bytes": 17306,
+        "sha256": "be26624aac5cbc9ea4d364d5cc33500b4b6c7ecd47812a50b961d948f6914b12"
+      },
+      {
+        "path": "include/gba/defines.h",
+        "bytes": 2518,
+        "sha256": "4356e895d7108dedd2c788bbbe98e0948778712a4ea6374193bdc1a851efe69b"
+      },
+      {
+        "path": "include/global.fieldmap.h",
+        "bytes": 12127,
+        "sha256": "34a8c91e10803ba48b97a2df8a721ca37fad7572b2ff951a4ab7ec15a5f050eb"
+      },
+      {
+        "path": "include/global.h",
+        "bytes": 25663,
+        "sha256": "044325b90e7c79146cc0cf73d31b6be3e4840059e2e778b63d9b5448fe538429"
+      },
+      {
+        "path": "include/pokemon.h",
+        "bytes": 16352,
+        "sha256": "a6881fee07ae10f57ebf3ec7af1cabd2e900d8ba8d3da644313c087d16e1617e"
+      },
+      {
+        "path": "include/random.h",
+        "bytes": 669,
+        "sha256": "8a6049183598b2d865b5ff522abdb3d0e94012a127d724af46b9b7b69803f5b9"
+      },
+      {
+        "path": "include/wild_encounter.h",
+        "bytes": 1378,
+        "sha256": "a6255623049a7b02d33e70f5fa2ad951c2caff7f73ac6b96f43a5112a9bda83e"
+      },
+      {
+        "path": "src/battle_main.c",
+        "bytes": 171904,
+        "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928"
+      },
+      {
+        "path": "src/battle_setup.c",
+        "bytes": 33351,
+        "sha256": "f33e6cdd3ff22ab9fe0f43219dfc795a9abfcc5f01c04e96809b98ddf5b952fd"
+      },
+      {
+        "path": "src/data/battle_moves.h",
+        "bytes": 121457,
+        "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384"
+      },
+      {
+        "path": "src/data/pokemon/experience_tables.h",
+        "bytes": 22610,
+        "sha256": "9a236761640676e251b76b7950b86e5881ee23dfe920ca27bbe47b4541542731"
+      },
+      {
+        "path": "src/data/pokemon/level_up_learnsets.h",
+        "bytes": 182027,
+        "sha256": "d6563a88fa893d1433a02027cb13ba9574a6828a96b1a730b1d767fd7c5a0cc6"
+      },
+      {
+        "path": "src/data/pokemon/species_info.h",
+        "bytes": 342600,
+        "sha256": "9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e"
+      },
+      {
+        "path": "src/data/wild_encounters.h",
+        "bytes": 327594,
+        "sha256": "f879138f3b8756b5d5f686ff889ce7501d1da320f4a25dbefc13bd212a29f915"
+      },
+      {
+        "path": "src/data/wild_encounters.json",
+        "bytes": 706967,
+        "sha256": "a6399199987e1bdf8502e9bfdcfc9d8ad57d74df206d22ba20f020492bd3bf7c"
+      },
+      {
+        "path": "src/field_control_avatar.c",
+        "bytes": 40928,
+        "sha256": "305daa295f88ce682b2b1868700d2f76012c659cb0df2905e6177a51ee4e9b8d"
+      },
+      {
+        "path": "src/fieldmap.c",
+        "bytes": 28166,
+        "sha256": "bbe15c7af1059a9f796dddaca28bdaaf206b715895029e189fa6ae012272ce68"
+      },
+      {
+        "path": "src/pokemon.c",
+        "bytes": 221865,
+        "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec"
+      },
+      {
+        "path": "src/random.c",
+        "bytes": 323,
+        "sha256": "e7e90cc070d1fbf09579f5f91762cd8875d5bbe1d7a90f468bcd870df73b9de2"
+      },
+      {
+        "path": "src/roamer.c",
+        "bytes": 9970,
+        "sha256": "b72cd17c1e668b8d483953dd85cc6f0e02c54a1a022f4fabe743841867b9877f"
+      },
+      {
+        "path": "src/wild_encounter.c",
+        "bytes": 24781,
+        "sha256": "06021f7ef390bbb49a7801ca44def3a67380c53e5ab5fd211e472fc53b10ca8f"
+      }
+    ],
+    "fragments": [
+      {
+        "source": "include/wild_encounter.h",
+        "name": "WildPokemon",
+        "kind": "struct",
+        "startLine": 13,
+        "endLine": 18,
+        "sha256": "bf11bac50a22d68743c153f07b8408011aaaff8e8ba18690824a6725ae1e7637",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/wild_encounter.h",
+        "name": "WildPokemonInfo",
+        "kind": "struct",
+        "startLine": 20,
+        "endLine": 24,
+        "sha256": "8ebec3342b0b390d2ee5a9154250553927cb796452f5c0f1ffb9755e6f1ab3d9",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/wild_encounter.h",
+        "name": "WildPokemonHeader",
+        "kind": "struct",
+        "startLine": 26,
+        "endLine": 34,
+        "sha256": "a6e95e3aeff940236e4035712438acb18be43eec017745fd77896ab880fbf11e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "WildEncounterData",
+        "kind": "struct",
+        "startLine": 24,
+        "endLine": 32,
+        "sha256": "8b2b1fc8b96585346f234a5909a9489f141ba59ffeb0a7863ceda708ca0139a7",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.fieldmap.h",
+        "name": "METATILE_ATTRIBUTE_BEHAVIOR",
+        "kind": "enum",
+        "startLine": 24,
+        "endLine": 36,
+        "sha256": "fd2928ea200fbb84449a7c7ed9925ed5c5081eafdd4c2e3fc04e73e5259e4715",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.fieldmap.h",
+        "name": "TILE_ENCOUNTER_NONE",
+        "kind": "enum",
+        "startLine": 38,
+        "endLine": 43,
+        "sha256": "4988499555d4dd9ede6bfc35c43d9a33b5086baadc58d7356b462440675d81b8",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.fieldmap.h",
+        "name": "PLAYER_AVATAR_STATE_NORMAL",
+        "kind": "enum",
+        "startLine": 290,
+        "endLine": 299,
+        "sha256": "89675582182d0aa8889fd249d2ea78b5b0bd9772152ef577fefab73de51adf14",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "WILD_AREA_LAND",
+        "kind": "enum",
+        "startLine": 258,
+        "endLine": 264,
+        "sha256": "4819ad2d7b44deeb25b58706abd69cf43aa71753149407f79fe18cd7b5adb605",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/gba/defines.h",
+        "name": "TRUE",
+        "kind": "macro",
+        "startLine": 6,
+        "endLine": 6,
+        "sha256": "569c71d2fde07434586518f96b3bed3d0a2a25bfdd6322ab3272557a6eec5126",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/gba/defines.h",
+        "name": "FALSE",
+        "kind": "macro",
+        "startLine": 7,
+        "endLine": 7,
+        "sha256": "315a5cbbf233f799818f8b6e1532a7b69d08e99524dd2fdce9d7c80b875e4952",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "ARRAY_COUNT",
+        "kind": "macro",
+        "startLine": 40,
+        "endLine": 40,
+        "sha256": "f14f6b55fe96aced881f58a93768366f33d1476b1b4a7bf028eedcc0077f8eeb",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "HIHALF",
+        "kind": "macro",
+        "startLine": 94,
+        "endLine": 94,
+        "sha256": "2ece6d2162b0813329f5b5c158d4a8e82ee9a5a036f579ac49e7ece66bdf7a78",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "LOHALF",
+        "kind": "macro",
+        "startLine": 97,
+        "endLine": 97,
+        "sha256": "a2c052954fe325733dda8e54d50d4a24ed2d279f96558f59c0beab2f63f53c0a",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "min",
+        "kind": "macro",
+        "startLine": 78,
+        "endLine": 78,
+        "sha256": "3b7209d915591698a602a917e792109ff5826b5d014d9a02dd0c582a4785f36e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "max",
+        "kind": "macro",
+        "startLine": 79,
+        "endLine": 79,
+        "sha256": "c8cd9e8fee9e0e3f4308f6995b1c441f38117b3bc2ac6181b58996b8c0e06748",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/random.h",
+        "name": "RAND_MULT",
+        "kind": "macro",
+        "startLine": 18,
+        "endLine": 18,
+        "sha256": "e6622543c6de14e98f4e41c6d033d76b20760d73e6e2a85178b4eaa374d7b78d",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/random.h",
+        "name": "ISO_RANDOMIZE1",
+        "kind": "macro",
+        "startLine": 19,
+        "endLine": 19,
+        "sha256": "a47fc543e6d429f5d5dc6ba8a8a3e4a8ebbe3f9dd8ce16a720f8287b033b15b8",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/random.h",
+        "name": "ISO_RANDOMIZE2",
+        "kind": "macro",
+        "startLine": 20,
+        "endLine": 20,
+        "sha256": "082eb90dcfaf09222a69a88f2a15865c9819dd86cae285b54e9606c0c3977881",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/wild_encounter.h",
+        "name": "LAND_WILD_COUNT",
+        "kind": "macro",
+        "startLine": 6,
+        "endLine": 6,
+        "sha256": "7d9dd599d0be452326b029727d9f9b053cc72a5c8288a5611d1dbf5959cde8ed",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.fieldmap.h",
+        "name": "PLAYER_AVATAR_FLAG_MACH_BIKE",
+        "kind": "macro",
+        "startLine": 302,
+        "endLine": 302,
+        "sha256": "045a0bbad01df86f3e52c45fe21b563a0875c97a1f505784e26ec0a6ed0b24aa",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.fieldmap.h",
+        "name": "PLAYER_AVATAR_FLAG_ACRO_BIKE",
+        "kind": "macro",
+        "startLine": 303,
+        "endLine": 303,
+        "sha256": "5795a1fe36699aae12213345329017372de69d61edc28aa9ecb751ab6709ef73",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.fieldmap.h",
+        "name": "PLAYER_AVATAR_FLAG_SURFING",
+        "kind": "macro",
+        "startLine": 304,
+        "endLine": 304,
+        "sha256": "d79dbc7d8893869b8cd885312ed653e2d40be261207222f6b5a541e9db2b7859",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "MAX_ENCOUNTER_RATE",
+        "kind": "macro",
+        "startLine": 20,
+        "endLine": 20,
+        "sha256": "0a8d3d9e263173f62fe8d9784895a809d0336bd470c9f69e1fcf74020ed89896",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "HEADER_NONE",
+        "kind": "macro",
+        "startLine": 22,
+        "endLine": 22,
+        "sha256": "e498f0aaa68a0dc95178b0984b76b2dabdeae843f545a1d4190e60cf083d7311",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "WILD_CHECK_REPEL",
+        "kind": "macro",
+        "startLine": 266,
+        "endLine": 266,
+        "sha256": "1925a0a131b927582c1667a147161830a3599b4604428ac248a4e3c11dcc0275",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_0",
+        "kind": "macro",
+        "startLine": 6,
+        "endLine": 6,
+        "sha256": "d32c4ee98ba16e8054d67bacb947d465bd75a4952de980d4b7bd63b6359d5a9f",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_1",
+        "kind": "macro",
+        "startLine": 7,
+        "endLine": 7,
+        "sha256": "b6df8dcc5eae080e24eee4faa8d1f364d89b6fbe2afa35c63b9efb3dfeb0688c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_2",
+        "kind": "macro",
+        "startLine": 8,
+        "endLine": 8,
+        "sha256": "6caee99174604dd64bd801fb931f0a735f7824c22258d80de27c0c4002043cd4",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_3",
+        "kind": "macro",
+        "startLine": 9,
+        "endLine": 9,
+        "sha256": "dc1ae15ee5934e6cb2b72df65379e829068908763d1ee9f97465b80235a796fc",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_4",
+        "kind": "macro",
+        "startLine": 10,
+        "endLine": 10,
+        "sha256": "11ee0193763fd129b0e89fc68a46a9bd8940be95d8442e3a82985073c88c4ece",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_5",
+        "kind": "macro",
+        "startLine": 11,
+        "endLine": 11,
+        "sha256": "ecd4c049cd41ff2c2f9e8f33789de44f5f07fa5178634f564e3b6615583a06c9",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_6",
+        "kind": "macro",
+        "startLine": 12,
+        "endLine": 12,
+        "sha256": "632963d12428f8945a47f26b56dba7ea6e33bbecc0b741093df20ca79a15e922",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_7",
+        "kind": "macro",
+        "startLine": 13,
+        "endLine": 13,
+        "sha256": "6a2ee70bbc365225ea5908bbee6f4da07b335227d895af268a6470b040604151",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_8",
+        "kind": "macro",
+        "startLine": 14,
+        "endLine": 14,
+        "sha256": "537a1ac454603180af43952449acca320ee1eeb3200b462e37ebecad3bdc2702",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_9",
+        "kind": "macro",
+        "startLine": 15,
+        "endLine": 15,
+        "sha256": "bff70dedeb95a1478ee84037df4380837c3f5df04017a70f853a70989b05ec62",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_10",
+        "kind": "macro",
+        "startLine": 16,
+        "endLine": 16,
+        "sha256": "e9b0d1133c200593d069e8ed191e7d1c43e45c5364f1ac1ca6de578982ffd492",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_SLOT_11",
+        "kind": "macro",
+        "startLine": 17,
+        "endLine": 17,
+        "sha256": "a5cfc6e65c6240447dd0595474f8b95b18bbe3943f2401e7610af0feeffaa727",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "ENCOUNTER_CHANCE_LAND_MONS_TOTAL",
+        "kind": "macro",
+        "startLine": 18,
+        "endLine": 18,
+        "sha256": "0f6bd2d20a39911522be3871a0989565e9e8413d0d7250856aab698d6fab52c6",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/fieldmap.c",
+        "name": "sMetatileAttrMasks",
+        "kind": "table",
+        "startLine": 63,
+        "endLine": 72,
+        "sha256": "9b20f76ebc8ec70c099b8839dd30145848027be02a0631942e5d8cf548f43732",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/fieldmap.c",
+        "name": "sMetatileAttrShifts",
+        "kind": "table",
+        "startLine": 74,
+        "endLine": 83,
+        "sha256": "47f0e4808953e0c9a3aef1d7b43fdb81b214e46729faa98948d8a474b250c780",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "sRoute1_FireRed_LandMons",
+        "kind": "table",
+        "startLine": 2459,
+        "endLine": 2473,
+        "sha256": "dd0673512d81894aab4855280ce9fb52b69f643a88b1a621738d3e86c9aee320",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/wild_encounters.h",
+        "name": "sRoute1_FireRed_LandMonsInfo",
+        "kind": "declaration",
+        "startLine": 2475,
+        "endLine": 2475,
+        "sha256": "19b2acae29fbb190d0c27de1eee9472449a279667541046b214ec3f33239a23c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/random.c",
+        "name": "Random",
+        "kind": "function",
+        "startLine": 9,
+        "endLine": 13,
+        "sha256": "868090dd32cd8d0f456eee9ad5fd86edb49cdf8419f6c9f21a94e85360e59bd5",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "WildEncounterRandom",
+        "kind": "function",
+        "startLine": 667,
+        "endLine": 671,
+        "sha256": "a6abec59254380ebc11d366271a30a1c95e07be92f1d4d92ee363e8284e38f0a",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/random.h",
+        "name": "Random32",
+        "kind": "evidence-not-compiled",
+        "startLine": 14,
+        "endLine": 14,
+        "sha256": "5a4d685b2b5f01f95824943345154261f91f1dff8cb73ecbec284d4ba4adf690",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/roamer.c",
+        "name": "TryStartRoamerEncounter",
+        "kind": "evidence-not-compiled",
+        "startLine": 228,
+        "endLine": 239,
+        "sha256": "bd2c1db4e01a6e46c1e56e6b7cde71a6bb8a5b52d7a43ced2b578194c7a73e66",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/roamer.c",
+        "name": "IsRoamerAt",
+        "kind": "evidence-not-compiled",
+        "startLine": 198,
+        "endLine": 204,
+        "sha256": "fb69387a6f4bd7c625b9002c34ad1c057cdd8475b5e9e7287c42b33e48cb7078",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/field_control_avatar.c",
+        "name": "CheckStandardWildEncounter",
+        "kind": "evidence-not-compiled",
+        "startLine": 740,
+        "endLine": 743,
+        "sha256": "28906dd1e3f98e902d1b4101f39c426a048c5ed93a7c30b8e7a280dfd378cb4a",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_setup.c",
+        "name": "StartWildBattle",
+        "kind": "evidence-not-compiled",
+        "startLine": 237,
+        "endLine": 245,
+        "sha256": "5bc1dd9b3fc6cebc84f374371dac3808cbd06b132d630f1abd0c0bf11e9b32f4",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_setup.c",
+        "name": "DoStandardWildBattle",
+        "kind": "evidence-not-compiled",
+        "startLine": 247,
+        "endLine": 257,
+        "sha256": "a69606557a7d14744cea7619c4005092f0e8a08388912236b7d867c721cc384c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_main.c",
+        "name": "CB2_InitBattleInternal",
+        "kind": "evidence-not-compiled",
+        "startLine": 648,
+        "endLine": 716,
+        "sha256": "d246588837e13d3550f3041528f1e38c6db4c09fa8c16aedab2b398cd3150f9c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "GenerateWildMon",
+        "kind": "evidence-not-compiled",
+        "startLine": 226,
+        "endLine": 241,
+        "sha256": "28f8376672cd913715f858a1a83a0ce4aca3b72485d69116bb2831f96f91e2db",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/fieldmap.c",
+        "name": "ExtractMetatileAttribute",
+        "kind": "function",
+        "startLine": 377,
+        "endLine": 383,
+        "sha256": "28a66d783faa6f5aabdcc5b5cd5bdf211a1edd35276ca970f17d25391135d148",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "ChooseWildMonIndex_Land",
+        "kind": "function",
+        "startLine": 71,
+        "endLine": 99,
+        "sha256": "8929626231d7eaf25c016f39e3c8f9cffb8af7ea13110f15ad64d7cf3b87b0f4",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "ChooseWildMonLevel",
+        "kind": "function",
+        "startLine": 155,
+        "endLine": 174,
+        "sha256": "6a89dfe4180b2cca652692f6520869d2a6e556edf1f13f81f04d1cef84dcbe2e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "TryGenerateWildMon",
+        "kind": "function",
+        "startLine": 269,
+        "endLine": 292,
+        "sha256": "c77bc13e9721cdbd9e470795459a45986445af00789c6331fc60b2e27f9141f0",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "DoWildEncounterRateDiceRoll",
+        "kind": "function",
+        "startLine": 302,
+        "endLine": 307,
+        "sha256": "c166116a9d3d295bf3e0fcf0dd41fd26925d963587922d71da0c046f93b8cc69",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "DoWildEncounterRateTest",
+        "kind": "function",
+        "startLine": 309,
+        "endLine": 332,
+        "sha256": "3d8e4c00fd81cf05c19d8806c844c6c7cb8c4973613ea31fc0252df20f163df1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "GetAbilityEncounterRateModType",
+        "kind": "function",
+        "startLine": 334,
+        "endLine": 346,
+        "sha256": "687816e14841f699efb2b0be304775ad359c5eb65b86ea20bec0b90d38b82551",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "DoGlobalWildEncounterDiceRoll",
+        "kind": "function",
+        "startLine": 348,
+        "endLine": 353,
+        "sha256": "902b17bd5a09751a414451fb423f3cca5c2265c77ac033e9ac03bb255ce7c0b6",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "StandardWildEncounter",
+        "kind": "function",
+        "startLine": 355,
+        "endLine": 444,
+        "sha256": "e2a9c08840618572fb4b7d954d3e211077863c844bbcd8dcab664c35b69f0ac9",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "IsWildLevelAllowedByRepel",
+        "kind": "function",
+        "startLine": 601,
+        "endLine": 622,
+        "sha256": "ddee7c6bc9853e375957858e69070c39f0b92bed0a795a359720b7c1b16d2613",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "ApplyFluteEncounterRateMod",
+        "kind": "function",
+        "startLine": 624,
+        "endLine": 635,
+        "sha256": "31d3dc72ba974b100bd1a8b7300dc3b805c4f55b68cb495330ae636f05f4acfd",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "GetFluteEncounterRateModType",
+        "kind": "function",
+        "startLine": 637,
+        "endLine": 645,
+        "sha256": "7dadced20cdc7af3141a12539cbf02bdae902036ad9f8e0305742b026cde93e6",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "ApplyCleanseTagEncounterRateMod",
+        "kind": "function",
+        "startLine": 647,
+        "endLine": 651,
+        "sha256": "10e156478a6f91c2c72aec639b435ea0d0b063d5a1b2c06094465e31d697146a",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "IsLeadMonHoldingCleanseTag",
+        "kind": "function",
+        "startLine": 653,
+        "endLine": 659,
+        "sha256": "eb071d8670c7ea0cf98cbfc0e243066761309e2c1f1af19c6e84df5e9b985fd3",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "SeedWildEncounterRng",
+        "kind": "function",
+        "startLine": 661,
+        "endLine": 665,
+        "sha256": "1162520e575a90b59931f2412557f4ae84544f4e0655f371bf0219d4723062e9",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "GetMapBaseEncounterCooldown",
+        "kind": "function",
+        "startLine": 673,
+        "endLine": 699,
+        "sha256": "cf9f6accfc83c19f3887e9fdd17fc093e25f2ec9295e3ed866004cd85a138042",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "ResetEncounterRateModifiers",
+        "kind": "function",
+        "startLine": 701,
+        "endLine": 705,
+        "sha256": "9314e568e5292d486aecc5c1106f2d185974f414604c31cc419dfc35d075e230",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "HandleWildEncounterCooldown",
+        "kind": "function",
+        "startLine": 707,
+        "endLine": 755,
+        "sha256": "8d2e78e3a15fd30735046cb76c0a7262a9cabc946fae43a68bb7b7ff6ee5a279",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "TryStandardWildEncounter",
+        "kind": "function",
+        "startLine": 757,
+        "endLine": 776,
+        "sha256": "b6e43b4399ba9240a70aac5a95bd90415fb9991c693265d1a534df18925e5f64",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/wild_encounter.c",
+        "name": "AddToWildEncounterRateBuff",
+        "kind": "function",
+        "startLine": 778,
+        "endLine": 784,
+        "sha256": "e24f9d846889ef9a466a95e6e9ba58ddbee52ca7121ac83f0a83b8f77a83e777",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/pokemon.h",
+        "name": "SpeciesInfo",
+        "kind": "struct",
+        "startLine": 208,
+        "endLine": 236,
+        "sha256": "c95fa24e8ec4e9113a10fcc1823804da7657d4098ad353e3b1a13e7709aec869",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/pokemon.h",
+        "name": "GET_SHINY_VALUE",
+        "kind": "macro",
+        "startLine": 282,
+        "endLine": 282,
+        "sha256": "fc41d521572d8ef9e84f320b1d70bad5a07f60be58a1660cd59628f861ddc5dd",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/species_info.h",
+        "name": "PERCENT_FEMALE",
+        "kind": "macro",
+        "startLine": 3,
+        "endLine": 3,
+        "sha256": "4ad5eba772760a084d8915513f1177fd6a03249ba1981e425f107fd8b268ce1e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/species_info.h",
+        "name": "SPECIES_SQUIRTLE",
+        "kind": "selected-table-entry",
+        "startLine": 212,
+        "endLine": 240,
+        "sha256": "e1af00f23a0eed584d6285d4e8ebba193aa386eb943253097b15163a449a776d",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/species_info.h",
+        "name": "SPECIES_PIDGEY",
+        "kind": "selected-table-entry",
+        "startLine": 473,
+        "endLine": 501,
+        "sha256": "f490f8208f6fc4131fa5dc1fcd832e09abdeeb5d0c4466d0eb45022831e3d598",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/species_info.h",
+        "name": "SPECIES_RATTATA",
+        "kind": "selected-table-entry",
+        "startLine": 560,
+        "endLine": 588,
+        "sha256": "5ec2550ec652f4bf13da0fee44c8c1abe7e8deaf281c018fe2b447ef9d950b04",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "sNatureStatTable",
+        "kind": "table",
+        "startLine": 1360,
+        "endLine": 1387,
+        "sha256": "6bba03d1caafb6795369d6ec43550df6cd2e26319dda132aa9c581d53924e98e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "LEVEL_UP_MOVE",
+        "kind": "macro",
+        "startLine": 1,
+        "endLine": 1,
+        "sha256": "ac48434bdab11a6506ec563fb315fc3e37d3373e80dead27b14bb9c00c73f818",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "LEVEL_UP_END",
+        "kind": "macro",
+        "startLine": 2,
+        "endLine": 2,
+        "sha256": "519def8abc4c2718fe98b2d97d2e638fe872c85b5081ddd92644c6af1b9af6df",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "sPidgeyLevelUpLearnset",
+        "kind": "table",
+        "startLine": 203,
+        "endLine": 214,
+        "sha256": "3d83f261f5f068bb9b5476089e38638279403c2904b16997dbf82d5a78c077ea",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "sRattataLevelUpLearnset",
+        "kind": "table",
+        "startLine": 247,
+        "endLine": 257,
+        "sha256": "3e3cfed65d0193a88f61c6abc7fc87ed5d93d9cd6e0e7aec458b8ced6cbd4522",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "MOVE_TACKLE.pp",
+        "kind": "selected-field",
+        "startLine": 438,
+        "endLine": 438,
+        "sha256": "62ce36dc3ed4aab2f89c6d66ef6d9a7a608a0522e94bd8bdd70bd537922b2d58",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "MOVE_SAND_ATTACK.pp",
+        "kind": "selected-field",
+        "startLine": 373,
+        "endLine": 373,
+        "sha256": "3aa06328acc4f7ba97356245d1a1072ad1a2cb1cd3cd7484ec0ca5d8bba4662e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "MOVE_TAIL_WHIP.pp",
+        "kind": "selected-field",
+        "startLine": 516,
+        "endLine": 516,
+        "sha256": "39db315748909178a3731c43ed55d2efbdf57ced1be6000d0bf0c940073762e1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CALC_STAT",
+        "kind": "macro",
+        "startLine": 2093,
+        "endLine": 2100,
+        "sha256": "0b72c716799061d0d14eb5a13f3d3f0c7b852c95ced874b991f6de5f854ec786",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CreateMon",
+        "kind": "function",
+        "startLine": 1755,
+        "endLine": 1764,
+        "sha256": "6dc6b86bd925f4cbb2bbfa25def1e1d3048035c47147e053189f164f9cb818d4",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CreateBoxMon",
+        "kind": "function",
+        "startLine": 1766,
+        "endLine": 1862,
+        "sha256": "22b3ca2de92e2a6c01f1131c85b5fa243281793b3d643337c0f971aa85f7cd99",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CreateMonWithNature",
+        "kind": "function",
+        "startLine": 1864,
+        "endLine": 1875,
+        "sha256": "681ef94ca0f24972eb7a7edad341ac26aa784ab3ee66f78d824771041abb62a7",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CalculateMonStats",
+        "kind": "function",
+        "startLine": 2102,
+        "endLine": 2170,
+        "sha256": "a3d6412e6866e750a09d9cfd3242457b03b59daf4e2adb146bede4ebf5d6f2b1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetLevelFromMonExp",
+        "kind": "function",
+        "startLine": 2184,
+        "endLine": 2194,
+        "sha256": "1e55bf23854a0b1fd937b01b7f840f6061fc77a8f4cfe5bbf483fab878d68ff3",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetLevelFromBoxMonExp",
+        "kind": "function",
+        "startLine": 2196,
+        "endLine": 2206,
+        "sha256": "b0022704c10dacdaf34bf111c179605849ffe271acfd44ffad184d7a2051b446",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GiveMoveToBoxMon",
+        "kind": "function",
+        "startLine": 2213,
+        "endLine": 2229,
+        "sha256": "f906ffe1920c09abce0b5fb994ff4e5ac54dd20b8fbd82d39a3f9ffce44ba3cb",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GiveBoxMonInitialMoveset",
+        "kind": "function",
+        "startLine": 2265,
+        "endLine": 2286,
+        "sha256": "c4404d86cc7f86619c12606c25c4b0711fdc4bc7e674af122d4254d47371b76c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "DeleteFirstMoveAndGiveMoveToBoxMon",
+        "kind": "function",
+        "startLine": 2347,
+        "endLine": 2372,
+        "sha256": "5045a950f1e0ae1a867a12547caf4c350cb56027319fa573ae3859f0ec865b3e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetNature",
+        "kind": "function",
+        "startLine": 5015,
+        "endLine": 5018,
+        "sha256": "f37929add617fea7e55cd9a48fe5b090b05ef4dd78f3e0dac3810ebfb95dc303",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetNatureFromPersonality",
+        "kind": "function",
+        "startLine": 5020,
+        "endLine": 5023,
+        "sha256": "cdd303f5d0c5e36124edeeb33e8da39a40c1899ae60fa1959d56dc1a70f6e6f8",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "ModifyStatByNature",
+        "kind": "function",
+        "startLine": 5404,
+        "endLine": 5438,
+        "sha256": "6c3d339a2131bc619a5a0d7dfeb59e54f2f424afecf82aa918a503f8f2bcf287",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetGenderFromSpeciesAndPersonality",
+        "kind": "function",
+        "startLine": 2733,
+        "endLine": 2747,
+        "sha256": "a153e8af9d7eb9a2feb8aae3ed0b4c6dfef7bca97eba54f5ec637daf9287c024",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetAbilityBySpecies",
+        "kind": "function",
+        "startLine": 3791,
+        "endLine": 3799,
+        "sha256": "de1608b49fdfcafd8d1b58ac2dbd4b43f6158e02df68af3da872d13985eee496",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetMonAbility",
+        "kind": "function",
+        "startLine": 3801,
+        "endLine": 3806,
+        "sha256": "86a3df1ff48b1bb0d095cd6293f41a3ba913ffa1912b0451142a114b1a650442",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "SetWildMonHeldItem",
+        "kind": "function",
+        "startLine": 6032,
+        "endLine": 6053,
+        "sha256": "bcc7a43956baae1f3cfc4c372bfe6953888a7d08fffc8b72e90c9b6d984a85ec",
+        "transformation": "none; complete selected source text retained"
+      }
+    ],
+    "copiedHeaders": [
+      {
+        "source": "include/constants/global.h",
+        "output": "constants/global.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/pokemon.h",
+        "output": "constants/pokemon.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/species.h",
+        "output": "constants/species.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/moves.h",
+        "output": "constants/moves.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/items.h",
+        "output": "constants/items.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/abilities.h",
+        "output": "constants/abilities.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/flags.h",
+        "output": "constants/flags.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/vars.h",
+        "output": "constants/vars.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/metatile_behaviors.h",
+        "output": "constants/metatile_behaviors.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/hold_effects.h",
+        "output": "constants/hold_effects.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/trainers.h",
+        "output": "constants/trainers.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/battle.h",
+        "output": "constants/battle.h",
+        "transformation": "none"
+      },
+      {
+        "source": "include/constants/opponents.h",
+        "output": "constants/opponents.h",
+        "transformation": "none"
+      }
+    ],
+    "adapters": [
+      {
+        "path": "tools/encounter-core/c/adapter.h",
+        "sha256": "001cfb3bbc97aeadd2e4801b0e4bb4d350504ba424c81598f441bb25642ec595",
+        "bytes": 1194
+      },
+      {
+        "path": "tools/encounter-core/c/creature.inc",
+        "sha256": "147729bb0b5a39b9d67502d516f080b4ebd2f91f6f9e1509240b65454db49486",
+        "bytes": 5909
+      },
+      {
+        "path": "tools/encounter-core/c/creature_adapter.h",
+        "sha256": "96cd69953c4b108e1c865f69ac56c21d6a7e42e8136eec1b21eda57f9a2e1e99",
+        "bytes": 1984
+      },
+      {
+        "path": "tools/encounter-core/c/encounter.c",
+        "sha256": "2d02c5d4849eed6e1ca9b370fc944b6be4fc51b0dab1c5aaac86a1d8af6b89d2",
+        "bytes": 6407
+      }
+    ],
+    "buildScripts": [
+      {
+        "path": "tools/encounter-core/build.py",
+        "sha256": "7ea6c983348d1e33d79cd2cb7b00480417320910bd148c27efec2dc1068b26b1"
+      },
+      {
+        "path": "tools/encounter-core/extract.py",
+        "sha256": "931e517295689f0f8fc4995405a9c9895282ee746a921ce365222446b6cbecb6"
+      },
+      {
+        "path": "tools/encounter-core/creature_extract.py",
+        "sha256": "31322e3405913803d42bd179d9180a58c2a1ae7927a1b89b6d63e537d3299461"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "adapter.h",
+        "sha256": "001cfb3bbc97aeadd2e4801b0e4bb4d350504ba424c81598f441bb25642ec595",
+        "bytes": 1194
+      },
+      {
+        "path": "constants/abilities.h",
+        "sha256": "1c1b93de5d5ff65d8b3066e9b40229b5d30e02842e587e3851a1d708ece1292b",
+        "bytes": 2407
+      },
+      {
+        "path": "constants/battle.h",
+        "sha256": "b9d0493af4629d450050637e9aace63b684b282f841bed2a0d97b1d71e9d55e3",
+        "bytes": 16440
+      },
+      {
+        "path": "constants/flags.h",
+        "sha256": "45f31e4dc3d42c1054463974cd31b1173bdd4cb6d9f94b2cdbf2c88b0f745493",
+        "bytes": 95397
+      },
+      {
+        "path": "constants/global.h",
+        "sha256": "7ecf4a63c7be65328135a75f8620786e40343bbe7688e7017e6d780526fd6a0c",
+        "bytes": 3785
+      },
+      {
+        "path": "constants/hold_effects.h",
+        "sha256": "e763fdbbef19ba6999a7151094cf26734323414237ebb1afcf2f453f65c2f661",
+        "bytes": 2637
+      },
+      {
+        "path": "constants/items.h",
+        "sha256": "af17276346eaecc5a10ac60f14b22c33332ec8c6fb0ec82895bdc3649b678138",
+        "bytes": 12436
+      },
+      {
+        "path": "constants/metatile_behaviors.h",
+        "sha256": "88955bf5c4b8d702d01d28161017362a2617ee37dce7ef77c0e288bda379da75",
+        "bytes": 3471
+      },
+      {
+        "path": "constants/moves.h",
+        "sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194",
+        "bytes": 10249
+      },
+      {
+        "path": "constants/opponents.h",
+        "sha256": "01ae04c7fd3837c818f1b9ef082313cfeee4c9d3907441b4e192865a626247ee",
+        "bytes": 39946
+      },
+      {
+        "path": "constants/pokemon.h",
+        "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5",
+        "bytes": 10894
+      },
+      {
+        "path": "constants/species.h",
+        "sha256": "ec3f9f9c2717dcd453aa7a27506c32e1e6ca067864534dee494695d74344c51a",
+        "bytes": 12982
+      },
+      {
+        "path": "constants/trainers.h",
+        "sha256": "5f6e6585ba511fcf11f970f60132f45db35caf6cec9f6ae56b6bc57b979366c9",
+        "bytes": 20887
+      },
+      {
+        "path": "constants/vars.h",
+        "sha256": "be26624aac5cbc9ea4d364d5cc33500b4b6c7ecd47812a50b961d948f6914b12",
+        "bytes": 17306
+      },
+      {
+        "path": "creature.inc",
+        "sha256": "147729bb0b5a39b9d67502d516f080b4ebd2f91f6f9e1509240b65454db49486",
+        "bytes": 5909
+      },
+      {
+        "path": "creature_adapter.h",
+        "sha256": "96cd69953c4b108e1c865f69ac56c21d6a7e42e8136eec1b21eda57f9a2e1e99",
+        "bytes": 1984
+      },
+      {
+        "path": "creature_source.inc",
+        "sha256": "db6ec2dbf64804cbf3311aca2f964f56df25d65b557782cf68b2a8110105b84f",
+        "bytes": 43583
+      },
+      {
+        "path": "encounter.c",
+        "sha256": "2d02c5d4849eed6e1ca9b370fc944b6be4fc51b0dab1c5aaac86a1d8af6b89d2",
+        "bytes": 6407
+      },
+      {
+        "path": "encounter_defs.h",
+        "sha256": "fc0a82dc161fcc69dd00e5a31beba646e78143a9d29784c448bc80508d3c8137",
+        "bytes": 7410
+      },
+      {
+        "path": "encounter_source.inc",
+        "sha256": "a3e9266d69ef897d000de5c62d40939ca68a02e95d5372fadcd029af2d98a7ad",
+        "bytes": 13988
+      },
+      {
+        "path": "source_random.inc",
+        "sha256": "68b95bbaf19cb2b92541007e695ae8338a97318c27091967eb9f031f4d900139",
+        "bytes": 476
+      }
+    ],
+    "boundary": "Route 1 standard land check through wild identity/stat/move creation and held-item setup; no battle initialization or gameplay persistence",
+    "adaptations": [
+      "Random and WildEncounterRandom bodies retained behind counted wrappers; logical state contains both streams and draw counters.",
+      "Random32 explicitly sequences the low-half draw first and casts high half unsigned; pinned compiler/fixtures bind this portable adaptation. Original-ROM evaluation order is not verified.",
+      "Environment is fixed to Route 1, walking/running on foot, no Repel/flutes/held lead item/roamer; Squirtle Torrent lead. Unsupported requests fail before source execution.",
+      "Source Pokemon encryption/storage/controllers are projected into private logical creature fields; creature adapter records its bounded accessors.",
+      "Direct generation enters at TryGenerateWildMon, then resets cooldown as an encounter boundary; it bypasses step eligibility explicitly."
+    ]
+  }
+}

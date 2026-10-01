@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-09-30T15:43:38.909Z",
+  "status": "passed",
+  "wasmSha256": "4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9",
+  "crossBuildHostBoundaries": 749,
+  "crossBuildRawBoundaries": 749,
+  "replayedTransitions": 1282,
+  "replayedRawTransitions": 1282,
+  "freshProcess": {
+    "parentPid": 11200,
+    "status": "passed",
+    "pid": 19984,
+    "hostBoundaries": 749,
+    "rawBoundaries": 749,
+    "transitions": 1282,
+    "rawTransitions": 1282
+  },
+  "candidateFailures": 6,
+  "exhaustion": {
+    "status": "passed",
+    "pid": 28256,
+    "checks": [
+      "raw-depleted-slot-loop-traps",
+      "raw-empty-slot-loop-traps",
+      "first-draw-candidate-rollback",
+      "next-ai-candidate-rollback",
+      "faint-escape-candidate-rollback",
+      "replacement-next-turn-candidate-rollback"
+    ]
+  },
+  "scope": "Logical recovery and candidate isolation only; no authentication, DB acknowledgement or durable receipt claim."
+}

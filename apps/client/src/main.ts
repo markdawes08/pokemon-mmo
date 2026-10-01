@@ -10,7 +10,7 @@ import './style.css';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <main class="shell">
-    <header class="topbar"><div class="wordmark">Poké<span>WaterBlue</span></div><div class="topbar-actions"><span class="build-label">Local development · 011</span><button class="button" id="account-button" type="button">Account</button></div></header>
+    <header class="topbar"><div class="wordmark">Poké<span>WaterBlue</span></div><div class="topbar-actions"><span class="build-label">Local development · 012</span><button class="button" id="account-button" type="button">Account</button></div></header>
     <div class="location"><div><p class="eyebrow" id="region-label">Kanto / Pallet Town</p><h1 id="location-name">Pallet Town</h1></div><p class="location-note" id="location-note">Home, town, and the road north.</p></div>
     <section class="console" aria-label="Game preview">
       <div class="screen-surround"><div class="game-screen" id="game" tabindex="0" aria-label="Pallet Town map. Arrows or W A S D move. Shift runs. E interacts."><div class="error-panel" id="loading">Loading Pallet Town…</div>
@@ -52,13 +52,15 @@ const accounts = attachAccounts(() => setAccountMenu(true), () => { setAccountMe
   onState: state => {
     worldScene?.setWorldState(state);
     screen.dataset.worldMode = state; screen.dataset.worldReady = String(state === 'shared');
-    element('world-mode').textContent = state === 'preview' ? 'Anonymous preview' : state === 'shared' ? 'Shared world' : 'Shared world disconnected';
+    element('world-mode').textContent = state === 'preview' ? 'Anonymous preview' : state === 'shared' ? 'Shared world'
+      : state === 'reconnecting' ? 'Shared world reconnecting' : 'Shared world disconnected';
     element<HTMLButtonElement>('reset').disabled = state !== 'preview';
     element('leave-world').classList.toggle('hidden', state === 'preview');
     element('world-note').textContent = state === 'preview'
       ? 'Anonymous exploration is unsaved. Walk with arrows or WASD, hold Shift to run outdoors, and press E to interact. Local development trainers can enter the shared world through Account.'
       : state === 'shared' ? 'Shared development world. Other trainers are visible and do not block your path. Save trainer checkpoints your location. Story interactions, encounters, and battles are unavailable.'
-        : 'Movement is paused. Open Account to reconnect your trainer, or leave the shared world to return to anonymous exploration.';
+        : state === 'reconnecting' ? 'Movement is paused while the connection recovers, for up to 60 seconds. Leave shared world to stop reconnecting and return to anonymous exploration.'
+          : 'Movement is paused. Open Account to reconnect your trainer, or leave the shared world to return to anonymous exploration.';
     if (state !== 'shared') { element('nearby-players').replaceChildren(); element('world-nearby').textContent = 'Nearby trainers: 0'; }
   },
   onSnapshot: snapshot => {

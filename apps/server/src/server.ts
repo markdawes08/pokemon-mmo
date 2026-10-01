@@ -11,13 +11,15 @@ import { CHARACTER_ROOM, HANDSHAKE_ROOM, PROTOCOL_VERSION, SERVER_VERSION } from
 import { createHandshakeRoom, isLoopback } from './handshake-room.js';
 import { frameworkLogger, log } from './logger.js';
 import { allowedOrigins, type ServerEnv } from './env.js';
-import { createAuth } from './auth.js';
+import { createAuth, readAccountSession } from './auth.js';
 import { AdmissionTickets, installAccountApi } from './account-api.js';
 import { CharacterService, type CharacterServiceTestHooks } from './character-service.js';
 import { AssetService } from './asset-service.js';
 import { createCharacterRoom } from './character-room.js';
 import { WorldContent } from './world-content.js';
 import { WorldService } from './world-service.js';
+import { ReconnectionBindings } from './reconnection-bindings.js';
+import { guardReconnectHttp } from './reconnect-http.js';
 
 function localHost(value: string | undefined): boolean {
   if (!value) return false;
@@ -42,6 +44,7 @@ export async function createGameServer(env: ServerEnv, options: { now?: () => nu
   const world = new WorldService(characterService, contentHash);
   const assetService = new AssetService(database);
   const tickets = new AdmissionTickets(options.now);
+  const reconnections = new ReconnectionBindings();
   let stopping = false;
   const checkReady = async () => {
     if (stopping) throw new Error('Server is stopping');
@@ -62,6 +65,21 @@ export async function createGameServer(env: ServerEnv, options: { now?: () => nu
     server: httpServer,
     maxPayload: 4096,
     verifyClient: (info: { req: IncomingMessage }) => localRequestAllowed(info.req, origins),
+    beforeUpgrade: async (request, context) => {
+      const url = new URL(request.url), token = url.searchParams.get('reconnectionToken');
+      if (!token) return;
+      // Colyseus uses the last path segment as room ID; this also handles Vite's /socket prefix.
+      const roomId = url.pathname.match(/\/[a-zA-Z0-9_-]+\/([a-zA-Z0-9_-]+)$/)?.[1];
+      if (stopping || !isLoopback(context.ip) || !origins.has(context.headers.get('origin') ?? '') ||
+          !roomId || token.length > 256) return new Response(null, { status: 403 });
+      const expected = reconnections.expected(token, roomId, url.searchParams.get('sessionId') ?? '');
+      if (!expected) return new Response(null, { status: 403 });
+      try {
+        const identity = await readAccountSession(auth, context.headers);
+        if (!identity || identity.userId !== expected.userId || identity.sessionId !== expected.sessionId ||
+            reconnections.expected(token, roomId, url.searchParams.get('sessionId') ?? '') !== expected) return new Response(null, { status: 403 });
+      } catch { return new Response(null, { status: 503 }); }
+    },
   });
   const gameServer = new Server({
     transport,
@@ -72,7 +90,8 @@ export async function createGameServer(env: ServerEnv, options: { now?: () => nu
     logger: frameworkLogger,
     express: app => {
       app.disable('x-powered-by');
-      installAccountApi(app, { auth, env, origins, characters: characterService, assets: assetService, tickets, checkReady });
+      installAccountApi(app, { auth, env, origins, characters: characterService, assets: assetService, tickets, checkReady,
+        sessionRevoked: sessionId => reconnections.revokeSession(sessionId) });
       app.get('/api/health', (_request, response) => response.json({ status: 'alive', serverVersion: SERVER_VERSION, mode: env.APP_MODE }));
       app.get('/api/version', (_request, response) => response.json({ protocolVersion: PROTOCOL_VERSION, serverVersion: SERVER_VERSION, mode: env.APP_MODE }));
       app.get('/api/ready', async (_request, response) => {
@@ -85,7 +104,7 @@ export async function createGameServer(env: ServerEnv, options: { now?: () => nu
     },
   });
   gameServer.define(HANDSHAKE_ROOM, createHandshakeRoom(checkReady));
-  gameServer.define(CHARACTER_ROOM, createCharacterRoom({ auth, database, characters: characterService, tickets, checkReady, origins, contentHash, world }));
+  gameServer.define(CHARACTER_ROOM, createCharacterRoom({ auth, database, characters: characterService, tickets, checkReady, origins, contentHash, world, reconnections }));
   // serverless() prepares the documented HTTP server without binding a port. Install
   // the local-only guard and uniform /socket prefix before this server starts listening.
   await gameServer.serverless();
@@ -106,7 +125,18 @@ export async function createGameServer(env: ServerEnv, options: { now?: () => nu
       response.end(JSON.stringify({ error: { code: 'INVALID_MESSAGE', message: 'The request body is too large.' } })); return;
     }
     if (request.url?.startsWith('/socket/')) request.url = request.url.slice('/socket'.length);
-    if (request.url?.startsWith('/matchmake/')) {
+    let reconnectRoom: string | undefined;
+    let requestUrl: URL;
+    try {
+      requestUrl = new URL(request.url ?? '/', 'http://localhost');
+      // Decode parameter segments once, including the method, before dispatch can interpret them.
+      const segments = requestUrl.pathname.split('/').map(segment => decodeURIComponent(segment));
+      if (request.method === 'POST' && segments[1] === 'matchmake' && segments[2] === 'reconnect') reconnectRoom = segments.length === 4 ? segments[3] : '';
+    } catch {
+      response.writeHead(400, { 'content-type': 'application/json', connection: 'close' });
+      response.end(JSON.stringify({ error: 'Invalid request path.' })); return;
+    }
+    if (request.url?.startsWith('/matchmake/') || reconnectRoom !== undefined) {
       if (Date.now() - matchmakingWindow >= 60_000) { matchmakingWindow = Date.now(); matchmakingRequests = 0; }
       if (++matchmakingRequests > 240) {
         response.writeHead(429, { 'content-type': 'application/json' });
@@ -117,6 +147,15 @@ export async function createGameServer(env: ServerEnv, options: { now?: () => nu
     delete request.headers['x-forwarded-for'];
     delete request.headers['x-forwarded-host'];
     delete request.headers['x-forwarded-proto'];
+    if (reconnectRoom !== undefined) {
+      const roomId = reconnectRoom;
+      void guardReconnectHttp(request, response, roomId, { auth, origins, reconnections, stopping: () => stopping }).then(allowed => {
+        if (!allowed || response.destroyed) return;
+        request.url = `/matchmake/reconnect/${roomId}${requestUrl.search}`;
+        for (const handler of handlers) handler.call(httpServer, request, response);
+      });
+      return;
+    }
     for (const handler of handlers) handler.call(httpServer, request, response);
   });
   let shutdownPromise: Promise<void> | undefined;
@@ -138,6 +177,7 @@ export async function createGameServer(env: ServerEnv, options: { now?: () => nu
       if (!shutdownPromise) shutdownPromise = (async () => {
         stopping = true;
         tickets.clear();
+        reconnections.clear();
         await world.close();
         log('info', 'server_stopping');
         try { await gameServer.gracefullyShutdown(false); }

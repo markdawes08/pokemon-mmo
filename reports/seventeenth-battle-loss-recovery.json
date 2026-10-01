@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-09-28T19:38:21.487Z",
+  "status": "passed",
+  "profile": "firered-route1-loss-v1",
+  "wasmSha256": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a",
+  "crossBuildHostBoundaries": 1671,
+  "crossBuildRawBoundaries": 1671,
+  "replayedTransitions": 1671,
+  "freshProcess": {
+    "pid": 22044,
+    "parentPid": 19912,
+    "hostBoundaries": 1671,
+    "rawBoundaries": 1671,
+    "transitions": 1671
+  },
+  "candidateFailures": 2,
+  "scope": "Replay and expected sequence prevent repeated local stage effects; no permanent outcome deduplication or authenticated checkpoint claim."
+}

@@ -1,0 +1,1101 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-29T02:40:04.900145+00:00",
+  "status": "passed",
+  "profile": "firered-route1-capture-v1",
+  "scope": "private source continuation; no owned or live effects",
+  "toolchain": {
+    "schemaVersion": 1,
+    "tool": "zig",
+    "version": "0.16.0",
+    "purpose": "Optional local P03 C-to-WASM experiment compiler; not a runtime game dependency",
+    "source": "https://ziglang.org/download/index.json",
+    "platform": "win32-x64",
+    "url": "https://ziglang.org/download/0.16.0/zig-x86_64-windows-0.16.0.zip",
+    "bytes": 97217739,
+    "sha256": "68659eb5f1e4eb1437a722f1dd889c5a322c9954607f5edcf337bc3684a75a7e",
+    "directory": "zig-x86_64-windows-0.16.0",
+    "executable": "zig.exe",
+    "executableSha256": "086ce9d47ba42f33a514e1a6e04eb1d4a8fa1d75e0868e0213caad447c91e864"
+  },
+  "target": "wasm32-freestanding",
+  "abiVersion": 1,
+  "checkpointVersion": 1,
+  "checkpointWords": 160,
+  "inputWords": 80,
+  "exports": [
+    "capture_abi_version",
+    "capture_input_word_count",
+    "capture_state_word_count",
+    "capture_input_begin",
+    "capture_input_set",
+    "capture_start",
+    "capture_advance",
+    "capture_name_begin",
+    "capture_name_set",
+    "capture_decide",
+    "capture_get",
+    "capture_mon_get",
+    "capture_state_get",
+    "capture_import_begin",
+    "capture_import_set",
+    "capture_import_commit",
+    "capture_constant",
+    "capture_capacity"
+  ],
+  "fixedLinearMemoryBytes": 262144,
+  "importsExpected": [],
+  "independentBuilds": 2,
+  "wasm": ".local/battle-capture/primary/capture.wasm",
+  "wasmBytes": 41586,
+  "wasmSha256": "1e6b16390cdaa4906c01b391c30984735a22e998f548e9ff7de44d890865a60b",
+  "codecSha256": "00b48b20802dd03b1332eda16c5973b78c2f54ac4076f2ed8490161fcc26fe2e",
+  "extraction": {
+    "schemaVersion": 1,
+    "profile": "firered-route1-capture-v1",
+    "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "inputs": [
+      {
+        "path": "charmap.txt",
+        "bytes": 21853,
+        "sha256": "4da662317b3b5109a52064f9012d85b644d1dbf0f3f24243374aeef4cf25f061"
+      },
+      {
+        "path": "data/battle_scripts_2.s",
+        "bytes": 6616,
+        "sha256": "83e1211907cc9a21cd1d94e65a065af5abf683d4e88e7ee690e78faf40651133"
+      },
+      {
+        "path": "data/maps/Route1/map.json",
+        "bytes": 1684,
+        "sha256": "11b1ad78ae12d7a61c35756281fd5127929f5f5155dc20022fbae147424c4869"
+      },
+      {
+        "path": "include/characters.h",
+        "bytes": 12798,
+        "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98"
+      },
+      {
+        "path": "include/config.h",
+        "bytes": 2494,
+        "sha256": "edb858ae71a5d256c2246363b22b9ba6dae9bae06e8c508a1dda7e20dfc93d1d"
+      },
+      {
+        "path": "include/constants/abilities.h",
+        "bytes": 2407,
+        "sha256": "1c1b93de5d5ff65d8b3066e9b40229b5d30e02842e587e3851a1d708ece1292b"
+      },
+      {
+        "path": "include/constants/battle.h",
+        "bytes": 16440,
+        "sha256": "b9d0493af4629d450050637e9aace63b684b282f841bed2a0d97b1d71e9d55e3"
+      },
+      {
+        "path": "include/constants/flags.h",
+        "bytes": 95397,
+        "sha256": "45f31e4dc3d42c1054463974cd31b1173bdd4cb6d9f94b2cdbf2c88b0f745493"
+      },
+      {
+        "path": "include/constants/game_stat.h",
+        "bytes": 2651,
+        "sha256": "e98ebe4c3d4448fd95ece37f84e15c8dbcbe91f7d61bf2dd3878c8aade0facc6"
+      },
+      {
+        "path": "include/constants/global.h",
+        "bytes": 3785,
+        "sha256": "7ecf4a63c7be65328135a75f8620786e40343bbe7688e7017e6d780526fd6a0c"
+      },
+      {
+        "path": "include/constants/hold_effects.h",
+        "bytes": 2637,
+        "sha256": "e763fdbbef19ba6999a7151094cf26734323414237ebb1afcf2f453f65c2f661"
+      },
+      {
+        "path": "include/constants/items.h",
+        "bytes": 12436,
+        "sha256": "af17276346eaecc5a10ac60f14b22c33332ec8c6fb0ec82895bdc3649b678138"
+      },
+      {
+        "path": "include/constants/moves.h",
+        "bytes": 10249,
+        "sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194"
+      },
+      {
+        "path": "include/constants/opponents.h",
+        "bytes": 39946,
+        "sha256": "01ae04c7fd3837c818f1b9ef082313cfeee4c9d3907441b4e192865a626247ee"
+      },
+      {
+        "path": "include/constants/pokedex.h",
+        "bytes": 21092,
+        "sha256": "aac527819623140d7f44ad99b72654bab59ca5679a80cca33361828cc7e7d0c6"
+      },
+      {
+        "path": "include/constants/pokemon.h",
+        "bytes": 10894,
+        "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5"
+      },
+      {
+        "path": "include/constants/region_map_sections.h",
+        "bytes": 5652,
+        "sha256": "e7ee196d59467d70d3ff25c5f2fd89e7b6b0fd2ea66424a59651211277d79c96"
+      },
+      {
+        "path": "include/constants/species.h",
+        "bytes": 12982,
+        "sha256": "ec3f9f9c2717dcd453aa7a27506c32e1e6ca067864534dee494695d74344c51a"
+      },
+      {
+        "path": "include/constants/trainers.h",
+        "bytes": 20887,
+        "sha256": "5f6e6585ba511fcf11f970f60132f45db35caf6cec9f6ae56b6bc57b979366c9"
+      },
+      {
+        "path": "include/constants/vars.h",
+        "bytes": 17306,
+        "sha256": "be26624aac5cbc9ea4d364d5cc33500b4b6c7ecd47812a50b961d948f6914b12"
+      },
+      {
+        "path": "include/gba/defines.h",
+        "bytes": 2518,
+        "sha256": "4356e895d7108dedd2c788bbbe98e0948778712a4ea6374193bdc1a851efe69b"
+      },
+      {
+        "path": "include/global.h",
+        "bytes": 25663,
+        "sha256": "044325b90e7c79146cc0cf73d31b6be3e4840059e2e778b63d9b5448fe538429"
+      },
+      {
+        "path": "include/pokedex.h",
+        "bytes": 3314,
+        "sha256": "b1e28d1c626692f55a03fcd4f1013e75b3e2297ef27adfcf64ed11bf6b26753d"
+      },
+      {
+        "path": "include/pokemon.h",
+        "bytes": 16352,
+        "sha256": "a6881fee07ae10f57ebf3ec7af1cabd2e900d8ba8d3da644313c087d16e1617e"
+      },
+      {
+        "path": "include/pokemon_storage_system.h",
+        "bytes": 1837,
+        "sha256": "d98c839ab2eeaa0e6c16e4ffdee53d404b074c6ffffa76384f26bd00ceffd537"
+      },
+      {
+        "path": "src/battle_main.c",
+        "bytes": 171904,
+        "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928"
+      },
+      {
+        "path": "src/battle_script_commands.c",
+        "bytes": 355862,
+        "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3"
+      },
+      {
+        "path": "src/data/battle_moves.h",
+        "bytes": 121457,
+        "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384"
+      },
+      {
+        "path": "src/data/pokemon/experience_tables.h",
+        "bytes": 22610,
+        "sha256": "9a236761640676e251b76b7950b86e5881ee23dfe920ca27bbe47b4541542731"
+      },
+      {
+        "path": "src/data/pokemon/level_up_learnsets.h",
+        "bytes": 182027,
+        "sha256": "d6563a88fa893d1433a02027cb13ba9574a6828a96b1a730b1d767fd7c5a0cc6"
+      },
+      {
+        "path": "src/data/pokemon/species_info.h",
+        "bytes": 342600,
+        "sha256": "9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e"
+      },
+      {
+        "path": "src/data/text/species_names.h",
+        "bytes": 15851,
+        "sha256": "73e87117c98828423b7fc15565bd2a839a0671665fb7c1c1b26264d7d7a8912f"
+      },
+      {
+        "path": "src/field_specials.c",
+        "bytes": 77314,
+        "sha256": "9c49d3702f0f4dcba61ae26bccefce1c26fbd1247475289dd821780bc537d1d9"
+      },
+      {
+        "path": "src/item_use.c",
+        "bytes": 28138,
+        "sha256": "035ca3bdb70f5708dc8771d2bc6cc5450e775e3144278e7683aacba218cb9c98"
+      },
+      {
+        "path": "src/naming_screen.c",
+        "bytes": 69462,
+        "sha256": "fbed8534a89a801f357fa04cfcbe91798fb80a4a1e24b127ad76eef0454bea13"
+      },
+      {
+        "path": "src/overworld.c",
+        "bytes": 103643,
+        "sha256": "df352e738b56856765aec65adc6fdea0a4b25fe567bc760d4ce2d34afc6ff7e2"
+      },
+      {
+        "path": "src/pokedex.c",
+        "bytes": 3065,
+        "sha256": "b6283039a19fe1a5b781f6dd7ef3f61b1a022c460ce2588b8b6f99932a4682b7"
+      },
+      {
+        "path": "src/pokedex_screen.c",
+        "bytes": 125049,
+        "sha256": "ca98e4ecc16bcf5b5e679a567d8d0c3dc5acfdc1bd377c0d6b56de696e1400f8"
+      },
+      {
+        "path": "src/pokemon.c",
+        "bytes": 221865,
+        "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec"
+      },
+      {
+        "path": "src/pokemon_storage_system.c",
+        "bytes": 4838,
+        "sha256": "ebb9e603740f0268e3662e21a18aa30acd3b43f96d6d20abd5d6bd4bb874ff4a"
+      },
+      {
+        "path": "src/string_util.c",
+        "bytes": 14320,
+        "sha256": "ed9519d4eaf51ed660a522915366dc0ebf2916d592a91a1d7fc2a012e4f3f17e"
+      }
+    ],
+    "fragments": [
+      {
+        "source": "include/pokemon.h",
+        "name": "SpeciesInfo",
+        "kind": "struct",
+        "startLine": 208,
+        "endLine": 236,
+        "sha256": "c95fa24e8ec4e9113a10fcc1823804da7657d4098ad353e3b1a13e7709aec869",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/pokedex.h",
+        "name": "FLAG_GET_SEEN",
+        "kind": "enum",
+        "startLine": 10,
+        "endLine": 16,
+        "sha256": "86dbd3f9e0298e557696224cd3ae6442d0bbc111162a431e27129fb1e776a91c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/gba/defines.h",
+        "name": "TRUE",
+        "kind": "macro",
+        "startLine": 6,
+        "endLine": 6,
+        "sha256": "569c71d2fde07434586518f96b3bed3d0a2a25bfdd6322ab3272557a6eec5126",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/gba/defines.h",
+        "name": "FALSE",
+        "kind": "macro",
+        "startLine": 7,
+        "endLine": 7,
+        "sha256": "315a5cbbf233f799818f8b6e1532a7b69d08e99524dd2fdce9d7c80b875e4952",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "min",
+        "kind": "macro",
+        "startLine": 78,
+        "endLine": 78,
+        "sha256": "3b7209d915591698a602a917e792109ff5826b5d014d9a02dd0c582a4785f36e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "ARRAY_COUNT",
+        "kind": "macro",
+        "startLine": 40,
+        "endLine": 40,
+        "sha256": "f14f6b55fe96aced881f58a93768366f33d1476b1b4a7bf028eedcc0077f8eeb",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "NELEMS",
+        "kind": "macro",
+        "startLine": 43,
+        "endLine": 43,
+        "sha256": "258e1202532f6bab45dfb86bc9c76ee15b3ee3a2305787456b84ed3b6975ac32",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "PP_UP_SHIFTS",
+        "kind": "macro",
+        "startLine": 1428,
+        "endLine": 1428,
+        "sha256": "97a69a890699259b36e2c33fdd07fe8391d14f85df60b8b257df9f4e79c9f4f6",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CALC_STAT",
+        "kind": "macro",
+        "startLine": 2093,
+        "endLine": 2100,
+        "sha256": "0b72c716799061d0d14eb5a13f3d3f0c7b852c95ced874b991f6de5f854ec786",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "SPECIES_TO_NATIONAL",
+        "kind": "macro",
+        "startLine": 41,
+        "endLine": 41,
+        "sha256": "1402aef63602f76c5dbd4eeb755c6cfd87199c955c6ce253c731a090c91e651c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/species_info.h",
+        "name": "PERCENT_FEMALE",
+        "kind": "macro",
+        "startLine": 3,
+        "endLine": 3,
+        "sha256": "4ad5eba772760a084d8915513f1177fd6a03249ba1981e425f107fd8b268ce1e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "LEVEL_UP_MOVE",
+        "kind": "macro",
+        "startLine": 1,
+        "endLine": 1,
+        "sha256": "ac48434bdab11a6506ec563fb315fc3e37d3373e80dead27b14bb9c00c73f818",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "LEVEL_UP_END",
+        "kind": "macro",
+        "startLine": 2,
+        "endLine": 2,
+        "sha256": "519def8abc4c2718fe98b2d97d2e638fe872c85b5081ddd92644c6af1b9af6df",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/pokemon_storage_system.h",
+        "name": "TOTAL_BOXES_COUNT",
+        "kind": "macro",
+        "startLine": 7,
+        "endLine": 7,
+        "sha256": "12befa813e2fdcef65db030c758624369a6f974e46162187c9cd4852cfb86aa3",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/pokemon_storage_system.h",
+        "name": "IN_BOX_ROWS",
+        "kind": "macro",
+        "startLine": 8,
+        "endLine": 8,
+        "sha256": "d1b5c3e323a4c2fc18131859d950ad387b81943e54c236241a13a72501c773f1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/pokemon_storage_system.h",
+        "name": "IN_BOX_COLUMNS",
+        "kind": "macro",
+        "startLine": 9,
+        "endLine": 9,
+        "sha256": "57ea6a7c8e9068e5150a9911bf48c028e2e05cf0e8da2aeaf5cf606226b61c84",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/pokemon_storage_system.h",
+        "name": "IN_BOX_COUNT",
+        "kind": "macro",
+        "startLine": 10,
+        "endLine": 10,
+        "sha256": "12ff20918906fdac1fffdc6cc941510786d56218e76953028faf9f8b7a4aa274",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/config.h",
+        "name": "selected-game-version",
+        "kind": "macro-conditional",
+        "startLine": 44,
+        "endLine": 48,
+        "sha256": "9688259caf3213ffc3354a7d7487c4f2a49cd6df0792caf627668286364db60e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/species_info.h",
+        "name": "PIDGEY",
+        "kind": "complete-table-entry",
+        "startLine": 473,
+        "endLine": 501,
+        "sha256": "f490f8208f6fc4131fa5dc1fcd832e09abdeeb5d0c4466d0eb45022831e3d598",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/species_info.h",
+        "name": "RATTATA",
+        "kind": "complete-table-entry",
+        "startLine": 560,
+        "endLine": 588,
+        "sha256": "5ec2550ec652f4bf13da0fee44c8c1abe7e8deaf281c018fe2b447ef9d950b04",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "sNatureStatTable",
+        "kind": "table",
+        "startLine": 1360,
+        "endLine": 1387,
+        "sha256": "6bba03d1caafb6795369d6ec43550df6cd2e26319dda132aa9c581d53924e98e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "gPPUpGetMask",
+        "kind": "table",
+        "startLine": 1438,
+        "endLine": 1438,
+        "sha256": "b498fd58a3c8572fc8c65481ec838f853c29bb978037d499de647d8362a48ebe",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "sSpeciesToNationalPokedexNum",
+        "kind": "table",
+        "startLine": 519,
+        "endLine": 932,
+        "sha256": "f233dfd4ecc71157dd74be4eb7cc504e35e57bf34733a5acaf1b0154ff6f16a0",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "sPidgeyLevelUpLearnset",
+        "kind": "table",
+        "startLine": 203,
+        "endLine": 214,
+        "sha256": "3d83f261f5f068bb9b5476089e38638279403c2904b16997dbf82d5a78c077ea",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "sRattataLevelUpLearnset",
+        "kind": "table",
+        "startLine": 247,
+        "endLine": 257,
+        "sha256": "3e3cfed65d0193a88f61c6abc7fc87ed5d93d9cd6e0e7aec458b8ced6cbd4522",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "TACKLE.pp",
+        "kind": "selected-field",
+        "startLine": 438,
+        "endLine": 438,
+        "sha256": "62ce36dc3ed4aab2f89c6d66ef6d9a7a608a0522e94bd8bdd70bd537922b2d58",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "TAIL_WHIP.pp",
+        "kind": "selected-field",
+        "startLine": 516,
+        "endLine": 516,
+        "sha256": "39db315748909178a3731c43ed55d2efbdf57ced1be6000d0bf0c940073762e1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "SAND_ATTACK.pp",
+        "kind": "selected-field",
+        "startLine": 373,
+        "endLine": 373,
+        "sha256": "3aa06328acc4f7ba97356245d1a1072ad1a2cb1cd3cd7484ec0ca5d8bba4662e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/naming_screen.c",
+        "name": "sKeyboardChars",
+        "kind": "table",
+        "startLine": 378,
+        "endLine": 397,
+        "sha256": "f3f057f12956fbd1654afaf70ef5ca66bac6b455fdca8745d97476bf8f3124e9",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/text/species_names.h",
+        "name": "PIDGEY",
+        "kind": "source-charmap-encoded-name",
+        "startLine": 18,
+        "endLine": 18,
+        "sha256": "c80fc8083b8251bbcf38059ebb500d31313f46a88140df03dfcc4a4fdb34e77c",
+        "transformation": "Source text encoded using pinned one-byte charmap; EOS padding is explicit."
+      },
+      {
+        "source": "src/data/text/species_names.h",
+        "name": "RATTATA",
+        "kind": "source-charmap-encoded-name",
+        "startLine": 21,
+        "endLine": 21,
+        "sha256": "63ff23f87d58e7bad553e13077179a91256cc991ca480118068b66bd85fc8d38",
+        "transformation": "Source text encoded using pinned one-byte charmap; EOS padding is explicit."
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetSpeciesName",
+        "kind": "function",
+        "startLine": 3879,
+        "endLine": 3896,
+        "sha256": "2a20b9017b0104929ce150f71fa67c0dfabe6515d155ed787d3b8b0ef7e4c98c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CalculateMonStats",
+        "kind": "function",
+        "startLine": 2102,
+        "endLine": 2170,
+        "sha256": "a3d6412e6866e750a09d9cfd3242457b03b59daf4e2adb146bede4ebf5d6f2b1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetLevelFromMonExp",
+        "kind": "function",
+        "startLine": 2184,
+        "endLine": 2194,
+        "sha256": "1e55bf23854a0b1fd937b01b7f840f6061fc77a8f4cfe5bbf483fab878d68ff3",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetLevelFromBoxMonExp",
+        "kind": "function",
+        "startLine": 2196,
+        "endLine": 2206,
+        "sha256": "b0022704c10dacdaf34bf111c179605849ffe271acfd44ffad184d7a2051b446",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetNature",
+        "kind": "function",
+        "startLine": 5015,
+        "endLine": 5018,
+        "sha256": "f37929add617fea7e55cd9a48fe5b090b05ef4dd78f3e0dac3810ebfb95dc303",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetNatureFromPersonality",
+        "kind": "function",
+        "startLine": 5020,
+        "endLine": 5023,
+        "sha256": "cdd303f5d0c5e36124edeeb33e8da39a40c1899ae60fa1959d56dc1a70f6e6f8",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "ModifyStatByNature",
+        "kind": "function",
+        "startLine": 5404,
+        "endLine": 5438,
+        "sha256": "6c3d339a2131bc619a5a0d7dfeb59e54f2f424afecf82aa918a503f8f2bcf287",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GiveMoveToBoxMon",
+        "kind": "function",
+        "startLine": 2213,
+        "endLine": 2229,
+        "sha256": "f906ffe1920c09abce0b5fb994ff4e5ac54dd20b8fbd82d39a3f9ffce44ba3cb",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GiveBoxMonInitialMoveset",
+        "kind": "function",
+        "startLine": 2265,
+        "endLine": 2286,
+        "sha256": "c4404d86cc7f86619c12606c25c4b0711fdc4bc7e674af122d4254d47371b76c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "DeleteFirstMoveAndGiveMoveToBoxMon",
+        "kind": "function",
+        "startLine": 2347,
+        "endLine": 2372,
+        "sha256": "5045a950f1e0ae1a867a12547caf4c350cb56027319fa573ae3859f0ec865b3e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetAbilityBySpecies",
+        "kind": "function",
+        "startLine": 3791,
+        "endLine": 3799,
+        "sha256": "de1608b49fdfcafd8d1b58ac2dbd4b43f6158e02df68af3da872d13985eee496",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetMonAbility",
+        "kind": "function",
+        "startLine": 3801,
+        "endLine": 3806,
+        "sha256": "86a3df1ff48b1bb0d095cd6293f41a3ba913ffa1912b0451142a114b1a650442",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetMonGender",
+        "kind": "function",
+        "startLine": 2709,
+        "endLine": 2712,
+        "sha256": "ed5e2d6be30f670a439462fd705169ad04a80ec0297e672db52e583054ff9079",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetBoxMonGender",
+        "kind": "function",
+        "startLine": 2714,
+        "endLine": 2731,
+        "sha256": "9566ff5888c60ca5e7935268f59349737b9c16c12a1744cc12db96875f09cc83",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CalculatePPWithBonus",
+        "kind": "function",
+        "startLine": 3898,
+        "endLine": 3902,
+        "sha256": "7869afdaf12d3b3c1ead1c4618ac2545405705bf0fc6aa22851ae6c1a01033bd",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "MonRestorePP",
+        "kind": "function",
+        "startLine": 5993,
+        "endLine": 5996,
+        "sha256": "ae5bc474a6fb70dd18c8ea8a21140bb0b81630dd63583858cd2dc31f036fd0d1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "BoxMonRestorePP",
+        "kind": "function",
+        "startLine": 5998,
+        "endLine": 6012,
+        "sha256": "83be8ddb3e8c49b4b99561a7abc4fe44fb41c7dd83210972f9812b3d7cf21cdf",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GiveMonToPlayer",
+        "kind": "function",
+        "startLine": 3686,
+        "endLine": 3706,
+        "sha256": "50fe687fa37ca6bf4ee26b207070852a3c7367bf915c4557b08a77dfd1d40164",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "SendMonToPC",
+        "kind": "function",
+        "startLine": 3708,
+        "endLine": 3740,
+        "sha256": "dca57dd955daef934082016c8763267b7c18ce75a61ed1104d0bb7e2e4c875de",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CalculatePlayerPartyCount",
+        "kind": "function",
+        "startLine": 3742,
+        "endLine": 3753,
+        "sha256": "9ca9ce3f9092ad56474b8f4b1ea7e99673e9965183e2d7861c1309c1289ec742",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "IsPlayerPartyAndPokemonStorageFull",
+        "kind": "function",
+        "startLine": 3856,
+        "endLine": 3865,
+        "sha256": "5bbde34a8e58e7d7d5a4b46886018fd7842aea46930b2e9b0eb29b749de923d9",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "IsPokemonStorageFull",
+        "kind": "function",
+        "startLine": 3867,
+        "endLine": 3877,
+        "sha256": "3f1605b4cfa1e70d5ca994e4c6e938bce34d540965192f290349e8454317a778",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "SpeciesToNationalPokedexNum",
+        "kind": "function",
+        "startLine": 5210,
+        "endLine": 5216,
+        "sha256": "93c3d269d3a84d9b3692f8611b72a34bcc9d984de163bc739d4c05d4b44ec142",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "NationalPokedexNumToSpecies",
+        "kind": "function",
+        "startLine": 5174,
+        "endLine": 5190,
+        "sha256": "4c13f366371d8306f62d88cbc86cd99d404f255bbe6160e3b3d374240fde4da4",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "HandleSetPokedexFlag",
+        "kind": "function",
+        "startLine": 6233,
+        "endLine": 6245,
+        "sha256": "fd2ee00c57b41e1f68a36ece7258d7aa700a2f66166e1b18603f4e3fbf912f8b",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/field_specials.c",
+        "name": "SetPCBoxToSendMon",
+        "kind": "function",
+        "startLine": 1975,
+        "endLine": 1978,
+        "sha256": "8933987207893e619a77bd1541ecd4f91a6a21486a060f09d2b437fc605c1971",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/field_specials.c",
+        "name": "GetPCBoxToSendMon",
+        "kind": "function",
+        "startLine": 1980,
+        "endLine": 1983,
+        "sha256": "26bb0f5075a2feac64f4ade169a0b0618d12e6a2aed8718ee0d0ed462a15848c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/field_specials.c",
+        "name": "ShouldShowBoxWasFullMessage",
+        "kind": "function",
+        "startLine": 1985,
+        "endLine": 1993,
+        "sha256": "4943154f9d1961c4c6f33221d3bfb354de977e432859a58052203b1ca15ca0f9",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/field_specials.c",
+        "name": "IsDestinationBoxFull",
+        "kind": "function",
+        "startLine": 1995,
+        "endLine": 2018,
+        "sha256": "cd91d204195ec75e39f2581541d8e94a035b8da9caf7a26d421344d23f150e8b",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon_storage_system.c",
+        "name": "StorageGetCurrentBox",
+        "kind": "function",
+        "startLine": 16,
+        "endLine": 19,
+        "sha256": "1c8d93d15aff21f2a35cbfc4a07cfe7f84006c794fdf3eb4ba8de79a9b5ca28d",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokedex_screen.c",
+        "name": "DexScreen_GetSetPokedexFlag",
+        "kind": "function",
+        "startLine": 2222,
+        "endLine": 2269,
+        "sha256": "8785447511c2a741eff73e8e90ffd20ce2d39374677b625eb67dff45f8468343",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokedex.c",
+        "name": "GetSetPokedexFlag",
+        "kind": "function",
+        "startLine": 24,
+        "endLine": 27,
+        "sha256": "d2fae0ba3840a43a9301949a336917ff00de394b30c7f33490da2275a7f43ec7",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "IncrementGameStat",
+        "kind": "function",
+        "startLine": 366,
+        "endLine": 377,
+        "sha256": "a7752519487402a54e7f802f49661398bf1884d247004389ddd19daf2f8e18bc",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "GetGameStat",
+        "kind": "function",
+        "startLine": 379,
+        "endLine": 385,
+        "sha256": "b583c71c985bf592e0021091ecc0b83d6456861086b5f5badf5500dd10807ec1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "SetGameStat",
+        "kind": "function",
+        "startLine": 387,
+        "endLine": 392,
+        "sha256": "6e47be67b28176711b818dcfddd7dcab61d0cce7c2927ae90f80fcde09877606",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/string_util.c",
+        "name": "StringCopy",
+        "kind": "function",
+        "startLine": 91,
+        "endLine": 102,
+        "sha256": "deee159da0fb18e6cb51691cd0e0ac551182258aa1a82aeb6e700068aa21567f",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/string_util.c",
+        "name": "StringCopyN",
+        "kind": "function",
+        "startLine": 112,
+        "endLine": 120,
+        "sha256": "9934df09ce1ed823b04d8fb93345e7698ba32e4c49384ddf08736a95a93d960c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/naming_screen.c",
+        "name": "SaveInputText",
+        "kind": "function",
+        "startLine": 1851,
+        "endLine": 1864,
+        "sha256": "824e9cb3e40ffa40d4df4c874898a103fb26e942cb302ac0b23703e8381aeef3",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CreateBoxMon:nonrandom-metadata",
+        "kind": "selected-statements",
+        "startLine": 1809,
+        "endLine": 1822,
+        "sha256": "e7b7a6a6b67624420e128cabb57c65df8b83ff5cecc248cc84bc1c43016a2516",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_script_commands.c",
+        "name": "Cmd_trysetcaughtmondexflags",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 9646,
+        "endLine": 9660,
+        "sha256": "8989dbf6bce77aaf22f513dd2bfd548b2b1327f6358528b53b9a07cb8b212954",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_script_commands.c",
+        "name": "Cmd_givecaughtmon",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 9617,
+        "endLine": 9644,
+        "sha256": "44312e8a401b7b9658603b4d5ce7e31910d298beaa50012f8c182e0c51e09ab9",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_script_commands.c",
+        "name": "Cmd_trygivecaughtmonnick",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 9789,
+        "endLine": 9863,
+        "sha256": "6e54122a58be0295f7c0a6204e0712dbf6b25d2edfa5a05a2848fbd085d0e4c5",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/item_use.c",
+        "name": "BattleUseFunc_PokeBallEtc",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 737,
+        "endLine": 747,
+        "sha256": "132c97e10861dc18fecd85ec31fb3d591dc4e158f66cd5f6d185d3584c658c47",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/naming_screen.c",
+        "name": "MainState_PressedOKButton",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 682,
+        "endLine": 708,
+        "sha256": "2d4ed5f2dde36fb3602319ad76d89a1bc687129d515ce2a629f77e0822198494",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/naming_screen.c",
+        "name": "DisplaySentToPCMessage",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 732,
+        "endLine": 757,
+        "sha256": "31f01f1c9256f5b69d5cff7da8cd50dbc7283c16c4b6a30548ab468145377987",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "BoxMonToMon",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 2172,
+        "endLine": 2182,
+        "sha256": "6fb532b388c0c73e22da3944c136076fc599e03d0df9a403ce3663f082a038c2",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_script_commands.c",
+        "name": "Cmd_trysetcaughtmondexflags:set-caught",
+        "kind": "selected-statement",
+        "startLine": 9657,
+        "endLine": 9657,
+        "sha256": "73b14ea5023ceed723bb41ba61f4ba9e0c3152925d3606f0b04fddaa261762d8",
+        "transformation": "none; complete selected source text retained"
+      }
+    ],
+    "transformations": [
+      "Separate private captured Route1 continuation, preserving all five previous source modules.",
+      "Source scalar Pokemon fields and exact string bytes replace encrypted source save structs; no source save-file compatibility claimed.",
+      "Missing nonrandom CreateBoxMon metadata is applied from the explicit Route1/trainer context; no creature recreation or RNG draws.",
+      "Previously omitted source battle-entry seen flag is deferred to the capture continuation before success-script capture count and caught flag.",
+      "Complete source naming SaveInputText receives validated source keyboard bytes without UI/frame callbacks; blank input retains species name.",
+      "Complete source party/PC allocation and naming PC preflight operate on immutable occupancy projections; unchanged occupants are opaque, not fabricated creatures.",
+      "Only occupied-species reads and one destination copy are required by allocation; boxed copies exclude party runtime fields.",
+      "Source message branch IDs are projected without box-name formatting, audio, dex display, or UI waits.",
+      "Result remains pending trusted ownership application, not a persistent grant or broadened battle admission."
+    ],
+    "outputs": [
+      {
+        "path": "capture.c",
+        "bytes": 19329,
+        "sha256": "eb58f8a9fb89b1a69bd7476b09be0cc61c6fb218080d5cf2deddee43dc608ad8"
+      },
+      {
+        "path": "characters.h",
+        "bytes": 12798,
+        "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98"
+      },
+      {
+        "path": "codec.json",
+        "bytes": 3964,
+        "sha256": "00b48b20802dd03b1332eda16c5973b78c2f54ac4076f2ed8490161fcc26fe2e"
+      },
+      {
+        "path": "constants/abilities.h",
+        "bytes": 2407,
+        "sha256": "1c1b93de5d5ff65d8b3066e9b40229b5d30e02842e587e3851a1d708ece1292b"
+      },
+      {
+        "path": "constants/battle.h",
+        "bytes": 16440,
+        "sha256": "b9d0493af4629d450050637e9aace63b684b282f841bed2a0d97b1d71e9d55e3"
+      },
+      {
+        "path": "constants/flags.h",
+        "bytes": 95397,
+        "sha256": "45f31e4dc3d42c1054463974cd31b1173bdd4cb6d9f94b2cdbf2c88b0f745493"
+      },
+      {
+        "path": "constants/game_stat.h",
+        "bytes": 2651,
+        "sha256": "e98ebe4c3d4448fd95ece37f84e15c8dbcbe91f7d61bf2dd3878c8aade0facc6"
+      },
+      {
+        "path": "constants/global.h",
+        "bytes": 3785,
+        "sha256": "7ecf4a63c7be65328135a75f8620786e40343bbe7688e7017e6d780526fd6a0c"
+      },
+      {
+        "path": "constants/hold_effects.h",
+        "bytes": 2637,
+        "sha256": "e763fdbbef19ba6999a7151094cf26734323414237ebb1afcf2f453f65c2f661"
+      },
+      {
+        "path": "constants/items.h",
+        "bytes": 12436,
+        "sha256": "af17276346eaecc5a10ac60f14b22c33332ec8c6fb0ec82895bdc3649b678138"
+      },
+      {
+        "path": "constants/moves.h",
+        "bytes": 10249,
+        "sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194"
+      },
+      {
+        "path": "constants/opponents.h",
+        "bytes": 39946,
+        "sha256": "01ae04c7fd3837c818f1b9ef082313cfeee4c9d3907441b4e192865a626247ee"
+      },
+      {
+        "path": "constants/pokedex.h",
+        "bytes": 21092,
+        "sha256": "aac527819623140d7f44ad99b72654bab59ca5679a80cca33361828cc7e7d0c6"
+      },
+      {
+        "path": "constants/pokemon.h",
+        "bytes": 10894,
+        "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5"
+      },
+      {
+        "path": "constants/region_map_sections.h",
+        "bytes": 5652,
+        "sha256": "e7ee196d59467d70d3ff25c5f2fd89e7b6b0fd2ea66424a59651211277d79c96"
+      },
+      {
+        "path": "constants/species.h",
+        "bytes": 12982,
+        "sha256": "ec3f9f9c2717dcd453aa7a27506c32e1e6ca067864534dee494695d74344c51a"
+      },
+      {
+        "path": "constants/trainers.h",
+        "bytes": 20887,
+        "sha256": "5f6e6585ba511fcf11f970f60132f45db35caf6cec9f6ae56b6bc57b979366c9"
+      },
+      {
+        "path": "constants/vars.h",
+        "bytes": 17306,
+        "sha256": "be26624aac5cbc9ea4d364d5cc33500b4b6c7ecd47812a50b961d948f6914b12"
+      },
+      {
+        "path": "source_data.inc",
+        "bytes": 46291,
+        "sha256": "a5c9bb5c372f5c301daea37c4c85dab145e850adbb113d0f8da0dc721a7eaa1f"
+      },
+      {
+        "path": "source_evidence.txt",
+        "bytes": 249669,
+        "sha256": "167358c27fe2145bf43b0d0bb0b0b5aac4ca970b99d5b42a588a30214ff60fd6"
+      },
+      {
+        "path": "source_functions.inc",
+        "bytes": 19256,
+        "sha256": "8334edbdce4cd4d6f5ae59a307a16a2799aa3d09ff63cf6d3b5107c896e1ccb4"
+      }
+    ],
+    "buildScripts": [
+      {
+        "path": "tools/battle-spike/extract.py",
+        "sha256": "26a391b8cd05db4ea3513e91b5502b247d4391f163f1990a4b46c940ac8e4031"
+      },
+      {
+        "path": "tools/battle-capture/extract.py",
+        "sha256": "e9caa6c7f4bab309567ae889e4e696399f8879bf49577651b2a5228719299e6d"
+      },
+      {
+        "path": "tools/battle-capture/build.py",
+        "sha256": "b48457bf59c86fbccd90e075396ebda74aa725379e90b49434605af66b63a371"
+      }
+    ]
+  }
+}

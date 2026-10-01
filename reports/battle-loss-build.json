@@ -1,0 +1,1107 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-30T15:42:56.884296+00:00",
+  "status": "passed",
+  "profile": "firered-route1-loss-v1",
+  "scope": "private source continuation; no owned or live effects",
+  "toolchain": {
+    "schemaVersion": 1,
+    "tool": "zig",
+    "version": "0.16.0",
+    "purpose": "Optional local P03 C-to-WASM experiment compiler; not a runtime game dependency",
+    "source": "https://ziglang.org/download/index.json",
+    "platform": "win32-x64",
+    "url": "https://ziglang.org/download/0.16.0/zig-x86_64-windows-0.16.0.zip",
+    "bytes": 97217739,
+    "sha256": "68659eb5f1e4eb1437a722f1dd889c5a322c9954607f5edcf337bc3684a75a7e",
+    "directory": "zig-x86_64-windows-0.16.0",
+    "executable": "zig.exe",
+    "executableSha256": "086ce9d47ba42f33a514e1a6e04eb1d4a8fa1d75e0868e0213caad447c91e864"
+  },
+  "target": "wasm32-freestanding",
+  "abiVersion": 1,
+  "checkpointVersion": 1,
+  "checkpointWords": 96,
+  "inputWords": 64,
+  "exports": [
+    "loss_abi_version",
+    "loss_input_word_count",
+    "loss_state_word_count",
+    "loss_input_begin",
+    "loss_input_set",
+    "loss_start",
+    "loss_advance",
+    "loss_get",
+    "loss_mon_get",
+    "loss_state_get",
+    "loss_import_begin",
+    "loss_import_set",
+    "loss_import_commit",
+    "loss_context_count",
+    "loss_context_id",
+    "loss_heal_get"
+  ],
+  "fixedLinearMemoryBytes": 262144,
+  "importsExpected": [],
+  "independentBuilds": 2,
+  "wasm": ".local/battle-loss/primary/loss.wasm",
+  "wasmBytes": 24708,
+  "wasmSha256": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a",
+  "extraction": {
+    "schemaVersion": 1,
+    "profile": "firered-route1-loss-v1",
+    "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "inputs": [
+      {
+        "path": "data/battle_scripts_1.s",
+        "bytes": 138642,
+        "sha256": "27e9c39f3147b05e5ba2ed36ca0c89fcdc9b26718778083bd362c582de800034"
+      },
+      {
+        "path": "data/event_scripts.s",
+        "bytes": 55643,
+        "sha256": "3b1bd10d26c0a74fb3452ab42fc9d14dfca785f8b71389db06c71f5dfdd50a27"
+      },
+      {
+        "path": "data/scripts/hall_of_fame.inc",
+        "bytes": 1182,
+        "sha256": "c47616f23fe35a6c11228143a4277c86b4e4b9a803378389f8b9c30bce10e6c4"
+      },
+      {
+        "path": "data/scripts/pkmn_center_nurse.inc",
+        "bytes": 2127,
+        "sha256": "169773893bdcab47f6bfe083b72f24246ef1613723f876ff96a3ff9cd7a6e8be"
+      },
+      {
+        "path": "data/scripts/white_out.inc",
+        "bytes": 1627,
+        "sha256": "b69a9eaf6cb7ca27fffae11bb005a881d1d140d34e2a03b89cab7b8046ff9d1e"
+      },
+      {
+        "path": "include/constants/abilities.h",
+        "bytes": 2407,
+        "sha256": "1c1b93de5d5ff65d8b3066e9b40229b5d30e02842e587e3851a1d708ece1292b"
+      },
+      {
+        "path": "include/constants/battle.h",
+        "bytes": 16440,
+        "sha256": "b9d0493af4629d450050637e9aace63b684b282f841bed2a0d97b1d71e9d55e3"
+      },
+      {
+        "path": "include/constants/flags.h",
+        "bytes": 95397,
+        "sha256": "45f31e4dc3d42c1054463974cd31b1173bdd4cb6d9f94b2cdbf2c88b0f745493"
+      },
+      {
+        "path": "include/constants/global.h",
+        "bytes": 3785,
+        "sha256": "7ecf4a63c7be65328135a75f8620786e40343bbe7688e7017e6d780526fd6a0c"
+      },
+      {
+        "path": "include/constants/heal_locations.h",
+        "bytes": 965,
+        "sha256": "15ab04e15caacd3b6027094cb697182b9f5e4544f3156de6bcd6bdaecceb748a"
+      },
+      {
+        "path": "include/constants/hold_effects.h",
+        "bytes": 2637,
+        "sha256": "e763fdbbef19ba6999a7151094cf26734323414237ebb1afcf2f453f65c2f661"
+      },
+      {
+        "path": "include/constants/items.h",
+        "bytes": 12436,
+        "sha256": "af17276346eaecc5a10ac60f14b22c33332ec8c6fb0ec82895bdc3649b678138"
+      },
+      {
+        "path": "include/constants/map_event_ids.h",
+        "bytes": 11617,
+        "sha256": "8e04ac77282f1c5d4b23d62ea28ad3afdcd469d80324a7dededb66f6bc9fb136"
+      },
+      {
+        "path": "include/constants/map_groups.h",
+        "bytes": 28486,
+        "sha256": "86f00ce61a8e88de0a73ef582476c7e03e804bbd70ee6a2877249894526683ad"
+      },
+      {
+        "path": "include/constants/map_types.h",
+        "bytes": 1034,
+        "sha256": "21b9dc465effd752f859c25d22fee121da8f56e245b1f65ad022af0f9a8008fa"
+      },
+      {
+        "path": "include/constants/maps.h",
+        "bytes": 1114,
+        "sha256": "fd72a95bb4bd8c589630826d745814beaafe7a8518ffa3fb7927bf16d670a7dd"
+      },
+      {
+        "path": "include/constants/moves.h",
+        "bytes": 10249,
+        "sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194"
+      },
+      {
+        "path": "include/constants/opponents.h",
+        "bytes": 39946,
+        "sha256": "01ae04c7fd3837c818f1b9ef082313cfeee4c9d3907441b4e192865a626247ee"
+      },
+      {
+        "path": "include/constants/pokemon.h",
+        "bytes": 10894,
+        "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5"
+      },
+      {
+        "path": "include/constants/species.h",
+        "bytes": 12982,
+        "sha256": "ec3f9f9c2717dcd453aa7a27506c32e1e6ca067864534dee494695d74344c51a"
+      },
+      {
+        "path": "include/constants/trainers.h",
+        "bytes": 20887,
+        "sha256": "5f6e6585ba511fcf11f970f60132f45db35caf6cec9f6ae56b6bc57b979366c9"
+      },
+      {
+        "path": "include/constants/vars.h",
+        "bytes": 17306,
+        "sha256": "be26624aac5cbc9ea4d364d5cc33500b4b6c7ecd47812a50b961d948f6914b12"
+      },
+      {
+        "path": "include/gba/defines.h",
+        "bytes": 2518,
+        "sha256": "4356e895d7108dedd2c788bbbe98e0948778712a4ea6374193bdc1a851efe69b"
+      },
+      {
+        "path": "include/global.fieldmap.h",
+        "bytes": 12127,
+        "sha256": "34a8c91e10803ba48b97a2df8a721ca37fad7572b2ff951a4ab7ec15a5f050eb"
+      },
+      {
+        "path": "include/global.h",
+        "bytes": 25663,
+        "sha256": "044325b90e7c79146cc0cf73d31b6be3e4840059e2e778b63d9b5448fe538429"
+      },
+      {
+        "path": "include/heal_location.h",
+        "bytes": 313,
+        "sha256": "585fdbb66cb085b8630db526f0d3604e0f2c47849839b9112ce39ae1f3ee211a"
+      },
+      {
+        "path": "include/pokemon.h",
+        "bytes": 16352,
+        "sha256": "a6881fee07ae10f57ebf3ec7af1cabd2e900d8ba8d3da644313c087d16e1617e"
+      },
+      {
+        "path": "src/battle_script_commands.c",
+        "bytes": 355862,
+        "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3"
+      },
+      {
+        "path": "src/battle_setup.c",
+        "bytes": 33351,
+        "sha256": "f33e6cdd3ff22ab9fe0f43219dfc795a9abfcc5f01c04e96809b98ddf5b952fd"
+      },
+      {
+        "path": "src/battle_util2.c",
+        "bytes": 3901,
+        "sha256": "0e41d0db402bc2a64f6b0dac7c8ec56e49055c6b58a4c0dfef8db87148b37c8c"
+      },
+      {
+        "path": "src/data/battle_moves.h",
+        "bytes": 121457,
+        "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384"
+      },
+      {
+        "path": "src/data/heal_locations.h",
+        "bytes": 7772,
+        "sha256": "9b7c9665b41d350e93fcadbb3ffa54412b29a219448d44d9dd916781431584c7"
+      },
+      {
+        "path": "src/data/pokemon/experience_tables.h",
+        "bytes": 22610,
+        "sha256": "9a236761640676e251b76b7950b86e5881ee23dfe920ca27bbe47b4541542731"
+      },
+      {
+        "path": "src/data/pokemon/level_up_learnsets.h",
+        "bytes": 182027,
+        "sha256": "d6563a88fa893d1433a02027cb13ba9574a6828a96b1a730b1d767fd7c5a0cc6"
+      },
+      {
+        "path": "src/data/pokemon/species_info.h",
+        "bytes": 342600,
+        "sha256": "9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e"
+      },
+      {
+        "path": "src/field_screen_effect.c",
+        "bytes": 14429,
+        "sha256": "2b4e9e17b4528008ce36a38bab6108cb396f0aff2ef35cf6028bad49820c88e6"
+      },
+      {
+        "path": "src/heal_location.c",
+        "bytes": 4416,
+        "sha256": "e5853e7d0170a5d66798850efca11181c7b979bd8086ecba9f64e6a104579822"
+      },
+      {
+        "path": "src/money.c",
+        "bytes": 3446,
+        "sha256": "4565f73262c3bef947f24e1d94d6f81389e2b5b549fc425ecbb48ae6ae4ecedd"
+      },
+      {
+        "path": "src/overworld.c",
+        "bytes": 103643,
+        "sha256": "df352e738b56856765aec65adc6fdea0a4b25fe567bc760d4ce2d34afc6ff7e2"
+      },
+      {
+        "path": "src/pokemon.c",
+        "bytes": 221865,
+        "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec"
+      },
+      {
+        "path": "src/safari_zone.c",
+        "bytes": 1759,
+        "sha256": "cf87fbb22a202afde6950b05af9869ee5f7e7f310a243790e70d9bfd9fb8bcf5"
+      },
+      {
+        "path": "src/scrcmd.c",
+        "bytes": 56954,
+        "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553"
+      },
+      {
+        "path": "src/script_pokemon_util.c",
+        "bytes": 5764,
+        "sha256": "cfadee8f8c397485b66fc56a9a6e13fef1bbad47b4c6cd83dd42a9c1f8f9cf30"
+      }
+    ],
+    "fragments": [
+      {
+        "source": "include/pokemon.h",
+        "name": "SpeciesInfo",
+        "kind": "struct",
+        "startLine": 208,
+        "endLine": 236,
+        "sha256": "c95fa24e8ec4e9113a10fcc1823804da7657d4098ad353e3b1a13e7709aec869",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "WarpData",
+        "kind": "struct",
+        "startLine": 392,
+        "endLine": 398,
+        "sha256": "1be453244aea7c7bdf07748e42b0562abfa038cff0079b50fdf3d01ffbfa5195",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/heal_location.h",
+        "name": "HealLocation",
+        "kind": "struct",
+        "startLine": 6,
+        "endLine": 12,
+        "sha256": "c736f607512ae5296b3894440845b9eec231b86f40ce372c45f9ebd34a1760c7",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "InitialPlayerAvatarState",
+        "kind": "struct",
+        "startLine": 79,
+        "endLine": 84,
+        "sha256": "3346831b7535375cddea86dfcd28ee8c25fae0e0aeb04d8b3425d4841f9e8f00",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/gba/defines.h",
+        "name": "TRUE",
+        "kind": "macro",
+        "startLine": 6,
+        "endLine": 6,
+        "sha256": "569c71d2fde07434586518f96b3bed3d0a2a25bfdd6322ab3272557a6eec5126",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/gba/defines.h",
+        "name": "FALSE",
+        "kind": "macro",
+        "startLine": 7,
+        "endLine": 7,
+        "sha256": "315a5cbbf233f799818f8b6e1532a7b69d08e99524dd2fdce9d7c80b875e4952",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "min",
+        "kind": "macro",
+        "startLine": 78,
+        "endLine": 78,
+        "sha256": "3b7209d915591698a602a917e792109ff5826b5d014d9a02dd0c582a4785f36e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "ARRAY_COUNT",
+        "kind": "macro",
+        "startLine": 40,
+        "endLine": 40,
+        "sha256": "f14f6b55fe96aced881f58a93768366f33d1476b1b4a7bf028eedcc0077f8eeb",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.h",
+        "name": "NELEMS",
+        "kind": "macro",
+        "startLine": 43,
+        "endLine": 43,
+        "sha256": "258e1202532f6bab45dfb86bc9c76ee15b3ee3a2305787456b84ed3b6975ac32",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "PP_UP_SHIFTS",
+        "kind": "macro",
+        "startLine": 1428,
+        "endLine": 1428,
+        "sha256": "97a69a890699259b36e2c33fdd07fe8391d14f85df60b8b257df9f4e79c9f4f6",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CALC_STAT",
+        "kind": "macro",
+        "startLine": 2093,
+        "endLine": 2100,
+        "sha256": "0b72c716799061d0d14eb5a13f3d3f0c7b852c95ced874b991f6de5f854ec786",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/species_info.h",
+        "name": "PERCENT_FEMALE",
+        "kind": "macro",
+        "startLine": 3,
+        "endLine": 3,
+        "sha256": "4ad5eba772760a084d8915513f1177fd6a03249ba1981e425f107fd8b268ce1e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "LEVEL_UP_MOVE",
+        "kind": "macro",
+        "startLine": 1,
+        "endLine": 1,
+        "sha256": "ac48434bdab11a6506ec563fb315fc3e37d3373e80dead27b14bb9c00c73f818",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "LEVEL_UP_END",
+        "kind": "macro",
+        "startLine": 2,
+        "endLine": 2,
+        "sha256": "519def8abc4c2718fe98b2d97d2e638fe872c85b5081ddd92644c6af1b9af6df",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/money.c",
+        "name": "MAX_MONEY",
+        "kind": "macro",
+        "startLine": 8,
+        "endLine": 8,
+        "sha256": "23cf759bfb8509b5d9b2aad2c1e29650a91cb315cfbbf491d7ec79d507e45f63",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.fieldmap.h",
+        "name": "PLAYER_AVATAR_FLAG_ON_FOOT",
+        "kind": "macro",
+        "startLine": 301,
+        "endLine": 301,
+        "sha256": "c105356d7ab27281a24453ae3832c1ebd7e3ce0793b7701ff3f69f9d680c073b",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "include/global.fieldmap.h",
+        "name": "PLAYER_AVATAR_STATE_NORMAL",
+        "kind": "enum",
+        "startLine": 290,
+        "endLine": 299,
+        "sha256": "89675582182d0aa8889fd249d2ea78b5b0bd9772152ef577fefab73de51adf14",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/species_info.h",
+        "name": "Squirtle",
+        "kind": "complete-table-entry",
+        "startLine": 212,
+        "endLine": 240,
+        "sha256": "e1af00f23a0eed584d6285d4e8ebba193aa386eb943253097b15163a449a776d",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "sNatureStatTable",
+        "kind": "table",
+        "startLine": 1360,
+        "endLine": 1387,
+        "sha256": "6bba03d1caafb6795369d6ec43550df6cd2e26319dda132aa9c581d53924e98e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "sFriendshipEventDeltas",
+        "kind": "table",
+        "startLine": 1618,
+        "endLine": 1630,
+        "sha256": "eca7faecd6e4c5cae8d30d14a464a88ff137dd5e5e04139a1d8de626cd377fdc",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "gPPUpGetMask",
+        "kind": "table",
+        "startLine": 1438,
+        "endLine": 1438,
+        "sha256": "b498fd58a3c8572fc8c65481ec838f853c29bb978037d499de647d8362a48ebe",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/pokemon/level_up_learnsets.h",
+        "name": "sSquirtleLevelUpLearnset",
+        "kind": "table",
+        "startLine": 101,
+        "endLine": 114,
+        "sha256": "fea5bd51c5b69e091201e8bf48780ad8c8aa4a53cb6f47a007e56cf224f1a330",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "sWhiteOutMoneyLossMultipliers",
+        "kind": "table",
+        "startLine": 227,
+        "endLine": 237,
+        "sha256": "38a252e9de52a3e7e0f01f67e14795418c76f1d39516756f6a1ac51e4b798480",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "sWhiteOutMoneyLossBadgeFlagIDs",
+        "kind": "table",
+        "startLine": 239,
+        "endLine": 248,
+        "sha256": "0ab9c0b88b946979ffa507fa07eca66fc3171a4ec5a02312ad5100118d076b62",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "TACKLE.pp",
+        "kind": "selected-field",
+        "startLine": 438,
+        "endLine": 438,
+        "sha256": "62ce36dc3ed4aab2f89c6d66ef6d9a7a608a0522e94bd8bdd70bd537922b2d58",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "TAIL_WHIP.pp",
+        "kind": "selected-field",
+        "startLine": 516,
+        "endLine": 516,
+        "sha256": "39db315748909178a3731c43ed55d2efbdf57ced1be6000d0bf0c940073762e1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "BUBBLE.pp",
+        "kind": "selected-field",
+        "startLine": 1894,
+        "endLine": 1894,
+        "sha256": "39db315748909178a3731c43ed55d2efbdf57ced1be6000d0bf0c940073762e1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "WITHDRAW.pp",
+        "kind": "selected-field",
+        "startLine": 1439,
+        "endLine": 1439,
+        "sha256": "dd189a8cb5a46a029d7ba92e53c0a9420dee54e16a1326d27bb4e16ddb5745ed",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "WATER_GUN.pp",
+        "kind": "selected-field",
+        "startLine": 724,
+        "endLine": 724,
+        "sha256": "514c2402713f6abbc3795c63a4cb990035a2873403cf7b75641e0a2466e224e6",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "BITE.pp",
+        "kind": "selected-field",
+        "startLine": 581,
+        "endLine": 581,
+        "sha256": "514c2402713f6abbc3795c63a4cb990035a2873403cf7b75641e0a2466e224e6",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "RAPID_SPIN.pp",
+        "kind": "selected-field",
+        "startLine": 2986,
+        "endLine": 2986,
+        "sha256": "dd189a8cb5a46a029d7ba92e53c0a9420dee54e16a1326d27bb4e16ddb5745ed",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "PROTECT.pp",
+        "kind": "selected-field",
+        "startLine": 2375,
+        "endLine": 2375,
+        "sha256": "9fbf1efc275d6f4b582ac0d4cadc15296d032c1f779962d977048b6b356c227b",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "RAIN_DANCE.pp",
+        "kind": "selected-field",
+        "startLine": 3129,
+        "endLine": 3129,
+        "sha256": "9a924909efd9008fbf282d63d39fe1cc27c212e1e1cd64f2e7708752fffd90c1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "SKULL_BASH.pp",
+        "kind": "selected-field",
+        "startLine": 1699,
+        "endLine": 1699,
+        "sha256": "3aa06328acc4f7ba97356245d1a1072ad1a2cb1cd3cd7484ec0ca5d8bba4662e",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/data/battle_moves.h",
+        "name": "HYDRO_PUMP.pp",
+        "kind": "selected-field",
+        "startLine": 737,
+        "endLine": 737,
+        "sha256": "9a924909efd9008fbf282d63d39fe1cc27c212e1e1cd64f2e7708752fffd90c1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "data/scripts/hall_of_fame.inc",
+        "name": "EventScript_ResetEliteFourEnd-and-callee",
+        "kind": "script-to-operation-table",
+        "startLine": 20,
+        "endLine": 37,
+        "sha256": "1b3da348a38b205ff7156acf093b1ee71789b2e89fa5ed4fc7be6356b12b9106",
+        "transformation": "Exact finite call target and clearflag/cleartrainerflag/setvar operations compiled into a private operation table; rejects any new opcode."
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "Overworld_ResetStateAfterWhitingOut",
+        "kind": "function",
+        "startLine": 331,
+        "endLine": 343,
+        "sha256": "8fe3e18ba82df466ad0e86fd7d14d0becde1ae4c8162e6075f034e76eabc347c",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CalculateMonStats",
+        "kind": "function",
+        "startLine": 2102,
+        "endLine": 2170,
+        "sha256": "a3d6412e6866e750a09d9cfd3242457b03b59daf4e2adb146bede4ebf5d6f2b1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetLevelFromMonExp",
+        "kind": "function",
+        "startLine": 2184,
+        "endLine": 2194,
+        "sha256": "1e55bf23854a0b1fd937b01b7f840f6061fc77a8f4cfe5bbf483fab878d68ff3",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetLevelFromBoxMonExp",
+        "kind": "function",
+        "startLine": 2196,
+        "endLine": 2206,
+        "sha256": "b0022704c10dacdaf34bf111c179605849ffe271acfd44ffad184d7a2051b446",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetNature",
+        "kind": "function",
+        "startLine": 5015,
+        "endLine": 5018,
+        "sha256": "f37929add617fea7e55cd9a48fe5b090b05ef4dd78f3e0dac3810ebfb95dc303",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetNatureFromPersonality",
+        "kind": "function",
+        "startLine": 5020,
+        "endLine": 5023,
+        "sha256": "cdd303f5d0c5e36124edeeb33e8da39a40c1899ae60fa1959d56dc1a70f6e6f8",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "ModifyStatByNature",
+        "kind": "function",
+        "startLine": 5404,
+        "endLine": 5438,
+        "sha256": "6c3d339a2131bc619a5a0d7dfeb59e54f2f424afecf82aa918a503f8f2bcf287",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "AdjustFriendship",
+        "kind": "function",
+        "startLine": 5440,
+        "endLine": 5510,
+        "sha256": "fc1162c2a84ae0472f687769014978eeb4956ea4f892d0ac045144301e11d785",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "CalculatePPWithBonus",
+        "kind": "function",
+        "startLine": 3898,
+        "endLine": 3902,
+        "sha256": "7869afdaf12d3b3c1ead1c4618ac2545405705bf0fc6aa22851ae6c1a01033bd",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/pokemon.c",
+        "name": "GetPlayerPartyHighestLevel",
+        "kind": "function",
+        "startLine": 6077,
+        "endLine": 6093,
+        "sha256": "74c88fabc24c56e0a0913ca8631e04cd65877a849c99c6042954f026ab38def1",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_util2.c",
+        "name": "AdjustFriendshipOnBattleFaint",
+        "kind": "function",
+        "startLine": 78,
+        "endLine": 108,
+        "sha256": "c91a5795f762decb010e688657d6d0a5068df5832e53f125e96adc72a03b79ce",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/money.c",
+        "name": "GetMoney",
+        "kind": "function",
+        "startLine": 12,
+        "endLine": 15,
+        "sha256": "af1339efc212536efe4d61dcee781db5af5c0c8f8c179211677cb694922ffcc2",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/money.c",
+        "name": "SetMoney",
+        "kind": "function",
+        "startLine": 17,
+        "endLine": 20,
+        "sha256": "88fc5c5e0bbb95cfb79551b1251aa5433655a5d149e25861daa9c6ccd2cf4bd0",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/money.c",
+        "name": "RemoveMoney",
+        "kind": "function",
+        "startLine": 50,
+        "endLine": 61,
+        "sha256": "f01428a37befee7cef67f7c91ec5a0c2ce7d6a5011004c42cd5fe9986567fc99",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/script_pokemon_util.c",
+        "name": "HealPlayerParty",
+        "kind": "function",
+        "startLine": 17,
+        "endLine": 46,
+        "sha256": "489a31308a6c839d02cd7805b3e904bfe2099b915f90d303f899c5aa1378578f",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/heal_location.c",
+        "name": "GetHealLocationIndexFromMapGroupAndNum",
+        "kind": "function",
+        "startLine": 30,
+        "endLine": 42,
+        "sha256": "2a1f023e31a287684143994988ed130a3fd352603a7961f44bd751491598931b",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/heal_location.c",
+        "name": "GetHealLocation",
+        "kind": "function",
+        "startLine": 53,
+        "endLine": 60,
+        "sha256": "55ae86052b4415a8e97af6a35c530fd0bda87024997e72d9728a6b167843ce31",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/heal_location.c",
+        "name": "SetWhiteoutRespawnHealerNpcAsLastTalked",
+        "kind": "function",
+        "startLine": 119,
+        "endLine": 122,
+        "sha256": "f7a6aa78abeb504ee031b6c258683931e07c478919e651abcefed7c3a5b7abef",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/heal_location.c",
+        "name": "SetWhiteoutRespawnWarpAndHealerNpc",
+        "kind": "function",
+        "startLine": 62,
+        "endLine": 117,
+        "sha256": "4ea7c91df730bd21cf3c27d284d6e930289ea55510db0303bf37a74ee38e3d16",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/safari_zone.c",
+        "name": "ResetSafariZoneFlag",
+        "kind": "function",
+        "startLine": 22,
+        "endLine": 25,
+        "sha256": "a730c3463eff8c4ca9eae77c5ab91bc325d47d574ef4033fbde5c3448cff4856",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "CountBadgesForOverworldWhiteOutLossCalculation",
+        "kind": "function",
+        "startLine": 277,
+        "endLine": 287,
+        "sha256": "1de7251328299204db12937bfe9a3781abcffcc0c890783eb247282f894a3d1d",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "ComputeWhiteOutMoneyLoss",
+        "kind": "function",
+        "startLine": 260,
+        "endLine": 269,
+        "sha256": "9878bafc642d54a6f91b0ebfcdba10364b1eb3f4e1dfb28deeb9b0251aa85d0a",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "ResetInitialPlayerAvatarState",
+        "kind": "function",
+        "startLine": 834,
+        "endLine": 839,
+        "sha256": "65f5d57fcfef31fcb29383d1d160a5fbc8ac005b216c19edcc76ab4173d75110",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "SetInitialPlayerAvatarStateWithDirection",
+        "kind": "function",
+        "startLine": 841,
+        "endLine": 846,
+        "sha256": "da3848df797e78d0488f7aed5c1a26695e2cd26871655ee1d8bfb9a2d21b1e39",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "Overworld_SetWhiteoutRespawnPoint",
+        "kind": "function",
+        "startLine": 627,
+        "endLine": 630,
+        "sha256": "99e427d7d1aef0d507090eac9b2ba865e2a5f1c18d260af1f65a788dc85c653a",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "DoWhiteOut",
+        "kind": "function",
+        "startLine": 250,
+        "endLine": 258,
+        "sha256": "70919b9dc23dfb72105fefe1cb9d9d1bbbbf4e4bc94aba8c0fe729e3466ba867",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "ResetSafariZoneFlag_",
+        "kind": "function",
+        "startLine": 1381,
+        "endLine": 1384,
+        "sha256": "8e6c1e3f089e1592cad81948678f645dc92bdfbe48c476535f14df9f7bbf1e93",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/field_screen_effect.c",
+        "name": "Task_RushInjuredPokemonToCenter:last-heal-script-choice",
+        "kind": "selected-branch",
+        "startLine": 403,
+        "endLine": 411,
+        "sha256": "5a30c37af12040af22ad5273c305f582e870bc6abc2da9d3670c4dccdc5b47a6",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "CB2_WhiteOut:mechanical-sequence",
+        "kind": "selected-statements",
+        "startLine": 1553,
+        "endLine": 1555,
+        "sha256": "24c2bb38456efcd77b9fb5cfca1408666261b5ccaf76a0bf50d97a566b43afd9",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_script_commands.c",
+        "name": "Cmd_tryfaintmon",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 2831,
+        "endLine": 2917,
+        "sha256": "ebcd2d6184fa6337c7f72334ed88762700e7001e5817614b8d9f5217d7915403",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_script_commands.c",
+        "name": "Cmd_getmoneyreward",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 5320,
+        "endLine": 5386,
+        "sha256": "0ef513f12821b972dd666e41ff5eb052786996652398cb7a2211e3de1c561a0b",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_setup.c",
+        "name": "CB2_EndWildBattle",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 422,
+        "endLine": 435,
+        "sha256": "070173f1c16acee777dec8f9ed99e2f0a0d74fde5e4a8f3dd01e8c4a49053b55",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/battle_setup.c",
+        "name": "IsPlayerDefeated",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 691,
+        "endLine": 707,
+        "sha256": "d4d2fae01d849a5b93f261645fce7c39212c8ffd5ce78cddde04249ed28a4598",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "CB2_WhiteOut",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 1545,
+        "endLine": 1566,
+        "sha256": "09c8690482d983fcb274ee608d97c6202db70a1789aeb3adea1d228314047579",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/overworld.c",
+        "name": "WarpIntoMap",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 583,
+        "endLine": 588,
+        "sha256": "bf46b637e46bf2c50951181f2dcc921a163c6b444ad1dd031915ec3d518cb7a4",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/field_screen_effect.c",
+        "name": "Task_RushInjuredPokemonToCenter",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 387,
+        "endLine": 452,
+        "sha256": "d8ab4e990bf5b9e19212749437cad938979e73b1cc77a3259d51376d495f45eb",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/field_screen_effect.c",
+        "name": "FieldCB_RushInjuredPokemonToCenter",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 454,
+        "endLine": 462,
+        "sha256": "69463c93455270e1bdd0153fa337d242f0e71bf1f8f97f709a509b2cff41c933",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/scrcmd.c",
+        "name": "ScrCmd_setvar",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 336,
+        "endLine": 341,
+        "sha256": "ba7559f055fa8e2ca72028d20637876ffb076d31f6474a59c7fb213bbd018c91",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/scrcmd.c",
+        "name": "ScrCmd_clearflag",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 564,
+        "endLine": 568,
+        "sha256": "fa19c1c80365e61e5bf811eb7e3f6cc50aa952df94fc389e340a8332a8b62fb3",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "src/scrcmd.c",
+        "name": "ScrCmd_cleartrainerflag",
+        "kind": "function-evidence-not-compiled",
+        "startLine": 1927,
+        "endLine": 1933,
+        "sha256": "c5ce6c4155b56dd11d5c8e707cc22e5ec82c6b6ef56db707fdd76474bd528b61",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "data/battle_scripts_1.s",
+        "name": "BattleScript_LocalBattleLost",
+        "kind": "script-evidence-not-compiled",
+        "startLine": 2925,
+        "endLine": 2929,
+        "sha256": "e76c6f6817d0b2941937e207a563beed23541a8d94f38fd06ea79ed96621d4dd",
+        "transformation": "none; complete selected source text retained"
+      },
+      {
+        "source": "data/event_scripts.s",
+        "name": "EventScript_OutOfCenterPartyHeal",
+        "kind": "script-evidence-not-compiled",
+        "startLine": 1087,
+        "endLine": 1093,
+        "sha256": "3bd46b7d4b886785c8f4e79a131e122a617bdd9f4dade00f1ceee5e458cba872",
+        "transformation": "none; complete selected source text retained"
+      }
+    ],
+    "transformations": [
+      "Private sole-Squirtle lost/draw continuation; deferred source faint friendship executes exactly once per admitted continuation.",
+      "Complete Pokemon/money/heal/respawn functions use projected scalar state; save money encryption key is fixed zero, not a source save-file representation.",
+      "Elite Four reset is the exact finite source call/operation list, not a general event-script VM.",
+      "CB2 mechanical sequence runs without 120-frame/audio/map-load/presentation waits. WarpIntoMap records a pending external application; no map is loaded.",
+      "All20 canonical heal rows are supported; invalid last-heal and Trainer Tower override context reject before source indexing.",
+      "Source full-tuple home/center branch plus Brock text branch selects pending arrival script only; dialogue/NPC/fanfare/repeated heal is not executed.",
+      "No admitted source function consumes RNG; unexpected random, positive-friendship metadata or unsupported services trap.",
+      "Raw state validates future-read state; strict host restore additionally replays immutable admission/context to prove history."
+    ],
+    "outputs": [
+      {
+        "path": "constants/abilities.h",
+        "bytes": 2407,
+        "sha256": "1c1b93de5d5ff65d8b3066e9b40229b5d30e02842e587e3851a1d708ece1292b"
+      },
+      {
+        "path": "constants/battle.h",
+        "bytes": 16440,
+        "sha256": "b9d0493af4629d450050637e9aace63b684b282f841bed2a0d97b1d71e9d55e3"
+      },
+      {
+        "path": "constants/flags.h",
+        "bytes": 95397,
+        "sha256": "45f31e4dc3d42c1054463974cd31b1173bdd4cb6d9f94b2cdbf2c88b0f745493"
+      },
+      {
+        "path": "constants/global.h",
+        "bytes": 3785,
+        "sha256": "7ecf4a63c7be65328135a75f8620786e40343bbe7688e7017e6d780526fd6a0c"
+      },
+      {
+        "path": "constants/heal_locations.h",
+        "bytes": 965,
+        "sha256": "15ab04e15caacd3b6027094cb697182b9f5e4544f3156de6bcd6bdaecceb748a"
+      },
+      {
+        "path": "constants/hold_effects.h",
+        "bytes": 2637,
+        "sha256": "e763fdbbef19ba6999a7151094cf26734323414237ebb1afcf2f453f65c2f661"
+      },
+      {
+        "path": "constants/items.h",
+        "bytes": 12436,
+        "sha256": "af17276346eaecc5a10ac60f14b22c33332ec8c6fb0ec82895bdc3649b678138"
+      },
+      {
+        "path": "constants/map_event_ids.h",
+        "bytes": 11617,
+        "sha256": "8e04ac77282f1c5d4b23d62ea28ad3afdcd469d80324a7dededb66f6bc9fb136"
+      },
+      {
+        "path": "constants/map_groups.h",
+        "bytes": 28486,
+        "sha256": "86f00ce61a8e88de0a73ef582476c7e03e804bbd70ee6a2877249894526683ad"
+      },
+      {
+        "path": "constants/map_types.h",
+        "bytes": 1034,
+        "sha256": "21b9dc465effd752f859c25d22fee121da8f56e245b1f65ad022af0f9a8008fa"
+      },
+      {
+        "path": "constants/maps.h",
+        "bytes": 1114,
+        "sha256": "fd72a95bb4bd8c589630826d745814beaafe7a8518ffa3fb7927bf16d670a7dd"
+      },
+      {
+        "path": "constants/moves.h",
+        "bytes": 10249,
+        "sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194"
+      },
+      {
+        "path": "constants/opponents.h",
+        "bytes": 39946,
+        "sha256": "01ae04c7fd3837c818f1b9ef082313cfeee4c9d3907441b4e192865a626247ee"
+      },
+      {
+        "path": "constants/pokemon.h",
+        "bytes": 10894,
+        "sha256": "9cabd203100ae7246bc595b7295e7e04145f6292abfab83c3bd0597a2cfbcfb5"
+      },
+      {
+        "path": "constants/species.h",
+        "bytes": 12982,
+        "sha256": "ec3f9f9c2717dcd453aa7a27506c32e1e6ca067864534dee494695d74344c51a"
+      },
+      {
+        "path": "constants/trainers.h",
+        "bytes": 20887,
+        "sha256": "5f6e6585ba511fcf11f970f60132f45db35caf6cec9f6ae56b6bc57b979366c9"
+      },
+      {
+        "path": "constants/vars.h",
+        "bytes": 17306,
+        "sha256": "be26624aac5cbc9ea4d364d5cc33500b4b6c7ecd47812a50b961d948f6914b12"
+      },
+      {
+        "path": "loss.c",
+        "bytes": 15158,
+        "sha256": "fab2fb8888672495de6d9b2aee66c3451e14c4ebac8fee486bbaae3d860c95a7"
+      },
+      {
+        "path": "source_data.inc",
+        "bytes": 40648,
+        "sha256": "fdd23d21dbc75783cb1948d56cfd8f6aca209d1617e1df03f57b4141c4b469df"
+      },
+      {
+        "path": "source_evidence.txt",
+        "bytes": 15669,
+        "sha256": "867a59c5a978e4483862a746751f7bc8d353c468499ef98d3e03a963a7f16258"
+      },
+      {
+        "path": "source_functions.inc",
+        "bytes": 17466,
+        "sha256": "3896efafb33ae7c24594b1346aeed6ae538ef8aa9a9b8eedc5d308699bc550fa"
+      }
+    ],
+    "buildScripts": [
+      {
+        "path": "tools/battle-spike/extract.py",
+        "sha256": "26a391b8cd05db4ea3513e91b5502b247d4391f163f1990a4b46c940ac8e4031"
+      },
+      {
+        "path": "tools/battle-loss/extract.py",
+        "sha256": "061bd04d1fe18777c8fa4da08a5daeefc9a9c44fa4d9f5ca1a004118f51a4476"
+      },
+      {
+        "path": "tools/battle-loss/build.py",
+        "sha256": "186867ea9eebb3b0920c98b8ef5e34e436081784e7ed8897b0723419e712b277"
+      }
+    ]
+  }
+}

@@ -1,0 +1,696 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-30T15:42:48.142Z",
+  "status": "passed",
+  "scope": "Dependency audit only; encounter generation is verified separately and no live battle is admitted",
+  "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+  "profileId": "r1-squirtle-v1",
+  "contentHash": "d47ce3fa2c4c2c38e1cbae0b62f2c70ff502f06a267c7fa197d0f55bf4bd393a",
+  "route": {
+    "mapId": "MAP_ROUTE1",
+    "name": "Route 1",
+    "method": "land",
+    "sourceLabel": "sRoute1_FireRed",
+    "sourceRate": 21,
+    "slots": [
+      {
+        "slot": 0,
+        "weight": 20,
+        "minLevel": 3,
+        "maxLevel": 3,
+        "species": {
+          "id": 16,
+          "symbol": "SPECIES_PIDGEY"
+        }
+      },
+      {
+        "slot": 1,
+        "weight": 20,
+        "minLevel": 3,
+        "maxLevel": 3,
+        "species": {
+          "id": 19,
+          "symbol": "SPECIES_RATTATA"
+        }
+      },
+      {
+        "slot": 2,
+        "weight": 10,
+        "minLevel": 3,
+        "maxLevel": 3,
+        "species": {
+          "id": 16,
+          "symbol": "SPECIES_PIDGEY"
+        }
+      },
+      {
+        "slot": 3,
+        "weight": 10,
+        "minLevel": 3,
+        "maxLevel": 3,
+        "species": {
+          "id": 19,
+          "symbol": "SPECIES_RATTATA"
+        }
+      },
+      {
+        "slot": 4,
+        "weight": 10,
+        "minLevel": 2,
+        "maxLevel": 2,
+        "species": {
+          "id": 16,
+          "symbol": "SPECIES_PIDGEY"
+        }
+      },
+      {
+        "slot": 5,
+        "weight": 10,
+        "minLevel": 2,
+        "maxLevel": 2,
+        "species": {
+          "id": 19,
+          "symbol": "SPECIES_RATTATA"
+        }
+      },
+      {
+        "slot": 6,
+        "weight": 5,
+        "minLevel": 3,
+        "maxLevel": 3,
+        "species": {
+          "id": 16,
+          "symbol": "SPECIES_PIDGEY"
+        }
+      },
+      {
+        "slot": 7,
+        "weight": 5,
+        "minLevel": 3,
+        "maxLevel": 3,
+        "species": {
+          "id": 19,
+          "symbol": "SPECIES_RATTATA"
+        }
+      },
+      {
+        "slot": 8,
+        "weight": 4,
+        "minLevel": 4,
+        "maxLevel": 4,
+        "species": {
+          "id": 16,
+          "symbol": "SPECIES_PIDGEY"
+        }
+      },
+      {
+        "slot": 9,
+        "weight": 4,
+        "minLevel": 4,
+        "maxLevel": 4,
+        "species": {
+          "id": 19,
+          "symbol": "SPECIES_RATTATA"
+        }
+      },
+      {
+        "slot": 10,
+        "weight": 1,
+        "minLevel": 5,
+        "maxLevel": 5,
+        "species": {
+          "id": 16,
+          "symbol": "SPECIES_PIDGEY"
+        }
+      },
+      {
+        "slot": 11,
+        "weight": 1,
+        "minLevel": 4,
+        "maxLevel": 4,
+        "species": {
+          "id": 19,
+          "symbol": "SPECIES_RATTATA"
+        }
+      }
+    ]
+  },
+  "importedMapEvidence": {
+    "mapId": "MAP_ROUTE1",
+    "sha256": "d3cec4551bad92ccbaa4ff05dc6e7ef624eb78f0c0a63d9f00c88438316d6249",
+    "grassBlocks": 178,
+    "behavior": 2,
+    "attributes": 16777730
+  },
+  "speciesShares": [
+    {
+      "speciesId": 16,
+      "weight": 50
+    },
+    {
+      "speciesId": 19,
+      "weight": 50
+    }
+  ],
+  "initialTeams": [
+    {
+      "speciesId": 7,
+      "level": 5,
+      "species": "SPECIES_SQUIRTLE",
+      "moves": [
+        {
+          "id": 33,
+          "symbol": "MOVE_TACKLE"
+        },
+        {
+          "id": 39,
+          "symbol": "MOVE_TAIL_WHIP"
+        }
+      ],
+      "abilities": [
+        {
+          "id": 67,
+          "symbol": "ABILITY_TORRENT"
+        }
+      ]
+    },
+    {
+      "speciesId": 16,
+      "level": 3,
+      "species": "SPECIES_PIDGEY",
+      "moves": [
+        {
+          "id": 33,
+          "symbol": "MOVE_TACKLE"
+        }
+      ],
+      "abilities": [
+        {
+          "id": 51,
+          "symbol": "ABILITY_KEEN_EYE"
+        }
+      ]
+    },
+    {
+      "speciesId": 19,
+      "level": 3,
+      "species": "SPECIES_RATTATA",
+      "moves": [
+        {
+          "id": 33,
+          "symbol": "MOVE_TACKLE"
+        },
+        {
+          "id": 39,
+          "symbol": "MOVE_TAIL_WHIP"
+        }
+      ],
+      "abilities": [
+        {
+          "id": 50,
+          "symbol": "ABILITY_RUN_AWAY"
+        },
+        {
+          "id": 62,
+          "symbol": "ABILITY_GUTS"
+        }
+      ]
+    },
+    {
+      "speciesId": 16,
+      "level": 2,
+      "species": "SPECIES_PIDGEY",
+      "moves": [
+        {
+          "id": 33,
+          "symbol": "MOVE_TACKLE"
+        }
+      ],
+      "abilities": [
+        {
+          "id": 51,
+          "symbol": "ABILITY_KEEN_EYE"
+        }
+      ]
+    },
+    {
+      "speciesId": 19,
+      "level": 2,
+      "species": "SPECIES_RATTATA",
+      "moves": [
+        {
+          "id": 33,
+          "symbol": "MOVE_TACKLE"
+        },
+        {
+          "id": 39,
+          "symbol": "MOVE_TAIL_WHIP"
+        }
+      ],
+      "abilities": [
+        {
+          "id": 50,
+          "symbol": "ABILITY_RUN_AWAY"
+        },
+        {
+          "id": 62,
+          "symbol": "ABILITY_GUTS"
+        }
+      ]
+    },
+    {
+      "speciesId": 16,
+      "level": 4,
+      "species": "SPECIES_PIDGEY",
+      "moves": [
+        {
+          "id": 33,
+          "symbol": "MOVE_TACKLE"
+        }
+      ],
+      "abilities": [
+        {
+          "id": 51,
+          "symbol": "ABILITY_KEEN_EYE"
+        }
+      ]
+    },
+    {
+      "speciesId": 19,
+      "level": 4,
+      "species": "SPECIES_RATTATA",
+      "moves": [
+        {
+          "id": 33,
+          "symbol": "MOVE_TACKLE"
+        },
+        {
+          "id": 39,
+          "symbol": "MOVE_TAIL_WHIP"
+        }
+      ],
+      "abilities": [
+        {
+          "id": 50,
+          "symbol": "ABILITY_RUN_AWAY"
+        },
+        {
+          "id": 62,
+          "symbol": "ABILITY_GUTS"
+        }
+      ]
+    },
+    {
+      "speciesId": 16,
+      "level": 5,
+      "species": "SPECIES_PIDGEY",
+      "moves": [
+        {
+          "id": 33,
+          "symbol": "MOVE_TACKLE"
+        },
+        {
+          "id": 28,
+          "symbol": "MOVE_SAND_ATTACK"
+        }
+      ],
+      "abilities": [
+        {
+          "id": 51,
+          "symbol": "ABILITY_KEEN_EYE"
+        }
+      ]
+    }
+  ],
+  "firstBattleMoveIds": [
+    28,
+    33,
+    39,
+    165
+  ],
+  "mandatoryFallback": {
+    "id": 165,
+    "symbol": "MOVE_STRUGGLE",
+    "definitionImported": false,
+    "syntheticAdapterImplemented": false
+  },
+  "syntheticAdapterMoveAdmission": [
+    {
+      "moveId": 28,
+      "admitted": false
+    },
+    {
+      "moveId": 33,
+      "admitted": true
+    },
+    {
+      "moveId": 39,
+      "admitted": false
+    },
+    {
+      "moveId": 55,
+      "admitted": true
+    },
+    {
+      "moveId": 77,
+      "admitted": true
+    },
+    {
+      "moveId": 98,
+      "admitted": true
+    },
+    {
+      "moveId": 165,
+      "admitted": false
+    }
+  ],
+  "liveBattleReady": false,
+  "repeatedEncounterClosure": {
+    "species": [
+      {
+        "id": 7,
+        "symbol": "SPECIES_SQUIRTLE"
+      },
+      {
+        "id": 8,
+        "symbol": "SPECIES_WARTORTLE"
+      },
+      {
+        "id": 9,
+        "symbol": "SPECIES_BLASTOISE"
+      },
+      {
+        "id": 16,
+        "symbol": "SPECIES_PIDGEY"
+      },
+      {
+        "id": 17,
+        "symbol": "SPECIES_PIDGEOTTO"
+      },
+      {
+        "id": 18,
+        "symbol": "SPECIES_PIDGEOT"
+      },
+      {
+        "id": 19,
+        "symbol": "SPECIES_RATTATA"
+      },
+      {
+        "id": 20,
+        "symbol": "SPECIES_RATICATE"
+      }
+    ],
+    "levelUpMoves": [
+      {
+        "id": 16,
+        "symbol": "MOVE_GUST",
+        "effect": {
+          "id": 149,
+          "symbol": "EFFECT_GUST"
+        }
+      },
+      {
+        "id": 17,
+        "symbol": "MOVE_WING_ATTACK",
+        "effect": {
+          "id": 0,
+          "symbol": "EFFECT_HIT"
+        }
+      },
+      {
+        "id": 18,
+        "symbol": "MOVE_WHIRLWIND",
+        "effect": {
+          "id": 28,
+          "symbol": "EFFECT_ROAR"
+        }
+      },
+      {
+        "id": 28,
+        "symbol": "MOVE_SAND_ATTACK",
+        "effect": {
+          "id": 23,
+          "symbol": "EFFECT_ACCURACY_DOWN"
+        }
+      },
+      {
+        "id": 33,
+        "symbol": "MOVE_TACKLE",
+        "effect": {
+          "id": 0,
+          "symbol": "EFFECT_HIT"
+        }
+      },
+      {
+        "id": 39,
+        "symbol": "MOVE_TAIL_WHIP",
+        "effect": {
+          "id": 19,
+          "symbol": "EFFECT_DEFENSE_DOWN"
+        }
+      },
+      {
+        "id": 44,
+        "symbol": "MOVE_BITE",
+        "effect": {
+          "id": 31,
+          "symbol": "EFFECT_FLINCH_HIT"
+        }
+      },
+      {
+        "id": 55,
+        "symbol": "MOVE_WATER_GUN",
+        "effect": {
+          "id": 0,
+          "symbol": "EFFECT_HIT"
+        }
+      },
+      {
+        "id": 56,
+        "symbol": "MOVE_HYDRO_PUMP",
+        "effect": {
+          "id": 0,
+          "symbol": "EFFECT_HIT"
+        }
+      },
+      {
+        "id": 97,
+        "symbol": "MOVE_AGILITY",
+        "effect": {
+          "id": 52,
+          "symbol": "EFFECT_SPEED_UP_2"
+        }
+      },
+      {
+        "id": 98,
+        "symbol": "MOVE_QUICK_ATTACK",
+        "effect": {
+          "id": 103,
+          "symbol": "EFFECT_QUICK_ATTACK"
+        }
+      },
+      {
+        "id": 110,
+        "symbol": "MOVE_WITHDRAW",
+        "effect": {
+          "id": 11,
+          "symbol": "EFFECT_DEFENSE_UP"
+        }
+      },
+      {
+        "id": 116,
+        "symbol": "MOVE_FOCUS_ENERGY",
+        "effect": {
+          "id": 47,
+          "symbol": "EFFECT_FOCUS_ENERGY"
+        }
+      },
+      {
+        "id": 119,
+        "symbol": "MOVE_MIRROR_MOVE",
+        "effect": {
+          "id": 9,
+          "symbol": "EFFECT_MIRROR_MOVE"
+        }
+      },
+      {
+        "id": 130,
+        "symbol": "MOVE_SKULL_BASH",
+        "effect": {
+          "id": 145,
+          "symbol": "EFFECT_SKULL_BASH"
+        }
+      },
+      {
+        "id": 145,
+        "symbol": "MOVE_BUBBLE",
+        "effect": {
+          "id": 70,
+          "symbol": "EFFECT_SPEED_DOWN_HIT"
+        }
+      },
+      {
+        "id": 158,
+        "symbol": "MOVE_HYPER_FANG",
+        "effect": {
+          "id": 31,
+          "symbol": "EFFECT_FLINCH_HIT"
+        }
+      },
+      {
+        "id": 162,
+        "symbol": "MOVE_SUPER_FANG",
+        "effect": {
+          "id": 40,
+          "symbol": "EFFECT_SUPER_FANG"
+        }
+      },
+      {
+        "id": 182,
+        "symbol": "MOVE_PROTECT",
+        "effect": {
+          "id": 111,
+          "symbol": "EFFECT_PROTECT"
+        }
+      },
+      {
+        "id": 184,
+        "symbol": "MOVE_SCARY_FACE",
+        "effect": {
+          "id": 60,
+          "symbol": "EFFECT_SPEED_DOWN_2"
+        }
+      },
+      {
+        "id": 228,
+        "symbol": "MOVE_PURSUIT",
+        "effect": {
+          "id": 128,
+          "symbol": "EFFECT_PURSUIT"
+        }
+      },
+      {
+        "id": 229,
+        "symbol": "MOVE_RAPID_SPIN",
+        "effect": {
+          "id": 129,
+          "symbol": "EFFECT_RAPID_SPIN"
+        }
+      },
+      {
+        "id": 240,
+        "symbol": "MOVE_RAIN_DANCE",
+        "effect": {
+          "id": 136,
+          "symbol": "EFFECT_RAIN_DANCE"
+        }
+      },
+      {
+        "id": 283,
+        "symbol": "MOVE_ENDEAVOR",
+        "effect": {
+          "id": 189,
+          "symbol": "EFFECT_ENDEAVOR"
+        }
+      },
+      {
+        "id": 297,
+        "symbol": "MOVE_FEATHER_DANCE",
+        "effect": {
+          "id": 58,
+          "symbol": "EFFECT_ATTACK_DOWN_2"
+        }
+      }
+    ],
+    "additionalFallback": 165,
+    "note": "Evolution-family level-up definition closure, not a proof of every reachable mechanics path. No hidden level cap."
+  },
+  "firstVictory": {
+    "initialExperience": 135,
+    "maximumUnboostedAward": 39,
+    "level6Threshold": 179,
+    "level7Threshold": 236,
+    "nextNewSquirtleMove": {
+      "id": 145,
+      "symbol": "MOVE_BUBBLE",
+      "level": 7
+    }
+  },
+  "dependencyChecklist": [
+    "real species/ability battle initialization",
+    "Tail Whip and Sand-Attack source commands",
+    "Struggle and wild choice/PP rules",
+    "run and available bag commands",
+    "durable encounter admission and choice/snapshot transactions",
+    "HP/PP, experience/EV, level/move/evolution continuations",
+    "capture ownership/storage and faint/loss continuation",
+    "private projections and restart/unknown-COMMIT recovery"
+  ],
+  "capabilityBoundary": "Move admission above describes only the retained synthetic adapter. Later real-team profile evidence is recorded separately; this source dependency ledger does not establish live readiness.",
+  "sourceEvidence": [
+    {
+      "path": "src/wild_encounter.c",
+      "sha256": "06021f7ef390bbb49a7801ca44def3a67380c53e5ab5fd211e472fc53b10ca8f"
+    },
+    {
+      "path": "src/random.c",
+      "sha256": "e7e90cc070d1fbf09579f5f91762cd8875d5bbe1d7a90f468bcd870df73b9de2"
+    },
+    {
+      "path": "include/random.h",
+      "sha256": "8a6049183598b2d865b5ff522abdb3d0e94012a127d724af46b9b7b69803f5b9"
+    },
+    {
+      "path": "src/pokemon.c",
+      "sha256": "116a470cd9ebfa226aa8d85c2eb63591e176d726837c67baaa1ac6260d50f2ec"
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "sha256": "a6399199987e1bdf8502e9bfdcfc9d8ad57d74df206d22ba20f020492bd3bf7c"
+    },
+    {
+      "path": "src/data/pokemon/species_info.h",
+      "sha256": "9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e"
+    },
+    {
+      "path": "src/data/pokemon/level_up_learnsets.h",
+      "sha256": "d6563a88fa893d1433a02027cb13ba9574a6828a96b1a730b1d767fd7c5a0cc6"
+    },
+    {
+      "path": "src/data/battle_moves.h",
+      "sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384"
+    },
+    {
+      "path": "src/field_control_avatar.c",
+      "sha256": "305daa295f88ce682b2b1868700d2f76012c659cb0df2905e6177a51ee4e9b8d"
+    },
+    {
+      "path": "data/battle_scripts_1.s",
+      "sha256": "27e9c39f3147b05e5ba2ed36ca0c89fcdc9b26718778083bd362c582de800034"
+    },
+    {
+      "path": "src/battle_script_commands.c",
+      "sha256": "3b7341db8cd58c54fb0b54b47e6eef89c5c05e8a60ab4e9b45bdc907845c19b3"
+    },
+    {
+      "path": "src/battle_controller_opponent.c",
+      "sha256": "1b4393635fc4e199203829ad078bda665c9b9c82a487fe17fbd6cac12a5dba98"
+    },
+    {
+      "path": "src/battle_main.c",
+      "sha256": "c290d325761d68c059f02dc21cc6178d4bbefa0d06ffddc8879341c090d37928"
+    },
+    {
+      "path": "src/item_use.c",
+      "sha256": "035ca3bdb70f5708dc8771d2bc6cc5450e775e3144278e7683aacba218cb9c98"
+    },
+    {
+      "path": "src/overworld.c",
+      "sha256": "df352e738b56856765aec65adc6fdea0a4b25fe567bc760d4ce2d34afc6ff7e2"
+    },
+    {
+      "path": "src/heal_location.c",
+      "sha256": "e5853e7d0170a5d66798850efca11181c7b979bd8086ecba9f64e6a104579822"
+    }
+  ]
+}

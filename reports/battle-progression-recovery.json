@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-09-30T15:42:55.529Z",
+  "status": "passed",
+  "profile": "firered-route1-progression-v1",
+  "wasmSha256": "33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539",
+  "sameBuildAndCrossBuildBoundaries": 176,
+  "crossBuildRawContinuations": 386,
+  "freshProcess": {
+    "pid": 8692,
+    "parentPid": 9848,
+    "hostBoundaries": 176,
+    "replayedDecisions": 27,
+    "rawContinuations": 386
+  },
+  "scope": "Pointer-free logical C checkpoints and host admission/decision replay. Raw state validates bounds/phase; full lineage requires host replay. Digests are corruption checks, not authentication."
+}

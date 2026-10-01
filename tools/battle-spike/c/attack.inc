@@ -5,11 +5,20 @@ static u8 sCommandScript[16];
 
 static void BattleScriptPush(const u8 *script)
 {
+#ifdef WATERBLUE_FAMILY
+    if (FamilyMoveAllowed(gCurrentMove) && (script == sFailedScript || script == gBattlescriptCurrInstr + 1)) return;
+#endif
+#ifdef WATERBLUE_ROUTE1
+    if (gCurrentMove == MOVE_STRUGGLE && script == gBattlescriptCurrInstr + 1) return;
+    if ((gCurrentMove == MOVE_TAIL_WHIP || gCurrentMove == MOVE_SAND_ATTACK) && script == sFailedScript) return;
+#endif
     if (gCurrentMove != MOVE_POISON_POWDER || script != gBattlescriptCurrInstr + 1) Unexpected();
     /* Source status script's text/animation/return continuation is transported
        by the host. No nested source script stack is claimed here. */
 }
+#ifndef WATERBLUE_FAMILY
 static void CancelMultiTurnMoves(u8 battler) { (void)battler; Unexpected(); }
+#endif
 static void RecordItemEffectBattle(u8 battler, u8 effect) { (void)battler; (void)effect; Unexpected(); }
 static bool8 BtlCtrl_OakOldMan_TestState2Flag(u8 flag) { (void)flag; Unexpected(); return FALSE; }
 
@@ -24,7 +33,11 @@ static void Command(void)
 }
 static bool8 SupportedMove(u32 move)
 {
+#ifdef WATERBLUE_ROUTE1
+    return Route1SupportedMove(move);
+#else
     return move == MOVE_TACKLE || move == MOVE_WATER_GUN || move == MOVE_QUICK_ATTACK || move == MOVE_POISON_POWDER;
+#endif
 }
 static s32 ActorReady(u32 actor)
 {
@@ -61,7 +74,14 @@ s32 spike2_set_move(u32 actor, u32 slot, u32 move, u32 pp)
     s32 result = ActorReady(actor); if (result) return result;
     if (slot >= MAX_MON_MOVES || pp > 255) return Fail(SPIKE_INVALID_ARGUMENT);
     if (move != MOVE_NONE && !SupportedMove(move)) return Fail(SPIKE_UNSUPPORTED);
+#ifdef WATERBLUE_ROUTE1
+    if (move == MOVE_STRUGGLE) return Fail(SPIKE_UNSUPPORTED); /* automatic action, never a moveset slot */
+#endif
+#ifdef WATERBLUE_FAMILY
+    if (pp > FamilyMaxPP(move, gBattleMons[actor].ppBonuses, slot) || (move == MOVE_NONE && pp != 0)) return Fail(SPIKE_INVALID_ARGUMENT);
+#else
     if (pp > gBattleMoves[move].pp || (move == MOVE_NONE && pp != 0)) return Fail(SPIKE_INVALID_ARGUMENT);
+#endif
     gBattleMons[actor].moves[slot] = move;
     gBattleMons[actor].pp[slot] = pp;
     return Fail(SPIKE_OK);
@@ -82,6 +102,9 @@ s32 spike2_begin_turn(void)
     if (gBattleOutcome || !gBattleMons[0].hp || !gBattleMons[1].hp) return Fail(SPIKE_NOT_READY);
     TurnValuesCleanUp(FALSE);
     SpecialStatusesClear();
+#ifdef WATERBLUE_FAMILY
+    FamilyBeginTurn();
+#endif
     Zero(gBattleCommunication, sizeof(gBattleCommunication));
     for (u32 i = 0; i < gBattlersCount; i++) gChosenActionByBattler[i] = B_ACTION_NONE;
     gHitMarker = 0;
@@ -144,6 +167,9 @@ static void Accuracy(void)
 }
 s32 spike2_attack(u32 actor, u32 slot)
 {
+#ifdef WATERBLUE_ROUTE1
+    return Route1Attack(actor, slot);
+#else
     s32 status = ActorReady(actor); if (status) return status;
     if (slot >= MAX_MON_MOVES) return Fail(SPIKE_INVALID_ARGUMENT);
     u32 target = actor ^ 1;
@@ -194,4 +220,5 @@ s32 spike2_attack(u32 actor, u32 slot)
     gBattlescriptCurrInstr = sTargetScript; Cmd_datahpupdate();
     Command(); Cmd_seteffectwithchance();
     return sStatus;
+#endif
 }

@@ -1,0 +1,22 @@
+﻿{
+    "checkedAt":  "2026-09-30T15:51:44.6606674Z",
+    "status":  "passed",
+    "reason":  "User requested a testing break; no further development or restart until advised.",
+    "stoppedDevelopmentPids":  [
+                                   8296,
+                                   27296,
+                                   2340,
+                                   20904
+                               ],
+    "stoppedPostgresPid":  24936,
+    "backendGracefulStopObserved":  true,
+    "postgresStopExitCode":  0,
+    "remainingProjectProcesses":  [
+
+                                  ],
+    "remainingListeners":  [
+
+                           ],
+    "dataDirectoryRetained":  true,
+    "postmasterPidRemoved":  true
+}

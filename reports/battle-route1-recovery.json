@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "checkedAt": "2026-09-30T15:42:51.243Z",
+  "scope": "Private battle checkpoints only; no database, durable rewards, live transport or client save authority",
+  "crossBuildRestores": 65,
+  "crossBuildReplayedTransitions": 95,
+  "interleavedTransitions": 7,
+  "freshProcess": {
+    "parentPid": 27908,
+    "pid": 1328,
+    "checkpoints": 65,
+    "replayedTransitions": 95
+  },
+  "rejectedChoices": 10,
+  "rejectedCheckpoints": [
+    "header",
+    "version",
+    "word-count",
+    "reserved",
+    "rng-state",
+    "rng-count",
+    "intro-missing",
+    "run-byte",
+    "species",
+    "ability",
+    "stats",
+    "max-hp",
+    "healed-hp",
+    "illegal-move",
+    "excess-pp",
+    "boosted-stage",
+    "unsupported-speed-stage",
+    "status",
+    "turn",
+    "sequence",
+    "outcome",
+    "illegal-wild-choice",
+    "party-species",
+    "party-hp",
+    "hidden-party",
+    "initial-overflow",
+    "source"
+  ],
+  "rawAtomicRejections": [
+    "magic",
+    "version",
+    "count",
+    "intro",
+    "run",
+    "reserved",
+    "identity",
+    "ability",
+    "rng",
+    "pp",
+    "stage",
+    "duplicate-word",
+    "out-of-range-word",
+    "incomplete-stage"
+  ],
+  "candidateCounterExhaustion": [
+    "rng-safe-integer",
+    "event-sequence-safe-integer"
+  ],
+  "boundedAiExhaustionProcess": {
+    "status": "passed",
+    "pid": 27652,
+    "checks": [
+      "outer-depleted-slot-loop-traps",
+      "inner-empty-slot-loop-traps",
+      "next-turn-ai-trap-discards-host-candidate"
+    ]
+  },
+  "trustedStateLimit": "Valid handcrafted private continuation states are allowed; no signature or historical reachability proof is claimed.",
+  "atomicity": "Failed raw imports preserve accepted logical state; source execution occurs in isolated candidates and failed candidates are discarded."
+}
