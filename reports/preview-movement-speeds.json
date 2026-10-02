@@ -1,69 +1,69 @@
 {
-  "checkedAt": "2026-10-02T13:55:27.543Z",
+  "checkedAt": "2026-10-02T15:09:42.364Z",
   "run": [
     {
-      "milliseconds": 166.89999999850988,
+      "milliseconds": 165.40000000596046,
       "mode": "run",
       "frames": 8
     },
     {
-      "milliseconds": 150.70000000298023,
+      "milliseconds": 165.79999999701977,
       "mode": "run",
       "frames": 8
     },
     {
-      "milliseconds": 151.89999999850988,
+      "milliseconds": 166.59999999403954,
       "mode": "run",
       "frames": 8
     }
   ],
   "walk": [
     {
-      "milliseconds": 282.69999999552965,
+      "milliseconds": 298.1000000089407,
       "mode": "walk",
       "frames": 16
     },
     {
-      "milliseconds": 286.69999999552965,
+      "milliseconds": 282.5,
       "mode": "walk",
       "frames": 16
     },
     {
-      "milliseconds": 298.69999999552965,
+      "milliseconds": 284.40000000596046,
       "mode": "walk",
       "frames": 16
     }
   ],
   "released": [
     {
-      "milliseconds": 284.6000000014901,
+      "milliseconds": 299.20000000298023,
       "mode": "walk",
       "frames": 16
     },
     {
-      "milliseconds": 301.3999999985099,
+      "milliseconds": 299.70000000298023,
       "mode": "walk",
       "frames": 16
     },
     {
-      "milliseconds": 283,
+      "milliseconds": 296.40000000596046,
       "mode": "walk",
       "frames": 16
     }
   ],
   "indoor": [
     {
-      "milliseconds": 301.3999999985099,
+      "milliseconds": 283.6000000089407,
       "mode": "walk",
       "frames": 16
     },
     {
-      "milliseconds": 284.5,
+      "milliseconds": 300.20000000298023,
       "mode": "walk",
       "frames": 16
     },
     {
-      "milliseconds": 284.19999999552965,
+      "milliseconds": 283.5,
       "mode": "walk",
       "frames": 16
     }

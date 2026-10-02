@@ -2,6 +2,8 @@ import { randomUUID } from 'node:crypto';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { practiceSessionSchema, type PracticeSetup } from '@pokewaterblue/protocol';
 import { loadPracticeEngine, PracticeEngineError, type PracticeEngine, type PracticeStored } from './practice-engine.js';
+import { createPursuitDiagnostic, loadPursuitEngine, makePursuitRng, pursuitConfig, PURSUIT_PROFILE } from '../../../tools/battle-pursuit/engine.js';
+import { MIRROR_PROFILE } from '../../../tools/battle-mirror/engine.js';
 
 let engine: PracticeEngine;
 beforeAll(async () => { engine = await loadPracticeEngine(); });
@@ -57,6 +59,32 @@ describe('source-validated practice facade', () => {
     expect(view.events.some(row => row.text.includes('Pursuit intercepted'))).toBe(true);
     expect(view.events.some(row => row.text === 'Go, PIDGEOT!')).toBe(true);
     expect(view.presentation.party[0]!.hp).toBeLessThan(engine.project(id, initial).presentation.party[0]!.hp);
+  });
+  it('makes Mirror Move immediately playable and spends only its selected PP', () => {
+    const id = randomUUID(), preset = engine.catalogue().presets.find(row => row.id === 'mirror-move')!;
+    const initial = engine.create(id, preset.setup), before = engine.project(id, initial);
+    expect(initial.snapshot.config.compatibility.rulesVersion).toBe(MIRROR_PROFILE);
+    expect(engine.catalogue().moves).toHaveLength(25);
+    expect(engine.catalogue().species.find(row => row.id === 16)!.moves).toContainEqual({ id: 119, level: 47 });
+    const next = engine.advance(initial, { kind: 'move', slot: 0 }), view = engine.project(id, next);
+    expect(view.events.some(row => row.text.includes('MIRROR MOVE and copied BUBBLE'))).toBe(true);
+    expect(view.presentation.self.moves[0]!.pp).toBe(before.presentation.self.moves[0]!.pp - 1);
+    expect(view.presentation.self.moves.slice(1)).toEqual(before.presentation.self.moves.slice(1));
+    expect(view.presentation.opponent.hpPercent).toBeLessThan(before.presentation.opponent.hpPercent);
+    expect(engine.restore(JSON.parse(JSON.stringify(next)))).toEqual(next);
+  });
+  it('resumes an existing Pursuit save with its original engine compatibility', async () => {
+    const id = randomUUID(), stored = engine.create(id, setup()), oldEngine = await loadPursuitEngine();
+    const admission = rawCheckpoint(stored).admission;
+    const initial = createPursuitDiagnostic({ seed: admission.seed, player: admission.player, opponent: admission.opponent });
+    const legacy = { ...stored, snapshot: oldEngine.createBattle(pursuitConfig(oldEngine, id), initial, makePursuitRng(id, initial)) };
+    const compatibility = structuredClone(legacy.snapshot.config.compatibility);
+    expect(engine.restore(JSON.parse(JSON.stringify(legacy)))).toEqual(legacy);
+    const next = engine.advance(legacy, { kind: 'move', slot: 0 });
+    expect(next.snapshot.config.compatibility).toEqual(compatibility);
+    expect(next.snapshot.config.compatibility.rulesVersion).toBe(PURSUIT_PROFILE);
+    expect(next.snapshot.transitionSequence).toBe(1);
+    expect(engine.restore(next)).toEqual(next);
   });
   it('rejects incompatible or unbound persisted setup and stale charge decisions', () => {
     const preset = engine.catalogue().presets.find(row => row.id === 'protect-and-charge')!, id = randomUUID();

@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-02T13:58:26.155Z",
-  "movingRenderFrames": 34,
+  "checkedAt": "2026-10-02T15:12:31.066Z",
+  "movingRenderFrames": 31,
   "renderedLeftEdges": [
     112
   ],
@@ -17,5 +17,5 @@
     -12,
     -9
   ],
-  "cameraTravelY": 32
+  "cameraTravelY": 31
 }

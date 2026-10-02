@@ -394,7 +394,10 @@ export class CharacterService {
             outcome = await this.transaction(async client => {
               const { row, receipt } = await read(client);
               if (receipt) return { character: receipt, latest: view(row), replayed: true };
-              if (row.activity === 'battle') fail('BUSY', 'Practice is saved after every action. Close practice before saving your world profile.');
+              // The receipt lookup above proves this UUID has not committed.
+              // A finished grass step may just have admitted battle; this is a
+              // definitive activity rejection, not transient room backpressure.
+              if (row.activity === 'battle') fail('STALE_REVISION', 'Your trainer entered a battle. Battle progress is saved after every action.');
               if (row.activity_id !== command.activityId || !['recovering', ...(savedLocation ? ['overworld'] : [])].includes(row.activity) || !['awaiting-new-game', 'development-fixture'].includes(row.stage)) fail('RECONNECT_REQUIRED', 'This command does not belong to the current trainer activity.');
               if (Number(row.revision) !== command.expectedRevision) fail('STALE_REVISION', 'The trainer profile changed. Refresh its current snapshot.');
               if (command.expectedRevision >= Number.MAX_SAFE_INTEGER) fail('RECONNECT_REQUIRED', 'Trainer revision capacity is exhausted.');

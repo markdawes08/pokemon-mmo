@@ -1,0 +1,118 @@
+{
+  "checkedAt": "2026-10-02T15:15:06.545Z",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "client",
+      "status": "passed"
+    },
+    {
+      "name": "direct-ready",
+      "status": "passed"
+    },
+    {
+      "name": "proxied-ready",
+      "status": "passed"
+    },
+    {
+      "name": "retained-client-served",
+      "status": "passed"
+    },
+    {
+      "name": "both-existing-one-click-trainers-listed-without-sign-in",
+      "status": "passed"
+    },
+    {
+      "name": "wild-migration-present-with-unchanged-checksum",
+      "status": "passed"
+    },
+    {
+      "name": "existing-saved-testing-battles-restore-read-only",
+      "status": "passed",
+      "count": 0
+    },
+    {
+      "name": "mirror-catalogue-and-preset-source-engine-ready",
+      "status": "passed"
+    },
+    {
+      "name": "user-testing-accounts-preserved-read-only",
+      "status": "passed"
+    },
+    {
+      "name": "three-loopback-listeners",
+      "status": "passed"
+    },
+    {
+      "name": "retained-dev-tree-and-no-test-owned-node-or-zig",
+      "status": "passed"
+    }
+  ],
+  "launch": {
+    "launchedAt": "2026-10-02T15:14:44.7498700Z",
+    "command": "node scripts/run.mjs dev",
+    "launcherPid": 35248,
+    "supervisorPid": 30772,
+    "backendPid": 31260,
+    "clientPid": 34880,
+    "mode": "foreground-tool-session",
+    "toolSessionId": 38062,
+    "status": "running",
+    "output": "Streamed to owning exec tool session; no detached log files."
+  },
+  "listeners": [
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 5433,
+      "OwningProcess": 28864
+    },
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 5173,
+      "OwningProcess": 34880
+    },
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 2567,
+      "OwningProcess": 31260
+    }
+  ],
+  "ordinaryTestingAccounts": [
+    {
+      "name": "ADMINA",
+      "stage": "development-fixture",
+      "activity": "overworld",
+      "hasSavedBattle": false
+    },
+    {
+      "name": "ADMINB",
+      "stage": "development-fixture",
+      "activity": "overworld",
+      "hasSavedBattle": false
+    }
+  ],
+  "retainedDevelopmentNodeTree": [
+    {
+      "ProcessId": 35248,
+      "ParentProcessId": 34184,
+      "Name": "node.exe"
+    },
+    {
+      "ProcessId": 30772,
+      "ParentProcessId": 35248,
+      "Name": "node.exe"
+    },
+    {
+      "ProcessId": 31260,
+      "ParentProcessId": 30772,
+      "Name": "node.exe"
+    },
+    {
+      "ProcessId": 34880,
+      "ParentProcessId": 30772,
+      "Name": "node.exe"
+    }
+  ],
+  "testOwnedNodeOrZigRemaining": false,
+  "scope": "Read-only live development health, current client marker, loopback listeners and existence of the user testing accounts and read-only restore validation of their saved battles. No user-account login, fixture reset, or gameplay mutation."
+}

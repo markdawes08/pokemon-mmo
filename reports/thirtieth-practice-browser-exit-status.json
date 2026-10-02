@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-02T14:29:56.336393+00:00",
+  "commands": [
+    {
+      "stage": "test:e2e",
+      "exitCode": 1
+    }
+  ],
+  "log": ".local\\thirtieth-practice-browser.log",
+  "status": "failed"
+}

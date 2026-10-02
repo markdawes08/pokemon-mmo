@@ -14,7 +14,8 @@ import { ReconnectionBindings } from './reconnection-bindings.js';
 
 type CharacterClient = Client<{
   auth: { identity: AccountSession; characterId: string };
-  userData: { connection: CharacterConnection; busy: boolean; suspended: boolean; awaitingHello: boolean; helloDeadline: number; resumeTimer?: ReturnType<typeof setTimeout>; terminated: boolean; bindingToken: string };
+  userData: { connection: CharacterConnection; busy: boolean; suspended: boolean; awaitingHello: boolean; helloDeadline: number; resumeTimer?: ReturnType<typeof setTimeout>; terminated: boolean; bindingToken: string;
+    maintenance?: boolean; deferredMovement?: { connection: CharacterConnection; operation: () => Promise<void> } };
   messages: { snapshot: CharacterSnapshot; saved: ProfileSaved; error: CharacterError; world: WorldSnapshot; 'world-left': WorldLeft; practice: PracticeSnapshot; 'wild-test': WildTestSnapshot };
 }>;
 interface Grace {
@@ -46,6 +47,7 @@ export function createCharacterRoom(dependencies: {
       const data = client.userData;
       if (data) {
         data.terminated = true; data.suspended = true;
+        data.deferredMovement = undefined;
         clearTimeout(data.resumeTimer); data.resumeTimer = undefined;
         reconnections.remove(data.bindingToken);
         world.detach(data.connection);
@@ -74,7 +76,7 @@ export function createCharacterRoom(dependencies: {
             this.terminate(client, { code: 'RECONNECT_REQUIRED', message: 'The trainer handshake timed out. Reconnect explicitly.' }); continue;
           }
           if (client.userData?.busy || client.userData?.suspended || client.userData?.awaitingHello) continue;
-          void this.run(client, async () => {});
+          void this.run(client, async () => {}, true, false, undefined, true);
         }
         for (const grace of this.grace.values()) {
           if (grace.resuming || grace.heartbeat || grace.client.userData?.terminated) continue;
@@ -107,12 +109,13 @@ export function createCharacterRoom(dependencies: {
         }, true, true);
       });
       this.onMessage('save', (client: CharacterClient, payload: unknown) => {
+        const parsed = saveProfileCommandSchema.safeParse(payload);
+        const identifier = saveProfileCommandSchema.shape.commandId.safeParse(payload && typeof payload === 'object' && !Array.isArray(payload) && 'commandId' in payload ? payload.commandId : undefined);
         void this.run(client, async () => {
-          const parsed = saveProfileCommandSchema.safeParse(payload);
           if (!parsed.success) throw new AccountApiError('INVALID_MESSAGE', 'Invalid profile save command.');
           client.send('saved', await characters.save(client.userData!.connection, parsed.data));
           world.publishFor(client.userData!.connection);
-        });
+        }, true, false, identifier.success ? identifier.data : undefined);
       });
       this.onMessage('world-enter', (client: CharacterClient, payload: unknown) => {
         void this.run(client, async () => {
@@ -133,12 +136,12 @@ export function createCharacterRoom(dependencies: {
       });
       this.onMessage('world-input', (client: CharacterClient, payload: unknown) => {
         // Inputs do not renew/write leases or create receipts. Authenticated 2s heartbeats own renewal.
+        const parsed = worldInputSchema.safeParse(payload);
         void this.run(client, async () => {
-          const parsed = worldInputSchema.safeParse(payload);
           if (!parsed.success) throw new AccountApiError('INVALID_MESSAGE', 'Movement accepts only directional input and current generations.');
           await characters.worldInput(client.userData!.connection, parsed.data);
           world.publishFor(client.userData!.connection);
-        }, false);
+        }, false, false, undefined, false, parsed.success);
       });
       this.onMessage('practice-query', (client: CharacterClient, payload: unknown) => {
         void this.run(client, async () => {
@@ -178,26 +181,50 @@ export function createCharacterRoom(dependencies: {
         void this.run(client, async () => { throw new AccountApiError('UNSUPPORTED_MESSAGE', 'This command is not supported. Normal story battles and rewards remain unavailable.'); });
       });
     }
-    private async run(client: CharacterClient, operation: () => Promise<void>, renew = true, hello = false, commandId?: string) {
-      if (!client.userData || !client.auth) return;
+    private async run(client: CharacterClient, operation: () => Promise<void>, renew = true, hello = false, commandId?: string, maintenance = false, deferMovement = false) {
+      if (!client.userData || !client.auth || this.stopping) return;
       if (client.userData.suspended || client.userData.terminated || client.userData.awaitingHello && !hello) return;
       if (client.userData.awaitingHello && Date.now() >= client.userData.helloDeadline) {
         this.terminate(client, { code: 'RECONNECT_REQUIRED', message: 'The trainer handshake timed out. Reconnect explicitly.' }); return;
       }
-      if (client.userData.busy) { client.send('error', { code: 'BUSY', message: 'Wait for the pending command before retrying.', ...(commandId ? { commandId } : {}) }); return; }
+      if (client.userData.busy) {
+        // Renewal is maintenance, not a player action. Keep at most one parsed
+        // movement behind it so a timely held step does not incur a BUSY retry.
+        // All gameplay commands and excess inputs retain normal backpressure.
+        if (deferMovement && client.userData.maintenance && !client.userData.deferredMovement && !this.stopping) {
+          client.userData.deferredMovement = { connection: client.userData.connection, operation }; return;
+        }
+        client.send('error', { code: 'BUSY', message: 'Wait for the pending command before retrying.', ...(commandId ? { commandId } : {}) }); return;
+      }
       client.userData.busy = true;
+      const data = client.userData, connection = data.connection; data.maintenance = maintenance;
+      const sameConnection = () => client.userData === data && data.connection === connection;
+      const active = () => sameConnection() && !data.suspended && !data.terminated && !this.stopping;
       try {
-        if (renew && !await sessionStillValid(database, client.auth.identity)) throw new AccountApiError('AUTH_REQUIRED', 'Your account session ended. Sign in again.');
-        if (renew) await characters.heartbeat(client.userData.connection);
-        if (client.userData.suspended || client.userData.terminated) return;
-        if (client.userData.awaitingHello && Date.now() >= client.userData.helloDeadline) throw new AccountApiError('RECONNECT_REQUIRED', 'The trainer handshake timed out. Reconnect explicitly.');
+        if (renew) {
+          const valid = await sessionStillValid(database, client.auth.identity);
+          if (!active()) return;
+          if (!valid) throw new AccountApiError('AUTH_REQUIRED', 'Your account session ended. Sign in again.');
+          await characters.heartbeat(connection);
+        }
+        if (!active()) return;
+        if (data.awaitingHello && Date.now() >= data.helloDeadline) throw new AccountApiError('RECONNECT_REQUIRED', 'The trainer handshake timed out. Reconnect explicitly.');
         await operation();
       } catch (error) {
+        if (!sameConnection()) return;
         const detail = { ...publicError(error), ...(commandId ? { commandId } : {}) };
-        if (client.userData) world.publishFor(client.userData.connection);
+        world.publishFor(connection);
         if (['AUTH_REQUIRED', 'SESSION_REPLACED', 'LEASE_EXPIRED', 'DATABASE_UNAVAILABLE', 'COMMAND_OUTCOME_UNKNOWN', 'RECONNECT_REQUIRED'].includes(detail.code)) this.terminate(client, detail);
         else client.send('error', { ...detail, ...(snapshot(client) ? { snapshot: snapshot(client) } : {}) });
-      } finally { if (client.userData) client.userData.busy = false; }
+      } finally {
+        if (sameConnection()) {
+          data.busy = false; data.maintenance = false;
+          const deferred = data.deferredMovement; data.deferredMovement = undefined;
+          // Drop, replacement, shutdown and failed renewal cancel the queued
+          // intent. The ordinary room and service guards still validate it.
+          if (deferred && connection === deferred.connection && active()) void this.run(client, deferred.operation, false);
+        }
+      }
     }
     async onAuth(client: CharacterClient, options: unknown, context: AuthContext) {
       if (!isLoopback(context.ip) || !origins.has(context.headers.get('origin') ?? '')) throw new ServerError(403, 'ORIGIN_REJECTED');
@@ -242,6 +269,7 @@ export function createCharacterRoom(dependencies: {
       if (!data || !client.auth || data.terminated || data.awaitingHello || this.stopping || owners.get(client.auth.characterId) !== client ||
           !(new Set<number>([CloseCode.GOING_AWAY, CloseCode.NO_STATUS_RECEIVED, CloseCode.ABNORMAL_CLOSURE, CloseCode.MAY_TRY_RECONNECT])).has(code ?? 0)) return;
       data.suspended = true;
+      data.deferredMovement = undefined;
       world.detach(data.connection);
       const deadline = Date.now() + CHARACTER_RECONNECT_GRACE_MS;
       // Colyseus 0.18's timed mode leaves its timer referenced after rejection.
@@ -268,7 +296,7 @@ export function createCharacterRoom(dependencies: {
         if (data.terminated || this.stopping || Date.now() >= grace.deadline || owners.get(client.auth.characterId) !== grace.client) throw new AccountApiError('RECONNECT_REQUIRED', 'The transport reconnection window ended.');
         reconnections.remove(data.bindingToken);
         this.grace.delete(client.sessionId);
-        data.suspended = false; data.busy = false; data.awaitingHello = true;
+        data.suspended = false; data.busy = false; data.deferredMovement = undefined; data.awaitingHello = true;
         data.helloDeadline = Math.min(Date.now() + 15_000, grace.deadline); data.resumeTimer = grace.timer;
         owners.set(client.auth.characterId, client);
         terminators.set(client, error => this.terminate(client, error));
@@ -289,6 +317,7 @@ export function createCharacterRoom(dependencies: {
       if (client.userData) {
         clearTimeout(client.userData.resumeTimer); client.userData.resumeTimer = undefined;
         client.userData.terminated = true;
+        client.userData.deferredMovement = undefined;
         reconnections.remove(client.userData.bindingToken);
         world.detach(client.userData.connection);
         try { await characters.release(client.userData.connection); }
@@ -303,7 +332,7 @@ export function createCharacterRoom(dependencies: {
       this.grace.clear();
       for (const client of this.clients) {
         clearTimeout(client.userData?.resumeTimer);
-        if (client.userData) client.userData.resumeTimer = undefined;
+        if (client.userData) { client.userData.resumeTimer = undefined; client.userData.deferredMovement = undefined; }
       }
     }
   };

@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-02T14:49:11.008409+00:00",
+  "commands": [
+    {
+      "stage": "verify",
+      "exitCode": 1
+    }
+  ],
+  "log": ".local\\thirtieth-verify.log",
+  "status": "failed"
+}

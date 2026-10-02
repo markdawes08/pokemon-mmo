@@ -1,0 +1,261 @@
+{
+  "checkedAt": "2026-10-02T14:42:05.850Z",
+  "status": "passed",
+  "scope": "Actual private capture proofs feed diagnostic party battles only. No account ownership, field acknowledgement, live admission or database mutation.",
+  "checks": [
+    "all-twelve-natural-capture-slots-create-one-coherent-two-member-party-proof",
+    "switches-preserve-outgoing-hp-pp-and-source-incoming-state",
+    "natural-faints-apply-source-friendship-with-a-living-reserve-and-preserve-cleared-status",
+    "restored-post-faint-use-next-escape-and-replacement-decisions-are-sequence-fenced",
+    "completed-party-outcomes-cannot-enter-legacy-single-party-reward-or-capture-bridges",
+    "spent-potion-ball-and-both-depleted-creatures-survive-one-terminal-handoff",
+    "direct-and-progression-mediated-capture-proofs-reconstruct-the-same-party",
+    "explicit-source-rain-learning-and-evolution-results-remain-unowned-diagnostics",
+    "rain-timer-survives-switches-restores-failed-refresh-expiry-and-recast",
+    "older-party-profile-rejects-new-moves-and-checkpoint-compatibility-in-both-directions",
+    "source-evolved-whirlwind-ends-either-side-wild-battle-without-party-shuffle-or-rewards",
+    "source-skull-bash-learning-and-evolution-results-remain-unowned-diagnostics",
+    "charging-preserves-rain-spends-PP-once-and-fences-the-forced-strike",
+    "older-tactics-rejects-skull-bash-and-new-checkpoints-in-both-directions",
+    "wild-zero-PP-charge-survives-faint-decisions-and-hits-the-incoming-member-without-AI-reroll",
+    "source-protect-learning-and-either-evolution-decision-retain-all-chosen-moves-without-ownership",
+    "learned-protect-blocks-zero-PP-charged-release-and-switch-resets-counter",
+    "older-charge-profile-rejects-protect-and-new-checkpoints-in-both-directions",
+    "repeat-policy-and-source-history-remain-private-through-projection",
+    "source-evolution-accept-replacement-and-cancel-empty-slot-learning-preserve-unowned-provenance",
+    "ordinary-Pursuit-records-history-and-is-blocked-by-Protect",
+    "wild-Pursuit-consumes-one-PP-and-action-before-the-original-selected-switch",
+    "interception-KO-cleans-outgoing-and-preserves-selected-reserve-without-new-faint-prompt",
+    "incoming-residual-faint-opens-a-later-recoverable-after-residual-decision",
+    "older-Protect-profile-rejects-Pursuit-and-new-checkpoints-in-both-directions",
+    "source-Mirror-learning-via-cancel-empty-slot-and-evolve-replacement-remains-unowned",
+    "source-learned-Mirror-fails-without-history-then-borrows-a-non-roster-move-and-spends-only-its-slot",
+    "copied-Skull-Bash-restores-and-releases-from-the-original-Mirror-slot-without-second-PP-cost",
+    "retained-Pursuit-and-Mirror-checkpoints-reject-cross-profile-reinterpretation",
+    "diagnostic-boxed-unsettled-forged-and-unbound-capture-results-rejected",
+    "fresh-encounter-identity-and-pending-source-proofs-preserved",
+    "owner-projection-excludes-hidden-source-identity-and-checkpoint-provenance",
+    "thirteen-prior-artifacts-and-4461-retained-literal-cases-byte-identical"
+  ],
+  "handoffs": 14,
+  "restoredBoundaries": 199,
+  "diagnosticTransitions": 166,
+  "faintDecisions": 26,
+  "naturalCaptures": [
+    {
+      "slot": 0,
+      "seed": 3,
+      "speciesId": 16,
+      "level": 3,
+      "outcome": "won"
+    },
+    {
+      "slot": 1,
+      "seed": 14,
+      "speciesId": 19,
+      "level": 3,
+      "outcome": "won"
+    },
+    {
+      "slot": 2,
+      "seed": 11,
+      "speciesId": 16,
+      "level": 3,
+      "outcome": "won"
+    },
+    {
+      "slot": 3,
+      "seed": 29,
+      "speciesId": 19,
+      "level": 3,
+      "outcome": "won"
+    },
+    {
+      "slot": 4,
+      "seed": 47,
+      "speciesId": 16,
+      "level": 2,
+      "outcome": "lost"
+    },
+    {
+      "slot": 5,
+      "seed": 33,
+      "speciesId": 19,
+      "level": 2,
+      "outcome": "lost"
+    },
+    {
+      "slot": 6,
+      "seed": 26,
+      "speciesId": 16,
+      "level": 3,
+      "outcome": "won"
+    },
+    {
+      "slot": 7,
+      "seed": 75,
+      "speciesId": 19,
+      "level": 3,
+      "outcome": "won"
+    },
+    {
+      "slot": 8,
+      "seed": 130,
+      "speciesId": 16,
+      "level": 4,
+      "outcome": "won"
+    },
+    {
+      "slot": 9,
+      "seed": 92,
+      "speciesId": 19,
+      "level": 4,
+      "outcome": "won"
+    },
+    {
+      "slot": 10,
+      "seed": 450,
+      "speciesId": 16,
+      "level": 5,
+      "outcome": "won"
+    },
+    {
+      "slot": 11,
+      "seed": 116,
+      "speciesId": 19,
+      "level": 4,
+      "outcome": "won"
+    }
+  ],
+  "rainTrace": [
+    4,
+    3,
+    2,
+    1,
+    0,
+    4
+  ],
+  "forcedExits": [
+    {
+      "actor": "player",
+      "outcome": "forced-escape"
+    },
+    {
+      "actor": "wild",
+      "outcome": "forced-escape"
+    }
+  ],
+  "protectChargeTrace": [
+    {
+      "speciesId": 7,
+      "hpBefore": 66,
+      "hpAfter": 66,
+      "wildPP": 0
+    },
+    {
+      "speciesId": 8,
+      "hpBefore": 75,
+      "hpAfter": 75,
+      "wildPP": 0
+    }
+  ],
+  "pursuitSwitchTrace": [
+    {
+      "speciesId": 19,
+      "outgoingKO": false,
+      "activeIndex": 2,
+      "outgoingHP": 83,
+      "incomingHP": 75,
+      "wildPP": 0
+    },
+    {
+      "speciesId": 19,
+      "outgoingKO": true,
+      "activeIndex": 2,
+      "outgoingHP": 0,
+      "incomingHP": 75,
+      "wildPP": 0
+    },
+    {
+      "speciesId": 20,
+      "outgoingKO": false,
+      "activeIndex": 2,
+      "outgoingHP": 76,
+      "incomingHP": 75,
+      "wildPP": 0
+    },
+    {
+      "speciesId": 20,
+      "outgoingKO": true,
+      "activeIndex": 2,
+      "outgoingHP": 0,
+      "incomingHP": 75,
+      "wildPP": 0
+    }
+  ],
+  "copyTrace": [
+    {
+      "speciesId": 16,
+      "level": 47,
+      "slot": 3,
+      "copiedMove": 33,
+      "ppAfter": 18
+    },
+    {
+      "speciesId": 17,
+      "level": 52,
+      "slot": 0,
+      "copiedMove": 33,
+      "ppAfter": 18
+    }
+  ],
+  "terminalOutcomes": [
+    "forced-escape",
+    "lost",
+    "ran",
+    "won"
+  ],
+  "retainedPins": {
+    ".local/battle-spike/primary/probe.wasm": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724",
+    ".local/encounter-core/primary/encounter.wasm": "8b46d731fdf20c16213a6cb7dc9e1e14dccbd3a65fe4c4ac45d3e70c8a885bd2",
+    ".local/battle-route1/primary/route1.wasm": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02",
+    ".local/battle-progression/primary/progression.wasm": "33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539",
+    ".local/battle-loss/primary/loss.wasm": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a",
+    ".local/battle-capture/primary/capture.wasm": "1e6b16390cdaa4906c01b391c30984735a22e998f548e9ff7de44d890865a60b",
+    "tools/battle-route1/fixtures/source-cases.json": "6e8127ab6bac381bb62266c0d6df1f3d0814cda5ba54a026ad01e40e920f48ac",
+    "tools/battle-route1/fixtures/items-cases.json": "1d1e05e66692787c0cbefd4ebe389ab7bc691097578e73cfd486fb21e5aa91d1",
+    "tools/battle-progression/fixtures/source-cases.json": "23101fd4be7533cea2e64c055d80fc15f3170be86d4ba52f418d8d7bacc7e27c",
+    "tools/battle-loss/fixtures/source-cases.json": "dbfe309e1a8ce56fdf691710858785756f910c3502c926935112632c5d93cd1b",
+    "tools/battle-capture/fixtures/source-cases.json": "47a4b1ebf06bfc055a25fd119834f76c4f4243afe6ceddb5ac49c968e37c8c3c",
+    ".local/battle-evolution/primary/evolution.wasm": "1585f15e7aef6a5ed952cbf3f17041d5382163e39f51c3b1ed3ac65f41495c5c",
+    "tools/battle-evolution/fixtures/source-cases.json": "9e629febd8845dc6e281164f6ee93ff964dab6d11f186754832ac19002307c8f",
+    ".local/battle-family/primary/family.wasm": "810a16bcc7b714426edb80f933deaf8afefb65240c95464980d03e4f92a28e65",
+    "tools/battle-family/fixtures/source-cases.json": "e8aea6e37946e3201d86a181f36e4d1bc00e102dca4e8e7b8564698295f64ed3",
+    ".local/battle-party/primary/party.wasm": "4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9",
+    "tools/battle-party/fixtures/source-cases.json": "4db4ff56299e5b8ef5a5a77035c0419095333a61d40060a5997b612946b22c32",
+    ".local/battle-tactics/primary/tactics.wasm": "662633e05265663a20a02141939c4fdc78ef0be27d53df99507596280a216f5c",
+    "tools/battle-tactics/fixtures/source-cases.json": "03736f527ee900a22c061844046ea39672001788bc85f3a7bcd5d294e65a1653",
+    ".local/battle-charge/primary/charge.wasm": "c2d5ac7786979cf0288ab624f5c8a7b81516c7c34458ceddd54923de99541151",
+    "tools/battle-charge/fixtures/source-cases.json": "167b44266ca4b5d2bfffd9f9919d6d9b7ab60dc92688bb7ca7ca98e96e3cd54c",
+    ".local/battle-protect/primary/protect.wasm": "c8300b709626eab94f4554dca867181127b4fcc9a888c2c8fa013e7b8d220d8f",
+    "tools/battle-protect/fixtures/source-cases.json": "579b466aca06a490c19c98e302b35d7cba3b69117391b5913606ea649dd16c1f",
+    ".local/battle-pursuit/primary/pursuit.wasm": "c831be59bf3e09b93474b812fceec4072745969513ea7f6732f16e1ad9693c37",
+    "tools/battle-pursuit/fixtures/source-cases.json": "d2236b7016eaed489f4a0471a930dfe2a5df0c24ef4aa7571168f21137b17f9c"
+  },
+  "compatibility": {
+    "contractVersion": 1,
+    "snapshotVersion": 1,
+    "engineId": "firered-source-commands",
+    "engineVersion": "build-1eba5e735880bda927b750b23d5616573fb92173432999b921de3fd21ad4357f",
+    "rulesVersion": "firered-family-mirror-v1",
+    "contentFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
+    "engineStateVersion": 10,
+    "rngAlgorithm": "firered-lcg32",
+    "rngVersion": 1
+  },
+  "remaining": [
+    "complete resulting-team admission",
+    "durable ownership and party rewards",
+    "live battle presentation"
+  ]
+}

@@ -23,7 +23,7 @@ const retained = {
 for (const [path, hash] of Object.entries(retained)) assert.equal(createHash('sha256').update(await readFile(`.local/${path}`)).digest('hex'), hash, path);
 const engine = await loadPracticeEngine(), catalogue = engine.catalogue();
 assert.deepEqual(catalogue.species.map(row => row.id), [7, 8, 9, 16, 17, 18, 19, 20]);
-assert.equal(catalogue.moves.length, 24); assert(!catalogue.moves.some(row => row.id === 119));
+assert.equal(catalogue.moves.length, 25); assert(catalogue.moves.some(row => row.id === 119));
 const make = (speciesId: number, moveId: number, level = 100): PracticeMon => ({ speciesId, level, moveIds: [moveId], abilityNum: 0, status: 0, hpPercent: 100, ppPercent: 100 });
 const moves = new Set<number>(), species = new Set<number>();
 let admittedCombinations = 0, sourceTurns = 0;
@@ -39,7 +39,7 @@ for (const entry of catalogue.species) for (const move of entry.moves) {
   assert.deepEqual(Object.keys(projected.presentation.opponent).sort(), ['charging', 'hpPercent', 'level', 'protected', 'speciesId', 'status']);
   moves.add(move.id); species.add(entry.id); admittedCombinations++; sourceTurns++;
 }
-assert.equal(moves.size, 24); assert.equal(species.size, 8);
+assert.equal(moves.size, 25); assert.equal(species.size, 8);
 for (const entry of catalogue.species) {
   for (const level of [1, 5, 50, 100]) {
     const first = entry.moves.find(move => move.level <= level)!;
@@ -62,6 +62,6 @@ for (const row of spriteManifest.outputs) assert.equal(createHash('sha256').upda
 for (const [path, hash] of Object.entries(retained)) assert.equal(createHash('sha256').update(await readFile(`.local/${path}`)).digest('hex'), hash, path);
 const report = { checkedAt: new Date().toISOString(), status: 'passed', species: species.size, moves: moves.size,
   admittedCombinations, sourceTurns, extraLevelAdmissions: 32, presets: catalogue.presets.length, spriteOutputs: 17, retained,
-  scope: 'Practice copies built from production source definitions and admitted by the unchanged C engine; no test-oracle fixture dependency or owned-result application.' };
+  scope: 'Practice copies built from production source definitions and admitted by the Mirror C engine; thirteen previous artifacts retained, no test-oracle fixture dependency or owned-result application.' };
 await writeFile('reports/practice-engine-verification.json', JSON.stringify(report, null, 2) + '\n');
 console.log(`Practice engine passed: ${species.size} species, ${moves.size} moves, ${sourceTurns} source turns.`);

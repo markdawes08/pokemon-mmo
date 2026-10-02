@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T13:55:48.935Z",
+  "checkedAt": "2026-10-02T15:10:02.842Z",
   "passed": true,
   "results": [
     {
@@ -17,154 +17,216 @@
     {
       "title": "refresh and native lost acknowledgement recover one durable practice action with explicit retry",
       "status": "passed"
+    },
+    {
+      "title": "Mirror Move is playable, spends its own PP, and resumes after refresh and a fresh backend",
+      "status": "passed"
     }
   ],
   "backendPids": [
-    19608,
-    33624
+    13448,
+    34832,
+    36820
   ],
   "lifecycle": [
     {
-      "at": "2026-10-02T13:55:28.934Z",
+      "at": "2026-10-02T15:09:43.652Z",
       "event": "server_listening"
     },
     {
-      "at": "2026-10-02T13:55:29.271Z",
+      "at": "2026-10-02T15:09:43.974Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T13:55:30.044Z",
+      "at": "2026-10-02T15:09:44.644Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T13:55:30.189Z",
+      "at": "2026-10-02T15:09:44.795Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T13:55:30.640Z",
+      "at": "2026-10-02T15:09:45.215Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T13:55:32.911Z",
+      "at": "2026-10-02T15:09:47.057Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T13:55:32.911Z",
+      "at": "2026-10-02T15:09:47.057Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T13:55:33.500Z",
+      "at": "2026-10-02T15:09:47.368Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T13:55:33.900Z",
+      "at": "2026-10-02T15:09:47.690Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T13:55:36.250Z",
+      "at": "2026-10-02T15:09:49.225Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T13:55:36.250Z",
+      "at": "2026-10-02T15:09:49.225Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T13:55:36.870Z",
+      "at": "2026-10-02T15:09:49.538Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T13:55:37.321Z",
+      "at": "2026-10-02T15:09:49.790Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T13:55:40.080Z",
+      "at": "2026-10-02T15:09:51.318Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T13:55:40.080Z",
+      "at": "2026-10-02T15:09:51.318Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T13:55:40.635Z",
+      "at": "2026-10-02T15:09:51.636Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T13:55:41.060Z",
+      "at": "2026-10-02T15:09:51.889Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T13:55:41.743Z",
+      "at": "2026-10-02T15:09:52.160Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T13:55:42.280Z",
+      "at": "2026-10-02T15:09:52.682Z",
       "event": "character_transport_reconnected"
     },
     {
-      "at": "2026-10-02T13:55:43.136Z",
+      "at": "2026-10-02T15:09:53.471Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T13:55:43.493Z",
+      "at": "2026-10-02T15:09:53.611Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T13:55:43.767Z",
+      "at": "2026-10-02T15:09:53.737Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T13:55:44.014Z",
+      "at": "2026-10-02T15:09:53.928Z",
       "event": "test_shutdown_requested"
     },
     {
-      "at": "2026-10-02T13:55:44.017Z",
+      "at": "2026-10-02T15:09:53.929Z",
       "event": "server_stopping"
     },
     {
-      "at": "2026-10-02T13:55:44.017Z",
+      "at": "2026-10-02T15:09:53.929Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T13:55:45.026Z",
+      "at": "2026-10-02T15:09:54.942Z",
       "event": "server_stopped"
     },
     {
-      "at": "2026-10-02T13:55:46.212Z",
+      "at": "2026-10-02T15:09:56.126Z",
       "event": "server_listening"
     },
     {
-      "at": "2026-10-02T13:55:46.517Z",
+      "at": "2026-10-02T15:09:56.263Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T13:55:47.094Z",
+      "at": "2026-10-02T15:09:56.506Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T13:55:47.832Z",
-      "event": "test_shutdown_requested"
-    },
-    {
-      "at": "2026-10-02T13:55:47.832Z",
+      "at": "2026-10-02T15:09:56.919Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T13:55:47.832Z",
+      "at": "2026-10-02T15:09:56.922Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T13:55:47.833Z",
+      "at": "2026-10-02T15:09:57.259Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T15:09:57.590Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T15:09:58.158Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T15:09:58.299Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T15:09:58.517Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T15:09:58.567Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T15:09:58.567Z",
       "event": "server_stopping"
     },
     {
-      "at": "2026-10-02T13:55:47.836Z",
+      "at": "2026-10-02T15:09:58.568Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T15:09:59.580Z",
+      "event": "server_stopped"
+    },
+    {
+      "at": "2026-10-02T15:10:00.779Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T15:10:00.867Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T15:10:01.105Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T15:10:01.810Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T15:10:01.810Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T15:10:01.810Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T15:10:01.811Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T15:10:01.813Z",
       "event": "server_stopped"
     }
   ],
   "screenshots": [
     "reports/practice-desktop.png",
     "reports/practice-mobile.png",
-    "reports/practice-mobile-controls.png"
+    "reports/practice-mobile-controls.png",
+    "reports/mirror-practice.png"
   ],
   "recoveryEvidence": {
     "droppedAcknowledgements": 1,

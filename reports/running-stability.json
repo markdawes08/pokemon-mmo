@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-10-02T13:58:07.280Z",
+  "checkedAt": "2026-10-02T15:12:11.705Z",
   "mode": "run",
   "scope": "Actual player WebGL quad vertices during focused keyboard movement; test-only passive renderer instrumentation",
   "observations": [
     {
       "direction": "ArrowUp",
-      "movingRenderFrames": 66,
+      "movingRenderFrames": 68,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -25,12 +25,12 @@
       ],
       "cameraTravel": {
         "x": 0,
-        "y": 110
+        "y": 112
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 13.699999995529652,
-        "max": 19.600000001490116
+        "min": 15.099999994039536,
+        "max": 17.799999997019768
       }
     },
     {
@@ -52,17 +52,17 @@
       ],
       "cameraTravel": {
         "x": 0,
-        "y": 64
+        "y": 62
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 12.400000005960464,
-        "max": 18.69999999552965
+        "min": 14.900000005960464,
+        "max": 18.19999998807907
       }
     },
     {
       "direction": "ArrowLeft",
-      "movingRenderFrames": 67,
+      "movingRenderFrames": 66,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -86,13 +86,13 @@
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 13.800000004470348,
-        "max": 18.5
+        "min": 14.299999997019768,
+        "max": 23.700000002980232
       }
     },
     {
       "direction": "ArrowRight",
-      "movingRenderFrames": 68,
+      "movingRenderFrames": 66,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -111,13 +111,13 @@
         "15"
       ],
       "cameraTravel": {
-        "x": 112,
+        "x": 111,
         "y": 0
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 13.799999997019768,
-        "max": 18.100000001490116
+        "min": 10.899999991059303,
+        "max": 22.5
       }
     }
   ]

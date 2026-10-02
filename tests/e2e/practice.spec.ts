@@ -21,9 +21,9 @@ test.afterEach(async ({ page: _page }, info) => { results.push({ title: info.tit
 test.afterAll(async () => {
   try { await backend.stop(); }
   finally { if (database) { try { await removeAccountFixturesByEmails(database, emails); } finally { await database.close(); } } }
-  await writeFile('reports/practice-browser.json', JSON.stringify({ checkedAt: new Date().toISOString(), passed: results.length === 4 && results.every(row => row.status === 'passed'),
+  await writeFile('reports/practice-browser.json', JSON.stringify({ checkedAt: new Date().toISOString(), passed: results.length === 5 && results.every(row => row.status === 'passed'),
     results, backendPids: backend.pids, lifecycle: backend.lifecycleEvents,
-    screenshots: ['reports/practice-desktop.png', 'reports/practice-mobile.png', 'reports/practice-mobile-controls.png'], recoveryEvidence,
+    screenshots: ['reports/practice-desktop.png', 'reports/practice-mobile.png', 'reports/practice-mobile-controls.png', 'reports/mirror-practice.png'], recoveryEvidence,
     scope: 'Built browser, independent real backend processes and owned PostgreSQL fixtures. Native acknowledgement loss and explicit same-command retry; no mocked mechanics or main account access.' }, null, 2) + '\n');
 });
 async function trainer(context: BrowserContext, name: string) {
@@ -186,4 +186,43 @@ test('refresh and native lost acknowledgement recover one durable practice actio
   recoveryEvidence = { droppedAcknowledgements: probe.dropped, uncorrelatedErrors: probe.uncorrelatedErrors, identicalCommandFrames: probe.frames.length,
     commandReceiptCount: Number(receipts.rows[0].count), noAutomaticCommandReplay: true, refreshRecovered: true, freshBackendRecovered: true,
     practiceOpenedBeforeAccountBootstrap: true };
+});
+
+test('Mirror Move is playable, spends its own PP, and resumes after refresh and a fresh backend', async ({ page, context }) => {
+  test.setTimeout(60_000);
+  const character = await trainer(context, 'MIRROR');
+  const { revision: beforeRevision, ...beforeAssets } = await assets(context, character.id);
+  await openPractice(page); await preset(page, 'Mirror Move');
+  await expect(page.getByLabel('Party 1 move 1')).toHaveValue('119');
+  await page.getByLabel('Party 1 level').fill('46'); await page.getByLabel('Party 1 level').press('Tab');
+  await expect(page.getByLabel('Party 1 move 1')).not.toContainText('Mirror Move');
+  await preset(page, 'Mirror Move'); await start(page);
+  await action(page, /^Mirror Move, /);
+  await expect(page.locator('#practice-events')).toContainText('PIDGEY used MIRROR MOVE and copied BUBBLE');
+  await expect(page.getByRole('button', { name: 'Mirror Move, 19 of 20 PP', exact: true })).toBeEnabled();
+  const saved = {
+    revision: await page.locator('#practice-dialog').getAttribute('data-revision'),
+    playerHP: await page.locator('#practice-self-card').getAttribute('data-hp'),
+    opponentHP: await page.locator('#practice-opponent-card').getAttribute('data-hp'),
+  };
+  for (const restart of [false, true]) {
+    if (restart) { await backend.stop(); await backend.start(); }
+    await page.reload(); await expect(page.locator('#game')).toHaveAttribute('data-ready', 'true');
+    await openPractice(page, false); await ready(page);
+    await expect(page.locator('#practice-dialog')).toHaveAttribute('data-revision', saved.revision!);
+    await expect(page.locator('#practice-self-card')).toHaveAttribute('data-hp', saved.playerHP!);
+    await expect(page.locator('#practice-opponent-card')).toHaveAttribute('data-hp', saved.opponentHP!);
+    await expect(page.getByRole('button', { name: 'Mirror Move, 19 of 20 PP', exact: true })).toBeEnabled();
+  }
+  await action(page, /^Mirror Move, /);
+  await expect(page.getByRole('button', { name: 'Mirror Move, 18 of 20 PP', exact: true })).toBeEnabled();
+  await expect(page.locator('#practice-events')).toContainText('PIDGEY used MIRROR MOVE and copied BUBBLE');
+  await page.setViewportSize({ width: 1280, height: 1100 });
+  await page.screenshot({ path: 'reports/mirror-practice.png', fullPage: true });
+  await finish(page);
+  const { revision: afterRevision, ...afterAssets } = await assets(context, character.id);
+  // The asset envelope includes the trainer's activity revision. Starting and
+  // closing practice each advance that revision; owned asset values stay equal.
+  expect(afterRevision).toBe(beforeRevision + 2);
+  expect(afterAssets).toEqual(beforeAssets);
 });

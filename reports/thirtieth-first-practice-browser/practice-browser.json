@@ -1,0 +1,242 @@
+{
+  "checkedAt": "2026-10-02T14:29:54.016Z",
+  "passed": false,
+  "results": [
+    {
+      "title": "practice explains sign-in, builds legal teams, and leaves shared exploration before a saved battle",
+      "status": "passed"
+    },
+    {
+      "title": "source charge locks choices, preserves PP on release, and remains usable on a narrow screen",
+      "status": "passed"
+    },
+    {
+      "title": "faint decisions use the selected reserve and running ends practice without rewards",
+      "status": "passed"
+    },
+    {
+      "title": "refresh and native lost acknowledgement recover one durable practice action with explicit retry",
+      "status": "passed"
+    },
+    {
+      "title": "Mirror Move is playable, spends its own PP, and resumes after refresh and a fresh backend",
+      "status": "failed"
+    }
+  ],
+  "backendPids": [
+    22312,
+    22152,
+    1528
+  ],
+  "lifecycle": [
+    {
+      "at": "2026-10-02T14:29:25.321Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T14:29:27.168Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T14:29:27.872Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T14:29:28.022Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T14:29:28.347Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T14:29:31.151Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T14:29:31.151Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T14:29:31.648Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T14:29:32.061Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T14:29:34.503Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T14:29:34.503Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T14:29:35.048Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T14:29:35.449Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T14:29:37.981Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T14:29:37.981Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T14:29:38.557Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T14:29:38.971Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T14:29:39.547Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T14:29:40.071Z",
+      "event": "character_transport_reconnected"
+    },
+    {
+      "at": "2026-10-02T14:29:40.984Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T14:29:41.299Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T14:29:41.608Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T14:29:41.831Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T14:29:41.833Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T14:29:41.834Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T14:29:42.852Z",
+      "event": "server_stopped"
+    },
+    {
+      "at": "2026-10-02T14:29:44.017Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T14:29:44.298Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T14:29:44.819Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T14:29:45.548Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T14:29:45.548Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T14:29:46.009Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T14:29:46.417Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T14:29:47.384Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T14:29:47.539Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T14:29:47.873Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T14:29:48.013Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T14:29:48.015Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T14:29:48.016Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T14:29:49.032Z",
+      "event": "server_stopped"
+    },
+    {
+      "at": "2026-10-02T14:29:50.183Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T14:29:50.307Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T14:29:50.774Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T14:29:52.939Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T14:29:52.939Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T14:29:52.939Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T14:29:52.941Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T14:29:52.946Z",
+      "event": "server_stopped"
+    }
+  ],
+  "screenshots": [
+    "reports/practice-desktop.png",
+    "reports/practice-mobile.png",
+    "reports/practice-mobile-controls.png",
+    "reports/mirror-practice.png"
+  ],
+  "recoveryEvidence": {
+    "droppedAcknowledgements": 1,
+    "uncorrelatedErrors": 1,
+    "identicalCommandFrames": 2,
+    "commandReceiptCount": 1,
+    "noAutomaticCommandReplay": true,
+    "refreshRecovered": true,
+    "freshBackendRecovered": true,
+    "practiceOpenedBeforeAccountBootstrap": true
+  },
+  "scope": "Built browser, independent real backend processes and owned PostgreSQL fixtures. Native acknowledgement loss and explicit same-command retry; no mocked mechanics or main account access."
+}

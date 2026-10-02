@@ -9,7 +9,7 @@ import { WorldContent } from '../../apps/server/src/world-content.js';
 import { WorldTestBackend } from '../integration/world-backend.js';
 import { accountFixture, accountTestDatabaseUrl, migrateAccountTestDatabase, removeAccountFixturesByEmails } from '../integration/account-fixtures.js';
 import { delayWorldFrames, observeWorldRendering, worldRenderSamples } from './world-render-probe.js';
-import { armSaveProbe, observeSaveRetries, saveProbe } from './world-save-probe.js';
+import { armSaveProbe, observeSaveRetries, saveProbe, releaseHeldSave, decodeSave } from './world-save-probe.js';
 
 const backend = new WorldTestBackend();
 let database: ReturnType<typeof createDatabase>;
@@ -171,6 +171,27 @@ test('Route 1 ledges, focus and menus stop input, and a fresh backend recovers t
   for (const frame of retriedSave.frames) expect(frame).toEqual(retriedSave.frames[0]);
   expect(await receipts()).toBe(beforeSaveReceipts + 1);
   await writeFile('reports/world-save-retry.json', `${JSON.stringify({ status: 'passed', verifiedAt: new Date().toISOString(), scope: 'Real authenticated hello immediately precedes Save, producing actual server BUSY; malformed Save gets real INVALID_MESSAGE', busyResponses: retriedSave.busyErrors, identicalSaveAttempts: retriedSave.frames.length, receiptsWritten: 1, invalidSaveAttempts: invalidSave.frames.length, attemptsAfterInvalidResponse: 0, invalidSaveReceipts: 0 }, null, 2)}\n`);
+  // Deliver a real Save after the five-second movement checkpoint makes its
+  // revision stale. The unchanged original bytes receive the server's rejection.
+  await page.getByRole('button', { name: 'Close account', exact: true }).click();
+  await step(page, 'ArrowDown'); await step(page, 'ArrowUp'); await position(page, PALLET, 12, 0);
+  await openAccount(page, false); await armSaveProbe(page, 'stale'); await page.locator('#account-save').click();
+  const heldSave = decodeSave((await saveProbe(page)).frames[0]!);
+  await expect.poll(async () => Number((await database.pool.query('SELECT revision FROM characters WHERE id=$1', [character.id])).rows[0].revision),
+    { timeout: 6500 }).toBeGreaterThan(heldSave.expectedRevision);
+  await releaseHeldSave(page); await expect(page.locator('#account-status')).toContainText('checkpointed');
+  const staleSave = await saveProbe(page), attempts = staleSave.frames.map(decodeSave);
+  expect(staleSave.staleErrors).toBe(1);
+  const ids = [...new Set(attempts.map(command => command.commandId))]; expect(ids).toHaveLength(2);
+  expect(attempts[0]).toEqual(heldSave);
+  for (const attempt of attempts) expect(attempt).toEqual(attempt.commandId === heldSave.commandId
+    ? heldSave : { ...heldSave, commandId: ids[1], expectedRevision: heldSave.expectedRevision + 1 });
+  expect(await receipts()).toBe(beforeSaveReceipts + 2);
+  const oldReceipt = await database.pool.query('SELECT command_id FROM character_command_receipts WHERE character_id=$1 AND command_id=$2', [character.id, heldSave.commandId]);
+  expect(oldReceipt.rowCount).toBe(0);
+  await writeFile('reports/world-save-stale.json', `${JSON.stringify({ status: 'passed', verifiedAt: new Date().toISOString(),
+    scope: 'Real Save delayed across the five-second authoritative movement checkpoint; strict STALE rejection and one new UUID retry',
+    staleResponses: staleSave.staleErrors, distinctCommands: ids.length, rejectedCommandReceipts: oldReceipt.rowCount, successfulSaveReceipts: 1 }, null, 2)}\n`);
   await page.getByRole('button', { name: 'Close account', exact: true }).click();
   await expect(page.locator('#game')).toBeFocused();
   await step(page, 'ArrowUp'); await position(page, ROUTE, 12, 39);

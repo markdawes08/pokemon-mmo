@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-10-02T15:13:53.596Z",
+  "scope": "Real Save delayed across the five-second authoritative movement checkpoint; strict STALE rejection and one new UUID retry",
+  "staleResponses": 1,
+  "distinctCommands": 2,
+  "rejectedCommandReceipts": 0,
+  "successfulSaveReceipts": 1
+}

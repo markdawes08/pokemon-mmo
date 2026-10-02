@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T13:54:49.729Z",
+  "checkedAt": "2026-10-02T15:09:04.457Z",
   "passed": true,
   "results": [
     {
@@ -12,107 +12,107 @@
     }
   ],
   "backendPids": [
-    26944
+    19888
   ],
   "lifecycle": [
     {
-      "at": "2026-10-02T13:54:38.079Z",
+      "at": "2026-10-02T15:08:53.113Z",
       "event": "server_listening"
     },
     {
-      "at": "2026-10-02T13:54:39.053Z",
+      "at": "2026-10-02T15:08:54.033Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T13:54:39.487Z",
+      "at": "2026-10-02T15:08:54.440Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T13:54:39.770Z",
+      "at": "2026-10-02T15:08:54.735Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T13:54:40.221Z",
+      "at": "2026-10-02T15:08:55.224Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T13:54:43.561Z",
+      "at": "2026-10-02T15:08:58.483Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T13:54:43.565Z",
+      "at": "2026-10-02T15:08:58.484Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T13:54:43.707Z",
-      "event": "preview_connection_left"
-    },
-    {
-      "at": "2026-10-02T13:54:43.707Z",
+      "at": "2026-10-02T15:08:58.650Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T13:54:44.027Z",
-      "event": "preview_connection_joined"
-    },
-    {
-      "at": "2026-10-02T13:54:44.459Z",
-      "event": "character_connected"
-    },
-    {
-      "at": "2026-10-02T13:54:44.459Z",
-      "event": "character_release_deferred"
-    },
-    {
-      "at": "2026-10-02T13:54:45.212Z",
+      "at": "2026-10-02T15:08:58.650Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T13:54:45.362Z",
+      "at": "2026-10-02T15:08:58.975Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T13:54:45.537Z",
+      "at": "2026-10-02T15:08:59.390Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T13:54:46.313Z",
-      "event": "preview_connection_left"
-    },
-    {
-      "at": "2026-10-02T13:54:46.398Z",
-      "event": "preview_connection_joined"
-    },
-    {
-      "at": "2026-10-02T13:54:46.968Z",
-      "event": "character_connected"
-    },
-    {
-      "at": "2026-10-02T13:54:46.968Z",
+      "at": "2026-10-02T15:08:59.391Z",
       "event": "character_release_deferred"
     },
     {
-      "at": "2026-10-02T13:54:48.318Z",
+      "at": "2026-10-02T15:09:00.071Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T15:09:00.233Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T15:09:00.398Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T13:54:48.636Z",
+      "at": "2026-10-02T15:09:01.136Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T15:09:01.211Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T15:09:01.775Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T15:09:01.775Z",
+      "event": "character_release_deferred"
+    },
+    {
+      "at": "2026-10-02T15:09:03.053Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T15:09:03.364Z",
       "event": "test_shutdown_requested"
     },
     {
-      "at": "2026-10-02T13:54:48.637Z",
-      "event": "preview_connection_left"
-    },
-    {
-      "at": "2026-10-02T13:54:48.637Z",
+      "at": "2026-10-02T15:09:03.364Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T13:54:48.638Z",
+      "at": "2026-10-02T15:09:03.364Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T15:09:03.365Z",
       "event": "server_stopping"
     },
     {
-      "at": "2026-10-02T13:54:48.644Z",
+      "at": "2026-10-02T15:09:03.369Z",
       "event": "server_stopped"
     }
   ],

@@ -1,0 +1,503 @@
+[check] verify
+
+[verify] doctor
+Node v24.21.0; platform win32/x64
+Python 3.13.5
+{"status": "passed", "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982", "verifiedFiles": 21892, "checks": ["current included reference bytes match manifest", "aggregate fingerprint matches lock", "archive SHA256 matches lock", "every archive entry matches path, size, and SHA256"], "upstreamCommitVerified": false, "romBuildVerified": false}
+PostgreSQL 17.11: reachable
+Database baseline migration: present
+Loopback port 2567: in use
+Loopback port 5173: in use
+{
+  "status": "pass",
+  "outputsVerified": 75,
+  "sourceInputs": 148,
+  "inputFingerprint": "8520cdbfce30ddf5e18d5a3b95deea3bd89aad86bdb4e2e7c60be581d226ee88",
+  "deterministicRebuild": true
+}
+
+[verify] lint
+
+[verify] typecheck
+
+[verify] test:unit
+
+ RUN  v5.0.2 C:/Users/mrkda/Projects/pokewaterblue
+
+
+ Test Files  16 passed (16)
+      Tests  101 passed (101)
+   Start at  10:33:05
+   Duration  1.31s (import 58%, transform 22%, tests 18%, worker 1%)
+
+test_pallet_every_note_and_gate_matches_independent_midi (test_audio_export.PinnedAudioTests.test_pallet_every_note_and_gate_matches_independent_midi) ... ok
+test_select_every_note_and_gate_matches_independent_midi (test_audio_export.PinnedAudioTests.test_select_every_note_and_gate_matches_independent_midi) ... ok
+test_unknown_commands_tempo_changes_and_broken_waves_fail (test_audio_export.PinnedAudioTests.test_unknown_commands_tempo_changes_and_broken_waves_fail) ... ok
+test_initializer_keeps_order_designators_strings_and_symbols (test_c_source.CSourceTests.test_initializer_keeps_order_designators_strings_and_symbols) ... ok
+test_malformed_or_unsupported_required_inputs_fail (test_c_source.CSourceTests.test_malformed_or_unsupported_required_inputs_fail) ... ok
+test_named_helper_definitions_must_be_unconditional (test_c_source.CSourceTests.test_named_helper_definitions_must_be_unconditional) ... ok
+test_nested_macros_and_c_integer_semantics (test_c_source.CSourceTests.test_nested_macros_and_c_integer_semantics) ... ok
+test_profile_and_include_guards_preserve_one_branch (test_c_source.CSourceTests.test_profile_and_include_guards_preserve_one_branch) ... ok
+test_charmap_does_not_leak_japanese_or_control_tokens (test_font_export.FontSemanticsTests.test_charmap_does_not_leak_japanese_or_control_tokens) ... ok
+test_editor_box_index_is_background_and_space_is_blank (test_font_export.FontSemanticsTests.test_editor_box_index_is_background_and_space_is_blank) ... ok
+test_palette_uses_game_colors_after_gba_quantization (test_font_export.FontSemanticsTests.test_palette_uses_game_colors_after_gba_quantization) ... ok
+test_width_count_range_and_expressions_fail_explicitly (test_font_export.FontSemanticsTests.test_width_count_range_and_expressions_fail_explicitly) ... ok
+test_english_metrics_and_accented_glyph_are_source_exact (test_font_export.PinnedFontTests.test_english_metrics_and_accented_glyph_are_source_exact) ... ok
+test_every_exported_glyph_stays_inside_source_atlas (test_font_export.PinnedFontTests.test_every_exported_glyph_stays_inside_source_atlas) ... ok
+test_preview_pages_and_reasons_have_no_missing_glyphs (test_font_export.PinnedFontTests.test_preview_pages_and_reasons_have_no_missing_glyphs) ... ok
+test_bad_slot_weights_or_levels_fail_before_projection (test_gameplay_export.GameplayTablesTests.test_bad_slot_weights_or_levels_fail_before_projection) ... ok
+test_growth_literal_early_entries_and_integer_formula_results (test_gameplay_export.GameplayTablesTests.test_growth_literal_early_entries_and_integer_formula_results) ... ok
+test_route1_preserves_all_slots_levels_and_source_rate (test_gameplay_export.GameplayTablesTests.test_route1_preserves_all_slots_levels_and_source_rate) ... ok
+test_changed_pinned_source_is_rejected (test_import_content.BinarySemanticsTests.test_changed_pinned_source_is_rejected) ... ok
+test_component_palette_transparency_and_both_flips (test_import_content.BinarySemanticsTests.test_component_palette_transparency_and_both_flips) ... ok
+test_little_endian_u32_attributes_preserve_high_bits (test_import_content.BinarySemanticsTests.test_little_endian_u32_attributes_preserve_high_bits) ... ok
+test_nibble_order_is_low_pixel_then_high_pixel (test_import_content.BinarySemanticsTests.test_nibble_order_is_low_pixel_then_high_pixel) ... ok
+test_normal_covered_split_layer_placement_matches_field_camera (test_import_content.BinarySemanticsTests.test_normal_covered_split_layer_placement_matches_field_camera) ... ok
+test_obsolete_modified_or_unsafe_paths_fail_without_removal (test_import_content.BinarySemanticsTests.test_obsolete_modified_or_unsafe_paths_fail_without_removal) ... ok
+test_only_obsolete_manifest_owned_files_are_removed (test_import_content.BinarySemanticsTests.test_only_obsolete_manifest_owned_files_are_removed) ... ok
+test_palette_matches_source_gbagfx_quantization (test_import_content.BinarySemanticsTests.test_palette_matches_source_gbagfx_quantization) ... ok
+test_png_tile_scan_is_row_major_tiles_not_image_rows (test_import_content.BinarySemanticsTests.test_png_tile_scan_is_row_major_tiles_not_image_rows) ... ok
+test_pure_message_extraction_never_truncates_stateful_scripts (test_import_content.BinarySemanticsTests.test_pure_message_extraction_never_truncates_stateful_scripts) ... ok
+test_unknown_layer_and_truncated_binary_fail (test_import_content.BinarySemanticsTests.test_unknown_layer_and_truncated_binary_fail) ... ok
+test_export_has_source_landmarks_and_separate_occlusion (test_import_content.PinnedSourceTests.test_export_has_source_landmarks_and_separate_occlusion) ... ok
+test_independently_inspected_interior_and_route_landmarks (test_import_content.PinnedSourceTests.test_independently_inspected_interior_and_route_landmarks) ... ok
+test_independently_inspected_pallet_binary_landmarks (test_import_content.PinnedSourceTests.test_independently_inspected_pallet_binary_landmarks) ... ok
+test_malformed_selected_warps_and_connections_fail (test_import_content.PinnedSourceTests.test_malformed_selected_warps_and_connections_fail) ... ok
+test_npc_initial_state_exact_safe_dialogue_and_shared_frame_aliases (test_import_content.PinnedSourceTests.test_npc_initial_state_exact_safe_dialogue_and_shared_frame_aliases) ... ok
+test_running_sprite_reuses_source_frame_table_and_palette_exactly (test_import_content.PinnedSourceTests.test_running_sprite_reuses_source_frame_table_and_palette_exactly) ... ok
+test_three_map_manifest_transfer_resolution_and_source_border_images (test_import_content.PinnedSourceTests.test_three_map_manifest_transfer_resolution_and_source_border_images) ... ok
+test_ability_names_and_descriptions_keep_stable_source_ids (test_moves_items_export.PinnedMovesItemsTests.test_ability_names_and_descriptions_keep_stable_source_ids) ... ok
+test_canonical_items_match_separate_generated_header_values (test_moves_items_export.PinnedMovesItemsTests.test_canonical_items_match_separate_generated_header_values) ... ok
+test_changed_json_shape_padding_slot_and_integer_types_fail (test_moves_items_export.PinnedMovesItemsTests.test_changed_json_shape_padding_slot_and_integer_types_fail) ... ok
+test_effect_array_bounds_duplicates_and_unknown_bytes_fail (test_moves_items_export.PinnedMovesItemsTests.test_effect_array_bounds_duplicates_and_unknown_bytes_fail) ... ok
+test_generation_three_move_values_priority_effects_and_flags (test_moves_items_export.PinnedMovesItemsTests.test_generation_three_move_values_priority_effects_and_flags) ... ok
+test_inventory_counts_padding_and_dependency_selection_are_explicit (test_moves_items_export.PinnedMovesItemsTests.test_inventory_counts_padding_and_dependency_selection_are_explicit) ... ok
+test_medicine_effect_bytes_retain_zero_initializers_and_fixed_heal_amounts (test_moves_items_export.PinnedMovesItemsTests.test_medicine_effect_bytes_retain_zero_initializers_and_fixed_heal_amounts) ... ok
+test_unknown_move_fields_or_required_constants_fail (test_moves_items_export.PinnedMovesItemsTests.test_unknown_move_fields_or_required_constants_fail) ... ok
+test_evolution_closure_and_held_item_dependencies (test_species_export.PinnedSpeciesTests.test_evolution_closure_and_held_item_dependencies) ... ok
+test_independently_inspected_starter_and_route_one_stats (test_species_export.PinnedSpeciesTests.test_independently_inspected_starter_and_route_one_stats) ... ok
+test_level_up_order_duplicates_and_firered_metal_claw_survive (test_species_export.PinnedSpeciesTests.test_level_up_order_duplicates_and_firered_metal_claw_survive) ... ok
+test_required_unknown_fields_constants_and_broken_learnsets_fail (test_species_export.PinnedSpeciesTests.test_required_unknown_fields_constants_and_broken_learnsets_fail) ... ok
+test_selected_closure_keeps_original_sparse_numeric_ids (test_species_export.PinnedSpeciesTests.test_selected_closure_keeps_original_sparse_numeric_ids) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 30.535s
+
+OK
+
+[verify] test:integration
+{"event":"database_smoke_passed","assertions":["migration-idempotency","schema-ready","rollback","check-constraint","cross-connection-persistence"]}
+{"time":"2026-10-02T14:33:39.405Z","level":"info","event":"server_listening","host":"127.0.0.1","port":54438,"mode":"local-preview","protocolVersion":1}
+Room connection was closed unexpectedly (4002): 
+{"time":"2026-10-02T14:33:39.481Z","level":"info","event":"preview_connection_joined","connections":1}
+{"time":"2026-10-02T14:33:39.490Z","level":"info","event":"preview_connection_joined","connections":2}
+{"time":"2026-10-02T14:33:39.500Z","level":"info","event":"server_stopping"}
+{"time":"2026-10-02T14:33:39.500Z","level":"info","event":"preview_connection_left","connections":1}
+{"time":"2026-10-02T14:33:39.500Z","level":"info","event":"preview_connection_left","connections":0}
+{"time":"2026-10-02T14:33:39.501Z","level":"info","event":"server_stopped"}
+Room connection was closed unexpectedly (4002): 
+{"event":"network_smoke_passed","assertions":["live-ready","origin-guard","version-rejection","two-connections","handshake","ping-pong","malformed-message","unsupported-gameplay","database-unavailable-admission","active-room-graceful-shutdown"]}
+{"event":"accounts_store_smoke_passed","assertions":["concurrent-create-receipt","creation-payload-conflict","permanent-one-character-after-receipt-cleanup","staged-profile-no-invented-location","two-account-isolation","same-trainer-name-allowed","database-name-position-safe-counter-constraints","account-deletion-restrict","revoked-session-creation-writes-no-profile-or-receipt","duplicate-save-race-once","original-receipt-after-newer-revision","replay-does-not-rewind-runtime","save-payload-conflict","stale-revision-activity-rejection","position-injection-rejection","serialized-distinct-command-revision-race","new-tab-connection-generation","stale-save-heartbeat-release-fencing","live-foreign-owner-rejection","expired-lease-stops-mutation","expired-foreign-owner-takeover","stale-owner-cannot-renew","release-and-new-service-recovery","before-commit-rollback-no-receipt-or-publication","frozen-runtime-reloads-after-storage-recovery","rollback-same-command-retry","unknown-commit-success-receipt-reconciliation","unknown-commit-absent-receipt-safe-retry","commit-before-publication-failure-freeze-reload","bounded-per-character-backpressure","session-revocation-locks-before-character-write","queued-save-after-session-revocation-rejected","database-outage-no-partial-publish-or-acknowledgement","database-outage-no-in-memory-read-fallback"]}
+{"time":"2026-10-02T14:33:43.021Z","level":"info","event":"server_listening","host":"127.0.0.1","port":54456,"mode":"local-preview","protocolVersion":1}
+Room connection was closed unexpectedly (4002): 
+Room connection was closed unexpectedly (4002): 
+{"time":"2026-10-02T14:33:43.392Z","level":"info","event":"character_connected","characterId":"4afcf3ff-a40b-4305-bbac-461bfa5470cb","connectionGeneration":1}
+Room connection was closed unexpectedly (4002): 
+Room connection was closed unexpectedly (4002): 
+Room connection was closed unexpectedly (4002): 
+{"time":"2026-10-02T14:33:43.441Z","level":"info","event":"character_connected","characterId":"70d26ef4-9b46-4dee-998f-1153a4dd8588","connectionGeneration":1}
+{"time":"2026-10-02T14:33:43.476Z","level":"info","event":"character_connected","characterId":"4afcf3ff-a40b-4305-bbac-461bfa5470cb","connectionGeneration":2}
+{"time":"2026-10-02T14:33:43.478Z","level":"warn","event":"character_release_deferred"}
+{"time":"2026-10-02T14:33:43.501Z","level":"info","event":"character_connected","characterId":"4afcf3ff-a40b-4305-bbac-461bfa5470cb","connectionGeneration":3}
+Room connection was closed unexpectedly (4002): 
+{"time":"2026-10-02T14:33:43.624Z","level":"info","event":"server_stopping"}
+{"time":"2026-10-02T14:33:43.625Z","level":"info","event":"server_stopped"}
+{"time":"2026-10-02T14:33:43.677Z","level":"info","event":"server_listening","host":"127.0.0.1","port":54477,"mode":"local-preview","protocolVersion":1}
+{"time":"2026-10-02T14:33:43.724Z","level":"info","event":"character_connected","characterId":"4afcf3ff-a40b-4305-bbac-461bfa5470cb","connectionGeneration":4}
+{"time":"2026-10-02T14:33:43.782Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T14:33:43.839Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T14:33:43.893Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T14:33:43.947Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T14:33:44.001Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T14:33:44.056Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T14:33:44.110Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T14:33:44.164Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T14:33:44.218Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T14:33:44.229Z","level":"warn","event":"character_release_deferred"}
+{"event":"accounts_network_smoke_passed","assertions":["anonymous-account-character-ticket-rejected","exact-http-and-websocket-origin-guards","two-real-better-auth-cookie-sessions","server-name-validation-and-one-character-per-account","idempotent-creation-and-changed-payload-conflict","two-account-profile-isolation","wrong-character-ticket-rejected","stolen-ticket-cookie-binding","ticket-one-use-and-expiry","character-protocol-mismatch-rejected","strict-private-room-projections-and-compatibility","save-once-same-command-retry","changed-payload-and-stale-revision-rejected","malformed-and-unsupported-gameplay-rejected","second-tab-replaces-old-generation-and-cannot-mutate","reconnect-restores-profile-and-command-receipt","expired-and-revoked-http-and-active-socket-sessions-rejected","server-restart-preserves-session-character-and-receipt","local-renderer-position-not-persisted","login-rate-limit-and-bounded-auth-body","database-outage-fails-closed-without-profile-mutation"]}
+{"time":"2026-10-02T14:33:44.230Z","level":"info","event":"server_stopping"}
+{"time":"2026-10-02T14:33:44.230Z","level":"info","event":"server_stopped"}
+{"event":"assets_integration_passed","checks":["ordinary-trainer-has-no-granted-assets","owner-only-asset-selection","concurrent-seed-applies-once","source-profile-values-and-public-whitelist","seed-does-not-affect-second-character","persisted-identity-stats-and-source-legal-moves","fixture-remains-recovering-with-explicit-saved-location","permanent-business-key-survives-receipt-cleanup-and-new-command","active-lease-refuses-offline-seed","profile-save-preserves-assets-and-replay-does-not-rewind","same-command-different-mutation-payload-rejected","unsupported-profile-explicitly-rejected","rollback-keeps-all-assets-outcome-audit-and-revision-atomic","rollback-retry-same-command","unknown-rollback-retries-without-duplicate-grant","unknown-commit-queries-committed-outcome","offline-seed-refuses-existing-progression","creature-identity-iv-ev-hp-status-bounds","party-six-storage-fourteen-by-thirty-and-one-location","ownership-source-foreign-keys-and-permanent-provenance","source-pp-with-ppups-and-move-slot-bounds","inventory-quantity-pocket-capacity-and-wallet-bounds","private-story-values-and-cross-owner-outcomes","outcome-audit-content-immutability-and-deletion-restrict","revoked-session-cannot-read-owned-assets","story-operational-data-never-enters-public-projection","seed-cli-production-tester-nonlocal-and-unknown-profile-guards","two-fresh-cli-processes-seed-once","fresh-process-recovers-private-owned-projection","database-outage-never-promises-assets"]}
+{"event":"world_store_passed","checks":["failed-before-transfer-commit-keeps-source-checkpoint","failed-transfer-hides-runtime-until-reauthenticated-recovery","unknown-transfer-rollback-retries-once","unknown-transfer-commit-recovers-one-committed-destination","commit-before-membership-publication-failure-reloads-single-destination","ordinary-checkpoint-rollback-keeps-one-durable-location","ordinary-checkpoint-uncertain-rollback-keeps-one-durable-location","ordinary-checkpoint-uncertain-commit-keeps-one-durable-location","ordinary-checkpoint-publish-keeps-one-durable-location","forged-position-connection-and-zone-generations-rejected","early-input-rejected-without-poisoning-next-sequence","authorized-graceful-close-checkpoints-finished-tile","revoked-session-close-hides-avatar-without-writing","ordinary-walking-checkpoints-after-five-second-interval","mid-step-save-persists-finished-tile-and-preserves-motion","five-second-checkpoint-does-not-starve-during-motion","entry-and-leave-receipts-replay-without-rewind-or-new-zone","changed-entry-payload-conflicts","monotonic-sequence-gaps-are-safe","old-leave-receipt-cannot-exit-new-world-activity","entry-replay-preserves-pending-transfer","new-tab-checkpoints-finished-unsaved-tile-before-replacement","missing-development-marker-and-invalid-source-location-refuse-entry","modified-source-bytes-refuse-server-world-content","expired-heartbeat-lease-removes-public-avatar-and-freezes-input","expired-database-lease-fences-next-input-immediately","real-driver-outage-hides-ghost-avatar-without-checkpoint-acknowledgement"]}
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+{"event":"world_network_passed","checks":["ordinary-staged-trainer-cannot-enter-development-world","two-real-account-public-avatar-whitelist","same-tile-players-are-nonblocking","source-collision-and-walk-default-shift-running-timing","injected-coordinates-rejected","fast-input-does-not-queue-or-speed-up","duplicate-sequence-cannot-repeat-movement","source-door-arrow-warp-and-zone-membership","old-zone-input-rejected-after-transfer","indoor-running-disallowed","save-captures-authoritative-world-position","source-pallet-route-boundary","source-one-way-ledge-and-two-tile-jump","leave-and-reconnect-restore-committed-checkpoint","replacement-session-fences-stale-world-socket","visible-source-npc-occupancy-blocks-authoritative-step","revoked-session-cannot-send-world-input","fresh-os-process-restores-authenticated-world-checkpoint"]}
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+[Colyseus reconnection]: ⏳ will retry in 1.0 seconds...
+[Colyseus reconnection]: 🔄 Re-establishing sessionId 'TIqa7rCyK' with roomId 'OGZxYc0nB'... (attempt 1 of 5)
+[Colyseus reconnection]: ✅ reconnection successful!
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+[Colyseus reconnection]: ⏳ will retry in 1.0 seconds...
+[Colyseus reconnection]: 🔄 Re-establishing sessionId 'TIqa7rCyK' with roomId 'OGZxYc0nB'... (attempt 1 of 5)
+[Colyseus reconnection]: ✅ reconnection successful!
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+[Colyseus reconnection]: ⏳ will retry in 1.0 seconds...
+[Colyseus reconnection]: 🔄 Re-establishing sessionId 'TIqa7rCyK' with roomId 'OGZxYc0nB'... (attempt 1 of 5)
+[Colyseus reconnection]: ✅ reconnection successful!
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+[Colyseus reconnection]: ⏳ will retry in 1.0 seconds...
+[Colyseus reconnection]: 🔄 Re-establishing sessionId 'TIqa7rCyK' with roomId 'OGZxYc0nB'... (attempt 1 of 5)
+[Colyseus reconnection]: ✅ reconnection successful!
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+[Colyseus reconnection]: ⏳ will retry in 1.0 seconds...
+[Colyseus reconnection]: 🔄 Re-establishing sessionId 'A7s3PzvNn' with roomId 'OGZxYc0nB'... (attempt 1 of 5)
+[Colyseus reconnection]: ✅ reconnection successful!
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+{"event":"reconnect_grace_observed","elapsedMs":30046,"leaseHeld":true}
+{"event":"reconnect_grace_observed","elapsedMs":55041,"leaseHeld":true}
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+{"event":"reconnect_network_passed","checks":["manual-reconnect-wrong-cookie-or-origin-cannot-evict-live-owner","encoded-manual-reconnect-method-and-chunked-body-limit-enforced","native-drop-hides-peer-and-resumes-same-session-with-new-generation","offline-input-buffer-empty-and-no-movement-replay","missing-cookie-wrong-cookie-and-origin-cannot-steal-reconnect","manual-reconnect-negatives-preserve-rightful-resume-and-hide-admission-data","authenticated-manual-seat-lookup-preserves-rightful-auto-resume","repeated-drops-around-heartbeats-retain-one-live-owner","old-connection-generation-fenced-after-resume","profile-only-resume-does-not-reactivate-persisted-overworld","fresh-ticket-takeover-cancels-dropped-transport","revoked-cookie-cannot-resume-dropped-transport","expired-auth-session-cannot-resume","consented-room-leave-does-not-reserve-reconnect","real-sixty-second-grace-expires-and-failed-attempts-do-not-extend-deadline","expired-grace-requires-fresh-authenticated-admission","shutdown-cancels-active-reconnect-grace-without-forced-termination"],"graceElapsedMs":60511}
+{"time":"2026-10-02T14:35:29.983Z","level":"info","event":"server_listening","host":"127.0.0.1","port":64675,"mode":"local-preview","protocolVersion":1}
+{"time":"2026-10-02T14:35:30.414Z","level":"info","event":"server_stopping"}
+{"time":"2026-10-02T14:35:30.414Z","level":"info","event":"server_stopped"}
+{"time":"2026-10-02T14:35:30.465Z","level":"info","event":"server_listening","host":"127.0.0.1","port":64680,"mode":"local-preview","protocolVersion":1}
+Local testing API passed: 8 groups.
+{"time":"2026-10-02T14:35:30.469Z","level":"info","event":"server_stopping"}
+{"time":"2026-10-02T14:35:30.470Z","level":"info","event":"server_stopped"}
+Supervisor smoke passed: Vite proxy handshake and coordinated shutdown released both listeners.
+
+[verify] content:check
+{
+  "status": "pass",
+  "outputsVerified": 75,
+  "sourceInputs": 148,
+  "inputFingerprint": "8520cdbfce30ddf5e18d5a3b95deea3bd89aad86bdb4e2e7c60be581d226ee88",
+  "deterministicRebuild": true
+}
+
+[verify] battle:spike
+{"output": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.local\\battle-spike\\primary\\extracted", "inputs": 31, "fragments": 134}
+{"output": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.local\\battle-spike\\rebuild\\extracted", "inputs": 31, "fragments": 134}
+{"status": "passed", "wasmBytes": 46120, "wasmSha256": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724", "independentBuilds": 2}
+{"status":"passed","damageFixtures":19,"rngSequences":6,"rejectionFixtures":19,"wasmBytes":46120,"checks":["independent-literal-source-fixtures","same-state-repeatability","source-controller-events","unsupported-input-rejection","initialization-and-zero-HP-guards","two-instance-kernel-interleaving","no-WASM-host-imports","fixed-private-linear-memory","independent-identical-builds"]}
+{"status":"passed","transcripts":15,"interleavedBattles":15,"interleavedSteps":19,"terminalGuards":3,"replacementGuards":2,"cRejections":15}
+{"status":"passed","checkpointRejections":60,"boundaries":4}
+Battle recovery passed: 37 boundaries, 26 interleaved transitions, 37 checkpoint rejections, fresh process 34176.
+Battle engine passed: 34 golden boundaries, 19 transitions, 7 forged-choice and 22 snapshot rejections; fresh process 34604.
+{"status":"measured","report":"reports/battle-spike-measurements.json","childWallMilliseconds":13953.8534,"assessment":{"ordinaryTurnEngineP95Milliseconds":0.6732999999999265,"ordinaryTurnContractCycleP95Milliseconds":11.786699999999655,"engineP95Below100Milliseconds":true,"contractCycleP95Below100Milliseconds":true,"includingPersistenceTargetVerified":false,"sixtyMinuteSoakVerified":false,"statement":"Engine-only headroom is an observation, not a pass of the later persistence-inclusive server latency or population gate. No production engine is selected by this script."}}
+
+[verify] encounter:check
+{"status": "passed", "wasmBytes": 26468, "wasmSha256": "8b46d731fdf20c16213a6cb7dc9e1e14dccbd3a65fe4c4ac45d3e70c8a885bd2", "independentBuilds": 2}
+Encounter dependency audit passed: 8 initial species/level combinations; 8 species / 25 level-up moves in evolution families. Live battles remain unavailable.
+Encounter factory passed: 43 factory cases, 17 step transcripts/374 steps, 417 golden boundaries, 93 fresh-process restores.
+
+[verify] battle:route1
+{"status": "passed", "wasmBytes": 57771, "wasmSha256": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02", "independentBuilds": 2}
+Route1 mechanics passed 21 cases/44 turns, 65 boundaries and 65 fresh-process restores.
+Route1 items passed 20 cases/26 turns, 46 fresh-process boundaries, 132 odds and 17 threshold edges.
+Route 1 integration passed: 12 real encounter slots, 45 natural turns, 10 assertion groups.
+Route 1 item integration passed: 11 groups, 7 captures and 22 failed throws.
+
+[verify] battle:progression
+{"status": "passed", "wasmBytes": 39137, "wasmSha256": "33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539", "independentBuilds": 2}
+Progression source verification passed: 159 cases, 176 boundaries, 17 decisions, 386 raw continuations, 87 rejections.
+Progression integration passed: 9 groups, 12 real slot victories and 5 natural outcomes.
+
+[verify] battle:loss
+{"status": "passed", "wasmBytes": 24708, "wasmSha256": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a", "independentBuilds": 2}
+Loss verification passed: 557 source cases, 1671 boundaries, 1114 transitions, 95 rejections.
+Loss integration passed: 11 groups, 12 natural slot losses, 20 handoffs, 60 stage restores.
+
+[verify] battle:capture
+{"status": "passed", "wasmBytes": 41586, "wasmSha256": "1e6b16390cdaa4906c01b391c30984735a22e998f548e9ff7de44d890865a60b", "independentBuilds": 2}
+Capture verification passed: 646 source cases, 2584 boundaries, 1938 transitions, 141 rejections.
+Capture integration passed: 12 groups, 12 natural slot captures, 23 handoffs, 92 stage restores.
+
+[verify] battle:evolution
+{"status": "passed", "wasmBytes": 52155, "wasmSha256": "1585f15e7aef6a5ed952cbf3f17041d5382163e39f51c3b1ed3ac65f41495c5c", "independentBuilds": 2}
+Evolution verification passed: 871 cases, 810 eligibility rows, 1921 host/2940 raw boundaries.
+Evolution integration passed: 10 groups, 178 diagnostic handoffs, 358 restored boundaries and five rejected natural outcomes.
+
+[verify] battle:family
+{"status": "passed", "wasmBytes": 79484, "wasmSha256": "810a16bcc7b714426edb80f933deaf8afefb65240c95464980d03e4f92a28e65", "independentBuilds": 2}
+Family verification passed: 134 cases, 250 turns, 2605 draws, 384 recovered boundaries.
+Family integration passed: 13 groups, 31 result handoffs, 93 restores, 57 diagnostic turns.
+
+[verify] battle:party
+{"status": "passed", "wasmBytes": 90312, "wasmSha256": "4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9", "independentBuilds": 2}
+Party literals passed: 220 cases, 529 transitions, 749 boundaries.
+Party integration passed: 11 groups, 14 handoffs, 103 restores, 89 transitions.
+
+[verify] battle:tactics
+{"status": "passed", "wasmBytes": 93348, "wasmSha256": "662633e05265663a20a02141939c4fdc78ef0be27d53df99507596280a216f5c", "independentBuilds": 2}
+Tactics literals passed: 344 cases, 759 transitions, 1103 boundaries.
+Tactics integration passed: 15 groups, 14 handoffs, 115 restores, 98 transitions.
+
+[verify] battle:charge
+{"status": "passed", "wasmBytes": 96393, "wasmSha256": "c2d5ac7786979cf0288ab624f5c8a7b81516c7c34458ceddd54923de99541151", "independentBuilds": 2}
+Charge literals passed: 410 cases, 937 transitions, 1347 boundaries.
+Charge integration passed: 19 groups, 14 handoffs, 128 restores, 109 transitions.
+
+[verify] battle:protect
+{"status": "passed", "wasmBytes": 99555, "wasmSha256": "c8300b709626eab94f4554dca867181127b4fcc9a888c2c8fa013e7b8d220d8f", "independentBuilds": 2}
+Protect literals passed: 476 cases, 1084 transitions, 1560 boundaries.
+Protect integration passed: 23 groups, 14 handoffs, 169 restores, 148 transitions.
+
+[verify] battle:pursuit
+{"status": "passed", "wasmBytes": 102699, "wasmSha256": "c831be59bf3e09b93474b812fceec4072745969513ea7f6732f16e1ad9693c37", "independentBuilds": 2}
+Pursuit literals passed: 603 cases, 1245 transitions, 1848 boundaries.
+Pursuit integration passed: 29 groups, 14 handoffs, 189 restores, 159 transitions.
+
+[verify] battle:mirror
+{"status": "passed", "wasmBytes": 108988, "wasmSha256": "2a4e1ec16db9b4fef7628c99af4fdaa2a8d9c2a3fabcc1c63dd400bd1379a773", "independentBuilds": 2}
+Mirror literals passed: 686 cases, 1463 transitions, 2149 boundaries.
+Mirror integration passed: 33 groups, 14 handoffs, 199 restores, 166 transitions.
+
+[verify] practice:check
+{"status": "passed", "outputs": 17, "sourceInputs": 31, "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982"}
+{"status": "passed", "outputs": 17, "sourceInputs": 31, "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982"}
+Practice engine passed: 8 species, 25 moves, 77 source turns.
+Practice storage passed: 18 groups and 2 fresh process.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+@colyseus/sdk: onMessage() not registered for type 'wild-test'.
+Practice network passed: 6 groups.
+
+[verify] wild:check
+Wild source bridge passed: 12 source slots, 7 species/level pairs, 44 turns, 56 recovered boundaries.
+Wild encounter storage: 26 groups passed.
+
+[verify] build
+{"status": "passed", "outputs": 17, "sourceInputs": 31, "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982"}
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 168 modules transformed.
+rendering chunks...
+computing gzip size...
+apps/client/dist/index.html                     0.54 kB │ gzip:   0.33 kB
+apps/client/dist/assets/index-3x2RQj0M.css     21.93 kB │ gzip:   5.58 kB
+apps/client/dist/assets/index-DxTL21uP.js   1,576.67 kB │ gzip: 432.97 kB
+
+✓ built in 594ms
+
+[verify] test:boundaries
+Client boundary gate passed: 90 built files, 124 development HTTP checks.
+
+[verify] test:recovery
+Room connection was closed unexpectedly (4002): 
+Account recovery passed across two built backend processes; test listener released.
+
+[verify] test:e2e
+
+Running 51 tests using 1 worker
+
+(node:19448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"time":"2026-10-02T14:42:41.791Z","level":"info","event":"server_listening","host":"127.0.0.1","port":57880,"mode":"local-preview","protocolVersion":1}
+{"time":"2026-10-02T14:42:43.629Z","level":"info","event":"preview_connection_joined","connections":1}
+{"time":"2026-10-02T14:42:44.461Z","level":"info","event":"character_connected","characterId":"ba4c9a98-1d21-4690-b308-8b44e41d09f2","connectionGeneration":1}
+{"time":"2026-10-02T14:42:45.620Z","level":"info","event":"preview_connection_left","connections":0}
+{"time":"2026-10-02T14:42:45.965Z","level":"info","event":"preview_connection_joined","connections":1}
+{"time":"2026-10-02T14:42:46.677Z","level":"info","event":"character_connected","characterId":"ba4c9a98-1d21-4690-b308-8b44e41d09f2","connectionGeneration":2}
+  ✓   1 tests\e2e\accounts.spec.ts:70:1 › real account creation, trainer save and reload preserve profile while map walking remains unsaved (5.2s)
+{"time":"2026-10-02T14:42:47.083Z","level":"info","event":"character_transport_dropped"}
+{"time":"2026-10-02T14:42:47.083Z","level":"info","event":"preview_connection_left","connections":0}
+{"time":"2026-10-02T14:42:47.396Z","level":"info","event":"preview_connection_joined","connections":1}
+{"time":"2026-10-02T14:42:48.289Z","level":"info","event":"character_connected","characterId":"f1e8c709-8828-4dc9-9636-8f93611fd38f","connectionGeneration":1}
+{"time":"2026-10-02T14:42:48.732Z","level":"info","event":"preview_connection_joined","connections":2}
+{"time":"2026-10-02T14:42:49.638Z","level":"info","event":"character_connected","characterId":"455d5467-619c-4bf7-ba88-cf9480001348","connectionGeneration":1}
+{"time":"2026-10-02T14:42:50.073Z","level":"info","event":"preview_connection_joined","connections":3}
+{"time":"2026-10-02T14:42:50.693Z","level":"info","event":"character_connected","characterId":"f1e8c709-8828-4dc9-9636-8f93611fd38f","connectionGeneration":2}
+{"time":"2026-10-02T14:42:50.694Z","level":"warn","event":"character_release_deferred"}
+{"time":"2026-10-02T14:42:50.904Z","level":"info","event":"preview_connection_left","connections":2}
+{"time":"2026-10-02T14:42:51.023Z","level":"info","event":"character_connected","characterId":"f1e8c709-8828-4dc9-9636-8f93611fd38f","connectionGeneration":3}
+{"time":"2026-10-02T14:42:51.478Z","level":"info","event":"character_transport_dropped"}
+{"time":"2026-10-02T14:42:51.478Z","level":"info","event":"preview_connection_left","connections":1}
+{"time":"2026-10-02T14:42:51.572Z","level":"info","event":"preview_connection_left","connections":0}
+{"time":"2026-10-02T14:42:51.573Z","level":"info","event":"character_transport_dropped"}
+  ✓   2 tests\e2e\accounts.spec.ts:106:1 › two real browser accounts are isolated and a second tab replaces the first trainer connection (4.5s)
+{"time":"2026-10-02T14:42:51.878Z","level":"info","event":"preview_connection_joined","connections":1}
+{"time":"2026-10-02T14:42:52.758Z","level":"info","event":"character_connected","characterId":"f722816c-2e4b-4655-a747-c8410056d4b4","connectionGeneration":1}
+{"time":"2026-10-02T14:42:53.254Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T14:42:53.727Z","level":"info","event":"character_connected","characterId":"f722816c-2e4b-4655-a747-c8410056d4b4","connectionGeneration":2}
+{"time":"2026-10-02T14:42:53.994Z","level":"info","event":"server_stopping"}
+{"time":"2026-10-02T14:42:53.995Z","level":"info","event":"preview_connection_left","connections":0}
+{"time":"2026-10-02T14:42:54.996Z","level":"info","event":"server_stopped"}
+  ✓   3 tests\e2e\accounts.spec.ts:134:1 › sign-out revokes the real session and a narrow screen supports sign-in and trainer controls (2.4s)
+  ✓   4 tests\e2e\assets.spec.ts:116:1 › ordinary staged trainers have empty party and bag without a development grant (1.1s)
+  ✓   5 tests\e2e\assets.spec.ts:134:1 › the explicit development trainer displays its saved source-backed party and bag on desktop and mobile (2.6s)
+  ✓   6 tests\e2e\assets.spec.ts:183:1 › unavailable asset storage is shown as a failure and does not invent an empty saved party (1.1s)
+  ✓   7 tests\e2e\field-guide.spec.ts:30:1 › field guide shows independently checked source records and receives only public reference data (2.8s)
+  ✓   8 tests\e2e\field-guide.spec.ts:98:1 › field guide keeps keyboard focus and movement isolated, then restores deliberate walking (3.9s)
+  ✓   9 tests\e2e\field-guide.spec.ts:148:1 › missing or invalid field guide data fails with rebuild guidance before the preview is ready (3.0s)
+  ✓  10 tests\e2e\font-audio.spec.ts:127:1 › dialogue draws source atlas pixels including the accented POKéMON glyph (5.5s)
+  ✓  11 tests\e2e\font-audio.spec.ts:225:3 › a missing source font dialogue.json gives an actionable rebuild error (1.6s)
+  ✓  12 tests\e2e\font-audio.spec.ts:225:3 › a missing source font dialogue.png gives an actionable rebuild error (1.6s)
+  ✓  13 tests\e2e\font-audio.spec.ts:235:1 › sound is opt-in, adjusts volume, and pauses for mute, visibility and window focus (4.2s)
+  ✓  14 tests\e2e\font-audio.spec.ts:324:1 › Route 1 stops unsupported music and dialogue plays exactly one source SELECT effect (13.8s)
+  ✓  15 tests\e2e\font-audio.spec.ts:372:1 › missing optional audio reports a recoverable error without disabling movement (2.9s)
+  ✓  16 tests\e2e\local-testing.spec.ts:86:1 › one click connects both premade testers for shared exploration and isolated practice (4.6s)
+  ✓  17 tests\e2e\local-testing.spec.ts:116:1 › remembered tester recovers practice, stays signed out, and safely switches from active exploration (4.0s)
+  ✓  18 tests\e2e\npc-dialogue.spec.ts:48:1 › source-default NPCs render and the town sign respects facing and dialogue focus (3.3s)
+  ✓  19 tests\e2e\npc-dialogue.spec.ts:77:1 › a source NPC blocks its tile, faces the player, and pages dialogue without leaking movement (6.0s)
+  ✓  20 tests\e2e\npc-dialogue.spec.ts:118:1 › stateful NPC interactions explain their missing behavior without pretending to execute it (14.4s)
+  ✓  21 tests\e2e\npc-dialogue.spec.ts:148:1 › walking is the default, Shift runs outdoors, and the house enforces walking (12.6s)
+  ✓  22 tests\e2e\practice.spec.ts:60:1 › practice explains sign-in, builds legal teams, and leaves shared exploration before a saved battle (3.9s)
+  ✓  23 tests\e2e\practice.spec.ts:85:1 › source charge locks choices, preserves PP on release, and remains usable on a narrow screen (3.2s)
+  ✓  24 tests\e2e\practice.spec.ts:101:1 › faint decisions use the selected reserve and running ends practice without rewards (3.4s)
+  ✓  25 tests\e2e\practice.spec.ts:113:1 › refresh and native lost acknowledgement recover one durable practice action with explicit retry (7.5s)
+  ✓  26 tests\e2e\practice.spec.ts:191:1 › Mirror Move is playable, spends its own PP, and resumes after refresh and a fresh backend (6.6s)
+  ✓  27 tests\e2e\preview.spec.ts:3:1 › two browser contexts reach the real proxy handshake and render source content (3.9s)
+  ✓  28 tests\e2e\preview.spec.ts:31:1 › walking obeys source collision, focus, reset, and integer resize (2.7s)
+  ✓  29 tests\e2e\preview.spec.ts:56:1 › missing content produces an actionable error instead of a blank canvas (1.7s)
+  ✓  30 tests\e2e\preview.spec.ts:64:1 › missing world manifest explains the required rebuild (1.8s)
+  ✓  31 tests\e2e\preview.spec.ts:73:1 › a missing destination map fails before the player can enter a broken transfer (1.7s)
+  ✓  32 tests\e2e\preview.spec.ts:82:1 › missing required destination scenery prevents a false ready state (2.1s)
+  ✓  33 tests\e2e\reconnect.spec.ts:50:1 › native transport resumes the same session with a fresh snapshot and no held-input replay (7.0s)
+  ✓  34 tests\e2e\reconnect.spec.ts:76:1 › lost Save acknowledgement is resolved only by explicit identical receipt retry after resume (3.9s)
+  ✓  35 tests\e2e\reconnect.spec.ts:91:1 › explicit Leave cancels scheduled resume and Sign out never reconnects (8.1s)
+  ✓  36 tests\e2e\reconnect.spec.ts:120:1 › a lost backend freezes recovery and explicit cancellation permits fresh process admission (17.4s)
+  ✓  37 tests\e2e\traversal.spec.ts:42:1 › the home arrow exit returns to the correct door without bouncing (28.7s)
+  ✓  38 tests\e2e\traversal.spec.ts:99:1 › Route 1 preserves boundary alignment, grass movement, and one-way ledges (26.4s)
+  ✓  39 tests\e2e\traversal.spec.ts:152:1 › transfer input is suppressed and losing focus releases held movement (11.8s)
+  ✓  40 tests\e2e\walking-stability.spec.ts:62:46 › the rendered player stays steady in all four directions (walk) (6.9s)
+  ✓  41 tests\e2e\walking-stability.spec.ts:62:46 › the rendered player stays steady in all four directions (run) (6.8s)
+  ✓  42 tests\e2e\walking-stability.spec.ts:130:1 › ledge lift moves the sprite while its camera follows the ground position (16.0s)
+  ✓  43 tests\e2e\wild-testing.spec.ts:84:1 › opt-in grass steps start a real wild battle and return to the same tile without owned rewards (10.2s)
+  ✓  44 tests\e2e\wild-testing.spec.ts:112:1 › wild battle hides safely and recovers the same battle after refresh and a fresh backend (9.7s)
+  ✓  45 tests\e2e\wild-testing.spec.ts:179:34 › held walk keeps Run and End encounter usable after a late movement frame (2.4s)
+  ✓  46 tests\e2e\wild-testing.spec.ts:179:34 › held Shift-run keeps Run and End encounter usable after a late movement frame (1.7s)
+  ✘  47 tests\e2e\wild-testing.spec.ts:231:1 › held walking and running keep the same cadence with wild testing off and on (11.8s)
+(node:34424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  48 tests\e2e\world.spec.ts:71:1 › ordinary trainers retain anonymous preview and cannot enter the seeded shared-world policy (1.6s)
+  ✓  49 tests\e2e\world.spec.ts:83:1 › two real accounts see nonblocking avatars, source house transfers, and durable shared checkpoints (14.3s)
+  ✓  50 tests\e2e\world.spec.ts:134:1 › modified map bytes refuse shared entry and leave the scene frozen (2.1s)
+  ✘  51 tests\e2e\world.spec.ts:151:1 › Route 1 ledges, focus and menus stop input, and a fresh backend recovers the saved position (33.8s)
+
+
+  1) tests\e2e\wild-testing.spec.ts:231:1 › held walking and running keep the same cadence with wild testing off and on 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 100
+    Received:   182.66666666666666
+
+      256 |       expect(motions.every(motion => Math.round(motion.durationMs * 60 / 1000) === (run ? 8 : 16))).toBe(true);
+      257 |       expect(wire.errors.filter(code => code !== 'BUSY')).toEqual([]);
+    > 258 |       expect.soft(Math.max(...gaps)).toBeLessThan(100);
+          |                                      ^
+      259 |     } finally { await context.close(); }
+      260 |   }
+      261 |   for (const movement of ['walk', 'run']) {
+        at C:\Users\mrkda\Projects\pokewaterblue\tests\e2e\wild-testing.spec.ts:258:38
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\test-failed-4.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\test-failed-5.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\error-context.md
+
+    Error Context: test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\error-context.md
+
+    attachment #8: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\e2e\world.spec.ts:151:1 › Route 1 ledges, focus and menus stop input, and a fresh backend recovers the saved position 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#account-status')
+    Expected substring: "checkpointed"
+    Received string:    "The trainer profile changed. Refresh its current snapshot."
+    Timeout: 10000ms
+
+    Call log:
+      - Expect "toContainText" locator('#account-status') with timeout 10000ms
+      - waiting for locator('#account-status')
+        24 × locator resolved to <p role="status" aria-live="polite" id="account-status" class="account-status account-error">The trainer profile changed. Refresh its current …</p>
+           - unexpected value "The trainer profile changed. Refresh its current snapshot."
+
+
+      197 |   await page.waitForTimeout(450); await expect(page.locator('#game')).toHaveAttribute('data-tile-y', focusY!);
+      198 |   await openAccount(page, false); await page.locator('#account-save').click();
+    > 199 |   await expect(page.locator('#account-status')).toContainText('checkpointed');
+          |                                                 ^
+      200 |   const committed = await savedPosition(character.id);
+      201 |   await page.getByRole('button', { name: 'Close account', exact: true }).click();
+      202 |   await expect(page.locator('#game')).toBeFocused();
+        at C:\Users\mrkda\Projects\pokewaterblue\tests\e2e\world.spec.ts:199:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\world-Route-1-ledges-focus-f4675-recovers-the-saved-position\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\world-Route-1-ledges-focus-f4675-recovers-the-saved-position\error-context.md
+
+    Error Context: test-results\world-Route-1-ledges-focus-f4675-recovers-the-saved-position\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\world-Route-1-ledges-focus-f4675-recovers-the-saved-position\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\world-Route-1-ledges-focus-f4675-recovers-the-saved-position\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests\e2e\wild-testing.spec.ts:231:1 › held walking and running keep the same cadence with wild testing off and on 
+    tests\e2e\world.spec.ts:151:1 › Route 1 ledges, focus and menus stop input, and a fresh backend recovers the saved position 
+  49 passed (6.5m)
+C:\Users\mrkda\Projects\pokewaterblue\.tools\node-v24.21.0-win-x64\node.exe C:\Users\mrkda\Projects\pokewaterblue\node_modules\@playwright\test\cli.js test failed (1)

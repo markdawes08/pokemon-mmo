@@ -1,0 +1,180 @@
+{
+  "checkedAt": "2026-10-02T13:55:48.935Z",
+  "passed": true,
+  "results": [
+    {
+      "title": "practice explains sign-in, builds legal teams, and leaves shared exploration before a saved battle",
+      "status": "passed"
+    },
+    {
+      "title": "source charge locks choices, preserves PP on release, and remains usable on a narrow screen",
+      "status": "passed"
+    },
+    {
+      "title": "faint decisions use the selected reserve and running ends practice without rewards",
+      "status": "passed"
+    },
+    {
+      "title": "refresh and native lost acknowledgement recover one durable practice action with explicit retry",
+      "status": "passed"
+    }
+  ],
+  "backendPids": [
+    19608,
+    33624
+  ],
+  "lifecycle": [
+    {
+      "at": "2026-10-02T13:55:28.934Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T13:55:29.271Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:55:30.044Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:55:30.189Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:55:30.640Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:55:32.911Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:55:32.911Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:55:33.500Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:55:33.900Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:55:36.250Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:55:36.250Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:55:36.870Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:55:37.321Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:55:40.080Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:55:40.080Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:55:40.635Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:55:41.060Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:55:41.743Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:55:42.280Z",
+      "event": "character_transport_reconnected"
+    },
+    {
+      "at": "2026-10-02T13:55:43.136Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:55:43.493Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:55:43.767Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:55:44.014Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T13:55:44.017Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T13:55:44.017Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:55:45.026Z",
+      "event": "server_stopped"
+    },
+    {
+      "at": "2026-10-02T13:55:46.212Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T13:55:46.517Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:55:47.094Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:55:47.832Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T13:55:47.832Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:55:47.832Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:55:47.833Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T13:55:47.836Z",
+      "event": "server_stopped"
+    }
+  ],
+  "screenshots": [
+    "reports/practice-desktop.png",
+    "reports/practice-mobile.png",
+    "reports/practice-mobile-controls.png"
+  ],
+  "recoveryEvidence": {
+    "droppedAcknowledgements": 1,
+    "uncorrelatedErrors": 1,
+    "identicalCommandFrames": 2,
+    "commandReceiptCount": 1,
+    "noAutomaticCommandReplay": true,
+    "refreshRecovered": true,
+    "freshBackendRecovered": true,
+    "practiceOpenedBeforeAccountBootstrap": true
+  },
+  "scope": "Built browser, independent real backend processes and owned PostgreSQL fixtures. Native acknowledgement loss and explicit same-command retry; no mocked mechanics or main account access."
+}

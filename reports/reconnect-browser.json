@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-02T13:56:42.283Z",
+  "verifiedAt": "2026-10-02T15:10:48.373Z",
   "passed": true,
   "results": [
     {
@@ -20,8 +20,8 @@
     }
   ],
   "backendPids": [
-    33444,
-    29636
+    34616,
+    34044
   ],
   "scope": "Built client, isolated native backend processes, test PostgreSQL accounts only. Native transport interruption and bounded test-only constructor failure preserve real cookie/Origin admission."
 }

@@ -1,0 +1,62 @@
+[check] test:e2e
+
+Running 5 tests using 1 worker
+
+(node:3588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests\e2e\practice.spec.ts:60:1 › practice explains sign-in, builds legal teams, and leaves shared exploration before a saved battle (5.8s)
+  ✓  2 tests\e2e\practice.spec.ts:85:1 › source charge locks choices, preserves PP on release, and remains usable on a narrow screen (3.3s)
+  ✓  3 tests\e2e\practice.spec.ts:101:1 › faint decisions use the selected reserve and running ends practice without rewards (3.5s)
+  ✓  4 tests\e2e\practice.spec.ts:113:1 › refresh and native lost acknowledgement recover one durable practice action with explicit retry (7.5s)
+  ✘  5 tests\e2e\practice.spec.ts:191:1 › Mirror Move is playable, spends its own PP, and resumes after refresh and a fresh backend (7.4s)
+
+
+  1) tests\e2e\practice.spec.ts:191:1 › Mirror Move is playable, spends its own PP, and resumes after refresh and a fresh backend 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -51,11 +51,11 @@
+            "speciesId": 7,
+            "status": "healthy",
+          },
+        ],
+        "profileId": "r1-squirtle-v1",
+    -   "revision": 1,
+    +   "revision": 3,
+        "storage": Object {
+          "capacity": 420,
+          "used": 0,
+        },
+        "version": 1,
+
+      221 |   await page.screenshot({ path: 'reports/mirror-practice.png', fullPage: true });
+      222 |   await finish(page);
+    > 223 |   expect(await assets(context, character.id)).toEqual(beforeAssets);
+          |                                               ^
+      224 | });
+      225 |
+        at C:\Users\mrkda\Projects\pokewaterblue\tests\e2e\practice.spec.ts:223:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\practice-Mirror-Move-is-pl-92488-refresh-and-a-fresh-backend\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\practice-Mirror-Move-is-pl-92488-refresh-and-a-fresh-backend\error-context.md
+
+    Error Context: test-results\practice-Mirror-Move-is-pl-92488-refresh-and-a-fresh-backend\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\practice-Mirror-Move-is-pl-92488-refresh-and-a-fresh-backend\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\practice-Mirror-Move-is-pl-92488-refresh-and-a-fresh-backend\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\practice.spec.ts:191:1 › Mirror Move is playable, spends its own PP, and resumes after refresh and a fresh backend 
+  4 passed (33.6s)
+C:\Users\mrkda\Projects\pokewaterblue\.tools\node-v24.21.0-win-x64\node.exe C:\Users\mrkda\Projects\pokewaterblue\node_modules\@playwright\test\cli.js test tests/e2e/practice.spec.ts failed (1)

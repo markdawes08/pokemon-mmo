@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T13:53:13.989Z",
+  "checkedAt": "2026-10-02T15:07:50.878Z",
   "status": "passed",
   "checks": [
     "wild-testing-defaults-off-and-requires-local-development-fixture",
@@ -7,6 +7,7 @@
     "blocked-input-consumes-no-encounter-step",
     "non-encounter-map-steps-use-source-plain-behavior",
     "map-transfer-resets-source-cooldown-without-a-second-step-or-RNG-draw",
+    "save-settles-wild-admission-and-definitively-rejects-only-uncommitted-UUID-without-blocking-battle-close",
     "completed-source-grass-step-atomically-admits-exact-generated-opponent",
     "battle-hides-avatar-freezes-exploration-and-rejects-second-battle",
     "public-wild-session-omits-private-setup-RNG-and-checkpoint",

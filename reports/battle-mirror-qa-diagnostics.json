@@ -1,0 +1,76 @@
+{
+  "scope": "Pass 30 Mirror Move source profile, practice integration and retained saved battles",
+  "diagnostics": [
+    {
+      "kind": "build-path-configuration",
+      "cause": "Initial extraction rejected the new private battle-mirror directory under the existing Pursuit output allowlist.",
+      "correction": "Allow only the new private Mirror directory when the Pursuit extraction path is explicitly selected. Prior generated C and all thirteen retained WASMs remain unchanged.",
+      "evidence": "tools/battle-route1/extract.py"
+    },
+    {
+      "kind": "independent-oracle-omission",
+      "cause": "The first new Mirror literal omitted GetMoveTarget persisting its resolved target in the source field also retained for charging, even for a noncharging copied move.",
+      "correction": "Correct the test-only oracle from the pinned source target-selection function. The 603 retained control cases had already passed; no C mechanic changed for this expectation.",
+      "evidence": "reports/battle-mirror-oracle-target-review.log"
+    },
+    {
+      "kind": "fixture-source-legality",
+      "cause": "A Scary Face fixture used Rattata rather than source-legal Raticate.",
+      "correction": "Use the source-legal species; preserve production admission guards.",
+      "evidence": "reports/battle-mirror-fixture-learnset-review.log"
+    },
+    {
+      "kind": "fixture-source-legality",
+      "cause": "A Pidgey fixture was below Whirlwind's level-19 learning boundary.",
+      "correction": "Use level 20; preserve production admission guards.",
+      "evidence": "reports/battle-mirror-fixture-Whirlwind-level-review.log"
+    },
+    {
+      "kind": "practice-preset-and-test-assumption",
+      "cause": "A copied Bubble correctly dealt one HP to the initial level-50 Blastoise, but its public HP percentage rounded 145/146 up to 100. The facade test incorrectly expected a visible percentage change.",
+      "correction": "Use a level-40 Blastoise in the manual-testing preset. It remains faster than Pidgey and now takes visibly measurable copied damage. Keep the damage/PP assertions and source mechanics unchanged.",
+      "evidence": [
+        ".local/thirtieth-facade.log",
+        "reports/thirtieth-facade-exit-status.json",
+        "reports/mirror-first-preset-probe.json"
+      ],
+      "rerun": "reports/thirtieth-facade-recheck-exit-status.json"
+    },
+    {
+      "kind": "browser-assertion-assumption",
+      "cause": "All Mirror gameplay and refresh/restart assertions passed, but the first browser check expected the asset envelope's trainer revision to stay at one. Starting and closing practice correctly advanced it to three.",
+      "correction": "Assert exactly two activity-revision increments and exact equality of every owned asset value separately. No application behavior changed.",
+      "evidence": "reports/thirtieth-first-practice-browser/",
+      "rerun": "reports/thirtieth-practice-browser-recheck-exit-status.json"
+    },
+    {
+      "kind": "world-maintenance-movement-race",
+      "cause": "The initial full gate passed all 25 pre-browser stages and 49 of 51 browser scenarios. A valid running input arrived during the automatic two-second heartbeat database check and received room BUSY, causing the existing 150 ms client retry pause. The recorded gap was 182.7 ms with encounters off.",
+      "correction": "Defer at most one parsed movement behind automatic maintenance, then execute it through normal room/service fences immediately after renewal. Preserve ordinary command backpressure and movement durations; cancel deferred input on drop, replacement, shutdown or failure. Capture connection identity across awaits to prevent an old heartbeat mutating a resumed generation.",
+      "evidence": [
+        "reports/thirtieth-first-full-gate/",
+        "apps/server/src/character-room.test.ts"
+      ],
+      "rerun": "reports/thirtieth-app-regression-exit-status.json"
+    },
+    {
+      "kind": "world-checkpoint-save-race",
+      "cause": "The same full run exposed a Save sent at revision 6 while the five-second world checkpoint committed revision 7 before the next client snapshot. The strict Save revision check correctly rejected it. Review also found Save settling an encounter could receive transient BUSY even after the database definitively found no Save receipt, leaving the pending Save blocking battle actions.",
+      "correction": "Correlate Save errors by UUID. Permit one new-UUID retry only after a matching definitive stale rejection with a newer same-character/same-generation/same-activity snapshot, retaining the original deadline. Preserve the original UUID for unrelated errors, transient BUSY and unknown outcomes. After receipt lookup, a battle activity rejects a new Save as stale; it cannot rebase into battle and its matched rejection releases pending Save so battle commands remain usable. Existing committed Save receipts still replay first.",
+      "evidence": [
+        "reports/thirtieth-first-full-gate/",
+        "apps/client/src/save-retry.test.ts",
+        "tests/e2e/world.spec.ts",
+        "tests/integration/wild-test-smoke.ts"
+      ],
+      "rerun": "reports/thirtieth-app-regression-exit-status.json"
+    }
+  ],
+  "review": "Separate C, host and independent-source QA reviews; copied-charge exhaustion fixture strengthened to make the copying player act first. Final private lint/typecheck/verifier passed before the root full gate. Separate review of the follow-up world fixes required connection-identity fencing across heartbeat awaits and Save cleanup/retry, bounded maintenance deferral and receipt-first definitive rejection. No revision fence or cadence threshold was relaxed.",
+  "limitations": [
+    "Bounded eight-species, 25-move singles profile; unsupported formats and unreachable fallback/sentinel history reject explicitly.",
+    "The pinned Protect ROM-table policy is retained; original-ROM execution and upstream revision remain unverified.",
+    "Practice remains separate from normal owned creatures, XP, captures and rewards.",
+    "Mutating automated checks use isolated _test fixtures. Main testing accounts are only read for final health and saved-battle compatibility validation."
+  ]
+}

@@ -8,6 +8,7 @@ import { CharacterService, CharacterServiceError, type CharacterConnection, type
 import { AssetService } from '../../apps/server/src/asset-service.js';
 import { WorldContent } from '../../apps/server/src/world-content.js';
 import { loadPracticeEngine } from '../../apps/server/src/practice-engine.js';
+import { createPursuitDiagnostic, loadPursuitEngine, makePursuitRng, pursuitConfig } from '../../tools/battle-pursuit/engine.js';
 import { accountTestDatabaseUrl, migrateAccountTestDatabase, removeAccountFixtures } from './account-fixtures.js';
 
 process.env['NODE_ENV'] = 'test';
@@ -103,7 +104,7 @@ try {
   await reject(owner.practiceCommand(f.connection, start(1)), 'BUSY');
   await reject(owner.enterWorld(f.connection, worldCommand(owner, f.connection)), 'RECONNECT_REQUIRED');
   const character = owner.snapshot(f.connection)!.character;
-  await reject(owner.save(f.connection, { commandId: randomUUID(), type: 'save-profile', version: 1, activityId: character.activityId, expectedRevision: character.revision, payload: {} }), 'BUSY');
+  await reject(owner.save(f.connection, { commandId: randomUUID(), type: 'save-profile', version: 1, activityId: character.activityId, expectedRevision: character.revision, payload: {} }), 'STALE_REVISION');
   checks.push('practice-start-is-idempotent-and-mutually-exclusive-with-world-and-profile-save', 'changed-and-stale-starts-cannot-reseed');
 
   const accepted = choose(begun), after = await owner.practiceCommand(f.connection, accepted);
@@ -150,6 +151,31 @@ try {
   assert.equal(recovered.state.session, null); assert.equal(recovered.state.revision, 5);
   assert.deepEqual(await assets(f.characterId), baseline);
   checks.push('obsolete-or-corrupt-practice-can-be-closed-without-applying-engine-or-asset-effects');
+
+  // Model a real pre-upgrade save with the retained engine, in a dedicated
+  // isolated fixture. New runtime must resume its bytes without migrating it.
+  const legacyFixture = await fixture(owner), legacyAssets = await assets(legacyFixture.characterId);
+  await owner.practiceCommand(legacyFixture.connection, start());
+  const current = engine.restore((await stored(legacyFixture.characterId))[0].checkpoint);
+  const admission = JSON.parse(Buffer.from(current.snapshot.privateEngineState.data, 'base64').toString('utf8')).admission;
+  const legacyEngine = await loadPursuitEngine();
+  const legacyInitial = createPursuitDiagnostic({ seed: admission.seed, player: admission.player, opponent: admission.opponent });
+  const legacyId = current.snapshot.config.battleId;
+  const legacy = { ...current, snapshot: legacyEngine.createBattle(pursuitConfig(legacyEngine, legacyId), legacyInitial, makePursuitRng(legacyId, legacyInitial)) };
+  await database.pool.query('UPDATE character_practice_state SET checkpoint=$2 WHERE character_id=$1', [legacyFixture.characterId, JSON.stringify(legacy)]);
+  const legacyView = await owner.practiceSnapshot(legacyFixture.connection), legacyStored = await stored(legacyFixture.characterId);
+  assert(legacyView.state.session); assert(!legacyView.state.unavailable);
+  await owner.release(legacyFixture.connection);
+  assert.deepEqual((await probe(legacyFixture.accountId, legacyFixture.characterId)).state, legacyView.state);
+  assert.deepEqual(await stored(legacyFixture.characterId), legacyStored, 'Old save bytes are unchanged by fresh-process recovery');
+  const legacyJoined = await owner.acquire(legacyFixture.accountId, legacyFixture.characterId, legacyFixture.sessionId);
+  const legacyAdvanced = await owner.practiceCommand(legacyJoined.connection, choose(legacyView));
+  const legacyNext = (await stored(legacyFixture.characterId))[0].checkpoint;
+  assert.deepEqual(legacyNext.snapshot.config.compatibility, legacy.snapshot.config.compatibility);
+  assert.equal(legacyNext.snapshot.transitionSequence, 1);
+  await owner.practiceCommand(legacyJoined.connection, close(legacyAdvanced));
+  assert.deepEqual(await assets(legacyFixture.characterId), legacyAssets);
+  checks.push('pre-mirror-pursuit-save-recovers-in-fresh-process-and-advances-with-unchanged-compatibility');
 
   const savedWorld = await fixture(owner);
   await owner.enterWorld(savedWorld.connection, worldCommand(owner, savedWorld.connection));

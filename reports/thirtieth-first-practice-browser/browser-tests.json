@@ -1,0 +1,310 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.tools\\node-v24.21.0-win-x64\\node.exe",
+      "C:\\Users\\mrkda\\Projects\\pokewaterblue\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/practice.spec.ts"
+    ],
+    "configFile": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\playwright.config.ts",
+    "rootDir": "C:/Users/mrkda/Projects/pokewaterblue/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/mrkda/Projects/pokewaterblue/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/mrkda/Projects/pokewaterblue/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/browser-tests.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/run.mjs dev",
+      "url": "http://127.0.0.1:5173",
+      "reuseExistingServer": true,
+      "timeout": 30000,
+      "gracefulShutdown": {
+        "signal": "SIGINT",
+        "timeout": 5000
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "practice.spec.ts",
+      "file": "practice.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "practice explains sign-in, builds legal teams, and leaves shared exploration before a saved battle",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5758,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:29:24.111Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-24354308d6ed6e383c80",
+          "file": "practice.spec.ts",
+          "line": 60,
+          "column": 1
+        },
+        {
+          "title": "source charge locks choices, preserves PP on release, and remains usable on a narrow screen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3334,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:29:31.150Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-cadf82adc44ad6d4a8bd",
+          "file": "practice.spec.ts",
+          "line": 85,
+          "column": 1
+        },
+        {
+          "title": "faint decisions use the selected reserve and running ends practice without rewards",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3461,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:29:34.502Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-96d65cb415a5a7a34ba9",
+          "file": "practice.spec.ts",
+          "line": 101,
+          "column": 1
+        },
+        {
+          "title": "refresh and native lost acknowledgement recover one durable practice action with explicit retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 65000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7550,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:29:37.980Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-7fb3d960d0f2f7972209",
+          "file": "practice.spec.ts",
+          "line": 113,
+          "column": 1
+        },
+        {
+          "title": "Mirror Move is playable, spends its own PP, and resumes after refresh and a fresh backend",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7368,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[33m@@ -51,11 +51,11 @@\u001b[39m\n\u001b[2m        \"speciesId\": 7,\u001b[22m\n\u001b[2m        \"status\": \"healthy\",\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[2m    ],\u001b[22m\n\u001b[2m    \"profileId\": \"r1-squirtle-v1\",\u001b[22m\n\u001b[32m-   \"revision\": 1,\u001b[39m\n\u001b[31m+   \"revision\": 3,\u001b[39m\n\u001b[2m    \"storage\": Object {\u001b[22m\n\u001b[2m      \"capacity\": 420,\u001b[22m\n\u001b[2m      \"used\": 0,\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m    \"version\": 1,\u001b[22m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[33m@@ -51,11 +51,11 @@\u001b[39m\n\u001b[2m        \"speciesId\": 7,\u001b[22m\n\u001b[2m        \"status\": \"healthy\",\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[2m    ],\u001b[22m\n\u001b[2m    \"profileId\": \"r1-squirtle-v1\",\u001b[22m\n\u001b[32m-   \"revision\": 1,\u001b[39m\n\u001b[31m+   \"revision\": 3,\u001b[39m\n\u001b[2m    \"storage\": Object {\u001b[22m\n\u001b[2m      \"capacity\": 420,\u001b[22m\n\u001b[2m      \"used\": 0,\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m    \"version\": 1,\u001b[22m\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\practice.spec.ts:223:47",
+                    "location": {
+                      "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\practice.spec.ts",
+                      "column": 47,
+                      "line": 223
+                    },
+                    "snippet": "  221 |   await page.screenshot({ path: 'reports/mirror-practice.png', fullPage: true });\n  222 |   await finish(page);\n> 223 |   expect(await assets(context, character.id)).toEqual(beforeAssets);\n      |                                               ^\n  224 | });\n  225 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\practice.spec.ts",
+                        "column": 47,
+                        "line": 223
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[33m@@ -51,11 +51,11 @@\u001b[39m\n\u001b[2m        \"speciesId\": 7,\u001b[22m\n\u001b[2m        \"status\": \"healthy\",\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[2m    ],\u001b[22m\n\u001b[2m    \"profileId\": \"r1-squirtle-v1\",\u001b[22m\n\u001b[32m-   \"revision\": 1,\u001b[39m\n\u001b[31m+   \"revision\": 3,\u001b[39m\n\u001b[2m    \"storage\": Object {\u001b[22m\n\u001b[2m      \"capacity\": 420,\u001b[22m\n\u001b[2m      \"used\": 0,\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m    \"version\": 1,\u001b[22m\n\n  221 |   await page.screenshot({ path: 'reports/mirror-practice.png', fullPage: true });\n  222 |   await finish(page);\n> 223 |   expect(await assets(context, character.id)).toEqual(beforeAssets);\n      |                                               ^\n  224 | });\n  225 |\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\practice.spec.ts:223:47"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:29:45.547Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\practice-Mirror-Move-is-pl-92488-refresh-and-a-fresh-backend\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\practice-Mirror-Move-is-pl-92488-refresh-and-a-fresh-backend\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\practice-Mirror-Move-is-pl-92488-refresh-and-a-fresh-backend\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\practice-Mirror-Move-is-pl-92488-refresh-and-a-fresh-backend\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\practice.spec.ts",
+                    "column": 47,
+                    "line": 223
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-5939f26cc472e4862d8e",
+          "file": "practice.spec.ts",
+          "line": 191,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T14:29:22.719Z",
+    "duration": 33561.265,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

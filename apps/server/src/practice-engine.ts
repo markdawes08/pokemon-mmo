@@ -8,7 +8,9 @@ import { practiceCatalogueSchema, practiceChoiceSchema, practiceEventSchema, pra
   type PracticeCatalogue, type PracticeChoice, type PracticeEvent, type PracticeMon, type PracticeSetup } from '@pokewaterblue/protocol';
 import { gameplayServerSchema, type GameplayServerContent } from '../../../packages/content-schema/src/gameplay-server.js';
 import { createPursuitDiagnostic, loadPursuitEngine, makePursuitRng, pursuitConfig, pursuitCheckpointSchema,
-  PURSUIT_MOVES, PURSUIT_SOURCE, type PursuitCreature, type PursuitEngine, type PursuitEvent } from '../../../tools/battle-pursuit/engine.js';
+  PURSUIT_PROFILE, PURSUIT_SOURCE, type PursuitCreature, type PursuitEngine, type PursuitEvent } from '../../../tools/battle-pursuit/engine.js';
+import { createMirrorDiagnostic, loadMirrorEngine, makeMirrorRng, mirrorConfig, mirrorCheckpointSchema,
+  MIRROR_PROFILE, MIRROR_MOVES, MIRROR_SOURCE, type MirrorEngine, type MirrorEvent } from '../../../tools/battle-mirror/engine.js';
 import { DEVELOPMENT_CONTENT_HASH } from './development-profile.js';
 import { encounterCheckpointSchema, type EncounterCheckpoint } from '../../../tools/encounter-core/encounter.js';
 import { loadWildEncounterEngine, type WildEncounterEngine } from './wild-encounter-engine.js';
@@ -40,6 +42,8 @@ function presets(): PracticeCatalogue['presets'] {
       [mon(7, [182, 130, 110, 33])], mon(9, [130])),
     row('pursuit-switch', 'Pursuit interception', 'Switch to your reserve while the wild Raticate has Pursuit. The outgoing member takes the interception.',
       [mon(7, [33, 44, 229, 110]), mon(18, [16, 17, 98, 97])], mon(20, [228])),
+    row('mirror-move', 'Mirror Move', 'Pidgey can copy the opponent\'s Bubble with Mirror Move. Only Mirror Move\'s PP is spent; try other opponent moves in the editor.',
+      [mon(16, [119, 16, 28, 97])], mon(9, [145], { level: 40 })),
     row('stat-changes', 'Stat changes and Whirlwind', 'Try accuracy, Attack and Speed changes, then Whirlwind. Wild Whirlwind ends this practice battle.',
       [mon(18, [28, 297, 97, 18])], mon(20, [184, 116, 98])),
     row('torrent', 'Torrent at low HP', 'Squirtle starts at 30% HP to activate Torrent for Water moves.',
@@ -55,9 +59,10 @@ function presets(): PracticeCatalogue['presets'] {
 
 export class PracticeEngine {
   private readonly catalog: PracticeCatalogue;
-  constructor(private readonly engine: PursuitEngine, private readonly definitions: GameplayServerContent, private readonly encounters: WildEncounterEngine) {
-    if (definitions.sourceFingerprint !== PURSUIT_SOURCE) unavailable();
-    const allowed = new Set<number>(PURSUIT_MOVES);
+  constructor(private readonly engine: PursuitEngine, private readonly definitions: GameplayServerContent,
+    private readonly encounters: WildEncounterEngine, private readonly mirror: MirrorEngine) {
+    if (definitions.sourceFingerprint !== PURSUIT_SOURCE || definitions.sourceFingerprint !== MIRROR_SOURCE) unavailable();
+    const allowed = new Set<number>(MIRROR_MOVES);
     const types = new Map(definitions.types.map(row => [row.id, row.name]));
     this.catalog = practiceCatalogueSchema.parse({ version: 'practice-v1',
       species: speciesIds.map(id => {
@@ -76,9 +81,16 @@ export class PracticeEngine {
       moves: definitions.moves.filter(move => allowed.has(move.id)).map(move => ({ id: move.id, name: move.name,
         type: types.get(move.type.id), power: move.power, accuracy: move.accuracy, pp: move.pp })), presets: presets(),
     });
-    if (this.catalog.moves.length !== 24 || this.catalog.species.length !== 8) unavailable();
+    if (this.catalog.moves.length !== 25 || this.catalog.species.length !== 8) unavailable();
   }
   catalogue(): PracticeCatalogue { return structuredClone(this.catalog); }
+  private engineFor(snapshot: BattleSnapshot): PursuitEngine | MirrorEngine {
+    // Existing battles retain the exact engine that admitted them. Its restore
+    // also validates the complete compatibility fingerprint, not just a name.
+    if (snapshot.config.compatibility.rulesVersion === PURSUIT_PROFILE) return this.engine;
+    if (snapshot.config.compatibility.rulesVersion === MIRROR_PROFILE) return this.mirror;
+    return unavailable();
+  }
   private creature(input: PracticeMon): PursuitCreature {
     const entry = this.definitions.species.find(row => row.id === input.speciesId);
     const legal = this.catalog.species.find(row => row.id === input.speciesId);
@@ -106,9 +118,9 @@ export class PracticeEngine {
     try {
       z.uuid().parse(battleId);
       const setup = practiceSetupSchema.parse(rawSetup);
-      const initial = createPursuitDiagnostic({ seed: randomBytes(4).readUInt32LE(),
+      const initial = createMirrorDiagnostic({ seed: randomBytes(4).readUInt32LE(),
         player: setup.player.map(value => this.creature(value)), opponent: this.creature(setup.opponent) });
-      const snapshot = this.engine.createBattle(pursuitConfig(this.engine, battleId), initial, makePursuitRng(battleId, initial));
+      const snapshot = this.mirror.createBattle(mirrorConfig(this.mirror, battleId), initial, makeMirrorRng(battleId, initial));
       return { snapshot, setup, events: [{ sequence: 0, kind: 'info', text: 'Practice battle started. Account Pokémon, items, money and progress are unchanged.' }] };
     } catch (error) {
       if (error instanceof PracticeEngineError) throw error;
@@ -149,8 +161,10 @@ export class PracticeEngine {
   }
   restore(raw: PracticeStored): PracticeStored {
     try {
-      const stored = storedSchema.parse(raw), snapshot = this.engine.restore(stored.snapshot);
-      const checkpoint = pursuitCheckpointSchema.parse(JSON.parse(Buffer.from(snapshot.privateEngineState.data, 'base64').toString('utf8')));
+      const stored = storedSchema.parse(raw), engine = this.engineFor(stored.snapshot), snapshot = engine.restore(stored.snapshot);
+      const checkpointData: unknown = JSON.parse(Buffer.from(snapshot.privateEngineState.data, 'base64').toString('utf8'));
+      const checkpoint = engine === this.engine ? pursuitCheckpointSchema.parse(checkpointData) : mirrorCheckpointSchema.parse(checkpointData);
+      if (stored.wild && engine !== this.engine) unavailable();
       const wild = stored.wild ? this.wildAdmission(stored.wild.encounter) : null;
       if (wild && (!isDeepStrictEqual(wild.setup, stored.setup) || checkpoint.admission.kind !== 'diagnostic'
         || checkpoint.admission.seed !== wild.initial.seed)) unavailable();
@@ -168,11 +182,12 @@ export class PracticeEngine {
   advance(raw: PracticeStored, rawChoice: PracticeChoice): PracticeStored {
     const stored = this.restore(raw), choice = practiceChoiceSchema.safeParse(rawChoice);
     if (!choice.success) invalid('Unsupported practice choice.');
-    const accepted = this.engine.validateChoice(stored.snapshot, 'player', choice.data);
+    const engine = this.engineFor(stored.snapshot);
+    const accepted = engine.validateChoice(stored.snapshot, 'player', choice.data);
     if (!accepted.accepted) invalid(accepted.reason);
     try {
-      const before = this.engine.project(stored.snapshot, 'player').presentation;
-      const advanced = this.engine.advance(stored.snapshot, [accepted.value]);
+      const before = engine.project(stored.snapshot, 'player').presentation;
+      const advanced = engine.advance(stored.snapshot, [accepted.value]);
       if (advanced.domainEffects.length) unavailable();
       let active = before.activeIndex;
       const events = [...stored.events];
@@ -191,7 +206,7 @@ export class PracticeEngine {
   project(battleId: string, raw: PracticeStored): PracticeSession {
     const stored = this.restore(raw);
     if (stored.snapshot.config.battleId !== battleId) unavailable();
-    const view = this.engine.project(stored.snapshot, 'player').presentation;
+    const view = this.engineFor(stored.snapshot).project(stored.snapshot, 'player').presentation;
     const publicMon = (value: typeof view.self | typeof view.party[number]) => ({ partyIndex: value.partyIndex, speciesId: value.speciesId,
       abilityId: value.abilityId, level: value.level, hp: value.hp, maxHP: value.maxHP, status: value.status,
       moves: value.moves.map(move => ({ slot: move.slot, moveId: move.moveId, pp: move.pp, maxPP: move.maxPP })) });
@@ -203,11 +218,13 @@ export class PracticeEngine {
     } });
   }
   private speciesName(id: number): string { return this.catalog.species.find(row => row.id === id)!.name; }
-  private eventText(event: PursuitEvent, names: string[], setup: PracticeSetup): Omit<PracticeEvent, 'sequence'> | null {
+  private eventText(event: PursuitEvent | MirrorEvent, names: string[], setup: PracticeSetup): Omit<PracticeEvent, 'sequence'> | null {
     const outcome = { won: 'You won the practice battle.', lost: 'Your practice party fainted.', draw: 'Both practice parties fainted.',
       ran: 'You escaped from the practice battle.', 'forced-escape': 'Whirlwind ended the practice battle.' };
     switch (event.kind) {
       case 'order': return null;
+      case 'mirror-copy': return { kind: 'info', actor: event.actor,
+        text: `${names[event.actor]} used MIRROR MOVE and copied ${this.catalog.moves.find(move => move.id === event.moveId)?.name ?? 'STRUGGLE'}.` };
       case 'attack': {
         const actor = event.actor, name = this.catalog.moves.find(move => move.id === event.moveId)?.name ?? 'STRUGGLE';
         const cancelled = event.commands.some(command => command.type === 9);
@@ -240,7 +257,7 @@ export class PracticeEngine {
 }
 
 export async function loadPracticeEngine(): Promise<PracticeEngine> {
-  const [bytes, engine, encounters] = await Promise.all([readFile('content/generated/server/gameplay.json'), loadPursuitEngine(), loadWildEncounterEngine()]);
+  const [bytes, engine, encounters, mirror] = await Promise.all([readFile('content/generated/server/gameplay.json'), loadPursuitEngine(), loadWildEncounterEngine(), loadMirrorEngine()]);
   if (createHash('sha256').update(bytes).digest('hex') !== DEVELOPMENT_CONTENT_HASH) unavailable();
-  return new PracticeEngine(engine, gameplayServerSchema.parse(JSON.parse(bytes.toString('utf8'))), encounters);
+  return new PracticeEngine(engine, gameplayServerSchema.parse(JSON.parse(bytes.toString('utf8'))), encounters, mirror);
 }

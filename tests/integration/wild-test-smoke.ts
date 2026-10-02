@@ -126,6 +126,28 @@ try {
   assert.equal((await owner.practiceSnapshot(transfer.connection)).state.session, null, 'Map arrival resets cooldown without inventing another grass step');
   checks.push('blocked-input-consumes-no-encounter-step', 'non-encounter-map-steps-use-source-plain-behavior', 'map-transfer-resets-source-cooldown-without-a-second-step-or-RNG-draw');
 
+  const saving = await fixture(owner); await enter(owner, saving.connection);
+  const saveAssets = await assets(saving.characterId);
+  const acceptedSave = { ...worldCommand(owner, saving.connection), type: 'save-profile' as const, version: 1 as const, payload: {} };
+  await owner.save(saving.connection, acceptedSave);
+  const racingSave = { ...worldCommand(owner, saving.connection), type: 'save-profile' as const, version: 1 as const, payload: {} };
+  await owner.worldInput(saving.connection, packet(owner, saving.connection));
+  // No WorldService timer is installed here: Save itself must settle this
+  // already accepted source-duration step and admit its pending encounter.
+  await new Promise(resolve => setTimeout(resolve, 300));
+  await rejected(owner.save(saving.connection, racingSave), 'STALE_REVISION');
+  const afterSaveRace = await persisted(saving.characterId);
+  assert.equal(afterSaveRace.character.activity, 'battle');
+  assert.equal(afterSaveRace.character.position_y, 38);
+  assert.equal((await database.pool.query('SELECT 1 FROM character_command_receipts WHERE character_id=$1 AND command_id=$2',
+    [saving.characterId, racingSave.commandId])).rowCount, 0, 'Definitively rejected Save never created a receipt');
+  assert.equal((await owner.save(saving.connection, acceptedSave)).replayed, true, 'A committed UUID still returns its receipt in battle');
+  assert.deepEqual(await persisted(saving.characterId), afterSaveRace);
+  await owner.practiceCommand(saving.connection, close(await owner.practiceSnapshot(saving.connection)));
+  assert.equal(owner.worldProjection(saving.connection)?.avatar.y, 38);
+  assert.deepEqual(await assets(saving.characterId), saveAssets);
+  checks.push('save-settles-wild-admission-and-definitively-rejects-only-uncommitted-UUID-without-blocking-battle-close');
+
   const natural = await fixture(owner); await enter(owner, natural.connection);
   const unchanged = await assets(natural.characterId), before = await persisted(natural.characterId);
   const admittedInput = await step(owner, natural.connection);

@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-02T13:51:18.019Z",
+  "verifiedAt": "2026-10-02T15:05:53.751Z",
   "status": "passed",
   "checks": [
     "ordinary-trainer-has-no-granted-assets",
@@ -36,8 +36,8 @@
   "scope": "Separate real PostgreSQL test database. Explicit offline fixture only; no live economy or battle mechanics.",
   "failureInjection": "Real COMMIT/ROLLBACK followed by simulated lost acknowledgement; not a network partition or machine-crash test.",
   "childPids": [
-    26748,
-    14952,
-    18572
+    32804,
+    30084,
+    36528
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "commands": [
+    [
+      "node_modules/vitest/vitest.mjs",
+      "run",
+      "apps/server/src/character-room.test.ts"
+    ],
+    [
+      "scripts/run.mjs",
+      "test:e2e",
+      "tests/e2e/wild-testing.spec.ts",
+      "--grep",
+      "same cadence"
+    ]
+  ],
+  "exitCodes": [
+    0,
+    0
+  ],
+  "passed": true
+}

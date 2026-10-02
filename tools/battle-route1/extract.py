@@ -18,7 +18,10 @@ spec.loader.exec_module(base)
 
 def extract(out, *, family=False, party=False, tactics=False, charge=False, protect=False, pursuit=False):
     allowed = ROOT / ('.local/battle-pursuit' if pursuit else '.local/battle-protect' if protect else '.local/battle-charge' if charge else '.local/battle-tactics' if tactics else '.local/battle-party' if party else '.local/battle-family' if family else '.local/battle-route1')
-    if out.resolve() != out or not out.is_relative_to(allowed):
+    # The separately versioned Mirror extractor reuses Pursuit only inside its
+    # own private output, then applies its new source transformations there.
+    mirror_output = pursuit and out.is_relative_to(ROOT / '.local/battle-mirror')
+    if out.resolve() != out or not (out.is_relative_to(allowed) or mirror_output):
         raise ValueError('Real battle extraction must remain private and nonredirected')
     report = base.extract(out)
     source = base.Extraction()

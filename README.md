@@ -68,12 +68,13 @@ npm.cmd run content:build -- --profile firered-private
 npm.cmd run doctor
 npm.cmd run battle:setup
 .\.venv\Scripts\python.exe tools/battle-pursuit/build.py
+.\.venv\Scripts\python.exe tools/battle-mirror/build.py
 npm.cmd run verify
 npm.cmd run dev
 ```
 
-The direct Pursuit build prepares the current server-loaded WASM before the unit
-and integration stages need it. The full gate later rebuilds and verifies all
+The direct Pursuit and Mirror builds prepare the server-loaded WASMs before the unit
+and integration stages need them. The full gate later rebuilds and verifies all
 retained engine profiles. Run this prerequisite on a clean setup before `verify`
 or starting the backend.
 
@@ -105,6 +106,7 @@ the running browser preview.
 | `npm.cmd run testing:check` | Verify one-click testing access, session reuse/switching and local-only guards |
 | `npm.cmd run practice:check` | Verify source practice teams, sprites, persisted turns and recovery |
 | `npm.cmd run battle:pursuit` | Verify private Pursuit attacks, switch interception and recovery |
+| `npm.cmd run battle:mirror` | Verify Mirror Move copying, move history, borrowed charging and recovery |
 | `npm.cmd run content:check` | Rebuild independently and verify generated hashes |
 | `npm.cmd run build` | Build the client and backend |
 | `npm.cmd run start` | Serve the built preview at http://127.0.0.1:2567 |
@@ -135,9 +137,13 @@ The [Protect profile](tools/battle-protect/README.md) adds Protect for 23 moves,
 including a separately pinned ROM policy for repeated Protect attempts.
 The [Pursuit profile](tools/battle-pursuit/README.md) adds the 24th move, including
 source switch interception and selected-switch continuation after a knockout.
+The [Mirror profile](tools/battle-mirror/README.md) adds Mirror Move as the 25th,
+including copied effects, source move history and borrowed Skull Bash charging.
 The **Practice battle** button now exposes these mechanics through signed-in local development
 trainers. Choose a preset or configure a temporary team; battles save after each action and
 resume after refresh or reconnect. Practice grants no owned assets, rewards or world changes.
-Mirror Move, complete party-aware results, durable ownership,
+Choose the **Mirror Move** preset and **Start battle** to try Pidgey copying Bubble.
+End any current practice first. Existing saved battles resume with their original engine.
+Complete party-aware results, durable ownership,
 arrival scripts and normal world-battle outcome application remain necessary. See [current status](docs/STATUS.md)
 for verified gates and remaining work.

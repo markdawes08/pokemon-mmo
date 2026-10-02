@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T13:53:04.190Z",
+  "checkedAt": "2026-10-02T15:07:40.170Z",
   "status": "passed",
   "checks": [
     "practice-requires-explicit-development-fixture-and-enabled-local-mode",
@@ -13,6 +13,7 @@
     "authenticated-resume-and-fresh-process-recover-exact-state",
     "close-retains-global-revision-and-old-battle-commands-stay-fenced",
     "obsolete-or-corrupt-practice-can-be-closed-without-applying-engine-or-asset-effects",
+    "pre-mirror-pursuit-save-recovers-in-fresh-process-and-advances-with-unchanged-compatibility",
     "fresh-login-from-saved-overworld-enters-practice-without-moving-or-joining-world",
     "practice-rollback-retains-exactly-one-accepted-choice-and-no-asset-effects",
     "practice-unknown-rollback-retains-exactly-one-accepted-choice-and-no-asset-effects",
@@ -21,7 +22,8 @@
     "revoked-session-cannot-read-or-advance-practice"
   ],
   "probePids": [
-    2700
+    28368,
+    33872
   ],
   "scope": "Isolated real PostgreSQL fixtures, source engine, exactly-once commands, failure injection and fresh-process practice recovery. User testing accounts are not accessed."
 }

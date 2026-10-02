@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-02T10:55:06.309324+00:00",
+  "checkedAt": "2026-10-02T14:38:06.306077+00:00",
   "status": "passed",
   "profile": "firered-family-charge-v1",
   "scope": "Private source mechanics; not live battle or persistence",
@@ -4051,7 +4051,7 @@
       },
       {
         "path": "tools/battle-route1/extract.py",
-        "sha256": "ca93095c8e0f297a1a013fca28248209d9421d2034173e00992491ae09a9648e"
+        "sha256": "b4cabae1bce5b7b3164b750f24327c53460d5d3140888e107d7a449508c8d335"
       },
       {
         "path": "tools/battle-route1/item_extract.py",

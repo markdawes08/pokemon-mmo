@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-10-02T13:53:02.163Z",
+  "checkedAt": "2026-10-02T15:07:37.272Z",
   "status": "passed",
   "species": 8,
-  "moves": 24,
-  "admittedCombinations": 74,
-  "sourceTurns": 74,
+  "moves": 25,
+  "admittedCombinations": 77,
+  "sourceTurns": 77,
   "extraLevelAdmissions": 32,
-  "presets": 9,
+  "presets": 10,
   "spriteOutputs": 17,
   "retained": {
     "battle-spike/primary/probe.wasm": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724",
@@ -23,5 +23,5 @@
     "battle-protect/primary/protect.wasm": "c8300b709626eab94f4554dca867181127b4fcc9a888c2c8fa013e7b8d220d8f",
     "battle-pursuit/primary/pursuit.wasm": "c831be59bf3e09b93474b812fceec4072745969513ea7f6732f16e1ad9693c37"
   },
-  "scope": "Practice copies built from production source definitions and admitted by the unchanged C engine; no test-oracle fixture dependency or owned-result application."
+  "scope": "Practice copies built from production source definitions and admitted by the Mirror C engine; thirteen previous artifacts retained, no test-oracle fixture dependency or owned-result application."
 }

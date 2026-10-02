@@ -1,6 +1,7 @@
 import { Client, type Room } from '@colyseus/sdk';
 import './accounts.css';
 import { renderTrainerAssets } from './trainer-assets.js';
+import { retryStaleSave, obsoleteSaveError } from './save-retry.js';
 import {
   CHARACTER_ROOM, CHARACTER_RECONNECT_GRACE_MS, PROTOCOL_VERSION, accountViewSchema, characterViewSchema, characterTicketSchema,
   characterSnapshotSchema, profileSavedSchema, characterErrorSchema, trainerNameSchema, trainerAssetsSchema,
@@ -91,6 +92,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   let saveTimer: ReturnType<typeof setTimeout> | undefined;
   let saveRetryTimer: ReturnType<typeof setTimeout> | undefined;
   let saveRetries = 0;
+  let saveRevisionRetries = 0, saveGeneration = 0;
   let destroyed = false;
   let testingAccounts: LocalTestAccounts['accounts'] = [], testingLoadFailed = false, testingLoadError = '';
   const selectionKey = 'pokewaterblue.local-test-selection';
@@ -513,6 +515,39 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
       joined.onMessage('error', (value: unknown) => {
         if (room !== joined) return;
         const parsed = characterErrorSchema.safeParse(value);
+        if (parsed.success && pendingSave && snapshot && obsoleteSaveError(pendingSave, snapshot, parsed.data)) return;
+        const matchedSave = parsed.success && pendingSave !== null && parsed.data.commandId === pendingSave.commandId
+          && snapshot?.connectionGeneration === saveGeneration
+          && (!parsed.data.snapshot || parsed.data.snapshot.connectionGeneration === saveGeneration
+            && parsed.data.snapshot.character.id === snapshot.character.id);
+        if (parsed.success && matchedSave && pendingSave && saveTimer !== undefined && !recovery) {
+          if (parsed.data.code === 'BUSY' && saveRetries < 5) {
+            const command = pendingSave;
+            saveRetries++; clearTimeout(saveRetryTimer);
+            saveRetryTimer = setTimeout(() => {
+              saveRetryTimer = undefined;
+              if (room === joined && !recovery && joined.connection.isOpen && pendingSave === command && saveTimer !== undefined) joined.send('save', command);
+            }, 150);
+            return;
+          }
+          const retry = snapshot && retryStaleSave(pendingSave, saveGeneration, snapshot, parsed.data, saveRevisionRetries, () => crypto.randomUUID());
+          if (retry && joined.connection.isOpen) {
+            // Keep the original deadline. Only this definitively rejected UUID
+            // may be replaced; BUSY and uncertain outcomes retain their payload.
+            clearTimeout(saveRetryTimer); saveRetryTimer = undefined;
+            if (parsed.data.snapshot!.character.revision >= snapshot!.character.revision) {
+              snapshot = parsed.data.snapshot!; account!.character = snapshot.character;
+            }
+            pendingSave = retry; saveRevisionRetries++;
+            joined.send('save', retry); return;
+          }
+        }
+        if (parsed.success && pendingSave && !matchedSave
+          && ['BUSY', 'STALE_REVISION', 'COMMAND_CONFLICT', 'INVALID_MESSAGE'].includes(parsed.data.code)) {
+          // A response to another request cannot reject, retry or replace this
+          // Save. Keep its confirmation deadline and exact original command.
+          if (saveTimer !== undefined) return;
+        }
         if (parsed.success && pendingWild && parsed.data.commandId === pendingWild.commandId) {
           if (parsed.data.code === 'BUSY' && wildWait && wildWait.retries++ < 5) {
             const command = pendingWild;
@@ -537,18 +572,6 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
         if (parsed.success && parsed.data.code === 'BUSY' && !parsed.data.commandId) {
           if (recovery?.transportReady && recovery.helloRetries < 5) {
             recovery.helloRetries++; sendRecoveryHello(); return;
-          }
-          if (pendingSave && saveTimer !== undefined && saveRetries < 5) {
-            // A heartbeat or previous input may still own the room. Preserve the
-            // command and original confirmation deadline for an idempotent retry.
-            const command = pendingSave;
-            saveRetries++;
-            clearTimeout(saveRetryTimer);
-            saveRetryTimer = setTimeout(() => {
-              saveRetryTimer = undefined;
-              if (room === joined && !recovery && joined.connection.isOpen && pendingSave === command && saveTimer !== undefined) joined.send('save', command);
-            }, 150);
-            return;
           }
           if (worldRequest && worldRequest.retries < 5) {
             const pending = worldRequest;
@@ -579,7 +602,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
         failWorldRequest(error.message);
         if (worldState === 'shared') worldBridge.onError(error.message);
         if (error.snapshot && error.snapshot.character.id === account?.character?.id) { snapshot = error.snapshot; account.character = snapshot.character; }
-        if (['STALE_REVISION', 'COMMAND_CONFLICT', 'INVALID_MESSAGE'].includes(error.code)) pendingSave = null;
+        if (matchedSave && ['STALE_REVISION', 'COMMAND_CONFLICT', 'INVALID_MESSAGE'].includes(error.code)) pendingSave = null;
         if (leaving || recovery || ['SESSION_REPLACED', 'AUTH_REQUIRED', 'LEASE_EXPIRED', 'RECONNECT_REQUIRED', 'DATABASE_UNAVAILABLE', 'COMMAND_OUTCOME_UNKNOWN'].includes(error.code)) {
           disconnect(error.message);
           if (error.code === 'AUTH_REQUIRED') clearAccount();
@@ -724,6 +747,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     if (busy || recovery || !room?.connection.isOpen || !snapshot) return;
     pendingSave ??= { commandId: crypto.randomUUID(), type: 'save-profile', version: 1,
       activityId: snapshot.character.activityId, expectedRevision: snapshot.character.revision, payload: {} };
+    saveRevisionRetries = 0; saveGeneration = snapshot.connectionGeneration;
     clearSaveTimers(); busy = true; render(); status('Saving trainer…');
     saveTimer = setTimeout(() => { clearSaveTimers(); busy = false; status('Save confirmation timed out. Retry to check the same save safely.', true); render(); }, 8000);
     room.send('save', pendingSave);

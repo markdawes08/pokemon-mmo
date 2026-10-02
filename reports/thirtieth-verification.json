@@ -1,0 +1,167 @@
+{
+  "checkedAt": "2026-10-02T15:15:28.795271+00:00",
+  "status": "passed",
+  "scope": "Mirror Move is implemented from the pinned source and immediately playable in practice. New manual practice uses the separate firered-family-mirror-v1 profile with 25 supported family moves, eight species and ten presets. The Mirror Move preset uses level-50 Pidgey against level-40 Blastoise with Bubble. Source copying retains the chosen Mirror PP slot, target-selection RNG and copy-eligible move history; copied Struggle/recoil and Skull Bash charging/release are covered. Existing Pursuit practice saves and all Route 1 wild tests retain their exact prior engine binding. No account reset, normal ownership/reward application or database migration was added. Regression fixes prevent background heartbeat movement stalls and safely retry a Save definitively rejected by a newer automatic checkpoint; generation fences and unknown-outcome UUID replay are preserved.",
+  "gate": [
+    {
+      "stage": "doctor",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "lint",
+      "status": "passed",
+      "evidence": "reports/thirtieth-app-regression-exit-status.json"
+    },
+    {
+      "stage": "typecheck",
+      "status": "passed",
+      "evidence": "reports/thirtieth-app-regression-exit-status.json"
+    },
+    {
+      "stage": "test:unit",
+      "status": "passed",
+      "evidence": "reports/thirtieth-app-regression-exit-status.json"
+    },
+    {
+      "stage": "test:integration",
+      "status": "passed",
+      "evidence": "reports/thirtieth-app-regression-exit-status.json"
+    },
+    {
+      "stage": "content:check",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:spike",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "encounter:check",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:route1",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:progression",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:loss",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:capture",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:evolution",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:family",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:party",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:tactics",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:charge",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:protect",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:pursuit",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "battle:mirror",
+      "status": "passed",
+      "evidence": "reports/thirtieth-first-full-gate/verification.json"
+    },
+    {
+      "stage": "practice:check",
+      "status": "passed",
+      "evidence": "reports/thirtieth-app-regression-exit-status.json"
+    },
+    {
+      "stage": "wild:check",
+      "status": "passed",
+      "evidence": "reports/thirtieth-app-regression-exit-status.json"
+    },
+    {
+      "stage": "build",
+      "status": "passed",
+      "evidence": "reports/thirtieth-app-regression-exit-status.json"
+    },
+    {
+      "stage": "test:boundaries",
+      "status": "passed",
+      "evidence": "reports/thirtieth-app-regression-exit-status.json"
+    },
+    {
+      "stage": "test:recovery",
+      "status": "passed",
+      "evidence": "reports/thirtieth-app-regression-exit-status.json"
+    },
+    {
+      "stage": "test:e2e",
+      "status": "passed",
+      "evidence": "reports/thirtieth-app-regression-exit-status.json"
+    }
+  ],
+  "nativeExitCode": 0,
+  "gateStrategy": "Combined evidence: 16 unchanged source/content/doctor categories retained from initial full run; all 10 application categories rerun after world timing fixes. Original full run remains failed and archived.",
+  "unitTests": 117,
+  "pythonTests": 49,
+  "browserScenarios": 52,
+  "mirrorCases": 686,
+  "mirrorTransitions": 1463,
+  "mirrorRngDraws": 11500,
+  "mirrorWasmSha256": "2a4e1ec16db9b4fef7628c99af4fdaa2a8d9c2a3fabcc1c63dd400bd1379a773",
+  "retainedWasmCount": 13,
+  "practiceMoves": 25,
+  "practicePresets": 10,
+  "practiceStorageGroups": 18,
+  "wildStorageGroups": 27,
+  "evidence": [
+    "reports/thirtieth-first-full-gate/verification.json",
+    "reports/thirtieth-app-regression-exit-status.json",
+    "reports/battle-mirror-verification.json",
+    "reports/battle-mirror-recovery.json",
+    "reports/battle-mirror-integration.json",
+    "reports/practice-browser.json",
+    "reports/practice-storage-verification.json",
+    "reports/battle-mirror-runtime.json",
+    "reports/battle-mirror-qa-diagnostics.json",
+    "reports/thirtieth-source-freeze.json",
+    "reports/thirtieth-cadence-fix-exit-status.json",
+    "reports/world-save-stale.json"
+  ],
+  "suggestedCommit": "Add playable Mirror Move and fix movement/save timing races",
+  "gitOperations": false
+}

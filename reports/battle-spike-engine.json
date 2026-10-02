@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-02T10:52:45.840Z",
+  "checkedAt": "2026-10-02T14:35:40.369Z",
   "status": "passed",
   "scope": "Real six-method private WASM adapter against source goldens; no live room or database integration",
   "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
@@ -11,8 +11,8 @@
   "goldenBoundaries": 34,
   "crossBuildReplayedTransitions": 23,
   "freshProcess": {
-    "pid": 8928,
-    "parentPid": 20068,
+    "pid": 34604,
+    "parentPid": 22740,
     "boundaries": 34,
     "transitions": 23
   },

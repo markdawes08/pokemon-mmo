@@ -1,0 +1,23 @@
+{
+  "commands": [
+    [
+      "scripts/run.mjs",
+      "lint"
+    ],
+    [
+      "scripts/run.mjs",
+      "typecheck"
+    ],
+    [
+      "--import",
+      "tsx",
+      "tools/battle-mirror/verify.ts"
+    ]
+  ],
+  "exitCodes": [
+    0,
+    0,
+    0
+  ],
+  "passed": true
+}

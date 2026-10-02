@@ -1,0 +1,1862 @@
+[
+  {
+    "index": 0,
+    "before": {
+      "turn": 1,
+      "phase": "choice",
+      "needsChoice": true,
+      "outcome": null,
+      "activeIndex": 0,
+      "party": [
+        {
+          "partyIndex": 0,
+          "speciesId": 16,
+          "abilityId": 51,
+          "level": 50,
+          "hp": 107,
+          "maxHP": 107,
+          "status": 0,
+          "friendship": 70,
+          "moves": [
+            {
+              "slot": 0,
+              "moveId": 119,
+              "pp": 20,
+              "maxPP": 20,
+              "ppUps": 0
+            },
+            {
+              "slot": 1,
+              "moveId": 16,
+              "pp": 35,
+              "maxPP": 35,
+              "ppUps": 0
+            },
+            {
+              "slot": 2,
+              "moveId": 28,
+              "pp": 15,
+              "maxPP": 15,
+              "ppUps": 0
+            },
+            {
+              "slot": 3,
+              "moveId": 97,
+              "pp": 30,
+              "maxPP": 30,
+              "ppUps": 0
+            }
+          ]
+        }
+      ],
+      "self": {
+        "partyIndex": 0,
+        "speciesId": 16,
+        "abilityId": 51,
+        "level": 50,
+        "hp": 107,
+        "maxHP": 107,
+        "status": 0,
+        "friendship": 70,
+        "moves": [
+          {
+            "slot": 0,
+            "moveId": 119,
+            "pp": 20,
+            "maxPP": 20,
+            "ppUps": 0
+          },
+          {
+            "slot": 1,
+            "moveId": 16,
+            "pp": 35,
+            "maxPP": 35,
+            "ppUps": 0
+          },
+          {
+            "slot": 2,
+            "moveId": 28,
+            "pp": 15,
+            "maxPP": 15,
+            "ppUps": 0
+          },
+          {
+            "slot": 3,
+            "moveId": 97,
+            "pp": 30,
+            "maxPP": 30,
+            "ppUps": 0
+          }
+        ],
+        "focusEnergy": false,
+        "charging": false,
+        "protected": false,
+        "stages": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "opponent": {
+        "speciesId": 9,
+        "level": 50,
+        "hpPercent": 100,
+        "status": 0,
+        "charging": false,
+        "protected": false
+      },
+      "pendingDecision": null,
+      "pendingCharge": null,
+      "weather": {
+        "kind": "clear",
+        "turnsRemaining": 0
+      },
+      "inventory": null,
+      "availableChoices": [
+        {
+          "kind": "move",
+          "slot": 0
+        },
+        {
+          "kind": "move",
+          "slot": 1
+        },
+        {
+          "kind": "move",
+          "slot": 2
+        },
+        {
+          "kind": "move",
+          "slot": 3
+        },
+        {
+          "kind": "run"
+        }
+      ],
+      "liveAdmission": false
+    },
+    "after": {
+      "turn": 2,
+      "phase": "choice",
+      "needsChoice": true,
+      "outcome": null,
+      "activeIndex": 0,
+      "party": [
+        {
+          "partyIndex": 0,
+          "speciesId": 16,
+          "abilityId": 51,
+          "level": 50,
+          "hp": 78,
+          "maxHP": 107,
+          "status": 0,
+          "friendship": 70,
+          "moves": [
+            {
+              "slot": 0,
+              "moveId": 119,
+              "pp": 19,
+              "maxPP": 20,
+              "ppUps": 0
+            },
+            {
+              "slot": 1,
+              "moveId": 16,
+              "pp": 35,
+              "maxPP": 35,
+              "ppUps": 0
+            },
+            {
+              "slot": 2,
+              "moveId": 28,
+              "pp": 15,
+              "maxPP": 15,
+              "ppUps": 0
+            },
+            {
+              "slot": 3,
+              "moveId": 97,
+              "pp": 30,
+              "maxPP": 30,
+              "ppUps": 0
+            }
+          ]
+        }
+      ],
+      "self": {
+        "partyIndex": 0,
+        "speciesId": 16,
+        "abilityId": 51,
+        "level": 50,
+        "hp": 78,
+        "maxHP": 107,
+        "status": 0,
+        "friendship": 70,
+        "moves": [
+          {
+            "slot": 0,
+            "moveId": 119,
+            "pp": 19,
+            "maxPP": 20,
+            "ppUps": 0
+          },
+          {
+            "slot": 1,
+            "moveId": 16,
+            "pp": 35,
+            "maxPP": 35,
+            "ppUps": 0
+          },
+          {
+            "slot": 2,
+            "moveId": 28,
+            "pp": 15,
+            "maxPP": 15,
+            "ppUps": 0
+          },
+          {
+            "slot": 3,
+            "moveId": 97,
+            "pp": 30,
+            "maxPP": 30,
+            "ppUps": 0
+          }
+        ],
+        "focusEnergy": false,
+        "charging": false,
+        "protected": false,
+        "stages": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "opponent": {
+        "speciesId": 9,
+        "level": 50,
+        "hpPercent": 100,
+        "status": 0,
+        "charging": false,
+        "protected": false
+      },
+      "pendingDecision": null,
+      "pendingCharge": null,
+      "weather": {
+        "kind": "clear",
+        "turnsRemaining": 0
+      },
+      "inventory": null,
+      "availableChoices": [
+        {
+          "kind": "move",
+          "slot": 0
+        },
+        {
+          "kind": "move",
+          "slot": 1
+        },
+        {
+          "kind": "move",
+          "slot": 2
+        },
+        {
+          "kind": "move",
+          "slot": 3
+        },
+        {
+          "kind": "run"
+        }
+      ],
+      "liveAdmission": false
+    },
+    "events": [
+      {
+        "kind": "order",
+        "phase": "actions",
+        "actors": [
+          1,
+          0
+        ]
+      },
+      {
+        "kind": "attack",
+        "actor": 1,
+        "slot": 0,
+        "moveId": 145,
+        "result": {
+          "baseDamage": 20,
+          "afterCritical": 20,
+          "afterType": 30,
+          "damage": 29,
+          "flags": 0,
+          "hpDealt": 29,
+          "targetHP": 78,
+          "critical": 1
+        },
+        "commands": [
+          {
+            "type": 3,
+            "battler": 1,
+            "value": 29
+          },
+          {
+            "type": 1,
+            "battler": 0,
+            "value": 29
+          },
+          {
+            "type": 2,
+            "battler": 0,
+            "value": 78
+          }
+        ]
+      },
+      {
+        "kind": "mirror-copy",
+        "actor": 0,
+        "moveId": 145
+      },
+      {
+        "kind": "attack",
+        "actor": 0,
+        "slot": 0,
+        "moveId": 145,
+        "result": {
+          "baseDamage": 5,
+          "afterCritical": 5,
+          "afterType": 2,
+          "damage": 1,
+          "flags": 4,
+          "hpDealt": 1,
+          "targetHP": 145,
+          "critical": 1
+        },
+        "commands": [
+          {
+            "type": 3,
+            "battler": 0,
+            "value": 19
+          },
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 1
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 145
+          }
+        ]
+      },
+      {
+        "kind": "order",
+        "phase": "residual",
+        "actors": [
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "index": 1,
+    "before": {
+      "turn": 1,
+      "phase": "choice",
+      "needsChoice": true,
+      "outcome": null,
+      "activeIndex": 0,
+      "party": [
+        {
+          "partyIndex": 0,
+          "speciesId": 16,
+          "abilityId": 51,
+          "level": 50,
+          "hp": 107,
+          "maxHP": 107,
+          "status": 0,
+          "friendship": 70,
+          "moves": [
+            {
+              "slot": 0,
+              "moveId": 119,
+              "pp": 20,
+              "maxPP": 20,
+              "ppUps": 0
+            },
+            {
+              "slot": 1,
+              "moveId": 16,
+              "pp": 35,
+              "maxPP": 35,
+              "ppUps": 0
+            },
+            {
+              "slot": 2,
+              "moveId": 28,
+              "pp": 15,
+              "maxPP": 15,
+              "ppUps": 0
+            },
+            {
+              "slot": 3,
+              "moveId": 97,
+              "pp": 30,
+              "maxPP": 30,
+              "ppUps": 0
+            }
+          ]
+        }
+      ],
+      "self": {
+        "partyIndex": 0,
+        "speciesId": 16,
+        "abilityId": 51,
+        "level": 50,
+        "hp": 107,
+        "maxHP": 107,
+        "status": 0,
+        "friendship": 70,
+        "moves": [
+          {
+            "slot": 0,
+            "moveId": 119,
+            "pp": 20,
+            "maxPP": 20,
+            "ppUps": 0
+          },
+          {
+            "slot": 1,
+            "moveId": 16,
+            "pp": 35,
+            "maxPP": 35,
+            "ppUps": 0
+          },
+          {
+            "slot": 2,
+            "moveId": 28,
+            "pp": 15,
+            "maxPP": 15,
+            "ppUps": 0
+          },
+          {
+            "slot": 3,
+            "moveId": 97,
+            "pp": 30,
+            "maxPP": 30,
+            "ppUps": 0
+          }
+        ],
+        "focusEnergy": false,
+        "charging": false,
+        "protected": false,
+        "stages": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "opponent": {
+        "speciesId": 9,
+        "level": 50,
+        "hpPercent": 100,
+        "status": 0,
+        "charging": false,
+        "protected": false
+      },
+      "pendingDecision": null,
+      "pendingCharge": null,
+      "weather": {
+        "kind": "clear",
+        "turnsRemaining": 0
+      },
+      "inventory": null,
+      "availableChoices": [
+        {
+          "kind": "move",
+          "slot": 0
+        },
+        {
+          "kind": "move",
+          "slot": 1
+        },
+        {
+          "kind": "move",
+          "slot": 2
+        },
+        {
+          "kind": "move",
+          "slot": 3
+        },
+        {
+          "kind": "run"
+        }
+      ],
+      "liveAdmission": false
+    },
+    "after": {
+      "turn": 2,
+      "phase": "choice",
+      "needsChoice": true,
+      "outcome": null,
+      "activeIndex": 0,
+      "party": [
+        {
+          "partyIndex": 0,
+          "speciesId": 16,
+          "abilityId": 51,
+          "level": 50,
+          "hp": 82,
+          "maxHP": 107,
+          "status": 0,
+          "friendship": 70,
+          "moves": [
+            {
+              "slot": 0,
+              "moveId": 119,
+              "pp": 19,
+              "maxPP": 20,
+              "ppUps": 0
+            },
+            {
+              "slot": 1,
+              "moveId": 16,
+              "pp": 35,
+              "maxPP": 35,
+              "ppUps": 0
+            },
+            {
+              "slot": 2,
+              "moveId": 28,
+              "pp": 15,
+              "maxPP": 15,
+              "ppUps": 0
+            },
+            {
+              "slot": 3,
+              "moveId": 97,
+              "pp": 30,
+              "maxPP": 30,
+              "ppUps": 0
+            }
+          ]
+        }
+      ],
+      "self": {
+        "partyIndex": 0,
+        "speciesId": 16,
+        "abilityId": 51,
+        "level": 50,
+        "hp": 82,
+        "maxHP": 107,
+        "status": 0,
+        "friendship": 70,
+        "moves": [
+          {
+            "slot": 0,
+            "moveId": 119,
+            "pp": 19,
+            "maxPP": 20,
+            "ppUps": 0
+          },
+          {
+            "slot": 1,
+            "moveId": 16,
+            "pp": 35,
+            "maxPP": 35,
+            "ppUps": 0
+          },
+          {
+            "slot": 2,
+            "moveId": 28,
+            "pp": 15,
+            "maxPP": 15,
+            "ppUps": 0
+          },
+          {
+            "slot": 3,
+            "moveId": 97,
+            "pp": 30,
+            "maxPP": 30,
+            "ppUps": 0
+          }
+        ],
+        "focusEnergy": false,
+        "charging": false,
+        "protected": false,
+        "stages": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "opponent": {
+        "speciesId": 9,
+        "level": 50,
+        "hpPercent": 98,
+        "status": 0,
+        "charging": false,
+        "protected": false
+      },
+      "pendingDecision": null,
+      "pendingCharge": null,
+      "weather": {
+        "kind": "clear",
+        "turnsRemaining": 0
+      },
+      "inventory": null,
+      "availableChoices": [
+        {
+          "kind": "move",
+          "slot": 0
+        },
+        {
+          "kind": "move",
+          "slot": 1
+        },
+        {
+          "kind": "move",
+          "slot": 2
+        },
+        {
+          "kind": "move",
+          "slot": 3
+        },
+        {
+          "kind": "run"
+        }
+      ],
+      "liveAdmission": false
+    },
+    "events": [
+      {
+        "kind": "order",
+        "phase": "actions",
+        "actors": [
+          1,
+          0
+        ]
+      },
+      {
+        "kind": "attack",
+        "actor": 1,
+        "slot": 0,
+        "moveId": 145,
+        "result": {
+          "baseDamage": 20,
+          "afterCritical": 20,
+          "afterType": 30,
+          "damage": 25,
+          "flags": 0,
+          "hpDealt": 25,
+          "targetHP": 82,
+          "critical": 1
+        },
+        "commands": [
+          {
+            "type": 3,
+            "battler": 1,
+            "value": 29
+          },
+          {
+            "type": 1,
+            "battler": 0,
+            "value": 25
+          },
+          {
+            "type": 2,
+            "battler": 0,
+            "value": 82
+          }
+        ]
+      },
+      {
+        "kind": "mirror-copy",
+        "actor": 0,
+        "moveId": 145
+      },
+      {
+        "kind": "attack",
+        "actor": 0,
+        "slot": 0,
+        "moveId": 145,
+        "result": {
+          "baseDamage": 5,
+          "afterCritical": 10,
+          "afterType": 5,
+          "damage": 4,
+          "flags": 4,
+          "hpDealt": 4,
+          "targetHP": 142,
+          "critical": 2
+        },
+        "commands": [
+          {
+            "type": 3,
+            "battler": 0,
+            "value": 19
+          },
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 4
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 142
+          },
+          {
+            "type": 6,
+            "battler": 1,
+            "value": 53
+          }
+        ]
+      },
+      {
+        "kind": "order",
+        "phase": "residual",
+        "actors": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "index": 2,
+    "before": {
+      "turn": 1,
+      "phase": "choice",
+      "needsChoice": true,
+      "outcome": null,
+      "activeIndex": 0,
+      "party": [
+        {
+          "partyIndex": 0,
+          "speciesId": 16,
+          "abilityId": 51,
+          "level": 50,
+          "hp": 107,
+          "maxHP": 107,
+          "status": 0,
+          "friendship": 70,
+          "moves": [
+            {
+              "slot": 0,
+              "moveId": 119,
+              "pp": 20,
+              "maxPP": 20,
+              "ppUps": 0
+            },
+            {
+              "slot": 1,
+              "moveId": 16,
+              "pp": 35,
+              "maxPP": 35,
+              "ppUps": 0
+            },
+            {
+              "slot": 2,
+              "moveId": 28,
+              "pp": 15,
+              "maxPP": 15,
+              "ppUps": 0
+            },
+            {
+              "slot": 3,
+              "moveId": 97,
+              "pp": 30,
+              "maxPP": 30,
+              "ppUps": 0
+            }
+          ]
+        }
+      ],
+      "self": {
+        "partyIndex": 0,
+        "speciesId": 16,
+        "abilityId": 51,
+        "level": 50,
+        "hp": 107,
+        "maxHP": 107,
+        "status": 0,
+        "friendship": 70,
+        "moves": [
+          {
+            "slot": 0,
+            "moveId": 119,
+            "pp": 20,
+            "maxPP": 20,
+            "ppUps": 0
+          },
+          {
+            "slot": 1,
+            "moveId": 16,
+            "pp": 35,
+            "maxPP": 35,
+            "ppUps": 0
+          },
+          {
+            "slot": 2,
+            "moveId": 28,
+            "pp": 15,
+            "maxPP": 15,
+            "ppUps": 0
+          },
+          {
+            "slot": 3,
+            "moveId": 97,
+            "pp": 30,
+            "maxPP": 30,
+            "ppUps": 0
+          }
+        ],
+        "focusEnergy": false,
+        "charging": false,
+        "protected": false,
+        "stages": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "opponent": {
+        "speciesId": 9,
+        "level": 50,
+        "hpPercent": 100,
+        "status": 0,
+        "charging": false,
+        "protected": false
+      },
+      "pendingDecision": null,
+      "pendingCharge": null,
+      "weather": {
+        "kind": "clear",
+        "turnsRemaining": 0
+      },
+      "inventory": null,
+      "availableChoices": [
+        {
+          "kind": "move",
+          "slot": 0
+        },
+        {
+          "kind": "move",
+          "slot": 1
+        },
+        {
+          "kind": "move",
+          "slot": 2
+        },
+        {
+          "kind": "move",
+          "slot": 3
+        },
+        {
+          "kind": "run"
+        }
+      ],
+      "liveAdmission": false
+    },
+    "after": {
+      "turn": 2,
+      "phase": "choice",
+      "needsChoice": true,
+      "outcome": null,
+      "activeIndex": 0,
+      "party": [
+        {
+          "partyIndex": 0,
+          "speciesId": 16,
+          "abilityId": 51,
+          "level": 50,
+          "hp": 82,
+          "maxHP": 107,
+          "status": 0,
+          "friendship": 70,
+          "moves": [
+            {
+              "slot": 0,
+              "moveId": 119,
+              "pp": 19,
+              "maxPP": 20,
+              "ppUps": 0
+            },
+            {
+              "slot": 1,
+              "moveId": 16,
+              "pp": 35,
+              "maxPP": 35,
+              "ppUps": 0
+            },
+            {
+              "slot": 2,
+              "moveId": 28,
+              "pp": 15,
+              "maxPP": 15,
+              "ppUps": 0
+            },
+            {
+              "slot": 3,
+              "moveId": 97,
+              "pp": 30,
+              "maxPP": 30,
+              "ppUps": 0
+            }
+          ]
+        }
+      ],
+      "self": {
+        "partyIndex": 0,
+        "speciesId": 16,
+        "abilityId": 51,
+        "level": 50,
+        "hp": 82,
+        "maxHP": 107,
+        "status": 0,
+        "friendship": 70,
+        "moves": [
+          {
+            "slot": 0,
+            "moveId": 119,
+            "pp": 19,
+            "maxPP": 20,
+            "ppUps": 0
+          },
+          {
+            "slot": 1,
+            "moveId": 16,
+            "pp": 35,
+            "maxPP": 35,
+            "ppUps": 0
+          },
+          {
+            "slot": 2,
+            "moveId": 28,
+            "pp": 15,
+            "maxPP": 15,
+            "ppUps": 0
+          },
+          {
+            "slot": 3,
+            "moveId": 97,
+            "pp": 30,
+            "maxPP": 30,
+            "ppUps": 0
+          }
+        ],
+        "focusEnergy": false,
+        "charging": false,
+        "protected": false,
+        "stages": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "opponent": {
+        "speciesId": 9,
+        "level": 50,
+        "hpPercent": 100,
+        "status": 0,
+        "charging": false,
+        "protected": false
+      },
+      "pendingDecision": null,
+      "pendingCharge": null,
+      "weather": {
+        "kind": "clear",
+        "turnsRemaining": 0
+      },
+      "inventory": null,
+      "availableChoices": [
+        {
+          "kind": "move",
+          "slot": 0
+        },
+        {
+          "kind": "move",
+          "slot": 1
+        },
+        {
+          "kind": "move",
+          "slot": 2
+        },
+        {
+          "kind": "move",
+          "slot": 3
+        },
+        {
+          "kind": "run"
+        }
+      ],
+      "liveAdmission": false
+    },
+    "events": [
+      {
+        "kind": "order",
+        "phase": "actions",
+        "actors": [
+          1,
+          0
+        ]
+      },
+      {
+        "kind": "attack",
+        "actor": 1,
+        "slot": 0,
+        "moveId": 145,
+        "result": {
+          "baseDamage": 20,
+          "afterCritical": 20,
+          "afterType": 30,
+          "damage": 25,
+          "flags": 0,
+          "hpDealt": 25,
+          "targetHP": 82,
+          "critical": 1
+        },
+        "commands": [
+          {
+            "type": 3,
+            "battler": 1,
+            "value": 29
+          },
+          {
+            "type": 1,
+            "battler": 0,
+            "value": 25
+          },
+          {
+            "type": 2,
+            "battler": 0,
+            "value": 82
+          }
+        ]
+      },
+      {
+        "kind": "mirror-copy",
+        "actor": 0,
+        "moveId": 145
+      },
+      {
+        "kind": "attack",
+        "actor": 0,
+        "slot": 0,
+        "moveId": 145,
+        "result": {
+          "baseDamage": 5,
+          "afterCritical": 5,
+          "afterType": 2,
+          "damage": 1,
+          "flags": 4,
+          "hpDealt": 1,
+          "targetHP": 145,
+          "critical": 1
+        },
+        "commands": [
+          {
+            "type": 3,
+            "battler": 0,
+            "value": 19
+          },
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 1
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 145
+          }
+        ]
+      },
+      {
+        "kind": "order",
+        "phase": "residual",
+        "actors": [
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "index": 3,
+    "before": {
+      "turn": 1,
+      "phase": "choice",
+      "needsChoice": true,
+      "outcome": null,
+      "activeIndex": 0,
+      "party": [
+        {
+          "partyIndex": 0,
+          "speciesId": 16,
+          "abilityId": 51,
+          "level": 50,
+          "hp": 107,
+          "maxHP": 107,
+          "status": 0,
+          "friendship": 70,
+          "moves": [
+            {
+              "slot": 0,
+              "moveId": 119,
+              "pp": 20,
+              "maxPP": 20,
+              "ppUps": 0
+            },
+            {
+              "slot": 1,
+              "moveId": 16,
+              "pp": 35,
+              "maxPP": 35,
+              "ppUps": 0
+            },
+            {
+              "slot": 2,
+              "moveId": 28,
+              "pp": 15,
+              "maxPP": 15,
+              "ppUps": 0
+            },
+            {
+              "slot": 3,
+              "moveId": 97,
+              "pp": 30,
+              "maxPP": 30,
+              "ppUps": 0
+            }
+          ]
+        }
+      ],
+      "self": {
+        "partyIndex": 0,
+        "speciesId": 16,
+        "abilityId": 51,
+        "level": 50,
+        "hp": 107,
+        "maxHP": 107,
+        "status": 0,
+        "friendship": 70,
+        "moves": [
+          {
+            "slot": 0,
+            "moveId": 119,
+            "pp": 20,
+            "maxPP": 20,
+            "ppUps": 0
+          },
+          {
+            "slot": 1,
+            "moveId": 16,
+            "pp": 35,
+            "maxPP": 35,
+            "ppUps": 0
+          },
+          {
+            "slot": 2,
+            "moveId": 28,
+            "pp": 15,
+            "maxPP": 15,
+            "ppUps": 0
+          },
+          {
+            "slot": 3,
+            "moveId": 97,
+            "pp": 30,
+            "maxPP": 30,
+            "ppUps": 0
+          }
+        ],
+        "focusEnergy": false,
+        "charging": false,
+        "protected": false,
+        "stages": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "opponent": {
+        "speciesId": 9,
+        "level": 50,
+        "hpPercent": 100,
+        "status": 0,
+        "charging": false,
+        "protected": false
+      },
+      "pendingDecision": null,
+      "pendingCharge": null,
+      "weather": {
+        "kind": "clear",
+        "turnsRemaining": 0
+      },
+      "inventory": null,
+      "availableChoices": [
+        {
+          "kind": "move",
+          "slot": 0
+        },
+        {
+          "kind": "move",
+          "slot": 1
+        },
+        {
+          "kind": "move",
+          "slot": 2
+        },
+        {
+          "kind": "move",
+          "slot": 3
+        },
+        {
+          "kind": "run"
+        }
+      ],
+      "liveAdmission": false
+    },
+    "after": {
+      "turn": 2,
+      "phase": "choice",
+      "needsChoice": true,
+      "outcome": null,
+      "activeIndex": 0,
+      "party": [
+        {
+          "partyIndex": 0,
+          "speciesId": 16,
+          "abilityId": 51,
+          "level": 50,
+          "hp": 79,
+          "maxHP": 107,
+          "status": 0,
+          "friendship": 70,
+          "moves": [
+            {
+              "slot": 0,
+              "moveId": 119,
+              "pp": 19,
+              "maxPP": 20,
+              "ppUps": 0
+            },
+            {
+              "slot": 1,
+              "moveId": 16,
+              "pp": 35,
+              "maxPP": 35,
+              "ppUps": 0
+            },
+            {
+              "slot": 2,
+              "moveId": 28,
+              "pp": 15,
+              "maxPP": 15,
+              "ppUps": 0
+            },
+            {
+              "slot": 3,
+              "moveId": 97,
+              "pp": 30,
+              "maxPP": 30,
+              "ppUps": 0
+            }
+          ]
+        }
+      ],
+      "self": {
+        "partyIndex": 0,
+        "speciesId": 16,
+        "abilityId": 51,
+        "level": 50,
+        "hp": 79,
+        "maxHP": 107,
+        "status": 0,
+        "friendship": 70,
+        "moves": [
+          {
+            "slot": 0,
+            "moveId": 119,
+            "pp": 19,
+            "maxPP": 20,
+            "ppUps": 0
+          },
+          {
+            "slot": 1,
+            "moveId": 16,
+            "pp": 35,
+            "maxPP": 35,
+            "ppUps": 0
+          },
+          {
+            "slot": 2,
+            "moveId": 28,
+            "pp": 15,
+            "maxPP": 15,
+            "ppUps": 0
+          },
+          {
+            "slot": 3,
+            "moveId": 97,
+            "pp": 30,
+            "maxPP": 30,
+            "ppUps": 0
+          }
+        ],
+        "focusEnergy": false,
+        "charging": false,
+        "protected": false,
+        "stages": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "opponent": {
+        "speciesId": 9,
+        "level": 50,
+        "hpPercent": 100,
+        "status": 0,
+        "charging": false,
+        "protected": false
+      },
+      "pendingDecision": null,
+      "pendingCharge": null,
+      "weather": {
+        "kind": "clear",
+        "turnsRemaining": 0
+      },
+      "inventory": null,
+      "availableChoices": [
+        {
+          "kind": "move",
+          "slot": 0
+        },
+        {
+          "kind": "move",
+          "slot": 1
+        },
+        {
+          "kind": "move",
+          "slot": 2
+        },
+        {
+          "kind": "move",
+          "slot": 3
+        },
+        {
+          "kind": "run"
+        }
+      ],
+      "liveAdmission": false
+    },
+    "events": [
+      {
+        "kind": "order",
+        "phase": "actions",
+        "actors": [
+          1,
+          0
+        ]
+      },
+      {
+        "kind": "attack",
+        "actor": 1,
+        "slot": 0,
+        "moveId": 145,
+        "result": {
+          "baseDamage": 20,
+          "afterCritical": 20,
+          "afterType": 30,
+          "damage": 28,
+          "flags": 0,
+          "hpDealt": 28,
+          "targetHP": 79,
+          "critical": 1
+        },
+        "commands": [
+          {
+            "type": 3,
+            "battler": 1,
+            "value": 29
+          },
+          {
+            "type": 1,
+            "battler": 0,
+            "value": 28
+          },
+          {
+            "type": 2,
+            "battler": 0,
+            "value": 79
+          }
+        ]
+      },
+      {
+        "kind": "mirror-copy",
+        "actor": 0,
+        "moveId": 145
+      },
+      {
+        "kind": "attack",
+        "actor": 0,
+        "slot": 0,
+        "moveId": 145,
+        "result": {
+          "baseDamage": 5,
+          "afterCritical": 5,
+          "afterType": 2,
+          "damage": 1,
+          "flags": 4,
+          "hpDealt": 1,
+          "targetHP": 145,
+          "critical": 1
+        },
+        "commands": [
+          {
+            "type": 3,
+            "battler": 0,
+            "value": 19
+          },
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 1
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 145
+          }
+        ]
+      },
+      {
+        "kind": "order",
+        "phase": "residual",
+        "actors": [
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "index": 4,
+    "before": {
+      "turn": 1,
+      "phase": "choice",
+      "needsChoice": true,
+      "outcome": null,
+      "activeIndex": 0,
+      "party": [
+        {
+          "partyIndex": 0,
+          "speciesId": 16,
+          "abilityId": 51,
+          "level": 50,
+          "hp": 107,
+          "maxHP": 107,
+          "status": 0,
+          "friendship": 70,
+          "moves": [
+            {
+              "slot": 0,
+              "moveId": 119,
+              "pp": 20,
+              "maxPP": 20,
+              "ppUps": 0
+            },
+            {
+              "slot": 1,
+              "moveId": 16,
+              "pp": 35,
+              "maxPP": 35,
+              "ppUps": 0
+            },
+            {
+              "slot": 2,
+              "moveId": 28,
+              "pp": 15,
+              "maxPP": 15,
+              "ppUps": 0
+            },
+            {
+              "slot": 3,
+              "moveId": 97,
+              "pp": 30,
+              "maxPP": 30,
+              "ppUps": 0
+            }
+          ]
+        }
+      ],
+      "self": {
+        "partyIndex": 0,
+        "speciesId": 16,
+        "abilityId": 51,
+        "level": 50,
+        "hp": 107,
+        "maxHP": 107,
+        "status": 0,
+        "friendship": 70,
+        "moves": [
+          {
+            "slot": 0,
+            "moveId": 119,
+            "pp": 20,
+            "maxPP": 20,
+            "ppUps": 0
+          },
+          {
+            "slot": 1,
+            "moveId": 16,
+            "pp": 35,
+            "maxPP": 35,
+            "ppUps": 0
+          },
+          {
+            "slot": 2,
+            "moveId": 28,
+            "pp": 15,
+            "maxPP": 15,
+            "ppUps": 0
+          },
+          {
+            "slot": 3,
+            "moveId": 97,
+            "pp": 30,
+            "maxPP": 30,
+            "ppUps": 0
+          }
+        ],
+        "focusEnergy": false,
+        "charging": false,
+        "protected": false,
+        "stages": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "opponent": {
+        "speciesId": 9,
+        "level": 50,
+        "hpPercent": 100,
+        "status": 0,
+        "charging": false,
+        "protected": false
+      },
+      "pendingDecision": null,
+      "pendingCharge": null,
+      "weather": {
+        "kind": "clear",
+        "turnsRemaining": 0
+      },
+      "inventory": null,
+      "availableChoices": [
+        {
+          "kind": "move",
+          "slot": 0
+        },
+        {
+          "kind": "move",
+          "slot": 1
+        },
+        {
+          "kind": "move",
+          "slot": 2
+        },
+        {
+          "kind": "move",
+          "slot": 3
+        },
+        {
+          "kind": "run"
+        }
+      ],
+      "liveAdmission": false
+    },
+    "after": {
+      "turn": 2,
+      "phase": "choice",
+      "needsChoice": true,
+      "outcome": null,
+      "activeIndex": 0,
+      "party": [
+        {
+          "partyIndex": 0,
+          "speciesId": 16,
+          "abilityId": 51,
+          "level": 50,
+          "hp": 82,
+          "maxHP": 107,
+          "status": 0,
+          "friendship": 70,
+          "moves": [
+            {
+              "slot": 0,
+              "moveId": 119,
+              "pp": 19,
+              "maxPP": 20,
+              "ppUps": 0
+            },
+            {
+              "slot": 1,
+              "moveId": 16,
+              "pp": 35,
+              "maxPP": 35,
+              "ppUps": 0
+            },
+            {
+              "slot": 2,
+              "moveId": 28,
+              "pp": 15,
+              "maxPP": 15,
+              "ppUps": 0
+            },
+            {
+              "slot": 3,
+              "moveId": 97,
+              "pp": 30,
+              "maxPP": 30,
+              "ppUps": 0
+            }
+          ]
+        }
+      ],
+      "self": {
+        "partyIndex": 0,
+        "speciesId": 16,
+        "abilityId": 51,
+        "level": 50,
+        "hp": 82,
+        "maxHP": 107,
+        "status": 0,
+        "friendship": 70,
+        "moves": [
+          {
+            "slot": 0,
+            "moveId": 119,
+            "pp": 19,
+            "maxPP": 20,
+            "ppUps": 0
+          },
+          {
+            "slot": 1,
+            "moveId": 16,
+            "pp": 35,
+            "maxPP": 35,
+            "ppUps": 0
+          },
+          {
+            "slot": 2,
+            "moveId": 28,
+            "pp": 15,
+            "maxPP": 15,
+            "ppUps": 0
+          },
+          {
+            "slot": 3,
+            "moveId": 97,
+            "pp": 30,
+            "maxPP": 30,
+            "ppUps": 0
+          }
+        ],
+        "focusEnergy": false,
+        "charging": false,
+        "protected": false,
+        "stages": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "opponent": {
+        "speciesId": 9,
+        "level": 50,
+        "hpPercent": 100,
+        "status": 0,
+        "charging": false,
+        "protected": false
+      },
+      "pendingDecision": null,
+      "pendingCharge": null,
+      "weather": {
+        "kind": "clear",
+        "turnsRemaining": 0
+      },
+      "inventory": null,
+      "availableChoices": [
+        {
+          "kind": "move",
+          "slot": 0
+        },
+        {
+          "kind": "move",
+          "slot": 1
+        },
+        {
+          "kind": "move",
+          "slot": 2
+        },
+        {
+          "kind": "move",
+          "slot": 3
+        },
+        {
+          "kind": "run"
+        }
+      ],
+      "liveAdmission": false
+    },
+    "events": [
+      {
+        "kind": "order",
+        "phase": "actions",
+        "actors": [
+          1,
+          0
+        ]
+      },
+      {
+        "kind": "attack",
+        "actor": 1,
+        "slot": 0,
+        "moveId": 145,
+        "result": {
+          "baseDamage": 20,
+          "afterCritical": 20,
+          "afterType": 30,
+          "damage": 25,
+          "flags": 0,
+          "hpDealt": 25,
+          "targetHP": 82,
+          "critical": 1
+        },
+        "commands": [
+          {
+            "type": 3,
+            "battler": 1,
+            "value": 29
+          },
+          {
+            "type": 1,
+            "battler": 0,
+            "value": 25
+          },
+          {
+            "type": 2,
+            "battler": 0,
+            "value": 82
+          }
+        ]
+      },
+      {
+        "kind": "mirror-copy",
+        "actor": 0,
+        "moveId": 145
+      },
+      {
+        "kind": "attack",
+        "actor": 0,
+        "slot": 0,
+        "moveId": 145,
+        "result": {
+          "baseDamage": 5,
+          "afterCritical": 5,
+          "afterType": 2,
+          "damage": 1,
+          "flags": 4,
+          "hpDealt": 1,
+          "targetHP": 145,
+          "critical": 1
+        },
+        "commands": [
+          {
+            "type": 3,
+            "battler": 0,
+            "value": 19
+          },
+          {
+            "type": 1,
+            "battler": 1,
+            "value": 1
+          },
+          {
+            "type": 2,
+            "battler": 1,
+            "value": 145
+          },
+          {
+            "type": 6,
+            "battler": 1,
+            "value": 53
+          }
+        ]
+      },
+      {
+        "kind": "order",
+        "phase": "residual",
+        "actors": [
+          0,
+          1
+        ]
+      }
+    ]
+  }
+]

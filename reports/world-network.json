@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "verifiedAt": "2026-10-02T13:51:49.780Z",
+  "verifiedAt": "2026-10-02T15:06:24.524Z",
   "checks": [
     "ordinary-staged-trainer-cannot-enter-development-world",
     "two-real-account-public-avatar-whitelist",
@@ -22,8 +22,8 @@
     "fresh-os-process-restores-authenticated-world-checkpoint"
   ],
   "backendPids": [
-    20964,
-    32188
+    35708,
+    8544
   ],
   "scope": "Real PostgreSQL, real cookie sessions and Colyseus, explicit development accounts only. World interaction is exploration; no battle or story mechanics."
 }

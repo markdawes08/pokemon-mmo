@@ -8,7 +8,7 @@ import { createServer } from 'vite';
 const root = process.cwd();
 const dist = resolve(root, 'apps/client/dist');
 const privateMarkers = ['privateEngineState', 'sRoute1_FireRed', 'encounterRateBuff', 'encounter_checkpoint', 'firered-route1-singles-v1', 'firered-route1-singles-v2',
-  'firered-route1-progression-v1', 'firered-route1-loss-v1', 'firered-route1-capture-v1', 'firered-route1-evolution-v1', 'firered-family-singles-v1', 'firered-family-party-v1', 'firered-family-tactics-v1', 'firered-family-charge-v1', 'firered-family-protect-v1', 'firered-family-pursuit-v1', 'firered-protect-rom-v1', 'character_leases', 'command_receipts', 'character_wild_test_state', 'wild_test_command_receipts', 'password_hash', 'BETTER_AUTH_SECRET', 'DATABASE_URL'];
+  'firered-route1-progression-v1', 'firered-route1-loss-v1', 'firered-route1-capture-v1', 'firered-route1-evolution-v1', 'firered-family-singles-v1', 'firered-family-party-v1', 'firered-family-tactics-v1', 'firered-family-charge-v1', 'firered-family-protect-v1', 'firered-family-pursuit-v1', 'firered-family-mirror-v1', 'firered-protect-rom-v1', 'character_leases', 'command_receipts', 'character_wild_test_state', 'wild_test_command_receipts', 'password_hash', 'BETTER_AUTH_SECRET', 'DATABASE_URL'];
 const files = [], sha256 = {};
 async function inspect(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -17,7 +17,7 @@ async function inspect(directory) {
     if (entry.isDirectory()) { await inspect(path); continue; }
     assert(entry.isFile());
     const name = relative(dist, path).replaceAll('\\', '/');
-    assert(!/(?:^|\/)(?:server|database|encounter-core|battle-spike|battle-route1|battle-progression|battle-loss|battle-capture|battle-evolution|battle-family|battle-party|battle-tactics|battle-charge|battle-protect|battle-pursuit)(?:\/|$)|\.wasm$/i.test(name), `Private public artifact: ${name}`);
+    assert(!/(?:^|\/)(?:server|database|encounter-core|battle-spike|battle-route1|battle-progression|battle-loss|battle-capture|battle-evolution|battle-family|battle-party|battle-tactics|battle-charge|battle-protect|battle-pursuit|battle-mirror)(?:\/|$)|\.wasm$/i.test(name), `Private public artifact: ${name}`);
     const bytes = await readFile(path);
     if (['.js', '.json', '.html', '.css', '.map'].includes(extname(path))) {
       const contents = bytes.toString('utf8');
@@ -60,6 +60,7 @@ try {
     'tools/battle-protect/engine.ts', '.local/battle-protect/primary/protect.wasm',
     'tools/battle-protect/protect-policy.json',
     'tools/battle-pursuit/engine.ts', '.local/battle-pursuit/primary/pursuit.wasm',
+    'tools/battle-mirror/engine.ts', '.local/battle-mirror/primary/mirror.wasm',
     'apps/server/src/practice-engine.ts', 'packages/database/migrations/0006_practice_battles.sql',
     'apps/server/src/wild-encounter-engine.ts', 'packages/database/migrations/0007_wild_encounter_testing.sql',
     'apps/server/src/local-testing-api.ts', 'apps/server/src/local-testing-auth.ts',

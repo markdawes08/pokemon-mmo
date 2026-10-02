@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "verifiedAt": "2026-10-02T13:53:11.389Z",
+  "scope": "Local Route 1 testing copies only; completed grass steps, exact source wild identity, shared field/battle RNG and no owned results.",
+  "completedStepCandidates": 699,
+  "naturallyGenerated": 81,
+  "sourceSlots": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "speciesLevels": [
+    "16:2",
+    "16:3",
+    "16:4",
+    "16:5",
+    "19:2",
+    "19:3",
+    "19:4"
+  ],
+  "abilities": [
+    50,
+    51,
+    62
+  ],
+  "admitted": 12,
+  "sourceTurns": 44,
+  "recoveredBoundaries": 56,
+  "outcomes": [
+    "won"
+  ],
+  "retainedWasm": {
+    "encounter-core/primary/encounter.wasm": "8b46d731fdf20c16213a6cb7dc9e1e14dccbd3a65fe4c4ac45d3e70c8a885bd2",
+    "battle-pursuit/primary/pursuit.wasm": "c831be59bf3e09b93474b812fceec4072745969513ea7f6732f16e1ad9693c37"
+  }
+}

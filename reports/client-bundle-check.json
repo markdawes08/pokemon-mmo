@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-10-02T13:53:26.307Z",
+  "checkedAt": "2026-10-02T15:07:57.152Z",
   "status": "passed",
   "scope": "Limited public inventory and selected private identifiers; not a comprehensive security audit",
   "fileCount": 90,
   "files": [
     "assets/index-3x2RQj0M.css",
-    "assets/index-yWqWHwmf.js",
+    "assets/index-j3hOzPW6.js",
     "content/audio/preview.json",
     "content/audio/samples/sc88pro_nylon_str_guitar.wav",
     "content/audio/samples/sc88pro_string_ensemble_60.wav",
@@ -97,7 +97,7 @@
   ],
   "sha256": {
     "assets/index-3x2RQj0M.css": "f313d6e69674a9f33ef88fc49058bbdc3d58d53541136a5b35c560172c4886ae",
-    "assets/index-yWqWHwmf.js": "90cd5dd2d84045d378325c09d3613cee601d3ba1b4d41e0e3147cf0a3513dc56",
+    "assets/index-j3hOzPW6.js": "67cccd7fdfe4af37e11c00328622530f806020b85f5ef4164d572f3e0beedc87",
     "content/audio/preview.json": "353f7157c7b4d12012d1a1fc6fbde1ff2fd5f4a96e61d7978b751f8532f4e45d",
     "content/audio/samples/sc88pro_nylon_str_guitar.wav": "401e3ccbbfdb57f5c6318426730fbb95af9aae96b09a80af3673c14909bd8e99",
     "content/audio/samples/sc88pro_string_ensemble_60.wav": "393da5125fb3857e2d14217da62740f1add3bcf307f3e07bf2ef612eb88945cd",
@@ -185,7 +185,7 @@
     "content/sprites/npc-Woman1.png": "3b4a798b7573ee06dcf6f31cebce62368a3c6cbafc88cfa791199e7214b5f221",
     "content/sprites/red-overworld.png": "8f0750917aaebbb75b0f3d15f7902641d5c1ee18323051129e5c1a9f6f556cbc",
     "content/world.json": "e4b954c4806b764bd7cd663ac4bbf1708018273474e762e7ca2f23e69715d21c",
-    "index.html": "6376892042de991d9d78c7efa61518461a02973da2dae09c28c91292902c7495"
+    "index.html": "9cbe7c3752368224eb7f4f011fe255e496685d5b86384b07f024a7e251ae53d3"
   },
   "checks": [
     "public-field-guide-present",

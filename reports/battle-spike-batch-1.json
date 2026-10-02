@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-02T10:52:43.847Z",
+  "checkedAt": "2026-10-02T14:35:38.124Z",
   "status": "passed",
   "batch": 1,
   "scope": "Post-accuracy Tackle/Water Gun damage and HP-command kernel; not a complete attack, turn or production engine",
@@ -625,16 +625,16 @@
     "node": "24.21.0",
     "platform": "win32",
     "architecture": "x64",
-    "loadAndCompileMilliseconds": 0.7927999999999997,
+    "loadAndCompileMilliseconds": 1.2073999999999785,
     "wasmBytes": 46120,
     "linearMemoryBytesPerInstance": 262144,
     "sourceBattlePokemonStructBytes": 88,
     "instanceSamples": 25,
-    "instanceMedianMilliseconds": 0.02400000000000091,
-    "instanceP95Milliseconds": 0.040300000000002,
+    "instanceMedianMilliseconds": 0.02729999999999677,
+    "instanceP95Milliseconds": 0.03709999999998104,
     "executionSamples": 500,
     "sourceCommandMedianMilliseconds": 0.0005999999999914962,
-    "sourceCommandP95Milliseconds": 0.0010999999999796728,
+    "sourceCommandP95Milliseconds": 0.0009000000000014552,
     "scope": "Local exploratory kernel costs; excludes full battle state, process overhead, persistence, networking and production workload"
   },
   "remaining": [

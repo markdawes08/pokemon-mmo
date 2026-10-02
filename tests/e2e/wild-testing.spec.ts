@@ -10,6 +10,7 @@ import { loadEncounterCore } from '../../tools/encounter-core/encounter.js';
 import { WorldTestBackend } from '../integration/world-backend.js';
 import { accountFixture, accountTestDatabaseUrl, migrateAccountTestDatabase, removeAccountFixturesByEmails } from '../integration/account-fixtures.js';
 import { observeWorldCadence } from './world-cadence-probe.js';
+import { observeSaveRetries, armSaveProbe, saveProbe, releaseHeldSave, decodeSave, holdNextMovement, releaseHeldMovement } from './world-save-probe.js';
 
 const backend = new WorldTestBackend();
 let database: ReturnType<typeof createDatabase>;
@@ -25,7 +26,7 @@ test.afterEach(async ({ page: _page }, info) => { results.push({ title: info.tit
 test.afterAll(async () => {
   try { await backend.stop(); }
   finally { if (database) { try { await removeAccountFixturesByEmails(database, emails); } finally { await database.close(); } } }
-  await writeFile('reports/wild-testing-browser.json', JSON.stringify({ checkedAt: new Date().toISOString(), passed: results.length === 5 && results.every(row => row.status === 'passed'),
+  await writeFile('reports/wild-testing-browser.json', JSON.stringify({ checkedAt: new Date().toISOString(), passed: results.length === 6 && results.every(row => row.status === 'passed'),
     results, backendPids: backend.pids, lifecycle: backend.lifecycleEvents, closeRecoveryEvidence, cadenceEvidence, heldInputEvidence,
     screenshots: ['reports/wild-testing-desktop.png', 'reports/wild-testing-mobile.png'],
     scope: 'Real built browser, owned backend and unique isolated PostgreSQL fixtures. Offline source-valid Route 1 anchor and deterministic source field checkpoints; every encounter starts from actual server-completed grass movement. Held-input cases deliver one unchanged late movement packet. No browser seed, encounter forcing, response mocking, main account access or credential file access.' }, null, 2) + '\n');
@@ -107,6 +108,38 @@ test('opt-in grass steps start a real wild battle and return to the same tile wi
   await page.getByRole('button', { name: 'Disable wild encounters', exact: true }).click();
   await expect(page.locator('#wild-testing')).toHaveAttribute('data-enabled', 'false');
   await page.locator('#game').click(); await step(page, 'ArrowDown'); await expect(page.locator('#game')).toHaveAttribute('data-world-mode', 'shared');
+});
+
+test('a Save overtaken by a wild encounter is rejected once and leaves Run and End usable', async ({ page, context }) => {
+  await observeSaveRetries(page);
+  const character = await trainer(context, 'SAVING', { grassSteps: 8 }); await connect(page);
+  const before = await assets(context, character.id);
+  await page.getByRole('button', { name: 'Enable wild encounters', exact: true }).click();
+  await expect(page.locator('#game')).toHaveAttribute('data-world-mode', 'shared');
+  // Both commands come from normal controls. Hold their delivery so the real
+  // directional input arrives first and admits battle before Save reaches it.
+  await holdNextMovement(page); await page.locator('#game').click(); await page.keyboard.press('ArrowUp');
+  await page.locator('#account-button').click(); await armSaveProbe(page, 'stale'); await page.locator('#account-save').click();
+  const original = decodeSave((await saveProbe(page)).frames[0]!);
+  await page.getByRole('button', { name: 'Close account', exact: true }).click();
+  await releaseHeldMovement(page);
+  await expect(page.locator('#practice-dialog')).toHaveAttribute('data-origin', 'route1-wild-test');
+  await expect(page.locator('#game')).toHaveAttribute('data-world-mode', 'battle');
+  await releaseHeldSave(page);
+  await expect(page.locator('#account-status')).toContainText('entered a battle');
+  await expect(page.locator('#account-save')).toHaveText('Save trainer');
+  await expect(page.getByRole('button', { name: 'Run', exact: true })).toBeEnabled();
+  await expect(page.getByRole('button', { name: 'End encounter test', exact: true })).toBeEnabled();
+  await turn(page, 'Run');
+  await page.getByRole('button', { name: /^(Return to Route 1|End encounter test)$/ }).click();
+  await expect(page.locator('#game')).toHaveAttribute('data-world-mode', 'shared');
+  await expect(page.locator('#practice-dialog')).not.toBeVisible();
+  const observed = await saveProbe(page);
+  expect(observed.staleErrors).toBe(1);
+  expect([...new Set(observed.frames.map(frame => decodeSave(frame).commandId))]).toEqual([original.commandId]);
+  expect((await database.pool.query('SELECT 1 FROM character_command_receipts WHERE character_id=$1 AND command_id=$2', [character.id, original.commandId])).rowCount).toBe(0);
+  const after = await assets(context, character.id);
+  for (const key of ['party', 'inventory', 'money']) expect(after[key]).toEqual(before[key]);
 });
 
 test('wild battle hides safely and recovers the same battle after refresh and a fresh backend', async ({ page, context }) => {

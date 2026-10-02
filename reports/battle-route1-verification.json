@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "passed",
-  "checkedAt": "2026-10-02T10:53:03.820Z",
+  "checkedAt": "2026-10-02T14:35:59.206Z",
   "scope": "Private exact Squirtle5 versus Route1 Pidgey/Rattata combat; no rewards, experience, capture, database or live transport",
   "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
   "wasmSha256": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02",

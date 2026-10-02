@@ -1,0 +1,25 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: mirror-first-source-level-17-actor-0:cross0+0: retained charge targets
++ actual - expected
+
+  [
++   1,
+    0,
+-   0
+  ]
+
+    at assertState (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-mirror\verify-support.ts:48:10)
+    at assertStep (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-mirror\verify-support.ts:68:3)
+    at <anonymous> (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-mirror\verify.ts:76:7) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [ 1, 0 ],
+  expected: [ 0, 0 ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.21.0

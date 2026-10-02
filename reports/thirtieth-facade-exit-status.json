@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-02T14:22:28.347213+00:00",
+  "commands": [
+    {
+      "stage": "test:unit",
+      "exitCode": 1
+    }
+  ],
+  "log": ".local\\thirtieth-facade.log",
+  "status": "failed"
+}

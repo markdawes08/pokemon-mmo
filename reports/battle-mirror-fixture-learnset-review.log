@@ -1,0 +1,15 @@
+C:\Users\mrkda\Projects\pokewaterblue\tools\battle-mirror\verify.ts:64
+  try {driver=new MirrorDriver(module,resources,initial);} catch(error) {throw new Error(`${fixture.id}: source admission failed`,{cause:error});}
+                                                                               ^
+
+Error: mirror-copy-184-actor-0: source admission failed
+    at <anonymous> (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-mirror\verify.ts:64:80) {
+  [cause]: Error: Mirror source rejected source roster admission: 1
+      at require (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-mirror\driver.ts:95:98)
+      at ok (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-mirror\driver.ts:96:52)
+      at configure (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-mirror\driver.ts:120:5)
+      at new MirrorDriver (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-mirror\driver.ts:287:19)
+      at <anonymous> (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-mirror\verify.ts:64:15)
+}
+
+Node.js v24.21.0
