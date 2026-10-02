@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T10:56:57.724Z",
+  "checkedAt": "2026-10-02T11:25:02.323Z",
   "status": "passed",
   "checks": [
     "hello-snapshot-allows-immediate-world-entry-and-leave-without-practice-read-backpressure",
@@ -10,8 +10,8 @@
     "backend-restart-preserves-authenticated-battle-and-command-receipts"
   ],
   "processIds": [
-    32920,
-    22404
+    32944,
+    24744
   ],
   "scope": "Two real local test accounts, authenticated Colyseus protocol, owner isolation, correlated rejection and fresh backend process recovery. No user testing account access."
 }

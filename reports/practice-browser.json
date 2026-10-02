@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T10:59:17.218Z",
+  "checkedAt": "2026-10-02T11:34:54.237Z",
   "passed": true,
   "results": [
     {
@@ -20,144 +20,144 @@
     }
   ],
   "backendPids": [
-    32316,
-    8636
+    28268,
+    21984
   ],
   "lifecycle": [
     {
-      "at": "2026-10-02T10:58:57.328Z",
+      "at": "2026-10-02T11:34:33.650Z",
       "event": "server_listening"
     },
     {
-      "at": "2026-10-02T10:58:57.662Z",
+      "at": "2026-10-02T11:34:33.977Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T10:58:58.407Z",
+      "at": "2026-10-02T11:34:34.656Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T10:58:58.564Z",
+      "at": "2026-10-02T11:34:34.798Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T10:58:59.024Z",
+      "at": "2026-10-02T11:34:35.261Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T10:59:01.399Z",
+      "at": "2026-10-02T11:34:37.686Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T11:34:37.686Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T10:59:01.399Z",
-      "event": "character_transport_dropped"
-    },
-    {
-      "at": "2026-10-02T10:59:01.980Z",
+      "at": "2026-10-02T11:34:38.287Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T10:59:02.367Z",
+      "at": "2026-10-02T11:34:38.653Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T10:59:04.927Z",
+      "at": "2026-10-02T11:34:41.315Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T10:59:04.927Z",
+      "at": "2026-10-02T11:34:41.315Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T10:59:05.477Z",
+      "at": "2026-10-02T11:34:41.889Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T10:59:05.884Z",
+      "at": "2026-10-02T11:34:42.360Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T10:59:08.792Z",
-      "event": "character_transport_dropped"
-    },
-    {
-      "at": "2026-10-02T10:59:08.792Z",
+      "at": "2026-10-02T11:34:45.188Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T10:59:09.315Z",
-      "event": "preview_connection_joined"
-    },
-    {
-      "at": "2026-10-02T10:59:09.739Z",
-      "event": "character_connected"
-    },
-    {
-      "at": "2026-10-02T10:59:10.409Z",
+      "at": "2026-10-02T11:34:45.188Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T10:59:10.954Z",
+      "at": "2026-10-02T11:34:45.827Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T11:34:46.240Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T11:34:46.921Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T11:34:47.452Z",
       "event": "character_transport_reconnected"
     },
     {
-      "at": "2026-10-02T10:59:11.885Z",
+      "at": "2026-10-02T11:34:48.398Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T10:59:12.233Z",
+      "at": "2026-10-02T11:34:48.756Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T10:59:12.543Z",
+      "at": "2026-10-02T11:34:49.221Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T10:59:12.762Z",
+      "at": "2026-10-02T11:34:49.303Z",
       "event": "test_shutdown_requested"
     },
     {
-      "at": "2026-10-02T10:59:12.764Z",
+      "at": "2026-10-02T11:34:49.306Z",
       "event": "server_stopping"
     },
     {
-      "at": "2026-10-02T10:59:12.765Z",
+      "at": "2026-10-02T11:34:49.307Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T10:59:13.768Z",
+      "at": "2026-10-02T11:34:50.320Z",
       "event": "server_stopped"
     },
     {
-      "at": "2026-10-02T10:59:14.883Z",
+      "at": "2026-10-02T11:34:51.442Z",
       "event": "server_listening"
     },
     {
-      "at": "2026-10-02T10:59:15.034Z",
+      "at": "2026-10-02T11:34:51.736Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T10:59:15.458Z",
+      "at": "2026-10-02T11:34:52.321Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T10:59:16.139Z",
+      "at": "2026-10-02T11:34:53.159Z",
       "event": "test_shutdown_requested"
     },
     {
-      "at": "2026-10-02T10:59:16.139Z",
-      "event": "preview_connection_left"
-    },
-    {
-      "at": "2026-10-02T10:59:16.139Z",
+      "at": "2026-10-02T11:34:53.159Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T10:59:16.141Z",
+      "at": "2026-10-02T11:34:53.159Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T11:34:53.161Z",
       "event": "server_stopping"
     },
     {
-      "at": "2026-10-02T10:59:16.143Z",
+      "at": "2026-10-02T11:34:53.164Z",
       "event": "server_stopped"
     }
   ],
@@ -173,7 +173,8 @@
     "commandReceiptCount": 1,
     "noAutomaticCommandReplay": true,
     "refreshRecovered": true,
-    "freshBackendRecovered": true
+    "freshBackendRecovered": true,
+    "practiceOpenedBeforeAccountBootstrap": true
   },
   "scope": "Built browser, independent real backend processes and owned PostgreSQL fixtures. Native acknowledgement loss and explicit same-command retry; no mocked mechanics or main account access."
 }

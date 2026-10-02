@@ -11,7 +11,7 @@ import './style.css';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <main class="shell">
-    <header class="topbar"><div class="wordmark">Poké<span>WaterBlue</span></div><div class="topbar-actions"><span class="build-label">Local development · 026</span><button class="button" id="practice-button" type="button">Practice battle</button><button class="button" id="account-button" type="button">Account</button></div></header>
+    <header class="topbar"><div class="wordmark">Poké<span>WaterBlue</span></div><div class="topbar-actions"><span class="build-label">Local development · 027</span><button class="button" id="practice-button" type="button">Practice battle</button><button class="button" id="account-button" type="button">Account</button></div></header>
     <div class="location"><div><p class="eyebrow" id="region-label">Kanto / Pallet Town</p><h1 id="location-name">Pallet Town</h1></div><p class="location-note" id="location-note">Home, town, and the road north.</p></div>
     <section class="console" aria-label="Game preview">
       <div class="screen-surround"><div class="game-screen" id="game" tabindex="0" aria-label="Pallet Town map. Arrows or W A S D move. Shift runs. E interacts."><div class="error-panel" id="loading">Loading Pallet Town…</div>

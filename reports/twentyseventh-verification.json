@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-10-02T11:38:31.644292+00:00",
+  "status": "passed",
+  "results": [
+    {
+      "stage": "doctor",
+      "exitCode": 0,
+      "evidence": "reports/twentyseventh-regression-exit-status.json"
+    },
+    {
+      "stage": "lint",
+      "exitCode": 0,
+      "evidence": "reports/twentyseventh-ui-recheck-exit-status.json"
+    },
+    {
+      "stage": "typecheck",
+      "exitCode": 0,
+      "evidence": "reports/twentyseventh-ui-recheck-exit-status.json"
+    },
+    {
+      "stage": "test:unit",
+      "exitCode": 0,
+      "evidence": "reports/twentyseventh-regression-exit-status.json"
+    },
+    {
+      "stage": "test:integration",
+      "exitCode": 0,
+      "evidence": "reports/twentyseventh-regression-exit-status.json"
+    },
+    {
+      "stage": "practice:check",
+      "exitCode": 0,
+      "evidence": "reports/twentyseventh-regression-exit-status.json"
+    },
+    {
+      "stage": "build",
+      "exitCode": 0,
+      "evidence": "reports/twentyseventh-ui-recheck-exit-status.json"
+    },
+    {
+      "stage": "test:boundaries",
+      "exitCode": 0,
+      "evidence": "reports/twentyseventh-regression-exit-status.json"
+    },
+    {
+      "stage": "test:recovery",
+      "exitCode": 0,
+      "evidence": "reports/twentyseventh-regression-exit-status.json"
+    },
+    {
+      "stage": "test:e2e",
+      "exitCode": 0,
+      "evidence": "reports/twentyseventh-ui-recheck-exit-status.json"
+    }
+  ],
+  "scope": "Combined targeted account/UI checks. Initial browser failure retained in its report; UI-only correction rechecked by lint/typecheck/build and the complete browser suite. Prior passing server/database checks retained. No full engine gate rerun."
+}

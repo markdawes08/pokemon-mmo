@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-02T11:31:29.857303+00:00",
+  "commands": [
+    {
+      "stage": "doctor",
+      "exitCode": 0
+    },
+    {
+      "stage": "lint",
+      "exitCode": 0
+    },
+    {
+      "stage": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:unit",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:integration",
+      "exitCode": 0
+    },
+    {
+      "stage": "practice:check",
+      "exitCode": 0
+    },
+    {
+      "stage": "build",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:boundaries",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:recovery",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:e2e",
+      "exitCode": 1
+    }
+  ],
+  "log": ".local\\twentyseventh-regression.log",
+  "status": "failed"
+}

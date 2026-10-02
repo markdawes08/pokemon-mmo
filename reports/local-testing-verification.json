@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-02T11:24:49.272Z",
+  "status": "passed",
+  "checks": [
+    "missing-fixtures-are-never-created-or-seeded-by-quick-access",
+    "strict-public-id-only-body-and-malformed-json-rejection",
+    "cross-origin-null-origin-missing-origin-nonlocal-host-and-direct-auth-path-rejection",
+    "only-fixed-email-name-and-development-stage-matches-are-selectable",
+    "real-httponly-cookie-authenticates-normal-account-api-and-same-account-reuses-session",
+    "switch-revokes-only-current-browser-session-preserving-other-sessions-and-all-saved-game-state",
+    "ordinary-signout-revokes-quick-session-without-affecting-another-browser",
+    "production-disables-catalogue-and-session-creation-despite-existing-fixtures"
+  ],
+  "scope": "Real loopback HTTP, Better Auth and PostgreSQL on explicitly separate _test database; only two new isolated fixtures, no existing user trainer or password access."
+}

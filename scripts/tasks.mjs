@@ -156,7 +156,9 @@ async function command(name, args) {
       await js('--import', 'tsx', 'tests/integration/world-store-smoke.ts');
       await js('--import', 'tsx', 'tests/integration/world-smoke.ts');
       await js('--import', 'tsx', 'tests/integration/reconnect-smoke.ts');
+      await js('--import', 'tsx', 'tests/integration/local-testing-smoke.ts');
       return js('tests/integration/supervisor-smoke.mjs');
+    case 'testing:check': return js('--import', 'tsx', 'tests/integration/local-testing-smoke.ts');
     case 'test:e2e': return tool('@playwright/test/cli.js', 'test', ...args);
     case 'test:recovery': return js('--import', 'tsx', 'tests/integration/accounts-restart-smoke.ts');
     case 'test:boundaries': return js('scripts/check-private-client.mjs');

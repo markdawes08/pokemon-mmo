@@ -30,6 +30,7 @@
     "battle:protect": "node scripts/run.mjs battle:protect",
     "battle:pursuit": "node scripts/run.mjs battle:pursuit",
     "practice:check": "node scripts/run.mjs practice:check",
+    "testing:check": "node scripts/run.mjs testing:check",
     "encounter:check": "node scripts/run.mjs encounter:check",
     "test:boundaries": "node scripts/run.mjs test:boundaries",
     "verify": "node scripts/run.mjs verify",

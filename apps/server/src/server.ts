@@ -21,6 +21,7 @@ import { WorldService } from './world-service.js';
 import { ReconnectionBindings } from './reconnection-bindings.js';
 import { guardReconnectHttp } from './reconnect-http.js';
 import { loadPracticeEngine } from './practice-engine.js';
+import { installLocalTestingApi } from './local-testing-api.js';
 
 function localHost(value: string | undefined): boolean {
   if (!value) return false;
@@ -94,6 +95,8 @@ export async function createGameServer(env: ServerEnv, options: { now?: () => nu
     logger: frameworkLogger,
     express: app => {
       app.disable('x-powered-by');
+      installLocalTestingApi(app, { auth, database, env, origins, checkReady,
+        sessionRevoked: sessionId => reconnections.revokeSession(sessionId) });
       installAccountApi(app, { auth, env, origins, characters: characterService, assets: assetService, tickets, checkReady,
         sessionRevoked: sessionId => reconnections.revokeSession(sessionId) });
       app.get('/api/health', (_request, response) => response.json({ status: 'alive', serverVersion: SERVER_VERSION, mode: env.APP_MODE }));

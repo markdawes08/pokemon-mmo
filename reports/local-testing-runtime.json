@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-10-02T11:38:41.316Z",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "client",
+      "status": "passed"
+    },
+    {
+      "name": "direct-ready",
+      "status": "passed"
+    },
+    {
+      "name": "proxied-ready",
+      "status": "passed"
+    },
+    {
+      "name": "retained-client-served",
+      "status": "passed"
+    },
+    {
+      "name": "both-existing-one-click-trainers-listed-without-sign-in",
+      "status": "passed"
+    },
+    {
+      "name": "user-testing-accounts-preserved-read-only",
+      "status": "passed"
+    },
+    {
+      "name": "three-loopback-listeners",
+      "status": "passed"
+    },
+    {
+      "name": "retained-dev-tree-and-no-test-owned-node-or-zig",
+      "status": "passed"
+    }
+  ],
+  "launch": {
+    "launchedAt": "2026-10-02T11:20:48.4324880Z",
+    "command": "node scripts/run.mjs dev",
+    "launcherPid": 19552,
+    "supervisorPid": 30328,
+    "backendPid": 13288,
+    "clientPid": 25856,
+    "mode": "foreground-tool-session",
+    "toolSessionId": 95211,
+    "status": "running",
+    "output": "Streamed to owning exec tool session; no detached log files."
+  },
+  "listeners": [
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 5433,
+      "OwningProcess": 28864
+    },
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 5173,
+      "OwningProcess": 25856
+    },
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 2567,
+      "OwningProcess": 13288
+    }
+  ],
+  "ordinaryTestingAccounts": [
+    {
+      "name": "ADMINA",
+      "stage": "development-fixture"
+    },
+    {
+      "name": "ADMINB",
+      "stage": "development-fixture"
+    }
+  ],
+  "retainedDevelopmentNodeTree": [
+    {
+      "ProcessId": 19552,
+      "ParentProcessId": 20784,
+      "Name": "node.exe"
+    },
+    {
+      "ProcessId": 30328,
+      "ParentProcessId": 19552,
+      "Name": "node.exe"
+    },
+    {
+      "ProcessId": 13288,
+      "ParentProcessId": 30328,
+      "Name": "node.exe"
+    },
+    {
+      "ProcessId": 25856,
+      "ParentProcessId": 30328,
+      "Name": "node.exe"
+    }
+  ],
+  "testOwnedNodeOrZigRemaining": false,
+  "scope": "Read-only live development health, current client marker, loopback listeners and existence of the user testing accounts. No user-account login, fixture reset, or gameplay mutation."
+}

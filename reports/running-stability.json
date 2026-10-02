@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-10-02T11:01:34.304Z",
+  "checkedAt": "2026-10-02T11:37:16.174Z",
   "mode": "run",
   "scope": "Actual player WebGL quad vertices during focused keyboard movement; test-only passive renderer instrumentation",
   "observations": [
     {
       "direction": "ArrowUp",
-      "movingRenderFrames": 65,
+      "movingRenderFrames": 61,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -25,17 +25,17 @@
       ],
       "cameraTravel": {
         "x": 0,
-        "y": 110
+        "y": 112
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 14.799999997019768,
-        "max": 18
+        "min": 4.600000001490116,
+        "max": 33.30000000447035
       }
     },
     {
       "direction": "ArrowDown",
-      "movingRenderFrames": 38,
+      "movingRenderFrames": 32,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -52,17 +52,17 @@
       ],
       "cameraTravel": {
         "x": 0,
-        "y": 64
+        "y": 62
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 14.899999998509884,
-        "max": 17.899999998509884
+        "min": 14.800000004470348,
+        "max": 22.5
       }
     },
     {
       "direction": "ArrowLeft",
-      "movingRenderFrames": 68,
+      "movingRenderFrames": 59,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -81,18 +81,18 @@
         "15"
       ],
       "cameraTravel": {
-        "x": 112,
+        "x": 111,
         "y": 0
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 15.399999998509884,
-        "max": 18.100000001490116
+        "min": 13.100000001490116,
+        "max": 22.400000005960464
       }
     },
     {
       "direction": "ArrowRight",
-      "movingRenderFrames": 66,
+      "movingRenderFrames": 57,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -111,13 +111,13 @@
         "15"
       ],
       "cameraTravel": {
-        "x": 110,
+        "x": 109,
         "y": 0
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 15.100000001490116,
-        "max": 18
+        "min": 15.299999997019768,
+        "max": 22.600000001490116
       }
     }
   ]

@@ -1,0 +1,124 @@
+{
+  "checkedAt": "2026-10-02T11:33:54.166Z",
+  "passed": true,
+  "results": [
+    {
+      "title": "one click connects both premade testers for shared exploration and isolated practice",
+      "status": "passed"
+    },
+    {
+      "title": "remembered tester recovers practice, stays signed out, and safely switches from active exploration",
+      "status": "passed"
+    }
+  ],
+  "backendPids": [
+    29736
+  ],
+  "lifecycle": [
+    {
+      "at": "2026-10-02T11:33:43.206Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T11:33:43.952Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T11:33:44.329Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T11:33:44.611Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T11:33:45.056Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T11:33:48.266Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T11:33:48.268Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T11:33:48.427Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T11:33:48.427Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T11:33:48.758Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T11:33:49.257Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T11:33:49.258Z",
+      "event": "character_release_deferred"
+    },
+    {
+      "at": "2026-10-02T11:33:49.845Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T11:33:49.991Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T11:33:50.168Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T11:33:50.887Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T11:33:50.955Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T11:33:51.507Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T11:33:51.507Z",
+      "event": "character_release_deferred"
+    },
+    {
+      "at": "2026-10-02T11:33:52.744Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T11:33:53.072Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T11:33:53.072Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T11:33:53.072Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T11:33:53.073Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T11:33:53.077Z",
+      "event": "server_stopped"
+    }
+  ],
+  "screenshots": [
+    "reports/local-testing-desktop.png",
+    "reports/local-testing-mobile.png"
+  ],
+  "scope": "Built browser and separate real backend/PostgreSQL test database. Fixed slots are created only when both emails are absent; cleanup uses only auth IDs returned by this run. No main account access, credential file access, password form entry, auth mocking or fixture reset."
+}

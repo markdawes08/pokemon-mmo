@@ -1,21 +1,21 @@
 {
-  "checkedAt": "2026-10-02T10:58:15.860Z",
+  "checkedAt": "2026-10-02T11:33:38.886Z",
   "sourceSoundEffect": "SE_SELECT",
   "expectedNotesPerEffect": 5,
   "startedBySign": 5,
   "repeatedKeyAddedNotes": 0,
   "mutedInteractionAddedNotes": 0,
   "effectOutput": {
-    "maxRms": 0.01792798229964446,
-    "peak": 0.04506286606192589,
+    "maxRms": 0.017750528154923315,
+    "peak": 0.04363634064793587,
     "nonFinite": 0,
     "observations": 23,
-    "audioElapsed": 0.5108390022675735,
-    "wallElapsed": 0.5138999999985099,
+    "audioElapsed": 0.5195464852607721,
+    "wallElapsed": 0.5203000000044703,
     "contexts": [
       {
-        "started": 11.6302947845805,
-        "ended": 12.141133786848073,
+        "started": 12.062766439909296,
+        "ended": 12.582312925170068,
         "state": "running"
       }
     ]

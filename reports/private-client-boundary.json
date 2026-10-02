@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T10:57:10.196Z",
+  "checkedAt": "2026-10-02T11:25:14.103Z",
   "status": "passed",
   "scope": "Selected real private files denied by Vite for direct, raw and URL requests; public app assets retained. No account login or mutation.",
   "requests": [
@@ -557,6 +557,42 @@
     },
     {
       "path": "packages/database/migrations/0006_practice_battles.sql",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-api.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-api.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-api.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-auth.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-auth.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-auth.ts",
       "suffix": "?url",
       "method": "GET",
       "status": 403

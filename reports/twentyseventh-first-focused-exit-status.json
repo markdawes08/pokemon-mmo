@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-02T11:19:09.367745+00:00",
+  "commands": [
+    {
+      "stage": "lint",
+      "exitCode": 0
+    },
+    {
+      "stage": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "stage": "testing:check",
+      "exitCode": 1
+    }
+  ],
+  "log": ".local\\twentyseventh-focused.log",
+  "status": "failed"
+}

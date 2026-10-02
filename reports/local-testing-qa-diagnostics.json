@@ -1,0 +1,26 @@
+{
+  "pass": 27,
+  "diagnostics": [
+    {
+      "classification": "test harness",
+      "failure": "The first direct API check expected HTTP 403 for a forged Host sent through Node 24 fetch, but received HTTP 200.",
+      "cause": "A separate local echo confirmed that fetch replaced the custom Host with the actual loopback target, so the request was valid.",
+      "resolution": "The test now uses node:http to send the actual forged Host. Application behavior did not change.",
+      "evidence": "reports/twentyseventh-first-focused.log",
+      "nativeExitEvidence": "reports/twentyseventh-first-focused-exit-status.json"
+    },
+    {
+      "classification": "application defect",
+      "failure": "The first full browser regression left Practice disconnected when opened immediately after a backend restart/reload, before account bootstrap completed.",
+      "cause": "The opening click checked eligibility before the account response arrived and did not retain an intent to connect after readiness. The added testing catalogue request widened the timing window.",
+      "resolution": "Practice retains one opening connection intent while bootstrap is busy, consumes it once ready, and cancels it on close, Account opening or sign-out. No automatic battle-command replay was added.",
+      "verification": "The existing recovery scenario now deliberately holds the real catalogue request, opens Practice before account readiness, releases the request, and requires the same saved revision, HP and weather without a second Connect click.",
+      "evidence": "reports/twentyseventh-practice-startup-failure.md",
+      "nativeExitEvidence": "reports/twentyseventh-regression-exit-status.json"
+    }
+  ],
+  "initialBrowserRun": "Both focused browser scenarios passed on their first run; the second was then extended to check direct switching from active shared exploration and is included in the final regression run.",
+  "userTestingAccountLoginOrReset": false,
+  "credentialFileAccess": false,
+  "gitOperations": false
+}

@@ -7,6 +7,7 @@ import {
   type AccountView, type CharacterSnapshot, type SaveProfileCommand, type CreateCharacter, type TrainerAssets,
   worldSnapshotSchema, worldLeftSchema, type WorldSnapshot, type WorldCommand,
   practiceSnapshotSchema, practiceCommandSchema, type PracticeSnapshot, type PracticeCommand, type PracticeChoice, type PracticeSetup,
+  localTestAccountsSchema, type LocalTestAccountId, type LocalTestAccounts,
 } from '@pokewaterblue/protocol';
 import type { Direction } from '@pokewaterblue/game-rules';
 
@@ -15,6 +16,7 @@ export interface AccountPracticeState {
   signedIn: boolean; eligible: boolean; connected: boolean; reconnecting: boolean; busy: boolean;
   worldState: WorldConnectionState; snapshot: PracticeSnapshot | null; fresh: boolean;
   waiting: boolean; retry: boolean; message: string; error: boolean;
+  testingAccounts: LocalTestAccounts['accounts'];
 }
 export type PracticeAction = { kind: 'start'; setup: PracticeSetup } | { kind: 'choose'; battleId: string; choice: PracticeChoice } | { kind: 'close'; battleId: string };
 export interface AccountWorldBridge {
@@ -64,6 +66,15 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
       <button class="button hidden" id="account-retry" type="button">Check account again</button>
     </div>`;
   document.querySelector('main')!.append(dialog);
+  const testingStrip = document.createElement('section');
+  testingStrip.id = 'local-testing'; testingStrip.className = 'local-testing hidden';
+  testingStrip.setAttribute('aria-label', 'Local testing');
+  testingStrip.innerHTML = `<div><p class="eyebrow">Local testing</p><h2>Jump in with a ready-made trainer</h2><p id="local-testing-status" role="status" aria-live="polite">No email or password needed. Choose a trainer to play.</p></div><div id="local-testing-actions" class="local-testing-actions"></div>`;
+  document.querySelector('.topbar')!.after(testingStrip);
+  const accountTesting = document.createElement('section'); accountTesting.id = 'account-testing'; accountTesting.className = 'account-testing hidden';
+  accountTesting.setAttribute('aria-label', 'Ready-made local trainers');
+  accountTesting.innerHTML = '<h3>Ready-made local trainers</h3><p>No email or password needed. Your progress is kept.</p><div class="local-testing-actions"></div>';
+  dialog.querySelector('.account-intro')!.after(accountTesting);
   const el = <T extends HTMLElement = HTMLElement>(id: string) => dialog.querySelector<T>(`#${id}`)!;
   let account: AccountView | null = null;
   let assets: TrainerAssets | null = null;
@@ -76,6 +87,20 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   let saveRetryTimer: ReturnType<typeof setTimeout> | undefined;
   let saveRetries = 0;
   let destroyed = false;
+  let testingAccounts: LocalTestAccounts['accounts'] = [], testingLoadFailed = false, testingLoadError = '';
+  const selectionKey = 'pokewaterblue.local-test-selection';
+  const forgetTestSelection = () => { try { localStorage.removeItem(selectionKey); } catch { /* Storage can be disabled; one-click access still works. */ } };
+  const rememberTestSelection = (accountId: LocalTestAccountId, userId: string) => {
+    try { localStorage.setItem(selectionKey, JSON.stringify({ accountId, userId })); } catch { /* The normal session cookie still persists. */ }
+  };
+  const selectedTestUser = () => {
+    try {
+      const value: unknown = JSON.parse(localStorage.getItem(selectionKey) ?? 'null');
+      if (value && typeof value === 'object' && 'userId' in value && typeof value.userId === 'string'
+        && 'accountId' in value && testingAccounts.some(row => row.id === value.accountId)) return value.userId;
+    } catch { /* An absent or invalid preference never signs an account in. */ }
+    return null;
+  };
   let practice: PracticeSnapshot | null = null, practiceFresh = false, practiceWaiting = false;
   let practiceMessage = '', practiceError = false, pendingPractice: PracticeCommand | null = null;
   let practiceTimer: ReturnType<typeof setTimeout> | undefined, practiceRetryTimer: ReturnType<typeof setTimeout> | undefined;
@@ -85,7 +110,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   const practiceListeners = new Set<(state: AccountPracticeState) => void>();
   const practiceState = (): AccountPracticeState => ({ signedIn: !!account, eligible: account?.character?.stage === 'development-fixture',
     connected: !!room?.connection.isOpen && !!snapshot, reconnecting: !!recovery, busy, worldState, snapshot: practice,
-    fresh: practiceFresh, waiting: practiceWaiting, retry: !!pendingPractice && !practiceWaiting, message: practiceMessage, error: practiceError });
+    fresh: practiceFresh, waiting: practiceWaiting, retry: !!pendingPractice && !practiceWaiting, message: practiceMessage, error: practiceError, testingAccounts });
   const stopPracticeWait = () => { clearTimeout(practiceTimer); clearTimeout(practiceRetryTimer); practiceWaiting = false; practiceRetries = 0; };
   const practiceDropped = () => {
     clearTimeout(practiceQueryTimer); practiceQueryTimer = undefined; clearTimeout(practiceQueryRetryTimer);
@@ -116,6 +141,8 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   const status = (text: string, error = false) => {
     el('account-status').textContent = text;
     el('account-status').classList.toggle('account-error', error);
+    testingStrip.querySelector('#local-testing-status')!.textContent = text;
+    testingStrip.classList.toggle('local-testing-error', error);
   };
   const clearSaveTimers = () => {
     clearTimeout(saveTimer); saveTimer = undefined;
@@ -167,6 +194,16 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     el('account-world-enter').textContent = worldState === 'disconnected' ? 'Reconnect shared world' : 'Enter shared world';
     el('account-world-leave').classList.toggle('hidden', worldState === 'preview');
     for (const input of dialog.querySelectorAll<HTMLInputElement>('input')) input.disabled = busy;
+    testingStrip.classList.toggle('hidden', !testingAccounts.length && !testingLoadFailed);
+    if (testingLoadFailed) {
+      testingStrip.querySelector('#local-testing-status')!.textContent = testingLoadError;
+      testingStrip.classList.add('local-testing-error');
+    }
+    accountTesting.classList.toggle('hidden', !testingAccounts.length);
+    for (const control of testingStrip.querySelectorAll<HTMLButtonElement>('button')) control.disabled = busy;
+    for (const control of [...testingStrip.querySelectorAll<HTMLButtonElement>('[data-test-account]'), ...accountTesting.querySelectorAll<HTMLButtonElement>('[data-test-account]')]) {
+      control.setAttribute('aria-pressed', String(control.dataset.testAccount === testingAccounts.find(row => row.name === account?.character?.name)?.id));
+    }
     for (const listener of practiceListeners) listener(practiceState());
   }
   const showRetry = (visible: boolean) => el('account-retry').classList.toggle('hidden', !visible);
@@ -206,6 +243,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     }
   }
   function clearAccount() {
+    forgetTestSelection();
     operation++; disconnect(); account = null; assets = null; snapshot = null; pendingSave = null; pendingCreate = null;
     practice = null; pendingPractice = null; practiceMessage = ''; practiceError = false;
     el<HTMLDetailsElement>('account-assets-details').open = false;
@@ -218,7 +256,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     busy = true; showRetry(false); render();
     try { await action(); }
     catch (error) {
-      if (error instanceof SessionExpired) { clearAccount(); status('Please sign in to continue.', true); }
+      if (error instanceof SessionExpired) { clearAccount(); status(testingAccounts.length ? 'Choose a testing trainer to reconnect without a password.' : 'Please sign in to continue.', true); }
       else if (recovery) { status(recoveryNotice); }
       else { status(error instanceof Error ? error.message : 'Please try again.', true); showRetry(true); }
     } finally { busy = false; if (!destroyed) render(); }
@@ -238,7 +276,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
         : account.character ? 'Your trainer is saved.' : 'Signed in. Choose your trainer name.');
     } catch (error) {
       if (!(error instanceof SessionExpired)) throw error;
-      clearAccount(); status('Sign in or create a local account.');
+      clearAccount(); status(testingAccounts.length ? 'Choose a testing trainer to play without a password.' : 'Sign in or create a local account.');
     }
   }
   async function refreshAssets() {
@@ -249,6 +287,44 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     if (current !== operation || destroyed || account?.character?.id !== characterId) return;
     if (value.characterId !== characterId) throw new Error('The saved party response did not match your trainer.');
     assets = value;
+  }
+  async function loadTestAccounts() {
+    try {
+      const catalogue = localTestAccountsSchema.parse(await request('/api/testing/accounts'));
+      testingAccounts = catalogue.enabled ? catalogue.accounts : []; testingLoadFailed = false; testingLoadError = '';
+      for (const container of [testingStrip.querySelector('#local-testing-actions')!, accountTesting.querySelector('.local-testing-actions')!]) {
+        container.replaceChildren(...testingAccounts.map(row => {
+          const button = document.createElement('button'); button.type = 'button'; button.className = 'button';
+          button.textContent = `Play as ${row.name}`; button.dataset.testAccount = row.id;
+          button.addEventListener('click', () => { void playAsTestAccount(row.id); }); return button;
+        }));
+      }
+    } catch (error) {
+      testingAccounts = []; testingLoadFailed = true;
+      testingLoadError = error instanceof Error ? error.message : 'Local testing could not be loaded. Please try again.';
+      status(testingLoadError, true);
+      const retry = document.createElement('button'); retry.type = 'button'; retry.className = 'button'; retry.textContent = 'Retry local testing';
+      retry.addEventListener('click', () => { void perform(async () => { await loadTestAccounts(); await refresh(); }); });
+      testingStrip.querySelector('#local-testing-actions')!.replaceChildren(retry);
+    }
+    render();
+  }
+  async function playAsTestAccount(accountId: LocalTestAccountId) {
+    const selected = testingAccounts.find(row => row.id === accountId);
+    if (!selected || busy) return;
+    await perform(async () => {
+      if (worldState === 'shared' && room?.connection.isOpen && !recovery) await requestWorld('leave');
+      clearAccount(); setWorldState('preview');
+      status(`Connecting ${selected.name}...`);
+      await request('/api/testing/connect', { accountId });
+      await refresh();
+      if (!account?.character || account.character.stage !== 'development-fixture' || account.character.name !== selected.name) {
+        throw new Error('The testing trainer could not be loaded. Choose the trainer again.');
+      }
+      rememberTestSelection(accountId, account.user.id);
+      await connect();
+      status(`${selected.name} is ready. Open Practice battle, or enter the shared world through Account.`);
+    });
   }
   async function connect() {
     if (!account?.character) return;
@@ -545,6 +621,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   el('account-auth-form').addEventListener('submit', event => {
     event.preventDefault();
     void perform(async () => {
+      forgetTestSelection();
       const email = el<HTMLInputElement>('account-email').value.trim();
       const password = el<HTMLInputElement>('account-password').value;
       try { await request(`/api/auth/${signup ? 'sign-up' : 'sign-in'}/email`, { email, password, ...(signup ? { name: 'Trainer' } : {}) }); }
@@ -586,6 +663,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   });
   el('account-signout').addEventListener('click', () => {
     void perform(async () => {
+      forgetTestSelection();
       wantsWorld = false; disconnect();
       await request('/api/auth/sign-out', {}); clearAccount(); status('Signed out.');
     });
@@ -599,12 +677,22 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     }
   }, 1000);
   window.addEventListener('pagehide', () => clearInterval(watchdog), { once: true });
-  void perform(refresh);
+  void perform(async () => {
+    await loadTestAccounts();
+    const selectedUser = selectedTestUser();
+    await refresh();
+    if (selectedUser && account?.user.id === selectedUser && account.character?.stage === 'development-fixture') {
+      await connect();
+      status(`${account.character.name} is ready. Open Practice battle, or enter the shared world through Account.`);
+    } else if (selectedUser) forgetTestSelection();
+    else if (!account && testingAccounts.length) status('No email or password needed. Choose a trainer to play.');
+  });
   return {
     leaveWorld,
     practice: {
       subscribe(listener: (state: AccountPracticeState) => void) { practiceListeners.add(listener); listener(practiceState()); return () => practiceListeners.delete(listener); },
       connect: connectPractice,
+      playAsTestAccount,
       openAccount() { if (!dialog.open) trigger.click(); },
       async leaveShared() {
         if (busy || recovery || !room?.connection.isOpen || worldState !== 'shared') throw new Error('Reconnect your shared trainer and leave through Account first.');

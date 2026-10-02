@@ -32,6 +32,7 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
   const el = <T extends HTMLElement = HTMLElement>(id: string) => dialog.querySelector<T>(`#${id}`)!;
   let connection: AccountPracticeState | undefined, catalogue: PracticeCatalogue | undefined, setup: PracticeSetup | undefined;
   let localError = '', setupStamp = '', eventsStamp = '', previousRevision = -1;
+  let connectOnOpen = false;
   const species = (id: number) => catalogue?.species.find(row => row.id === id);
   const name = (id: number) => titleCase(species(id)?.name ?? `Pokémon ${id}`);
   const moveName = (id: number) => titleCase(catalogue?.moves.find(row => row.id === id)?.name ?? `Move ${id}`);
@@ -46,7 +47,16 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
     const result = element('button', text, `button${primary ? ' primary-button' : ''}`); result.type = 'button';
     result.addEventListener('click', () => invoke(action)); return result;
   };
-  const openAccount = () => { dialog.close(); bridge.openAccount(); };
+  const cancelOpenConnection = () => { connectOnOpen = false; };
+  const openAccount = () => { cancelOpenConnection(); dialog.close(); bridge.openAccount(); };
+  const connectForOpenDialog = () => {
+    if (!connectOnOpen || !dialog.open || !connection || connection.busy || connection.reconnecting || connection.waiting) return;
+    // Consume the user's open intent before connecting: account notifications
+    // may re-enter this subscriber, and a failed attempt must remain manual.
+    connectOnOpen = false;
+    if (!connection.eligible || connection.worldState !== 'preview' || (connection.connected && connection.fresh)) return;
+    invoke(() => bridge.connect());
+  };
   const normalise = (mon: PracticeMon) => {
     const row = species(mon.speciesId)!;
     mon.level = Math.min(100, Math.max(1, Math.trunc(mon.level) || 1));
@@ -176,7 +186,9 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
             : view.self.charging ? 'Skull Bash is charged. Release it to continue the next turn.'
               : 'Choose a move, switch your Pokémon, or run. Every action is saved.';
     }
-    if (!connection.signedIn) message = 'Sign in through Account to practice with a local development trainer.';
+    if (!connection.signedIn) message = connection.testingAccounts.length
+      ? 'Choose a ready-made trainer below. No email or password needed.'
+      : 'Sign in through Account to practice with a local development trainer.';
     else if (!connection.eligible) message = 'Practice needs a local development trainer. Your normal saved assets will not be changed.';
     else if (connection.worldState !== 'preview') message = 'Leave the shared world before practicing. Your world location will be checkpointed first.';
     else if (connection.reconnecting) message = 'Reconnecting your trainer… Battle controls will return after the saved state is restored.';
@@ -184,7 +196,10 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
     if (connection.message) message = connection.message;
     el('practice-status').textContent = localError || message; el('practice-status').dataset.error = String(!!localError || connection.error);
     const actions: HTMLButtonElement[] = [];
-    if (!connection.signedIn || !connection.eligible) actions.push(button('Open Account', openAccount, true));
+    if (!connection.signedIn || !connection.eligible) {
+      for (const account of connection.testingAccounts) actions.push(button(`Play as ${account.name}`, () => bridge.playAsTestAccount(account.id), true));
+      actions.push(button('Open Account', openAccount, !connection.testingAccounts.length));
+    }
     else if (connection.worldState === 'shared') actions.push(button('Leave shared world & practice', () => bridge.leaveShared(), true));
     else if (connection.worldState !== 'preview') actions.push(button('Open Account', openAccount, true));
     else if ((!connection.connected || !connection.fresh) && !connection.reconnecting) actions.push(button('Connect practice', () => bridge.connect(), true));
@@ -200,13 +215,17 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
     }
     if (state?.session) renderBattle(state.session.presentation); else renderSetup();
   }
-  el('practice-close').addEventListener('click', () => dialog.close()); dialog.addEventListener('close', onClose);
+  el('practice-close').addEventListener('click', () => { cancelOpenConnection(); dialog.close(); });
+  dialog.addEventListener('close', () => { cancelOpenConnection(); onClose(); });
+  document.querySelector('#account-button')!.addEventListener('click', cancelOpenConnection);
+  document.querySelector('#account-signout')!.addEventListener('click', cancelOpenConnection);
   el('practice-add').addEventListener('click', () => { if (setup && ready() && setup.player.length < 6) { setup.player.push(structuredClone(setup.player[0]!)); render(); } });
   el('practice-start').addEventListener('click', () => { if (setup) invoke(() => bridge.submit({ kind: 'start', setup: structuredClone(setup!) })); });
-  const unsubscribe = bridge.subscribe(state => { connection = state; render(); });
+  const unsubscribe = bridge.subscribe(state => { connection = state; render(); connectForOpenDialog(); });
   document.querySelector('#practice-button')!.addEventListener('click', () => {
+    connectOnOpen = true;
     onOpen(); dialog.showModal(); el('practice-close').focus();
-    if (connection?.eligible && connection.worldState === 'preview' && !connection.reconnecting && !connection.waiting) invoke(() => bridge.connect());
+    connectForOpenDialog();
   });
   window.addEventListener('pagehide', unsubscribe, { once: true });
 }

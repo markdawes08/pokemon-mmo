@@ -24,6 +24,8 @@ stats, level-up moves, evolutions, experience tables, items and encounter shares
 The guide is a reference; opening it pauses movement. Escape or Close returns to the map.
 The collision overlay highlights blocked tiles, ledges, water, doors, and story triggers.
 Reset position returns to the preview spawn. Movement is local and is not saved.
+Open http://127.0.0.1:5173 and click **Play as ADMINA** or **Play as ADMINB** in the visible **Local testing** panel. No email, password, account creation or separate Connect trainer step is required. Then click **Practice battle**, or click the trainer name in the topbar and **Enter shared world**. Use a different trainer in each browser to see both players. The selected valid session reconnects on refresh. After explicit sign-out or session expiry, the same one-click buttons remain available. Selecting the same trainer in another tab retains the existing one-character/one-controller replacement rule.
+
 Click **Account** to create a local account or sign in, choose a trainer name,
 and save its profile. An existing trainer can reconnect after a reload or backend
 restart. Connecting it in another tab replaces the previous trainer connection.
@@ -100,6 +102,7 @@ the running browser preview.
 | `npm.cmd run battle:tactics` | Verify private rain, fixed damage, Rapid Spin and wild Whirlwind mechanics |
 | `npm.cmd run battle:charge` | Verify private Skull Bash charging, forced continuation and recovery |
 | `npm.cmd run battle:protect` | Verify private Protect, its pinned repeat-rate policy and recovery |
+| `npm.cmd run testing:check` | Verify one-click testing access, session reuse/switching and local-only guards |
 | `npm.cmd run practice:check` | Verify source practice teams, sprites, persisted turns and recovery |
 | `npm.cmd run battle:pursuit` | Verify private Pursuit attacks, switch interception and recovery |
 | `npm.cmd run content:check` | Rebuild independently and verify generated hashes |

@@ -3,6 +3,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { schema, type Database } from '@pokewaterblue/database';
 import { allowedOrigins, type ServerEnv } from './env.js';
 import { log } from './logger.js';
+import { localTestingAuth } from './local-testing-auth.js';
 
 export function createAuth(database: Database, env: ServerEnv, origins = allowedOrigins(env)) {
   return betterAuth({
@@ -12,6 +13,7 @@ export function createAuth(database: Database, env: ServerEnv, origins = allowed
       transaction: true,
     }),
     trustedOrigins: () => [...origins],
+    plugins: [localTestingAuth(database, env, origins)],
     emailAndPassword: { enabled: true, minPasswordLength: 12, maxPasswordLength: 128, requireEmailVerification: false },
     session: { expiresIn: 60 * 60 * 24, disableSessionRefresh: true, cookieCache: { enabled: false } },
     advanced: {

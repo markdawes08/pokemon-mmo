@@ -1,0 +1,26 @@
+[check] lint
+[check] typecheck
+[check] testing:check
+{"time":"2026-10-02T11:19:09.255Z","level":"info","event":"server_listening","host":"127.0.0.1","port":59371,"mode":"local-preview","protocolVersion":1}
+{"time":"2026-10-02T11:19:09.330Z","level":"info","event":"server_stopping"}
+{"time":"2026-10-02T11:19:09.331Z","level":"info","event":"server_stopped"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+200 !== 403
+
+    at <anonymous> (C:\Users\mrkda\Projects\pokewaterblue\tests\integration\local-testing-smoke.ts:82:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 200,
+  expected: 403,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.21.0
+C:\Users\mrkda\Projects\pokewaterblue\.tools\node-v24.21.0-win-x64\node.exe --import tsx tests/integration/local-testing-smoke.ts failed (1)

@@ -166,9 +166,24 @@ test('refresh and native lost acknowledgement recover one durable practice actio
   const ownHP = await page.locator('#practice-self-card').getAttribute('data-hp');
   await page.reload(); await openPractice(page, false); await ready(page);
   expect(await page.locator('#practice-dialog').getAttribute('data-revision')).toBe(revision); expect(await page.locator('#practice-self-card').getAttribute('data-hp')).toBe(ownHP);
-  await backend.stop(); await backend.start(); await page.reload(); await openPractice(page, false); await ready(page);
-  expect(await page.locator('#practice-dialog').getAttribute('data-revision')).toBe(revision); await expect(page.locator('#practice-weather')).toContainText('Rain');
+  await backend.stop(); await backend.start();
+  let releaseCatalogue!: () => void, catalogueRequested!: () => void;
+  const catalogueGate = new Promise<void>(resolve => { releaseCatalogue = resolve; });
+  const catalogueSeen = new Promise<void>(resolve => { catalogueRequested = resolve; });
+  // Hold the real boot request so Practice is deliberately opened before the
+  // normal cookie account loads. No selected-test preference can mask this race.
+  await page.route('**/api/testing/accounts', async route => {
+    catalogueRequested(); await catalogueGate; await route.continue();
+  });
+  try {
+    await page.reload(); await catalogueSeen; await openPractice(page, false);
+    await expect(page.locator('#practice-dialog')).toHaveAttribute('data-connection-state', 'disconnected');
+    releaseCatalogue(); await ready(page);
+  } finally { releaseCatalogue(); await page.unroute('**/api/testing/accounts'); }
+  expect(await page.locator('#practice-dialog').getAttribute('data-revision')).toBe(revision);
+  expect(await page.locator('#practice-self-card').getAttribute('data-hp')).toBe(ownHP); await expect(page.locator('#practice-weather')).toContainText('Rain');
   await finish(page);
   recoveryEvidence = { droppedAcknowledgements: probe.dropped, uncorrelatedErrors: probe.uncorrelatedErrors, identicalCommandFrames: probe.frames.length,
-    commandReceiptCount: Number(receipts.rows[0].count), noAutomaticCommandReplay: true, refreshRecovered: true, freshBackendRecovered: true };
+    commandReceiptCount: Number(receipts.rows[0].count), noAutomaticCommandReplay: true, refreshRecovered: true, freshBackendRecovered: true,
+    practiceOpenedBeforeAccountBootstrap: true };
 });
