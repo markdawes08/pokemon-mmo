@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T01:39:11.459Z",
+  "checkedAt": "2026-10-02T09:45:19.796Z",
   "status": "passed",
   "scope": "Selected real private files denied by Vite for direct, raw and URL requests; public app assets retained. No account login or mutation.",
   "requests": [
@@ -485,6 +485,42 @@
     },
     {
       "path": "tools/battle-protect/protect-policy.json",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-pursuit/engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-pursuit/engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-pursuit/engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-pursuit/primary/pursuit.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-pursuit/primary/pursuit.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-pursuit/primary/pursuit.wasm",
       "suffix": "?url",
       "method": "GET",
       "status": 403

@@ -1,10 +1,10 @@
 {
-  "verifiedAt": "2026-10-02T01:44:10.416Z",
+  "verifiedAt": "2026-10-02T09:49:39.747Z",
   "backendPids": [
-    3244,
-    11716
+    28500,
+    28904
   ],
-  "workerPid": 28584,
+  "workerPid": 7852,
   "gracefulShutdown": true,
   "runtime": "Built client and isolated source backend processes with explicit test PostgreSQL fixtures",
   "results": [

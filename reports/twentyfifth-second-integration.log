@@ -1,0 +1,13 @@
+C:\Users\mrkda\Projects\pokewaterblue\tools\battle-evolution\evolution.ts:98
+function require(condition: unknown, message: string): asserts condition { if (!condition) throw new Error(message); }
+                                                                                                 ^
+
+Error: Evolution C rejected source evolution eligibility: 1
+    at require (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-evolution\evolution.ts:98:98)
+    at ok (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-evolution\evolution.ts:99:56)
+    at EvolutionCore.replay (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-evolution\evolution.ts:199:5)
+    at EvolutionCore.create (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-evolution\evolution.ts:163:22)
+    at EvolutionCore.createDiagnostic (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-evolution\evolution.ts:161:70)
+    at <anonymous> (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-pursuit\verify-integration.ts:452:27)
+
+Node.js v24.21.0

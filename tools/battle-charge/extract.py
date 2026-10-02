@@ -11,8 +11,8 @@ tactics=importlib.util.module_from_spec(spec);spec.loader.exec_module(tactics)
 base=tactics.base
 replace=tactics.replace
 
-def extract(out, *, protect=False):
-    tactics.extract(out,charge=True,protect=protect)
+def extract(out, *, protect=False, pursuit=False):
+    tactics.extract(out,charge=True,protect=protect,pursuit=pursuit)
     report=json.loads((out/'extraction-manifest.json').read_text())
     source=base.Extraction()
     replace(out/'battle_spike.c','#define WATERBLUE_TACTICS 1','#define WATERBLUE_CHARGE 1\n#define WATERBLUE_TACTICS 1')

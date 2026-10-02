@@ -267,3 +267,22 @@ The local app was restarted in a foreground tool session for this pass.
 Current process ownership is recorded in STATUS and .local/dev-launch.json.
 
 Post-gate runtime and read-only testing-account preservation passed; see reports/battle-protect-runtime.json and STATUS for current process ownership. Native focused/full exits are recorded in reports/twentyfourth-*-exit-status.json.
+
+## Twenty-fifth-pass private Pursuit: verified
+
+The new private profile extends Protect/charge/party diagnostics to 24 family
+moves plus automatic Struggle. Normal Pursuit and ordinary-wild switch
+interception retain distinct source command, damage, PP, history and action
+consumption rules. A lethal interception completes the already selected
+voluntary switch; a subsequent residual faint can open a new decision.
+Checkpoint nine retains 512 words and the existing pinned Protect policy.
+Full twenty-three-stage gate passed at 2026-10-02T09:49:42.194Z with native exit 0: 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all twelve prior private engine gates, fresh-process account recovery and all 39 browser scenarios. Pursuit passed 603 independent source-literal cases (476 retained controls and 127 additions), 1,245 accepted transitions and 9,302 checked RNG draws. All 1,848 host and 1,848 raw boundaries recovered across independent builds and fresh processes, replaying 2,590 future transitions per host/raw path. Rejection checks passed for 141 host and 125 raw cases, with 37 candidate-failure checks and 31 timeout-bounded exhaustion checks. The unchanged 256-entry Protect policy passed 7,518 raw commands across two builds and a fresh process. Integration passed 29 groups, 14 coherent capture-party handoffs, 189 restores and 159 diagnostic transitions. Public boundaries passed 100 HTTP checks across 73 built files. All twelve prior WASM artifacts and 3,858 retained literal cases remain byte-identical. Mirror Move,
+complete party-aware results and durable/live application remain open.
+Earlier sections retain their original verified scope. See ADR-026 and
+tools/battle-pursuit/README.md.
+
+Run `npm.cmd run battle:pursuit` for the new private gate. The full verify
+command now has 23 stages. The current local development launch is retained;
+see STATUS and reports/twentyfifth-startup.json. No user-account reset is required.
+
+Post-gate runtime and read-only testing-account preservation passed; see reports/battle-pursuit-runtime.json and STATUS for current process ownership. Native focused/full exits are recorded in reports/twentyfifth-*-exit-status.json.

@@ -19,8 +19,8 @@ COMPILED={
  'build/firered/src/battle_script_commands.o':(151300,'67f7b117b98855694b85009cf4c4c309aacf9325a70ccc040aba6bb3018380ba'),
 }
 
-def extract(out):
-    charge.extract(out,protect=True)
+def extract(out, *, pursuit=False):
+    charge.extract(out,protect=True,pursuit=pursuit)
     report=json.loads((out/'extraction-manifest.json').read_text())
     source=base.Extraction()
     policy_path=ROOT/'tools/battle-protect/protect-policy.json'

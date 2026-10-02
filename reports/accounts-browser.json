@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-02T01:39:30.849Z",
+  "verifiedAt": "2026-10-02T09:45:39.183Z",
   "runtime": "Built client served by fresh source backend on random loopback port",
   "database": "Separate TEST_DATABASE_URL; exact owned fixture emails removed after tests",
   "results": [

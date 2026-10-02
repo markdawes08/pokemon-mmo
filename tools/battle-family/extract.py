@@ -19,11 +19,12 @@ MOVES=('TACKLE','TAIL_WHIP','SAND_ATTACK','WATER_GUN','BUBBLE','WITHDRAW','QUICK
        'WING_ATTACK','HYDRO_PUMP','BITE','HYPER_FANG','AGILITY','FEATHER_DANCE','SCARY_FACE','FOCUS_ENERGY')
 
 
-def extract(out, *, party=False, tactics=False, charge=False, protect=False):
-    report=route.extract(out,family=True,party=party,tactics=tactics,charge=charge,protect=protect)
+def extract(out, *, party=False, tactics=False, charge=False, protect=False, pursuit=False):
+    report=route.extract(out,family=True,party=party,tactics=tactics,charge=charge,protect=protect,pursuit=pursuit)
     moves=MOVES+('SUPER_FANG','ENDEAVOR','RAPID_SPIN','RAIN_DANCE','WHIRLWIND') if tactics else MOVES
     if charge:moves+=('SKULL_BASH',)
     if protect:moves+=('PROTECT',)
+    if pursuit:moves+=('PURSUIT',)
     source=base.Extraction()
     # The common engine has complete source tables. Expand only its projected
     # real identity/type table; the source validator has complete species rows.

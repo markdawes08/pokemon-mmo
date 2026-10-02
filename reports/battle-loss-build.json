@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-02T01:37:09.768349+00:00",
+  "checkedAt": "2026-10-02T09:42:50.025124+00:00",
   "status": "passed",
   "profile": "firered-route1-loss-v1",
   "scope": "private source continuation; no owned or live effects",

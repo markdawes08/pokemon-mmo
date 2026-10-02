@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-02T09:35:22.441101+00:00",
+  "commands": [
+    {
+      "stage": "lint",
+      "exitCode": 0
+    },
+    {
+      "stage": "typecheck",
+      "exitCode": 1
+    }
+  ],
+  "log": ".local\\twentyfifth-focused.log",
+  "status": "failed"
+}

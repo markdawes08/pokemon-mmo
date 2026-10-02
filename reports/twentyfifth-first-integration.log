@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(learning.pendingMove && learning.pendingMove.moveId === 228)
+
+    at <anonymous> (C:\Users\mrkda\Projects\pokewaterblue\tools\battle-pursuit\verify-integration.ts:456:34) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: null,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.21.0

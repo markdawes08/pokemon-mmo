@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "status": "passed",
-  "checkedAt": "2026-10-02T01:37:01.403Z",
+  "checkedAt": "2026-10-02T09:42:41.132Z",
   "scope": "Private Route1 source factory through ordinary wild held-item assignment; no battle introduction, live map, database, or battle commands",
   "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
   "wasmSha256": "8b46d731fdf20c16213a6cb7dc9e1e14dccbd3a65fe4c4ac45d3e70c8a885bd2",

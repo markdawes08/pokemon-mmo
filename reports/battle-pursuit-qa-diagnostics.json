@@ -1,0 +1,42 @@
+{
+  "scope": "Pre-gate test-construction and typecheck diagnostics; no source mechanics were changed to fit test expectations.",
+  "productionNumericalMismatches": 0,
+  "diagnostics": [
+    {
+      "stage": "independent fixture construction before execution",
+      "cause": "Reusing one member object twice could retain an alias under deepcopy of the whole list.",
+      "resolution": "Clone each member independently before simulation. No production or executed numerical failure."
+    },
+    {
+      "stage": "first root integration",
+      "exitCode": 1,
+      "log": "reports/twentyfifth-first-integration.log",
+      "exitReport": "reports/twentyfifth-first-integration-exit-status.json",
+      "cause": "The harness expected a replacement prompt after canceling Rattata evolution with four occupied moves. Source calls learning once before checking cancellation, but suppresses the replacement prompt.",
+      "resolution": "Verify cancellation with a trailing free slot and source automatic learning. Verify explicit replacement on accepted Raticate evolution separately."
+    },
+    {
+      "stage": "second root integration",
+      "exitCode": 1,
+      "log": "reports/twentyfifth-second-integration.log",
+      "exitReport": "reports/twentyfifth-second-integration-exit-status.json",
+      "cause": "The first correction placed an empty slot before known moves, violating the retained evolution diagnostic input contract.",
+      "resolution": "Use three contiguous known moves and a trailing free slot. Derive the learned Pursuit slot for PP and choice assertions."
+    },
+    {
+      "stage": "first focused typecheck",
+      "exitCode": 2,
+      "log": "reports/twentyfifth-first-focused.log",
+      "exitReport": "reports/twentyfifth-first-focused-exit-status.json",
+      "cause": "A strengthened blocked-attack assertion did not narrow the event union and read flags outside the nested attack result.",
+      "resolution": "Narrow attack events before actor filtering and assert result.flags. Focused lint, typecheck, mechanics and integration subsequently passed."
+    }
+  ],
+  "finalEvidence": [
+    "reports/twentyfifth-focused-exit-status.json",
+    "reports/twentyfifth-verify-exit-status.json",
+    "reports/battle-pursuit-verification.json",
+    "reports/battle-pursuit-recovery.json",
+    "reports/battle-pursuit-integration.json"
+  ]
+}

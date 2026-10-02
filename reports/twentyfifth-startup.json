@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-02T09:15:28.398Z",
+  "status": "passed",
+  "mode": "retained-existing-development-processes",
+  "launch": {
+    "launchedAt": "2026-10-02T01:12:16.927Z",
+    "command": "node scripts/run.mjs dev",
+    "launcherPid": 29292,
+    "supervisorPid": 28176,
+    "backendPid": 28480,
+    "clientPid": 30960,
+    "mode": "foreground-tool-session",
+    "toolSessionId": 5620,
+    "status": "running",
+    "output": "Streamed to the owning exec tool session; no detached log files for this launch."
+  },
+  "checks": [
+    {
+      "url": "http://127.0.0.1:2567/api/ready",
+      "status": 200,
+      "ready": true
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/ready",
+      "status": 200,
+      "ready": true
+    }
+  ],
+  "userAccountReset": false
+}

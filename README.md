@@ -93,6 +93,7 @@ the running browser preview.
 | `npm.cmd run battle:tactics` | Verify private rain, fixed damage, Rapid Spin and wild Whirlwind mechanics |
 | `npm.cmd run battle:charge` | Verify private Skull Bash charging, forced continuation and recovery |
 | `npm.cmd run battle:protect` | Verify private Protect, its pinned repeat-rate policy and recovery |
+| `npm.cmd run battle:pursuit` | Verify private Pursuit attacks, switch interception and recovery |
 | `npm.cmd run content:check` | Rebuild independently and verify generated hashes |
 | `npm.cmd run build` | Build the client and backend |
 | `npm.cmd run start` | Serve the built preview at http://127.0.0.1:2567 |
@@ -120,7 +121,9 @@ The [charge profile](tools/battle-charge/README.md) adds Skull Bash for 22 moves
 including its recoverable two-turn lock and forced release with no second PP cost.
 The [Protect profile](tools/battle-protect/README.md) adds Protect for 23 moves,
 including a separately pinned ROM policy for repeated Protect attempts.
+The [Pursuit profile](tools/battle-pursuit/README.md) adds the 24th move, including
+source switch interception and selected-switch continuation after a knockout.
 These are private diagnostics; they do not apply account assets or world changes.
-Pursuit, Mirror Move, complete party-aware results, durable ownership,
+Mirror Move, complete party-aware results, durable ownership,
 arrival scripts and live battle application remain necessary. See [current status](docs/STATUS.md)
 for verified gates and remaining work.

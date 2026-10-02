@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-02T01:37:35.821470+00:00",
+  "checkedAt": "2026-10-02T09:43:16.563247+00:00",
   "status": "passed",
   "profile": "firered-family-singles-v1",
   "scope": "Private source mechanics; not live battle or persistence",
@@ -3202,7 +3202,7 @@
       },
       {
         "path": "tools/battle-route1/extract.py",
-        "sha256": "b768c8133f465da0038a161ccb684e649f09f7e5db77187053d1a0191d5b8aee"
+        "sha256": "ca93095c8e0f297a1a013fca28248209d9421d2034173e00992491ae09a9648e"
       },
       {
         "path": "tools/battle-route1/item_extract.py",
@@ -3214,7 +3214,7 @@
       },
       {
         "path": "tools/battle-family/extract.py",
-        "sha256": "1b6caf90e1f9614acfa372ebbae98e83be3851f08112788e06caed1f56b953be"
+        "sha256": "72f4e9bf6a749cbe9c7a1eb7366530427d5e699cc80cd9ac67c75c132459e0dc"
       },
       {
         "path": "tools/battle-family/build.py",
