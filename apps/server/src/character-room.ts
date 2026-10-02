@@ -1,6 +1,6 @@
 import { Room, ServerError, CloseCode, type AuthContext, type Client } from '@colyseus/core';
 import { CHARACTER_RECONNECT_GRACE_MS, CHARACTER_RULES_VERSION, PROTOCOL_VERSION, SERVER_VERSION, characterJoinSchema, handshakeSchema, saveProfileCommandSchema, worldCommandSchema, worldInputSchema,
-  practiceCommandSchema, type PracticeSnapshot,
+  practiceCommandSchema, wildTestCommandSchema, type PracticeSnapshot, type WildTestSnapshot,
   type CharacterSnapshot, type CharacterError, type ProfileSaved, type WorldSnapshot, type WorldLeft } from '@pokewaterblue/protocol';
 import type { Database } from '@pokewaterblue/database';
 import { readAccountSession, sessionStillValid, type AccountSession, type GameAuth } from './auth.js';
@@ -15,7 +15,7 @@ import { ReconnectionBindings } from './reconnection-bindings.js';
 type CharacterClient = Client<{
   auth: { identity: AccountSession; characterId: string };
   userData: { connection: CharacterConnection; busy: boolean; suspended: boolean; awaitingHello: boolean; helloDeadline: number; resumeTimer?: ReturnType<typeof setTimeout>; terminated: boolean; bindingToken: string };
-  messages: { snapshot: CharacterSnapshot; saved: ProfileSaved; error: CharacterError; world: WorldSnapshot; 'world-left': WorldLeft; practice: PracticeSnapshot };
+  messages: { snapshot: CharacterSnapshot; saved: ProfileSaved; error: CharacterError; world: WorldSnapshot; 'world-left': WorldLeft; practice: PracticeSnapshot; 'wild-test': WildTestSnapshot };
 }>;
 interface Grace {
   client: CharacterClient; deadline: number; settled: Promise<boolean>; heartbeat?: Promise<void>;
@@ -65,7 +65,7 @@ export function createCharacterRoom(dependencies: {
     }
     private attach(client: CharacterClient) {
       world.attach({ connection: client.userData!.connection, world: state => client.send('world', state),
-        character: state => client.send('snapshot', state), fail: error => this.terminate(client, error) });
+        character: state => client.send('snapshot', state), practice: state => client.send('practice', state), fail: error => this.terminate(client, error) });
     }
     onCreate() {
       this.heartbeatTimer = setInterval(() => {
@@ -91,6 +91,8 @@ export function createCharacterRoom(dependencies: {
           // may issue its first command as soon as it receives the private view.
           const practice = characters.practiceAvailable(client.userData!.connection)
             ? await characters.practiceSnapshot(client.userData!.connection, { handshakeRead: true }) : undefined;
+          const wildTest = characters.wildAvailable(client.userData!.connection)
+            ? await characters.wildTestSnapshot(client.userData!.connection, { handshakeRead: true }) : undefined;
           if (client.userData!.suspended || client.userData!.terminated || this.stopping ||
               client.userData!.awaitingHello && Date.now() >= client.userData!.helloDeadline) throw new AccountApiError('RECONNECT_REQUIRED', 'The trainer handshake ended. Reconnect explicitly.');
           const current = snapshot(client);
@@ -101,6 +103,7 @@ export function createCharacterRoom(dependencies: {
           clearTimeout(client.userData!.resumeTimer); client.userData!.resumeTimer = undefined;
           world.publishFor(client.userData!.connection);
           if (practice) client.send('practice', practice);
+          if (wildTest) client.send('wild-test', wildTest);
         }, true, true);
       });
       this.onMessage('save', (client: CharacterClient, payload: unknown) => {
@@ -153,6 +156,22 @@ export function createCharacterRoom(dependencies: {
           if (!current) throw new AccountApiError('RECONNECT_REQUIRED', 'Reconnect to reload the committed practice.');
           client.send('snapshot', current);
           client.send('practice', practice);
+          world.publishFor(client.userData!.connection);
+        }, true, false, parsed.success ? parsed.data.commandId : undefined);
+      });
+      this.onMessage('wild-test-query', (client: CharacterClient, payload: unknown) => {
+        void this.run(client, async () => {
+          if (!payload || typeof payload !== 'object' || Array.isArray(payload) || Object.keys(payload).length !== 0) throw new AccountApiError('INVALID_MESSAGE', 'Wild encounter query takes an empty object.');
+          client.send('wild-test', await characters.wildTestSnapshot(client.userData!.connection));
+        });
+      });
+      this.onMessage('wild-test-command', (client: CharacterClient, payload: unknown) => {
+        const parsed = wildTestCommandSchema.safeParse(payload);
+        void this.run(client, async () => {
+          if (!parsed.success) throw new AccountApiError('INVALID_MESSAGE', 'Invalid wild encounter testing command.');
+          const setting = await characters.wildTestCommand(client.userData!.connection, parsed.data);
+          client.send('wild-test', setting);
+          world.publishFor(client.userData!.connection);
         }, true, false, parsed.success ? parsed.data.commandId : undefined);
       });
       this.onMessage('*', (client: CharacterClient) => {

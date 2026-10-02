@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { worldDirectionSchema, worldLocationSchema } from './world.js';
 
 const counter = z.number().int().min(0).max(Number.MAX_SAFE_INTEGER);
 const id = z.number().int().min(1).max(65535);
@@ -43,10 +44,13 @@ export const practicePresentationSchema = z.strictObject({
 });
 export const practiceEventSchema = z.strictObject({ sequence: counter, text: z.string().min(1).max(240),
   kind: z.enum(['attack', 'damage', 'switch', 'faint', 'weather', 'status', 'result', 'info']), actor: actor.optional() });
-export const practiceSessionSchema = z.strictObject({ battleId: z.uuid(), setup: practiceSetupSchema,
+export const wildReturnLocationSchema = worldLocationSchema.extend({ direction: worldDirectionSchema }).strict();
+export const practiceSessionSchema = z.strictObject({ battleId: z.uuid(), setup: practiceSetupSchema.optional(),
+  origin: z.literal('route1-wild-test').optional(), returnLocation: wildReturnLocationSchema.optional(),
   presentation: practicePresentationSchema, events: z.array(practiceEventSchema).max(200) });
 export const practiceStateSchema = z.strictObject({ revision: counter, session: practiceSessionSchema.nullable(),
-  unavailable: z.strictObject({ battleId: z.uuid(), message: z.string().min(1).max(240) }).optional() });
+  unavailable: z.strictObject({ battleId: z.uuid(), message: z.string().min(1).max(240),
+    origin: z.literal('route1-wild-test').optional(), returnLocation: wildReturnLocationSchema.optional() }).optional() });
 export const practiceCatalogueSchema = z.strictObject({ version: z.literal('practice-v1'),
   species: z.array(z.strictObject({ id, name: z.string().min(1).max(30),
     abilities: z.array(z.strictObject({ slot: actor, id, name: z.string().min(1).max(40) })).min(1).max(2),

@@ -5,13 +5,14 @@ import {
   CHARACTER_ROOM, CHARACTER_RECONNECT_GRACE_MS, PROTOCOL_VERSION, accountViewSchema, characterViewSchema, characterTicketSchema,
   characterSnapshotSchema, profileSavedSchema, characterErrorSchema, trainerNameSchema, trainerAssetsSchema,
   type AccountView, type CharacterSnapshot, type SaveProfileCommand, type CreateCharacter, type TrainerAssets,
-  worldSnapshotSchema, worldLeftSchema, type WorldSnapshot, type WorldCommand,
+  worldSnapshotSchema, worldLeftSchema, type WorldSnapshot, type WorldCommand, type WorldLocation,
   practiceSnapshotSchema, practiceCommandSchema, type PracticeSnapshot, type PracticeCommand, type PracticeChoice, type PracticeSetup,
   localTestAccountsSchema, type LocalTestAccountId, type LocalTestAccounts,
+  wildTestSnapshotSchema, type WildTestState, type WildTestCommand,
 } from '@pokewaterblue/protocol';
 import type { Direction } from '@pokewaterblue/game-rules';
 
-export type WorldConnectionState = 'preview' | 'shared' | 'reconnecting' | 'disconnected';
+export type WorldConnectionState = 'preview' | 'shared' | 'battle' | 'reconnecting' | 'disconnected';
 export interface AccountPracticeState {
   signedIn: boolean; eligible: boolean; connected: boolean; reconnecting: boolean; busy: boolean;
   worldState: WorldConnectionState; snapshot: PracticeSnapshot | null; fresh: boolean;
@@ -25,6 +26,7 @@ export interface AccountWorldBridge {
   onSnapshot: (snapshot: WorldSnapshot) => boolean;
   onError: (message: string) => void;
   onInputBusy: () => void;
+  onBattle: (location: WorldLocation & { direction: Direction }) => void;
 }
 
 /** Profile persistence is separate from the renderer's local exploration. */
@@ -71,6 +73,9 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   testingStrip.setAttribute('aria-label', 'Local testing');
   testingStrip.innerHTML = `<div><p class="eyebrow">Local testing</p><h2>Jump in with a ready-made trainer</h2><p id="local-testing-status" role="status" aria-live="polite">No email or password needed. Choose a trainer to play.</p></div><div id="local-testing-actions" class="local-testing-actions"></div>`;
   document.querySelector('.topbar')!.after(testingStrip);
+  const wildStrip = document.createElement('section'); wildStrip.id = 'wild-testing'; wildStrip.className = 'local-testing hidden';
+  wildStrip.innerHTML = '<div><p class="eyebrow">Route 1 / Encounter testing</p><h2>Find wild Pokémon in the grass</h2><p id="wild-testing-note">Temporary level 5 Squirtle. No captures, items or rewards; your saved party stays unchanged.</p></div><div class="local-testing-actions"><button class="button" id="wild-testing-toggle" type="button">Enable wild encounters</button></div>';
+  testingStrip.after(wildStrip);
   const accountTesting = document.createElement('section'); accountTesting.id = 'account-testing'; accountTesting.className = 'account-testing hidden';
   accountTesting.setAttribute('aria-label', 'Ready-made local trainers');
   accountTesting.innerHTML = '<h3>Ready-made local trainers</h3><p>No email or password needed. Your progress is kept.</p><div class="local-testing-actions"></div>';
@@ -102,6 +107,13 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     return null;
   };
   let practice: PracticeSnapshot | null = null, practiceFresh = false, practiceWaiting = false;
+  let wildTest: WildTestState | null = null, pendingWild: WildTestCommand | null = null;
+  let wildWait: { resolve: () => void; reject: (error: Error) => void; timer: ReturnType<typeof setTimeout>; retries: number } | undefined;
+  const stopWildWait = (message?: string) => {
+    if (!wildWait) return;
+    const wait = wildWait; wildWait = undefined; clearTimeout(wait.timer);
+    if (message) wait.reject(new Error(message)); else wait.resolve();
+  };
   let practiceMessage = '', practiceError = false, pendingPractice: PracticeCommand | null = null;
   let practiceTimer: ReturnType<typeof setTimeout> | undefined, practiceRetryTimer: ReturnType<typeof setTimeout> | undefined;
   let practiceQueryTimer: ReturnType<typeof setTimeout> | undefined;
@@ -192,7 +204,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     el<HTMLButtonElement>('account-world-enter').disabled = busy || !!recovery || !worldBridge.canEnter();
     if (practiceWaiting || snapshot?.character.activity === 'battle') el<HTMLButtonElement>('account-world-enter').disabled = true;
     el('account-world-enter').textContent = worldState === 'disconnected' ? 'Reconnect shared world' : 'Enter shared world';
-    el('account-world-leave').classList.toggle('hidden', worldState === 'preview');
+    el('account-world-leave').classList.toggle('hidden', worldState === 'preview' || worldState === 'battle');
     for (const input of dialog.querySelectorAll<HTMLInputElement>('input')) input.disabled = busy;
     testingStrip.classList.toggle('hidden', !testingAccounts.length && !testingLoadFailed);
     if (testingLoadFailed) {
@@ -201,6 +213,15 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     }
     accountTesting.classList.toggle('hidden', !testingAccounts.length);
     for (const control of testingStrip.querySelectorAll<HTMLButtonElement>('button')) control.disabled = busy;
+    wildStrip.classList.toggle('hidden', account?.character?.stage !== 'development-fixture');
+    wildStrip.dataset.enabled = String(wildTest?.enabled ?? false);
+    const wildToggle = wildStrip.querySelector<HTMLButtonElement>('#wild-testing-toggle')!;
+    wildToggle.textContent = pendingWild ? 'Retry encounter setting' : !room ? 'Connect for wild testing' : wildTest?.enabled ? 'Disable wild encounters' : 'Enable wild encounters';
+    wildToggle.setAttribute('aria-pressed', String(wildTest?.enabled ?? false));
+    wildToggle.disabled = busy || !!recovery || !!wildWait || (!!room && !wildTest) || snapshot?.character.activity === 'battle';
+    wildStrip.querySelector('#wild-testing-note')!.textContent = wildTest?.enabled
+      ? 'Wild testing is on. Walk north into Route 1 grass. Each encounter uses a fresh level 5 Squirtle; no captures, items or rewards.'
+      : 'Enable to explore with a temporary level 5 Squirtle. No captures, items or rewards; your saved party stays unchanged.';
     for (const control of [...testingStrip.querySelectorAll<HTMLButtonElement>('[data-test-account]'), ...accountTesting.querySelectorAll<HTMLButtonElement>('[data-test-account]')]) {
       control.setAttribute('aria-pressed', String(control.dataset.testAccount === testingAccounts.find(row => row.name === account?.character?.name)?.id));
     }
@@ -227,6 +248,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   }
   function disconnect(reason = 'World connection closed. Reconnect to continue.') {
     practiceDropped();
+    stopWildWait('Encounter setting confirmation is unknown. Reconnect and retry the same setting.');
     // Save owns its busy state until confirmation. Cancelling that timer must
     // also release its controls; perform() still owns other async operations.
     if (saveTimer !== undefined) busy = false;
@@ -246,6 +268,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     forgetTestSelection();
     operation++; disconnect(); account = null; assets = null; snapshot = null; pendingSave = null; pendingCreate = null;
     practice = null; pendingPractice = null; practiceMessage = ''; practiceError = false;
+    wildTest = null; pendingWild = null;
     el<HTMLDetailsElement>('account-assets-details').open = false;
     el<HTMLInputElement>('account-password').value = '';
     el<HTMLInputElement>('account-trainer-name').value = '';
@@ -430,10 +453,24 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
         const received = parsed.data;
         clearTimeout(practiceQueryTimer); practiceQueryTimer = undefined; clearTimeout(practiceQueryRetryTimer);
         if (!practice || received.state.revision >= practice.state.revision) practice = received;
+        const wildSession = practice?.state.session?.origin === 'route1-wild-test' ? practice.state.session
+          : practice?.state.unavailable?.origin === 'route1-wild-test' ? practice.state.unavailable : null;
+        if (wildSession) {
+          wantsWorld = true; setWorldState('battle');
+          if (wildSession.returnLocation) worldBridge.onBattle(wildSession.returnLocation);
+        }
         practiceFresh = true;
         if (pendingPractice && received.commandId === pendingPractice.commandId) {
           stopPracticeWait(); pendingPractice = null; practiceMessage = received.replayed ? 'Action recovered. Your battle is up to date.' : ''; practiceError = false;
         } else if (!pendingPractice) { practiceMessage = ''; practiceError = false; }
+        render();
+      });
+      joined.onMessage('wild-test', (value: unknown) => {
+        if (room !== joined) return;
+        const parsed = wildTestSnapshotSchema.safeParse(value);
+        if (!parsed.success) { disconnect('Incompatible wild testing response. Reload to continue.'); render(); return; }
+        if (!wildTest || parsed.data.state.revision >= wildTest.revision) wildTest = parsed.data.state;
+        if (pendingWild?.commandId === parsed.data.commandId) { pendingWild = null; stopWildWait(); }
         render();
       });
       joined.onMessage('world', (value: unknown) => {
@@ -444,6 +481,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
           const message = 'World content or connection changed. Reload and reconnect.';
           disconnect(message); worldBridge.onError(message); status(message, true); render(); return;
         }
+        const enteringShared = worldState !== 'shared';
         shared = parsed.data; sequence = Math.max(sequence, shared.lastInputSequence); lastWorldAt = performance.now();
         setWorldState('shared');
         if (!worldBridge.onSnapshot(shared)) {
@@ -452,6 +490,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
         }
         if (recovery) finishRecovery();
         if (worldRequest?.kind === 'enter') finishWorldRequest();
+        if (enteringShared) render();
       });
       joined.onMessage('world-left', (value: unknown) => {
         if (room !== joined) return;
@@ -474,6 +513,15 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
       joined.onMessage('error', (value: unknown) => {
         if (room !== joined) return;
         const parsed = characterErrorSchema.safeParse(value);
+        if (parsed.success && pendingWild && parsed.data.commandId === pendingWild.commandId) {
+          if (parsed.data.code === 'BUSY' && wildWait && wildWait.retries++ < 5) {
+            const command = pendingWild;
+            setTimeout(() => { if (room === joined && wildWait && pendingWild === command && joined.connection.isOpen) joined.send('wild-test-command', command); }, 150);
+            return;
+          }
+          if (!['BUSY', 'DATABASE_UNAVAILABLE', 'COMMAND_OUTCOME_UNKNOWN', 'RECONNECT_REQUIRED', 'SESSION_REPLACED', 'LEASE_EXPIRED'].includes(parsed.data.code)) pendingWild = null;
+          stopWildWait(parsed.data.message); status(parsed.data.message, true); render(); return;
+        }
         const matchedPractice = parsed.success && pendingPractice !== null && parsed.data.commandId === pendingPractice.commandId;
         if (parsed.success && parsed.data.code === 'BUSY' && matchedPractice && practiceWaiting && pendingPractice && practiceRetries < 5) {
           const command = pendingPractice; practiceRetries++; clearTimeout(practiceRetryTimer);
@@ -559,7 +607,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     if (current !== operation || destroyed) return;
     if (room !== joined || transportDropped || recovery) throw new Error(recovery ? recoveryNotice : 'Trainer connection changed. Check your restored trainer before continuing.');
     sequence = 0;
-    if (wantsWorld) await requestWorld('enter');
+    if (wantsWorld && snapshot?.character.activity !== 'battle') await requestWorld('enter');
   }
   async function requestWorld(kind: 'enter' | 'leave') {
     if (!room?.connection.isOpen || !snapshot || recovery) throw new Error('Connect your trainer first.');
@@ -586,7 +634,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     if (recovery) throw new Error('Your trainer is reconnecting. Please wait.');
     if (!account?.character) throw new Error('Sign in and connect a development trainer through Account to practice.');
     if (account.character.stage !== 'development-fixture') throw new Error('Practice is available for local development trainers. Your saved trainer has not been initialized for development play.');
-    if (worldState !== 'preview') throw new Error('Leave the shared world before starting practice.');
+    if (worldState !== 'preview' && worldState !== 'battle') throw new Error('Leave the shared world before starting practice.');
     busy = true; render();
     try {
       if (!room) { wantsWorld = false; await connect(); }
@@ -596,7 +644,9 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   }
   function sendPractice(command: PracticeCommand) {
     if (busy || recovery || worldRequest || pendingSave || !room?.connection.isOpen || !practiceFresh || practiceWaiting) throw new Error('Connect your trainer and wait for the latest practice state.');
-    if (worldState !== 'preview') throw new Error('Leave the shared world before practicing.');
+    const reconcilingClose = worldState === 'shared' && pendingPractice?.kind === 'close' && command.kind === 'close'
+      && pendingPractice.commandId === command.commandId;
+    if (worldState !== 'preview' && worldState !== 'battle' && !reconcilingClose) throw new Error('Leave the shared world before practicing.');
     pendingPractice = practiceCommandSchema.parse(command); practiceWaiting = true; practiceMessage = 'Saving your battle action…'; practiceError = false; practiceRetries = 0;
     practiceTimer = setTimeout(() => { stopPracticeWait(); practiceMessage = 'Action confirmation timed out. Retry the same action to check its result.'; practiceError = true; render(); }, 8000);
     room.send('practice-command', pendingPractice); render();
@@ -644,6 +694,23 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     });
   });
   el('account-connect').addEventListener('click', () => { void perform(connect); });
+  wildStrip.querySelector('#wild-testing-toggle')!.addEventListener('click', () => {
+    void perform(async () => {
+      if (!room) { await connect(); return; }
+      if (!wildTest || !room.connection.isOpen || recovery) throw new Error('Connect your trainer to load wild encounter settings.');
+      const command = pendingWild ?? { commandId: crypto.randomUUID(), expectedRevision: wildTest.revision, enabled: !wildTest.enabled };
+      pendingWild = command; status('Saving wild encounter setting…');
+      await new Promise<void>((resolve, reject) => {
+        wildWait = { resolve, reject, retries: 0, timer: setTimeout(() => {
+          stopWildWait('Encounter setting confirmation is unknown. Retry the same setting safely.'); render();
+        }, 8000) };
+        room!.send('wild-test-command', command); render();
+      });
+      if (command.enabled && worldState === 'preview' && worldBridge.canEnter()) await requestWorld('enter');
+      status(command.enabled ? 'Wild testing is on. Walk north into Route 1 grass to encounter a Pokémon.' : 'Wild encounters are off. Shared exploration continues.');
+      document.querySelector<HTMLElement>('#game')?.focus();
+    });
+  });
   el('account-world-enter').addEventListener('click', () => {
     void perform(async () => {
       if (account?.character?.stage !== 'development-fixture' || !worldBridge.canEnter()) return;

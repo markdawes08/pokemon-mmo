@@ -12,7 +12,8 @@ const sources = [
   ['PalletTown_PlayersHouse_1F', WORLD_MAP_HASHES.MAP_PALLET_TOWN_PLAYERS_HOUSE_1F],
 ] as const;
 
-/** Admits only the audited exploration fixture. Scripts/encounters never run in this policy. */
+/** Admits only the audited exploration fixture. The character service separately
+ * opts into Route 1 wild testing; story scripts remain outside this policy. */
 export class WorldContent {
   private constructor(readonly maps: Readonly<Record<string, WorldMap>>) {}
   static async load(root = process.cwd()): Promise<WorldContent> {

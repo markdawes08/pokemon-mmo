@@ -159,6 +159,9 @@ async function command(name, args) {
       await js('--import', 'tsx', 'tests/integration/local-testing-smoke.ts');
       return js('tests/integration/supervisor-smoke.mjs');
     case 'testing:check': return js('--import', 'tsx', 'tests/integration/local-testing-smoke.ts');
+    case 'wild:check':
+      await js('--import', 'tsx', 'tests/integration/wild-engine-smoke.ts');
+      return js('--import', 'tsx', 'tests/integration/wild-test-smoke.ts');
     case 'test:e2e': return tool('@playwright/test/cli.js', 'test', ...args);
     case 'test:recovery': return js('--import', 'tsx', 'tests/integration/accounts-restart-smoke.ts');
     case 'test:boundaries': return js('scripts/check-private-client.mjs');
@@ -235,11 +238,11 @@ async function command(name, args) {
     case 'content:check': return converter('check', ...args);
     case 'verify': {
       const results = [];
-      for (const stage of ['doctor', 'lint', 'typecheck', 'test:unit', 'test:integration', 'content:check', 'battle:spike', 'encounter:check', 'battle:route1', 'battle:progression', 'battle:loss', 'battle:capture', 'battle:evolution', 'battle:family', 'battle:party', 'battle:tactics', 'battle:charge', 'battle:protect', 'battle:pursuit', 'practice:check', 'build', 'test:boundaries', 'test:recovery', 'test:e2e']) {
+      for (const stage of ['doctor', 'lint', 'typecheck', 'test:unit', 'test:integration', 'content:check', 'battle:spike', 'encounter:check', 'battle:route1', 'battle:progression', 'battle:loss', 'battle:capture', 'battle:evolution', 'battle:family', 'battle:party', 'battle:tactics', 'battle:charge', 'battle:protect', 'battle:pursuit', 'practice:check', 'wild:check', 'build', 'test:boundaries', 'test:recovery', 'test:e2e']) {
         console.log(`\n[verify] ${stage}`);
         try { await command(stage, []); results.push({ stage, status: 'passed' }); }
         catch (error) { results.push({ stage, status: 'failed', message: error.message }); throw error; }
-        finally { await mkdir('reports', { recursive: true }); await writeFile('reports/verification.json', JSON.stringify({ checkedAt: new Date().toISOString(), results, scope: 'P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 encounter factory, real-team Route 1 battle mechanics, victory progression, blackout, capture and evolution continuations plus diagnostic family combat and party switching/faint decisions and five further family moves with rain/forced escape and Skull Bash charging/forced continuation plus Protect with pinned repeat-rate policy and Pursuit switch interception; live R1 battles, persistent outcomes and story gameplay not implemented' }, null, 2) + '\n'); }
+        finally { await mkdir('reports', { recursive: true }); await writeFile('reports/verification.json', JSON.stringify({ checkedAt: new Date().toISOString(), results, scope: 'P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 encounter factory, real-team Route 1 battle mechanics, victory progression, blackout, capture and evolution continuations plus diagnostic family combat and party switching/faint decisions and five further family moves with rain/forced escape and Skull Bash charging/forced continuation plus Protect with pinned repeat-rate policy and Pursuit switch interception; isolated playable practice and opt-in Route 1 wild testing; normal owned R1 battle outcomes and story gameplay remain unimplemented' }, null, 2) + '\n'); }
       }
       return;
     }

@@ -145,9 +145,11 @@ test('remembered tester recovers practice, stays signed out, and safely switches
   expect((await account(context)).character?.id).toBe(characterIds[1]);
   await enter(page);
   const game = page.locator('#game'), step = Number(await game.getAttribute('data-step-serial'));
+  const beforeX = Number(await game.getAttribute('data-server-tile-x'));
   await game.click(); await page.keyboard.press('ArrowLeft');
   await expect.poll(async () => Number(await game.getAttribute('data-step-serial'))).toBeGreaterThan(step);
   await expect(game).toHaveAttribute('data-moving', 'false');
+  await expect(game).toHaveAttribute('data-server-tile-x', String(beforeX - 1));
   const bobLocation = { map_id: await game.getAttribute('data-server-map-id'),
     position_x: Number(await game.getAttribute('data-server-tile-x')), position_y: Number(await game.getAttribute('data-server-tile-y')) };
   const bobCookies = (await context.cookies(backend.origin)).map(cookie => `${cookie.name}=${cookie.value}`).join('; ');

@@ -1,9 +1,11 @@
 # Private Route 1 encounter foundation
 
 This tool implements the bounded `firered-route1-encounter-v1` factory using pinned
-FireRed source C compiled to one private WASM module. It does not enable encounters
-in the client or shared world, create a battle, admit an activity, or save a creature.
-The existing four-move battle experiment remains a separate, unchanged artifact.
+FireRed source C compiled to one private WASM module. The factory itself does not
+own world activity or creature persistence. The server's opt-in Route 1 wild-test
+adapter now calls it for completed authoritative steps, admits temporary battles,
+and durably preserves the field/battle RNG (ADR-029). Owned captures and rewards
+remain separate. The historical private-profile boundaries below remain unchanged.
 
 Run `npm.cmd run encounter:check` for the coordinated factory checks. To compile
 only, run `.venv/Scripts/python.exe tools/encounter-core/build.py`. The existing
@@ -40,8 +42,9 @@ source path. The fixed environment rejects unsupported requests at the host
 boundary; it does not emulate another map, cycling, surfing, flutes, Repel,
 Stench/Illuminate, Unown, fishing, Rock Smash, Sweet Scent, safari, legendary,
 trainer, double, scripted, or roaming encounters. This is not the complete field
-loop: movement eligibility, scripts, map entry/exit and the field's additional
-counter-reset call sites are not connected. Direct `generate()` explicitly starts
+loop: story scripts and general field modifiers remain unconnected. The bounded
+server adapter separately owns completed movement and the source map-transfer
+counter reset. Direct `generate()` explicitly starts
 at source slot/level selection, bypasses step eligibility and clears cooldown as a
 factory encounter boundary. It preserves previous behavior.
 

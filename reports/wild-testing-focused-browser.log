@@ -1,0 +1,33 @@
+[check] lint
+[check] typecheck
+[check] build
+{"status": "passed", "outputs": 17, "sourceInputs": 31, "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982"}
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 168 modules transformed.
+rendering chunks...
+computing gzip size...
+apps/client/dist/index.html                     0.54 kB │ gzip:   0.33 kB
+apps/client/dist/assets/index-3x2RQj0M.css     21.93 kB │ gzip:   5.58 kB
+apps/client/dist/assets/index-yWqWHwmf.js   1,576.67 kB │ gzip: 432.97 kB
+
+✓ built in 607ms
+[check] test:e2e
+
+Running 11 tests using 1 worker
+
+(node:20416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests\e2e\local-testing.spec.ts:86:1 › one click connects both premade testers for shared exploration and isolated practice (6.1s)
+  ✓   2 tests\e2e\local-testing.spec.ts:116:1 › remembered tester recovers practice, stays signed out, and safely switches from active exploration (4.7s)
+  ✓   3 tests\e2e\practice.spec.ts:60:1 › practice explains sign-in, builds legal teams, and leaves shared exploration before a saved battle (4.2s)
+  ✓   4 tests\e2e\practice.spec.ts:85:1 › source charge locks choices, preserves PP on release, and remains usable on a narrow screen (3.4s)
+  ✓   5 tests\e2e\practice.spec.ts:101:1 › faint decisions use the selected reserve and running ends practice without rewards (3.8s)
+  ✓   6 tests\e2e\practice.spec.ts:113:1 › refresh and native lost acknowledgement recover one durable practice action with explicit retry (7.9s)
+  ✓   7 tests\e2e\wild-testing.spec.ts:84:1 › opt-in grass steps start a real wild battle and return to the same tile without owned rewards (14.3s)
+  ✓   8 tests\e2e\wild-testing.spec.ts:112:1 › wild battle hides safely and recovers the same battle after refresh and a fresh backend (13.0s)
+  ✓   9 tests\e2e\wild-testing.spec.ts:179:34 › held walk keeps Run and End encounter usable after a late movement frame (3.5s)
+  ✓  10 tests\e2e\wild-testing.spec.ts:179:34 › held Shift-run keeps Run and End encounter usable after a late movement frame (2.6s)
+  ✓  11 tests\e2e\wild-testing.spec.ts:231:1 › held walking and running keep the same cadence with wild testing off and on (15.5s)
+
+  11 passed (1.5m)

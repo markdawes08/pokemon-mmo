@@ -1,0 +1,219 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.tools\\node-v24.21.0-win-x64\\node.exe",
+      "C:\\Users\\mrkda\\Projects\\pokewaterblue\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/wild-testing.spec.ts",
+      "--grep",
+      "same cadence"
+    ],
+    "configFile": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\playwright.config.ts",
+    "rootDir": "C:/Users/mrkda/Projects/pokewaterblue/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/mrkda/Projects/pokewaterblue/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/mrkda/Projects/pokewaterblue/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/browser-tests.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "wild-testing.spec.ts",
+      "file": "wild-testing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "held walking and running keep the same cadence with wild testing off and on",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 15913,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m100\u001b[39m\nReceived:   \u001b[31m147.33333333333331\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m100\u001b[39m\nReceived:   \u001b[31m147.33333333333331\u001b[39m\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts:255:38",
+                    "location": {
+                      "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts",
+                      "column": 38,
+                      "line": 255
+                    },
+                    "snippet": "  253 |       expect(motions.every(motion => Math.round(motion.durationMs * 60 / 1000) === (run ? 8 : 16))).toBe(true);\n  254 |       expect(wire.errors.filter(code => code !== 'BUSY')).toEqual([]);\n> 255 |       expect.soft(Math.max(...gaps)).toBeLessThan(100);\n      |                                      ^\n  256 |     } finally { await context.close(); }\n  257 |   }\n  258 |   for (const movement of ['walk', 'run']) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts",
+                        "column": 38,
+                        "line": 255
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m100\u001b[39m\nReceived:   \u001b[31m147.33333333333331\u001b[39m\n\n  253 |       expect(motions.every(motion => Math.round(motion.durationMs * 60 / 1000) === (run ? 8 : 16))).toBe(true);\n  254 |       expect(wire.errors.filter(code => code !== 'BUSY')).toEqual([]);\n> 255 |       expect.soft(Math.max(...gaps)).toBeLessThan(100);\n      |                                      ^\n  256 |     } finally { await context.close(); }\n  257 |   }\n  258 |   for (const movement of ['walk', 'run']) {\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts:255:38"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts",
+                        "column": 38,
+                        "line": 255
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m100\u001b[39m\nReceived:   \u001b[31m168.33333333333331\u001b[39m\n\n  253 |       expect(motions.every(motion => Math.round(motion.durationMs * 60 / 1000) === (run ? 8 : 16))).toBe(true);\n  254 |       expect(wire.errors.filter(code => code !== 'BUSY')).toEqual([]);\n> 255 |       expect.soft(Math.max(...gaps)).toBeLessThan(100);\n      |                                      ^\n  256 |     } finally { await context.close(); }\n  257 |   }\n  258 |   for (const movement of ['walk', 'run']) {\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts:255:38"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts",
+                        "column": 38,
+                        "line": 255
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m100\u001b[39m\nReceived:   \u001b[31m163.66666666666666\u001b[39m\n\n  253 |       expect(motions.every(motion => Math.round(motion.durationMs * 60 / 1000) === (run ? 8 : 16))).toBe(true);\n  254 |       expect(wire.errors.filter(code => code !== 'BUSY')).toEqual([]);\n> 255 |       expect.soft(Math.max(...gaps)).toBeLessThan(100);\n      |                                      ^\n  256 |     } finally { await context.close(); }\n  257 |   }\n  258 |   for (const movement of ['walk', 'run']) {\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts:255:38"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts",
+                        "column": 38,
+                        "line": 255
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m100\u001b[39m\nReceived:   \u001b[31m159.66666666666666\u001b[39m\n\n  253 |       expect(motions.every(motion => Math.round(motion.durationMs * 60 / 1000) === (run ? 8 : 16))).toBe(true);\n  254 |       expect(wire.errors.filter(code => code !== 'BUSY')).toEqual([]);\n> 255 |       expect.soft(Math.max(...gaps)).toBeLessThan(100);\n      |                                      ^\n  256 |     } finally { await context.close(); }\n  257 |   }\n  258 |   for (const movement of ['walk', 'run']) {\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts:255:38"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts",
+                        "column": 51,
+                        "line": 261
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m50\u001b[39m\nReceived:   \u001b[31m79.25\u001b[39m\n\n  259 |     const rows = cadenceEvidence.filter(row => row.movement === movement);\n  260 |     const averages = rows.map(row => (row.gaps as number[]).reduce((sum, gap) => sum + gap, 0) / 4);\n> 261 |     expect(Math.abs(averages[1]! - averages[0]!)).toBeLessThan(50);\n      |                                                   ^\n  262 |   }\n  263 | });\n  264 |\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts:261:51"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T13:42:50.986Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\\test-failed-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\\test-failed-2.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\\test-failed-3.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\\test-failed-4.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\\test-failed-5.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\wild-testing.spec.ts",
+                    "column": 38,
+                    "line": 255
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "935ebcaf396965f171c6-899bfa76ef77c21d7d91",
+          "file": "wild-testing.spec.ts",
+          "line": 231,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T13:42:49.682Z",
+    "duration": 24281.516,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

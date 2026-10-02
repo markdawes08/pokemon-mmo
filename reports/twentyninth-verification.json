@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-10-02T14:00:42.046397+00:00",
+  "status": "passed",
+  "scope": "Wild encounter movement/control timing bug fixes, no new mechanics.",
+  "commands": [
+    {
+      "stage": "lint",
+      "exitCode": 0
+    },
+    {
+      "stage": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:unit",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:integration",
+      "exitCode": 0
+    },
+    {
+      "stage": "practice:check",
+      "exitCode": 0
+    },
+    {
+      "stage": "wild:check",
+      "exitCode": 0
+    },
+    {
+      "stage": "build",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:boundaries",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:recovery",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:e2e",
+      "exitCode": 0
+    }
+  ],
+  "browserScenarios": 50,
+  "unitTests": 99,
+  "pythonTests": 49,
+  "wildStorageGroups": 26,
+  "retainedWasmCount": 13,
+  "cadence": [
+    {
+      "movement": "walk",
+      "enabled": false,
+      "minGapMs": 15.333333333333314,
+      "maxGapMs": 17.333333333333314,
+      "averageGapMs": 16.583333333333314,
+      "errors": [],
+      "busyMessages": []
+    },
+    {
+      "movement": "walk",
+      "enabled": true,
+      "minGapMs": 8.333333333333314,
+      "maxGapMs": 24.333333333333314,
+      "averageGapMs": 17.083333333333314,
+      "errors": [],
+      "busyMessages": []
+    },
+    {
+      "movement": "run",
+      "enabled": false,
+      "minGapMs": 14.666666666666657,
+      "maxGapMs": 17.666666666666657,
+      "averageGapMs": 15.916666666666657,
+      "errors": [],
+      "busyMessages": []
+    },
+    {
+      "movement": "run",
+      "enabled": true,
+      "minGapMs": 4.666666666666657,
+      "maxGapMs": 29.666666666666657,
+      "averageGapMs": 16.916666666666657,
+      "errors": [],
+      "busyMessages": []
+    }
+  ],
+  "evidence": [
+    "reports/twentyninth-regression-exit-status.json",
+    "reports/browser-tests.json",
+    "reports/wild-test-verification.json",
+    "reports/wild-timing-runtime.json",
+    "reports/wild-cadence-observation.json",
+    "reports/twentyninth-qa-diagnostics.json"
+  ],
+  "suggestedCommit": "Fix wild encounter movement pauses and disabled controls",
+  "gitOperations": false
+}

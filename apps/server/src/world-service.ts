@@ -1,4 +1,4 @@
-import { CHARACTER_RULES_VERSION, PROTOCOL_VERSION, SERVER_VERSION, WORLD_POLICY, type CharacterError, type CharacterSnapshot, type WorldSnapshot } from '@pokewaterblue/protocol';
+import { CHARACTER_RULES_VERSION, PROTOCOL_VERSION, SERVER_VERSION, WORLD_POLICY, type CharacterError, type CharacterSnapshot, type WorldSnapshot, type PracticeSnapshot } from '@pokewaterblue/protocol';
 import { CharacterService, type CharacterConnection } from './character-service.js';
 import { publicError } from './account-api.js';
 import { WORLD_SOURCE_FINGERPRINT } from './world-content.js';
@@ -8,6 +8,7 @@ interface Subscriber {
   connection: CharacterConnection;
   world: (state: WorldSnapshot) => void;
   character: (state: CharacterSnapshot) => void;
+  practice?: (state: PracticeSnapshot) => void;
   fail: (error: CharacterError) => void;
   lastCharacter?: string;
 }
@@ -77,6 +78,8 @@ export class WorldService {
       subscriber.lastCharacter = key;
       subscriber.character({ protocolVersion: PROTOCOL_VERSION, serverVersion: SERVER_VERSION, contentHash: this.contentHash,
         rulesVersion: CHARACTER_RULES_VERSION, ...privateState });
+      const practice = this.characters.practicePublication(subscriber.connection);
+      if (practice) subscriber.practice?.(practice);
     }
     const state = this.characters.worldProjection(subscriber.connection, now);
     if (!state) return;

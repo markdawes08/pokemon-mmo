@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "verifiedAt": "2026-10-02T11:24:47.633Z",
+  "verifiedAt": "2026-10-02T13:52:54.120Z",
   "checks": [
     "manual-reconnect-wrong-cookie-or-origin-cannot-evict-live-owner",
     "encoded-manual-reconnect-method-and-chunked-body-limit-enforced",
@@ -20,9 +20,9 @@
     "expired-grace-requires-fresh-authenticated-admission",
     "shutdown-cancels-active-reconnect-grace-without-forced-termination"
   ],
-  "graceElapsedMs": 60516,
+  "graceElapsedMs": 60507,
   "backendPids": [
-    15084
+    26412
   ],
   "scope": "Real PostgreSQL, cookie sessions, native SDK WebSocket interruption and real elapsed sixty-second policy. Tokens remain only in process memory."
 }

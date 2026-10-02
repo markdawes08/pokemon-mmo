@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T11:24:57.592Z",
+  "checkedAt": "2026-10-02T13:53:04.190Z",
   "status": "passed",
   "checks": [
     "practice-requires-explicit-development-fixture-and-enabled-local-mode",
@@ -21,7 +21,7 @@
     "revoked-session-cannot-read-or-advance-practice"
   ],
   "probePids": [
-    14380
+    2700
   ],
   "scope": "Isolated real PostgreSQL fixtures, source engine, exactly-once commands, failure injection and fresh-process practice recovery. User testing accounts are not accessed."
 }

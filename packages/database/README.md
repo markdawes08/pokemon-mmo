@@ -220,3 +220,5 @@ checkpoint. Isolated practice persists through separate battle records; normal
 world-battle results and script/trade continuations remain unimplemented.
 
 Migration 0006 adds `character_practice_state` and `practice_command_receipts`. They persist isolated test battles through the sole CharacterService owner, separate from creatures/inventory/rewards. The global practice revision survives closure; UUID/payload receipts prevent turn duplication. Development characters may enter battle activity; ordinary staged accounts retain their prior constraint.
+
+Migration 0007 adds `character_wild_test_state`, `wild_test_command_receipts`, and private return-origin metadata on the practice row. Opt-in completed steps commit their tile, source field RNG and optional temporary battle in one transaction. Battle closure resumes the same field RNG and saved tile; it grants no owned outcomes. Opt-in configuration revisions are independent of walking. Default exploration retains the existing checkpoint behavior above; wild-enabled exploration durably records each completed step.

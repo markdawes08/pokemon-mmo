@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T11:33:54.166Z",
+  "checkedAt": "2026-10-02T13:54:49.729Z",
   "passed": true,
   "results": [
     {
@@ -12,107 +12,107 @@
     }
   ],
   "backendPids": [
-    29736
+    26944
   ],
   "lifecycle": [
     {
-      "at": "2026-10-02T11:33:43.206Z",
+      "at": "2026-10-02T13:54:38.079Z",
       "event": "server_listening"
     },
     {
-      "at": "2026-10-02T11:33:43.952Z",
+      "at": "2026-10-02T13:54:39.053Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:33:44.329Z",
+      "at": "2026-10-02T13:54:39.487Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:33:44.611Z",
+      "at": "2026-10-02T13:54:39.770Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:33:45.056Z",
+      "at": "2026-10-02T13:54:40.221Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:33:48.266Z",
+      "at": "2026-10-02T13:54:43.561Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:33:48.268Z",
+      "at": "2026-10-02T13:54:43.565Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T11:33:48.427Z",
+      "at": "2026-10-02T13:54:43.707Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:33:48.427Z",
+      "at": "2026-10-02T13:54:43.707Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T11:33:48.758Z",
+      "at": "2026-10-02T13:54:44.027Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:33:49.257Z",
+      "at": "2026-10-02T13:54:44.459Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:33:49.258Z",
+      "at": "2026-10-02T13:54:44.459Z",
       "event": "character_release_deferred"
     },
     {
-      "at": "2026-10-02T11:33:49.845Z",
+      "at": "2026-10-02T13:54:45.212Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:33:49.991Z",
+      "at": "2026-10-02T13:54:45.362Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:33:50.168Z",
+      "at": "2026-10-02T13:54:45.537Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:33:50.887Z",
+      "at": "2026-10-02T13:54:46.313Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:33:50.955Z",
+      "at": "2026-10-02T13:54:46.398Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:33:51.507Z",
+      "at": "2026-10-02T13:54:46.968Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:33:51.507Z",
+      "at": "2026-10-02T13:54:46.968Z",
       "event": "character_release_deferred"
     },
     {
-      "at": "2026-10-02T11:33:52.744Z",
+      "at": "2026-10-02T13:54:48.318Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:33:53.072Z",
+      "at": "2026-10-02T13:54:48.636Z",
       "event": "test_shutdown_requested"
     },
     {
-      "at": "2026-10-02T11:33:53.072Z",
+      "at": "2026-10-02T13:54:48.637Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:33:53.072Z",
+      "at": "2026-10-02T13:54:48.637Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T11:33:53.073Z",
+      "at": "2026-10-02T13:54:48.638Z",
       "event": "server_stopping"
     },
     {
-      "at": "2026-10-02T11:33:53.077Z",
+      "at": "2026-10-02T13:54:48.644Z",
       "event": "server_stopped"
     }
   ],

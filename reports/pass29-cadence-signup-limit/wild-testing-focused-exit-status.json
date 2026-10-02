@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-02T13:45:39.832442+00:00",
+  "commands": [
+    {
+      "stage": "lint",
+      "exitCode": 0
+    },
+    {
+      "stage": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "stage": "build",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:e2e",
+      "exitCode": 1
+    }
+  ],
+  "status": "failed",
+  "log": "reports\\wild-testing-focused-browser.log"
+}

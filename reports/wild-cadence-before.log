@@ -1,0 +1,115 @@
+
+Running 1 test using 1 worker
+
+(node:8548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests\e2e\wild-testing.spec.ts:231:1 › held walking and running keep the same cadence with wild testing off and on (15.9s)
+
+
+  1) tests\e2e\wild-testing.spec.ts:231:1 › held walking and running keep the same cadence with wild testing off and on 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 100
+    Received:   147.33333333333331
+
+      253 |       expect(motions.every(motion => Math.round(motion.durationMs * 60 / 1000) === (run ? 8 : 16))).toBe(true);
+      254 |       expect(wire.errors.filter(code => code !== 'BUSY')).toEqual([]);
+    > 255 |       expect.soft(Math.max(...gaps)).toBeLessThan(100);
+          |                                      ^
+      256 |     } finally { await context.close(); }
+      257 |   }
+      258 |   for (const movement of ['walk', 'run']) {
+        at C:\Users\mrkda\Projects\pokewaterblue\tests\e2e\wild-testing.spec.ts:255:38
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 100
+    Received:   168.33333333333331
+
+      253 |       expect(motions.every(motion => Math.round(motion.durationMs * 60 / 1000) === (run ? 8 : 16))).toBe(true);
+      254 |       expect(wire.errors.filter(code => code !== 'BUSY')).toEqual([]);
+    > 255 |       expect.soft(Math.max(...gaps)).toBeLessThan(100);
+          |                                      ^
+      256 |     } finally { await context.close(); }
+      257 |   }
+      258 |   for (const movement of ['walk', 'run']) {
+        at C:\Users\mrkda\Projects\pokewaterblue\tests\e2e\wild-testing.spec.ts:255:38
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 100
+    Received:   163.66666666666666
+
+      253 |       expect(motions.every(motion => Math.round(motion.durationMs * 60 / 1000) === (run ? 8 : 16))).toBe(true);
+      254 |       expect(wire.errors.filter(code => code !== 'BUSY')).toEqual([]);
+    > 255 |       expect.soft(Math.max(...gaps)).toBeLessThan(100);
+          |                                      ^
+      256 |     } finally { await context.close(); }
+      257 |   }
+      258 |   for (const movement of ['walk', 'run']) {
+        at C:\Users\mrkda\Projects\pokewaterblue\tests\e2e\wild-testing.spec.ts:255:38
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 100
+    Received:   159.66666666666666
+
+      253 |       expect(motions.every(motion => Math.round(motion.durationMs * 60 / 1000) === (run ? 8 : 16))).toBe(true);
+      254 |       expect(wire.errors.filter(code => code !== 'BUSY')).toEqual([]);
+    > 255 |       expect.soft(Math.max(...gaps)).toBeLessThan(100);
+          |                                      ^
+      256 |     } finally { await context.close(); }
+      257 |   }
+      258 |   for (const movement of ['walk', 'run']) {
+        at C:\Users\mrkda\Projects\pokewaterblue\tests\e2e\wild-testing.spec.ts:255:38
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 50
+    Received:   79.25
+
+      259 |     const rows = cadenceEvidence.filter(row => row.movement === movement);
+      260 |     const averages = rows.map(row => (row.gaps as number[]).reduce((sum, gap) => sum + gap, 0) / 4);
+    > 261 |     expect(Math.abs(averages[1]! - averages[0]!)).toBeLessThan(50);
+          |                                                   ^
+      262 |   }
+      263 | });
+      264 |
+        at C:\Users\mrkda\Projects\pokewaterblue\tests\e2e\wild-testing.spec.ts:261:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\test-failed-4.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\test-failed-5.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\error-context.md
+
+    Error Context: test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\error-context.md
+
+    attachment #8: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\wild-testing-held-walking--c561f-ith-wild-testing-off-and-on\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\e2e\wild-testing.spec.ts:231:1 › held walking and running keep the same cadence with wild testing off and on 
+C:\Users\mrkda\Projects\pokewaterblue\.tools\node-v24.21.0-win-x64\node.exe C:\Users\mrkda\Projects\pokewaterblue\node_modules\@playwright\test\cli.js test tests/e2e/wild-testing.spec.ts --grep same cadence failed (1)

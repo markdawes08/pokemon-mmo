@@ -1,0 +1,28 @@
+{
+  "scope": "Pass-28 diagnostics; final aggregate gate is recorded separately in reports/twentyeighth-verification.json.",
+  "initialFailures": [
+    {
+      "evidence": "reports/twentyeighth-focused-exit-status.json",
+      "log": ".local/twentyeighth-focused.log",
+      "kind": "test-fixture-construction",
+      "cause": "The negative ordinary-account fixture incorrectly assigned a world location before development seeding, violating the retained staged-profile database constraint.",
+      "correction": "Only explicit seeded test fixtures receive the validated Route 1 anchor; no application constraint was relaxed."
+    },
+    {
+      "evidence": "reports/wild-testing-second-focused-exit-status.json",
+      "log": "reports/wild-testing-second-focused-browser.log",
+      "kind": "test-synchronization",
+      "cause": "The retained direct-account-switch browser check captured the previous server coordinate after visual motion ended but before the next authoritative snapshot. The saved departure tile was correct.",
+      "correction": "Wait for the expected authoritative server tile before recording the departure location. The archive retains the failing browser report."
+    }
+  ],
+  "reviewCorrections": [
+    "An old revoked session's completed step cannot block a valid authenticated takeover; old cleanup is best effort and frozen runtimes do not re-execute failed steps.",
+    "Missing or inconsistent wild origin/proof cannot use ordinary practice close and discard the pending field RNG.",
+    "An incompatible field engine checkpoint reports NOT_READY and preserves the stream rather than reporting a database outage.",
+    "Returning from wild battle refreshes shared-state subscribers immediately, so manual practice correctly requires leaving exploration.",
+    "A lost wild-close acknowledgement permits retrying the exact retained close UUID after shared exploration resumes; new practice commands remain fenced. The browser test drops one real close acknowledgement, sends two identical frames and verifies one receipt."
+  ],
+  "sourceChanges": "No reference-source, source C or WASM edits. Numeric mechanics were not changed to match a failing test.",
+  "isolation": "All mutating automated checks use distinct loopback _test PostgreSQL fixtures. No main ADMINA/ADMINB login, reset, credential-file access or fixture mutation."
+}

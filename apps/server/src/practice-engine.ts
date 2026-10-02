@@ -10,10 +10,13 @@ import { gameplayServerSchema, type GameplayServerContent } from '../../../packa
 import { createPursuitDiagnostic, loadPursuitEngine, makePursuitRng, pursuitConfig, pursuitCheckpointSchema,
   PURSUIT_MOVES, PURSUIT_SOURCE, type PursuitCreature, type PursuitEngine, type PursuitEvent } from '../../../tools/battle-pursuit/engine.js';
 import { DEVELOPMENT_CONTENT_HASH } from './development-profile.js';
+import { encounterCheckpointSchema, type EncounterCheckpoint } from '../../../tools/encounter-core/encounter.js';
+import { loadWildEncounterEngine, type WildEncounterEngine } from './wild-encounter-engine.js';
 
 type PracticeSession = z.infer<typeof practiceSessionSchema>;
-export interface PracticeStored { snapshot: BattleSnapshot; setup: PracticeSetup; events: PracticeEvent[] }
-const storedSchema = z.strictObject({ snapshot: battleSnapshotSchema, setup: practiceSetupSchema, events: z.array(practiceEventSchema).max(200) });
+export interface PracticeStored { snapshot: BattleSnapshot; setup: PracticeSetup; events: PracticeEvent[]; wild?: { encounter: EncounterCheckpoint } }
+const storedSchema = z.strictObject({ snapshot: battleSnapshotSchema, setup: practiceSetupSchema, events: z.array(practiceEventSchema).max(200),
+  wild: z.strictObject({ encounter: encounterCheckpointSchema }).optional() });
 export class PracticeEngineError extends Error {
   constructor(readonly code: 'INVALID_MESSAGE' | 'NOT_READY', message: string) { super(message); this.name = 'PracticeEngineError'; }
 }
@@ -52,7 +55,7 @@ function presets(): PracticeCatalogue['presets'] {
 
 export class PracticeEngine {
   private readonly catalog: PracticeCatalogue;
-  constructor(private readonly engine: PursuitEngine, private readonly definitions: GameplayServerContent) {
+  constructor(private readonly engine: PursuitEngine, private readonly definitions: GameplayServerContent, private readonly encounters: WildEncounterEngine) {
     if (definitions.sourceFingerprint !== PURSUIT_SOURCE) unavailable();
     const allowed = new Set<number>(PURSUIT_MOVES);
     const types = new Map(definitions.types.map(row => [row.id, row.name]));
@@ -112,11 +115,46 @@ export class PracticeEngine {
       invalid('The practice setup is invalid or failed source creature validation.');
     }
   }
+  private wildAdmission(encounter: EncounterCheckpoint) {
+    const { creature, seed } = this.encounters.pending(encounter);
+    const { slot: _slot, nature: _nature, gender: _gender, ...wild } = creature;
+    const setup: PracticeSetup = { player: [mon(7, [33, 39], { level: 5 })],
+      opponent: mon(wild.speciesId, wild.moves.filter(move => move.moveId !== 0).map(move => move.moveId),
+        { level: wild.level, abilityNum: wild.abilityNum }) };
+    // The generated opponent retains its source personality, IVs, stats,
+    // ability, initial moves and RNG history. It is never reconstructed from
+    // the percentage-based practice editor or promoted to an owned creature.
+    const opponent: PursuitCreature = { ...wild, evs: stats(0), calculatedEvs: stats(0), ballItemId: null, metLocation: null };
+    const initial = createPursuitDiagnostic({ seed, player: setup.player.map(value => this.creature(value)), opponent });
+    if (initial.kind !== 'diagnostic') return unavailable();
+    return { setup, initial };
+  }
+  createWild(battleId: string, encounter: EncounterCheckpoint): PracticeStored {
+    try {
+      z.uuid().parse(battleId);
+      const pending = this.encounters.restore(encounter), { setup, initial } = this.wildAdmission(pending);
+      const snapshot = this.engine.createBattle(pursuitConfig(this.engine, battleId), initial, makePursuitRng(battleId, initial));
+      return this.restore({ snapshot, setup, wild: { encounter: pending }, events: [{ sequence: 0, kind: 'info',
+        text: `A wild ${this.speciesName(setup.opponent.speciesId)} appeared! Fight or run with a temporary level-five Squirtle. No account rewards or losses apply.` }] });
+    } catch (error) {
+      if (error instanceof PracticeEngineError) throw error;
+      return unavailable();
+    }
+  }
+  finishWild(raw: PracticeStored): EncounterCheckpoint {
+    const stored = this.restore(raw);
+    if (!stored.wild) invalid('This is not a Route 1 wild testing battle.');
+    try { return this.encounters.continue(stored.wild.encounter, stored.snapshot.rng); }
+    catch { return unavailable(); }
+  }
   restore(raw: PracticeStored): PracticeStored {
     try {
       const stored = storedSchema.parse(raw), snapshot = this.engine.restore(stored.snapshot);
       const checkpoint = pursuitCheckpointSchema.parse(JSON.parse(Buffer.from(snapshot.privateEngineState.data, 'base64').toString('utf8')));
-      const expected = { player: stored.setup.player.map(value => this.creature(value)), opponent: this.creature(stored.setup.opponent) };
+      const wild = stored.wild ? this.wildAdmission(stored.wild.encounter) : null;
+      if (wild && (!isDeepStrictEqual(wild.setup, stored.setup) || checkpoint.admission.kind !== 'diagnostic'
+        || checkpoint.admission.seed !== wild.initial.seed)) unavailable();
+      const expected = wild?.initial ?? { player: stored.setup.player.map(value => this.creature(value)), opponent: this.creature(stored.setup.opponent) };
       if (checkpoint.admission.kind !== 'diagnostic' || !isDeepStrictEqual(checkpoint.admission.player, expected.player)
         || !isDeepStrictEqual(checkpoint.admission.opponent, expected.opponent)) unavailable();
       let previous = -1;
@@ -124,7 +162,7 @@ export class PracticeEngine {
         if (event.sequence <= previous || event.sequence > snapshot.eventSequence) unavailable();
         previous = event.sequence;
       }
-      return { snapshot, setup: stored.setup, events: stored.events };
+      return { snapshot, setup: stored.setup, events: stored.events, ...(stored.wild ? { wild: stored.wild } : {}) };
     } catch { return unavailable(); }
   }
   advance(raw: PracticeStored, rawChoice: PracticeChoice): PracticeStored {
@@ -144,7 +182,7 @@ export class PracticeEngine {
         if (visible) events.push(practiceEventSchema.parse({ sequence: event.sequence, ...visible }));
         if (event.payload.kind === 'switch') active = event.payload.to;
       }
-      return this.restore({ snapshot: advanced.nextState, setup: stored.setup, events: events.slice(-200) });
+      return this.restore({ ...stored, snapshot: advanced.nextState, events: events.slice(-200) });
     } catch (error) {
       if (error instanceof PracticeEngineError) throw error;
       return unavailable();
@@ -157,7 +195,8 @@ export class PracticeEngine {
     const publicMon = (value: typeof view.self | typeof view.party[number]) => ({ partyIndex: value.partyIndex, speciesId: value.speciesId,
       abilityId: value.abilityId, level: value.level, hp: value.hp, maxHP: value.maxHP, status: value.status,
       moves: value.moves.map(move => ({ slot: move.slot, moveId: move.moveId, pp: move.pp, maxPP: move.maxPP })) });
-    return practiceSessionSchema.parse({ battleId, setup: stored.setup, events: stored.events, presentation: {
+    return practiceSessionSchema.parse({ battleId, ...(stored.wild ? { origin: 'route1-wild-test' } : { setup: stored.setup }),
+      events: stored.events, presentation: {
       turn: view.turn, phase: view.phase, outcome: view.outcome, activeIndex: view.activeIndex, party: view.party.map(publicMon),
       self: { ...publicMon(view.self), focusEnergy: view.self.focusEnergy, charging: view.self.charging,
         protected: view.self.protected, stages: view.self.stages }, opponent: view.opponent, weather: view.weather, availableChoices: view.availableChoices,
@@ -201,7 +240,7 @@ export class PracticeEngine {
 }
 
 export async function loadPracticeEngine(): Promise<PracticeEngine> {
-  const [bytes, engine] = await Promise.all([readFile('content/generated/server/gameplay.json'), loadPursuitEngine()]);
+  const [bytes, engine, encounters] = await Promise.all([readFile('content/generated/server/gameplay.json'), loadPursuitEngine(), loadWildEncounterEngine()]);
   if (createHash('sha256').update(bytes).digest('hex') !== DEVELOPMENT_CONTENT_HASH) unavailable();
-  return new PracticeEngine(engine, gameplayServerSchema.parse(JSON.parse(bytes.toString('utf8'))));
+  return new PracticeEngine(engine, gameplayServerSchema.parse(JSON.parse(bytes.toString('utf8'))), encounters);
 }

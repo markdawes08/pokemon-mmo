@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-02T13:02:43.413695+00:00",
+  "status": "passed",
+  "url": "http://127.0.0.1:5173",
+  "nextAction": "Resume the original mechanics plan with Mirror Move, preserving all thirteen existing WASMs and 4,461 retained literal cases. Expose each new supported move/Pokemon mechanic in the playable practice catalogue and a useful preset in the same chunk, with browser evidence. Retain the opt-in Route 1 wild-testing loop and credential-free ADMINA/ADMINB access. Then continue party-aware progression and normal loss/capture/evolution result admission, durable ownership and source arrival scripts. P06 remains partial: wild testing is temporary and grants no owned results. Preserve existing testing accounts, default walking/Shift running, the read-only source snapshot and deferred Git.",
+  "launch": {
+    "launchedAt": "2026-10-02T12:50:36.7351780Z",
+    "command": "node scripts/run.mjs dev",
+    "launcherPid": 28880,
+    "supervisorPid": 32108,
+    "backendPid": 14496,
+    "clientPid": 28004,
+    "mode": "foreground-tool-session",
+    "toolSessionId": 16536,
+    "status": "running",
+    "output": "Streamed to owning exec tool session; no detached log files."
+  },
+  "gitOperations": false,
+  "suggestedCommit": "Add playable Route 1 wild encounter testing"
+}

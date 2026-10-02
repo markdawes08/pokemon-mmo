@@ -1,0 +1,421 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.tools\\node-v24.21.0-win-x64\\node.exe",
+      "C:\\Users\\mrkda\\Projects\\pokewaterblue\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/wild-testing.spec.ts",
+      "tests/e2e/practice.spec.ts",
+      "tests/e2e/local-testing.spec.ts"
+    ],
+    "configFile": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\playwright.config.ts",
+    "rootDir": "C:/Users/mrkda/Projects/pokewaterblue/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/mrkda/Projects/pokewaterblue/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/mrkda/Projects/pokewaterblue/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/browser-tests.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "local-testing.spec.ts",
+      "file": "local-testing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "one click connects both premade testers for shared exploration and isolated practice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4277,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T12:48:03.646Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "61e581c9037db16d7a75-17b5ab457896ff7505f6",
+          "file": "local-testing.spec.ts",
+          "line": 86,
+          "column": 1
+        },
+        {
+          "title": "remembered tester recovers practice, stays signed out, and safely switches from active exploration",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2974,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[2m    \"activity\": \"recovering\",\u001b[22m\n\u001b[2m    \"map_id\": \"MAP_PALLET_TOWN\",\u001b[22m\n\u001b[32m-   \"position_x\": 10,\u001b[39m\n\u001b[31m+   \"position_x\": 9,\u001b[39m\n\u001b[2m    \"position_y\": 12,\u001b[22m\n\u001b[2m  }\u001b[22m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[2m    \"activity\": \"recovering\",\u001b[22m\n\u001b[2m    \"map_id\": \"MAP_PALLET_TOWN\",\u001b[22m\n\u001b[32m-   \"position_x\": 10,\u001b[39m\n\u001b[31m+   \"position_x\": 9,\u001b[39m\n\u001b[2m    \"position_y\": 12,\u001b[22m\n\u001b[2m  }\u001b[22m\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\local-testing.spec.ts:160:28",
+                    "location": {
+                      "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\local-testing.spec.ts",
+                      "column": 28,
+                      "line": 160
+                    },
+                    "snippet": "  158 |   expect((await account(context)).character?.id).toBe(alice.character?.id);\n  159 |   const departed = await database.pool.query('SELECT activity,map_id,position_x,position_y FROM characters WHERE id=$1', [characterIds[1]]);\n> 160 |   expect(departed.rows[0]).toEqual({ activity: 'recovering', ...bobLocation });\n      |                            ^\n  161 |   const replacedSession = await request.newContext();\n  162 |   try { expect((await replacedSession.get(`${backend.origin}/api/account`, { headers: { Cookie: bobCookies } })).status()).toBe(401); }\n  163 |   finally { await replacedSession.dispose(); }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\local-testing.spec.ts",
+                        "column": 28,
+                        "line": 160
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Object {\u001b[22m\n\u001b[2m    \"activity\": \"recovering\",\u001b[22m\n\u001b[2m    \"map_id\": \"MAP_PALLET_TOWN\",\u001b[22m\n\u001b[32m-   \"position_x\": 10,\u001b[39m\n\u001b[31m+   \"position_x\": 9,\u001b[39m\n\u001b[2m    \"position_y\": 12,\u001b[22m\n\u001b[2m  }\u001b[22m\n\n  158 |   expect((await account(context)).character?.id).toBe(alice.character?.id);\n  159 |   const departed = await database.pool.query('SELECT activity,map_id,position_x,position_y FROM characters WHERE id=$1', [characterIds[1]]);\n> 160 |   expect(departed.rows[0]).toEqual({ activity: 'recovering', ...bobLocation });\n      |                            ^\n  161 |   const replacedSession = await request.newContext();\n  162 |   try { expect((await replacedSession.get(`${backend.origin}/api/account`, { headers: { Cookie: bobCookies } })).status()).toBe(401); }\n  163 |   finally { await replacedSession.dispose(); }\n    at C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\local-testing.spec.ts:160:28"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T12:48:09.494Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\local-testing-remembered-t-f139e-hes-from-active-exploration\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\local-testing-remembered-t-f139e-hes-from-active-exploration\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\local-testing-remembered-t-f139e-hes-from-active-exploration\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\test-results\\local-testing-remembered-t-f139e-hes-from-active-exploration\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\tests\\e2e\\local-testing.spec.ts",
+                    "column": 28,
+                    "line": 160
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "61e581c9037db16d7a75-b04792cb53b9ac246b45",
+          "file": "local-testing.spec.ts",
+          "line": 116,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "practice.spec.ts",
+      "file": "practice.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "practice explains sign-in, builds legal teams, and leaves shared exploration before a saved battle",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3008,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T12:48:14.993Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-24354308d6ed6e383c80",
+          "file": "practice.spec.ts",
+          "line": 60,
+          "column": 1
+        },
+        {
+          "title": "source charge locks choices, preserves PP on release, and remains usable on a narrow screen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2097,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T12:48:19.170Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-cadf82adc44ad6d4a8bd",
+          "file": "practice.spec.ts",
+          "line": 85,
+          "column": 1
+        },
+        {
+          "title": "faint decisions use the selected reserve and running ends practice without rewards",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2067,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T12:48:21.273Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-96d65cb415a5a7a34ba9",
+          "file": "practice.spec.ts",
+          "line": 101,
+          "column": 1
+        },
+        {
+          "title": "refresh and native lost acknowledgement recover one durable practice action with explicit retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 65000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5549,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T12:48:23.345Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-7fb3d960d0f2f7972209",
+          "file": "practice.spec.ts",
+          "line": 113,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "wild-testing.spec.ts",
+      "file": "wild-testing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "opt-in grass steps start a real wild battle and return to the same tile without owned rewards",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10234,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T12:48:29.967Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "935ebcaf396965f171c6-9cb86b090688e1dd64fd",
+          "file": "wild-testing.spec.ts",
+          "line": 79,
+          "column": 1
+        },
+        {
+          "title": "wild battle hides safely and recovers the same battle after refresh and a fresh backend",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8464,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T12:48:41.318Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "935ebcaf396965f171c6-6b1c5483d6935598fd13",
+          "file": "wild-testing.spec.ts",
+          "line": 107,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T12:48:02.298Z",
+    "duration": 50276.068999999996,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

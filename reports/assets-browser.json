@@ -1,8 +1,8 @@
 {
-  "verifiedAt": "2026-10-02T11:32:58.615Z",
+  "verifiedAt": "2026-10-02T13:53:54.378Z",
   "runtime": "Built client, source backend in a distinct owned OS process and explicit separate test database",
-  "backendPid": 22904,
-  "workerPid": 1548,
+  "backendPid": 33648,
+  "workerPid": 7584,
   "gracefulShutdown": true,
   "listenerReleased": true,
   "results": [

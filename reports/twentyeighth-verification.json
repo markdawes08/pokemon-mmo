@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-10-02T13:02:43.413695+00:00",
+  "status": "passed",
+  "scope": "Targeted source-bridge/server/world/browser integration; full normal owned outcomes remain deferred.",
+  "commands": [
+    {
+      "stage": "doctor",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:unit",
+      "exitCode": 0
+    },
+    {
+      "stage": "encounter:check",
+      "exitCode": 0
+    },
+    {
+      "stage": "lint",
+      "exitCode": 0
+    },
+    {
+      "stage": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:integration",
+      "exitCode": 0
+    },
+    {
+      "stage": "practice:check",
+      "exitCode": 0
+    },
+    {
+      "stage": "wild:check",
+      "exitCode": 0
+    },
+    {
+      "stage": "build",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:boundaries",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:recovery",
+      "exitCode": 0
+    },
+    {
+      "stage": "test:e2e",
+      "exitCode": 0
+    }
+  ],
+  "browserScenarios": 47,
+  "storageGroups": 24,
+  "sourceSlots": 12,
+  "sourceTurns": 44,
+  "restoredBoundaries": 56,
+  "retainedWasmCount": 13,
+  "privateHttpChecks": 118,
+  "publicFiles": 90,
+  "unitTests": 99,
+  "pythonTests": 49,
+  "evidence": [
+    "reports/twentyeighth-base-exit-status.json",
+    "reports/twentyeighth-regression-exit-status.json",
+    "reports/browser-tests.json",
+    "reports/wild-engine-verification.json",
+    "reports/wild-test-verification.json",
+    "reports/wild-runtime.json"
+  ],
+  "mainUserAccountsUsedByAutomatedTests": false,
+  "suggestedCommit": "Add playable Route 1 wild encounter testing"
+}

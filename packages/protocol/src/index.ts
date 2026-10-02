@@ -25,3 +25,4 @@ export type Pong = z.infer<typeof pongSchema>;
 export type ProtocolError = z.infer<typeof errorSchema>;
 export * from './practice.js';
 export * from './local-testing.js';
+export * from './wild-test.js';

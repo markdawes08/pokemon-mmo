@@ -1,17 +1,19 @@
 import { createHash, randomUUID } from 'node:crypto';
+import { isDeepStrictEqual } from 'node:util';
 import type { PoolClient } from 'pg';
 import type { Database } from '@pokewaterblue/database';
 import {
   characterViewSchema, createCharacterSchema, saveProfileCommandSchema, worldCommandSchema, worldInputSchema, worldLocationSchema,
-  practiceCommandSchema, practiceSnapshotSchema,
+  practiceCommandSchema, practiceSnapshotSchema, wildTestCommandSchema, wildTestSnapshotSchema, wildReturnLocationSchema,
   type CharacterError, type CharacterView, type CreateCharacter, type ProfileSaved, type SaveProfileCommand,
   type WorldAvatar, type WorldCommand, type WorldInput, type WorldLocation, type WorldTransition,
-  type PracticeCommand, type PracticeSnapshot, type PracticeState,
+  type PracticeCommand, type PracticeSnapshot, type PracticeState, type WildTestCommand, type WildTestSnapshot,
 } from '@pokewaterblue/protocol';
 import { WorldContent, WORLD_SOURCE_FINGERPRINT } from './world-content.js';
 import { DEVELOPMENT_CONTENT_HASH, DEVELOPMENT_PROFILE_ID } from './development-profile.js';
 import type { PreviewMoveResult } from '@pokewaterblue/game-rules';
 import { PracticeEngineError, type PracticeEngine, type PracticeStored } from './practice-engine.js';
+import type { EncounterCheckpoint, WildEncounterEngine } from './wild-encounter-engine.js';
 
 export class CharacterServiceError extends Error {
   constructor(readonly code: CharacterError['code'], message: string) { super(message); this.name = 'CharacterServiceError'; }
@@ -26,7 +28,7 @@ export interface CharacterConnection {
   readonly sessionId?: string;
 }
 export interface SessionProjection { character: CharacterView; connectionGeneration: number; worldActive: boolean }
-type WriteKind = 'create' | 'save' | 'world' | 'practice';
+type WriteKind = 'create' | 'save' | 'world' | 'practice' | 'wild-test' | 'wild-step';
 /** Failure injection for the real-PostgreSQL integration executable only; rejected outside NODE_ENV=test. */
 export interface CharacterServiceTestHooks {
   beforeCommit?: (kind: WriteKind) => void | Promise<void>;
@@ -44,13 +46,16 @@ interface LeaseRow {
   owner_id: string; lease_generation: string; connection_generation: string; active: boolean;
 }
 interface ReceiptRow { payload_hash: string; result: unknown }
-interface PracticeRow { character_id: string; revision: string; battle_id: string | null; checkpoint: PracticeStored | null }
+interface WildOrigin { kind: 'route1-wild-test'; location: WorldLocation; direction: WorldAvatar['direction'] }
+interface PracticeRow { character_id: string; revision: string; battle_id: string | null; checkpoint: PracticeStored | null; origin: WildOrigin | null }
+interface WildTestRow { character_id: string; revision: string; enabled: boolean; checkpoint: EncounterCheckpoint | null; last_step_id: string | null }
 interface WorldRuntime {
   location: WorldLocation; direction: WorldAvatar['direction']; zoneGeneration: number; lastInputSequence: number;
   motion: WorldAvatar['motion']; transfer?: { move: Extract<PreviewMoveResult, { allowed: true; kind: 'transition' }>; from: WorldLocation; dueAt: number; durationMs: number };
-  transition?: WorldTransition; lastCheckpointAt: number; dirty: boolean; detached: boolean;
+  transition?: WorldTransition; lastCheckpointAt: number; dirty: boolean; detached: boolean; motionCheckpointId?: string;
 }
-interface Runtime { connection: CharacterConnection; character: CharacterView; frozen: boolean; suspended: boolean; world?: WorldRuntime; heartbeatAt: number }
+interface Runtime { connection: CharacterConnection; character: CharacterView; frozen: boolean; suspended: boolean; world?: WorldRuntime; heartbeatAt: number;
+  wildEnabled: boolean; practicePublication?: PracticeSnapshot }
 export interface WorldProjection { avatar: WorldAvatar; zoneGeneration: number; lastInputSequence: number; transition?: WorldTransition }
 interface SaveOutcome { character: CharacterView; latest: CharacterView; replayed: boolean }
 class UnknownCommit extends Error {}
@@ -78,9 +83,13 @@ export class CharacterService {
   private worldEnabled = false;
   private practiceEngine?: PracticeEngine;
   private practiceEnabled = false;
+  private wildEngine?: WildEncounterEngine;
+  private wildEnabled = false;
 
   configureWorld(content: WorldContent, enabled = (process.env['APP_MODE'] ?? 'local-preview') === 'local-preview' && ['development', 'test'].includes(process.env['NODE_ENV'] ?? 'development')) { this.worldContent = content; this.worldEnabled = enabled; }
   configurePractice(engine: PracticeEngine, enabled = (process.env['APP_MODE'] ?? 'local-preview') === 'local-preview' && ['development', 'test'].includes(process.env['NODE_ENV'] ?? 'development')) { this.practiceEngine = engine; this.practiceEnabled = enabled; }
+  configureWild(engine: WildEncounterEngine, enabled = (process.env['APP_MODE'] ?? 'local-preview') === 'local-preview' && ['development', 'test'].includes(process.env['NODE_ENV'] ?? 'development')) { this.wildEngine = engine; this.wildEnabled = enabled; }
+  wildAvailable(connection: CharacterConnection): boolean { return this.wildEnabled && !!this.wildEngine && this.practiceAvailable(connection); }
   practiceAvailable(connection: CharacterConnection): boolean {
     return this.practiceEnabled && !!this.practiceEngine && this.snapshot(connection)?.character.stage === 'development-fixture';
   }
@@ -215,11 +224,10 @@ export class CharacterService {
       const previous = this.runtimes.get(characterId);
       if (previous?.world && previous.connection.accountId === accountId) {
         previous.world.detached = true;
-        this.finishMotion(previous, Date.now());
-        if (previous.world.dirty && !previous.frozen) {
-          try { await this.checkpoint(previous); }
-          catch { previous.frozen = true; } // Revocation/outage never lets the old runtime delay fencing indefinitely.
-        }
+        try {
+          await this.finishMotion(previous, Date.now());
+          if (previous.world?.dirty && !previous.frozen) await this.checkpoint(previous);
+        } catch { previous.frozen = true; } // Revocation/outage never lets the old runtime delay fencing indefinitely.
       }
       const acquired = await this.transaction(async client => {
         await this.sessionLock(client, accountId, sessionId);
@@ -235,7 +243,8 @@ export class CharacterService {
           ON CONFLICT (character_id) DO UPDATE SET owner_id=$2,lease_generation=$3,connection_generation=$4,expires_at=clock_timestamp()+$5*interval '1 millisecond'`,
         [characterId, this.ownerId, leaseGeneration, connectionGeneration, this.leaseMs]);
         const connection = Object.freeze({ accountId, characterId, ownerId: this.ownerId, leaseGeneration, connectionGeneration, activityId: character.activityId, ...(sessionId ? { sessionId } : {}) });
-        return { connection, character };
+        const wild = await client.query<WildTestRow>('SELECT * FROM character_wild_test_state WHERE character_id=$1', [characterId]);
+        return { connection, character, wildEnabled: wild.rows[0]?.enabled ?? false };
       });
       this.runtimes.set(characterId, { ...acquired, frozen: false, suspended: false, heartbeatAt: Date.now() });
       return { connection: acquired.connection, snapshot: { character: structuredClone(acquired.character), connectionGeneration: acquired.connection.connectionGeneration, worldActive: false } };
@@ -271,7 +280,7 @@ export class CharacterService {
         if (world) world.detached = true;
         const dueAt = world?.transfer?.dueAt ?? (world?.motion ? world.motion.startedAt + world.motion.durationMs : 0);
         if (dueAt > Date.now()) await new Promise<void>(done => setTimeout(done, Math.min(1000, dueAt - Date.now())));
-        this.finishMotion(runtime, Date.now());
+        await this.finishMotion(runtime, Date.now());
         if (runtime.world?.transfer) await this.checkpoint(runtime, runtime.world.transfer);
         else if (runtime.world?.dirty) await this.checkpoint(runtime);
       } catch (error) { runtime.frozen = true; throw error; }
@@ -347,8 +356,8 @@ export class CharacterService {
       try {
         if (runtime.world) {
           runtime.world.detached = true;
-          this.finishMotion(runtime, Date.now());
-          if (runtime.world.dirty && !runtime.frozen) await this.checkpoint(runtime);
+          await this.finishMotion(runtime, Date.now());
+          if (runtime.world?.dirty && !runtime.frozen) await this.checkpoint(runtime);
         }
         await this.transaction(async client => {
           await this.characterLock(client, connection.accountId, connection.characterId);
@@ -368,7 +377,7 @@ export class CharacterService {
     return this.serial(connection.characterId, () => this.guarded(async () => {
       const runtime = this.runtime(connection);
       this.assertTransport(runtime);
-      this.finishMotion(runtime, Date.now());
+      await this.finishMotion(runtime, Date.now());
       if (runtime.world?.transfer) fail('BUSY', 'Wait for the map transition before saving.');
       const savedLocation = runtime.world && !runtime.world.detached ? { ...runtime.world.location, direction: runtime.world.direction } : undefined;
       const read = async (client: PoolClient) => {
@@ -430,6 +439,91 @@ export class CharacterService {
     }));
   }
 
+  private wild(): WildEncounterEngine {
+    if (!this.wildEnabled || !this.wildEngine || !this.practiceEnabled) fail('NOT_READY', 'Wild encounter testing is available only in local development mode.');
+    return this.wildEngine;
+  }
+
+  private wildReply(row: WildTestRow | undefined, commandId: string | null, replayed: boolean): WildTestSnapshot {
+    return wildTestSnapshotSchema.parse({ commandId, replayed, state: { revision: Number(row?.revision ?? 0), enabled: row?.enabled ?? false } });
+  }
+
+  async wildTestSnapshot(connection: CharacterConnection, options: { handshakeRead?: true } = {}): Promise<WildTestSnapshot> {
+    this.wild();
+    return this.serial(connection.characterId, () => this.guarded(async () => {
+      const runtime = this.runtime(connection);
+      if (!options.handshakeRead) this.assertTransport(runtime);
+      const row = await this.transaction(async client => {
+        const character = await this.worldRead(client, connection); await this.fixtureLock(client, character);
+        return (await client.query<WildTestRow>('SELECT * FROM character_wild_test_state WHERE character_id=$1 FOR UPDATE', [connection.characterId])).rows[0];
+      });
+      const reply = this.wildReply(row, null, false); runtime.wildEnabled = reply.state.enabled; return reply;
+    }));
+  }
+
+  /** The local opt-in changes no owned assets and never replaces an existing RNG stream. */
+  async wildTestCommand(connection: CharacterConnection, input: WildTestCommand): Promise<WildTestSnapshot> {
+    const engine = this.wild(), parsed = wildTestCommandSchema.safeParse(input);
+    if (!parsed.success) fail('INVALID_MESSAGE', 'Invalid wild encounter testing command.');
+    const command = parsed.data, { commandId, ...payload } = command, hash = fingerprint(payload);
+    return this.serial(connection.characterId, () => this.guarded(async () => {
+      const runtime = this.runtime(connection); this.assertTransport(runtime);
+      await this.finishMotion(runtime, Date.now());
+      if (runtime.world?.motion || runtime.world?.transfer) fail('BUSY', 'Finish the current step before changing wild encounters.');
+      const read = async (client: PoolClient) => {
+        const character = await this.worldRead(client, connection); await this.fixtureLock(client, character);
+        const row = (await client.query<WildTestRow>('SELECT * FROM character_wild_test_state WHERE character_id=$1 FOR UPDATE', [connection.characterId])).rows[0];
+        const receipt = (await client.query<ReceiptRow>('SELECT * FROM wild_test_command_receipts WHERE character_id=$1 AND command_id=$2', [connection.characterId, commandId])).rows[0];
+        if (receipt && receipt.payload_hash !== hash) fail('COMMAND_CONFLICT', 'This wild encounter command ID already has different data.');
+        return { character, row, replayed: !!receipt };
+      };
+      let result: Awaited<ReturnType<typeof read>> | undefined;
+      try {
+        for (let attempt = 0; attempt < 2 && !result; attempt++) {
+          try {
+            result = await this.transaction(async client => {
+              const current = await read(client); this.assertTransport(runtime);
+              if (current.replayed) return current;
+              if (!['overworld', 'recovering'].includes(current.character.activity)) fail('BUSY', 'Return from battle before changing wild encounters.');
+              const revision = Number(current.row?.revision ?? 0);
+              if (command.expectedRevision !== revision) fail('STALE_REVISION', 'Wild encounter settings changed. Refresh and try again.');
+              if (!Number.isSafeInteger(revision) || revision >= Number.MAX_SAFE_INTEGER) fail('NOT_READY', 'Wild encounter revision capacity is exhausted.');
+              const checkpoint = current.row?.checkpoint ?? (command.enabled ? engine.create(1) : null);
+              if (checkpoint) {
+                try { engine.restore(checkpoint); }
+                catch { fail('NOT_READY', 'The saved wild encounter stream needs a compatible engine before its setting can change.'); }
+              }
+              const row = (await client.query<WildTestRow>(`INSERT INTO character_wild_test_state (character_id,revision,enabled,checkpoint)
+                VALUES ($1,$2,$3,$4) ON CONFLICT (character_id) DO UPDATE SET revision=$2,enabled=$3,checkpoint=$4,updated_at=clock_timestamp() RETURNING *`,
+              [connection.characterId, revision + 1, command.enabled, checkpoint ? JSON.stringify(checkpoint) : null])).rows[0];
+              await client.query('INSERT INTO wild_test_command_receipts (character_id,command_id,payload_hash,result) VALUES ($1,$2,$3,$4)',
+                [connection.characterId, commandId, hash, JSON.stringify({ revision: revision + 1, enabled: command.enabled })]);
+              return { character: current.character, row, replayed: false };
+            }, 'wild-test');
+          } catch (error) {
+            if (!(error instanceof UnknownCommit)) throw error;
+            runtime.frozen = true; const recovered = await this.transaction(read); if (recovered.replayed) result = recovered;
+          }
+        }
+        if (!result) fail('COMMAND_OUTCOME_UNKNOWN', 'Wild encounter settings could not confirm this command. Retry the same command ID.');
+        try { await this.hooks?.beforePublish?.(); }
+        catch { runtime.frozen = true; result = await this.transaction(read); if (!result.replayed) fail('COMMAND_OUTCOME_UNKNOWN', 'Wild encounter settings could not recover this command.'); }
+        const reply = this.wildReply(result.row, commandId, result.replayed);
+        runtime.wildEnabled = reply.state.enabled; runtime.frozen = false; return reply;
+      } catch (error) {
+        if (!(error instanceof CharacterServiceError) || ['AUTH_REQUIRED', 'SESSION_REPLACED', 'LEASE_EXPIRED', 'COMMAND_OUTCOME_UNKNOWN'].includes(error.code)) runtime.frozen = true;
+        throw error;
+      }
+    }));
+  }
+
+  /** Already committed owner-only publication, paired with the battle activity snapshot. */
+  practicePublication(connection: CharacterConnection): PracticeSnapshot | undefined {
+    const runtime = this.runtimes.get(connection.characterId);
+    return runtime && sameConnection(runtime.connection, connection) && !runtime.frozen && runtime.character.activity === 'battle'
+      ? structuredClone(runtime.practicePublication) : undefined;
+  }
+
   private practice(): PracticeEngine {
     if (!this.practiceEnabled || !this.practiceEngine) fail('NOT_READY', 'Practice battles are available only in the local development mode.');
     return this.practiceEngine;
@@ -442,12 +536,26 @@ export class CharacterService {
       fail('NOT_READY', 'The practice checkpoint needs administrative recovery.');
     }
     if (!row.battle_id || !row.checkpoint) return { revision, session: null };
-    try { return { revision, session: engine.project(row.battle_id, row.checkpoint) }; }
+    const origin = row.origin ? this.origin(row.origin) : undefined;
+    const details = origin ? { origin: 'route1-wild-test' as const, returnLocation: { ...origin.location, direction: origin.direction } }
+      : row.checkpoint.wild ? { origin: 'route1-wild-test' as const } : {};
+    try {
+      if (!!origin !== !!row.checkpoint.wild) throw new Error('The wild origin and field checkpoint disagree.');
+      return { revision, session: { ...engine.project(row.battle_id, row.checkpoint), ...details } };
+    }
     catch {
       // Old engine versions cannot be resumed, but the durable ID/revision still
       // permits an explicit close without interpreting or applying their data.
-      return { revision, session: null, unavailable: { battleId: row.battle_id, message: 'This practice uses an unavailable engine version. Close it and start a new practice.' } };
+      return { revision, session: null, unavailable: { battleId: row.battle_id, ...details,
+        message: origin || row.checkpoint.wild ? 'This wild battle uses an unavailable engine version. Its saved field state needs compatible recovery.' : 'This practice uses an unavailable engine version. Close it and start a new practice.' } };
     }
+  }
+
+  private origin(value: WildOrigin): WildOrigin {
+    if (value.kind !== 'route1-wild-test') fail('NOT_READY', 'The wild battle origin is incompatible.');
+    const location = this.content().validateLocation(value.location);
+    const parsed = wildReturnLocationSchema.parse({ ...location, direction: value.direction });
+    return { kind: 'route1-wild-test', location, direction: parsed.direction };
   }
 
   private practiceReply(engine: PracticeEngine, row: PracticeRow | undefined, commandId: string | null, replayed: boolean): PracticeSnapshot {
@@ -465,6 +573,7 @@ export class CharacterService {
       const result = await this.transaction(async client => {
         const character = await this.worldRead(client, connection);
         await this.fixtureLock(client, character);
+        await client.query<WildTestRow>('SELECT * FROM character_wild_test_state WHERE character_id=$1 FOR UPDATE', [connection.characterId]);
         const stored = await client.query<PracticeRow>('SELECT * FROM character_practice_state WHERE character_id=$1 FOR UPDATE', [connection.characterId]);
         return { character, practice: stored.rows[0] };
       });
@@ -488,10 +597,12 @@ export class CharacterService {
       const read = async (client: PoolClient) => {
         const character = await this.worldRead(client, connection);
         await this.fixtureLock(client, character);
+        const wild = (await client.query<WildTestRow>('SELECT * FROM character_wild_test_state WHERE character_id=$1 FOR UPDATE', [connection.characterId])).rows[0];
         const stored = await client.query<PracticeRow>('SELECT * FROM character_practice_state WHERE character_id=$1 FOR UPDATE', [connection.characterId]);
         const receipt = await client.query<ReceiptRow>('SELECT * FROM practice_command_receipts WHERE character_id=$1 AND command_id=$2', [connection.characterId, commandId]);
         if (receipt.rows[0] && receipt.rows[0].payload_hash !== hash) fail('COMMAND_CONFLICT', 'This practice command ID was already used with different data.');
-        return { character, practice: stored.rows[0], replayed: !!receipt.rows[0] };
+        const receiptValue = receipt.rows[0]?.result as { returnedActivityId?: string } | undefined;
+        return { character, practice: stored.rows[0], wild, replayed: !!receipt.rows[0], returnedActivityId: receiptValue?.returnedActivityId };
       };
       type Result = Awaited<ReturnType<typeof read>>;
       let result: Result | undefined;
@@ -508,7 +619,9 @@ export class CharacterService {
               if (revision >= Number.MAX_SAFE_INTEGER) fail('NOT_READY', 'Practice revision capacity is exhausted.');
               let battleId = current.practice?.battle_id ?? null;
               let checkpoint = current.practice?.checkpoint ?? null;
+              let origin = current.practice?.origin ?? null;
               let character = current.character;
+              let returnedActivityId: string | undefined;
               if (command.kind === 'start') {
                 if (battleId || checkpoint) fail('BUSY', 'Close the current practice before starting another.');
                 // A fresh profile-only connection can retain a saved overworld activity.
@@ -526,6 +639,7 @@ export class CharacterService {
                 character = changed.rows[0];
               } else {
                 if (!battleId || !checkpoint || battleId !== command.battleId || character.activity !== 'battle') fail('STALE_REVISION', 'This practice is no longer active. Refresh its current state.');
+                if (!!origin !== !!checkpoint.wild) fail('NOT_READY', 'The wild battle origin and field checkpoint need compatible recovery.');
                 if (command.kind === 'choose') {
                   try { checkpoint = engine.advance(checkpoint, command.choice); }
                   catch (error) {
@@ -534,10 +648,25 @@ export class CharacterService {
                   }
                 } else {
                   if (Number(character.revision) >= Number.MAX_SAFE_INTEGER) fail('NOT_READY', 'Trainer revision capacity is exhausted.');
-                  // Closing is deliberately independent of obsolete/corrupt engine data.
+                  if (origin) {
+                    const from = this.origin(origin);
+                    if (!isDeepStrictEqual(this.location(character), from.location) || character.position_facing !== from.direction)
+                      fail('NOT_READY', 'The wild battle no longer owns its original field location.');
+                    if (!current.wild?.checkpoint || !isDeepStrictEqual(current.wild.checkpoint, checkpoint.wild?.encounter))
+                      fail('NOT_READY', 'The wild battle no longer owns its field RNG checkpoint.');
+                    let resumed: EncounterCheckpoint;
+                    try { resumed = engine.finishWild(checkpoint); }
+                    catch { fail('NOT_READY', 'This wild battle needs a compatible engine before returning to the field.'); }
+                    await client.query('UPDATE character_wild_test_state SET checkpoint=$2,updated_at=clock_timestamp() WHERE character_id=$1', [character.id, JSON.stringify(resumed)]);
+                    if (Number(character.transition_generation) >= Number.MAX_SAFE_INTEGER) fail('NOT_READY', 'World generation capacity is exhausted.');
+                  }
+                  // Ordinary practice can close obsolete data; wild must preserve its shared source RNG first.
                   battleId = null; checkpoint = null;
-                  const changed = await client.query<CharacterRow>("UPDATE characters SET activity='recovering',activity_id=$2,revision=revision+1,saved_at=clock_timestamp() WHERE id=$1 RETURNING *", [character.id, randomUUID()]);
+                  const changed = await client.query<CharacterRow>('UPDATE characters SET activity=$3,activity_id=$2,revision=revision+1,transition_generation=transition_generation+$4,saved_at=clock_timestamp() WHERE id=$1 RETURNING *',
+                    [character.id, randomUUID(), origin ? 'overworld' : 'recovering', origin ? 1 : 0]);
                   character = changed.rows[0];
+                  if (origin) returnedActivityId = character.activity_id;
+                  origin = null;
                 }
               }
               this.assertTransport(runtime);
@@ -546,12 +675,12 @@ export class CharacterService {
                 try { engine.project(battleId, checkpoint); }
                 catch { fail('NOT_READY', 'The practice candidate could not be projected safely.'); }
               }
-              const updated = await client.query<PracticeRow>(`INSERT INTO character_practice_state (character_id,revision,battle_id,checkpoint)
-                VALUES ($1,$2,$3,$4) ON CONFLICT (character_id) DO UPDATE SET revision=$2,battle_id=$3,checkpoint=$4,updated_at=clock_timestamp() RETURNING *`,
-              [connection.characterId, revision + 1, battleId, checkpoint ? JSON.stringify(checkpoint) : null]);
+              const updated = await client.query<PracticeRow>(`INSERT INTO character_practice_state (character_id,revision,battle_id,checkpoint,origin)
+                VALUES ($1,$2,$3,$4,$5) ON CONFLICT (character_id) DO UPDATE SET revision=$2,battle_id=$3,checkpoint=$4,origin=$5,updated_at=clock_timestamp() RETURNING *`,
+              [connection.characterId, revision + 1, battleId, checkpoint ? JSON.stringify(checkpoint) : null, origin ? JSON.stringify(origin) : null]);
               await client.query('INSERT INTO practice_command_receipts (character_id,command_id,payload_hash,result) VALUES ($1,$2,$3,$4)',
-                [connection.characterId, commandId, hash, JSON.stringify({ revision: revision + 1, battleId })]);
-              return { character, practice: updated.rows[0], replayed: false };
+                [connection.characterId, commandId, hash, JSON.stringify({ revision: revision + 1, battleId, returnedActivityId })]);
+              return { character, practice: updated.rows[0], wild: current.wild, replayed: false, returnedActivityId };
             }, 'practice');
           } catch (error) {
             if (!(error instanceof UnknownCommit)) throw error;
@@ -570,6 +699,8 @@ export class CharacterService {
         }
         const reply = this.practiceReply(engine, result.practice, commandId, result.replayed);
         runtime.character = runtime.world?.transfer ? { ...view(result.character), activity: 'transferring' } : view(result.character);
+        if (result.returnedActivityId === result.character.activity_id && result.character.activity === 'overworld' && !runtime.world) runtime.world = this.worldFromRow(result.character);
+        runtime.practicePublication = undefined;
         runtime.frozen = false;
         return reply;
       } catch (error) {
@@ -611,12 +742,96 @@ export class CharacterService {
     return row;
   }
 
-  // Called only under the character queue. Movement is server memory; durable checkpoints remain transaction-fenced.
-  private finishMotion(runtime: Runtime, now: number) {
+  // Called only under the character queue. Opt-in steps commit field RNG and the
+  // finished tile together before either field or battle authority is published.
+  private async finishMotion(runtime: Runtime, now: number) {
+    if (runtime.frozen) return; // A failed/uncertain step requires committed-state recovery, never cleanup re-execution.
     const world = runtime.world;
     if (world?.motion && now >= world.motion.startedAt + world.motion.durationMs) {
-      world.location = { ...world.motion.to }; world.motion = null; world.dirty = true;
+      if (runtime.wildEnabled) await this.wildStep(runtime, { ...world.motion.to }, world.direction, world.motion.movementMode, world.motionCheckpointId ??= randomUUID());
+      else { world.location = { ...world.motion.to }; world.motion = null; world.motionCheckpointId = undefined; world.dirty = true; }
     }
+  }
+
+  private async wildStep(runtime: Runtime, target: WorldLocation, direction: WorldAvatar['direction'], movement: 'walk' | 'run',
+    checkpointId: string, transfer?: NonNullable<WorldRuntime['transfer']>): Promise<void> {
+    const world = runtime.world;
+    if (!world) return;
+    const field = this.wild(), battle = this.practice(), connection = runtime.connection, expectedRevision = runtime.character.revision;
+    const read = async (client: PoolClient) => {
+      const character = await this.worldRead(client, connection);
+      await this.fixtureLock(client, character);
+      const wild = (await client.query<WildTestRow>('SELECT * FROM character_wild_test_state WHERE character_id=$1 FOR UPDATE', [connection.characterId])).rows[0];
+      const practice = (await client.query<PracticeRow>('SELECT * FROM character_practice_state WHERE character_id=$1 FOR UPDATE', [connection.characterId])).rows[0];
+      return { character, wild, practice };
+    };
+    let result: Awaited<ReturnType<typeof read>> | undefined;
+    try {
+      for (let attempt = 0; attempt < 2 && !result; attempt++) {
+        try {
+          result = await this.transaction(async client => {
+            const current = await read(client), row = current.character;
+            if (row.world_checkpoint_id === checkpointId && current.wild?.last_step_id === checkpointId) return current;
+            if (row.activity !== 'overworld' || row.activity_id !== runtime.character.activityId || Number(row.revision) !== expectedRevision)
+              fail('RECONNECT_REQUIRED', 'This finished step no longer owns the world activity.');
+            if (!current.wild?.enabled || !current.wild.checkpoint) fail('RECONNECT_REQUIRED', 'Wild encounter settings changed before the step finished.');
+            if (current.practice?.battle_id || current.practice?.checkpoint) fail('NOT_READY', 'A saved battle already owns this trainer.');
+            if (Number(row.revision) >= Number.MAX_SAFE_INTEGER || transfer && Number(row.transition_generation) >= Number.MAX_SAFE_INTEGER)
+              fail('NOT_READY', 'World revision capacity is exhausted.');
+            const tile = this.content().maps[target.mapId]?.blocks[target.y * this.content().maps[target.mapId]!.width + target.x];
+            if (!tile) fail('NOT_READY', 'The finished world tile is unavailable.');
+            // Only Route 1 grass is admitted. Other safe maps have no encounter table in this test profile.
+            let advanced: { checkpoint: EncounterCheckpoint; encounter: boolean };
+            try {
+              advanced = transfer ? { checkpoint: field.mapTransfer(current.wild.checkpoint), encounter: false }
+                : field.step(current.wild.checkpoint, { behavior: target.mapId === 'MAP_ROUTE1' && tile.behavior === 2 ? 'grass' : 'plain', movement });
+            } catch { fail('NOT_READY', 'The saved wild encounter stream needs compatible recovery before the next field step.'); }
+            let practice = current.practice;
+            if (advanced.encounter) {
+              const revision = Number(practice?.revision ?? 0);
+              if (!Number.isSafeInteger(revision) || revision >= Number.MAX_SAFE_INTEGER) fail('NOT_READY', 'Practice revision capacity is exhausted.');
+              const battleId = randomUUID(), checkpoint = battle.createWild(battleId, advanced.checkpoint);
+              const origin: WildOrigin = { kind: 'route1-wild-test', location: target, direction };
+              // Validate the exact owner projection, including the finished return tile, before commit.
+              this.practiceReply(battle, { character_id: row.id, revision: String(revision + 1), battle_id: battleId, checkpoint, origin }, null, false);
+              practice = (await client.query<PracticeRow>(`INSERT INTO character_practice_state (character_id,revision,battle_id,checkpoint,origin)
+                VALUES ($1,$2,$3,$4,$5) ON CONFLICT (character_id) DO UPDATE SET revision=$2,battle_id=$3,checkpoint=$4,origin=$5,updated_at=clock_timestamp() RETURNING *`,
+              [row.id, revision + 1, battleId, JSON.stringify(checkpoint), JSON.stringify(origin)])).rows[0];
+            }
+            const wild = (await client.query<WildTestRow>('UPDATE character_wild_test_state SET checkpoint=$2,last_step_id=$3,updated_at=clock_timestamp() WHERE character_id=$1 RETURNING *',
+              [row.id, JSON.stringify(advanced.checkpoint), checkpointId])).rows[0];
+            const character = (await client.query<CharacterRow>(`UPDATE characters SET map_id=$2,position_x=$3,position_y=$4,position_elevation=$5,position_facing=$6,
+              revision=revision+1,saved_at=clock_timestamp(),world_checkpoint_id=$7,transition_generation=transition_generation+$8,
+              activity=$9,activity_id=$10 WHERE id=$1 RETURNING *`,
+            [row.id, target.mapId, target.x, target.y, target.elevation, direction, checkpointId, transfer ? 1 : 0,
+              advanced.encounter ? 'battle' : 'overworld', advanced.encounter ? randomUUID() : row.activity_id])).rows[0];
+            return { character, wild, practice };
+          }, 'wild-step');
+        } catch (error) {
+          if (!(error instanceof UnknownCommit)) throw error;
+          runtime.frozen = true;
+          const recovered = await this.transaction(read);
+          if (recovered.character.world_checkpoint_id === checkpointId && recovered.wild?.last_step_id === checkpointId) result = recovered;
+        }
+      }
+      if (!result) fail('COMMAND_OUTCOME_UNKNOWN', 'The finished field step could not be reconciled. Reconnect to recover.');
+      try { await this.hooks?.beforePublish?.(); }
+      catch {
+        runtime.frozen = true; result = await this.transaction(read);
+        if (result.character.world_checkpoint_id !== checkpointId || result.wild?.last_step_id !== checkpointId)
+          fail('COMMAND_OUTCOME_UNKNOWN', 'The committed field step could not be recovered.');
+      }
+      runtime.character = view(result.character); runtime.wildEnabled = result.wild!.enabled;
+      if (result.character.activity === 'battle') {
+        runtime.practicePublication = this.practiceReply(battle, result.practice, null, false);
+        runtime.world = undefined;
+      } else {
+        runtime.world = this.worldFromRow(result.character, world); runtime.world.detached = world.detached;
+        if (transfer) runtime.world.transition = { id: checkpointId, via: transfer.move.via, from: transfer.from, to: this.location(result.character),
+          arrival: transfer.move.arrival ? worldLocationSchema.parse(transfer.move.arrival) : null, direction, durationMs: transfer.durationMs };
+      }
+      runtime.frozen = false;
+    } catch (error) { runtime.frozen = true; throw error; }
   }
 
   /** Immediately hides a disconnected/fenced transport; its queued cleanup may still checkpoint an authorized last tile. */
@@ -628,7 +843,7 @@ export class CharacterService {
   worldProjection(connection: CharacterConnection, now = Date.now()): WorldProjection | null {
     const runtime = this.runtimes.get(connection.characterId);
     const world = runtime?.world;
-    if (!runtime || !world || world.detached || runtime.suspended || runtime.frozen || !sameConnection(runtime.connection, connection) || now - runtime.heartbeatAt >= this.leaseMs) return null;
+    if (!runtime || !world || !['overworld', 'transferring'].includes(runtime.character.activity) || world.detached || runtime.suspended || runtime.frozen || !sameConnection(runtime.connection, connection) || now - runtime.heartbeatAt >= this.leaseMs) return null;
     return structuredClone({ avatar: { id: runtime.character.id, name: runtime.character.name, ...world.location, direction: world.direction, motion: world.motion },
       zoneGeneration: world.zoneGeneration, lastInputSequence: world.lastInputSequence, ...(world.transition ? { transition: world.transition } : {}) });
   }
@@ -668,7 +883,7 @@ export class CharacterService {
     return this.serial(connection.characterId, () => this.guarded(async () => {
       const runtime = this.runtime(connection);
       this.assertTransport(runtime);
-      this.finishMotion(runtime, Date.now());
+      await this.finishMotion(runtime, Date.now());
       if (runtime.world?.transfer) fail('BUSY', 'Wait for the map transition before leaving.');
       const row = await this.worldCommand(runtime, 'leave', parsed.data);
       if (row.activity !== 'recovering') fail('RECONNECT_REQUIRED', 'That exit command belongs to an earlier activity. Refresh the current world connection.');
@@ -726,8 +941,28 @@ export class CharacterService {
     const parsed = worldInputSchema.safeParse(input);
     if (!parsed.success) fail('INVALID_MESSAGE', 'Shared movement accepts only bounded directional input.');
     return this.serial(connection.characterId, () => this.guarded(async () => {
-      const runtime = this.runtime(connection), world = runtime.world;
+      const runtime = this.runtime(connection);
+      let world = runtime.world;
       this.assertTransport(runtime);
+      // A held direction can already be in flight when the autonomous world
+      // tick commits an encounter. It owns no movement in the new activity,
+      // but must not tear down the authenticated battle transport either.
+      if (!world && !runtime.frozen && runtime.character.activity === 'battle'
+          && parsed.data.connectionGeneration === connection.connectionGeneration) {
+        let admittedWild: boolean;
+        try {
+          admittedWild = await this.transaction(async client => {
+            const row = await this.worldRead(client, connection);
+            if (row.activity !== 'battle' || row.activity_id !== runtime.character.activityId
+                || Number(row.transition_generation) !== parsed.data.zoneGeneration) return false;
+            const battle = (await client.query<PracticeRow>('SELECT * FROM character_practice_state WHERE character_id=$1 FOR UPDATE', [connection.characterId])).rows[0];
+            if (!battle?.battle_id || !battle.checkpoint?.wild || !battle.origin) return false;
+            const origin = this.origin(battle.origin);
+            return isDeepStrictEqual(this.location(row), origin.location) && row.position_facing === origin.direction;
+          });
+        } catch (error) { runtime.frozen = true; throw error; }
+        if (admittedWild) return;
+      }
       if (!world || world.detached || runtime.frozen) fail('RECONNECT_REQUIRED', 'Enter the shared world before moving.');
       // One read-only fence inside the serialized mutation boundary; no lease update or per-packet receipt.
       // Session revocation and takeover are observed even if a packet waited behind a durable save.
@@ -747,7 +982,9 @@ export class CharacterService {
       if (intent.connectionGeneration !== connection.connectionGeneration || intent.zoneGeneration !== world.zoneGeneration) fail('RECONNECT_REQUIRED', 'This movement belongs to an old connection or map.');
       if (intent.sequence <= world.lastInputSequence) return; // Old packets cannot alter direction or consume a tile.
       // Gaps are legal: transport/room backpressure can reject an earlier packet before it reaches this queue.
-      this.finishMotion(runtime, now);
+      await this.finishMotion(runtime, now);
+      world = runtime.world;
+      if (!world) return; // The preceding completed step admitted a wild battle; this later packet cannot move it.
       world.lastInputSequence = intent.sequence;
       if (world.motion || world.transfer) fail('BUSY', 'The previous step is still in progress.');
       world.direction = intent.direction; world.dirty = true; world.transition = undefined;
@@ -763,7 +1000,10 @@ export class CharacterService {
         world.transfer = { move, from: { ...world.location }, dueAt: now + durationMs, durationMs };
         runtime.character = { ...runtime.character, activity: 'transferring' };
       }
-      else world.motion = { from: { ...world.location }, to: worldLocationSchema.parse(move.position), startedAt: now, durationMs: move.durationFrames * 1000 / 60, kind: move.kind, movementMode: move.movementMode };
+      else {
+        world.motion = { from: { ...world.location }, to: worldLocationSchema.parse(move.position), startedAt: now, durationMs: move.durationFrames * 1000 / 60, kind: move.kind, movementMode: move.movementMode };
+        world.motionCheckpointId = randomUUID();
+      }
     }));
   }
 
@@ -773,6 +1013,7 @@ export class CharacterService {
     const connection = runtime.connection, checkpointId = randomUUID(), expectedRevision = runtime.character.revision;
     const target = transfer ? worldLocationSchema.parse(transfer.move.position) : { ...world.location };
     const direction = transfer?.move.direction ?? world.direction;
+    if (transfer && runtime.wildEnabled) { await this.wildStep(runtime, target, direction, 'walk', checkpointId, transfer); return; }
     let result: CharacterRow | undefined;
     const read = (client: PoolClient) => this.worldRead(client, connection);
     try {
@@ -803,7 +1044,7 @@ export class CharacterService {
       runtime.world.detached = world.detached;
       // A periodic checkpoint records the last finished tile without cancelling an accepted in-flight step.
       // Its completion will mark the new location dirty again, including if COMMIT took longer than the animation.
-      if (!transfer && !world.detached) runtime.world.motion = world.motion;
+      if (!transfer && !world.detached) { runtime.world.motion = world.motion; runtime.world.motionCheckpointId = world.motionCheckpointId; }
       if (transfer) runtime.world.transition = { id: checkpointId, via: transfer.move.via, from: transfer.from, to: this.location(result),
         arrival: transfer.move.arrival ? worldLocationSchema.parse(transfer.move.arrival) : null, direction, durationMs: transfer.durationMs };
       runtime.frozen = false;
@@ -815,7 +1056,8 @@ export class CharacterService {
       this.serial(runtime.connection.characterId, () => this.guarded(async () => {
         if (!this.runtimes.has(runtime.connection.characterId) || this.runtimes.get(runtime.connection.characterId) !== runtime || !runtime.world || runtime.world.detached || runtime.suspended || runtime.frozen) return;
         if (now - runtime.heartbeatAt >= this.leaseMs) { runtime.frozen = true; fail('LEASE_EXPIRED', 'Trainer ownership expired. Reconnect.'); }
-        this.finishMotion(runtime, now);
+        await this.finishMotion(runtime, now);
+        if (!runtime.world) return;
         if (runtime.world.transfer && now >= runtime.world.transfer.dueAt) await this.checkpoint(runtime, runtime.world.transfer);
         else if (!runtime.world.transfer && runtime.world.dirty && now - runtime.world.lastCheckpointAt >= 5000) await this.checkpoint(runtime);
       })).then(() => undefined, error => ({ connection: runtime.connection, error }))));
@@ -827,7 +1069,7 @@ export class CharacterService {
     this.hideWorld(connection);
     return this.serial(connection.characterId, () => this.guarded(async () => {
       const runtime = this.runtime(connection);
-      this.finishMotion(runtime, Date.now());
+      await this.finishMotion(runtime, Date.now());
       if (runtime.world?.dirty && !runtime.frozen) await this.checkpoint(runtime);
     }));
   }

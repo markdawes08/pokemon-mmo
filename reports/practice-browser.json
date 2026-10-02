@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T11:34:54.237Z",
+  "checkedAt": "2026-10-02T13:55:48.935Z",
   "passed": true,
   "results": [
     {
@@ -20,144 +20,144 @@
     }
   ],
   "backendPids": [
-    28268,
-    21984
+    19608,
+    33624
   ],
   "lifecycle": [
     {
-      "at": "2026-10-02T11:34:33.650Z",
+      "at": "2026-10-02T13:55:28.934Z",
       "event": "server_listening"
     },
     {
-      "at": "2026-10-02T11:34:33.977Z",
+      "at": "2026-10-02T13:55:29.271Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:34:34.656Z",
+      "at": "2026-10-02T13:55:30.044Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:34:34.798Z",
+      "at": "2026-10-02T13:55:30.189Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:34:35.261Z",
+      "at": "2026-10-02T13:55:30.640Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:34:37.686Z",
+      "at": "2026-10-02T13:55:32.911Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T11:34:37.686Z",
+      "at": "2026-10-02T13:55:32.911Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:34:38.287Z",
+      "at": "2026-10-02T13:55:33.500Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:34:38.653Z",
+      "at": "2026-10-02T13:55:33.900Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:34:41.315Z",
+      "at": "2026-10-02T13:55:36.250Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:34:41.315Z",
+      "at": "2026-10-02T13:55:36.250Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T11:34:41.889Z",
+      "at": "2026-10-02T13:55:36.870Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:34:42.360Z",
+      "at": "2026-10-02T13:55:37.321Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:34:45.188Z",
+      "at": "2026-10-02T13:55:40.080Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:34:45.188Z",
+      "at": "2026-10-02T13:55:40.080Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T11:34:45.827Z",
+      "at": "2026-10-02T13:55:40.635Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:34:46.240Z",
+      "at": "2026-10-02T13:55:41.060Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:34:46.921Z",
+      "at": "2026-10-02T13:55:41.743Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T11:34:47.452Z",
+      "at": "2026-10-02T13:55:42.280Z",
       "event": "character_transport_reconnected"
     },
     {
-      "at": "2026-10-02T11:34:48.398Z",
+      "at": "2026-10-02T13:55:43.136Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:34:48.756Z",
+      "at": "2026-10-02T13:55:43.493Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:34:49.221Z",
+      "at": "2026-10-02T13:55:43.767Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:34:49.303Z",
+      "at": "2026-10-02T13:55:44.014Z",
       "event": "test_shutdown_requested"
     },
     {
-      "at": "2026-10-02T11:34:49.306Z",
+      "at": "2026-10-02T13:55:44.017Z",
       "event": "server_stopping"
     },
     {
-      "at": "2026-10-02T11:34:49.307Z",
+      "at": "2026-10-02T13:55:44.017Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:34:50.320Z",
+      "at": "2026-10-02T13:55:45.026Z",
       "event": "server_stopped"
     },
     {
-      "at": "2026-10-02T11:34:51.442Z",
+      "at": "2026-10-02T13:55:46.212Z",
       "event": "server_listening"
     },
     {
-      "at": "2026-10-02T11:34:51.736Z",
+      "at": "2026-10-02T13:55:46.517Z",
       "event": "preview_connection_joined"
     },
     {
-      "at": "2026-10-02T11:34:52.321Z",
+      "at": "2026-10-02T13:55:47.094Z",
       "event": "character_connected"
     },
     {
-      "at": "2026-10-02T11:34:53.159Z",
+      "at": "2026-10-02T13:55:47.832Z",
       "event": "test_shutdown_requested"
     },
     {
-      "at": "2026-10-02T11:34:53.159Z",
+      "at": "2026-10-02T13:55:47.832Z",
       "event": "character_transport_dropped"
     },
     {
-      "at": "2026-10-02T11:34:53.159Z",
+      "at": "2026-10-02T13:55:47.832Z",
       "event": "preview_connection_left"
     },
     {
-      "at": "2026-10-02T11:34:53.161Z",
+      "at": "2026-10-02T13:55:47.833Z",
       "event": "server_stopping"
     },
     {
-      "at": "2026-10-02T11:34:53.164Z",
+      "at": "2026-10-02T13:55:47.836Z",
       "event": "server_stopped"
     }
   ],

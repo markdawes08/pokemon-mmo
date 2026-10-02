@@ -1,0 +1,707 @@
+{
+  "checkedAt": "2026-10-02T12:57:00.289Z",
+  "status": "passed",
+  "scope": "Selected real private files denied by Vite for direct, raw and URL requests; public app assets retained. No account login or mutation.",
+  "requests": [
+    {
+      "path": "content/generated/server/gameplay.json",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "content/generated/server/gameplay.json",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "content/generated/server/gameplay.json",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/encounter-core/encounter.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/encounter-core/encounter.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/encounter-core/encounter.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/encounter-core/primary/encounter.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/encounter-core/primary/encounter.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/encounter-core/primary/encounter.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-spike/engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-spike/engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-spike/engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-spike/primary/probe.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-spike/primary/probe.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-spike/primary/probe.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-route1/engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-route1/engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-route1/engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-route1/primary/route1.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-route1/primary/route1.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-route1/primary/route1.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/development-profile.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/development-profile.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/development-profile.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-progression/progression.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-progression/progression.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-progression/progression.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-progression/primary/progression.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-progression/primary/progression.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-progression/primary/progression.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-loss/loss.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-loss/loss.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-loss/loss.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-loss/primary/loss.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-loss/primary/loss.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-loss/primary/loss.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-capture/capture.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-capture/capture.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-capture/capture.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-capture/primary/capture.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-capture/primary/capture.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-capture/primary/capture.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-evolution/evolution.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-evolution/evolution.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-evolution/evolution.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-evolution/primary/evolution.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-evolution/primary/evolution.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-evolution/primary/evolution.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-family/engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-family/engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-family/engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-family/primary/family.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-family/primary/family.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-family/primary/family.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-party/engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-party/engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-party/engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-party/primary/party.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-party/primary/party.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-party/primary/party.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-tactics/engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-tactics/engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-tactics/engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-tactics/primary/tactics.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-tactics/primary/tactics.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-tactics/primary/tactics.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-charge/engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-charge/engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-charge/engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-charge/primary/charge.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-charge/primary/charge.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-charge/primary/charge.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-protect/engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-protect/engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-protect/engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-protect/primary/protect.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-protect/primary/protect.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-protect/primary/protect.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-protect/protect-policy.json",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-protect/protect-policy.json",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-protect/protect-policy.json",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-pursuit/engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-pursuit/engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "tools/battle-pursuit/engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-pursuit/primary/pursuit.wasm",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-pursuit/primary/pursuit.wasm",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/battle-pursuit/primary/pursuit.wasm",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/practice-engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/practice-engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/practice-engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "packages/database/migrations/0006_practice_battles.sql",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "packages/database/migrations/0006_practice_battles.sql",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "packages/database/migrations/0006_practice_battles.sql",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/wild-encounter-engine.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/wild-encounter-engine.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/wild-encounter-engine.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "packages/database/migrations/0007_wild_encounter_testing.sql",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "packages/database/migrations/0007_wild_encounter_testing.sql",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "packages/database/migrations/0007_wild_encounter_testing.sql",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-api.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-api.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-api.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-auth.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-auth.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "apps/server/src/local-testing-auth.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "packages/content-schema/src/gameplay-server.ts",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "packages/content-schema/src/gameplay-server.ts",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "packages/content-schema/src/gameplay-server.ts",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "reports/encounter-dependencies.json",
+      "suffix": "",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "reports/encounter-dependencies.json",
+      "suffix": "?raw",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "reports/encounter-dependencies.json",
+      "suffix": "?url",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": ".local/database.json",
+      "suffix": "",
+      "method": "HEAD",
+      "status": 403
+    },
+    {
+      "path": ".local/database.json",
+      "suffix": "?raw",
+      "method": "HEAD",
+      "status": 403
+    },
+    {
+      "path": ".local/database.json",
+      "suffix": "?url",
+      "method": "HEAD",
+      "status": 403
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/src/main.ts",
+      "status": 200
+    },
+    {
+      "path": "/content/world.json",
+      "status": 200
+    },
+    {
+      "path": "/content/field-guide.json",
+      "status": 200
+    }
+  ]
+}

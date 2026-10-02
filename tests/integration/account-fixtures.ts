@@ -46,7 +46,7 @@ export async function removeAccountFixtures(database: Database, accountIds: stri
     await client.query('DELETE FROM creature_moves WHERE creature_id IN (SELECT id FROM creatures WHERE owner_id IN (SELECT id FROM characters WHERE account_id = ANY($1::text[])))', [accountIds]);
     await client.query('DELETE FROM creatures WHERE owner_id IN (SELECT id FROM characters WHERE account_id = ANY($1::text[]))', [accountIds]);
     await client.query('DELETE FROM domain_outcomes WHERE character_id IN (SELECT id FROM characters WHERE account_id = ANY($1::text[]))', [accountIds]);
-    for (const table of ['practice_command_receipts', 'character_practice_state', 'character_command_receipts', 'character_leases']) {
+    for (const table of ['wild_test_command_receipts', 'character_wild_test_state', 'practice_command_receipts', 'character_practice_state', 'character_command_receipts', 'character_leases']) {
       await client.query(`DELETE FROM ${table} WHERE character_id IN (SELECT id FROM characters WHERE account_id = ANY($1::text[]))`, [accountIds]);
     }
     await client.query('DELETE FROM characters WHERE account_id = ANY($1::text[])', [accountIds]);

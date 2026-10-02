@@ -1,0 +1,310 @@
+{
+  "checkedAt": "2026-10-02T13:45:35.358Z",
+  "passed": false,
+  "results": [
+    {
+      "title": "opt-in grass steps start a real wild battle and return to the same tile without owned rewards",
+      "status": "passed"
+    },
+    {
+      "title": "wild battle hides safely and recovers the same battle after refresh and a fresh backend",
+      "status": "passed"
+    },
+    {
+      "title": "held walk keeps Run and End encounter usable after a late movement frame",
+      "status": "passed"
+    },
+    {
+      "title": "held Shift-run keeps Run and End encounter usable after a late movement frame",
+      "status": "passed"
+    },
+    {
+      "title": "held walking and running keep the same cadence with wild testing off and on",
+      "status": "failed"
+    }
+  ],
+  "backendPids": [
+    29468,
+    29376
+  ],
+  "lifecycle": [
+    {
+      "at": "2026-10-02T13:44:50.171Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T13:44:50.772Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:44:51.253Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:45:04.471Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:45:04.471Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:45:05.135Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:45:05.606Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:45:11.595Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:45:11.923Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:45:12.527Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:45:12.719Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T13:45:12.720Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T13:45:12.722Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:45:13.724Z",
+      "event": "server_stopped"
+    },
+    {
+      "at": "2026-10-02T13:45:14.815Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T13:45:14.958Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:45:15.476Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:45:15.988Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:45:16.513Z",
+      "event": "character_transport_reconnected"
+    },
+    {
+      "at": "2026-10-02T13:45:17.491Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:45:17.491Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:45:18.151Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:45:18.667Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:45:21.024Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:45:21.024Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:45:21.643Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:45:22.179Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:45:23.706Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:45:23.706Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:45:24.300Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:45:24.796Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:45:27.470Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:45:27.471Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:45:28.026Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:45:28.573Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:45:31.146Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:45:31.146Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:45:31.720Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:45:32.241Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:45:34.245Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:45:34.248Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:45:34.604Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T13:45:34.606Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T13:45:34.616Z",
+      "event": "server_stopped"
+    }
+  ],
+  "closeRecoveryEvidence": {
+    "droppedAcknowledgements": 1,
+    "identicalCloseFrames": 2,
+    "closeReceipts": 1,
+    "retryAfterSharedReturn": true
+  },
+  "cadenceEvidence": [
+    {
+      "movement": "walk",
+      "enabled": false,
+      "motions": 5,
+      "durations": [
+        266.6666666666667,
+        266.6666666666667,
+        266.6666666666667,
+        266.6666666666667,
+        266.6666666666667
+      ],
+      "gaps": [
+        15.333333333333314,
+        11.333333333333314,
+        20.333333333333314,
+        8.333333333333314
+      ],
+      "errors": [],
+      "earlyInputMs": [
+        14.487548828125,
+        10.865966796875,
+        20.666015625,
+        8.548828125
+      ]
+    },
+    {
+      "movement": "walk",
+      "enabled": true,
+      "motions": 5,
+      "durations": [
+        266.6666666666667,
+        266.6666666666667,
+        266.6666666666667,
+        266.6666666666667,
+        266.6666666666667
+      ],
+      "gaps": [
+        10.333333333333314,
+        23.333333333333314,
+        17.333333333333314,
+        15.333333333333314
+      ],
+      "errors": [],
+      "earlyInputMs": [
+        8.30615234375,
+        21.047119140625,
+        16.762451171875,
+        15.5634765625
+      ]
+    },
+    {
+      "movement": "run",
+      "enabled": false,
+      "motions": 5,
+      "durations": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ],
+      "gaps": [
+        17.666666666666657,
+        18.666666666666657,
+        21.666666666666657,
+        13.666666666666657
+      ],
+      "errors": [],
+      "earlyInputMs": [
+        16.992919921875,
+        19.8056640625,
+        23.116455078125,
+        11.9521484375
+      ]
+    }
+  ],
+  "heldInputEvidence": [
+    {
+      "movement": "walk",
+      "lateInputs": 1,
+      "errors": [],
+      "controlsEnabled": true
+    },
+    {
+      "movement": "run",
+      "lateInputs": 1,
+      "errors": [],
+      "controlsEnabled": true
+    }
+  ],
+  "screenshots": [
+    "reports/wild-testing-desktop.png",
+    "reports/wild-testing-mobile.png"
+  ],
+  "scope": "Real built browser, owned backend and unique isolated PostgreSQL fixtures. Offline source-valid Route 1 anchor and deterministic initial field RNG; every encounter starts from actual server-completed grass movement. No browser seed, encounter forcing, response mocking, main account access or credential file access."
+}

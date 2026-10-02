@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-02T12:45:03.607955+00:00",
+  "commands": [
+    {
+      "stage": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "stage": "wild:check",
+      "exitCode": 0
+    }
+  ],
+  "log": ".local\\twentyeighth-wild-expanded.log",
+  "status": "passed"
+}

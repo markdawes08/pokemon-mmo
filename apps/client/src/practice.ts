@@ -33,10 +33,12 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
   let connection: AccountPracticeState | undefined, catalogue: PracticeCatalogue | undefined, setup: PracticeSetup | undefined;
   let localError = '', setupStamp = '', eventsStamp = '', previousRevision = -1;
   let connectOnOpen = false;
+  let automaticBattleId: string | undefined;
+  const wildBattle = () => connection?.snapshot?.state.session?.origin === 'route1-wild-test' || connection?.snapshot?.state.unavailable?.origin === 'route1-wild-test';
   const species = (id: number) => catalogue?.species.find(row => row.id === id);
   const name = (id: number) => titleCase(species(id)?.name ?? `Pokémon ${id}`);
   const moveName = (id: number) => titleCase(catalogue?.moves.find(row => row.id === id)?.name ?? `Move ${id}`);
-  const ready = () => !!connection?.connected && connection.fresh && !connection.reconnecting && !connection.busy && !connection.waiting && !connection.retry && connection.worldState === 'preview';
+  const ready = () => !!connection?.connected && connection.fresh && !connection.reconnecting && !connection.busy && !connection.waiting && !connection.retry && (connection.worldState === 'preview' || (wildBattle() && connection.worldState === 'battle'));
   const invoke = (action: () => void | Promise<void>) => {
     localError = '';
     try { void Promise.resolve(action()).catch(error => { localError = error instanceof Error ? error.message : 'Please try again.'; render(); }); }
@@ -54,7 +56,7 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
     // Consume the user's open intent before connecting: account notifications
     // may re-enter this subscriber, and a failed attempt must remain manual.
     connectOnOpen = false;
-    if (!connection.eligible || connection.worldState !== 'preview' || (connection.connected && connection.fresh)) return;
+    if (!connection.eligible || !['preview', 'battle'].includes(connection.worldState) || (connection.connected && connection.fresh)) return;
     invoke(() => bridge.connect());
   };
   const normalise = (mon: PracticeMon) => {
@@ -133,7 +135,7 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
     health(el('practice-self-card'), own.speciesId, own.level, Math.ceil(100 * own.hp / own.maxHP), `HP ${own.hp}/${own.maxHP}`, effects(own, own.focusEnergy));
     health(el('practice-opponent-card'), wild.speciesId, wild.level, wild.hpPercent, `HP ${wild.hpPercent}%`, effects(wild));
     el('practice-stage').dataset.weather = view.weather.kind;
-    el('practice-weather').textContent = view.weather.kind === 'rain' ? `Rain · ${view.weather.turnsRemaining} turns` : 'Practice field';
+    el('practice-weather').textContent = view.weather.kind === 'rain' ? `Rain · ${view.weather.turnsRemaining} turns` : wildBattle() ? 'Route 1 grass' : 'Practice field';
     el('practice-turn').textContent = `Turn ${view.turn}`;
     el('practice-prompt').textContent = view.phase === 'post-faint' ? 'Use your next Pokémon?' : view.phase === 'replacement' ? 'Choose a replacement' : view.phase === 'ended' ? 'Battle complete' : own.charging ? 'Release Skull Bash' : 'Choose an action';
     const choices = view.availableChoices;
@@ -150,7 +152,7 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
     el('practice-actions').replaceChildren(...choices.filter(choice => choice.kind in actionLabels).map(choice => {
       const control = button(actionLabels[choice.kind as keyof typeof actionLabels], () => choose(choice), choice.kind !== 'run'); control.disabled = !ready(); return control;
     }));
-    const finish = button(view.phase === 'ended' ? 'Finish practice' : 'End practice', () => bridge.submit({ kind: 'close', battleId: connection!.snapshot!.state.session!.battleId })); finish.disabled = !ready(); el('practice-actions').append(finish);
+    const finish = button(wildBattle() ? view.phase === 'ended' ? 'Return to Route 1' : 'End encounter test' : view.phase === 'ended' ? 'Finish practice' : 'End practice', () => bridge.submit({ kind: 'close', battleId: connection!.snapshot!.state.session!.battleId })); finish.disabled = !ready(); el('practice-actions').append(finish);
     el('practice-party').replaceChildren(...view.party.map(mon => {
       const item = element('li'), control = element('button'); control.type = 'button'; control.dataset.partyIndex = String(mon.partyIndex); control.dataset.active = String(mon.partyIndex === view.activeIndex);
       const image = element('img'); image.src = species(mon.speciesId)!.frontSprite; image.alt = '';
@@ -162,7 +164,9 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
     }));
     const outcomes = { won: 'You won!', lost: 'Your team fainted', draw: 'Both sides fainted', ran: 'You got away', 'forced-escape': 'The battle ended with Whirlwind' };
     el('practice-result').classList.toggle('hidden', !view.outcome);
-    if (view.outcome) el('practice-result').replaceChildren(element('h3', outcomes[view.outcome]), element('p', 'Practice complete. Your saved team and items are unchanged. Finish practice to build another team.'));
+    if (view.outcome) el('practice-result').replaceChildren(element('h3', outcomes[view.outcome]), element('p', wildBattle()
+      ? 'Wild encounter test complete. Your saved team and items are unchanged. Return to the grass to continue exploring.'
+      : 'Practice complete. Your saved team and items are unchanged. Finish practice to build another team.'));
     const events = connection!.snapshot!.state.session!.events, stamp = JSON.stringify(events);
     if (stamp !== eventsStamp) {
       eventsStamp = stamp; el('practice-events').replaceChildren(...events.map(event => { const item = element('li', event.text); item.dataset.sequence = String(event.sequence); return item; }));
@@ -172,6 +176,14 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
   function render() {
     if (!connection) return;
     const state = connection.snapshot?.state;
+    const wild = wildBattle();
+    dialog.dataset.origin = wild ? 'route1-wild-test' : 'practice';
+    el('practice-title').textContent = wild ? 'Wild encounter' : 'Practice battle';
+    el('practice-close').textContent = wild ? 'Hide battle' : 'Close practice';
+    dialog.querySelector('.practice-intro p')!.textContent = wild
+      ? 'A wild Pokémon appeared in Route 1 grass. Battle with a temporary level 5 Squirtle, then return to your saved location. Your normal party and items stay unchanged.'
+      : 'Build a team, choose an opponent, and try the battle mechanics. Your practice session is saved after each action so you can return later.';
+    dialog.querySelector('.practice-badge')!.textContent = wild ? 'Wild test · no captures or rewards' : 'Practice · no rewards';
     if (connection.snapshot) catalogue = connection.snapshot.catalogue;
     if (!setup && catalogue) setup = structuredClone(state?.session?.setup ?? catalogue.presets[0]!.setup);
     if (state && state.revision !== previousRevision) { previousRevision = state.revision; localError = ''; }
@@ -184,13 +196,13 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
         : view.phase === 'post-faint' ? 'Choose whether to send out your next Pokémon or try to escape.'
           : view.phase === 'replacement' ? 'Choose an available party member to continue.'
             : view.self.charging ? 'Skull Bash is charged. Release it to continue the next turn.'
-              : 'Choose a move, switch your Pokémon, or run. Every action is saved.';
+              : view.party.length > 1 ? 'Choose a move, switch your Pokémon, or run. Every action is saved.' : 'Choose a move or run. Every action is saved.';
     }
     if (!connection.signedIn) message = connection.testingAccounts.length
       ? 'Choose a ready-made trainer below. No email or password needed.'
       : 'Sign in through Account to practice with a local development trainer.';
     else if (!connection.eligible) message = 'Practice needs a local development trainer. Your normal saved assets will not be changed.';
-    else if (connection.worldState !== 'preview') message = 'Leave the shared world before practicing. Your world location will be checkpointed first.';
+    else if (connection.worldState !== 'preview' && !wild) message = 'Leave the shared world before practicing. Your world location will be checkpointed first.';
     else if (connection.reconnecting) message = 'Reconnecting your trainer… Battle controls will return after the saved state is restored.';
     else if (!connection.connected || !connection.fresh) message = 'Connect your trainer to load your saved practice session.';
     if (connection.message) message = connection.message;
@@ -201,17 +213,17 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
       actions.push(button('Open Account', openAccount, !connection.testingAccounts.length));
     }
     else if (connection.worldState === 'shared') actions.push(button('Leave shared world & practice', () => bridge.leaveShared(), true));
-    else if (connection.worldState !== 'preview') actions.push(button('Open Account', openAccount, true));
+    else if (connection.worldState !== 'preview' && !wild) actions.push(button('Open Account', openAccount, true));
     else if ((!connection.connected || !connection.fresh) && !connection.reconnecting) actions.push(button('Connect practice', () => bridge.connect(), true));
     if (connection.retry) { const retry = button('Retry last action', () => bridge.retry(), true); retry.disabled = !connection.connected || !connection.fresh || connection.reconnecting; actions.push(retry); }
     if (connection.reconnecting) actions.push(button('Open Account', openAccount));
     for (const control of actions) control.disabled ||= connection.busy || connection.waiting;
     el('practice-connection').replaceChildren(...actions);
-    el('practice-setup').classList.toggle('hidden', !catalogue || !!state?.session || !!state?.unavailable);
+    el('practice-setup').classList.toggle('hidden', wild || !catalogue || !!state?.session || !!state?.unavailable);
     el('practice-battle').classList.toggle('hidden', !state?.session);
     if (state?.unavailable) {
       el('practice-status').textContent = state.unavailable.message;
-      const close = button('Close unavailable practice', () => bridge.submit({ kind: 'close', battleId: state.unavailable!.battleId }), true); close.disabled = !ready(); el('practice-connection').append(close);
+      if (!wild) { const close = button('Close unavailable practice', () => bridge.submit({ kind: 'close', battleId: state.unavailable!.battleId }), true); close.disabled = !ready(); el('practice-connection').append(close); }
     }
     if (state?.session) renderBattle(state.session.presentation); else renderSetup();
   }
@@ -221,7 +233,17 @@ export function attachPractice(bridge: Bridge, onOpen: () => void, onClose: () =
   document.querySelector('#account-signout')!.addEventListener('click', cancelOpenConnection);
   el('practice-add').addEventListener('click', () => { if (setup && ready() && setup.player.length < 6) { setup.player.push(structuredClone(setup.player[0]!)); render(); } });
   el('practice-start').addEventListener('click', () => { if (setup) invoke(() => bridge.submit({ kind: 'start', setup: structuredClone(setup!) })); });
-  const unsubscribe = bridge.subscribe(state => { connection = state; render(); connectForOpenDialog(); });
+  const unsubscribe = bridge.subscribe(state => {
+    connection = state;
+    const wild = wildBattle(), id = state.snapshot?.state.session?.battleId ?? state.snapshot?.state.unavailable?.battleId;
+    if (wild && state.fresh && id && automaticBattleId !== id) {
+      automaticBattleId = id; cancelOpenConnection();
+      if (!dialog.open) { onOpen(); dialog.showModal(); el('practice-close').focus(); }
+    } else if (!wild && automaticBattleId && state.fresh && !state.retry && !state.waiting) {
+      automaticBattleId = undefined; if (dialog.open) dialog.close();
+    }
+    render(); connectForOpenDialog();
+  });
   document.querySelector('#practice-button')!.addEventListener('click', () => {
     connectOnOpen = true;
     onOpen(); dialog.showModal(); el('practice-close').focus();

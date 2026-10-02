@@ -1,0 +1,1799 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.tools\\node-v24.21.0-win-x64\\node.exe",
+      "C:\\Users\\mrkda\\Projects\\pokewaterblue\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\playwright.config.ts",
+    "rootDir": "C:/Users/mrkda/Projects/pokewaterblue/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/mrkda/Projects/pokewaterblue/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/mrkda/Projects/pokewaterblue/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/browser-tests.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/run.mjs dev",
+      "url": "http://127.0.0.1:5173",
+      "reuseExistingServer": true,
+      "timeout": 30000,
+      "gracefulShutdown": {
+        "signal": "SIGINT",
+        "timeout": 5000
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "accounts.spec.ts",
+      "file": "accounts.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real account creation, trainer save and reload preserve profile while map walking remains unsaved",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4738,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:37.118Z\",\"level\":\"info\",\"event\":\"server_listening\",\"host\":\"127.0.0.1\",\"port\":57700,\"mode\":\"local-preview\",\"protocolVersion\":1}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:38.964Z\",\"level\":\"info\",\"event\":\"preview_connection_joined\",\"connections\":1}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:39.834Z\",\"level\":\"info\",\"event\":\"character_connected\",\"characterId\":\"9768ba1f-b28c-42ad-acf1-f74e573c9329\",\"connectionGeneration\":1}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:40.419Z\",\"level\":\"info\",\"event\":\"preview_connection_left\",\"connections\":0}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:40.739Z\",\"level\":\"info\",\"event\":\"preview_connection_joined\",\"connections\":1}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:41.541Z\",\"level\":\"info\",\"event\":\"character_connected\",\"characterId\":\"9768ba1f-b28c-42ad-acf1-f74e573c9329\",\"connectionGeneration\":2}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:32:36.991Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cbe1475516a9f5b841ab-bb706f49d7fd35cd9f77",
+          "file": "accounts.spec.ts",
+          "line": 70,
+          "column": 1
+        },
+        {
+          "title": "two real browser accounts are isolated and a second tab replaces the first trainer connection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4932,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:41.952Z\",\"level\":\"info\",\"event\":\"character_transport_dropped\"}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:41.952Z\",\"level\":\"info\",\"event\":\"preview_connection_left\",\"connections\":0}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:42.304Z\",\"level\":\"info\",\"event\":\"preview_connection_joined\",\"connections\":1}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:43.307Z\",\"level\":\"info\",\"event\":\"character_connected\",\"characterId\":\"354f19ac-c94b-4222-b395-bdfcb87b8d02\",\"connectionGeneration\":1}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:43.748Z\",\"level\":\"info\",\"event\":\"preview_connection_joined\",\"connections\":2}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:44.749Z\",\"level\":\"info\",\"event\":\"character_connected\",\"characterId\":\"48ea0047-21ab-4075-9705-85cd14ca3ee3\",\"connectionGeneration\":1}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:45.202Z\",\"level\":\"info\",\"event\":\"preview_connection_joined\",\"connections\":3}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:45.823Z\",\"level\":\"info\",\"event\":\"character_connected\",\"characterId\":\"354f19ac-c94b-4222-b395-bdfcb87b8d02\",\"connectionGeneration\":2}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:45.825Z\",\"level\":\"warn\",\"event\":\"character_release_deferred\"}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:46.115Z\",\"level\":\"info\",\"event\":\"preview_connection_left\",\"connections\":2}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:46.247Z\",\"level\":\"info\",\"event\":\"character_connected\",\"characterId\":\"354f19ac-c94b-4222-b395-bdfcb87b8d02\",\"connectionGeneration\":3}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:46.766Z\",\"level\":\"info\",\"event\":\"preview_connection_left\",\"connections\":1}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:46.770Z\",\"level\":\"info\",\"event\":\"character_transport_dropped\"}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:46.902Z\",\"level\":\"info\",\"event\":\"character_transport_dropped\"}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:46.904Z\",\"level\":\"info\",\"event\":\"preview_connection_left\",\"connections\":0}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:32:41.950Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cbe1475516a9f5b841ab-13a40224fea0bf0f9cbe",
+          "file": "accounts.spec.ts",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "sign-out revokes the real session and a narrow screen supports sign-in and trainer controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2797,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:47.275Z\",\"level\":\"info\",\"event\":\"preview_connection_joined\",\"connections\":1}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:48.352Z\",\"level\":\"info\",\"event\":\"character_connected\",\"characterId\":\"ec448c97-0e82-4eb9-9436-cd3ca9d55c15\",\"connectionGeneration\":1}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:48.991Z\",\"level\":\"warn\",\"event\":\"auth_library_diagnostic\"}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:49.456Z\",\"level\":\"info\",\"event\":\"character_connected\",\"characterId\":\"ec448c97-0e82-4eb9-9436-cd3ca9d55c15\",\"connectionGeneration\":2}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:49.724Z\",\"level\":\"info\",\"event\":\"server_stopping\"}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:49.725Z\",\"level\":\"info\",\"event\":\"preview_connection_left\",\"connections\":0}\n"
+                    },
+                    {
+                      "text": "{\"time\":\"2026-10-02T11:32:50.730Z\",\"level\":\"info\",\"event\":\"server_stopped\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:32:46.904Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cbe1475516a9f5b841ab-ff6cb3563b826e7c1dbd",
+          "file": "accounts.spec.ts",
+          "line": 134,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "assets.spec.ts",
+      "file": "assets.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "ordinary staged trainers have empty party and bag without a development grant",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1278,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:32:50.858Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "381c53c131d04f5e8243-7b62381416eb63f8c92d",
+          "file": "assets.spec.ts",
+          "line": 116,
+          "column": 1
+        },
+        {
+          "title": "the explicit development trainer displays its saved source-backed party and bag on desktop and mobile",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2807,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:32:53.313Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "381c53c131d04f5e8243-48c12c63ea3476544a02",
+          "file": "assets.spec.ts",
+          "line": 134,
+          "column": 1
+        },
+        {
+          "title": "unavailable asset storage is shown as a failure and does not invent an empty saved party",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1356,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:32:56.135Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "381c53c131d04f5e8243-1ca171638f058a7c900d",
+          "file": "assets.spec.ts",
+          "line": 183,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "field-guide.spec.ts",
+      "file": "field-guide.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "field guide shows independently checked source records and receives only public reference data",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2895,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:32:58.658Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "570b1617b3666703606c-9a75272c5f0efe262f31",
+          "file": "field-guide.spec.ts",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "field guide keeps keyboard focus and movement isolated, then restores deliberate walking",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4433,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:01.564Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "570b1617b3666703606c-e47709a82ead43ce9c40",
+          "file": "field-guide.spec.ts",
+          "line": 98,
+          "column": 1
+        },
+        {
+          "title": "missing or invalid field guide data fails with rebuild guidance before the preview is ready",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3730,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:06.012Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "570b1617b3666703606c-d562fd26a130128d30fe",
+          "file": "field-guide.spec.ts",
+          "line": 148,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "font-audio.spec.ts",
+      "file": "font-audio.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "dialogue draws source atlas pixels including the accented POKéMON glyph",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5878,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:09.784Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936ef05a592c37155ce5-b15e492f23dfe94d8cf8",
+          "file": "font-audio.spec.ts",
+          "line": 127,
+          "column": 1
+        },
+        {
+          "title": "a missing source font dialogue.json gives an actionable rebuild error",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1821,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:15.683Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936ef05a592c37155ce5-5be614d3cd4d17693d3f",
+          "file": "font-audio.spec.ts",
+          "line": 225,
+          "column": 3
+        },
+        {
+          "title": "a missing source font dialogue.png gives an actionable rebuild error",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1851,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:17.521Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936ef05a592c37155ce5-9afd93b204df677d0d99",
+          "file": "font-audio.spec.ts",
+          "line": 225,
+          "column": 3
+        },
+        {
+          "title": "sound is opt-in, adjusts volume, and pauses for mute, visibility and window focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4846,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:19.388Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936ef05a592c37155ce5-a488ccd26fec0736ebb2",
+          "file": "font-audio.spec.ts",
+          "line": 235,
+          "column": 1
+        },
+        {
+          "title": "Route 1 stops unsupported music and dialogue plays exactly one source SELECT effect",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14779,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:24.249Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936ef05a592c37155ce5-5623ce191fe304cf852a",
+          "file": "font-audio.spec.ts",
+          "line": 324,
+          "column": 1
+        },
+        {
+          "title": "missing optional audio reports a recoverable error without disabling movement",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2966,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:39.049Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "936ef05a592c37155ce5-776d01f266cbcf224a5a",
+          "file": "font-audio.spec.ts",
+          "line": 372,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "local-testing.spec.ts",
+      "file": "local-testing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "one click connects both premade testers for shared exploration and isolated practice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4880,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:42.059Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "61e581c9037db16d7a75-17b5ab457896ff7505f6",
+          "file": "local-testing.spec.ts",
+          "line": 86,
+          "column": 1
+        },
+        {
+          "title": "remembered tester recovers practice, stays signed out, and safely switches from active exploration",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4617,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:48.430Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "61e581c9037db16d7a75-b04792cb53b9ac246b45",
+          "file": "local-testing.spec.ts",
+          "line": 116,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "npc-dialogue.spec.ts",
+      "file": "npc-dialogue.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "source-default NPCs render and the town sign respects facing and dialogue focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3488,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:54.196Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "301ef64f077995f80d4a-1e592c408f6a0edc1d56",
+          "file": "npc-dialogue.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "a source NPC blocks its tile, faces the player, and pages dialogue without leaking movement",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6446,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:33:57.701Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "301ef64f077995f80d4a-10c1df95533c83273bc7",
+          "file": "npc-dialogue.spec.ts",
+          "line": 77,
+          "column": 1
+        },
+        {
+          "title": "stateful NPC interactions explain their missing behavior without pretending to execute it",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14920,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:34:04.165Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "301ef64f077995f80d4a-7548e4d1eef99f8d0274",
+          "file": "npc-dialogue.spec.ts",
+          "line": 118,
+          "column": 1
+        },
+        {
+          "title": "walking is the default, Shift runs outdoors, and the house enforces walking",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13408,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:34:19.105Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "301ef64f077995f80d4a-28996420ab7ee9eec6e3",
+          "file": "npc-dialogue.spec.ts",
+          "line": 148,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "practice.spec.ts",
+      "file": "practice.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "practice explains sign-in, builds legal teams, and leaves shared exploration before a saved battle",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4013,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:34:32.546Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-24354308d6ed6e383c80",
+          "file": "practice.spec.ts",
+          "line": 60,
+          "column": 1
+        },
+        {
+          "title": "source charge locks choices, preserves PP on release, and remains usable on a narrow screen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3616,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:34:37.685Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-cadf82adc44ad6d4a8bd",
+          "file": "practice.spec.ts",
+          "line": 85,
+          "column": 1
+        },
+        {
+          "title": "faint decisions use the selected reserve and running ends practice without rewards",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3856,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:34:41.314Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-96d65cb415a5a7a34ba9",
+          "file": "practice.spec.ts",
+          "line": 101,
+          "column": 1
+        },
+        {
+          "title": "refresh and native lost acknowledgement recover one durable practice action with explicit retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 65000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7946,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:34:45.187Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c0011e267bb7a139fed4-7fb3d960d0f2f7972209",
+          "file": "practice.spec.ts",
+          "line": 113,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "preview.spec.ts",
+      "file": "preview.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "two browser contexts reach the real proxy handshake and render source content",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4149,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:34:54.258Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f7191c1356a09079afd8-9a32026c1625403cc275",
+          "file": "preview.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "walking obeys source collision, focus, reset, and integer resize",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2998,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:34:58.425Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f7191c1356a09079afd8-f17848ed02c99bf7bc8b",
+          "file": "preview.spec.ts",
+          "line": 31,
+          "column": 1
+        },
+        {
+          "title": "missing content produces an actionable error instead of a blank canvas",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1866,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:35:01.440Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f7191c1356a09079afd8-2715b7b5cdff73ab71b8",
+          "file": "preview.spec.ts",
+          "line": 56,
+          "column": 1
+        },
+        {
+          "title": "missing world manifest explains the required rebuild",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1773,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:35:03.324Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f7191c1356a09079afd8-d8dde20b80092564639c",
+          "file": "preview.spec.ts",
+          "line": 64,
+          "column": 1
+        },
+        {
+          "title": "a missing destination map fails before the player can enter a broken transfer",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1847,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:35:05.110Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f7191c1356a09079afd8-703794aad073ffe68c99",
+          "file": "preview.spec.ts",
+          "line": 73,
+          "column": 1
+        },
+        {
+          "title": "missing required destination scenery prevents a false ready state",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2098,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:35:06.972Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f7191c1356a09079afd8-80d207778283818f1bee",
+          "file": "preview.spec.ts",
+          "line": 82,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "reconnect.spec.ts",
+      "file": "reconnect.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "native transport resumes the same session with a fresh snapshot and no held-input replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 40000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6627,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:35:09.107Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52d77e2c54626c9984db-de43accde38ce3d18590",
+          "file": "reconnect.spec.ts",
+          "line": 50,
+          "column": 1
+        },
+        {
+          "title": "lost Save acknowledgement is resolved only by explicit identical receipt retry after resume",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 35000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3988,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:35:16.844Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52d77e2c54626c9984db-198e451286956445ab52",
+          "file": "reconnect.spec.ts",
+          "line": 76,
+          "column": 1
+        },
+        {
+          "title": "explicit Leave cancels scheduled resume and Sign out never reconnects",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8187,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:35:20.847Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52d77e2c54626c9984db-0b3f776b3626c225fb81",
+          "file": "reconnect.spec.ts",
+          "line": 91,
+          "column": 1
+        },
+        {
+          "title": "a lost backend freezes recovery and explicit cancellation permits fresh process admission",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 40000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 17840,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:35:29.050Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "52d77e2c54626c9984db-89f4c954475ec66476d7",
+          "file": "reconnect.spec.ts",
+          "line": 120,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "traversal.spec.ts",
+      "file": "traversal.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "the home arrow exit returns to the correct door without bouncing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 30816,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:35:47.676Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d1896c8ed1f5f413ebc-9a0b9bb2f12b37bc4a59",
+          "file": "traversal.spec.ts",
+          "line": 42,
+          "column": 1
+        },
+        {
+          "title": "Route 1 preserves boundary alignment, grass movement, and one-way ledges",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 28660,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:36:18.511Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d1896c8ed1f5f413ebc-f29cba786ddca1fa2413",
+          "file": "traversal.spec.ts",
+          "line": 99,
+          "column": 1
+        },
+        {
+          "title": "transfer input is suppressed and losing focus releases held movement",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12615,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:36:47.191Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d1896c8ed1f5f413ebc-2f1485a512509fd6955e",
+          "file": "traversal.spec.ts",
+          "line": 152,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "walking-stability.spec.ts",
+      "file": "walking-stability.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "the rendered player stays steady in all four directions (walk)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8430,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:36:59.841Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eafe7b313d238e34a993-6950f63c31c158b7bf65",
+          "file": "walking-stability.spec.ts",
+          "line": 62,
+          "column": 46
+        },
+        {
+          "title": "the rendered player stays steady in all four directions (run)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8010,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:37:08.292Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eafe7b313d238e34a993-6131d3ac7b2bfd5b433c",
+          "file": "walking-stability.spec.ts",
+          "line": 62,
+          "column": 46
+        },
+        {
+          "title": "ledge lift moves the sprite while its camera follows the ground position",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 19674,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:37:16.321Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eafe7b313d238e34a993-991b40ab2efcd501732b",
+          "file": "walking-stability.spec.ts",
+          "line": 130,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "world.spec.ts",
+      "file": "world.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "ordinary trainers retain anonymous preview and cannot enter the seeded shared-world policy",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1608,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:37:36.061Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7981c09d23e5ff0a958d-2de3b73734a44e988dc0",
+          "file": "world.spec.ts",
+          "line": 71,
+          "column": 1
+        },
+        {
+          "title": "two real accounts see nonblocking avatars, source house transfers, and durable shared checkpoints",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18146,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:37:38.829Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7981c09d23e5ff0a958d-d5c365789c57566f7180",
+          "file": "world.spec.ts",
+          "line": 83,
+          "column": 1
+        },
+        {
+          "title": "modified map bytes refuse shared entry and leave the scene frozen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2793,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:37:56.993Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7981c09d23e5ff0a958d-4966ddd5c934c768351f",
+          "file": "world.spec.ts",
+          "line": 134,
+          "column": 1
+        },
+        {
+          "title": "Route 1 ledges, focus and menus stop input, and a fresh backend recovers the saved position",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27825,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T11:37:59.804Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7981c09d23e5ff0a958d-6afb9fe5b237f15fb946",
+          "file": "world.spec.ts",
+          "line": 151,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T11:32:34.828Z",
+    "duration": 356755.847,
+    "expected": 45,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

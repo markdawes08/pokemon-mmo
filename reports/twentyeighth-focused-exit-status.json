@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-02T12:42:59.205909+00:00",
+  "commands": [
+    {
+      "stage": "lint",
+      "exitCode": 0
+    },
+    {
+      "stage": "typecheck",
+      "exitCode": 0
+    },
+    {
+      "stage": "wild:check",
+      "exitCode": 1
+    }
+  ],
+  "log": ".local\\twentyeighth-focused.log",
+  "status": "failed"
+}

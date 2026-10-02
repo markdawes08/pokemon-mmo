@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import type { WorldMap, LayerUrls, Interaction, ActorGraphics } from '@pokewaterblue/content-schema';
 import { resolvePreviewMove, PREVIEW_HIGH_JUMP_Y, arePreviewElevationsCompatible, type Direction, type WorldPosition, type PreviewMovementMode } from '@pokewaterblue/game-rules';
 import type { LoadedWorld } from './content';
-import { WORLD_MAP_HASHES, type WorldSnapshot, type WorldAvatar } from '@pokewaterblue/protocol';
+import { WORLD_MAP_HASHES, type WorldSnapshot, type WorldAvatar, type WorldLocation } from '@pokewaterblue/protocol';
 import type { WorldConnectionState } from './accounts';
 
 const layerDepth = { bottom: 0, middle: 10, top: 30 };
@@ -66,6 +66,8 @@ export class WorldScene extends Phaser.Scene {
   private movementMode: PreviewMovementMode = 'walk';
   private dialogue: { speaker: string; pages: string[]; index: number; actor?: RenderedActor } | undefined;
   private worldState: WorldConnectionState = 'preview';
+  private deferredState: WorldConnectionState | undefined;
+  private deferredBattle: (WorldLocation & { direction: Direction }) | undefined;
   private sharedSnapshot: WorldSnapshot | undefined;
   private sharedReceivedAt = 0;
   private sharedServerBase = 0;
@@ -121,12 +123,14 @@ export class WorldScene extends Phaser.Scene {
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => { this.listeners.abort(); this.releaseKeys(); this.cancelAction(); });
     this.screen.dataset.ready = 'true'; this.syncReadout();
     this.report('Walk with arrows or WASD. Hold Shift to run. Face a person or sign and press E.');
+    if (this.deferredState) { const state = this.deferredState; this.deferredState = undefined; this.setWorldState(state); }
+    if (this.deferredBattle) { const location = this.deferredBattle; this.deferredBattle = undefined; this.holdWildBattle(location); }
   }
   private attachControls() {
     this.input.keyboard?.disableGlobalCapture();
     const options = { signal: this.listeners.signal };
     this.screen.addEventListener('keydown', event => {
-      if (this.menuOpen || this.worldState === 'disconnected' || this.worldState === 'reconnecting') return;
+      if (this.menuOpen || this.worldState === 'battle' || this.worldState === 'disconnected' || this.worldState === 'reconnecting') return;
       if (event.altKey || event.ctrlKey || event.metaKey || document.hidden) return;
       const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
       this.runHeld = event.shiftKey;
@@ -395,6 +399,7 @@ export class WorldScene extends Phaser.Scene {
   }
   bindWorldInput(send: (direction: Direction, run: boolean) => number | undefined) { this.sendWorldInput = send; }
   setWorldState(state: WorldConnectionState) {
+    if (!this.avatar) { this.deferredState = state; return; }
     if (state === this.worldState) return;
     const previous = this.worldState;
     if (previous === 'preview' && state !== 'preview') this.previewPosition = { ...this.position };
@@ -414,6 +419,15 @@ export class WorldScene extends Phaser.Scene {
     }
     this.screen.dataset.worldMode = state; this.screen.dataset.worldReady = String(state === 'shared'); this.syncReadout();
   }
+  holdWildBattle(location: WorldLocation & { direction: Direction }) {
+    if (!this.avatar) { this.deferredBattle = location; return; }
+    const map = this.world.maps[location.mapId];
+    if (!map || location.x >= map.width || location.y >= map.height) { this.sharedWorldError('Wild encounter return location is incompatible. Reload to continue.'); return; }
+    this.setWorldState('battle'); this.sharedSnapshot = undefined; this.direction = location.direction;
+    this.renderMap(location); this.avatar.setY(0); this.syncReadout();
+    Object.assign(this.screen.dataset, { serverMapId: location.mapId, serverTileX: String(location.x), serverTileY: String(location.y) });
+    this.report('Wild encounter testing. Finish the battle to return to this grass tile.');
+  }
   receiveWorld(snapshot: WorldSnapshot): boolean {
     if (!this.avatar) return false;
     const map = this.world.maps[snapshot.self.mapId];
@@ -431,7 +445,10 @@ export class WorldScene extends Phaser.Scene {
       this.walkingFrames = (this.walkingFrames + Math.round(previous.self.motion.durationMs * 60 / 1000)) % 32;
       this.stepSerial++; this.sharedMotionFinished = true;
     }
-    this.sharedSnapshot = snapshot; this.sharedReceivedAt = this.time.now;
+    // Phaser's clock still contains the previous frame time during a socket
+    // callback. Sampling it here adds part of a frame to the next step and can
+    // send held movement before the server's current motion has completed.
+    this.sharedSnapshot = snapshot; this.sharedReceivedAt = performance.now();
     // Publication/network jitter must never rewind an already rendered step.
     // Keep one advancing visual clock for this authenticated connection.
     this.sharedServerBase = Math.max(snapshot.serverTime, this.sharedVisualServerTime);
@@ -503,7 +520,8 @@ export class WorldScene extends Phaser.Scene {
   private updateSharedWorld(time: number) {
     if (this.worldState !== 'shared' || !this.sharedSnapshot) return;
     const snapshot = this.sharedSnapshot;
-    const serverTime = Math.max(this.sharedVisualServerTime, this.sharedServerBase + Math.max(0, time - this.sharedReceivedAt));
+    const sinceReceipt = Math.max(0, performance.now() - this.sharedReceivedAt);
+    const serverTime = Math.max(this.sharedVisualServerTime, this.sharedServerBase + sinceReceipt);
     this.sharedVisualServerTime = serverTime;
     if (this.transitioning) {
       if (this.moving) { const frames = Math.floor((time - this.stepStarted) * 60 / 1000); this.setMovementFrame(frames); }
@@ -533,7 +551,11 @@ export class WorldScene extends Phaser.Scene {
       this.sharedMotionFinished = true; this.walkingFrames = (this.walkingFrames + Math.round(self.motion.durationMs * 60 / 1000)) % 32; this.stepSerial++;
     }
     this.syncReadout();
-    if (this.moving || this.pendingWorldSequence !== undefined || this.menuOpen || this.dialogue || time < this.nextStep) return;
+    // Keep visual interpolation monotonic, but do not use its clamped clock to
+    // authorize the next input. The timestamp plus actual time since receipt
+    // is conservative even when a packet was delayed in transit.
+    const motionPending = !!self.motion && snapshot.serverTime + sinceReceipt < Math.ceil(self.motion.startedAt + self.motion.durationMs);
+    if (this.moving || motionPending || this.pendingWorldSequence !== undefined || this.menuOpen || this.dialogue || time < this.nextStep) return;
     let direction = this.pendingDirection; this.pendingDirection = undefined;
     if (document.activeElement === this.screen && !document.hidden) {
       const held = [...this.pressed].filter(key => !this.suppressed.has(key)); direction ??= keyDirections[held[held.length - 1] ?? ''];

@@ -1,0 +1,127 @@
+{
+  "checkedAt": "2026-10-02T13:01:24.907Z",
+  "passed": true,
+  "results": [
+    {
+      "title": "opt-in grass steps start a real wild battle and return to the same tile without owned rewards",
+      "status": "passed"
+    },
+    {
+      "title": "wild battle hides safely and recovers the same battle after refresh and a fresh backend",
+      "status": "passed"
+    }
+  ],
+  "backendPids": [
+    30988,
+    19592
+  ],
+  "lifecycle": [
+    {
+      "at": "2026-10-02T13:01:03.654Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T13:01:04.110Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:01:04.483Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:01:13.950Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:01:13.950Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:01:14.346Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:01:14.734Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:01:19.305Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:01:19.462Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:01:19.698Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:01:19.771Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T13:01:19.772Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T13:01:19.772Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:01:20.774Z",
+      "event": "server_stopped"
+    },
+    {
+      "at": "2026-10-02T13:01:22.113Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T13:01:22.213Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T13:01:22.465Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T13:01:22.736Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:01:23.244Z",
+      "event": "character_transport_reconnected"
+    },
+    {
+      "at": "2026-10-02T13:01:23.858Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T13:01:23.858Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T13:01:23.858Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T13:01:23.858Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T13:01:23.861Z",
+      "event": "server_stopped"
+    }
+  ],
+  "closeRecoveryEvidence": {
+    "droppedAcknowledgements": 1,
+    "identicalCloseFrames": 2,
+    "closeReceipts": 1,
+    "retryAfterSharedReturn": true
+  },
+  "screenshots": [
+    "reports/wild-testing-desktop.png",
+    "reports/wild-testing-mobile.png"
+  ],
+  "scope": "Real built browser, owned backend and unique isolated PostgreSQL fixtures. Offline source-valid Route 1 anchor and deterministic initial field RNG; every encounter starts from actual server-completed grass movement. No browser seed, encounter forcing, response mocking, main account access or credential file access."
+}

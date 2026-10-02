@@ -6,10 +6,12 @@ export const characterPracticeState = pgTable('character_practice_state', {
   characterId: uuid('character_id').primaryKey().references(() => characters.id, { onDelete: 'restrict' }),
   revision: bigint('revision', { mode: 'number' }).notNull().default(0), battleId: uuid('battle_id'),
   checkpoint: jsonb('checkpoint').$type<Record<string, unknown>>(),
+  origin: jsonb('origin').$type<Record<string, unknown>>(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().default(sql`clock_timestamp()`),
 }, table => [
   check('character_practice_state_revision_check', sql`${table.revision} BETWEEN 0 AND 9007199254740991`),
   check('character_practice_state_check', sql`(${table.battleId} IS NULL AND ${table.checkpoint} IS NULL) OR (${table.battleId} IS NOT NULL AND ${table.checkpoint} IS NOT NULL AND jsonb_typeof(${table.checkpoint}) = 'object')`),
+  check('character_practice_origin_check', sql`${table.origin} IS NULL OR (${table.battleId} IS NOT NULL AND jsonb_typeof(${table.origin}) = 'object')`),
 ]);
 export const practiceCommandReceipts = pgTable('practice_command_receipts', {
   characterId: uuid('character_id').notNull().references(() => characters.id, { onDelete: 'restrict' }),

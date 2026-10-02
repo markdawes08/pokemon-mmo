@@ -1,0 +1,29 @@
+{
+  "scope": "Wild encounter movement pauses and disconnected battle controls",
+  "diagnostics": [
+    {
+      "kind": "confirmed-application-bug",
+      "cause": "Phaser scene time in a socket callback referred to the previous frame. Held movement could be sent before the server step completed, triggering BUSY and the retained 150 ms retry delay.",
+      "correction": "Record actual performance.now() receipt time. Gate held input against the conservative server timestamp plus elapsed receipt time, rounded up to the integer server deadline; retain monotonic visual interpolation and source movement durations.",
+      "evidence": "reports/pass29-before-client-clock/"
+    },
+    {
+      "kind": "confirmed-application-bug",
+      "cause": "An in-flight directional packet after autonomous wild admission encountered a missing world runtime and triggered RECONNECT_REQUIRED, disconnecting the newly opened battle.",
+      "correction": "Ignore that packet only after validating current authentication, lease, connection/map generations, active wild battle and its saved origin. Failed asynchronous fences freeze publication.",
+      "evidence": ["tests/integration/wild-test-smoke.ts", "tests/e2e/wild-testing.spec.ts"]
+    },
+    {
+      "kind": "test-harness-failure-after-fix",
+      "cause": "The first focused run passed ten scenarios but exhausted the existing signup rate limit while creating fixtures for the fourth cadence mode (HTTP 429).",
+      "correction": "Restart the test-owned backend before the four cadence fixtures. Production rate limits and application behavior are unchanged.",
+      "evidence": "reports/pass29-cadence-signup-limit/",
+      "rerun": "reports/wild-testing-focused-exit-status.json"
+    }
+  ],
+  "limitations": [
+    "Movement timing evidence is a short local Chromium sample with walking/running and encounters off/on; remote latency was not benchmarked.",
+    "Existing source battle engines were verified but not extended or rebuilt in this bug-fix pass.",
+    "All mutating automated checks used isolated _test fixtures. Main ADMINA and ADMINB were not logged into or reset."
+  ]
+}
