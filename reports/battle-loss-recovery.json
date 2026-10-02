@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T09:42:54.041Z",
+  "checkedAt": "2026-10-02T10:53:13.758Z",
   "status": "passed",
   "profile": "firered-route1-loss-v1",
   "wasmSha256": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a",
@@ -7,8 +7,8 @@
   "crossBuildRawBoundaries": 1671,
   "replayedTransitions": 1671,
   "freshProcess": {
-    "pid": 26368,
-    "parentPid": 3324,
+    "pid": 11504,
+    "parentPid": 23688,
     "hostBoundaries": 1671,
     "rawBoundaries": 1671,
     "transitions": 1671

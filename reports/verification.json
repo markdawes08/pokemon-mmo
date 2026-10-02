@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T09:49:42.194Z",
+  "checkedAt": "2026-10-02T11:02:47.170Z",
   "results": [
     {
       "stage": "doctor",
@@ -75,6 +75,10 @@
     },
     {
       "stage": "battle:pursuit",
+      "status": "passed"
+    },
+    {
+      "stage": "practice:check",
       "status": "passed"
     },
     {

@@ -57,7 +57,7 @@ instead of deleting it, preserving monotonic generations. Save and heartbeat
 transactions verify the owner, both generations and lease expiration. Old
 connections cannot save, renew or release a replacement connection's lease.
 
-The authenticated room's durable command is `save-profile`: it increments the
+The authenticated room's profile-specific durable command is `save-profile`: it increments the
 profile revision and records its save time. It accepts no world location or
 gameplay state. A transaction writes the profile and its payload-hashed receipt
 together. Same ID/same normalized payload returns the original receipt; a changed
@@ -75,7 +75,8 @@ writer; an absent receipt cannot race that writer's commit. There is at most one
 automatic retry with the same command. Storage outages fail clearly and freeze
 the session instead of promising an in-memory save. Recovery restores the
 profile and, under the bounded development policy below, its committed world location;
-battle/script/trade recovery remains future work. The separate local
+isolated practice separately restores its committed battle snapshot and receipts.
+Normal world-battle outcomes and script/trade recovery remain future work. The separate local
 development fixture command described below owns the new asset transaction.
 
 `node scripts/db.mjs test` uses only `TEST_DATABASE_URL`, requires a database name
@@ -176,17 +177,19 @@ original trainer ID 1, five Potions, five Poké Balls and the clear Pallet tile
 (10,12) are explicit development choices. Money 3000 also matches source new-game
 money. Only `development:` flags/variables are written; no real story completion
 is invented. The source evidence and chosen values are recorded in
-`../../reports/development-profile-source.json`. The fixture remains unusable for
-live battles, capture, items or storage transfers until
-those owning phases implement and verify their rules. Bounded shared exploration
-is admitted separately by the named P05 development policy. It is not an R1 mechanics
+`../../reports/development-profile-source.json`. The fixture admits bounded shared
+exploration and isolated practice with temporary teams. It does not yet admit
+normal world battles, owned capture, item use or storage transfers; those owning
+phases must implement and verify their rules. Shared exploration uses the named
+P05 development policy. It is not an R1 mechanics
 closure result or a replacement for the source opening adventure.
 
 Source-profile unit checks validate the pinned values and reject changed source
 identity, missing moves and blocked/occupied anchors. The asset integration and
 browser checks use separate random test accounts and remove their rows in
-restrictive-FK order. Full battle/script/trade recovery records remain deferred
-to their owning phases; no unused snapshot tables imply those systems exist.
+restrictive-FK order. Isolated practice now has dedicated state/receipt records.
+Normal world-battle outcome application and script/trade recovery remain deferred
+to their owning phases.
 
 ## Bounded world checkpoints (0005)
 
@@ -213,4 +216,7 @@ simultaneously own a source and destination zone. A failed publication reloads
 the committed position. A revoked session cannot checkpoint new movement and is
 hidden when the next input/checkpoint or two-second heartbeat detects revocation;
 the signing-out browser disconnects immediately. Sudden process loss can discard movement since the last
-checkpoint. Separate battle/script/trade continuations remain unimplemented.
+checkpoint. Isolated practice persists through separate battle records; normal
+world-battle results and script/trade continuations remain unimplemented.
+
+Migration 0006 adds `character_practice_state` and `practice_command_receipts`. They persist isolated test battles through the sole CharacterService owner, separate from creatures/inventory/rewards. The global practice revision survives closure; UUID/payload receipts prevent turn duplication. Development characters may enter battle activity; ordinary staged accounts retain their prior constraint.

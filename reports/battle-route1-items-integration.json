@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T09:42:46.803Z",
+  "checkedAt": "2026-10-02T10:53:06.551Z",
   "status": "passed",
   "scope": "Private six-method Potion/Poke Ball integration; no database, account, room, owned capture grant or field acknowledgement",
   "compatibility": {

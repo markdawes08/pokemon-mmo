@@ -82,6 +82,7 @@ async function doctor() {
 }
 
 async function build() {
+  await run(python, ['tools/content-import/practice_sprites.py', 'build']);
   await syncContent();
   await tool('typescript/bin/tsc', '--noEmit');
   const { build: bundle } = await import('esbuild');
@@ -210,6 +211,12 @@ async function command(name, args) {
       await run(python, ['tools/battle-pursuit/build.py']);
       await js('--import', 'tsx', 'tools/battle-pursuit/verify.ts');
       return js('--import', 'tsx', 'tools/battle-pursuit/verify-integration.ts');
+    case 'practice:check':
+      await run(python, ['tools/content-import/practice_sprites.py', 'build']);
+      await run(python, ['tools/content-import/practice_sprites.py', 'check']);
+      await js('--import', 'tsx', 'tests/integration/practice-engine-smoke.ts');
+      await js('--import', 'tsx', 'tests/integration/practice-smoke.ts');
+      return js('--import', 'tsx', 'tests/integration/practice-network-smoke.ts');
     case 'battle:spike':
       await run(python, ['tools/battle-spike/build.py']);
       await js('--import', 'tsx', 'tools/battle-spike/verify.ts');
@@ -226,7 +233,7 @@ async function command(name, args) {
     case 'content:check': return converter('check', ...args);
     case 'verify': {
       const results = [];
-      for (const stage of ['doctor', 'lint', 'typecheck', 'test:unit', 'test:integration', 'content:check', 'battle:spike', 'encounter:check', 'battle:route1', 'battle:progression', 'battle:loss', 'battle:capture', 'battle:evolution', 'battle:family', 'battle:party', 'battle:tactics', 'battle:charge', 'battle:protect', 'battle:pursuit', 'build', 'test:boundaries', 'test:recovery', 'test:e2e']) {
+      for (const stage of ['doctor', 'lint', 'typecheck', 'test:unit', 'test:integration', 'content:check', 'battle:spike', 'encounter:check', 'battle:route1', 'battle:progression', 'battle:loss', 'battle:capture', 'battle:evolution', 'battle:family', 'battle:party', 'battle:tactics', 'battle:charge', 'battle:protect', 'battle:pursuit', 'practice:check', 'build', 'test:boundaries', 'test:recovery', 'test:e2e']) {
         console.log(`\n[verify] ${stage}`);
         try { await command(stage, []); results.push({ stage, status: 'passed' }); }
         catch (error) { results.push({ stage, status: 'failed', message: error.message }); throw error; }

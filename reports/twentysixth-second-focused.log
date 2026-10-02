@@ -1,0 +1,21 @@
+[check] lint
+[check] typecheck
+[check] practice:check
+{"status": "passed", "outputs": 17, "sourceInputs": 31, "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982"}
+{"status": "passed", "outputs": 17, "sourceInputs": 31, "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982"}
+node:internal/fs/promises:1345
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\mrkda\Projects\pokewaterblue\.local\battle-spike\primary\spike.wasm'
+    at async open (node:internal/fs/promises:1345:25)
+    at async readFile (node:internal/fs/promises:1996:14)
+    at async <anonymous> (C:\Users\mrkda\Projects\pokewaterblue\tests\integration\practice-engine-smoke.ts:23:95) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\mrkda\\Projects\\pokewaterblue\\.local\\battle-spike\\primary\\spike.wasm'
+}
+
+Node.js v24.21.0
+C:\Users\mrkda\Projects\pokewaterblue\.tools\node-v24.21.0-win-x64\node.exe --import tsx tests/integration/practice-engine-smoke.ts failed (1)

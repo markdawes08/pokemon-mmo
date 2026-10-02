@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-10-02T10:32:02.141Z",
+  "passed": false,
+  "results": [
+    {
+      "title": "faint decisions use the selected reserve and running ends practice without rewards",
+      "status": "passed"
+    },
+    {
+      "title": "refresh and native lost acknowledgement recover one durable practice action with explicit retry",
+      "status": "failed"
+    }
+  ],
+  "backendPids": [
+    17304
+  ],
+  "lifecycle": [
+    {
+      "at": "2026-10-02T10:31:40.798Z",
+      "event": "server_listening"
+    },
+    {
+      "at": "2026-10-02T10:31:41.597Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T10:31:41.832Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T10:31:43.561Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T10:31:43.561Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T10:31:44.086Z",
+      "event": "preview_connection_joined"
+    },
+    {
+      "at": "2026-10-02T10:31:44.488Z",
+      "event": "character_connected"
+    },
+    {
+      "at": "2026-10-02T10:31:45.210Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T10:31:45.732Z",
+      "event": "character_transport_reconnected"
+    },
+    {
+      "at": "2026-10-02T10:32:01.028Z",
+      "event": "character_transport_dropped"
+    },
+    {
+      "at": "2026-10-02T10:32:01.029Z",
+      "event": "preview_connection_left"
+    },
+    {
+      "at": "2026-10-02T10:32:01.046Z",
+      "event": "test_shutdown_requested"
+    },
+    {
+      "at": "2026-10-02T10:32:01.048Z",
+      "event": "server_stopping"
+    },
+    {
+      "at": "2026-10-02T10:32:01.067Z",
+      "event": "server_stopped"
+    }
+  ],
+  "screenshots": [
+    "reports/practice-desktop.png",
+    "reports/practice-mobile.png"
+  ],
+  "scope": "Built browser, independent real backend processes and owned PostgreSQL fixtures. Native acknowledgement loss and explicit same-command retry; no mocked mechanics or main account access."
+}

@@ -5,6 +5,7 @@ docs/TASKS.md and relevant decisions before resuming. Preserve existing work.
 
 - User explicitly deferred Git on 2026-09-25. Do not initialize Git, commit, or require Git for setup. Pin source content with a reproducible snapshot/hash instead; record unknown upstream revision honestly.
 - Include a brief suggested commit message in each completed-chunk handoff, as requested on 2026-09-30. This does not authorize Git operations while Git remains deferred.
+- User reprioritized playable battle testing on 2026-10-02. Deliver the in-game practice loop before more private-only mechanics, then resume the project plan. Every new supported move/Pokemon mechanic must be exposed for immediate manual testing in that loop in the same chunk; preserve the separate normal progression/reward requirements.
 - Use TypeScript, Phaser, Vite, Colyseus and real PostgreSQL as specified.
 - Use PowerShell-compatible commands and portable Node/Python orchestration.
 - Keep C:/Users/mrkda/Projects/pokefirered-master read-only.

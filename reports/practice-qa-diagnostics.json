@@ -1,0 +1,47 @@
+{
+  "pass": 26,
+  "scope": "Initial failures and their resolutions; final verification is recorded separately in twenty-sixth-pass gate reports.",
+  "diagnostics": [
+    {
+      "classification": "test harness",
+      "failure": "Focused typecheck rejected access to battleId through a broad PracticeCommand return type.",
+      "resolution": "Narrowed choose/close test builders with Extract. No application behavior changed.",
+      "evidence": "reports/twentysixth-first-focused.log"
+    },
+    {
+      "classification": "test harness",
+      "failure": "The retained spike artifact assertion used spike.wasm instead of the actual probe.wasm filename.",
+      "resolution": "Corrected the retained artifact path; no engine bytes changed.",
+      "evidence": "reports/twentysixth-second-focused.log"
+    },
+    {
+      "classification": "test harness",
+      "failure": "The new network test expected HTTP 201 for character creation; the existing API returns HTTP 200.",
+      "resolution": "Corrected the expectation to the existing API contract.",
+      "evidence": "reports/twentysixth-network-status-assumption.log"
+    },
+    {
+      "classification": "test harness",
+      "failure": "The initial browser charging check expected Skull Bash maximum PP 10.",
+      "resolution": "Corrected to source maximum PP 15 and observed 14 after charge; no mechanics changed.",
+      "evidence": "reports/practice-first-browser.log"
+    },
+    {
+      "classification": "application defect",
+      "failure": "An unrelated query/BUSY error could discard the client's pending practice UUID after a lost acknowledgement.",
+      "resolution": "Correlated practice errors with their valid command ID, preserved pending commands on unrelated or ambiguous errors, and retained explicit retry after BUSY exhaustion.",
+      "verification": "The browser drops a real acknowledgement, reconnects, retries identical command bytes and verifies a single durable receipt.",
+      "evidence": "reports/practice-focused-playwright.json"
+    },
+    {
+      "classification": "application defect",
+      "failure": "The first full gate timed out entering the shared world immediately after hello. The server published the ready snapshot before awaiting the new practice read, so the next command could receive BUSY.",
+      "resolution": "Read practice state before publishing handshake readiness, retaining transport/session fences and synchronous acknowledgement ordering.",
+      "verification": "Retained world/reconnect suites and an explicit immediate world-entry/leave network assertion; final gate outcome recorded separately.",
+      "evidence": "reports/twentysixth-first-verify.log"
+    }
+  ],
+  "userTestingAccountsUsed": false,
+  "userTestingAccountsReset": false,
+  "gitOperations": false
+}

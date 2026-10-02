@@ -9,7 +9,7 @@ export function renderTrainerAssets(target: HTMLElement, assets: TrainerAssets |
   };
   if (!assets) { add(target, 'p', 'Saved party and bag have not been loaded.', 'account-note'); return; }
   target.dataset.revision = String(assets.revision);
-  if (assets.profileId) add(target, 'p', 'Development fixture · Squirtle Lv. 5 starting profile. Enter shared exploration through Account. Battles remain unavailable.', 'asset-fixture');
+  if (assets.profileId) add(target, 'p', 'Development fixture · Squirtle Lv. 5 starting profile. Enter shared exploration through Account, or test mechanics with Practice battle. Wild encounters are still ahead.', 'asset-fixture');
   add(target, 'h4', `Party · ${assets.party.length}/6`);
   if (!assets.party.length) add(target, 'p', 'Your party is empty. Your first partner arrives with the opening adventure.', 'account-note');
   for (const member of assets.party) {

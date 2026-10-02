@@ -6,11 +6,12 @@ import { loadDialogueFont, layoutDialogue } from './dialogue-font';
 import { PreviewAudio } from './audio';
 import { attachFieldGuide, loadFieldGuide } from './field-guide';
 import { attachAccounts } from './accounts';
+import { attachPractice } from './practice';
 import './style.css';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <main class="shell">
-    <header class="topbar"><div class="wordmark">Poké<span>WaterBlue</span></div><div class="topbar-actions"><span class="build-label">Local development · 012</span><button class="button" id="account-button" type="button">Account</button></div></header>
+    <header class="topbar"><div class="wordmark">Poké<span>WaterBlue</span></div><div class="topbar-actions"><span class="build-label">Local development · 026</span><button class="button" id="practice-button" type="button">Practice battle</button><button class="button" id="account-button" type="button">Account</button></div></header>
     <div class="location"><div><p class="eyebrow" id="region-label">Kanto / Pallet Town</p><h1 id="location-name">Pallet Town</h1></div><p class="location-note" id="location-note">Home, town, and the road north.</p></div>
     <section class="console" aria-label="Game preview">
       <div class="screen-surround"><div class="game-screen" id="game" tabindex="0" aria-label="Pallet Town map. Arrows or W A S D move. Shift runs. E interacts."><div class="error-panel" id="loading">Loading Pallet Town…</div>
@@ -29,11 +30,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="status-row"><span class="status"><span class="dot" id="server-dot"></span><span id="server-status" role="status">Connecting to server…</span></span><span class="status"><span class="dot" id="db-dot"></span><span id="db-status">Checking database…</span></span><span id="display-info">240 × 160</span></div>
     <div class="world-status"><strong id="world-mode" role="status">Anonymous preview</strong><span id="world-nearby">Nearby trainers: 0</span><button class="button hidden" id="leave-world" type="button">Leave shared world</button></div>
     <ul id="nearby-players" class="nearby-players" aria-label="Nearby trainers"></ul>
-    <p class="footnote" id="world-note">Walk with arrows or WASD, hold Shift to run outdoors, and press E to speak or read signs. Anonymous exploration is unsaved. Local development trainers can enter the shared world through Account. Story progression and battles remain unavailable.</p>
+    <p class="footnote" id="world-note">Walk with arrows or WASD, hold Shift to run outdoors, and press E to speak or read signs. Anonymous exploration is unsaved. Local development trainers can enter the shared world through Account. Try supported battle mechanics with Practice battle. Wild encounters and story progression are still ahead.</p>
     <div class="debug-readout" id="message" aria-live="polite"></div>
     <dialog id="field-guide" class="field-guide" aria-labelledby="guide-title" aria-describedby="guide-intro">
       <header class="guide-header"><div><p class="eyebrow">Kanto / Reference</p><h2 id="guide-title">Field guide</h2></div><button class="button" id="guide-close" type="button">Close field guide</button></header>
-      <div class="guide-body"><p id="guide-intro" class="guide-note">Browse the starter families and Route 1 Pokémon. This is a reference guide; battles, capture and party management are still ahead.</p>
+      <div class="guide-body"><p id="guide-intro" class="guide-note">Browse the starter families and Route 1 Pokémon. This is a reference guide. Practice battle lets you test supported mechanics; wild encounters, capture and saved-party management are still ahead.</p>
         <div class="guide-controls"><label for="guide-species">Species <select id="guide-species"></select></label><label for="guide-level">Level <input id="guide-level" type="number" min="1" max="100" step="1" value="5" /></label></div>
         <div class="guide-grid"><section class="guide-card"><h3 id="guide-name"></h3><p id="guide-types" class="guide-types"></p><h4>Base stats</h4><div id="guide-stats" class="table-scroll"></div><p id="guide-abilities"></p><p id="guide-catch" class="guide-note"></p><p id="guide-growth" class="guide-note"></p><h4>Evolution</h4><p id="guide-evolutions"></p></section><section class="guide-card" id="guide-encounters" aria-label="Encounter reference"></section></div>
         <section class="guide-card"><h3>Level-up moves</h3><div id="guide-learnset" class="table-scroll"></div></section>
@@ -47,7 +48,8 @@ const element = <T extends HTMLElement = HTMLElement>(id: string) => document.ge
 const screen = element('game');
 let setAccountMenu = (_open: boolean) => {};
 let worldScene: WorldScene | undefined;
-const accounts = attachAccounts(() => setAccountMenu(true), () => { setAccountMenu(false); screen.focus(); }, {
+const closeMenu = () => { const open = !!document.querySelector('dialog[open]'); setAccountMenu(open); if (!open) screen.focus(); };
+const accounts = attachAccounts(() => setAccountMenu(true), closeMenu, {
   canEnter: () => screen.dataset.ready === 'true' && !!worldScene,
   onState: state => {
     worldScene?.setWorldState(state);
@@ -58,7 +60,7 @@ const accounts = attachAccounts(() => setAccountMenu(true), () => { setAccountMe
     element('leave-world').classList.toggle('hidden', state === 'preview');
     element('world-note').textContent = state === 'preview'
       ? 'Anonymous exploration is unsaved. Walk with arrows or WASD, hold Shift to run outdoors, and press E to interact. Local development trainers can enter the shared world through Account.'
-      : state === 'shared' ? 'Shared development world. Other trainers are visible and do not block your path. Save trainer checkpoints your location. Story interactions, encounters, and battles are unavailable.'
+      : state === 'shared' ? 'Shared development world. Other trainers are visible and do not block your path. Save trainer checkpoints your location. Leave shared exploration to try Practice battle. Story interactions and wild encounters are still ahead.'
         : state === 'reconnecting' ? 'Movement is paused while the connection recovers, for up to 60 seconds. Leave shared world to stop reconnecting and return to anonymous exploration.'
           : 'Movement is paused. Open Account to reconnect your trainer, or leave the shared world to return to anonymous exploration.';
     if (state !== 'shared') { element('nearby-players').replaceChildren(); element('world-nearby').textContent = 'Nearby trainers: 0'; }
@@ -77,6 +79,7 @@ const accounts = attachAccounts(() => setAccountMenu(true), () => { setAccountMe
   onError: message => worldScene?.sharedWorldError(message),
   onInputBusy: () => worldScene?.sharedWorldBusy(),
 });
+attachPractice(accounts.practice, () => setAccountMenu(true), closeMenu);
 element('leave-world').addEventListener('click', () => { void accounts.leaveWorld().then(() => screen.focus()); });
 let lastMessage = '';
 const report = (message: string) => {
@@ -153,9 +156,9 @@ try {
     input: { keyboard: { target: screen } },
     render: { transparent: false, powerPreference: 'low-power' },
   });
-  attachFieldGuide(fieldGuide, () => { scene.setMenuOpen(true); sound.playSelect(); }, () => { scene.setMenuOpen(false); screen.focus(); });
+  attachFieldGuide(fieldGuide, () => { scene.setMenuOpen(true); sound.playSelect(); }, closeMenu);
   setAccountMenu = open => scene.setMenuOpen(open);
-  if (document.querySelector<HTMLDialogElement>('#account-dialog')!.open) scene.setMenuOpen(true);
+  if (document.querySelector('dialog[open]')) scene.setMenuOpen(true);
   const resize = () => {
     const available = screen.parentElement!.clientWidth - 32;
     const scale = Math.max(1, Math.min(4, Math.floor(available / 240), Math.floor((window.innerHeight - 340) / 160)));

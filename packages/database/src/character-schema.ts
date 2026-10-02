@@ -25,7 +25,7 @@ export const characters = pgTable('characters', {
   check('characters_position_y_check', sql`${table.positionY} >= 0`),
   check('characters_location_complete', sql`(${table.mapId} IS NULL AND ${table.positionX} IS NULL AND ${table.positionY} IS NULL) OR (${table.mapId} IS NOT NULL AND length(${table.mapId}) > 0 AND ${table.positionX} IS NOT NULL AND ${table.positionY} IS NOT NULL)`),
   check('characters_staged_profile', sql`${table.stage} <> 'awaiting-new-game' OR (${table.activity} = 'recovering' AND ${table.mapId} IS NULL)`),
-  check('characters_development_profile', sql`${table.stage} <> 'development-fixture' OR (${table.activity} IN ('recovering','overworld','transferring') AND ${table.mapId} IS NOT NULL)`),
+  check('characters_development_profile', sql`${table.stage} <> 'development-fixture' OR (${table.activity} IN ('recovering','overworld','transferring','battle') AND ${table.mapId} IS NOT NULL)`),
   check('characters_position_elevation_check', sql`${table.positionElevation} BETWEEN 0 AND 15`),
   check('characters_position_facing_check', sql`${table.positionFacing} IN ('north','south','west','east')`),
   check('characters_transition_generation_check', sql`${table.transitionGeneration} BETWEEN 0 AND 9007199254740991`),

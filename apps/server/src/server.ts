@@ -20,6 +20,7 @@ import { WorldContent } from './world-content.js';
 import { WorldService } from './world-service.js';
 import { ReconnectionBindings } from './reconnection-bindings.js';
 import { guardReconnectHttp } from './reconnect-http.js';
+import { loadPracticeEngine } from './practice-engine.js';
 
 function localHost(value: string | undefined): boolean {
   if (!value) return false;
@@ -41,6 +42,7 @@ export async function createGameServer(env: ServerEnv, options: { now?: () => nu
   const auth = createAuth(database, env, origins);
   const characterService = new CharacterService(database, { testHooks: options.characterTestHooks });
   characterService.configureWorld(await WorldContent.load(), env.APP_MODE === 'local-preview' && env.NODE_ENV !== 'production');
+  characterService.configurePractice(await loadPracticeEngine(), env.APP_MODE === 'local-preview' && env.NODE_ENV !== 'production');
   const world = new WorldService(characterService, contentHash);
   const assetService = new AssetService(database);
   const tickets = new AdmissionTickets(options.now);
@@ -49,9 +51,11 @@ export async function createGameServer(env: ServerEnv, options: { now?: () => nu
   const checkReady = async () => {
     if (stopping) throw new Error('Server is stopping');
     await checkDatabaseReady(database, PROTOCOL_VERSION);
-    await database.pool.query(`SELECT u.id, s.id, a.id, v.id, c.id, c.position_elevation, c.position_facing, c.transition_generation, c.world_checkpoint_id, l.character_id, r.command_id, cr.command_id
+    await database.pool.query(`SELECT u.id, s.id, a.id, v.id, c.id, c.position_elevation, c.position_facing, c.transition_generation, c.world_checkpoint_id, l.character_id, r.command_id, cr.command_id,
+        ps.revision, ps.battle_id, ps.checkpoint, pr.command_id, pr.payload_hash
       FROM auth_user u, auth_session s, auth_account a, auth_verification v,
-        characters c, character_leases l, character_command_receipts r, account_creation_receipts cr LIMIT 0`);
+        characters c, character_leases l, character_command_receipts r, account_creation_receipts cr,
+        character_practice_state ps, practice_command_receipts pr LIMIT 0`);
     const assets = await database.pool.query<{ missing: string }>(`SELECT name AS missing FROM unnest($1::text[]) AS names(name) WHERE to_regclass(name) IS NULL`, [[
       'content_versions', 'content_species', 'content_moves', 'content_abilities', 'content_items',
       'creatures', 'creature_moves', 'character_inventory', 'character_wallets', 'domain_outcomes',

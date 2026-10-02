@@ -1,5 +1,13 @@
 # Mechanics coverage
 
+## Twenty-sixth-pass playable practice: verified
+
+Playable practice battles now run from the topbar using the signed-in development trainer and the unchanged server-side Pursuit engine. Choose one of nine matchups or configure 1–6 temporary team members and one wild opponent from eight supported species/24 moves, with source-legal level/move/ability choices and explicit starting HP/PP/status settings. Source sprites, HP/PP, weather, ordered battle narrative, move selection, switching, running, forced charging and faint decisions are playable. Each accepted start/turn/close commits its source checkpoint and RNG to isolated PostgreSQL practice records before acknowledgement. Session/lease fences, monotonic practice revision, command UUID/payload receipts and correlated errors preserve exact retry and fresh-process recovery. An unavailable old practice checkpoint can be closed safely. Normal party, moves, bag, money, story and world location are not modified by practice. Capture/items/rewards, normal wild encounters and normal resulting-team admission remain unimplemented. See ADR-027 and reports/practice-*.json.
+
+Full twenty-four-stage gate passed at 2026-10-02T11:02:47.170Z with native exit 0: 91 Vitest tests, 49 Python tests, retained database/account/asset/world/reconnect checks, all thirteen retained private engine gates and all 43 browser scenarios. Practice additionally passed all 8 supported species and 24 moves through 74 legal species/move source turns, 32 level admissions and 9 presets; 17 real-PostgreSQL storage/failure/recovery groups and 6 authenticated socket/restart groups passed, including immediate world entry after hello. All 4 new practice browser scenarios passed, including native acknowledgement loss and exact retry, refresh/backend restart, source charging/PP, Pursuit switching, faint/replacement/run and mobile rendering. All thirteen previous WASMs and 4,461 retained literal cases remain unchanged. The 16 source sprites plus metadata rebuild deterministically from 31 pinned inputs. Public boundaries passed 106 HTTP checks across 90 built files.
+
+Earlier sections retain their original verified scope.
+
 ## Twenty-fifth-pass private Pursuit: verified
 
 The new private profile extends Protect/charge/party diagnostics to 24 family

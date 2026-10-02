@@ -3,6 +3,7 @@ import { sql } from 'drizzle-orm';
 export * from './auth-schema.js';
 export * from './character-schema.js';
 export * from './asset-schema.js';
+export * from './practice-schema.js';
 
 // Foundation metadata; reviewed account/character schemas are exported above.
 export const runtimeMetadata = pgTable('runtime_metadata', {

@@ -60,6 +60,7 @@ try {
     'tools/battle-protect/engine.ts', '.local/battle-protect/primary/protect.wasm',
     'tools/battle-protect/protect-policy.json',
     'tools/battle-pursuit/engine.ts', '.local/battle-pursuit/primary/pursuit.wasm',
+    'apps/server/src/practice-engine.ts', 'packages/database/migrations/0006_practice_battles.sql',
     'packages/content-schema/src/gameplay-server.ts', 'reports/encounter-dependencies.json', '.local/database.json']) {
     const absolute = resolve(root, path).replaceAll('\\', '/');
     assert((await stat(absolute)).isFile(), `Boundary test requires a real file: ${path}`);

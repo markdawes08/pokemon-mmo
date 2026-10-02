@@ -1,5 +1,6 @@
 import { Room, ServerError, CloseCode, type AuthContext, type Client } from '@colyseus/core';
 import { CHARACTER_RECONNECT_GRACE_MS, CHARACTER_RULES_VERSION, PROTOCOL_VERSION, SERVER_VERSION, characterJoinSchema, handshakeSchema, saveProfileCommandSchema, worldCommandSchema, worldInputSchema,
+  practiceCommandSchema, type PracticeSnapshot,
   type CharacterSnapshot, type CharacterError, type ProfileSaved, type WorldSnapshot, type WorldLeft } from '@pokewaterblue/protocol';
 import type { Database } from '@pokewaterblue/database';
 import { readAccountSession, sessionStillValid, type AccountSession, type GameAuth } from './auth.js';
@@ -14,7 +15,7 @@ import { ReconnectionBindings } from './reconnection-bindings.js';
 type CharacterClient = Client<{
   auth: { identity: AccountSession; characterId: string };
   userData: { connection: CharacterConnection; busy: boolean; suspended: boolean; awaitingHello: boolean; helloDeadline: number; resumeTimer?: ReturnType<typeof setTimeout>; terminated: boolean; bindingToken: string };
-  messages: { snapshot: CharacterSnapshot; saved: ProfileSaved; error: CharacterError; world: WorldSnapshot; 'world-left': WorldLeft };
+  messages: { snapshot: CharacterSnapshot; saved: ProfileSaved; error: CharacterError; world: WorldSnapshot; 'world-left': WorldLeft; practice: PracticeSnapshot };
 }>;
 interface Grace {
   client: CharacterClient; deadline: number; settled: Promise<boolean>; heartbeat?: Promise<void>;
@@ -86,6 +87,12 @@ export function createCharacterRoom(dependencies: {
       this.onMessage('hello', (client: CharacterClient, payload: unknown) => {
         void this.run(client, async () => {
           if (!handshakeSchema.safeParse(payload).success) throw new AccountApiError('PROTOCOL_MISMATCH', 'Reload to use the current protocol.');
+          // Complete every asynchronous read before acknowledging hello. A client
+          // may issue its first command as soon as it receives the private view.
+          const practice = characters.practiceAvailable(client.userData!.connection)
+            ? await characters.practiceSnapshot(client.userData!.connection, { handshakeRead: true }) : undefined;
+          if (client.userData!.suspended || client.userData!.terminated || this.stopping ||
+              client.userData!.awaitingHello && Date.now() >= client.userData!.helloDeadline) throw new AccountApiError('RECONNECT_REQUIRED', 'The trainer handshake ended. Reconnect explicitly.');
           const current = snapshot(client);
           if (!current) throw new AccountApiError('RECONNECT_REQUIRED', 'Reconnect to reload the committed profile.');
           client.send('snapshot', current);
@@ -93,6 +100,7 @@ export function createCharacterRoom(dependencies: {
           client.userData!.awaitingHello = false;
           clearTimeout(client.userData!.resumeTimer); client.userData!.resumeTimer = undefined;
           world.publishFor(client.userData!.connection);
+          if (practice) client.send('practice', practice);
         }, true, true);
       });
       this.onMessage('save', (client: CharacterClient, payload: unknown) => {
@@ -129,17 +137,35 @@ export function createCharacterRoom(dependencies: {
           world.publishFor(client.userData!.connection);
         }, false);
       });
+      this.onMessage('practice-query', (client: CharacterClient, payload: unknown) => {
+        void this.run(client, async () => {
+          if (!payload || typeof payload !== 'object' || Array.isArray(payload) || Object.keys(payload).length !== 0) throw new AccountApiError('INVALID_MESSAGE', 'Practice query takes an empty object.');
+          client.send('practice', await characters.practiceSnapshot(client.userData!.connection));
+        });
+      });
+      this.onMessage('practice-command', (client: CharacterClient, payload: unknown) => {
+        // Parse before backpressure so BUSY can identify this exact valid request.
+        const parsed = practiceCommandSchema.safeParse(payload);
+        void this.run(client, async () => {
+          if (!parsed.success) throw new AccountApiError('INVALID_MESSAGE', 'Invalid practice command.');
+          const practice = await characters.practiceCommand(client.userData!.connection, parsed.data);
+          const current = snapshot(client);
+          if (!current) throw new AccountApiError('RECONNECT_REQUIRED', 'Reconnect to reload the committed practice.');
+          client.send('snapshot', current);
+          client.send('practice', practice);
+        }, true, false, parsed.success ? parsed.data.commandId : undefined);
+      });
       this.onMessage('*', (client: CharacterClient) => {
-        void this.run(client, async () => { throw new AccountApiError('UNSUPPORTED_MESSAGE', 'This command is not supported. Story, battles and rewards remain unavailable.'); });
+        void this.run(client, async () => { throw new AccountApiError('UNSUPPORTED_MESSAGE', 'This command is not supported. Normal story battles and rewards remain unavailable.'); });
       });
     }
-    private async run(client: CharacterClient, operation: () => Promise<void>, renew = true, hello = false) {
+    private async run(client: CharacterClient, operation: () => Promise<void>, renew = true, hello = false, commandId?: string) {
       if (!client.userData || !client.auth) return;
       if (client.userData.suspended || client.userData.terminated || client.userData.awaitingHello && !hello) return;
       if (client.userData.awaitingHello && Date.now() >= client.userData.helloDeadline) {
         this.terminate(client, { code: 'RECONNECT_REQUIRED', message: 'The trainer handshake timed out. Reconnect explicitly.' }); return;
       }
-      if (client.userData.busy) { client.send('error', { code: 'BUSY', message: 'Wait for the pending command before retrying.' }); return; }
+      if (client.userData.busy) { client.send('error', { code: 'BUSY', message: 'Wait for the pending command before retrying.', ...(commandId ? { commandId } : {}) }); return; }
       client.userData.busy = true;
       try {
         if (renew && !await sessionStillValid(database, client.auth.identity)) throw new AccountApiError('AUTH_REQUIRED', 'Your account session ended. Sign in again.');
@@ -148,7 +174,7 @@ export function createCharacterRoom(dependencies: {
         if (client.userData.awaitingHello && Date.now() >= client.userData.helloDeadline) throw new AccountApiError('RECONNECT_REQUIRED', 'The trainer handshake timed out. Reconnect explicitly.');
         await operation();
       } catch (error) {
-        const detail = publicError(error);
+        const detail = { ...publicError(error), ...(commandId ? { commandId } : {}) };
         if (client.userData) world.publishFor(client.userData.connection);
         if (['AUTH_REQUIRED', 'SESSION_REPLACED', 'LEASE_EXPIRED', 'DATABASE_UNAVAILABLE', 'COMMAND_OUTCOME_UNKNOWN', 'RECONNECT_REQUIRED'].includes(detail.code)) this.terminate(client, detail);
         else client.send('error', { ...detail, ...(snapshot(client) ? { snapshot: snapshot(client) } : {}) });

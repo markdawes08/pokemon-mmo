@@ -33,7 +33,7 @@ export const characterErrorSchema = z.strictObject({
     'STALE_REVISION', 'SESSION_REPLACED', 'LEASE_EXPIRED', 'DATABASE_UNAVAILABLE', 'INVALID_MESSAGE',
     'UNSUPPORTED_MESSAGE', 'NOT_READY', 'PROTOCOL_MISMATCH', 'RATE_LIMITED', 'RECONNECT_REQUIRED',
     'COMMAND_OUTCOME_UNKNOWN', 'BUSY', 'TICKET_INVALID']),
-  message: z.string().min(1).max(256), snapshot: characterSnapshotSchema.optional(),
+  message: z.string().min(1).max(256), snapshot: characterSnapshotSchema.optional(), commandId: z.uuid().optional(),
 });
 export type CharacterView = z.infer<typeof characterViewSchema>;
 export type AccountView = z.infer<typeof accountViewSchema>;

@@ -137,7 +137,7 @@ test('the explicit development trainer displays its saved source-backed party an
   await openAssets(page);
   const panel = page.locator('#account-assets');
   await expect(panel).toContainText('Development fixture');
-  await expect(panel).toContainText('Enter shared exploration through Account. Battles remain unavailable.');
+  await expect(panel).toContainText('Enter shared exploration through Account, or test mechanics with Practice battle. Wild encounters are still ahead.');
   await expect(panel).toContainText('Party · 1/6');
   await expect(panel).toContainText('SQUIRTLE');
   await expect(panel).toContainText('Lv. 5');

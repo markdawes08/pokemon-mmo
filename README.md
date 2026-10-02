@@ -31,8 +31,9 @@ Profiles are stored in PostgreSQL. Trainers with the explicit development fixtur
 can choose **Enter shared world** to see other signed-in trainers and move through
 the three supported maps. Shared positions save through checkpoints and Save;
 brief connection interruptions can resume within the fixed grace period.
-Opening story and battle gameplay remain unavailable. Email verification and
-password recovery are not connected.
+Isolated practice battles are playable with a development trainer. Normal wild
+encounters, opening story and battle rewards remain unfinished. Email verification
+and password recovery are not connected.
 Expand **Saved party & bag** in Account to inspect your persisted records. New
 trainers start empty. A separate [local developer fixture](docs/RUNBOOK.md#local-development-fixture)
 can supply a source-defined Squirtle and starting items for upcoming development.
@@ -41,7 +42,7 @@ floor, return exit, route connections, and one-way ledges work in this preview.
 Five NPCs appear at their source starting positions and block occupied tiles.
 Simple source conversations and signs are readable; story-dependent interactions
 explain that they are unavailable. These simple interactions belong to the
-anonymous preview; shared dialogue, NPC wandering, story progression and battles
+anonymous preview; shared dialogue, NPC wandering, story progression and normal world battles
 remain future work. Other destinations remain blocked.
 
 Ctrl+C stops the client and backend. The local database retains its data.
@@ -64,9 +65,15 @@ npm.cmd run source:inventory
 npm.cmd run content:build -- --profile firered-private
 npm.cmd run doctor
 npm.cmd run battle:setup
+.\.venv\Scripts\python.exe tools/battle-pursuit/build.py
 npm.cmd run verify
 npm.cmd run dev
 ```
+
+The direct Pursuit build prepares the current server-loaded WASM before the unit
+and integration stages need it. The full gate later rebuilds and verifies all
+retained engine profiles. Run this prerequisite on a clean setup before `verify`
+or starting the backend.
 
 The scripts use project-local Node 24 and PostgreSQL 17. Setup preserves an existing
 `.env`. Database credentials stay in ignored local files. Keep `.env`, `.local/`,
@@ -93,6 +100,7 @@ the running browser preview.
 | `npm.cmd run battle:tactics` | Verify private rain, fixed damage, Rapid Spin and wild Whirlwind mechanics |
 | `npm.cmd run battle:charge` | Verify private Skull Bash charging, forced continuation and recovery |
 | `npm.cmd run battle:protect` | Verify private Protect, its pinned repeat-rate policy and recovery |
+| `npm.cmd run practice:check` | Verify source practice teams, sprites, persisted turns and recovery |
 | `npm.cmd run battle:pursuit` | Verify private Pursuit attacks, switch interception and recovery |
 | `npm.cmd run content:check` | Rebuild independently and verify generated hashes |
 | `npm.cmd run build` | Build the client and backend |
@@ -106,9 +114,10 @@ See [environment](docs/ENVIRONMENT.md), [runbook](docs/RUNBOOK.md), and
 
 The completed bounded battle experiment supports source-driven attacks, switches,
 status, fainting and outcomes, with portable recovery and a private server adapter.
-ADR-001 selects C/WASM source commands with TypeScript turn scheduling. Live
-encounters, party management and the battle UI remain later work. Owned asset
-records and their read-only account view are now implemented.
+ADR-001 selects C/WASM source commands with TypeScript turn scheduling. An isolated
+practice UI now uses the later Pursuit profile. Normal world encounters, owned-party
+management and reward application remain later work. Owned asset records and
+their read-only account view are implemented.
 See [the experiment notes](tools/battle-spike/README.md) for its verified scope
 and remaining mechanics and persistence requirements.
 
@@ -123,7 +132,9 @@ The [Protect profile](tools/battle-protect/README.md) adds Protect for 23 moves,
 including a separately pinned ROM policy for repeated Protect attempts.
 The [Pursuit profile](tools/battle-pursuit/README.md) adds the 24th move, including
 source switch interception and selected-switch continuation after a knockout.
-These are private diagnostics; they do not apply account assets or world changes.
+The **Practice battle** button now exposes these mechanics through signed-in local development
+trainers. Choose a preset or configure a temporary team; battles save after each action and
+resume after refresh or reconnect. Practice grants no owned assets, rewards or world changes.
 Mirror Move, complete party-aware results, durable ownership,
-arrival scripts and live battle application remain necessary. See [current status](docs/STATUS.md)
+arrival scripts and normal world-battle outcome application remain necessary. See [current status](docs/STATUS.md)
 for verified gates and remaining work.

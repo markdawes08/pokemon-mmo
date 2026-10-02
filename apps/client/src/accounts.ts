@@ -6,10 +6,17 @@ import {
   characterSnapshotSchema, profileSavedSchema, characterErrorSchema, trainerNameSchema, trainerAssetsSchema,
   type AccountView, type CharacterSnapshot, type SaveProfileCommand, type CreateCharacter, type TrainerAssets,
   worldSnapshotSchema, worldLeftSchema, type WorldSnapshot, type WorldCommand,
+  practiceSnapshotSchema, practiceCommandSchema, type PracticeSnapshot, type PracticeCommand, type PracticeChoice, type PracticeSetup,
 } from '@pokewaterblue/protocol';
 import type { Direction } from '@pokewaterblue/game-rules';
 
 export type WorldConnectionState = 'preview' | 'shared' | 'reconnecting' | 'disconnected';
+export interface AccountPracticeState {
+  signedIn: boolean; eligible: boolean; connected: boolean; reconnecting: boolean; busy: boolean;
+  worldState: WorldConnectionState; snapshot: PracticeSnapshot | null; fresh: boolean;
+  waiting: boolean; retry: boolean; message: string; error: boolean;
+}
+export type PracticeAction = { kind: 'start'; setup: PracticeSetup } | { kind: 'choose'; battleId: string; choice: PracticeChoice } | { kind: 'close'; battleId: string };
 export interface AccountWorldBridge {
   canEnter: () => boolean;
   onState: (state: WorldConnectionState) => void;
@@ -69,6 +76,28 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   let saveRetryTimer: ReturnType<typeof setTimeout> | undefined;
   let saveRetries = 0;
   let destroyed = false;
+  let practice: PracticeSnapshot | null = null, practiceFresh = false, practiceWaiting = false;
+  let practiceMessage = '', practiceError = false, pendingPractice: PracticeCommand | null = null;
+  let practiceTimer: ReturnType<typeof setTimeout> | undefined, practiceRetryTimer: ReturnType<typeof setTimeout> | undefined;
+  let practiceQueryTimer: ReturnType<typeof setTimeout> | undefined;
+  let practiceQueryRetryTimer: ReturnType<typeof setTimeout> | undefined, practiceQueryRetries = 0;
+  let practiceRetries = 0;
+  const practiceListeners = new Set<(state: AccountPracticeState) => void>();
+  const practiceState = (): AccountPracticeState => ({ signedIn: !!account, eligible: account?.character?.stage === 'development-fixture',
+    connected: !!room?.connection.isOpen && !!snapshot, reconnecting: !!recovery, busy, worldState, snapshot: practice,
+    fresh: practiceFresh, waiting: practiceWaiting, retry: !!pendingPractice && !practiceWaiting, message: practiceMessage, error: practiceError });
+  const stopPracticeWait = () => { clearTimeout(practiceTimer); clearTimeout(practiceRetryTimer); practiceWaiting = false; practiceRetries = 0; };
+  const practiceDropped = () => {
+    clearTimeout(practiceQueryTimer); practiceQueryTimer = undefined; clearTimeout(practiceQueryRetryTimer);
+    stopPracticeWait(); practiceFresh = false;
+    if (pendingPractice) { practiceMessage = 'Action confirmation is unknown. Reconnect, then retry the same action safely.'; practiceError = true; }
+  };
+  const queryPractice = () => {
+    if (!room?.connection.isOpen || recovery) return;
+    clearTimeout(practiceQueryTimer); clearTimeout(practiceQueryRetryTimer); practiceFresh = false; practiceQueryRetries = 0;
+    practiceQueryTimer = setTimeout(() => { practiceQueryTimer = undefined; practiceMessage = 'Practice did not load. Try connecting again.'; practiceError = true; render(); }, 8000);
+    room.send('practice-query', {});
+  };
   let worldState: WorldConnectionState = 'preview', wantsWorld = false;
   let shared: WorldSnapshot | null = null;
   let sequence = 0, lastWorldAt = 0;
@@ -127,15 +156,18 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
       if (button.id !== 'account-close') button.disabled = busy;
     }
     el<HTMLButtonElement>('account-save').disabled = busy || !!recovery || !room?.connection.isOpen || !snapshot;
+    if (practiceWaiting || snapshot?.character.activity === 'battle') el<HTMLButtonElement>('account-save').disabled = true;
     el('account-save').textContent = pendingSave ? 'Retry save' : 'Save trainer';
     el<HTMLButtonElement>('account-connect').disabled = busy || !!room;
     el('account-connect').textContent = recovery ? 'Reconnecting trainer…' : room ? 'Trainer connected' : snapshot ? 'Reconnect trainer' : 'Connect trainer';
     el('account-world-actions').classList.toggle('hidden', account?.character?.stage !== 'development-fixture');
     el('account-world-enter').classList.toggle('hidden', worldState === 'shared' || worldState === 'reconnecting');
     el<HTMLButtonElement>('account-world-enter').disabled = busy || !!recovery || !worldBridge.canEnter();
+    if (practiceWaiting || snapshot?.character.activity === 'battle') el<HTMLButtonElement>('account-world-enter').disabled = true;
     el('account-world-enter').textContent = worldState === 'disconnected' ? 'Reconnect shared world' : 'Enter shared world';
     el('account-world-leave').classList.toggle('hidden', worldState === 'preview');
     for (const input of dialog.querySelectorAll<HTMLInputElement>('input')) input.disabled = busy;
+    for (const listener of practiceListeners) listener(practiceState());
   }
   const showRetry = (visible: boolean) => el('account-retry').classList.toggle('hidden', !visible);
   async function request(path: string, body?: unknown): Promise<unknown> {
@@ -157,6 +189,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
     return data;
   }
   function disconnect(reason = 'World connection closed. Reconnect to continue.') {
+    practiceDropped();
     // Save owns its busy state until confirmation. Cancelling that timer must
     // also release its controls; perform() still owns other async operations.
     if (saveTimer !== undefined) busy = false;
@@ -174,6 +207,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   }
   function clearAccount() {
     operation++; disconnect(); account = null; assets = null; snapshot = null; pendingSave = null; pendingCreate = null;
+    practice = null; pendingPractice = null; practiceMessage = ''; practiceError = false;
     el<HTMLDetailsElement>('account-assets-details').open = false;
     el<HTMLInputElement>('account-password').value = '';
     el<HTMLInputElement>('account-trainer-name').value = '';
@@ -252,6 +286,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
       joined.onDrop(() => {
         if (room === joined) transportDropped = true;
         if (room !== joined || destroyed || !joined.reconnection.enabled) return;
+        practiceDropped();
         const wasSaving = saveTimer !== undefined;
         clearSaveTimers(); if (wasSaving) busy = false;
         joined.reconnection.enqueuedMessages = [];
@@ -309,6 +344,22 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
         initialized = true;
         render(); resolve();
       });
+      joined.onMessage('practice', (value: unknown) => {
+        if (room !== joined || (recovery && !recovery.privateReady)) return;
+        const parsed = practiceSnapshotSchema.safeParse(value);
+        if (!parsed.success) {
+          practiceMessage = 'The practice response is incompatible. Reload to continue.'; practiceError = true;
+          disconnect(practiceMessage); render(); return;
+        }
+        const received = parsed.data;
+        clearTimeout(practiceQueryTimer); practiceQueryTimer = undefined; clearTimeout(practiceQueryRetryTimer);
+        if (!practice || received.state.revision >= practice.state.revision) practice = received;
+        practiceFresh = true;
+        if (pendingPractice && received.commandId === pendingPractice.commandId) {
+          stopPracticeWait(); pendingPractice = null; practiceMessage = received.replayed ? 'Action recovered. Your battle is up to date.' : ''; practiceError = false;
+        } else if (!pendingPractice) { practiceMessage = ''; practiceError = false; }
+        render();
+      });
       joined.onMessage('world', (value: unknown) => {
         if (room !== joined || !wantsWorld || (recovery && !recovery.privateReady)) return;
         const parsed = worldSnapshotSchema.safeParse(value);
@@ -347,7 +398,19 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
       joined.onMessage('error', (value: unknown) => {
         if (room !== joined) return;
         const parsed = characterErrorSchema.safeParse(value);
-        if (parsed.success && parsed.data.code === 'BUSY') {
+        const matchedPractice = parsed.success && pendingPractice !== null && parsed.data.commandId === pendingPractice.commandId;
+        if (parsed.success && parsed.data.code === 'BUSY' && matchedPractice && practiceWaiting && pendingPractice && practiceRetries < 5) {
+          const command = pendingPractice; practiceRetries++; clearTimeout(practiceRetryTimer);
+          practiceRetryTimer = setTimeout(() => {
+            if (room === joined && !recovery && joined.connection.isOpen && practiceWaiting && pendingPractice === command) joined.send('practice-command', command);
+          }, 150); return;
+        }
+        if (parsed.success && parsed.data.code === 'BUSY' && !parsed.data.commandId && practiceQueryTimer !== undefined && !practiceWaiting && practiceQueryRetries < 5) {
+          practiceQueryRetries++; clearTimeout(practiceQueryRetryTimer);
+          practiceQueryRetryTimer = setTimeout(() => { if (room === joined && !recovery && joined.connection.isOpen && practiceQueryTimer !== undefined) joined.send('practice-query', {}); }, 150);
+          return;
+        }
+        if (parsed.success && parsed.data.code === 'BUSY' && !parsed.data.commandId) {
           if (recovery?.transportReady && recovery.helloRetries < 5) {
             recovery.helloRetries++; sendRecoveryHello(); return;
           }
@@ -377,6 +440,17 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
         clearSaveTimers(); busy = false;
         if (!parsed.success) { disconnect(); failReady('Incompatible server response. Reload to continue.'); status('Incompatible server response.', true); render(); return; }
         const error = parsed.data;
+        if (!practiceFresh && account?.character?.stage === 'development-fixture') { clearTimeout(practiceQueryTimer); practiceQueryTimer = undefined; practiceMessage = error.message; practiceError = true; }
+        // An uncorrelated query/heartbeat error after a drop cannot establish
+        // whether the original command committed. Keep its UUID until explicit
+        // retry receives a receipt or a definitive command rejection.
+        if (pendingPractice && matchedPractice) {
+          stopPracticeWait(); practiceMessage = error.message; practiceError = true;
+          // BUSY can race the original request after a lost acknowledgement.
+          // It rejects this attempt, not the original command's commit.
+          if (!['BUSY', 'DATABASE_UNAVAILABLE', 'COMMAND_OUTCOME_UNKNOWN', 'RECONNECT_REQUIRED', 'SESSION_REPLACED', 'LEASE_EXPIRED'].includes(error.code)) pendingPractice = null;
+          if (!pendingPractice && joined.connection.isOpen) queryPractice();
+        }
         const leaving = worldRequest?.kind === 'leave';
         failWorldRequest(error.message);
         if (worldState === 'shared') worldBridge.onError(error.message);
@@ -391,7 +465,7 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
       joined.onLeave(() => {
         if (room !== joined) return;
         joined.reconnection.enabled = false; joined.reconnection.enqueuedMessages = [];
-        room = undefined; clearSaveTimers(); clearRecovery(); busy = false;
+        room = undefined; clearSaveTimers(); clearRecovery(); practiceDropped(); busy = false;
         shared = null; if (worldState !== 'preview') setWorldState('disconnected'); failWorldRequest('Trainer disconnected.');
         status('Trainer disconnected. Reconnect to continue.', true); failReady('Trainer disconnected.'); render();
       });
@@ -430,6 +504,26 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
       status('Shared world left. Anonymous exploration is unsaved.'); render(); return;
     }
     await perform(async () => { await requestWorld('leave'); });
+  }
+  async function connectPractice() {
+    if (busy || practiceWaiting || worldRequest || pendingSave) throw new Error('Wait for the current trainer request to finish.');
+    if (recovery) throw new Error('Your trainer is reconnecting. Please wait.');
+    if (!account?.character) throw new Error('Sign in and connect a development trainer through Account to practice.');
+    if (account.character.stage !== 'development-fixture') throw new Error('Practice is available for local development trainers. Your saved trainer has not been initialized for development play.');
+    if (worldState !== 'preview') throw new Error('Leave the shared world before starting practice.');
+    busy = true; render();
+    try {
+      if (!room) { wantsWorld = false; await connect(); }
+      if (!room?.connection.isOpen || recovery) throw new Error('Connect your trainer before practicing.');
+      room.reconnection.enabled = true; queryPractice();
+    } finally { busy = false; render(); }
+  }
+  function sendPractice(command: PracticeCommand) {
+    if (busy || recovery || worldRequest || pendingSave || !room?.connection.isOpen || !practiceFresh || practiceWaiting) throw new Error('Connect your trainer and wait for the latest practice state.');
+    if (worldState !== 'preview') throw new Error('Leave the shared world before practicing.');
+    pendingPractice = practiceCommandSchema.parse(command); practiceWaiting = true; practiceMessage = 'Saving your battle action…'; practiceError = false; practiceRetries = 0;
+    practiceTimer = setTimeout(() => { stopPracticeWait(); practiceMessage = 'Action confirmation timed out. Retry the same action to check its result.'; practiceError = true; render(); }, 8000);
+    room.send('practice-command', pendingPractice); render();
   }
   function mode(create: boolean) {
     signup = create;
@@ -508,6 +602,23 @@ export function attachAccounts(onOpen: () => void, onClose: () => void, worldBri
   void perform(refresh);
   return {
     leaveWorld,
+    practice: {
+      subscribe(listener: (state: AccountPracticeState) => void) { practiceListeners.add(listener); listener(practiceState()); return () => practiceListeners.delete(listener); },
+      connect: connectPractice,
+      openAccount() { if (!dialog.open) trigger.click(); },
+      async leaveShared() {
+        if (busy || recovery || !room?.connection.isOpen || worldState !== 'shared') throw new Error('Reconnect your shared trainer and leave through Account first.');
+        busy = true; render();
+        try { await requestWorld('leave'); } finally { busy = false; render(); }
+        await connectPractice();
+      },
+      submit(action: PracticeAction) {
+        if (pendingPractice) throw new Error('Retry the unconfirmed action before making another choice.');
+        if (!practice) throw new Error('Load practice first.');
+        sendPractice({ ...action, commandId: crypto.randomUUID(), expectedRevision: practice.state.revision });
+      },
+      retry() { if (pendingPractice) sendPractice(pendingPractice); },
+    },
     sendWorldInput(direction: Direction, run: boolean): number | undefined {
       if (recovery || !room?.connection.isOpen || !shared || worldState !== 'shared' || snapshot?.character.activity !== 'overworld' || busy || worldRequest) return;
       const inputSequence = ++sequence;

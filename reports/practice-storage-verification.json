@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-02T10:56:53.018Z",
+  "status": "passed",
+  "checks": [
+    "practice-requires-explicit-development-fixture-and-enabled-local-mode",
+    "practice-start-is-idempotent-and-mutually-exclusive-with-world-and-profile-save",
+    "changed-and-stale-starts-cannot-reseed",
+    "accepted-choice-and-hidden-RNG-commit-once",
+    "old-receipts-never-rewind-newer-turns",
+    "owner-isolation-and-no-owned-party-bag-wallet-reward-or-location-mutation",
+    "public-projection-excludes-private-engine-data",
+    "suspended-and-replaced-transports-cannot-advance",
+    "authenticated-resume-and-fresh-process-recover-exact-state",
+    "close-retains-global-revision-and-old-battle-commands-stay-fenced",
+    "obsolete-or-corrupt-practice-can-be-closed-without-applying-engine-or-asset-effects",
+    "fresh-login-from-saved-overworld-enters-practice-without-moving-or-joining-world",
+    "practice-rollback-retains-exactly-one-accepted-choice-and-no-asset-effects",
+    "practice-unknown-rollback-retains-exactly-one-accepted-choice-and-no-asset-effects",
+    "practice-unknown-commit-retains-exactly-one-accepted-choice-and-no-asset-effects",
+    "practice-publish-retains-exactly-one-accepted-choice-and-no-asset-effects",
+    "revoked-session-cannot-read-or-advance-practice"
+  ],
+  "probePids": [
+    2076
+  ],
+  "scope": "Isolated real PostgreSQL fixtures, source engine, exactly-once commands, failure injection and fresh-process practice recovery. User testing accounts are not accessed."
+}

@@ -23,3 +23,4 @@ export const errorSchema = z.strictObject({
 export type Welcome = z.infer<typeof welcomeSchema>;
 export type Pong = z.infer<typeof pongSchema>;
 export type ProtocolError = z.infer<typeof errorSchema>;
+export * from './practice.js';

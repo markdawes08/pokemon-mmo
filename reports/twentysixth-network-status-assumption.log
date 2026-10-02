@@ -1,0 +1,28 @@
+[check] lint
+[check] typecheck
+[check] practice:check
+{"status": "passed", "outputs": 17, "sourceInputs": 31, "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982"}
+{"status": "passed", "outputs": 17, "sourceInputs": 31, "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982"}
+Practice engine passed: 8 species, 24 moves, 74 source turns.
+Practice storage passed: 17 groups and 1 fresh process.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+200 !== 201
+
+    at fixture (C:\Users\mrkda\Projects\pokewaterblue\tests\integration\practice-network-smoke.ts:29:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async <anonymous> (C:\Users\mrkda\Projects\pokewaterblue\tests\integration\practice-network-smoke.ts:62:13) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 200,
+  expected: 201,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.21.0
+C:\Users\mrkda\Projects\pokewaterblue\.tools\node-v24.21.0-win-x64\node.exe --import tsx tests/integration/practice-network-smoke.ts failed (1)

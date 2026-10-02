@@ -1,0 +1,145 @@
+[check] verify
+
+[verify] doctor
+Node v24.21.0; platform win32/x64
+Python 3.13.5
+{"status": "passed", "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982", "verifiedFiles": 21892, "checks": ["current included reference bytes match manifest", "aggregate fingerprint matches lock", "archive SHA256 matches lock", "every archive entry matches path, size, and SHA256"], "upstreamCommitVerified": false, "romBuildVerified": false}
+PostgreSQL 17.11: reachable
+Database baseline migration: present
+Loopback port 2567: in use
+Loopback port 5173: in use
+{
+  "status": "pass",
+  "outputsVerified": 75,
+  "sourceInputs": 148,
+  "inputFingerprint": "8520cdbfce30ddf5e18d5a3b95deea3bd89aad86bdb4e2e7c60be581d226ee88",
+  "deterministicRebuild": true
+}
+
+[verify] lint
+
+[verify] typecheck
+
+[verify] test:unit
+
+ RUN  v5.0.2 C:/Users/mrkda/Projects/pokewaterblue
+
+
+ Test Files  14 passed (14)
+      Tests  91 passed (91)
+   Start at  06:42:27
+   Duration  1.12s (import 58%, transform 23%, tests 18%, worker 1%)
+
+test_pallet_every_note_and_gate_matches_independent_midi (test_audio_export.PinnedAudioTests.test_pallet_every_note_and_gate_matches_independent_midi) ... ok
+test_select_every_note_and_gate_matches_independent_midi (test_audio_export.PinnedAudioTests.test_select_every_note_and_gate_matches_independent_midi) ... ok
+test_unknown_commands_tempo_changes_and_broken_waves_fail (test_audio_export.PinnedAudioTests.test_unknown_commands_tempo_changes_and_broken_waves_fail) ... ok
+test_initializer_keeps_order_designators_strings_and_symbols (test_c_source.CSourceTests.test_initializer_keeps_order_designators_strings_and_symbols) ... ok
+test_malformed_or_unsupported_required_inputs_fail (test_c_source.CSourceTests.test_malformed_or_unsupported_required_inputs_fail) ... ok
+test_named_helper_definitions_must_be_unconditional (test_c_source.CSourceTests.test_named_helper_definitions_must_be_unconditional) ... ok
+test_nested_macros_and_c_integer_semantics (test_c_source.CSourceTests.test_nested_macros_and_c_integer_semantics) ... ok
+test_profile_and_include_guards_preserve_one_branch (test_c_source.CSourceTests.test_profile_and_include_guards_preserve_one_branch) ... ok
+test_charmap_does_not_leak_japanese_or_control_tokens (test_font_export.FontSemanticsTests.test_charmap_does_not_leak_japanese_or_control_tokens) ... ok
+test_editor_box_index_is_background_and_space_is_blank (test_font_export.FontSemanticsTests.test_editor_box_index_is_background_and_space_is_blank) ... ok
+test_palette_uses_game_colors_after_gba_quantization (test_font_export.FontSemanticsTests.test_palette_uses_game_colors_after_gba_quantization) ... ok
+test_width_count_range_and_expressions_fail_explicitly (test_font_export.FontSemanticsTests.test_width_count_range_and_expressions_fail_explicitly) ... ok
+test_english_metrics_and_accented_glyph_are_source_exact (test_font_export.PinnedFontTests.test_english_metrics_and_accented_glyph_are_source_exact) ... ok
+test_every_exported_glyph_stays_inside_source_atlas (test_font_export.PinnedFontTests.test_every_exported_glyph_stays_inside_source_atlas) ... ok
+test_preview_pages_and_reasons_have_no_missing_glyphs (test_font_export.PinnedFontTests.test_preview_pages_and_reasons_have_no_missing_glyphs) ... ok
+test_bad_slot_weights_or_levels_fail_before_projection (test_gameplay_export.GameplayTablesTests.test_bad_slot_weights_or_levels_fail_before_projection) ... ok
+test_growth_literal_early_entries_and_integer_formula_results (test_gameplay_export.GameplayTablesTests.test_growth_literal_early_entries_and_integer_formula_results) ... ok
+test_route1_preserves_all_slots_levels_and_source_rate (test_gameplay_export.GameplayTablesTests.test_route1_preserves_all_slots_levels_and_source_rate) ... ok
+test_changed_pinned_source_is_rejected (test_import_content.BinarySemanticsTests.test_changed_pinned_source_is_rejected) ... ok
+test_component_palette_transparency_and_both_flips (test_import_content.BinarySemanticsTests.test_component_palette_transparency_and_both_flips) ... ok
+test_little_endian_u32_attributes_preserve_high_bits (test_import_content.BinarySemanticsTests.test_little_endian_u32_attributes_preserve_high_bits) ... ok
+test_nibble_order_is_low_pixel_then_high_pixel (test_import_content.BinarySemanticsTests.test_nibble_order_is_low_pixel_then_high_pixel) ... ok
+test_normal_covered_split_layer_placement_matches_field_camera (test_import_content.BinarySemanticsTests.test_normal_covered_split_layer_placement_matches_field_camera) ... ok
+test_obsolete_modified_or_unsafe_paths_fail_without_removal (test_import_content.BinarySemanticsTests.test_obsolete_modified_or_unsafe_paths_fail_without_removal) ... ok
+test_only_obsolete_manifest_owned_files_are_removed (test_import_content.BinarySemanticsTests.test_only_obsolete_manifest_owned_files_are_removed) ... ok
+test_palette_matches_source_gbagfx_quantization (test_import_content.BinarySemanticsTests.test_palette_matches_source_gbagfx_quantization) ... ok
+test_png_tile_scan_is_row_major_tiles_not_image_rows (test_import_content.BinarySemanticsTests.test_png_tile_scan_is_row_major_tiles_not_image_rows) ... ok
+test_pure_message_extraction_never_truncates_stateful_scripts (test_import_content.BinarySemanticsTests.test_pure_message_extraction_never_truncates_stateful_scripts) ... ok
+test_unknown_layer_and_truncated_binary_fail (test_import_content.BinarySemanticsTests.test_unknown_layer_and_truncated_binary_fail) ... ok
+test_export_has_source_landmarks_and_separate_occlusion (test_import_content.PinnedSourceTests.test_export_has_source_landmarks_and_separate_occlusion) ... ok
+test_independently_inspected_interior_and_route_landmarks (test_import_content.PinnedSourceTests.test_independently_inspected_interior_and_route_landmarks) ... ok
+test_independently_inspected_pallet_binary_landmarks (test_import_content.PinnedSourceTests.test_independently_inspected_pallet_binary_landmarks) ... ok
+test_malformed_selected_warps_and_connections_fail (test_import_content.PinnedSourceTests.test_malformed_selected_warps_and_connections_fail) ... ok
+test_npc_initial_state_exact_safe_dialogue_and_shared_frame_aliases (test_import_content.PinnedSourceTests.test_npc_initial_state_exact_safe_dialogue_and_shared_frame_aliases) ... ok
+test_running_sprite_reuses_source_frame_table_and_palette_exactly (test_import_content.PinnedSourceTests.test_running_sprite_reuses_source_frame_table_and_palette_exactly) ... ok
+test_three_map_manifest_transfer_resolution_and_source_border_images (test_import_content.PinnedSourceTests.test_three_map_manifest_transfer_resolution_and_source_border_images) ... ok
+test_ability_names_and_descriptions_keep_stable_source_ids (test_moves_items_export.PinnedMovesItemsTests.test_ability_names_and_descriptions_keep_stable_source_ids) ... ok
+test_canonical_items_match_separate_generated_header_values (test_moves_items_export.PinnedMovesItemsTests.test_canonical_items_match_separate_generated_header_values) ... ok
+test_changed_json_shape_padding_slot_and_integer_types_fail (test_moves_items_export.PinnedMovesItemsTests.test_changed_json_shape_padding_slot_and_integer_types_fail) ... ok
+test_effect_array_bounds_duplicates_and_unknown_bytes_fail (test_moves_items_export.PinnedMovesItemsTests.test_effect_array_bounds_duplicates_and_unknown_bytes_fail) ... ok
+test_generation_three_move_values_priority_effects_and_flags (test_moves_items_export.PinnedMovesItemsTests.test_generation_three_move_values_priority_effects_and_flags) ... ok
+test_inventory_counts_padding_and_dependency_selection_are_explicit (test_moves_items_export.PinnedMovesItemsTests.test_inventory_counts_padding_and_dependency_selection_are_explicit) ... ok
+test_medicine_effect_bytes_retain_zero_initializers_and_fixed_heal_amounts (test_moves_items_export.PinnedMovesItemsTests.test_medicine_effect_bytes_retain_zero_initializers_and_fixed_heal_amounts) ... ok
+test_unknown_move_fields_or_required_constants_fail (test_moves_items_export.PinnedMovesItemsTests.test_unknown_move_fields_or_required_constants_fail) ... ok
+test_evolution_closure_and_held_item_dependencies (test_species_export.PinnedSpeciesTests.test_evolution_closure_and_held_item_dependencies) ... ok
+test_independently_inspected_starter_and_route_one_stats (test_species_export.PinnedSpeciesTests.test_independently_inspected_starter_and_route_one_stats) ... ok
+test_level_up_order_duplicates_and_firered_metal_claw_survive (test_species_export.PinnedSpeciesTests.test_level_up_order_duplicates_and_firered_metal_claw_survive) ... ok
+test_required_unknown_fields_constants_and_broken_learnsets_fail (test_species_export.PinnedSpeciesTests.test_required_unknown_fields_constants_and_broken_learnsets_fail) ... ok
+test_selected_closure_keeps_original_sparse_numeric_ids (test_species_export.PinnedSpeciesTests.test_selected_closure_keeps_original_sparse_numeric_ids) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 31.383s
+
+OK
+
+[verify] test:integration
+{"event":"database_smoke_passed","assertions":["migration-idempotency","schema-ready","rollback","check-constraint","cross-connection-persistence"]}
+{"time":"2026-10-02T10:43:02.234Z","level":"info","event":"server_listening","host":"127.0.0.1","port":56135,"mode":"local-preview","protocolVersion":1}
+Room connection was closed unexpectedly (4002): 
+{"time":"2026-10-02T10:43:02.423Z","level":"info","event":"preview_connection_joined","connections":1}
+{"time":"2026-10-02T10:43:02.431Z","level":"info","event":"preview_connection_joined","connections":2}
+{"time":"2026-10-02T10:43:02.441Z","level":"info","event":"server_stopping"}
+{"time":"2026-10-02T10:43:02.441Z","level":"info","event":"preview_connection_left","connections":1}
+{"time":"2026-10-02T10:43:02.441Z","level":"info","event":"preview_connection_left","connections":0}
+{"time":"2026-10-02T10:43:02.442Z","level":"info","event":"server_stopped"}
+Room connection was closed unexpectedly (4002): 
+{"event":"network_smoke_passed","assertions":["live-ready","origin-guard","version-rejection","two-connections","handshake","ping-pong","malformed-message","unsupported-gameplay","database-unavailable-admission","active-room-graceful-shutdown"]}
+{"event":"accounts_store_smoke_passed","assertions":["concurrent-create-receipt","creation-payload-conflict","permanent-one-character-after-receipt-cleanup","staged-profile-no-invented-location","two-account-isolation","same-trainer-name-allowed","database-name-position-safe-counter-constraints","account-deletion-restrict","revoked-session-creation-writes-no-profile-or-receipt","duplicate-save-race-once","original-receipt-after-newer-revision","replay-does-not-rewind-runtime","save-payload-conflict","stale-revision-activity-rejection","position-injection-rejection","serialized-distinct-command-revision-race","new-tab-connection-generation","stale-save-heartbeat-release-fencing","live-foreign-owner-rejection","expired-lease-stops-mutation","expired-foreign-owner-takeover","stale-owner-cannot-renew","release-and-new-service-recovery","before-commit-rollback-no-receipt-or-publication","frozen-runtime-reloads-after-storage-recovery","rollback-same-command-retry","unknown-commit-success-receipt-reconciliation","unknown-commit-absent-receipt-safe-retry","commit-before-publication-failure-freeze-reload","bounded-per-character-backpressure","session-revocation-locks-before-character-write","queued-save-after-session-revocation-rejected","database-outage-no-partial-publish-or-acknowledgement","database-outage-no-in-memory-read-fallback"]}
+{"time":"2026-10-02T10:43:05.582Z","level":"info","event":"server_listening","host":"127.0.0.1","port":56154,"mode":"local-preview","protocolVersion":1}
+Room connection was closed unexpectedly (4002): 
+Room connection was closed unexpectedly (4002): 
+{"time":"2026-10-02T10:43:05.924Z","level":"info","event":"character_connected","characterId":"0c6d1a8d-dc0e-4228-b470-d3a2b90afc19","connectionGeneration":1}
+Room connection was closed unexpectedly (4002): 
+Room connection was closed unexpectedly (4002): 
+Room connection was closed unexpectedly (4002): 
+{"time":"2026-10-02T10:43:05.965Z","level":"info","event":"character_connected","characterId":"2a40466e-442a-4458-8fe5-c920db368e5f","connectionGeneration":1}
+{"time":"2026-10-02T10:43:06.000Z","level":"info","event":"character_connected","characterId":"0c6d1a8d-dc0e-4228-b470-d3a2b90afc19","connectionGeneration":2}
+{"time":"2026-10-02T10:43:06.003Z","level":"warn","event":"character_release_deferred"}
+{"time":"2026-10-02T10:43:06.023Z","level":"info","event":"character_connected","characterId":"0c6d1a8d-dc0e-4228-b470-d3a2b90afc19","connectionGeneration":3}
+Room connection was closed unexpectedly (4002): 
+{"time":"2026-10-02T10:43:06.142Z","level":"info","event":"server_stopping"}
+{"time":"2026-10-02T10:43:06.142Z","level":"info","event":"server_stopped"}
+{"time":"2026-10-02T10:43:06.178Z","level":"info","event":"server_listening","host":"127.0.0.1","port":56174,"mode":"local-preview","protocolVersion":1}
+{"time":"2026-10-02T10:43:06.223Z","level":"info","event":"character_connected","characterId":"0c6d1a8d-dc0e-4228-b470-d3a2b90afc19","connectionGeneration":4}
+{"time":"2026-10-02T10:43:06.281Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T10:43:06.335Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T10:43:06.388Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T10:43:06.441Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T10:43:06.495Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T10:43:06.548Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T10:43:06.601Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T10:43:06.653Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T10:43:06.706Z","level":"warn","event":"auth_library_diagnostic"}
+{"time":"2026-10-02T10:43:06.716Z","level":"warn","event":"character_release_deferred"}
+{"event":"accounts_network_smoke_passed","assertions":["anonymous-account-character-ticket-rejected","exact-http-and-websocket-origin-guards","two-real-better-auth-cookie-sessions","server-name-validation-and-one-character-per-account","idempotent-creation-and-changed-payload-conflict","two-account-profile-isolation","wrong-character-ticket-rejected","stolen-ticket-cookie-binding","ticket-one-use-and-expiry","character-protocol-mismatch-rejected","strict-private-room-projections-and-compatibility","save-once-same-command-retry","changed-payload-and-stale-revision-rejected","malformed-and-unsupported-gameplay-rejected","second-tab-replaces-old-generation-and-cannot-mutate","reconnect-restores-profile-and-command-receipt","expired-and-revoked-http-and-active-socket-sessions-rejected","server-restart-preserves-session-character-and-receipt","local-renderer-position-not-persisted","login-rate-limit-and-bounded-auth-body","database-outage-fails-closed-without-profile-mutation"]}
+{"time":"2026-10-02T10:43:06.717Z","level":"info","event":"server_stopping"}
+{"time":"2026-10-02T10:43:06.717Z","level":"info","event":"server_stopped"}
+{"event":"assets_integration_passed","checks":["ordinary-trainer-has-no-granted-assets","owner-only-asset-selection","concurrent-seed-applies-once","source-profile-values-and-public-whitelist","seed-does-not-affect-second-character","persisted-identity-stats-and-source-legal-moves","fixture-remains-recovering-with-explicit-saved-location","permanent-business-key-survives-receipt-cleanup-and-new-command","active-lease-refuses-offline-seed","profile-save-preserves-assets-and-replay-does-not-rewind","same-command-different-mutation-payload-rejected","unsupported-profile-explicitly-rejected","rollback-keeps-all-assets-outcome-audit-and-revision-atomic","rollback-retry-same-command","unknown-rollback-retries-without-duplicate-grant","unknown-commit-queries-committed-outcome","offline-seed-refuses-existing-progression","creature-identity-iv-ev-hp-status-bounds","party-six-storage-fourteen-by-thirty-and-one-location","ownership-source-foreign-keys-and-permanent-provenance","source-pp-with-ppups-and-move-slot-bounds","inventory-quantity-pocket-capacity-and-wallet-bounds","private-story-values-and-cross-owner-outcomes","outcome-audit-content-immutability-and-deletion-restrict","revoked-session-cannot-read-owned-assets","story-operational-data-never-enters-public-projection","seed-cli-production-tester-nonlocal-and-unknown-profile-guards","two-fresh-cli-processes-seed-once","fresh-process-recovers-private-owned-projection","database-outage-never-promises-assets"]}
+{"event":"world_store_passed","checks":["failed-before-transfer-commit-keeps-source-checkpoint","failed-transfer-hides-runtime-until-reauthenticated-recovery","unknown-transfer-rollback-retries-once","unknown-transfer-commit-recovers-one-committed-destination","commit-before-membership-publication-failure-reloads-single-destination","ordinary-checkpoint-rollback-keeps-one-durable-location","ordinary-checkpoint-uncertain-rollback-keeps-one-durable-location","ordinary-checkpoint-uncertain-commit-keeps-one-durable-location","ordinary-checkpoint-publish-keeps-one-durable-location","forged-position-connection-and-zone-generations-rejected","early-input-rejected-without-poisoning-next-sequence","authorized-graceful-close-checkpoints-finished-tile","revoked-session-close-hides-avatar-without-writing","ordinary-walking-checkpoints-after-five-second-interval","mid-step-save-persists-finished-tile-and-preserves-motion","five-second-checkpoint-does-not-starve-during-motion","entry-and-leave-receipts-replay-without-rewind-or-new-zone","changed-entry-payload-conflicts","monotonic-sequence-gaps-are-safe","old-leave-receipt-cannot-exit-new-world-activity","entry-replay-preserves-pending-transfer","new-tab-checkpoints-finished-unsaved-tile-before-replacement","missing-development-marker-and-invalid-source-location-refuse-entry","modified-source-bytes-refuse-server-world-content","expired-heartbeat-lease-removes-public-avatar-and-freezes-input","expired-database-lease-fences-next-input-immediately","real-driver-outage-hides-ghost-avatar-without-checkpoint-acknowledgement"]}
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+@colyseus/sdk: onMessage() not registered for type 'practice'.
+C:\Users\mrkda\Projects\pokewaterblue\tests\integration\world-smoke.ts:59
+  throw new Error(`World assertion timed out: ${description}`);
+        ^
+
+Error: World assertion timed out: enter shared world
+    at until (C:\Users\mrkda\Projects\pokewaterblue\tests\integration\world-smoke.ts:59:9)
+    at async enter (C:\Users\mrkda\Projects\pokewaterblue\tests\integration\world-smoke.ts:66:3)
+    at async <anonymous> (C:\Users\mrkda\Projects\pokewaterblue\tests\integration\world-smoke.ts:168:86)
+
+Node.js v24.21.0
+C:\Users\mrkda\Projects\pokewaterblue\.tools\node-v24.21.0-win-x64\node.exe --import tsx tests/integration/world-smoke.ts failed (1)

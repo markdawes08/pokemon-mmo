@@ -3,12 +3,15 @@ import type { PoolClient } from 'pg';
 import type { Database } from '@pokewaterblue/database';
 import {
   characterViewSchema, createCharacterSchema, saveProfileCommandSchema, worldCommandSchema, worldInputSchema, worldLocationSchema,
+  practiceCommandSchema, practiceSnapshotSchema,
   type CharacterError, type CharacterView, type CreateCharacter, type ProfileSaved, type SaveProfileCommand,
   type WorldAvatar, type WorldCommand, type WorldInput, type WorldLocation, type WorldTransition,
+  type PracticeCommand, type PracticeSnapshot, type PracticeState,
 } from '@pokewaterblue/protocol';
 import { WorldContent, WORLD_SOURCE_FINGERPRINT } from './world-content.js';
 import { DEVELOPMENT_CONTENT_HASH, DEVELOPMENT_PROFILE_ID } from './development-profile.js';
 import type { PreviewMoveResult } from '@pokewaterblue/game-rules';
+import { PracticeEngineError, type PracticeEngine, type PracticeStored } from './practice-engine.js';
 
 export class CharacterServiceError extends Error {
   constructor(readonly code: CharacterError['code'], message: string) { super(message); this.name = 'CharacterServiceError'; }
@@ -23,7 +26,7 @@ export interface CharacterConnection {
   readonly sessionId?: string;
 }
 export interface SessionProjection { character: CharacterView; connectionGeneration: number; worldActive: boolean }
-type WriteKind = 'create' | 'save' | 'world';
+type WriteKind = 'create' | 'save' | 'world' | 'practice';
 /** Failure injection for the real-PostgreSQL integration executable only; rejected outside NODE_ENV=test. */
 export interface CharacterServiceTestHooks {
   beforeCommit?: (kind: WriteKind) => void | Promise<void>;
@@ -41,6 +44,7 @@ interface LeaseRow {
   owner_id: string; lease_generation: string; connection_generation: string; active: boolean;
 }
 interface ReceiptRow { payload_hash: string; result: unknown }
+interface PracticeRow { character_id: string; revision: string; battle_id: string | null; checkpoint: PracticeStored | null }
 interface WorldRuntime {
   location: WorldLocation; direction: WorldAvatar['direction']; zoneGeneration: number; lastInputSequence: number;
   motion: WorldAvatar['motion']; transfer?: { move: Extract<PreviewMoveResult, { allowed: true; kind: 'transition' }>; from: WorldLocation; dueAt: number; durationMs: number };
@@ -72,8 +76,14 @@ export class CharacterService {
   private disposed = false;
   private worldContent?: WorldContent;
   private worldEnabled = false;
+  private practiceEngine?: PracticeEngine;
+  private practiceEnabled = false;
 
   configureWorld(content: WorldContent, enabled = (process.env['APP_MODE'] ?? 'local-preview') === 'local-preview' && ['development', 'test'].includes(process.env['NODE_ENV'] ?? 'development')) { this.worldContent = content; this.worldEnabled = enabled; }
+  configurePractice(engine: PracticeEngine, enabled = (process.env['APP_MODE'] ?? 'local-preview') === 'local-preview' && ['development', 'test'].includes(process.env['NODE_ENV'] ?? 'development')) { this.practiceEngine = engine; this.practiceEnabled = enabled; }
+  practiceAvailable(connection: CharacterConnection): boolean {
+    return this.practiceEnabled && !!this.practiceEngine && this.snapshot(connection)?.character.stage === 'development-fixture';
+  }
 
   constructor(private readonly database: Database, options: {
     ownerId?: string; leaseMs?: number; testHooks?: CharacterServiceTestHooks;
@@ -375,6 +385,7 @@ export class CharacterService {
             outcome = await this.transaction(async client => {
               const { row, receipt } = await read(client);
               if (receipt) return { character: receipt, latest: view(row), replayed: true };
+              if (row.activity === 'battle') fail('BUSY', 'Practice is saved after every action. Close practice before saving your world profile.');
               if (row.activity_id !== command.activityId || !['recovering', ...(savedLocation ? ['overworld'] : [])].includes(row.activity) || !['awaiting-new-game', 'development-fixture'].includes(row.stage)) fail('RECONNECT_REQUIRED', 'This command does not belong to the current trainer activity.');
               if (Number(row.revision) !== command.expectedRevision) fail('STALE_REVISION', 'The trainer profile changed. Refresh its current snapshot.');
               if (command.expectedRevision >= Number.MAX_SAFE_INTEGER) fail('RECONNECT_REQUIRED', 'Trainer revision capacity is exhausted.');
@@ -412,6 +423,155 @@ export class CharacterService {
         }
         if (savedLocation && runtime.world && !outcome.replayed) { runtime.world.lastCheckpointAt = Date.now(); runtime.world.dirty = false; }
         return { commandId: command.commandId, character: structuredClone(outcome.character), replayed: outcome.replayed };
+      } catch (error) {
+        if (!(error instanceof CharacterServiceError) || ['AUTH_REQUIRED', 'SESSION_REPLACED', 'LEASE_EXPIRED', 'COMMAND_OUTCOME_UNKNOWN'].includes(error.code)) runtime.frozen = true;
+        throw error;
+      }
+    }));
+  }
+
+  private practice(): PracticeEngine {
+    if (!this.practiceEnabled || !this.practiceEngine) fail('NOT_READY', 'Practice battles are available only in the local development mode.');
+    return this.practiceEngine;
+  }
+
+  private practiceView(engine: PracticeEngine, row: PracticeRow | undefined): PracticeState {
+    if (!row) return { revision: 0, session: null };
+    const revision = Number(row.revision);
+    if (!Number.isSafeInteger(revision) || revision < 0 || (row.battle_id === null) !== (row.checkpoint === null)) {
+      fail('NOT_READY', 'The practice checkpoint needs administrative recovery.');
+    }
+    if (!row.battle_id || !row.checkpoint) return { revision, session: null };
+    try { return { revision, session: engine.project(row.battle_id, row.checkpoint) }; }
+    catch {
+      // Old engine versions cannot be resumed, but the durable ID/revision still
+      // permits an explicit close without interpreting or applying their data.
+      return { revision, session: null, unavailable: { battleId: row.battle_id, message: 'This practice uses an unavailable engine version. Close it and start a new practice.' } };
+    }
+  }
+
+  private practiceReply(engine: PracticeEngine, row: PracticeRow | undefined, commandId: string | null, replayed: boolean): PracticeSnapshot {
+    return practiceSnapshotSchema.parse({ commandId, replayed, catalogue: engine.catalogue(), state: this.practiceView(engine, row) });
+  }
+
+  /** Authenticated owner-only projection; engine bytes, RNG and wild choices never leave this boundary. */
+  async practiceSnapshot(connection: CharacterConnection, options: { handshakeRead?: true } = {}): Promise<PracticeSnapshot> {
+    const engine = this.practice();
+    return this.serial(connection.characterId, () => this.guarded(async () => {
+      const runtime = this.runtime(connection);
+      // Only the room's authenticated hello may read while native reconnection
+      // remains suspended. It does not activate authority or world presence.
+      if (!options.handshakeRead) this.assertTransport(runtime);
+      const result = await this.transaction(async client => {
+        const character = await this.worldRead(client, connection);
+        await this.fixtureLock(client, character);
+        const stored = await client.query<PracticeRow>('SELECT * FROM character_practice_state WHERE character_id=$1 FOR UPDATE', [connection.characterId]);
+        return { character, practice: stored.rows[0] };
+      });
+      const reply = this.practiceReply(engine, result.practice, null, false);
+      runtime.character = runtime.world?.transfer ? { ...view(result.character), activity: 'transferring' } : view(result.character);
+      return reply;
+    }));
+  }
+
+  /** Practice owns only its isolated checkpoint. No creature, bag, money or reward writes occur here. */
+  async practiceCommand(connection: CharacterConnection, input: PracticeCommand): Promise<PracticeSnapshot> {
+    const engine = this.practice();
+    const parsed = practiceCommandSchema.safeParse(input);
+    if (!parsed.success) fail('INVALID_MESSAGE', 'Invalid practice command.');
+    const command = parsed.data;
+    const { commandId, ...payload } = command;
+    const hash = fingerprint(payload);
+    return this.serial(connection.characterId, () => this.guarded(async () => {
+      const runtime = this.runtime(connection);
+      this.assertTransport(runtime);
+      const read = async (client: PoolClient) => {
+        const character = await this.worldRead(client, connection);
+        await this.fixtureLock(client, character);
+        const stored = await client.query<PracticeRow>('SELECT * FROM character_practice_state WHERE character_id=$1 FOR UPDATE', [connection.characterId]);
+        const receipt = await client.query<ReceiptRow>('SELECT * FROM practice_command_receipts WHERE character_id=$1 AND command_id=$2', [connection.characterId, commandId]);
+        if (receipt.rows[0] && receipt.rows[0].payload_hash !== hash) fail('COMMAND_CONFLICT', 'This practice command ID was already used with different data.');
+        return { character, practice: stored.rows[0], replayed: !!receipt.rows[0] };
+      };
+      type Result = Awaited<ReturnType<typeof read>>;
+      let result: Result | undefined;
+      try {
+        for (let attempt = 0; attempt < 2 && !result; attempt++) {
+          try {
+            result = await this.transaction(async client => {
+              const current = await read(client);
+              this.assertTransport(runtime);
+              if (current.replayed) return current;
+              const revision = Number(current.practice?.revision ?? 0);
+              if (!Number.isSafeInteger(revision) || revision < 0) fail('NOT_READY', 'Invalid practice revision.');
+              if (command.expectedRevision !== revision) fail('STALE_REVISION', 'Practice changed. Refresh before choosing again.');
+              if (revision >= Number.MAX_SAFE_INTEGER) fail('NOT_READY', 'Practice revision capacity is exhausted.');
+              let battleId = current.practice?.battle_id ?? null;
+              let checkpoint = current.practice?.checkpoint ?? null;
+              let character = current.character;
+              if (command.kind === 'start') {
+                if (battleId || checkpoint) fail('BUSY', 'Close the current practice before starting another.');
+                // A fresh profile-only connection can retain a saved overworld activity.
+                // Explicit practice may claim it without changing its durable location;
+                // an active world runtime (including movement) still requires Leave first.
+                if (runtime.world || !['recovering', 'overworld'].includes(character.activity)) fail('BUSY', 'Leave the shared world before starting practice.');
+                battleId = randomUUID();
+                try { checkpoint = engine.create(battleId, command.setup); }
+                catch (error) {
+                  if (error instanceof PracticeEngineError) fail(error.code, error.message);
+                  fail('NOT_READY', 'The practice engine could not create this setup.');
+                }
+                if (Number(character.revision) >= Number.MAX_SAFE_INTEGER) fail('NOT_READY', 'Trainer revision capacity is exhausted.');
+                const changed = await client.query<CharacterRow>("UPDATE characters SET activity='battle',activity_id=$2,revision=revision+1,saved_at=clock_timestamp() WHERE id=$1 RETURNING *", [character.id, randomUUID()]);
+                character = changed.rows[0];
+              } else {
+                if (!battleId || !checkpoint || battleId !== command.battleId || character.activity !== 'battle') fail('STALE_REVISION', 'This practice is no longer active. Refresh its current state.');
+                if (command.kind === 'choose') {
+                  try { checkpoint = engine.advance(checkpoint, command.choice); }
+                  catch (error) {
+                    if (error instanceof PracticeEngineError) fail(error.code, error.message);
+                    fail('NOT_READY', 'This practice cannot advance. Close it and start a new practice.');
+                  }
+                } else {
+                  if (Number(character.revision) >= Number.MAX_SAFE_INTEGER) fail('NOT_READY', 'Trainer revision capacity is exhausted.');
+                  // Closing is deliberately independent of obsolete/corrupt engine data.
+                  battleId = null; checkpoint = null;
+                  const changed = await client.query<CharacterRow>("UPDATE characters SET activity='recovering',activity_id=$2,revision=revision+1,saved_at=clock_timestamp() WHERE id=$1 RETURNING *", [character.id, randomUUID()]);
+                  character = changed.rows[0];
+                }
+              }
+              this.assertTransport(runtime);
+              // Validate the exact public candidate before the durable write as well as after recovery.
+              if (battleId && checkpoint) {
+                try { engine.project(battleId, checkpoint); }
+                catch { fail('NOT_READY', 'The practice candidate could not be projected safely.'); }
+              }
+              const updated = await client.query<PracticeRow>(`INSERT INTO character_practice_state (character_id,revision,battle_id,checkpoint)
+                VALUES ($1,$2,$3,$4) ON CONFLICT (character_id) DO UPDATE SET revision=$2,battle_id=$3,checkpoint=$4,updated_at=clock_timestamp() RETURNING *`,
+              [connection.characterId, revision + 1, battleId, checkpoint ? JSON.stringify(checkpoint) : null]);
+              await client.query('INSERT INTO practice_command_receipts (character_id,command_id,payload_hash,result) VALUES ($1,$2,$3,$4)',
+                [connection.characterId, commandId, hash, JSON.stringify({ revision: revision + 1, battleId })]);
+              return { character, practice: updated.rows[0], replayed: false };
+            }, 'practice');
+          } catch (error) {
+            if (!(error instanceof UnknownCommit)) throw error;
+            runtime.frozen = true;
+            // The same character row lock waits for an uncertain writer before a missing receipt permits retry.
+            const recovered = await this.transaction(read);
+            if (recovered.replayed) result = recovered;
+          }
+        }
+        if (!result) fail('COMMAND_OUTCOME_UNKNOWN', 'Practice could not confirm this command. Reconnect and retry the same command ID.');
+        try { await this.hooks?.beforePublish?.(); }
+        catch {
+          runtime.frozen = true;
+          result = await this.transaction(read);
+          if (!result.replayed) fail('COMMAND_OUTCOME_UNKNOWN', 'Practice could not recover its committed command.');
+        }
+        const reply = this.practiceReply(engine, result.practice, commandId, result.replayed);
+        runtime.character = runtime.world?.transfer ? { ...view(result.character), activity: 'transferring' } : view(result.character);
+        runtime.frozen = false;
+        return reply;
       } catch (error) {
         if (!(error instanceof CharacterServiceError) || ['AUTH_REQUIRED', 'SESSION_REPLACED', 'LEASE_EXPIRED', 'COMMAND_OUTCOME_UNKNOWN'].includes(error.code)) runtime.frozen = true;
         throw error;

@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-02T10:43:37.034Z",
+  "results": [
+    {
+      "stage": "doctor",
+      "status": "passed"
+    },
+    {
+      "stage": "lint",
+      "status": "passed"
+    },
+    {
+      "stage": "typecheck",
+      "status": "passed"
+    },
+    {
+      "stage": "test:unit",
+      "status": "passed"
+    },
+    {
+      "stage": "test:integration",
+      "status": "failed",
+      "message": "C:\\Users\\mrkda\\Projects\\pokewaterblue\\.tools\\node-v24.21.0-win-x64\\node.exe --import tsx tests/integration/world-smoke.ts failed (1)"
+    }
+  ],
+  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 encounter factory, real-team Route 1 battle mechanics, victory progression, blackout, capture and evolution continuations plus diagnostic family combat and party switching/faint decisions and five further family moves with rain/forced escape and Skull Bash charging/forced continuation plus Protect with pinned repeat-rate policy and Pursuit switch interception; live R1 battles, persistent outcomes and story gameplay not implemented"
+}
