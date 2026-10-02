@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-02T01:18:17.516702+00:00",
+  "status": "passed",
+  "entryState": "No project development Node/PostgreSQL process or loopback listener on5173/2567/5433; prior launch metadata was historical.",
+  "launch": {
+    "launchedAt": "2026-10-02T01:12:16.927Z",
+    "command": "node scripts/run.mjs dev",
+    "launcherPid": 29292,
+    "supervisorPid": 28176,
+    "backendPid": 28480,
+    "clientPid": 30960,
+    "mode": "foreground-tool-session",
+    "toolSessionId": 5620,
+    "status": "running",
+    "output": "Streamed to the owning exec tool session; no detached log files for this launch."
+  },
+  "readiness": {
+    "direct": "ready",
+    "proxied": "ready"
+  },
+  "userAccountReset": false,
+  "scope": "Local foreground restart. PostgreSQL data and account credentials preserved."
+}

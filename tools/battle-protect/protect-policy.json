@@ -1,0 +1,7 @@
+{
+  "id": "firered-protect-rom-v1",
+  "romSha256": "3d0c79f1627022e18765766f6cb5ea067f6b5bf7dca115552189ad65a5c3a8ac",
+  "tableSha256": "977c6928a398eab83f1b9d0ff8b5a2d4ee4c88d1beae6872da7fe5265a87bce1",
+  "tableOffset": 2426848,
+  "tableEntries": 256
+}

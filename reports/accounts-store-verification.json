@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-01T02:44:36.530Z",
+  "verifiedAt": "2026-10-02T01:34:58.899Z",
   "status": "passed",
   "database": "explicit TEST_DATABASE_URL ending _test; only owned UUID fixtures removed",
   "scope": "staged trainer profiles, generation ownership, profile checkpoints; no world/economy save",

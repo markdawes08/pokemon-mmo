@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-10-01T02:54:02.041Z",
+  "checkedAt": "2026-10-02T01:43:01.733Z",
   "mode": "run",
   "scope": "Actual player WebGL quad vertices during focused keyboard movement; test-only passive renderer instrumentation",
   "observations": [
     {
       "direction": "ArrowUp",
-      "movingRenderFrames": 68,
+      "movingRenderFrames": 66,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -25,17 +25,17 @@
       ],
       "cameraTravel": {
         "x": 0,
-        "y": 110
+        "y": 112
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 14.699999995529652,
-        "max": 19
+        "min": 13.800000000745058,
+        "max": 20.200000002980232
       }
     },
     {
       "direction": "ArrowDown",
-      "movingRenderFrames": 37,
+      "movingRenderFrames": 38,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -56,13 +56,13 @@
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 15.899999998509884,
-        "max": 18.100000001490116
+        "min": 15.799999997019768,
+        "max": 18.599999997764826
       }
     },
     {
       "direction": "ArrowLeft",
-      "movingRenderFrames": 67,
+      "movingRenderFrames": 65,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -86,13 +86,13 @@
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 13.699999995529652,
-        "max": 19.299999997019768
+        "min": 10.5,
+        "max": 22.599999997764826
       }
     },
     {
       "direction": "ArrowRight",
-      "movingRenderFrames": 65,
+      "movingRenderFrames": 64,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -111,13 +111,13 @@
         "15"
       ],
       "cameraTravel": {
-        "x": 110,
+        "x": 111,
         "y": 0
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 12.899999998509884,
-        "max": 18.599999994039536
+        "min": 10.400000002235174,
+        "max": 28.300000000745058
       }
     }
   ]

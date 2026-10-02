@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-01T02:55:13.834Z",
+  "checkedAt": "2026-10-02T01:44:14.135Z",
   "results": [
     {
       "stage": "doctor",
@@ -70,6 +70,10 @@
       "status": "passed"
     },
     {
+      "stage": "battle:protect",
+      "status": "passed"
+    },
+    {
       "stage": "build",
       "status": "passed"
     },
@@ -86,5 +90,5 @@
       "status": "passed"
     }
   ],
-  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 encounter factory, real-team Route 1 battle mechanics, victory progression, blackout, capture and evolution continuations plus diagnostic family combat and party switching/faint decisions and five further family moves with rain/forced escape and Skull Bash charging/forced continuation; live R1 battles, persistent outcomes and story gameplay not implemented"
+  "scope": "P01 foundation + partial P02 preview/data + bounded P03 adapter + P04 local accounts/assets + bounded P05 movement/reconnect + private P06 encounter factory, real-team Route 1 battle mechanics, victory progression, blackout, capture and evolution continuations plus diagnostic family combat and party switching/faint decisions and five further family moves with rain/forced escape and Skull Bash charging/forced continuation plus Protect with pinned repeat-rate policy; live R1 battles, persistent outcomes and story gameplay not implemented"
 }

@@ -92,6 +92,7 @@ the running browser preview.
 | `npm.cmd run battle:party` | Verify private party switching, faint decisions and coherent capture-party diagnostics |
 | `npm.cmd run battle:tactics` | Verify private rain, fixed damage, Rapid Spin and wild Whirlwind mechanics |
 | `npm.cmd run battle:charge` | Verify private Skull Bash charging, forced continuation and recovery |
+| `npm.cmd run battle:protect` | Verify private Protect, its pinned repeat-rate policy and recovery |
 | `npm.cmd run content:check` | Rebuild independently and verify generated hashes |
 | `npm.cmd run build` | Build the client and backend |
 | `npm.cmd run start` | Serve the built preview at http://127.0.0.1:2567 |
@@ -115,9 +116,11 @@ build on that architecture. The retained family and party profiles verify eight-
 combat, one-to-six-member switching and recoverable faint/replacement decisions.
 The separate [tactics profile](tools/battle-tactics/README.md) extends coverage to 21 family
 moves with Super Fang, Endeavor, Rapid Spin, Rain Dance and ordinary-wild Whirlwind.
-The new [charge profile](tools/battle-charge/README.md) adds Skull Bash for 22 moves,
+The [charge profile](tools/battle-charge/README.md) adds Skull Bash for 22 moves,
 including its recoverable two-turn lock and forced release with no second PP cost.
+The [Protect profile](tools/battle-protect/README.md) adds Protect for 23 moves,
+including a separately pinned ROM policy for repeated Protect attempts.
 These are private diagnostics; they do not apply account assets or world changes.
-Protect, Pursuit, Mirror Move, complete party-aware results, durable ownership,
+Pursuit, Mirror Move, complete party-aware results, durable ownership,
 arrival scripts and live battle application remain necessary. See [current status](docs/STATUS.md)
 for verified gates and remaining work.

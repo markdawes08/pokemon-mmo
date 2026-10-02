@@ -1,5 +1,23 @@
 # Release and phase evidence
 
+## Twenty-fourth-pass private Protect: verified
+
+`firered-family-protect-v1` extends the private party/rain/charge diagnostics to
+23 family moves plus automatic Struggle. The explicit `firered-protect-rom-v1`
+policy embeds the complete separately pinned 256-entry ROM lookup, preserving
+inclusive comparison, RNG order, repeated-use counter and source resets without
+undefined C array access or an invented clamp. Checkpoint eight retains 512
+words, including protection and future-read move history. Raw full-counter tests
+verify the bounded policy, not whole-game reachability or emulator equivalence. No fresh ROM reproduction build is claimed.
+
+First integration passed 23 groups, 14 actual capture-party handoffs, 169 restores
+and 148 diagnostic transitions. It learns Protect through source progression,
+accepts or cancels evolution, and blocks a wild zero-PP Skull Bash release while
+preserving source cleanup. Full twenty-two-stage gate passed at 2026-10-02T01:44:14.135Z with native exit 0: 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all eleven prior private engine gates, fresh-process account recovery and all 39 browser scenarios. The Protect gate passed 476 independent source-literal cases, 1,084 accepted transitions and 7,976 RNG draws. All 1,560 host and 1,560 raw boundaries recovered across independent builds and fresh processes, replaying 2,367 future transitions per host/raw path. Rejection checks passed for 142 host and 91 raw cases, with 25 candidate-failure checks and 19 timeout-bounded exhaustion checks. The complete 256-entry ROM policy passed 7,518 raw command checks across primary, rebuild and fresh-process contexts, covering 997 distinct threshold witnesses, both action positions, resets and byte wrapping. These command-domain tests do not establish whole-game reachability. Integration passed 23 groups, 14 coherent capture-party handoffs, 169 restores and 148 diagnostic transitions. Public boundaries passed 94 HTTP checks across 73 built files. All eleven previous WASM artifacts and 3,382 retained literal cases remain byte-identical. No normal ownership, party rewards, field acknowledgement or
+live battle UI is enabled. Pursuit and Mirror Move remain unsupported in every
+roster slot. See ADR-025 and tools/battle-protect/README.md. The sections below
+retain the original scope of earlier passes.
+
 Current target: P00/P01 foundation and the bounded P03 decision/adapter remain verified. P02/P04/P05/P06 remain partial overall. The named local fixture supports authoritative three-map shared exploration, checkpoints and transport recovery. Private source encounter generation and real-team battle mechanics add P06 foundations, with no live battle admission or persistent outcomes. The anonymous renderer remains unsaved. No R1/R2/R3 release milestone has passed; STATUS records the current gate.
 
 Twenty-third-pass verified implementation: the separate charge profile adds source Skull

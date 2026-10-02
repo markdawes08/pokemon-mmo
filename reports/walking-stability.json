@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-10-01T02:53:54.241Z",
+  "checkedAt": "2026-10-02T01:42:53.775Z",
   "mode": "walk",
   "scope": "Actual player WebGL quad vertices during focused keyboard movement; test-only passive renderer instrumentation",
   "observations": [
     {
       "direction": "ArrowUp",
-      "movingRenderFrames": 68,
+      "movingRenderFrames": 69,
       "renderedBounds": [
         "112,40,128,72"
       ],
@@ -22,12 +22,12 @@
       ],
       "cameraTravel": {
         "x": 0,
-        "y": 64
+        "y": 63
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 13.100000001490116,
-        "max": 22.299999997019768
+        "min": 14.300000000745058,
+        "max": 18.199999999254942
       }
     },
     {
@@ -53,39 +53,12 @@
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 14,
-        "max": 20.299999997019768
+        "min": 11.5,
+        "max": 20.300000000745058
       }
     },
     {
       "direction": "ArrowLeft",
-      "movingRenderFrames": 69,
-      "renderedBounds": [
-        "112,40,128,72"
-      ],
-      "animationFrames": [
-        "7",
-        "2",
-        "8"
-      ],
-      "firstFramesByStep": [
-        "7",
-        "8",
-        "7",
-        "8"
-      ],
-      "cameraTravel": {
-        "x": 63,
-        "y": 0
-      },
-      "fractionalAnchorSamples": 0,
-      "sampleIntervalMs": {
-        "min": 14,
-        "max": 20.399999998509884
-      }
-    },
-    {
-      "direction": "ArrowRight",
       "movingRenderFrames": 70,
       "renderedBounds": [
         "112,40,128,72"
@@ -107,8 +80,35 @@
       },
       "fractionalAnchorSamples": 0,
       "sampleIntervalMs": {
-        "min": 13.700000002980232,
-        "max": 18.200000002980232
+        "min": 15.100000001490116,
+        "max": 19.899999998509884
+      }
+    },
+    {
+      "direction": "ArrowRight",
+      "movingRenderFrames": 68,
+      "renderedBounds": [
+        "112,40,128,72"
+      ],
+      "animationFrames": [
+        "7",
+        "2",
+        "8"
+      ],
+      "firstFramesByStep": [
+        "7",
+        "8",
+        "7",
+        "8"
+      ],
+      "cameraTravel": {
+        "x": 63,
+        "y": 0
+      },
+      "fractionalAnchorSamples": 0,
+      "sampleIntervalMs": {
+        "min": 13.100000001490116,
+        "max": 18.099999997764826
       }
     }
   ]

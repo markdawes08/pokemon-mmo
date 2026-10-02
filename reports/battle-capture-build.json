@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-01T02:47:01.107005+00:00",
+  "checkedAt": "2026-10-02T01:37:15.593934+00:00",
   "status": "passed",
   "profile": "firered-route1-capture-v1",
   "scope": "private source continuation; no owned or live effects",

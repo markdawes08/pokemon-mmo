@@ -14,5 +14,5 @@
     "types": ["node", "vite/client"],
     "lib": ["ES2022", "DOM", "DOM.Iterable"]
   },
-  "include": ["apps/**/*.ts", "packages/**/*.ts", "tests/**/*.ts", "tools/battle-spike/**/*.ts", "tools/encounter-core/**/*.ts", "tools/battle-route1/**/*.ts", "tools/battle-progression/**/*.ts", "tools/battle-loss/**/*.ts", "tools/battle-capture/**/*.ts", "tools/battle-evolution/**/*.ts", "tools/battle-family/**/*.ts", "tools/battle-party/**/*.ts", "tools/battle-tactics/**/*.ts", "tools/battle-charge/**/*.ts", "*.config.ts"]
+  "include": ["apps/**/*.ts", "packages/**/*.ts", "tests/**/*.ts", "tools/battle-spike/**/*.ts", "tools/encounter-core/**/*.ts", "tools/battle-route1/**/*.ts", "tools/battle-progression/**/*.ts", "tools/battle-loss/**/*.ts", "tools/battle-capture/**/*.ts", "tools/battle-evolution/**/*.ts", "tools/battle-family/**/*.ts", "tools/battle-party/**/*.ts", "tools/battle-tactics/**/*.ts", "tools/battle-charge/**/*.ts", "tools/battle-protect/**/*.ts", "*.config.ts"]
 }

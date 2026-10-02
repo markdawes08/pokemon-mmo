@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "status": "passed",
-  "checkedAt": "2026-10-01T02:46:49.116Z",
+  "checkedAt": "2026-10-02T01:37:03.847Z",
   "scope": "Private battle checkpoints only; no database, durable rewards, live transport or client save authority",
   "crossBuildRestores": 65,
   "crossBuildReplayedTransitions": 95,
   "interleavedTransitions": 7,
   "freshProcess": {
-    "parentPid": 28396,
-    "pid": 25412,
+    "parentPid": 24928,
+    "pid": 23748,
     "checkpoints": 65,
     "replayedTransitions": 95
   },
@@ -64,7 +64,7 @@
   ],
   "boundedAiExhaustionProcess": {
     "status": "passed",
-    "pid": 4248,
+    "pid": 24932,
     "checks": [
       "outer-depleted-slot-loop-traps",
       "inner-empty-slot-loop-traps",

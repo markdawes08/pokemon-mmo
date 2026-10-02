@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-01T02:47:35.824Z",
+  "checkedAt": "2026-10-02T01:37:38.481Z",
   "status": "passed",
   "profile": "firered-family-singles-v1",
   "wasmSha256": "810a16bcc7b714426edb80f933deaf8afefb65240c95464980d03e4f92a28e65",
@@ -19,7 +19,7 @@
   "candidateFailures": 3,
   "exhaustion": {
     "status": "passed",
-    "pid": 34776,
+    "pid": 29676,
     "checks": [
       "outer-depleted-slot-retry-traps",
       "inner-empty-slot-retry-traps",

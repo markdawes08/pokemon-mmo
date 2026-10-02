@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-01T02:46:51.104Z",
+  "checkedAt": "2026-10-02T01:37:05.812Z",
   "status": "passed",
   "scope": "Private source fixture/encounter/six-method battle integration; no database, live room, public UI or asset writes",
   "profileId": "r1-squirtle-v1",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-01T02:47:45.027072+00:00",
+  "checkedAt": "2026-10-02T01:37:44.360335+00:00",
   "status": "passed",
   "profile": "firered-family-party-v1",
   "scope": "Private source mechanics; not live battle or persistence",
@@ -3558,7 +3558,7 @@
       },
       {
         "path": "tools/battle-route1/extract.py",
-        "sha256": "8bc144097f49189517601e71d3547dffc4797f8650c3a2fe203bc0632a30d369"
+        "sha256": "b768c8133f465da0038a161ccb684e649f09f7e5db77187053d1a0191d5b8aee"
       },
       {
         "path": "tools/battle-route1/item_extract.py",
@@ -3570,7 +3570,7 @@
       },
       {
         "path": "tools/battle-family/extract.py",
-        "sha256": "47dacbf7ba76fa7b12779b5fd7ae89060a60125cb0b73a4213fb36a8d69f62e6"
+        "sha256": "1b6caf90e1f9614acfa372ebbae98e83be3851f08112788e06caed1f56b953be"
       },
       {
         "path": "tools/battle-family/build.py",
@@ -3578,7 +3578,7 @@
       },
       {
         "path": "tools/battle-party/extract.py",
-        "sha256": "521f422fba2c772af65d090d83c1575010b99ff476a4fd6dce1fe0baf4082004"
+        "sha256": "b5914c2d7c31e3835a1d9a904048627a6a60b40b3297f7ed69cd202db5d6910a"
       },
       {
         "path": "tools/battle-party/build.py",

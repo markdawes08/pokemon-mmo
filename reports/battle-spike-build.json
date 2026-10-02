@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-01T02:46:28.587445+00:00",
+  "checkedAt": "2026-10-02T01:36:51.233698+00:00",
   "status": "passed",
   "scope": "P03 batch 3 restricted source turns and portable logical checkpoints; not a complete source battle engine",
   "toolchain": {

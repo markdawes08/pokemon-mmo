@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-10-01T02:49:26.205Z",
+  "status": "passed",
+  "wasmSha256": "c2d5ac7786979cf0288ab624f5c8a7b81516c7c34458ceddd54923de99541151",
+  "crossBuildHostBoundaries": 1347,
+  "crossBuildRawBoundaries": 1347,
+  "replayedTransitions": 2080,
+  "replayedRawTransitions": 2080,
+  "freshProcess": {
+    "parentPid": 29480,
+    "status": "passed",
+    "pid": 34792,
+    "hostBoundaries": 1347,
+    "rawBoundaries": 1347,
+    "transitions": 2080,
+    "rawTransitions": 2080
+  },
+  "candidateFailures": 18,
+  "candidateFailureChecks": [
+    "event counter overflow after source execution",
+    "switch candidate publication failure",
+    "rain-five-turns-repeat-and-recast:0 publication failure",
+    "rain-five-turns-repeat-and-recast:4 publication failure",
+    "whirlwind-actor-0-levels-60-60-success-True:0 publication failure",
+    "charge-last-PP-release-before-Struggle:0 publication failure",
+    "charge-last-PP-release-before-Struggle:1 publication failure",
+    "flinch-cancels-charge-second-no-PP-or-accuracy:1 publication failure",
+    "wild-charge-retained-over-player-pre-residual-recoil-faint:2 publication failure",
+    "first-draw-candidate-rollback",
+    "next-ai-candidate-rollback",
+    "faint-escape-candidate-rollback",
+    "replacement-next-turn-candidate-rollback",
+    "force-gate-after-PP-candidate-rollback",
+    "rain-cast-and-field-tick-next-ai-candidate-rollback",
+    "first-charge-PP-defense-lock-next-ai-candidate-rollback",
+    "release-cleared-lock-before-critical-candidate-rollback",
+    "wild-release-candidate-rollback"
+  ],
+  "exhaustion": {
+    "status": "passed",
+    "pid": 28764,
+    "checks": [
+      "raw-depleted-slot-loop-traps",
+      "raw-empty-slot-loop-traps",
+      "first-draw-candidate-rollback",
+      "next-ai-candidate-rollback",
+      "faint-escape-candidate-rollback",
+      "replacement-next-turn-candidate-rollback",
+      "raw-lower-level-force-gate-traps-after-last-accuracy-draw",
+      "force-gate-after-PP-candidate-rollback",
+      "rain-cast-and-field-tick-next-ai-candidate-rollback",
+      "first-charge-PP-defense-lock-next-ai-candidate-rollback",
+      "release-cleared-lock-before-critical-candidate-rollback",
+      "raw-PP0-release-traps-at-next-draw-without-retry-loop",
+      "raw-locked-wild-chooser-needs-no-draw-even-at-limit",
+      "wild-release-candidate-rollback"
+    ]
+  },
+  "scope": "Logical recovery and candidate isolation only; no authentication, DB acknowledgement or durable receipt claim."
+}

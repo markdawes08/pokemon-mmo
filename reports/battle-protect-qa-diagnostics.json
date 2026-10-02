@@ -1,0 +1,37 @@
+{
+  "status": "test-oracle-corrections",
+  "wasmSha256": "c9bf6d9bc635a32f50645dc3b3dda55ab3963fa99fb3024331daf94cadd3aafd",
+  "sourceChangedToFitExpectations": false,
+  "observations": [
+    {
+      "nativeExitCode": 1,
+      "primaryError": "AssertionError [ERR_ASSERTION]: protect-last-action-after-voluntary-switch:cross0+1: every persistent roster word 0",
+      "location": "tools/battle-protect/verify-support.ts:61",
+      "difference": "Untouched bench Withdraw PP was actual 40 versus oracle 39.",
+      "diagnosis": "Fixture supplied the same Python creature object twice; deepcopy preserved the alias, so the independent oracle mutated both members. JSON admission correctly contained separate members.",
+      "correction": "Clone each input party member independently before running the oracle."
+    },
+    {
+      "nativeExitCode": 1,
+      "primaryError": "Error: protect-against-every-move-184: source admission failed",
+      "cause": "Protect source rejected source roster admission: 1",
+      "location": "tools/battle-protect/verify.ts:55",
+      "diagnosis": "The new fixture incorrectly assigned Scary Face to Rattata. Pinned level_up_learnsets.h gives Scary Face to Raticate at level 20; Rattata does not learn it.",
+      "correction": "Use Raticate for the Scary Face protection case. Add fixture identity to constructor failure diagnostics."
+    },
+    {
+      "nativeExitCode": 1,
+      "primaryError": "AssertionError [ERR_ASSERTION]: 2 !== 0 at the copied raw import-staging test",
+      "diagnosis": "A retained negative-test setup still called spike3_import_begin with checkpoint version 7 instead of the new version 8. Numerical scenarios had passed.",
+      "correction": "Use version 8 for the supported import staging setup; keep unsupported-version rejection checks separate."
+    },
+    {
+      "nativeExitCode": 1,
+      "wasmSha256": "c8300b709626eab94f4554dca867181127b4fcc9a888c2c8fa013e7b8d220d8f",
+      "primaryError": "AssertionError [ERR_ASSERTION]: 1 !== 0 at exportRaw, verify.ts:235",
+      "diagnosis": "The new manual pending-hook test completed both actor attacks but omitted the source party_sync command before checkpoint export, leaving active PP and persistent roster PP inconsistent. The production and full raw continuation schedulers already synchronize them.",
+      "correction": "Synchronize the manually exercised raw roster before completing its turn and comparing the exact future checkpoint."
+    }
+  ],
+  "scope": "Records preliminary independent-fixture errors honestly; not production source failures or final verification results."
+}
