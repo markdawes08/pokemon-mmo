@@ -1,0 +1,376 @@
+{
+  "schemaVersion": 1,
+  "format": "gzip",
+  "canonicalLineEndings": "CRLF",
+  "fixtures": [
+    {
+      "path": "tools/battle-capture/fixtures/source-cases.json",
+      "archive": "tools/battle-capture/fixtures/source-cases.json.gz",
+      "canonicalBytes": 9660539,
+      "canonicalSha256": "47a4b1ebf06bfc055a25fd119834f76c4f4243afe6ceddb5ac49c968e37c8c3c",
+      "archiveBytes": 93965,
+      "archiveSha256": "515d49d28a6ca8a6a8e387e8f8d9749a0c0beb36966503d355e65fe90794e7a0",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 646,
+      "sourcePaths": [
+        "charmap.txt",
+        "data/battle_scripts_2.s",
+        "include/constants/global.h",
+        "include/constants/region_map_sections.h",
+        "include/pokemon.h",
+        "src/battle_script_commands.c",
+        "src/data/battle_moves.h",
+        "src/data/pokemon/experience_tables.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/field_specials.c",
+        "src/item_use.c",
+        "src/naming_screen.c",
+        "src/overworld.c",
+        "src/pokedex_screen.c",
+        "src/pokemon.c",
+        "src/pokemon_storage_system.c"
+      ]
+    },
+    {
+      "path": "tools/battle-charge/fixtures/source-cases.json",
+      "archive": "tools/battle-charge/fixtures/source-cases.json.gz",
+      "canonicalBytes": 8177945,
+      "canonicalSha256": "167b44266ca4b5d2bfffd9f9919d6d9b7ab60dc92688bb7ca7ca98e96e3cd54c",
+      "archiveBytes": 215340,
+      "archiveSha256": "b9ea707d1e43211ac8ae271202462f077fb2cd3a242972f68a64a51626160d7e",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 410,
+      "sourcePaths": [
+        "data/battle_scripts_1.s",
+        "include/constants/battle.h",
+        "src/battle_controller_opponent.c",
+        "src/battle_controller_player.c",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/battle_util.c",
+        "src/battle_util2.c",
+        "src/data/battle_moves.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/battle-evolution/fixtures/source-cases.json",
+      "archive": "tools/battle-evolution/fixtures/source-cases.json.gz",
+      "canonicalBytes": 18025703,
+      "canonicalSha256": "9e629febd8845dc6e281164f6ee93ff964dab6d11f186754832ac19002307c8f",
+      "archiveBytes": 226582,
+      "archiveSha256": "79f28a7883c855935cfa842de606b783662871e710795df739985159ab174311",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 871,
+      "sourcePaths": [
+        "charmap.txt",
+        "include/constants/global.h",
+        "src/battle_main.c",
+        "src/data/battle_moves.h",
+        "src/data/items.h",
+        "src/data/pokemon/evolution.h",
+        "src/data/pokemon/experience_tables.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/evolution_scene.c",
+        "src/overworld.c",
+        "src/pokedex_screen.c",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/battle-family/fixtures/source-cases.json",
+      "archive": "tools/battle-family/fixtures/source-cases.json.gz",
+      "canonicalBytes": 2014482,
+      "canonicalSha256": "e8aea6e37946e3201d86a181f36e4d1bc00e102dca4e8e7b8564698295f64ed3",
+      "archiveBytes": 55821,
+      "archiveSha256": "ce7bdcad6640533c71098088ee99bc9ca356de7c9b836cc691df08ec9a862c7b",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 134,
+      "sourcePaths": [
+        "data/battle_scripts_1.s",
+        "include/constants/battle.h",
+        "src/battle_controller_opponent.c",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/battle_util.c",
+        "src/data/battle_moves.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/battle-loss/fixtures/source-cases.json",
+      "archive": "tools/battle-loss/fixtures/source-cases.json.gz",
+      "canonicalBytes": 5549419,
+      "canonicalSha256": "dbfe309e1a8ce56fdf691710858785756f910c3502c926935112632c5d93cd1b",
+      "archiveBytes": 53110,
+      "archiveSha256": "78566d56c6655bf89320df07f88eabbb79448871e1bf0f627de6af0ede59c3f5",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 557,
+      "sourcePaths": [
+        "data/scripts/hall_of_fame.inc",
+        "data/scripts/white_out.inc",
+        "include/constants/flags.h",
+        "include/constants/map_event_ids.h",
+        "include/constants/map_groups.h",
+        "include/constants/opponents.h",
+        "include/constants/vars.h",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/battle_setup.c",
+        "src/battle_util2.c",
+        "src/data/battle_moves.h",
+        "src/data/heal_locations.json",
+        "src/data/pokemon/experience_tables.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/field_screen_effect.c",
+        "src/heal_location.c",
+        "src/money.c",
+        "src/overworld.c",
+        "src/pokemon.c",
+        "src/script_pokemon_util.c"
+      ]
+    },
+    {
+      "path": "tools/battle-mirror/fixtures/source-cases.json",
+      "archive": "tools/battle-mirror/fixtures/source-cases.json.gz",
+      "canonicalBytes": 14485883,
+      "canonicalSha256": "96eae8272d7559da8308a95c59086c72587b50a584d29f0f901eaf97bd1e3f03",
+      "archiveBytes": 374710,
+      "archiveSha256": "118181a5dff270614e87e2a8163f47c92ab768e6cdc4507b51c746dd8f74f2e2",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 686,
+      "sourcePaths": [
+        "data/battle_scripts_1.s",
+        "include/constants/battle.h",
+        "src/battle_controller_opponent.c",
+        "src/battle_controller_player.c",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/battle_util.c",
+        "src/battle_util2.c",
+        "src/data/battle_moves.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/battle-party/fixtures/source-cases.json",
+      "archive": "tools/battle-party/fixtures/source-cases.json.gz",
+      "canonicalBytes": 4426002,
+      "canonicalSha256": "4db4ff56299e5b8ef5a5a77035c0419095333a61d40060a5997b612946b22c32",
+      "archiveBytes": 120915,
+      "archiveSha256": "771aa5f5a6b320735821e56b3bff9af472d92620d1a3db46d6deb156107c1263",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 220,
+      "sourcePaths": [
+        "data/battle_scripts_1.s",
+        "include/constants/battle.h",
+        "src/battle_controller_opponent.c",
+        "src/battle_controller_player.c",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/battle_util.c",
+        "src/battle_util2.c",
+        "src/data/battle_moves.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/battle-progression/fixtures/source-cases.json",
+      "archive": "tools/battle-progression/fixtures/source-cases.json.gz",
+      "canonicalBytes": 916569,
+      "canonicalSha256": "23101fd4be7533cea2e64c055d80fc15f3170be86d4ba52f418d8d7bacc7e27c",
+      "archiveBytes": 22833,
+      "archiveSha256": "8445f547f6a66705b92c7d8774f63dff356ce5303f5c8401b389cfede4c2880c",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 159,
+      "sourcePaths": [
+        "data/battle_scripts_1.s",
+        "include/constants/pokemon.h",
+        "src/battle_controller_player.c",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/battle_util.c",
+        "src/data/battle_moves.h",
+        "src/data/pokemon/evolution.h",
+        "src/data/pokemon/experience_tables.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/battle-protect/fixtures/source-cases.json",
+      "archive": "tools/battle-protect/fixtures/source-cases.json.gz",
+      "canonicalBytes": 10026112,
+      "canonicalSha256": "579b466aca06a490c19c98e302b35d7cba3b69117391b5913606ea649dd16c1f",
+      "archiveBytes": 263479,
+      "archiveSha256": "82468807d5af534fe002a2a9c306489c2bcd9657d12392fa8ebc30463168a863",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 476,
+      "sourcePaths": [
+        "data/battle_scripts_1.s",
+        "include/constants/battle.h",
+        "src/battle_controller_opponent.c",
+        "src/battle_controller_player.c",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/battle_util.c",
+        "src/battle_util2.c",
+        "src/data/battle_moves.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/battle-pursuit/fixtures/source-cases.json",
+      "archive": "tools/battle-pursuit/fixtures/source-cases.json.gz",
+      "canonicalBytes": 12097869,
+      "canonicalSha256": "d2236b7016eaed489f4a0471a930dfe2a5df0c24ef4aa7571168f21137b17f9c",
+      "archiveBytes": 306654,
+      "archiveSha256": "255dddc81efb277e86d7f6e5d63f291e53d1f10f808269588e88a1195811352b",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 603,
+      "sourcePaths": [
+        "data/battle_scripts_1.s",
+        "include/constants/battle.h",
+        "src/battle_controller_opponent.c",
+        "src/battle_controller_player.c",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/battle_util.c",
+        "src/battle_util2.c",
+        "src/data/battle_moves.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/battle-route1/fixtures/items-cases.json",
+      "archive": "tools/battle-route1/fixtures/items-cases.json.gz",
+      "canonicalBytes": 237284,
+      "canonicalSha256": "1d1e05e66692787c0cbefd4ebe389ab7bc691097578e73cfd486fb21e5aa91d1",
+      "archiveBytes": 12687,
+      "archiveSha256": "75ee5f3aff37e1f64427d2a0971be78ce42ddd0d9f1d3e64d09ff548049ca6dd",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 20,
+      "sourcePaths": [
+        "data/battle_scripts_2.s",
+        "include/battle_controllers.h",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/data/pokemon/item_effects.h",
+        "src/data/pokemon/species_info.h",
+        "src/item_use.c",
+        "src/libagbsyscall.s",
+        "src/party_menu.c",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/battle-route1/fixtures/source-cases.json",
+      "archive": "tools/battle-route1/fixtures/source-cases.json.gz",
+      "canonicalBytes": 310369,
+      "canonicalSha256": "6e8127ab6bac381bb62266c0d6df1f3d0814cda5ba54a026ad01e40e920f48ac",
+      "archiveBytes": 16182,
+      "archiveSha256": "23d267ac2642f20b0491594ceb52a12467d6ff6de12dd24373409eebf1af6719",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 21,
+      "sourcePaths": [
+        "data/battle_scripts_1.s",
+        "src/battle_controller_opponent.c",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/battle_util.c",
+        "src/data/battle_moves.h",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/battle-tactics/fixtures/source-cases.json",
+      "archive": "tools/battle-tactics/fixtures/source-cases.json.gz",
+      "canonicalBytes": 6495082,
+      "canonicalSha256": "03736f527ee900a22c061844046ea39672001788bc85f3a7bcd5d294e65a1653",
+      "archiveBytes": 170627,
+      "archiveSha256": "53bc6dd21f8e575fc1e1491db240f748265a92a26f4f865efe8319cdb1fa3ff8",
+      "caseCollections": [
+        "cases"
+      ],
+      "cases": 344,
+      "sourcePaths": [
+        "data/battle_scripts_1.s",
+        "include/constants/battle.h",
+        "src/battle_controller_opponent.c",
+        "src/battle_controller_player.c",
+        "src/battle_main.c",
+        "src/battle_script_commands.c",
+        "src/battle_util.c",
+        "src/battle_util2.c",
+        "src/data/battle_moves.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/pokemon.c"
+      ]
+    },
+    {
+      "path": "tools/encounter-core/fixtures/source-cases.json",
+      "archive": "tools/encounter-core/fixtures/source-cases.json.gz",
+      "canonicalBytes": 1467436,
+      "canonicalSha256": "684d9a73824782b5bc6ed02c78c3e762b797eb44aee1b12a9bcf1913fb25b936",
+      "archiveBytes": 110618,
+      "archiveSha256": "239ab4e7e26d7b19b20125c7dad98cb6f2406d7aa25849a7c1bc2653ab503f16",
+      "caseCollections": [
+        "factoryCases",
+        "stepCases"
+      ],
+      "cases": 60,
+      "sourcePaths": [
+        "include/random.h",
+        "src/data/battle_moves.h",
+        "src/data/pokemon/experience_tables.h",
+        "src/data/pokemon/level_up_learnsets.h",
+        "src/data/pokemon/species_info.h",
+        "src/data/wild_encounters.h",
+        "src/pokemon.c",
+        "src/random.c",
+        "src/wild_encounter.c"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "scope": "Independent source-oracle reproduction with only compressed fixtures present",
+  "generators": 14,
+  "results": [
+    {
+      "generator": "tools/battle-capture/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Capture independent source-literal reproducibility passed without writes.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-charge/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Independent charge fixture reproduction passed.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-evolution/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Evolution independent source-literal reproducibility passed without writes.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-family/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Independent family fixture reproduction passed.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-loss/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Loss independent source-literal reproducibility passed without writes.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-mirror/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Independent Mirror fixture reproduction passed.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-party/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Independent party fixture reproduction passed.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-progression/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Progression source-literal reproducibility passed without writes.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-protect/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Independent Protect fixture reproduction passed.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-pursuit/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Independent Pursuit fixture reproduction passed.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-route1/fixtures/generate_items.py",
+      "exitCode": 0,
+      "stdout": "Independent item/capture literal reproducibility passed without writes.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-route1/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Route1 source-literal reproducibility passed without file writes.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/battle-tactics/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Independent tactics fixture reproduction passed.",
+      "stderr": ""
+    },
+    {
+      "generator": "tools/encounter-core/fixtures/generate_fixtures.py",
+      "exitCode": 0,
+      "stdout": "Encounter source-literal fixture reproducibility passed (no files changed).",
+      "stderr": ""
+    }
+  ]
+}

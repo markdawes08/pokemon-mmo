@@ -1,7 +1,8 @@
+import { readFixtureBytes } from '../fixtures/io';
 /** Real C/WASM boundary verification against independent source literals. */
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { checkpointDigest, instantiateRawEncounter, loadEncounterCore, type EncounterCheckpoint } from './encounter';
@@ -28,7 +29,7 @@ async function child(command: string, args: string[], input?: string): Promise<s
 
 const python = process.platform === 'win32' ? '.venv/Scripts/python.exe' : '.venv/bin/python';
 await child(python, ['tools/encounter-core/fixtures/generate_fixtures.py', '--check']);
-const fixtureBytes = await readFile('tools/encounter-core/fixtures/source-cases.json');
+const fixtureBytes = await readFixtureBytes('tools/encounter-core/fixtures/source-cases.json');
 const fixtures = JSON.parse(fixtureBytes.toString('utf8')) as Fixtures;
 assert.equal(fixtures.schemaVersion, 1);
 const core = await loadEncounterCore();

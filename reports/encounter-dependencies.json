@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-02T14:35:55.701Z",
+  "checkedAt": "2026-10-02T16:22:26.260Z",
   "status": "passed",
   "scope": "Dependency audit only; encounter generation is verified separately and no live battle is admitted",
   "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",

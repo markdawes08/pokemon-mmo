@@ -13,6 +13,9 @@ from math import isqrt
 from pathlib import Path
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "fixtures"))
+from fixture_io import read_fixture_text, write_fixture_text
+
 HERE = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("battle_source_oracle", HERE / "generate_fixtures.py")
 base = importlib.util.module_from_spec(spec)
@@ -206,12 +209,13 @@ def fixtures():
 
 
 def main():
+    if "--check" in sys.argv: read_fixture_text(TARGET)
     data = json.dumps(fixtures(), indent=2) + "\n"
     if "--check" in sys.argv:
-        assert TARGET.read_text(encoding="utf-8") == data, "Item literal fixtures differ; review source derivation before regenerating"
+        assert read_fixture_text(TARGET) == data, "Item literal fixtures differ; review source derivation before regenerating"
         print("Independent item/capture literal reproducibility passed without writes.")
     else:
-        TARGET.write_text(data, encoding="utf-8")
+        write_fixture_text(TARGET, data)
         print(f"Wrote independent item literals: {TARGET.relative_to(base.ROOT)}")
 
 

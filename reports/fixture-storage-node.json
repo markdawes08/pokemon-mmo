@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "scope": "Canonical fixture storage only; no mechanics verification",
+  "archives": 14,
+  "cases": 5207,
+  "canonicalBytes": 93890694,
+  "archiveBytes": 2043523,
+  "rejectionChecks": 6,
+  "fixtures": [
+    {
+      "path": "tools/battle-capture/fixtures/source-cases.json",
+      "canonicalSha256": "47a4b1ebf06bfc055a25fd119834f76c4f4243afe6ceddb5ac49c968e37c8c3c"
+    },
+    {
+      "path": "tools/battle-charge/fixtures/source-cases.json",
+      "canonicalSha256": "167b44266ca4b5d2bfffd9f9919d6d9b7ab60dc92688bb7ca7ca98e96e3cd54c"
+    },
+    {
+      "path": "tools/battle-evolution/fixtures/source-cases.json",
+      "canonicalSha256": "9e629febd8845dc6e281164f6ee93ff964dab6d11f186754832ac19002307c8f"
+    },
+    {
+      "path": "tools/battle-family/fixtures/source-cases.json",
+      "canonicalSha256": "e8aea6e37946e3201d86a181f36e4d1bc00e102dca4e8e7b8564698295f64ed3"
+    },
+    {
+      "path": "tools/battle-loss/fixtures/source-cases.json",
+      "canonicalSha256": "dbfe309e1a8ce56fdf691710858785756f910c3502c926935112632c5d93cd1b"
+    },
+    {
+      "path": "tools/battle-mirror/fixtures/source-cases.json",
+      "canonicalSha256": "96eae8272d7559da8308a95c59086c72587b50a584d29f0f901eaf97bd1e3f03"
+    },
+    {
+      "path": "tools/battle-party/fixtures/source-cases.json",
+      "canonicalSha256": "4db4ff56299e5b8ef5a5a77035c0419095333a61d40060a5997b612946b22c32"
+    },
+    {
+      "path": "tools/battle-progression/fixtures/source-cases.json",
+      "canonicalSha256": "23101fd4be7533cea2e64c055d80fc15f3170be86d4ba52f418d8d7bacc7e27c"
+    },
+    {
+      "path": "tools/battle-protect/fixtures/source-cases.json",
+      "canonicalSha256": "579b466aca06a490c19c98e302b35d7cba3b69117391b5913606ea649dd16c1f"
+    },
+    {
+      "path": "tools/battle-pursuit/fixtures/source-cases.json",
+      "canonicalSha256": "d2236b7016eaed489f4a0471a930dfe2a5df0c24ef4aa7571168f21137b17f9c"
+    },
+    {
+      "path": "tools/battle-route1/fixtures/items-cases.json",
+      "canonicalSha256": "1d1e05e66692787c0cbefd4ebe389ab7bc691097578e73cfd486fb21e5aa91d1"
+    },
+    {
+      "path": "tools/battle-route1/fixtures/source-cases.json",
+      "canonicalSha256": "6e8127ab6bac381bb62266c0d6df1f3d0814cda5ba54a026ad01e40e920f48ac"
+    },
+    {
+      "path": "tools/battle-tactics/fixtures/source-cases.json",
+      "canonicalSha256": "03736f527ee900a22c061844046ea39672001788bc85f3a7bcd5d294e65a1653"
+    },
+    {
+      "path": "tools/encounter-core/fixtures/source-cases.json",
+      "canonicalSha256": "684d9a73824782b5bc6ed02c78c3e762b797eb44aee1b12a9bcf1913fb25b936"
+    }
+  ]
+}

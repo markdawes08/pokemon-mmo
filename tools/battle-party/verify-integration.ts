@@ -1,3 +1,4 @@
+import { readRetainedBytes } from '../fixtures/io';
 /** Coherent private capture -> two-member party diagnostics. No ownership,
  * account login, field acknowledgement or database mutation. */
 import assert from 'node:assert/strict';
@@ -210,7 +211,7 @@ const retainedPins = { ...earlier.retainedPins,
   '.local/battle-family/primary/family.wasm': '810a16bcc7b714426edb80f933deaf8afefb65240c95464980d03e4f92a28e65',
   'tools/battle-family/fixtures/source-cases.json': 'e8aea6e37946e3201d86a181f36e4d1bc00e102dca4e8e7b8564698295f64ed3' };
 for (const [path, expected] of Object.entries(retainedPins))
-  assert.equal(createHash('sha256').update(await readFile(path)).digest('hex'), expected, `Retained bytes changed: ${path}`);
+  assert.equal(createHash('sha256').update(await readRetainedBytes(path)).digest('hex'), expected, `Retained bytes changed: ${path}`);
 checks.push('eight-prior-artifacts-and-2408-retained-literal-cases-byte-identical');
 await writeFile('reports/battle-party-integration.json', JSON.stringify({ checkedAt: new Date().toISOString(), status: 'passed',
   scope: 'Actual private capture proofs feed diagnostic party battles only. No account ownership, field acknowledgement, live admission or database mutation.',

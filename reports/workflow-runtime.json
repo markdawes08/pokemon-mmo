@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-02T16:41:13.853Z",
+  "status": "passed",
+  "mode": "Read-only readiness/account listing; no sign-in, reset or restart",
+  "checks": [
+    {
+      "url": "http://127.0.0.1:5173",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:2567/api/ready",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/ready",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/testing/accounts",
+      "status": 200,
+      "accounts": [
+        "ADMINA",
+        "ADMINB"
+      ]
+    }
+  ],
+  "launch": {
+    "launchedAt": "2026-10-02T15:14:44.7498700Z",
+    "command": "node scripts/run.mjs dev",
+    "launcherPid": 35248,
+    "supervisorPid": 30772,
+    "backendPid": 31260,
+    "clientPid": 34880,
+    "mode": "foreground-tool-session",
+    "toolSessionId": 38062,
+    "status": "running",
+    "output": "Streamed to owning exec tool session; no detached log files."
+  }
+}

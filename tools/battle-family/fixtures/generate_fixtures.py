@@ -12,6 +12,9 @@ import json
 from pathlib import Path
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "fixtures"))
+from fixture_io import read_fixture_text, write_fixture_text
+
 ROOT = Path(__file__).resolve().parents[3]
 TARGET = Path(__file__).with_name("source-cases.json")
 spec = importlib.util.spec_from_file_location("independent_evolution", ROOT/"tools/battle-evolution/fixtures/generate_fixtures.py")
@@ -303,11 +306,12 @@ def fixtures():
         allowedMoves=ALLOWED,unsupportedFamilyMoves=UNSUPPORTED,sourceRecords=records,cases=cases)
 
 def main():
+    if "--check" in sys.argv: read_fixture_text(TARGET)
     data=json.dumps(fixtures(),indent=2)+"\n"
     if "--check" in sys.argv:
-        assert TARGET.read_text(encoding="utf-8")==data,"Independent family literals changed; audit source before regeneration"
+        assert read_fixture_text(TARGET)==data,"Independent family literals changed; audit source before regeneration"
         print("Independent family fixture reproduction passed.")
     else:
-        TARGET.write_text(data,encoding="utf-8");print(f"Wrote {len(json.loads(data)['cases'])} independent family cases.")
+        write_fixture_text(TARGET, data);print(f"Wrote {len(json.loads(data)['cases'])} independent family cases.")
 
 if __name__=="__main__":main()

@@ -14,6 +14,9 @@ import json
 from pathlib import Path
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "fixtures"))
+from fixture_io import read_fixture_text, write_fixture_text
+
 ROOT = Path(__file__).resolve().parents[3]
 TARGET = Path(__file__).with_name("source-cases.json")
 spec = importlib.util.spec_from_file_location("encounter_test_oracle", ROOT / "tools/encounter-core/fixtures/generate_fixtures.py")
@@ -298,12 +301,13 @@ def fixtures():
 
 
 def main():
+    if "--check" in sys.argv: read_fixture_text(TARGET)
     data = json.dumps(fixtures(), indent=2) + "\n"
     if "--check" in sys.argv:
-        assert TARGET.read_text(encoding="utf-8") == data, "Source battle literals differ; review derivation before regenerating"
+        assert read_fixture_text(TARGET) == data, "Source battle literals differ; review derivation before regenerating"
         print("Route1 source-literal reproducibility passed without file writes.")
     else:
-        TARGET.write_text(data, encoding="utf-8")
+        write_fixture_text(TARGET, data)
         print(f"Wrote source-derived Route1 battle fixtures to {TARGET.relative_to(ROOT)}")
 
 

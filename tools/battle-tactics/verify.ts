@@ -1,3 +1,4 @@
+import { readFixtureBytes, readRetainedBytes } from '../fixtures/io';
 /** Independent source literals, rejection, candidate isolation and recovery. */
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -20,7 +21,7 @@ async function child(command:string,args:string[],input='',timeout=120000):Promi
 }
 const sha=(bytes:Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 await child('.venv/Scripts/python.exe',['tools/battle-tactics/fixtures/generate_fixtures.py','--check']);
-const fixtureBytes=await readFile('tools/battle-tactics/fixtures/source-cases.json'),fixtures=JSON.parse(fixtureBytes.toString('utf8')) as Fixtures;
+const fixtureBytes=await readFixtureBytes('tools/battle-tactics/fixtures/source-cases.json'),fixtures=JSON.parse(fixtureBytes.toString('utf8')) as Fixtures;
 const [module,rebuildBytes,resources]=await Promise.all([loadTacticsModule(),readFile('.local/battle-tactics/rebuild/tactics.wasm'),loadTacticsResources()]);
 const rebuild=new WebAssembly.Module(rebuildBytes),build=JSON.parse(await readFile('reports/battle-tactics-build.json','utf8')) as {wasmSha256:string};
 assert.equal(sha(rebuildBytes),build.wasmSha256);assert.equal(new Set(fixtures.cases.map(c => c.id)).size,fixtures.cases.length);
@@ -43,7 +44,7 @@ const retained={
   '.local/battle-family/primary/family.wasm':'810a16bcc7b714426edb80f933deaf8afefb65240c95464980d03e4f92a28e65',
   '.local/battle-party/primary/party.wasm':'4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9',
 };
-for(const [path,hash]of Object.entries(retained))assert.equal(sha(await readFile(path)),hash,`Retained ${path}`);
+for(const [path,hash]of Object.entries(retained))assert.equal(sha(await readRetainedBytes(path)),hash,`Retained ${path}`);
 const jobs:RecoveryJob[]=[],observations=[];let transitions=0,checkedDraws=0,replayedTransitions=0,replayedRawTransitions=0;
 for(const fixture of fixtures.cases) {
   const initial=structuredClone(fixture.input),driver=new TacticsDriver(module,resources,initial);
@@ -256,7 +257,7 @@ const worker=JSON.parse(await child(process.execPath,['--import','tsx','tools/ba
   status:string;pid:number;hostBoundaries:number;rawBoundaries:number;transitions:number;rawTransitions:number};
 assert.equal(worker.status,'passed');assert.notEqual(worker.pid,process.pid);assert.equal(worker.hostBoundaries,jobs.length);assert.equal(worker.rawBoundaries,jobs.length);
 assert.equal(worker.transitions,replayedTransitions);assert.equal(worker.rawTransitions,replayedRawTransitions);
-for(const [path,hash]of Object.entries(retained))assert.equal(sha(await readFile(path)),hash);
+for(const [path,hash]of Object.entries(retained))assert.equal(sha(await readRetainedBytes(path)),hash);
 const report={checkedAt:new Date().toISOString(),status:'passed',profile:'firered-family-tactics-v1',wasmSha256:build.wasmSha256,
   fixtureSha256:sha(fixtureBytes),sourceFingerprint:fixtures.sourceFingerprint,independence:fixtures.independence,
   sourceCases:fixtures.cases.length,transitions,checkedDraws,hostBoundaries:jobs.length,rawBoundaries:jobs.length,replayedTransitions,replayedRawTransitions,

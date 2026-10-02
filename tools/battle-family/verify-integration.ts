@@ -1,3 +1,4 @@
+import { readFixtureText, readRetainedBytes } from '../fixtures/io';
 /** Private source-result -> family combat diagnostics. No field acknowledgement,
  * account access, ownership grant, live entry or database mutation. */
 import assert from 'node:assert/strict';
@@ -81,7 +82,7 @@ async function bridge(result: FamilyResult, expected: { creature: Pick<FamilyCre
   return prepared;
 }
 
-const sourceCases = JSON.parse(await readFile('tools/encounter-core/fixtures/source-cases.json', 'utf8')) as {
+const sourceCases = JSON.parse(await readFixtureText('tools/encounter-core/fixtures/source-cases.json')) as {
   factoryCases: { initial: { mainSeed: number }; expected: { slot: number } }[] };
 const seeds = new Map(sourceCases.factoryCases.map(row => [row.expected.slot, row.initial.mainSeed]));
 assert.equal(seeds.size, 12);
@@ -146,7 +147,7 @@ settleCapture(boxed); assert.equal(boxed.view().placement?.kind, 'box');
 await assert.rejects(() => createFamilyDiagnosticFromResult({ kind: 'capture-party', checkpoint: boxed.snapshot() }, nextPending));
 checks.push('depleted-natural-capture-keeps-hp-pp-and-spent-bag', 'boxed-data-requires-source-party-reconstruction');
 
-const evolutionFixtures = JSON.parse(await readFile('tools/battle-evolution/fixtures/source-cases.json', 'utf8')) as EvolutionFixtures;
+const evolutionFixtures = JSON.parse(await readFixtureText('tools/battle-evolution/fixtures/source-cases.json')) as EvolutionFixtures;
 let lastPlayer: FamilyCreature | undefined;
 for (const id of ['level-7-16', 'level-8-36', 'level-16-18', 'level-17-36', 'level-19-20']) {
   const row = evolutionFixtures.cases.find(row => row.id === id); assert(row, id);
@@ -163,7 +164,7 @@ for (const id of ['level-7-16', 'level-8-36', 'level-16-18', 'level-17-36', 'lev
 assert.deepEqual([...resultingSpecies].sort((a, b) => a - b), [7, 8, 9, 16, 17, 18, 19, 20]); assert(lastPlayer);
 checks.push('all-five-evolution-edges-retain-diagnostic-provenance-and-pending-ownership', 'all-eight-result-species-execute-and-restore-family-combat');
 
-const progressionFixtures = JSON.parse(await readFile('tools/battle-progression/fixtures/source-cases.json', 'utf8')) as {
+const progressionFixtures = JSON.parse(await readFixtureText('tools/battle-progression/fixtures/source-cases.json')) as {
   cases: { id: string; initial: ProgressionDiagnostic }[] };
 const pendingRow = progressionFixtures.cases.find(row => row.id === 'level-15-to-16-exact-threshold'); assert(pendingRow);
 const pendingProgression = progression.createDiagnostic(pendingRow.initial);
@@ -188,7 +189,7 @@ const retainedPins = { ...prior.retainedPins,
   '.local/battle-evolution/primary/evolution.wasm': '1585f15e7aef6a5ed952cbf3f17041d5382163e39f51c3b1ed3ac65f41495c5c',
   'tools/battle-evolution/fixtures/source-cases.json': '9e629febd8845dc6e281164f6ee93ff964dab6d11f186754832ac19002307c8f' };
 for (const [path, expected] of Object.entries(retainedPins))
-  assert.equal(createHash('sha256').update(await readFile(path)).digest('hex'), expected, `Retained bytes changed: ${path}`);
+  assert.equal(createHash('sha256').update(await readRetainedBytes(path)).digest('hex'), expected, `Retained bytes changed: ${path}`);
 checks.push('seven-prior-WASM-artifacts-and-2274-retained-literal-cases-byte-identical');
 await writeFile('reports/battle-family-integration.json', JSON.stringify({ checkedAt: new Date().toISOString(), status: 'passed',
   scope: 'Proof-bound private family combat diagnostics only. No ownership, durable mutation, field acknowledgement or live admission.',

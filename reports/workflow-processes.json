@@ -1,0 +1,44 @@
+﻿{
+    "listeners":  [
+                      {
+                          "LocalAddress":  "127.0.0.1",
+                          "LocalPort":  5433,
+                          "OwningProcess":  28864
+                      },
+                      {
+                          "LocalAddress":  "127.0.0.1",
+                          "LocalPort":  5173,
+                          "OwningProcess":  34880
+                      },
+                      {
+                          "LocalAddress":  "127.0.0.1",
+                          "LocalPort":  2567,
+                          "OwningProcess":  31260
+                      }
+                  ],
+    "mainProcesses":  [
+                          {
+                              "Id":  30772,
+                              "ProcessName":  "node"
+                          },
+                          {
+                              "Id":  31260,
+                              "ProcessName":  "node"
+                          },
+                          {
+                              "Id":  34880,
+                              "ProcessName":  "node"
+                          },
+                          {
+                              "Id":  35248,
+                              "ProcessName":  "node"
+                          },
+                          {
+                              "Id":  28864,
+                              "ProcessName":  "postgres"
+                          }
+                      ],
+    "remainingBrowserBackendPids":  [
+
+                                    ]
+}

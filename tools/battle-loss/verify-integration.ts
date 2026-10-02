@@ -1,8 +1,9 @@
+import { readFixtureText, readRetainedBytes } from '../fixtures/io';
 /** Actual encounter -> battle -> source loss continuation, with a pending world
  * handoff only. Never logs into an account or writes field/character state. */
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import type { BattleSnapshot } from '@pokewaterblue/battle-core';
 import { loadDevelopmentProfile } from '../../apps/server/src/development-profile';
 import { WorldContent } from '../../apps/server/src/world-content';
@@ -16,7 +17,7 @@ const profile = await loadDevelopmentProfile(), originalProfile = structuredClon
 const encounters = await loadEncounterCore(), battle = await loadRoute1Engine();
 const progression = await loadProgressionCore(), loss = await loadLossCore();
 const checks: string[] = [];
-const fixtures = JSON.parse(await readFile('tools/encounter-core/fixtures/source-cases.json', 'utf8')) as {
+const fixtures = JSON.parse(await readFixtureText('tools/encounter-core/fixtures/source-cases.json')) as {
   factoryCases: { initial: { mainSeed: number; wildSeed: number; trainerId: number }; expected: { slot: number } }[];
 };
 const selected = new Map(fixtures.factoryCases.map(row => [row.expected.slot, row.initial]));
@@ -207,7 +208,7 @@ const retained = {
   '.local/battle-progression/primary/progression.wasm': '33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539',
 };
 for (const [path, expected] of Object.entries(retained))
-  assert.equal(createHash('sha256').update(await readFile(path)).digest('hex'), expected, path);
+  assert.equal(createHash('sha256').update(await readRetainedBytes(path)).digest('hex'), expected, path);
 checks.push('all-four-previous-wasm-modules-and-retained-combat-progression-fixtures-byte-identical');
 await writeFile('reports/battle-loss-integration.json', JSON.stringify({ checkedAt: new Date().toISOString(), status: 'passed',
   scope: 'Private source encounter/battle/loss continuation only; field activity, accounts and world remain untouched',

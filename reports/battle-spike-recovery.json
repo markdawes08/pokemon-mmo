@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-02T14:35:39.347Z",
+  "checkedAt": "2026-10-02T16:22:06.600Z",
   "status": "passed",
   "scope": "P03 batch 3 private synthetic-profile recovery; no live battle persistence or cross-version migration",
   "sourceFingerprint": "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982",
@@ -21,8 +21,8 @@
   "interleavedInstances": 37,
   "interleavedTransitions": 26,
   "freshProcess": {
-    "pid": 34176,
-    "parentPid": 34600,
+    "pid": 28988,
+    "parentPid": 36764,
     "boundaries": 37,
     "transitions": 26
   },

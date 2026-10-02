@@ -1,8 +1,9 @@
+import { readFixtureText, readRetainedBytes } from '../fixtures/io';
 /** Verified progression -> private evolution continuation, plus truthful rejection
  * of every currently reachable combat outcome. No account or durable mutation. */
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import type { BattleSnapshot } from '@pokewaterblue/battle-core';
 import { loadDevelopmentProfile } from '../../apps/server/src/development-profile';
 import { loadEncounterCore } from '../encounter-core/encounter';
@@ -13,7 +14,7 @@ import { loadEvolutionCore, type EvolutionSession } from './evolution';
 const profile = await loadDevelopmentProfile(), retainedProfile = structuredClone(profile);
 const progression = await loadProgressionCore(), evolution = await loadEvolutionCore();
 const encounters = await loadEncounterCore(), battle = await loadRoute1Engine();
-const fixtures = JSON.parse(await readFile('tools/battle-progression/fixtures/source-cases.json', 'utf8')) as {
+const fixtures = JSON.parse(await readFixtureText('tools/battle-progression/fixtures/source-cases.json')) as {
   cases: { id: string; initial: ProgressionDiagnostic; decisions: { kind: 'replace-move' | 'decline-move'; slot?: number }[];
     checkpoints: { phase: string }[] }[];
 };
@@ -199,7 +200,7 @@ const retainedPins = {
   'tools/battle-capture/fixtures/source-cases.json': '47a4b1ebf06bfc055a25fd119834f76c4f4243afe6ceddb5ac49c968e37c8c3c',
 };
 for (const [path, expected] of Object.entries(retainedPins))
-  assert.equal(createHash('sha256').update(await readFile(path)).digest('hex'), expected, `Retained bytes changed: ${path}`);
+  assert.equal(createHash('sha256').update(await readRetainedBytes(path)).digest('hex'), expected, `Retained bytes changed: ${path}`);
 checks.push('six-prior-WASM-artifacts-and-1403-retained-literal-cases-byte-identical');
 await writeFile('reports/battle-evolution-integration.json', JSON.stringify({ checkedAt: new Date().toISOString(), status: 'passed',
   scope: 'Private diagnostic progression/evolution bridge; current real combat explicitly cannot reach evolution. No accounts, database, field acknowledgement or durable grants.',

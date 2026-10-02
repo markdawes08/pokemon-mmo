@@ -1,0 +1,304 @@
+{
+  "checkedAt": "2026-10-02T16:02:59.657814+00:00",
+  "status": "completed",
+  "scope": "Continuity docs and obsolete pass-specific runner/finalizer helpers only",
+  "approval": "Root approved exact 46 audited helper paths; no user approval needed within authorized cleanup",
+  "docs": [
+    {
+      "path": "docs/STATUS.md",
+      "beforeBytes": 62636,
+      "afterBytes": 4747,
+      "afterSha256": "5dbfd3d0ff4ebb12a5c389b1f0dc60e3dbf8c4311b9d076c934b9eaaf7449dd2",
+      "afterLines": 82
+    },
+    {
+      "path": "docs/TASKS.md",
+      "beforeBytes": 52157,
+      "afterBytes": 14044,
+      "afterSha256": "3a75cecf676b66e3c7f39437429b4183684239e4f5e6b22d37f002f66da8364e",
+      "afterLines": 184
+    },
+    {
+      "path": "docs/RUNBOOK.md",
+      "beforeBytes": 56027,
+      "afterBytes": 13166,
+      "afterSha256": "7eb8512d655241379762c94cfd7f9a1c42f449f17d52f19bf196ff4122617377",
+      "afterLines": 233
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "beforeBytes": 129987,
+      "afterBytes": 33265,
+      "afterSha256": "8d42aa08d6d98262afc95ef734368c3dff383b4e7f473f25a34ca9ee3d0773ad",
+      "afterLines": 248
+    },
+    {
+      "path": "docs/COMPATIBILITY.md",
+      "beforeBytes": 57933,
+      "afterBytes": 20147,
+      "afterSha256": "d528afb77c020dced99959c8b98138ef9a679e7c1eb26ae90212ae17aa4b8d17",
+      "afterLines": 119
+    }
+  ],
+  "removedHelpers": [
+    {
+      "path": ".local/docs-twentyfifth-progress.py",
+      "bytes": 1386,
+      "sha256": "e4233803b4660541687d6d6ff91c3dd8e798c57f36a51fb4b82ad05c12f2dfb9"
+    },
+    {
+      "path": ".local/docs-twentyfourth-progress.py",
+      "bytes": 2894,
+      "sha256": "a6b55c8747e3a8446c075a49fe334b95f5bdd61ddc0b60ac5738f82833deae94"
+    },
+    {
+      "path": ".local/finalize-eighteenth.py",
+      "bytes": 12840,
+      "sha256": "5a19903e234e11598b86ef6938827f4a74b6abf6a7c8e40f43da1310c2073575"
+    },
+    {
+      "path": ".local/finalize-eleventh.py",
+      "bytes": 18503,
+      "sha256": "936a1236d250b5b02b5cd378cd72b5c5d4b065646b9daec762f382b8972f4a47"
+    },
+    {
+      "path": ".local/finalize-fifteenth.py",
+      "bytes": 16485,
+      "sha256": "3bafddf3c91fbf7e2d30a93260d6058694ffff142f11da073d86238ecc04033b"
+    },
+    {
+      "path": ".local/finalize-fifth-pass.py",
+      "bytes": 14901,
+      "sha256": "ace8cd2345a5ba34b9115a7eab336f0f78526fddc36eda82fe599434f7d0c615"
+    },
+    {
+      "path": ".local/finalize-fourteenth.py",
+      "bytes": 12498,
+      "sha256": "9f78c56a737cd2af782e8da0b3d500a219556448705a805f9a9edef26c25dab7"
+    },
+    {
+      "path": ".local/finalize-nineteenth.py",
+      "bytes": 15054,
+      "sha256": "f6e4f95eb1f1c86355948a951eab5a033479113995209d224ccdf6650fe3f57c"
+    },
+    {
+      "path": ".local/finalize-seventeenth.py",
+      "bytes": 12275,
+      "sha256": "91c92e0032ddb18ca1a662b38769154c0693b4e1027812a88487734c11d1630b"
+    },
+    {
+      "path": ".local/finalize-sixteenth.py",
+      "bytes": 21219,
+      "sha256": "d1e4a704886b849df0e89c699e4460a904699070e84b05f3b8c2b45601f3b0aa"
+    },
+    {
+      "path": ".local/finalize-sixth-pass.py",
+      "bytes": 15017,
+      "sha256": "b2173550a2cefea1db664151257bd5c7fc82d26805b9418e79a67eac29ca1ea9"
+    },
+    {
+      "path": ".local/finalize-tenth.py",
+      "bytes": 13821,
+      "sha256": "e24f3c68f70209684bfc81306d503984acd888e30d1378ed926ecc76f19ea98f"
+    },
+    {
+      "path": ".local/finalize-thirteenth.py",
+      "bytes": 9201,
+      "sha256": "c3f7a42b99e2c93766b5ad32adc4abc48248c347850c7a4d66645888ebe3d879"
+    },
+    {
+      "path": ".local/finalize-thirtieth.py",
+      "bytes": 16638,
+      "sha256": "83e9572936b36e8678ca6831bbb0eee8cd5edfa0150961372cf81f8860a4bc26"
+    },
+    {
+      "path": ".local/finalize-twelfth.py",
+      "bytes": 14044,
+      "sha256": "043f90563f75725cb02c533956834355a07a7ce12044c3a5cc8edf88031637ac"
+    },
+    {
+      "path": ".local/finalize-twentieth.py",
+      "bytes": 13904,
+      "sha256": "e1ec517373be0b415f2d8786d8afbc849122390bac1376690e1cf03236e377b4"
+    },
+    {
+      "path": ".local/finalize-twentyeighth.py",
+      "bytes": 9593,
+      "sha256": "99ab7cd04ed131e5e85236f244a4b6d3dd99247bbc44b15be4199e1ee340f81a"
+    },
+    {
+      "path": ".local/finalize-twentyfifth.py",
+      "bytes": 15204,
+      "sha256": "b2217c0288c3974abe60bbd3f1bddc572135acd4b0acffb123bf4179e9cb3aa1"
+    },
+    {
+      "path": ".local/finalize-twentyfirst.py",
+      "bytes": 16256,
+      "sha256": "3624dbea70da1d6361cce3cea9c536bad1274d6b6535558f8f048c368c965fc4"
+    },
+    {
+      "path": ".local/finalize-twentyfourth.py",
+      "bytes": 16163,
+      "sha256": "56a0eee7cdc27c085f78cb1b7dd290896957fbf73133cec3d37d41a2fc273add"
+    },
+    {
+      "path": ".local/finalize-twentyninth.py",
+      "bytes": 8517,
+      "sha256": "527d7340faf9ae7dde598ba69bef7de1b1b79812e5c7cdaeb88f30f94c2b7e29"
+    },
+    {
+      "path": ".local/finalize-twentysecond.py",
+      "bytes": 17243,
+      "sha256": "1990a66ecd002238c8fcb4358d7b46db3f79c93f90b77438a3992bcdad671a47"
+    },
+    {
+      "path": ".local/finalize-twentyseventh.py",
+      "bytes": 14762,
+      "sha256": "755105844448968cd75b2769cc0c9b3d99d055eb63db8e613be264dd645f5ff8"
+    },
+    {
+      "path": ".local/finalize-twentysixth.py",
+      "bytes": 15426,
+      "sha256": "e0371ecb40c147c5b1498e62526c61ad44b820453a8769c0296111223a263676"
+    },
+    {
+      "path": ".local/finalize-twentythird.py",
+      "bytes": 17355,
+      "sha256": "ab839a3f60ceaeec8d87b054ae0663628ffdff4370b1629505924a712ff58ff1"
+    },
+    {
+      "path": ".local/finish-sixth-docs.py",
+      "bytes": 2387,
+      "sha256": "20f19d9856ee6eac7e579801c78051248561499e8b97e2fadc2b660ac90fc054"
+    },
+    {
+      "path": ".local/prepare-twentyeighth-docs.py",
+      "bytes": 5859,
+      "sha256": "70d801906836d53f9f8c43f7c2fbdaf4bafd2563064115e2eeb2ef71412533ca"
+    },
+    {
+      "path": ".local/prepare-twentyfifth.py",
+      "bytes": 3081,
+      "sha256": "ce895ffa393b1e166c42f9b8e7e38a78430889ceda977878ffb509d0675d6815"
+    },
+    {
+      "path": ".local/prepare-twentyfourth.py",
+      "bytes": 3666,
+      "sha256": "32e7d4ef131d607e33ba21ac9cb426f80aa63e83839c4d9f03f5f31dacb6fe81"
+    },
+    {
+      "path": ".local/prepare-twentysixth.py",
+      "bytes": 5582,
+      "sha256": "dc66858ac64236e7edb41fb49e515f3e6acd47826c9d2843e8292d70842a4336"
+    },
+    {
+      "path": ".local/prepare-twentythird.py",
+      "bytes": 1927,
+      "sha256": "aa76257d52abb75f3c6c601b1522bc1c9f2f7885a708ded8fd394f338650d310"
+    },
+    {
+      "path": ".local/refine-twentyseventh.py",
+      "bytes": 2018,
+      "sha256": "0edea0403ada73b8b5b5cfd153b0c062eb76aa970212ab8e2e4c83d4515c12dd"
+    },
+    {
+      "path": ".local/refine-twentysixth-finalizer.py",
+      "bytes": 1049,
+      "sha256": "e020b13dd37450540c1699a76bb8efe0328c2d6f734ded58f2e577555d20f22d"
+    },
+    {
+      "path": ".local/run-thirtieth-check.py",
+      "bytes": 1981,
+      "sha256": "dca88b100c5b9634b9f50d01541660a6db74ce99577c5cc1e7e37750fdeb25b4"
+    },
+    {
+      "path": ".local/run-twentyeighth-check.py",
+      "bytes": 1732,
+      "sha256": "7f75b56d75d673c5f0670e7cbb2232759e33401d9bdc40114bee4f27a7f723d9"
+    },
+    {
+      "path": ".local/run-twentyfifth-check.py",
+      "bytes": 1097,
+      "sha256": "4947c5c8fe551f12af9248d2f70efdd9cf42e4ad9e7757a837d0be8c6094b374"
+    },
+    {
+      "path": ".local/run-twentyfirst-check.py",
+      "bytes": 1095,
+      "sha256": "a161bbb2468924ec7d338be7f69a87faed973b07f6bb9c642b23d58e2771ec9d"
+    },
+    {
+      "path": ".local/run-twentyfourth-check.py",
+      "bytes": 1099,
+      "sha256": "4701427a9827da8fc115a9add6f2565e9370f0f05de0b1c085cdd82a38b438e3"
+    },
+    {
+      "path": ".local/run-twentyninth-check.py",
+      "bytes": 1742,
+      "sha256": "dd5dde54fa486887c62acf6991e57b4b199a154a37f933b1deb79cc332c75130"
+    },
+    {
+      "path": ".local/run-twentysecond-check.py",
+      "bytes": 1099,
+      "sha256": "a432759b059ce84d526c319674ccd579a88f923ed94f30f4a3c9ee8b0e8a3b40"
+    },
+    {
+      "path": ".local/run-twentyseventh-check.py",
+      "bytes": 1645,
+      "sha256": "7c0e17c75040e51a77bcb09eff4695ad715fdc261bc7f335c51daa004bceee7c"
+    },
+    {
+      "path": ".local/run-twentysixth-check.py",
+      "bytes": 1097,
+      "sha256": "c789fd8ea1c1717561ff61ebf14ed7631b7061bc9f467349fcf620d55af6b838"
+    },
+    {
+      "path": ".local/run-twentythird-check.py",
+      "bytes": 1096,
+      "sha256": "3343726bcd25df6517becc6f1e91855e9d77e36e5b98efd9b6409d47facbd076"
+    },
+    {
+      "path": ".local/update-eighth-docs.py",
+      "bytes": 18274,
+      "sha256": "64b83ed15aea8e897d660ac57b5d254d57bcefbd6fcfd6c15f8cfb5a0515da00"
+    },
+    {
+      "path": ".local/update-ninth-docs.py",
+      "bytes": 19201,
+      "sha256": "655c118ca5cdde3da4506841f05ff1efc91a03c90d904faeed916eb4b7427982"
+    },
+    {
+      "path": ".local/update-seventh-docs.py",
+      "bytes": 13398,
+      "sha256": "e1c176c0ec72d72498265408589f46d0213505a28aa78eb1650c543c769cdc53"
+    }
+  ],
+  "helperBytes": 431324,
+  "referenceAudit": {
+    "searched": "docs/scripts/apps/packages/tools/tests/reports plus root manifests and top-level .local Python/MJS/PowerShell helpers",
+    "outsideCandidateReferences": []
+  },
+  "preserved": {
+    "taskIdsAndExactStateOutcomeStrings": 62,
+    "adrIds": 30,
+    "compatibilityIds": 44,
+    "reportsLogsDiagnosticsRawFixtures": true,
+    "runtimeStartStopCheckHelpers": true,
+    "sourceModulesSnapshotsCheckpoints": true,
+    "accountsDatabaseProcesses": true
+  },
+  "notes": [
+    "Before byte counts were captured before edits; before hashes were not captured and are not reconstructed.",
+    "Task ID/state/outcome triples were asserted byte-for-byte unchanged during rewrite.",
+    "This cleanup does not claim new gameplay or a rerun of historical gates."
+  ],
+  "completedAt": "2026-10-02T16:05:44.213802+00:00",
+  "validation": {
+    "taskRows": 62,
+    "adrIds": 30,
+    "compatibilityIds": 44,
+    "removedHelpersAbsent": 46,
+    "markdownLinkProblems": [],
+    "gameplayTestsRun": false
+  },
+  "handoffRefreshedAt": "2026-10-02T16:42:51.347487+00:00"
+}

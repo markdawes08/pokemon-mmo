@@ -1,9 +1,10 @@
+import { readRetainedBytes } from '../fixtures/io';
 /** Actual source encounter/combat -> private capture continuation. Coverage
  * seeds select natural outcomes; independent literals verify source mechanics.
  * No account login, durable grant, field acknowledgement or database mutation. */
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import type { BattleSnapshot } from '@pokewaterblue/battle-core';
 import { loadDevelopmentProfile } from '../../apps/server/src/development-profile';
 import { loadEncounterCore } from '../encounter-core/encounter';
@@ -226,7 +227,7 @@ const retained = {
   '.local/battle-loss/primary/loss.wasm': 'b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a',
 };
 for (const [path, expected] of Object.entries(retained))
-  assert.equal(createHash('sha256').update(await readFile(path)).digest('hex'), expected, path);
+  assert.equal(createHash('sha256').update(await readRetainedBytes(path)).digest('hex'), expected, path);
 checks.push('all-five-prior-wasm-modules-and757-retained-literal-fixtures-byte-identical');
 await writeFile('reports/battle-capture-integration.json', JSON.stringify({ checkedAt: new Date().toISOString(), status: 'passed',
   scope: 'Private source encounter/combat/capture proposals; no account ownership, world activity or database mutation',

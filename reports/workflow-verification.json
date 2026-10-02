@@ -1,0 +1,609 @@
+{
+  "checkedAt": "2026-10-02T16:42:51.347487+00:00",
+  "status": "passed",
+  "scope": "Workflow/tooling maintenance, fixture storage and continuity cleanup; no new gameplay",
+  "verificationRuns": {
+    "tooling": {
+      "report": "reports/verification-runs/2026-10-02T16-36-27-066Z-35632-e4d5c922-329b-4595-90df-9c129753cb59/run.json",
+      "seconds": 61.261,
+      "executed": 4,
+      "reused": 0,
+      "stages": [
+        {
+          "id": "lint",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 4.37
+        },
+        {
+          "id": "typecheck",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 13.355
+        },
+        {
+          "id": "test:workflow",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 28.226
+        },
+        {
+          "id": "fixtures:check",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 15.23
+        }
+      ]
+    },
+    "engineCacheFill": {
+      "report": "reports/verification-runs/2026-10-02T16-22-03-520Z-14220-be6b5096-2a94-436a-aa5f-c83ed17bdbf4/run.json",
+      "seconds": 598.337,
+      "executed": 21,
+      "reused": 3,
+      "stages": [
+        {
+          "id": "fixtures:check",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.487
+        },
+        {
+          "id": "battle:spike",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 20.082
+        },
+        {
+          "id": "encounter:check",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 3.7
+        },
+        {
+          "id": "battle:route1",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 6.765
+        },
+        {
+          "id": "battle:progression",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 4.182
+        },
+        {
+          "id": "battle:loss",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 7.687
+        },
+        {
+          "id": "battle:capture",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 21.081
+        },
+        {
+          "id": "battle:evolution",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 14.257
+        },
+        {
+          "id": "battle:family",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 13.912
+        },
+        {
+          "id": "battle:party",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 35.263
+        },
+        {
+          "id": "battle:tactics",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 49.312
+        },
+        {
+          "id": "battle:charge",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 57.263
+        },
+        {
+          "id": "battle:protect",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 68.951
+        },
+        {
+          "id": "battle:pursuit",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 78.41
+        },
+        {
+          "id": "battle:mirror",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 90.551
+        },
+        {
+          "id": "lint",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 1.851
+        },
+        {
+          "id": "test:ts",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 3.472
+        },
+        {
+          "id": "sprites:check",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 58.49
+        },
+        {
+          "id": "practice:check",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 12.517
+        },
+        {
+          "id": "wild:check",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 6.709
+        },
+        {
+          "id": "typecheck",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 1.723
+        },
+        {
+          "id": "build",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 3.327
+        },
+        {
+          "id": "test:boundaries",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 2.435
+        },
+        {
+          "id": "browser:practice",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 35.829
+        }
+      ]
+    },
+    "repeatBeforeSpriteNarrowing": {
+      "report": "reports/verification-runs/2026-10-02T16-32-37-997Z-36164-582fb8f5-3577-4cfc-ad47-0c3d2a5d29fb/run.json",
+      "seconds": 150.099,
+      "executed": 4,
+      "reused": 20,
+      "stages": [
+        {
+          "id": "fixtures:check",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.489
+        },
+        {
+          "id": "battle:spike",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.574
+        },
+        {
+          "id": "encounter:check",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.57
+        },
+        {
+          "id": "battle:route1",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.587
+        },
+        {
+          "id": "battle:progression",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.98
+        },
+        {
+          "id": "battle:loss",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.052
+        },
+        {
+          "id": "battle:capture",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.132
+        },
+        {
+          "id": "battle:evolution",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.156
+        },
+        {
+          "id": "battle:family",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.23
+        },
+        {
+          "id": "battle:party",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.006
+        },
+        {
+          "id": "battle:tactics",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.241
+        },
+        {
+          "id": "battle:charge",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.414
+        },
+        {
+          "id": "battle:protect",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.445
+        },
+        {
+          "id": "battle:pursuit",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.584
+        },
+        {
+          "id": "battle:mirror",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.669
+        },
+        {
+          "id": "lint",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 1.943
+        },
+        {
+          "id": "test:ts",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 1.908
+        },
+        {
+          "id": "sprites:check",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 60.273
+        },
+        {
+          "id": "practice:check",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 12.511
+        },
+        {
+          "id": "wild:check",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 6.636
+        },
+        {
+          "id": "typecheck",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 1.777
+        },
+        {
+          "id": "build",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.196
+        },
+        {
+          "id": "test:boundaries",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 2.339
+        },
+        {
+          "id": "browser:practice",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 34.295
+        }
+      ]
+    },
+    "finalFocused": {
+      "report": "reports/verification-runs/2026-10-02T16-38-24-696Z-24232-04c1220c-88fa-45f5-a68f-5fa592eaeaff/run.json",
+      "seconds": 94.132,
+      "executed": 7,
+      "reused": 17,
+      "stages": [
+        {
+          "id": "fixtures:check",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.501
+        },
+        {
+          "id": "battle:spike",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.574
+        },
+        {
+          "id": "encounter:check",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.585
+        },
+        {
+          "id": "battle:route1",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.605
+        },
+        {
+          "id": "battle:progression",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.808
+        },
+        {
+          "id": "battle:loss",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 1.981
+        },
+        {
+          "id": "battle:capture",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 1.959
+        },
+        {
+          "id": "battle:evolution",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.109
+        },
+        {
+          "id": "battle:family",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.106
+        },
+        {
+          "id": "battle:party",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.076
+        },
+        {
+          "id": "battle:tactics",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.055
+        },
+        {
+          "id": "battle:charge",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.201
+        },
+        {
+          "id": "battle:protect",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.392
+        },
+        {
+          "id": "battle:pursuit",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.562
+        },
+        {
+          "id": "battle:mirror",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 2.51
+        },
+        {
+          "id": "lint",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 1.823
+        },
+        {
+          "id": "test:ts",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 3.369
+        },
+        {
+          "id": "sprites:check",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 1.768
+        },
+        {
+          "id": "practice:check",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 11.842
+        },
+        {
+          "id": "wild:check",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 6.407
+        },
+        {
+          "id": "typecheck",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 1.761
+        },
+        {
+          "id": "build",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 3.342
+        },
+        {
+          "id": "test:boundaries",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 2.336
+        },
+        {
+          "id": "browser:practice",
+          "status": "passed",
+          "nativeExitCode": 0,
+          "seconds": 36.374
+        }
+      ]
+    },
+    "spriteCache": {
+      "report": "reports/verification-runs/2026-10-02T16-40-15-552Z-32404-12623cc2-a1e8-4ad9-bd54-20a524bd2994/run.json",
+      "seconds": 0.596,
+      "executed": 0,
+      "reused": 1,
+      "stages": [
+        {
+          "id": "sprites:check",
+          "status": "cached",
+          "nativeExitCode": null,
+          "seconds": 0.516
+        }
+      ]
+    }
+  },
+  "timingComparison": {
+    "selectedStages": 24,
+    "firstEngineCacheFillSeconds": 598.337,
+    "finalFocusedSeconds": 94.132,
+    "reductionPercent": 84.3,
+    "qualification": "Same logical 24-stage plan. Initial fill reused 3 prerequisites; final run reused 17 stages and executed 7, including fresh storage/network/browser checks. This is not a predicted implementation time for a new mechanic. Sprite dependency hashing was narrowed to all 31 recorded source inputs."
+  },
+  "checks": {
+    "workflowTests": 18,
+    "sourceEngineGates": 14,
+    "independentOracleGenerators": 14,
+    "fixtureArchives": 14,
+    "preservedFixtureCases": 5207,
+    "canonicalFixtureBytes": 93890694,
+    "compressedFixtureBytes": 2043523,
+    "practiceBrowserScenarios": 5,
+    "byteIdenticalRetainedWasms": [
+      {
+        "path": ".local/battle-capture/primary/capture.wasm",
+        "sha256": "1e6b16390cdaa4906c01b391c30984735a22e998f548e9ff7de44d890865a60b",
+        "currentSha256": "1e6b16390cdaa4906c01b391c30984735a22e998f548e9ff7de44d890865a60b"
+      },
+      {
+        "path": ".local/battle-charge/primary/charge.wasm",
+        "sha256": "c2d5ac7786979cf0288ab624f5c8a7b81516c7c34458ceddd54923de99541151",
+        "currentSha256": "c2d5ac7786979cf0288ab624f5c8a7b81516c7c34458ceddd54923de99541151"
+      },
+      {
+        "path": ".local/battle-evolution/primary/evolution.wasm",
+        "sha256": "1585f15e7aef6a5ed952cbf3f17041d5382163e39f51c3b1ed3ac65f41495c5c",
+        "currentSha256": "1585f15e7aef6a5ed952cbf3f17041d5382163e39f51c3b1ed3ac65f41495c5c"
+      },
+      {
+        "path": ".local/battle-family/primary/family.wasm",
+        "sha256": "810a16bcc7b714426edb80f933deaf8afefb65240c95464980d03e4f92a28e65",
+        "currentSha256": "810a16bcc7b714426edb80f933deaf8afefb65240c95464980d03e4f92a28e65"
+      },
+      {
+        "path": ".local/battle-loss/primary/loss.wasm",
+        "sha256": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a",
+        "currentSha256": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a"
+      },
+      {
+        "path": ".local/battle-mirror/primary/mirror.wasm",
+        "sha256": "2a4e1ec16db9b4fef7628c99af4fdaa2a8d9c2a3fabcc1c63dd400bd1379a773",
+        "currentSha256": "2a4e1ec16db9b4fef7628c99af4fdaa2a8d9c2a3fabcc1c63dd400bd1379a773"
+      },
+      {
+        "path": ".local/battle-party/primary/party.wasm",
+        "sha256": "4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9",
+        "currentSha256": "4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9"
+      },
+      {
+        "path": ".local/battle-progression/primary/progression.wasm",
+        "sha256": "33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539",
+        "currentSha256": "33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539"
+      },
+      {
+        "path": ".local/battle-protect/primary/protect.wasm",
+        "sha256": "c8300b709626eab94f4554dca867181127b4fcc9a888c2c8fa013e7b8d220d8f",
+        "currentSha256": "c8300b709626eab94f4554dca867181127b4fcc9a888c2c8fa013e7b8d220d8f"
+      },
+      {
+        "path": ".local/battle-pursuit/primary/pursuit.wasm",
+        "sha256": "c831be59bf3e09b93474b812fceec4072745969513ea7f6732f16e1ad9693c37",
+        "currentSha256": "c831be59bf3e09b93474b812fceec4072745969513ea7f6732f16e1ad9693c37"
+      },
+      {
+        "path": ".local/battle-route1/primary/route1.wasm",
+        "sha256": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02",
+        "currentSha256": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02"
+      },
+      {
+        "path": ".local/battle-spike/primary/probe.wasm",
+        "sha256": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724",
+        "currentSha256": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724"
+      },
+      {
+        "path": ".local/battle-tactics/primary/tactics.wasm",
+        "sha256": "662633e05265663a20a02141939c4fdc78ef0be27d53df99507596280a216f5c",
+        "currentSha256": "662633e05265663a20a02141939c4fdc78ef0be27d53df99507596280a216f5c"
+      },
+      {
+        "path": ".local/encounter-core/primary/encounter.wasm",
+        "sha256": "8b46d731fdf20c16213a6cb7dc9e1e14dccbd3a65fe4c4ac45d3e70c8a885bd2",
+        "currentSha256": "8b46d731fdf20c16213a6cb7dc9e1e14dccbd3a65fe4c4ac45d3e70c8a885bd2"
+      }
+    ]
+  },
+  "cleanupReport": "reports/workflow-cleanup.json",
+  "runtimeReport": "reports/workflow-runtime.json",
+  "processReport": "reports/workflow-processes.json",
+  "preserved": "All existing runtime engine implementations, pinned source/reference data, accounts, saves, gameplay controls and current dev process ownership. Git observation only; no staging, commit or push.",
+  "unverifiedScope": [
+    "Full milestone gate, broad world/auth browser suite and content importer suite were not rerun in this maintenance chunk; pass30 combined evidence remains historical.",
+    "Fresh-machine setup was not exercised.",
+    "Cache assumes managed npm/Python installations; use --force after manual dependency installation edits."
+  ],
+  "nextAction": "P06 party-aware source victory progression/result admission with an immediately playable practice example.",
+  "suggestedCommit": "Streamline verification and compress retained fixtures"
+}

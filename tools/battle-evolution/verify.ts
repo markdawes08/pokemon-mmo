@@ -1,3 +1,4 @@
+import { readFixtureBytes, readRetainedBytes } from '../fixtures/io';
 /** Independent source evolution, cancellation, learning and private recovery. */
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -22,7 +23,7 @@ async function child(command: string, args: string[], input = '', timeout = 1200
 }
 const sha = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 await child('.venv/Scripts/python.exe', ['tools/battle-evolution/fixtures/generate_fixtures.py', '--check']);
-const fixtureBytes = await readFile('tools/battle-evolution/fixtures/source-cases.json'), fixtures = JSON.parse(fixtureBytes.toString('utf8')) as Fixtures;
+const fixtureBytes = await readFixtureBytes('tools/battle-evolution/fixtures/source-cases.json'), fixtures = JSON.parse(fixtureBytes.toString('utf8')) as Fixtures;
 const [core, rebuildBytes, progression, codecBytes] = await Promise.all([loadEvolutionCore(), readFile('.local/battle-evolution/rebuild/evolution.wasm'),
   loadProgressionCore(), readFile('.local/battle-evolution/primary/extracted/codec.json')]);
 const rebuild = new EvolutionCore(new WebAssembly.Module(rebuildBytes), core.compatibility, progression, JSON.parse(codecBytes.toString('utf8')));
@@ -40,7 +41,7 @@ const retained = {
   '.local/battle-loss/primary/loss.wasm': 'b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a',
   '.local/battle-capture/primary/capture.wasm': '1e6b16390cdaa4906c01b391c30984735a22e998f548e9ff7de44d890865a60b',
 };
-for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readFile(path)), hash, `Retained ${path}`);
+for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readRetainedBytes(path)), hash, `Retained ${path}`);
 let eligible = 0, ineligible = 0;
 for (const row of fixtures.eligibility) {
   const raw = instantiateRawEvolution(core.module), before = rawWords(raw), result = startRaw(raw, row.input);
@@ -277,7 +278,7 @@ const worker = JSON.parse(await child(process.execPath, ['--import', 'tsx', 'too
 assert.equal(worker.status, 'passed'); assert.notEqual(worker.pid, process.pid);
 assert.equal(worker.hostBoundaries, hostJobs.length); assert.equal(worker.rawBoundaries, rawJobs.length);
 assert.equal(worker.hostTransitions, replayedHostTransitions); assert.equal(worker.rawTransitions, replayedRawTransitions);
-for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readFile(path)), hash);
+for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readRetainedBytes(path)), hash);
 const report = { checkedAt: new Date().toISOString(), status: 'passed', profile: core.compatibility.profile,
   sourceFingerprint: fixtures.sourceFingerprint, wasmSha256: core.compatibility.wasmSha256, fixtureSha256: sha(fixtureBytes),
   independence: fixtures.independence, oracleReproduction: 'Python --check passed without writes',

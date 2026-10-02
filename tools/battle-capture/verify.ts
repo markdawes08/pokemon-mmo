@@ -1,3 +1,4 @@
+import { readFixtureBytes, readRetainedBytes } from '../fixtures/io';
 /** Independent source metadata/nickname/party/PC mechanics and recovery. */
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -22,7 +23,7 @@ async function child(command: string, args: string[], input = '', timeout = 1200
 }
 const sha = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 await child('.venv/Scripts/python.exe', ['tools/battle-capture/fixtures/generate_fixtures.py', '--check']);
-const fixtureBytes = await readFile('tools/battle-capture/fixtures/source-cases.json'), fixtures = JSON.parse(fixtureBytes.toString('utf8')) as Fixtures;
+const fixtureBytes = await readFixtureBytes('tools/battle-capture/fixtures/source-cases.json'), fixtures = JSON.parse(fixtureBytes.toString('utf8')) as Fixtures;
 const [core, rebuildBytes, progression, codecBytes] = await Promise.all([loadCaptureCore(), readFile('.local/battle-capture/rebuild/capture.wasm'),
   loadProgressionCore(), readFile('.local/battle-capture/primary/extracted/codec.json')]);
 const rebuild = new CaptureCore(new WebAssembly.Module(rebuildBytes), core.compatibility, progression, JSON.parse(codecBytes.toString('utf8')));
@@ -38,7 +39,7 @@ const retained = {
   '.local/battle-progression/primary/progression.wasm': '33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539',
   '.local/battle-loss/primary/loss.wasm': 'b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a',
 };
-for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readFile(path)), hash, `Retained ${path}`);
+for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readRetainedBytes(path)), hash, `Retained ${path}`);
 const jobs: RecoveryJob[] = [], observations = [];
 let boundaries = 0, transitions = 0, replayedTransitions = 0;
 for (const fixture of fixtures.cases) {
@@ -254,7 +255,7 @@ const worker = JSON.parse(await child(process.execPath, ['--import', 'tsx', 'too
   JSON.stringify({ parentPid: process.pid, jobs }))) as { status: string; pid: number; boundaries: number; transitions: number };
 assert.equal(worker.status, 'passed'); assert.notEqual(worker.pid, process.pid);
 assert.equal(worker.boundaries, boundaries); assert.equal(worker.transitions, replayedTransitions);
-for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readFile(path)), hash);
+for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readRetainedBytes(path)), hash);
 const report = { checkedAt: new Date().toISOString(), status: 'passed', profile: core.compatibility.profile,
   sourceFingerprint: fixtures.sourceFingerprint, wasmSha256: core.compatibility.wasmSha256, fixtureSha256: sha(fixtureBytes),
   independence: fixtures.independence, oracleReproduction: 'Python --check passed without writes',

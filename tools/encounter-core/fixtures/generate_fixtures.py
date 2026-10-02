@@ -14,6 +14,9 @@ import json
 from pathlib import Path
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "fixtures"))
+from fixture_io import read_fixture_text, write_fixture_text
+
 ROOT = Path(__file__).resolve().parents[3]
 TARGET = Path(__file__).with_name("source-cases.json")
 FINGERPRINT = "f0300f9079bac985f3f6df32886357e00111a8000acc630334fd25c5cd2b2982"
@@ -262,12 +265,13 @@ def fixtures():
 
 
 def main():
+    if "--check" in sys.argv: read_fixture_text(TARGET)
     data = json.dumps(fixtures(), indent=2) + "\n"
     if "--check" in sys.argv:
-        assert TARGET.read_text(encoding="utf-8") == data, "Encounter literal fixtures differ; review source derivation before regeneration"
+        assert read_fixture_text(TARGET) == data, "Encounter literal fixtures differ; review source derivation before regeneration"
         print("Encounter source-literal fixture reproducibility passed (no files changed).")
     else:
-        TARGET.write_text(data, encoding="utf-8")
+        write_fixture_text(TARGET, data)
         print(f"Wrote independently derived literal fixtures to {TARGET.relative_to(ROOT)}")
 
 

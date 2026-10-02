@@ -1,3 +1,4 @@
+import { readFixtureBytes, readRetainedBytes } from '../fixtures/io';
 /** Independent source literals and recovery; no live battle, account or database. */
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -24,7 +25,7 @@ async function child(command: string, args: string[], input = '', timeout = 6000
 }
 const sha = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 await child('.venv/Scripts/python.exe', ['tools/battle-progression/fixtures/generate_fixtures.py', '--check']);
-const bytes = await readFile('tools/battle-progression/fixtures/source-cases.json');
+const bytes = await readFixtureBytes('tools/battle-progression/fixtures/source-cases.json');
 const fixtures = JSON.parse(bytes.toString('utf8')) as Fixtures;
 const [core, rebuildBytes, battle, profile] = await Promise.all([loadProgressionCore(),
   readFile('.local/battle-progression/rebuild/progression.wasm'), loadRoute1Engine(), loadDevelopmentProfile()]);
@@ -36,7 +37,7 @@ const retained = {
   'tools/battle-route1/fixtures/items-cases.json': '1d1e05e66692787c0cbefd4ebe389ab7bc691097578e73cfd486fb21e5aa91d1',
   '.local/battle-route1/primary/route1.wasm': '6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02',
 };
-for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readFile(path)), hash, `${path}: retained bytes`);
+for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readRetainedBytes(path)), hash, `${path}: retained bytes`);
 
 const jobs: RecoveryJob[] = [], rawJobs: RawJob[] = [], observations = [];
 let boundaries = 0, decisions = 0, replayedDecisions = 0;
@@ -240,7 +241,7 @@ const worker = JSON.parse(await child(process.execPath, ['--import', 'tsx', 'too
 assert.equal(worker.status, 'passed'); assert.notEqual(worker.pid, process.pid);
 assert.deepEqual(worker.results.map(row => row.id), jobs.map(row => row.id)); assert.equal(worker.rawContinuations, rawJobs.length);
 assert.equal(worker.results.reduce((n, row) => n + row.decisions, 0), replayedDecisions);
-for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readFile(path)), hash);
+for (const [path, hash] of Object.entries(retained)) assert.equal(sha(await readRetainedBytes(path)), hash);
 const report = { checkedAt: new Date().toISOString(), status: 'passed', profile: core.compatibility.profile,
   sourceFingerprint: fixtures.sourceFingerprint, wasmSha256: core.compatibility.wasmSha256, fixtureSha256: sha(bytes),
   independence: fixtures.independence, oracleReproduction: 'Python --check passed without writes',

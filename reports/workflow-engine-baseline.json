@@ -1,0 +1,60 @@
+{
+  "artifacts": [
+    {
+      "path": ".local/battle-capture/primary/capture.wasm",
+      "sha256": "1e6b16390cdaa4906c01b391c30984735a22e998f548e9ff7de44d890865a60b"
+    },
+    {
+      "path": ".local/battle-charge/primary/charge.wasm",
+      "sha256": "c2d5ac7786979cf0288ab624f5c8a7b81516c7c34458ceddd54923de99541151"
+    },
+    {
+      "path": ".local/battle-evolution/primary/evolution.wasm",
+      "sha256": "1585f15e7aef6a5ed952cbf3f17041d5382163e39f51c3b1ed3ac65f41495c5c"
+    },
+    {
+      "path": ".local/battle-family/primary/family.wasm",
+      "sha256": "810a16bcc7b714426edb80f933deaf8afefb65240c95464980d03e4f92a28e65"
+    },
+    {
+      "path": ".local/battle-loss/primary/loss.wasm",
+      "sha256": "b68d12c1d031defec0cc22b2aa07589cd2c0011dc749a9a59a7c41c3dbe6868a"
+    },
+    {
+      "path": ".local/battle-mirror/primary/mirror.wasm",
+      "sha256": "2a4e1ec16db9b4fef7628c99af4fdaa2a8d9c2a3fabcc1c63dd400bd1379a773"
+    },
+    {
+      "path": ".local/battle-party/primary/party.wasm",
+      "sha256": "4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9"
+    },
+    {
+      "path": ".local/battle-progression/primary/progression.wasm",
+      "sha256": "33eb89df0a09206f78d6d693f04cf5d9dd3488d9efb4db22584070ef7980f539"
+    },
+    {
+      "path": ".local/battle-protect/primary/protect.wasm",
+      "sha256": "c8300b709626eab94f4554dca867181127b4fcc9a888c2c8fa013e7b8d220d8f"
+    },
+    {
+      "path": ".local/battle-pursuit/primary/pursuit.wasm",
+      "sha256": "c831be59bf3e09b93474b812fceec4072745969513ea7f6732f16e1ad9693c37"
+    },
+    {
+      "path": ".local/battle-route1/primary/route1.wasm",
+      "sha256": "6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02"
+    },
+    {
+      "path": ".local/battle-spike/primary/probe.wasm",
+      "sha256": "3f47b4f5fed993e75f15e67c567f58c35a6b51476d5c8f6f3233c935b5fb4724"
+    },
+    {
+      "path": ".local/battle-tactics/primary/tactics.wasm",
+      "sha256": "662633e05265663a20a02141939c4fdc78ef0be27d53df99507596280a216f5c"
+    },
+    {
+      "path": ".local/encounter-core/primary/encounter.wasm",
+      "sha256": "8b46d731fdf20c16213a6cb7dc9e1e14dccbd3a65fe4c4ac45d3e70c8a885bd2"
+    }
+  ]
+}

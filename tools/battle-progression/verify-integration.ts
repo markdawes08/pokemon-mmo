@@ -1,10 +1,11 @@
+import { readFixtureText, readRetainedBytes } from '../fixtures/io';
 /** Actual private encounter -> combat -> victory continuation integration.
  * Numeric fidelity is checked separately against independent source literals.
  * This verifier never logs into an account, acknowledges a field encounter,
  * changes the fixture, or writes character assets. */
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import type { BattleSnapshot } from '@pokewaterblue/battle-core';
 import { loadDevelopmentProfile } from '../../apps/server/src/development-profile';
 import { loadEncounterCore } from '../encounter-core/encounter';
@@ -15,7 +16,7 @@ import { loadProgressionCore, progressionCheckpointDigest, type ProgressionCheck
 const profile = await loadDevelopmentProfile(), originalProfile = structuredClone(profile);
 const encounters = await loadEncounterCore(), battle = await loadRoute1Engine(), progression = await loadProgressionCore();
 const checks: string[] = [];
-const fixtureSeeds = JSON.parse(await readFile('tools/encounter-core/fixtures/source-cases.json', 'utf8')) as {
+const fixtureSeeds = JSON.parse(await readFixtureText('tools/encounter-core/fixtures/source-cases.json')) as {
   factoryCases: { initial: { mainSeed: number; wildSeed: number; trainerId: number }; expected: { slot: number } }[];
 };
 const selected = new Map(fixtureSeeds.factoryCases.map(row => [row.expected.slot, row.initial]));
@@ -183,7 +184,7 @@ assert.throws(() => progression.restore(recalculate(lostCheckpoint)), 'Nonvictor
 checks.push('compatible-replay-terminal-binding-and-semantic-corruption-rejection',
   'owner-only-projection-detached-state-and-unavailable-decision-atomicity');
 
-async function fileHash(path: string) { return createHash('sha256').update(await readFile(path)).digest('hex'); }
+async function fileHash(path: string) { return createHash('sha256').update(await readRetainedBytes(path)).digest('hex'); }
 assert.equal(await fileHash('tools/battle-route1/fixtures/source-cases.json'), '6e8127ab6bac381bb62266c0d6df1f3d0814cda5ba54a026ad01e40e920f48ac');
 assert.equal(await fileHash('tools/battle-route1/fixtures/items-cases.json'), '1d1e05e66692787c0cbefd4ebe389ab7bc691097578e73cfd486fb21e5aa91d1');
 assert.equal(await fileHash('.local/battle-route1/primary/route1.wasm'), '6662666c9b9aa2fea422260123864905a5cda11ee69ee18528d46ec57e626f02');

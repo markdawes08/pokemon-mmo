@@ -1,204 +1,184 @@
 # Ordered tasks
 
-Thirtieth-pass result: Mirror Move is implemented from the pinned source and immediately playable in practice. New manual practice uses the separate firered-family-mirror-v1 profile with 25 supported family moves, eight species and ten presets. The Mirror Move preset uses level-50 Pidgey against level-40 Blastoise with Bubble. Source copying retains the chosen Mirror PP slot, target-selection RNG and copy-eligible move history; copied Struggle/recoil and Skull Bash charging/release are covered. Existing Pursuit practice saves and all Route 1 wild tests retain their exact prior engine binding. No account reset, normal ownership/reward application or database migration was added. Regression fixes prevent background heartbeat movement stalls and safely retry a Save definitively rejected by a newer automatic checkpoint; generation fences and unknown-outcome UUID replay are preserved. All 26 gate categories passed in combined evidence: the initial full run passed its first 25 stages, then exposed two world timing failures among 51 browser scenarios. After fixing those races, all ten affected application stages passed again with native exit 0: 117 Vitest and 49 Python tests, all 52 browser scenarios, 18 practice-storage groups and 27 wild-storage groups, real PostgreSQL/reconnect/recovery checks, build and private-client boundaries. The unchanged source/content/doctor gates are retained from that initial run; its failed browser evidence remains archived. Mirror passed 686 independent literal cases, 1463 transitions and 11500 RNG draws; 2149 host and 2149 raw boundaries recovered across builds and fresh processes, replaying 3007 future transitions per path. Private integration passed 33 groups. All thirteen prior WASMs and 4,461 retained literal cases are unchanged. P06 remains partial for party-aware results, normal owned outcomes and story gameplay.
+The [project plan](PROJECT_PLAN.md) defines acceptance; this ledger keeps stable task
+IDs and their current states. Detailed test results belong in machine reports,
+not duplicated pass summaries. `in_progress` means only the bounded scope below is
+verified. No phase or task status changed during workflow cleanup.
 
-Twenty-ninth-pass result: Corrected wild-encounter timing and control availability. Shared movement uses the actual network receipt clock for step timing, and late held movement packets after a committed wild encounter no longer disconnect the battle. Late packets are ignored only after the current session, lease, world generation and saved wild origin are validated; revoked sessions still fail closed. The source movement durations, atomic tile/encounter RNG commits and saved battles are preserved. Run and End encounter remain usable when the encounter begins during held walking/running. The final held-input sample measured 4.7-29.7 ms between source-duration steps with wild testing enabled, compared with repeated roughly 150 ms retry stalls before the clock correction. This is local Chromium evidence, not a remote-latency benchmark. See reports/wild-cadence-observation.json and reports/twentyninth-qa-diagnostics.json. All ten targeted regression stages passed with native exit 0: lint, typecheck, 99 Vitest and 49 Python tests, retained PostgreSQL/account/asset/world/reconnect/supervisor integration, practice and wild checks, build, private-file boundaries, built-account recovery and all 50 browser scenarios. The wild storage gate passed 26 groups. All 13 retained WASM hashes are unchanged. Source mechanics were not extended or rebuilt; the previous full mechanics gate remains pass 26.
+## Current order
 
-Twenty-eighth-pass result: Basic Route 1 wild encounters are playable through an explicit local testing switch. Play as ADMINA/ADMINB, enable wild encounters, and walk north from Pallet into Route 1 grass. Source-generated Pidgey/Rattata automatically open the battle UI against a temporary level 5 Squirtle. Fight or run, then return to the same saved grass tile. Hidden dialogs, refresh, transport recovery and backend restart preserve the encounter. Each enabled completed step commits the tile, source field RNG and optional battle atomically; battle draws continue into the field on return. Normal party, items, money, story, XP and capture/reward ownership stay separate. Walking remains default and Shift runs; the existing practice presets and one-click accounts remain available. Twelve targeted stages passed with native exit 0: doctor, lint, typecheck, 99 Vitest and 49 Python tests, retained real PostgreSQL/account/asset/world/reconnect/supervisor integration, encounter factory, practice checks, wild checks, build, 118 private-file HTTP checks across 90 public files, built-account recovery and all 47 browser scenarios. The new wild checks cover all 12 source slots and 7 species/level combinations through 44 source turns and 56 restored boundaries, plus 24 PostgreSQL failure/recovery groups. All 13 retained WASM hashes match the previous pass. The full prior mechanics gate remains the pass-26 24-stage run at 2026-10-02T11:02:47.170Z; unchanged later battle profiles were not rebuilt this pass. The complete verify command now has 25 stages, including wild:check.
+Workflow improvements and cleanup are complete; [verified evidence](../reports/workflow-verification.json).
 
-Twenty-seventh-pass result: One-click local testing is implemented. The main screen, Account and unsigned Practice offer **Play as ADMINA** / **Play as ADMINB**; selecting one issues a normal cookie session and connects the existing trainer without email/password entry. Reload reconnects the same selected valid session; explicit Sign out clears that preference and does not automatically sign back in. Switching during shared exploration acknowledges Leave and saves the current location before connecting the selected trainer. The two accounts retain ordinary player permissions, saved assets, world locations and isolated practice state. No fixture reset, extra gameplay power, schema migration or credential-file access was needed. All ten targeted check stages passed in the final combined evidence: doctor, lint, typecheck, 93 Vitest and 49 Python tests, database/account/asset/world/reconnect/supervisor integration (including 8 new real HTTP/PostgreSQL testing-access groups), retained practice checks, build, 112 private-file HTTP boundaries across 90 public files, built-backend account recovery and all 45 browser scenarios. The 2 new browser scenarios cover one-click accounts, reciprocal multiplayer presence, immediate source Rain Dance, unchanged regular assets, saved-practice reload, explicit sign-out, mobile layout and direct account switching from a moved shared-world location. All 13 existing WASM hashes remain unchanged. The first browser run exposed a Practice startup timing bug; after the UI-only fix, lint, typecheck, build and all 45 browser scenarios passed again, including a deterministic delayed-account test. Earlier passing server/database checks were retained. The full 24-stage mechanics gate was last run in pass 26 at 2026-10-02T11:02:47.170Z; it was not rerun for this account/UI-only change.
+1. Resume P06 party-aware source victory progression/result admission.
+2. Complete normal durable battle outcomes and the R1 scenario, then follow the
+   phase dependencies below. Every new move/Pokemon mechanic must be playable in
+   practice in the same chunk; temporary testing never grants owned progress.
 
-Twenty-sixth-pass result: Playable practice battles now run from the topbar using the signed-in development trainer and the unchanged server-side Pursuit engine. Choose one of nine matchups or configure 1–6 temporary team members and one wild opponent from eight supported species/24 moves, with source-legal level/move/ability choices and explicit starting HP/PP/status settings. Source sprites, HP/PP, weather, ordered battle narrative, move selection, switching, running, forced charging and faint decisions are playable. Each accepted start/turn/close commits its source checkpoint and RNG to isolated PostgreSQL practice records before acknowledgement. Session/lease fences, monotonic practice revision, command UUID/payload receipts and correlated errors preserve exact retry and fresh-process recovery. An unavailable old practice checkpoint can be closed safely. Normal party, moves, bag, money, story and world location are not modified by practice. Capture/items/rewards, normal wild encounters and normal resulting-team admission remain unimplemented. See ADR-027 and reports/practice-*.json. Full twenty-four-stage gate passed at 2026-10-02T11:02:47.170Z with native exit 0: 91 Vitest tests, 49 Python tests, retained database/account/asset/world/reconnect checks, all thirteen retained private engine gates and all 43 browser scenarios. Practice additionally passed all 8 supported species and 24 moves through 74 legal species/move source turns, 32 level admissions and 9 presets; 17 real-PostgreSQL storage/failure/recovery groups and 6 authenticated socket/restart groups passed, including immediate world entry after hello. All 4 new practice browser scenarios passed, including native acknowledgement loss and exact retry, refresh/backend restart, source charging/PP, Pursuit switching, faint/replacement/run and mobile rendering. All thirteen previous WASMs and 4,461 retained literal cases remain unchanged. The 16 source sprites plus metadata rebuild deterministically from 31 pinned inputs. Public boundaries passed 106 HTTP checks across 90 built files.
+| Phase | State | Current boundary / evidence |
+|---|---|---|
+| P00 | verified | Pinned source, environment and scope; [source lock](../source-lock.json), [environment](ENVIRONMENT.md). |
+| P01 | verified | Workspace, PostgreSQL, protocol and process foundation; [runbook](RUNBOOK.md). |
+| P02 | partial | Three connected maps, bounded sprites/dialogue/audio and gameplay exports; broader content and terrain remain. [Content importer](../tools/content-import/README.md). |
+| P03 | verified | Source C/WASM commands with audited host scheduling selected; [ADR-001](DECISIONS.md#adr-001---battle-implementation). |
+| P04 | partial | Accounts, leases, receipts, owned asset foundation and testing records; full gameplay outcomes remain. [Database contract](../packages/database/README.md). |
+| P05 | partial | Authoritative movement, map transfer, nonblocking presence and reconnect; general private story overlays remain. [World/reconnect decisions](DECISIONS.md#adr-012---bounded-shared-exploration-over-one-character-owner). |
+| P06 | partial | Practice and opt-in wild tests playable; source continuations private. Party-aware results and normal owned transactions remain. [Latest gameplay verification](../reports/thirtieth-verification.json), [Mirror contract](../tools/battle-mirror/README.md). |
+| P07-P11 | todo | Campaign, multiplayer, complete mechanics/content and release hardening. |
+| P12 | deferred | Original-content public release requires separate authorization. |
 
-Twenty-fifth-pass result: private Pursuit normal and switch-interception paths verified. Full twenty-three-stage gate passed at 2026-10-02T09:49:42.194Z with native exit 0: 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all twelve prior private engine gates, fresh-process account recovery and all 39 browser scenarios. Pursuit passed 603 independent source-literal cases (476 retained controls and 127 additions), 1,245 accepted transitions and 9,302 checked RNG draws. All 1,848 host and 1,848 raw boundaries recovered across independent builds and fresh processes, replaying 2,590 future transitions per host/raw path. Rejection checks passed for 141 host and 125 raw cases, with 37 candidate-failure checks and 31 timeout-bounded exhaustion checks. The unchanged 256-entry Protect policy passed 7,518 raw commands across two builds and a fresh process. Integration passed 29 groups, 14 coherent capture-party handoffs, 189 restores and 159 diagnostic transitions. Public boundaries passed 100 HTTP checks across 73 built files. All twelve prior WASM artifacts and 3,858 retained literal cases remain byte-identical. P06 remains partial for Mirror Move, party-aware results and durable/live outcomes.
-
-Twenty-fourth-pass result: private Protect mechanics and explicit compiled-ROM repeat policy verified. Full twenty-two-stage gate passed at 2026-10-02T01:44:14.135Z with native exit 0: 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all eleven prior private engine gates, fresh-process account recovery and all 39 browser scenarios. The Protect gate passed 476 independent source-literal cases, 1,084 accepted transitions and 7,976 RNG draws. All 1,560 host and 1,560 raw boundaries recovered across independent builds and fresh processes, replaying 2,367 future transitions per host/raw path. Rejection checks passed for 142 host and 91 raw cases, with 25 candidate-failure checks and 19 timeout-bounded exhaustion checks. The complete 256-entry ROM policy passed 7,518 raw command checks across primary, rebuild and fresh-process contexts, covering 997 distinct threshold witnesses, both action positions, resets and byte wrapping. These command-domain tests do not establish whole-game reachability. Integration passed 23 groups, 14 coherent capture-party handoffs, 169 restores and 148 diagnostic transitions. Public boundaries passed 94 HTTP checks across 73 built files. All eleven previous WASM artifacts and 3,382 retained literal cases remain byte-identical. P06 remains partial for Pursuit/Mirror Move, party-aware results and durable/live outcomes.
-
-Twenty-third-pass result: private Skull Bash charging and forced continuation verified. Full twenty-one-stage gate passed at 2026-10-01T02:55:13.834Z with native exit 0: 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all ten prior private engine gates, fresh-process account recovery and all 39 browser scenarios. The charge gate passed 410 independent source-literal cases, 937 accepted transitions and 6,964 RNG draws. All 1,347 host and 1,347 raw boundaries recovered across independent builds and fresh processes, replaying 2,080 future transitions per host/raw path. Rejection checks passed for 113 host and 78 raw cases, with 18 candidate-failure checks and 14 timeout-bounded exhaustion checks. Integration passed 19 groups, 14 coherent capture-party handoffs, 128 restores and 109 diagnostic transitions. Public boundaries passed 85 HTTP checks across 73 built files. All ten previous WASM artifacts and 2,972 retained literal cases remain byte-identical. P06 remains partial for three moves, party-aware result application and durable/live outcomes. Protect artifact evidence is recorded separately; no move implementation or original-ROM build is claimed.
-
-Twenty-second-pass result: private fixed damage, rain and wild forced escape verified. Full twenty-stage gate passed at 2026-10-01T02:04:15.254Z with native exit 0: 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all nine prior private engine gates, fresh-process account recovery and all 39 browser scenarios. The tactics gate passed 344 independent source-literal cases, 759 accepted transitions and 5,775 RNG draws. All 1,103 host and 1,103 raw boundaries recovered across independent builds and fresh processes, replaying 1,699 future transitions per host/raw path. Rejection checks passed for 92 host and 63 raw cases, with 11 candidate-failure checks and 9 timeout-bounded exhaustion checks. Integration passed 15 groups, 14 coherent capture-party handoffs, 115 restores and 98 diagnostic transitions. Public boundaries passed 79 HTTP checks across 73 built files. All nine previous WASM artifacts and 2,628 retained literal cases remain byte-identical. P06 remains partial for four moves, party-aware result application and durable/live outcomes. Suggested commit messages accompany completed chunks; Git remains deferred.
-
-Twenty-first-pass result: private party switching, source faint decisions and coherent capture-party proof verified. Full nineteen-stage gate passed at 2026-09-30T15:48:11.208Z with native exit 0: 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all eight prior private engine gates, fresh-process account recovery and all 39 browser scenarios. The party gate passed 220 independent source-literal cases, 529 accepted transitions and 4,036 RNG draws. All 749 host and 749 raw boundaries recovered across independent builds and fresh processes, replaying 1,282 future transitions per host/raw path. Rejection checks passed for 80 host and 53 raw cases, with 6 candidate-failure checks and 6 timeout-bounded exhaustion checks. Integration passed 11 groups, 14 coherent capture-party handoffs, 103 restores and 89 diagnostic transitions. Public boundaries passed 73 HTTP checks across 73 built files. All eight previous WASM artifacts and 2,408 retained literal cases remain byte-identical. P06 remains partial for nine moves, party-aware result application and durable/live outcomes.
-
-Twentieth-pass result: private eight-species family combat and proof-bound diagnostic source-result bridges verified. Full eighteen-stage gate passed at 2026-09-29T05:18:28.129Z, including 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all seven prior private engine gates, fresh-process account recovery and all 39 browser scenarios. The new family gate passed 134 independent source-literal cases, 250 turns and 2,605 RNG draws. All 384 host and 384 raw boundaries recovered across independent builds and fresh processes, replaying 556 future transitions on each host/raw recovery path. Rejection checks passed for 73 host and 37 raw cases, with three failed-candidate checks and four timeout-bounded exhaustion checks. Integration passed 13 groups, 31 source-result handoffs, 93 restores and 57 diagnostic turns across all eight species. Public boundaries passed 67 HTTP checks across 73 built files. All seven previous WASM artifacts and 2,274 retained literal cases remain byte-identical. P06 remains partial for the other nine moves, party switching, normal admission and durable/live outcomes.
-
-Nineteenth-pass result: private source evolution decisions and resulting species/stats/name/dex/move continuations verified through pending ownership application. Full seventeen-stage gate passed at 2026-09-29T04:09:03.487Z, including 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all six previous private engine checks, fresh-process account recovery and all 39 browser scenarios. The new evolution gate passed 871 independent source-literal cases and 810 eligibility rows. All 1,921 host and 2,940 raw boundaries recovered across independent builds and fresh processes, replaying 1,229 host and 3,843 raw transitions in each recovery path. Rejection checks passed for 81 host and 54 raw cases, with three injected candidate failures. Integration passed ten groups: 178 diagnostic progression handoffs, 358 restored boundaries and rejection of all five natural combat outcomes that cannot currently evolve. Public boundaries passed 61 HTTP checks across 73 built files. All six previous WASM artifacts and 1,403 retained literal cases remain byte-identical. P06 remains partial for resulting-team combat and durable/live outcomes. Eighteenth-pass evidence is archived under reports/eighteenth-*.json.
-
-Eighteenth-pass result: private source capture metadata/dex/nickname/placement verified through pending ownership application. Full sixteen-stage gate passed at 2026-09-29T02:45:39.971Z, including 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all five prior private engine checks, fresh-process account recovery and all 39 browser scenarios. The new capture gate passed 646 independent source-literal cases, including all 420 last-free PC slots and 76 source keyboard glyphs. All 2,584 host and raw boundaries recovered across builds and fresh processes, replaying 3,876 transitions, with 84 host and 57 raw rejection checks. Actual combat integration passed all twelve encounter-slot captures, 23 handoffs and 92 stage restores. Public boundaries passed 55 HTTP checks across 73 built files. All five previous WASM artifacts and 757 retained literal fixtures remain byte-identical. P06 remains partial for evolution, complete owned outcomes and live play. The seventeenth-pass gate/browser and loss reports are archived under reports/seventeenth-*.json.
-
-Seventeenth-pass result: private source faint friendship and blackout mechanics verified through a pending world application. Full fifteen-stage gate passed at 2026-09-28T19:43:34.715Z, including 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all prior private battle/encounter/progression checks, fresh-process account recovery and all 39 browser scenarios. The new loss gate passed 557 independent source-literal cases covering all 256 badge masks and all 20 canonical heal records. All 1,671 host and raw stage boundaries recovered across builds and fresh processes, with 56 host and 39 raw rejection checks. Actual combat integration passed all 12 encounter-slot losses and a natural three-turn simultaneous knockout, with 20 handoffs and 60 stage restores. Public boundaries passed 49 HTTP checks across 73 built files. All four prior WASM artifacts and 200 retained combat/progression literal fixtures remain byte-identical. P06 remains partial for complete owned outcomes and live play. The sixteenth-pass gate/browser and progression reports are archived under reports/sixteenth-*.json.
-
-Sixteenth-pass result: private source victory progression and checkpointed move decisions verified. Full fourteen-stage gate passed at 2026-09-28T18:34:07.305Z, including 86 Vitest tests, 49 Python tests, retained PostgreSQL/account/asset/world/reconnect checks, all prior battle/encounter checks, fresh-process account recovery and all 39 browser scenarios. The new progression gate passed 159 independent source-literal cases and 176 settled checkpoints with 17 move decisions. All 176 host boundaries and 386 raw continuation boundaries restored across builds and fresh processes, with 53 host and 34 raw rejection checks. All twelve real encounter slots and all five natural combat outcomes passed the strict terminal bridge. Public boundaries passed 43 HTTP checks across 73 built files. Existing combat artifacts and all 41 combat/item literal fixtures remain byte-identical. P06 remains partial for complete owned outcomes and live play.
-
-Updated: 2026-10-02T15:15:28.795271+00:00. Status values: `todo`, `in_progress`, `blocked`, `verified`, `deferred`. Evidence is required before `verified`; useful subsets do not close partial tasks.
-
-Operational recovery on September 26: restarted the stopped local client/backend/database in a hidden background process. HTTP/readiness and one existing two-browser-context rendering/WebSocket check passed; reports/runtime-recovery.json and STATUS record current PIDs/logs. No application changes or phase-status changes at that recovery; subsequent reconnect work is recorded below.
-
-User-requested testing setup on September 26: created ADMINA and ADMINB with separate local logins and the standard development fixture, without elevated permissions. Live two-browser sign-in, shared presence/movement, saving and leaving verified; accounts persist for user testing. See reports/admin-test-accounts.json and RUNBOOK. No phase statuses changed during that account setup.
-
-Fifteenth-pass result: private Potion/Poke Ball mechanics, current inventory and pending capture disposition verified. Full thirteen-stage gate passed at 2026-09-28T17:59:56.825Z, including all 39 browser scenarios and retained unit, Python, database/network, content, synthetic battle, encounter and process-recovery checks. The item/capture gate passed 20 independent scenarios/26 turns, 235 literal RNG draws, 132 HP/odds cases, 17 strict-threshold cases and 25 integer-square-root cases. All 46 new cross-build and 46 fresh-process boundaries passed, replaying 32 transitions. Item integration passed 11 groups with 7 captures and 22 failed throws. The original 21 literal battle fixtures remain byte-identical and pass. Public boundaries passed 37 HTTP checks across 73 built files. P06 remains partial for owned outcomes, progression and live play.
-
-Fourteenth-pass result: bounded private real-team Fight/Run mechanics and portable recovery verified; P06-01/P06-02 remain partial for the complete live R1 loop. Full thirteen-stage gate passed at 2026-09-28T05:09:26.290Z. All 39 browser scenarios passed, along with retained unit, Python, database/network, content, synthetic battle, encounter and process-recovery checks. The real-team profile passed 21 independent literal scenarios/44 turns with 406 checked RNG draws, 65 cross-build boundaries and 65 fresh-process restores replaying 95 transitions. Integration passed all twelve real encounter slots across 45 natural turns. The public boundary gate passed 37 HTTP checks and scanned 73 built files. Existing accounts and shared exploration were preserved. Next: remaining commands/source outcomes, then durable battle integration.
-
-Thirteenth-pass result: private source-C/WASM Route 1 encounter generation and checkpoint recovery verified; P06-01 remains partial for live admission/presentation/commands. Full twelve-stage gate passed at 2026-09-27T01:05:06.972Z. 86 Vitest tests, 49 Python tests, 34 profile storage checks, 21 account/network groups, 30 asset groups, 27 world storage groups, 18 world network groups, 17 reconnect groups, retained battle checks, built account recovery and all 39 browser scenarios passed. The new encounter gate passed 43 independent creature cases, 17 transcripts/374 steps, 417 cross-build checkpoint boundaries and 93 fresh-process restores. The public boundary gate passed 31 HTTP checks and scanned 73 built files. Existing user testing accounts and live exploration were preserved. Next: real-species battle mechanics and their checkpoint/dependency closure, then durable battle integration.
-
-Twelfth-pass result: bounded P05-02 transport grace, authenticated same-owner recovery, fixed deadline, generation fencing, frozen input, explicit Save retry and clean shutdown verified. Full ten-stage gate passed at 2026-09-27T00:29:21.516Z. 86 Vitest tests, 49 Python tests, 34 profile storage checks, 21 account/network groups, 30 asset groups, 27 world storage groups, 18 retained world network groups, 17 reconnect network groups, retained battle checks, built account recovery and all 39 browser scenarios passed. Existing user testing accounts were preserved. Next: bounded P06 source dependency closure and persisted encounter/battle path; private story overlays remain P07 work.
-
-Eleventh-pass result: bounded shared development exploration verified. Full ten-stage gate passed at 2026-09-26T01:28:07.942Z: 86 Vitest, 49 Python, 27 world storage groups, 18 world network groups and 35 browser scenarios. P05 remains partial for transport grace and general private story overlays; see ADR-012.
-
-Tenth-pass result: relational owned assets, source-pinned local Squirtle fixture and owner-only party/bag display verified. Full ten-stage gate passed at 2026-09-26T00:20:45.993Z: 86 Vitest, 49 Python, 30 asset integration groups and 31 browser scenarios, alongside retained profile/battle/recovery checks. P04-03 remains partial for activity-specific script/battle/trade persistence; next is bounded P05 movement.
-
-Ninth-pass result: P04 local accounts, staged trainer creation/selection and durable profile command foundations are verified. Better Auth/PostgreSQL sessions, generation fencing, replay/rollback/unknown-commit recovery, two-account privacy and separate built-process restart pass. Full ten-stage gate: 80 Vitest, 49 Python, 34 storage checks, 21 account/network groups and 28 browser scenarios. P04-03 remains in progress for the wider core asset/story model and local fixture command; P02/R1 remain incomplete. Map movement is still local and unsaved. No Git or deployment.
+Keep ADMINA/ADMINB, saves, source/checkpoint compatibility and walking/Shift controls.
+Read-only Git is allowed; Git mutations, reference-source edits and public release
+are not. See [STATUS](STATUS.md) for current runtime and exact next action.
 
 ## P00: Baseline, scope, and environment
 
 Dependencies: none. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p00-baseline-scope-and-environment).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P00-01 | verified | Inspect the actual folders, branch, dirty state, tools, and existing instructions. Preserve user changes. | docs/ENVIRONMENT.md; AGENTS.md | Root inspected folder/tools and AGENTS; no Git permitted. |
-| P00-02 | verified | Create the continuity files and root AGENTS.md; copy this specification into `docs/PROJECT_PLAN.md`. | docs/; AGENTS.md | Canonical plan and continuity files created; second pass resumed from these records on 2026-09-25. |
-| P00-03 | verified | Pin the reference source and create `source-lock.json`; inventory source paths and build variants. | source-lock.json; reports/source-verification.json | Accepted snapshot baseline replaces upstream SHA; archive recreated identically and checked. |
-| P00-04 | verified | Record dependency compatibility and exact tool versions. Choose the local PostgreSQL route. | docs/ENVIRONMENT.md; package-lock.json | Exact tools/database route recorded; lockfile, build and runtime compatibility verified locally. |
-| P00-05 | verified | Create the scope/feature ledger, distinguishing normal FireRed content, unused records, event gating, and deferred link features. | reports/source-scope.json | Initial structural ledger distinguishes scope, event/link facilities, empty/unreferenced records and build branches; reachability pending. |
+| Task | State | Required outcome |
+|---|---|---|
+| P00-01 | verified | Inspect the actual folders, branch, dirty state, tools, and existing instructions. Preserve user changes. |
+| P00-02 | verified | Create the continuity files and root AGENTS.md; copy this specification into `docs/PROJECT_PLAN.md`. |
+| P00-03 | verified | Pin the reference source and create `source-lock.json`; inventory source paths and build variants. |
+| P00-04 | verified | Record dependency compatibility and exact tool versions. Choose the local PostgreSQL route. |
+| P00-05 | verified | Create the scope/feature ledger, distinguishing normal FireRed content, unused records, event gating, and deferred link features. |
 
 ## P01: Workspace foundation and executable contracts
 
 Dependencies: P00. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p01-workspace-foundation-and-executable-contracts).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P01-01 | verified | Create npm workspaces, strict TS configuration, lockfile, package boundaries, Python environment, and root scripts. | reports/verification.json; package-lock.json | Strict workspaces, portable runtimes, Python environment and root scripts verified on this Windows machine. |
-| P01-02 | verified | Add a placeholder Phaser scene, backend health/readiness, and a versioned protocol handshake. | reports/browser-tests.json; reports/backend-verification.json | Real preview client, health/readiness and versioned handshake passed through Vite proxy; no accounts/gameplay implied. |
-| P01-03 | verified | Configure local PostgreSQL, baseline migrations, validated environment, and coordinated development processes. | reports/backend-verification.json; reports/runtime-verification.json | Native PostgreSQL setup/start/stop/restart, migrations, environment validation and coordinated processes verified. |
-| P01-04 | verified | Implement structured errors/logs, test databases, Vitest/Playwright setup, and a clean build. | reports/verification.json; reports/browser-tests-built.json | Lint/typecheck/build, 74 Vitest + 49 Python tests, real test database and 25 development Chromium scenarios passed in the seventh pass; fifth-pass built evidence retained. |
-| P01-05 | verified | Implement meaningful network smoke tests and verify Ctrl+C shutdown. Document the exact start/stop commands. | reports/supervisor-verification.json; reports/runtime-verification.json | Network negative paths and actual PTY Ctrl+C passed; owned child processes/test listeners released. RUNBOOK documents commands. |
+| Task | State | Required outcome |
+|---|---|---|
+| P01-01 | verified | Create npm workspaces, strict TS configuration, lockfile, package boundaries, Python environment, and root scripts. |
+| P01-02 | verified | Add a placeholder Phaser scene, backend health/readiness, and a versioned protocol handshake. |
+| P01-03 | verified | Configure local PostgreSQL, baseline migrations, validated environment, and coordinated development processes. |
+| P01-04 | verified | Implement structured errors/logs, test databases, Vitest/Playwright setup, and a clean build. |
+| P01-05 | verified | Implement meaningful network smoke tests and verify Ctrl+C shutdown. Document the exact start/stop commands. |
 
 ## P02: Content importer and accurate local overworld
 
 Dependencies: P01. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p02-content-importer-and-accurate-local-overworld).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P02-01 | in_progress | Implement source discovery, map block/metatile/palette decoding, manifest generation, and structural tests. | content/generated/manifests/content-manifest.json; tools/content-import/test_import_content.py | Three-map conversion, border layers, exact warp anchors, topology validation and reproducibility implemented; broader discovery/dependency closure remains open. |
-| P02-02 | in_progress | Import player/NPC sprites, representative animations, fonts, and the required map dependency closure. | content/generated/manifests/content-manifest.json; reports/browser-tests.json | 18 player frames, five visible NPC graphics/poses, flowers/door and 142 normal Latin font glyphs exported/rendered. Six messages use source glyphs and accessible text. Native NPC movement, other text styles/effects and remaining dependency closure are still missing. |
-| P02-03 | in_progress | Implement tile movement, layer occlusion, elevation/collision, doors, boundaries, camera, input focus, and integer scaling. | packages/game-rules/src/traversal.test.ts; tests/e2e/traversal.spec.ts; tests/e2e/walking-stability.spec.ts; reports/running-shoes-browser-tests.json | Traversal, NPC occupancy, default walk/Shift run/release, indoor restriction, dialogue blocking, render stability and stride phase passed within the fifth-pass 25-scenario development/built suites. Full source behavior and other elevation priorities remain incomplete. |
-| P02-04 | verified | Implement a debug map overlay and one animated map feature; prototype one music track and one SFX. | content/generated/manifests/content-manifest.json; reports/font-audio-source-evidence.json; reports/audio-lifecycle-browser.json; reports/audio-select-browser.json | Collision/event overlay, flower/door animation, Pallet music and SELECT sound prototypes implemented and checked. Source note/sample fixtures, audible browser output, mute/volume/retry and lifecycle handlers passed; exact GBA audio and remaining tracks are outside this prototype gate. |
-| P02-05 | in_progress | Add reproducibility and visual fixtures; expose unsupported dependencies explicitly. | content/generated/manifests/inventory.json; content/generated/manifests/content-manifest.json; reports/browser-tests.json | 148 pinned inputs/75 outputs; independent rebuild, topology/graphics/dialogue/glyph/audio-source checks passed. Five outside-scope destinations and stateful interactions remain explicit. All 25 development and 25 built-browser scenarios passed. No original-game comparison or full closure claimed. |
-| P02-06 | in_progress | Export and validate the structured gameplay data needed by R1, including creature/move/item/encounter references, with a parser strategy that extends to the full inventory. | reports/gameplay-source-evidence.json; content/generated/server/gameplay.json; package/importer fixtures; reports/browser-tests-built.json | 14 species, 44 level-up moves, nine evolutions, five private items, seven abilities, two growth curves, 18 types/110 relationships and one 12-slot Route 1 table exported and validated. Public Field guide is read-only. r1-squirtle-v1 persistence fixture selected in the tenth pass; effect implementation and full required battle/story closure remain open. |
+| Task | State | Required outcome |
+|---|---|---|
+| P02-01 | in_progress | Implement source discovery, map block/metatile/palette decoding, manifest generation, and structural tests. |
+| P02-02 | in_progress | Import player/NPC sprites, representative animations, fonts, and the required map dependency closure. |
+| P02-03 | in_progress | Implement tile movement, layer occlusion, elevation/collision, doors, boundaries, camera, input focus, and integer scaling. |
+| P02-04 | verified | Implement a debug map overlay and one animated map feature; prototype one music track and one SFX. |
+| P02-05 | in_progress | Add reproducibility and visual fixtures; expose unsupported dependencies explicitly. |
+| P02-06 | in_progress | Export and validate the structured gameplay data needed by R1, including creature/move/item/encounter references, with a parser strategy that extends to the full inventory. |
 
 ## P03: Battle backend decision
 
 Dependencies: P01. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p03-battle-backend-decision).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P03-01 | verified | Specify the battle interface and golden fixture format; trace original dependencies. | packages/battle-core/src/contracts.ts; source fixtures/dependency and state-audit reports | Six-method contract, versioned RNG/snapshots, ordered event/effect identities and strict public views; selected adapter implements the bounded interface. |
-| P03-02 | verified | Execute the bounded C/WASM experiment defined in Section 7. | reports/battle-spike-build.json; batch-1/batch-2/recovery/engine reports; tools/battle-spike/README.md | All three focused batches complete for admitted source paths. Real attacks, switches, statuses, fainting, residuals/outcomes, replay/restore and Node integration; no emulator or live game claim. |
-| P03-03 | verified | Measure isolation, snapshot/replay behavior, memory, latency, and remaining dependencies. | reports/battle-spike-recovery.json; battle-spike-checkpoint-tests.json; battle-spike-state-audit.json; battle-spike-measurements.json; battle-spike-decision-audit.json | Portable logical restore across builds/processes, 37 recovery boundaries, 60 raw negatives, 98 classified globals and measured full-contract costs. Dense synchronous bursts need later optimization; no database/soak/population gate passed. |
-| P03-04 | verified | Record the decision and implement the selected adapter skeleton without maintaining two production engines. | docs/DECISIONS.md ADR-001; packages/battle-core/src/wasm-adapter.ts; tools/battle-spike/engine.ts; reports/battle-spike-engine.json | Selected source C/WASM commands plus audited TS orchestration. Six operations, 34 golden boundaries, strict viewer projections, forged/stale choice rejection and zero-effects policy pass. Four-move private profile only; full mechanics/persistence remain P06 work. |
+| Task | State | Required outcome |
+|---|---|---|
+| P03-01 | verified | Specify the battle interface and golden fixture format; trace original dependencies. |
+| P03-02 | verified | Execute the bounded C/WASM experiment defined in Section 7. |
+| P03-03 | verified | Measure isolation, snapshot/replay behavior, memory, latency, and remaining dependencies. |
+| P03-04 | verified | Record the decision and implement the selected adapter skeleton without maintaining two production engines. |
 
 ## P04: Accounts, characters, and durable command infrastructure
 
 Dependencies: P01. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p04-accounts-characters-and-durable-command-infrastructure).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P04-01 | verified | Integrate auth, browser session flow, account UI, and server-owned character selection. | auth.ts; account-api.ts; character-room.ts; accounts.ts; reports/accounts-network.json; reports/accounts-browser.json | Better Auth 1.7.6, HttpOnly cookies, local account UI and one staged trainer/account. Cookie-bound one-use tickets; two-account privacy and desktop/390px checks pass. Opening story remains unfinished; shared exploration and isolated practice are separate development activities. |
-| P04-02 | verified | Implement character registry, activity state, connection generation, leases/fencing, and serialized domain commands. | character-service.ts; character-room.ts; reports/accounts-store-verification.json; reports/accounts-network.json | Staged recovering activity, persisted lease/connection generations, bounded serialized profile commands and transactional auth-session fencing. Replaced/expired connections cannot save. Bounded shared-world and isolated-practice activity transitions are implemented; general script/trade activities remain open. |
-| P04-03 | in_progress | Implement core database tables, migrations, command receipts, revisions, business uniqueness keys, and commit-to-memory recovery. | migrations/0002_auth.sql through 0006_practice_battles.sql; database README; accounts-store-verification.json; assets-integration.json; practice-storage-verification.json | Bounded auth/profile and owned creature/party/storage/inventory/wallet/story/outcome foundation implemented, with permanent fixture uniqueness, source-pinned db:seed:dev and private display. World checkpoints and isolated practice snapshots/receipts are implemented. Normal world-battle rewards/results and script/trade records remain with their owning phases. |
-| P04-04 | verified | Test duplicate commands, replacement logins, transaction rollback, unknown commit outcome, and database unavailability. | reports/accounts-store-verification.json; accounts-network.json; accounts-restart.json; assets-integration.json; assets-browser.json | Profile checks retained (34 store/21 network); 30 asset groups verify capacity/ownership/immutable source refs, permanent replay after receipt cleanup, real COMMIT/ROLLBACK lost acknowledgements, isolated CLI races/fresh-process reads and outages. Three asset browser scenarios pass in an isolated backend OS process; full gate passes. |
+| Task | State | Required outcome |
+|---|---|---|
+| P04-01 | verified | Integrate auth, browser session flow, account UI, and server-owned character selection. |
+| P04-02 | verified | Implement character registry, activity state, connection generation, leases/fencing, and serialized domain commands. |
+| P04-03 | in_progress | Implement core database tables, migrations, command receipts, revisions, business uniqueness keys, and commit-to-memory recovery. |
+| P04-04 | verified | Test duplicate commands, replacement logins, transaction rollback, unknown commit outcome, and database unavailability. |
 
 ## P05: Shared authoritative overworld
 
 Dependencies: P02, P04. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p05-shared-authoritative-overworld).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P05-01 | verified | Add zone rooms, public avatar projections, sequenced directional input, validation, and interpolation. | reports/world-network.json; world-browser.json; world-rendering.json; ADR-012 | Bounded three-map logical zones over the private character transport, public whitelist and nonblocking avatars pass. Separate routable zone rooms are a deferred topology change. |
-| P05-02 | verified | Implement movement checkpoints, safe map transfer, activity restrictions, and reconnection snapshots. | reports/world-store.json; world-network.json; world-browser.json; reconnect-network.json; reconnect-browser.json; ADR-013 | Bounded exploration: durable checkpoints/transfers, one destination, authenticated fixed sixty-second transport grace, fresh snapshots, Save retry, replacement/revocation and fresh-process recovery pass. Isolated practice recovery is implemented separately; normal world-battle results and script continuations remain open. |
-| P05-03 | in_progress | Separate private story overlays from shared presence; test nonblocking player movement. | reports/world-network.json; world-browser.json; ADR-012 | Private data stays out of presence and players are nonblocking. Only the named fixture initial NPC view exists; general player-specific story overlays remain P07 work. |
-| P05-04 | verified | Reject speed/teleport attempts, stale-zone input, malformed packets, and hidden-state access. | reports/world-store.json; world-network.json; world-browser.json | Bounded three-map fixture: directional-only input, timing, duplicate/stale generations, session/lease/ownership, map-byte compatibility and strict public projections pass. No broader load/security audit claimed. |
+| Task | State | Required outcome |
+|---|---|---|
+| P05-01 | verified | Add zone rooms, public avatar projections, sequenced directional input, validation, and interpolation. |
+| P05-02 | verified | Implement movement checkpoints, safe map transfer, activity restrictions, and reconnection snapshots. |
+| P05-03 | in_progress | Separate private story overlays from shared presence; test nonblocking player movement. |
+| P05-04 | verified | Reject speed/teleport attempts, stale-zone input, malformed packets, and hidden-state access. |
 
 ## P06: Persistent PvE vertical slice, R1
 
 Dependencies: P03, P05. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p06-persistent-pve-vertical-slice-r1).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P06-01 | in_progress | Implement server-generated encounters, a basic battle presentation, legal commands, party state, and ordered events. | reports/encounter-core-build.json; encounter-core-verification.json; encounter-core-recovery.json; encounter-dependencies.json; ADR-014 | Private source encounter generation and real-team battle/checkpoint integration are verified. A playable isolated practice UI and durable practice snapshots are implemented under ADR-027; normal movement-triggered battles and owned outcomes remain open. ADR-015 and battle-route1 reports add the fourteenth-pass evidence. Pass 28 adds opt-in live Route 1 wild testing with a temporary Squirtle and durable field/battle RNG (ADR-029, reports/wild-*.json); normal owned outcomes remain open. |
-| P06-02 | in_progress | Implement attack/switch/item/run paths needed for the slice; use real source behavior for supported moves. | reports/battle-route1-build.json; battle-route1-verification.json; battle-route1-recovery.json; battle-route1-integration.json; ADR-015 | Fourteenth pass verifies a private real-team one-on-one profile with Tackle, Tail Whip, Sand-Attack, automatic Struggle, wild choices and Run. Fifteenth-pass Potion/Poke Ball and sixteenth-pass private progression pass separately; The twentieth pass adds private diagnostic eight-species/16-move combat and all four active abilities with exact RNG/recovery. The twenty-first pass adds private one-to-six-member switching, source faint friendship and use-next/escape/replacement decisions (ADR-022, battle-party-*.json). The twenty-second pass extends to 21 moves with fixed damage, recoverable rain and ordinary-wild forced escape (ADR-023, battle-tactics-*.json). The twenty-third pass adds source Skull Bash charging, forced continuation and recovery (ADR-024, battle-charge-*.json). The twenty-fourth pass adds Protect, its explicit pinned ROM repeat-rate policy, source history/reset behavior and recovery (ADR-025, battle-protect-*.json). The twenty-fifth pass adds Pursuit normal attacks and ordinary-wild atomic switch interception, source history/KO continuation and recovery (ADR-026, battle-pursuit-*.json). Supported mechanics are now playable in isolated practice (ADR-027), with saved turns and recovery. The thirtieth pass adds source Mirror Move with copied-script/history/PP and borrowed-charge recovery, immediately playable in practice (ADR-030, battle-mirror reports). Additional items, complete party-aware results, normal resulting-team admission and normal owned world outcomes remain open. |
-| P06-03 | in_progress | Implement capture, experience, fainting/loss, terminal outcome transactions, and pending nickname/storage decisions. | reports/battle-route1-items*.json; battle-progression-*.json; battle-loss-*.json; battle-capture-*.json; battle-evolution-*.json; ADR-016/017/018/019/020 | Private capture result/metadata/dex/nickname/party-PC placement, victory progression, evolution/move decisions and faint/blackout continuation verified. Capture stops before durable ownership and blackout before world/arrival application. Evolution is an explicitly diagnostic private handoff. The family profile consumes supported results only as private diagnostics; the party profile now reconstructs a coherent actual-capture party as a diagnostic, with immediate source faint friendship. Complete party-aware result admission, durable activities/capacity/allocation and terminal transactions remain open. |
-| P06-04 | todo | Implement one server-owned NPC interaction and save confirmation. | Pending | Not started; verify the phase gate before closing. |
-| P06-05 | todo | Run the R1 scenario and failure-injection checks before, during, and after durable outcomes. | Pending | Not started; verify the phase gate before closing. |
+| Task | State | Required outcome |
+|---|---|---|
+| P06-01 | in_progress | Implement server-generated encounters, a basic battle presentation, legal commands, party state, and ordered events. |
+| P06-02 | in_progress | Implement attack/switch/item/run paths needed for the slice; use real source behavior for supported moves. |
+| P06-03 | in_progress | Implement capture, experience, fainting/loss, terminal outcome transactions, and pending nickname/storage decisions. |
+| P06-04 | todo | Implement one server-owned NPC interaction and save confirmation. |
+| P06-05 | todo | Run the R1 scenario and failure-injection checks before, during, and after durable outcomes. |
 
 ## P07: Opening campaign through Brock
 
 Dependencies: P06. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p07-opening-campaign-through-brock).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P07-01 | todo | Implement script compiler/interpreter foundations, command/special registries, checkpoints, and private story NPCs. | Pending | Not started; verify the phase gate before closing. |
-| P07-02 | todo | Implement bedroom/start sequence, names, starter selection, rival battle, parcel delivery, Pokédex progression, and early route/trainer events. | Pending | Not started; verify the phase gate before closing. |
-| P07-03 | todo | Implement inventory menus, party management, PC storage, healing, shops, money, early move learning/evolution, blackout/respawn, and relevant field interactions. | Pending | Not started; verify the phase gate before closing. |
-| P07-04 | todo | Expand import scope through Viridian Forest and Pewter Gym, including all required interiors and side interactions. | Pending | Not started; verify the phase gate before closing. |
-| P07-05 | todo | Verify all starter/rival branches and players sharing a map at different story states. | Pending | Not started; verify the phase gate before closing. |
+| Task | State | Required outcome |
+|---|---|---|
+| P07-01 | todo | Implement script compiler/interpreter foundations, command/special registries, checkpoints, and private story NPCs. |
+| P07-02 | todo | Implement bedroom/start sequence, names, starter selection, rival battle, parcel delivery, Pokédex progression, and early route/trainer events. |
+| P07-03 | todo | Implement inventory menus, party management, PC storage, healing, shops, money, early move learning/evolution, blackout/respawn, and relevant field interactions. |
+| P07-04 | todo | Expand import scope through Viridian Forest and Pewter Gym, including all required interiors and side interactions. |
+| P07-05 | todo | Verify all starter/rival branches and players sharing a map at different story states. |
 
 ## P08: Multiplayer interactions and private alpha, R2
 
 Dependencies: P07. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p08-multiplayer-interactions-and-private-alpha-r2).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P08-01 | todo | Implement nearby trade negotiation, versioned confirmations, atomic exchange, capacity/eligibility checks, and trade evolution consequences. | Pending | Not started; verify the phase gate before closing. |
-| P08-02 | todo | Implement direct PvP challenge, consent, team-copy policy, private choices, deadlines, disconnect handling, and battle restoration. | Pending | Not started; verify the phase gate before closing. |
-| P08-03 | todo | Implement presence/local chat, mute/block/report, rate limits, and basic operator diagnostics. | Pending | Not started; verify the phase gate before closing. |
-| P08-04 | todo | Test cancel/confirm races, duplicate requests, two-tab abuse, stale leases, rollback, and crash-after-commit scenarios. | Pending | Not started; verify the phase gate before closing. |
-| P08-05 | todo | Package a reproducible local/private test build and run alpha load/soak scenarios. | Pending | Not started; verify the phase gate before closing. |
+| Task | State | Required outcome |
+|---|---|---|
+| P08-01 | todo | Implement nearby trade negotiation, versioned confirmations, atomic exchange, capacity/eligibility checks, and trade evolution consequences. |
+| P08-02 | todo | Implement direct PvP challenge, consent, team-copy policy, private choices, deadlines, disconnect handling, and battle restoration. |
+| P08-03 | todo | Implement presence/local chat, mute/block/report, rate limits, and basic operator diagnostics. |
+| P08-04 | todo | Test cancel/confirm races, duplicate requests, two-tab abuse, stale leases, rollback, and crash-after-commit scenarios. |
+| P08-05 | todo | Package a reproducible local/private test build and run alpha load/soak scenarios. |
 
 ## P09: Complete mechanics and script support
 
 Dependencies: P08. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p09-complete-mechanics-and-script-support).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P09-01 | todo | Complete full-scope structured gameplay exports and required battle effects, trainer AI, battle formats, items/abilities, capture variants, and Gen III numeric semantics. | Pending | Not started; verify the phase gate before closing. |
-| P09-02 | todo | Complete move learning, evolution, Pokédex, Day Care/breeding where applicable, friendship, party/storage capacity, and relevant step counters. | Pending | Not started; verify the phase gate before closing. |
-| P09-03 | todo | Complete traversal, transport, fishing, Safari rules, puzzles, story barriers, map patches, and remaining used native specials. | Pending | Not started; verify the phase gate before closing. |
-| P09-04 | todo | Complete game menus, input/settings, fonts/text effects, map/battle animations, music/SFX, and audio lifecycle. | Pending | Not started; verify the phase gate before closing. |
-| P09-05 | todo | Map every required mechanic to source evidence, meaningful fixtures, affected content, and implementation status. | Pending | Not started; verify the phase gate before closing. |
+| Task | State | Required outcome |
+|---|---|---|
+| P09-01 | todo | Complete full-scope structured gameplay exports and required battle effects, trainer AI, battle formats, items/abilities, capture variants, and Gen III numeric semantics. |
+| P09-02 | todo | Complete move learning, evolution, Pokédex, Day Care/breeding where applicable, friendship, party/storage capacity, and relevant step counters. |
+| P09-03 | todo | Complete traversal, transport, fishing, Safari rules, puzzles, story barriers, map patches, and remaining used native specials. |
+| P09-04 | todo | Complete game menus, input/settings, fonts/text effects, map/battle animations, music/SFX, and audio lifecycle. |
+| P09-05 | todo | Map every required mechanic to source evidence, meaningful fixtures, affected content, and implementation status. |
 
 ## P10: Full campaign and postgame content
 
 Dependencies: P09, with area imports allowed earlier. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p10-full-campaign-and-postgame-content).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P10-01 | todo | Expand in area batches: early Kanto to Cerulean/Vermilion, central routes and Celadon/Lavender, Fuchsia/Saffron, Cinnabar/Viridian, Victory Road/Indigo Plateau, then Sevii/postgame. | Pending | Not started; verify the phase gate before closing. |
-| P10-02 | todo | For every area, verify entrances/exits, required events, optional interiors, trainers, encounters, items, shops, healing, puzzles, story branches, and relevant return visits. | Pending | Not started; verify the phase gate before closing. |
-| P10-03 | todo | Cover Game Corner, Safari Zone, optional caves/legendaries, transport, and source-defined postgame facilities. | Pending | Not started; verify the phase gate before closing. |
-| P10-04 | todo | Produce graph/reachability reports and investigate unreachable required records, invalid warps, and unresolved scripts. | Pending | Not started; verify the phase gate before closing. |
-| P10-05 | todo | Complete a normal new-game-to-Champion run and the agreed postgame; exercise alternate starter/rival and failure paths with targeted scenarios. | Pending | Not started; verify the phase gate before closing. |
+| Task | State | Required outcome |
+|---|---|---|
+| P10-01 | todo | Expand in area batches: early Kanto to Cerulean/Vermilion, central routes and Celadon/Lavender, Fuchsia/Saffron, Cinnabar/Viridian, Victory Road/Indigo Plateau, then Sevii/postgame. |
+| P10-02 | todo | For every area, verify entrances/exits, required events, optional interiors, trainers, encounters, items, shops, healing, puzzles, story branches, and relevant return visits. |
+| P10-03 | todo | Cover Game Corner, Safari Zone, optional caves/legendaries, transport, and source-defined postgame facilities. |
+| P10-04 | todo | Produce graph/reachability reports and investigate unreachable required records, invalid warps, and unresolved scripts. |
+| P10-05 | todo | Complete a normal new-game-to-Champion run and the agreed postgame; exercise alternate starter/rival and failure paths with targeted scenarios. |
 
 ## P11: Hardening, recovery, and complete private game, R3
 
 Dependencies: P10. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p11-hardening-recovery-and-complete-private-game-r3).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P11-01 | todo | Run fresh-clone setup on Windows, deployment build on Linux, and browser coverage. Resolve environment-specific failures. | Pending | Not started; verify the phase gate before closing. |
-| P11-02 | todo | Rehearse schema/content upgrades, backup restoration, server shutdown/restart, and recovery of battles/scripts/trades. | Pending | Not started; verify the phase gate before closing. |
-| P11-03 | todo | Run load and soak tests, measure limits, fix leaks/backpressure, and document supported capacity for the measured deployment. | Pending | Not started; verify the phase gate before closing. |
-| P11-04 | todo | Complete release checklist, runbook, operator procedures, known-issues list, and content/mechanics evidence. | Pending | Not started; verify the phase gate before closing. |
-| P11-05 | todo | Re-run critical end-to-end scenarios and review all deferred/blocked tasks against R3 scope. | Pending | Not started; verify the phase gate before closing. |
+| Task | State | Required outcome |
+|---|---|---|
+| P11-01 | todo | Run fresh-clone setup on Windows, deployment build on Linux, and browser coverage. Resolve environment-specific failures. |
+| P11-02 | todo | Rehearse schema/content upgrades, backup restoration, server shutdown/restart, and recovery of battles/scripts/trades. |
+| P11-03 | todo | Run load and soak tests, measure limits, fix leaks/backpressure, and document supported capacity for the measured deployment. |
+| P11-04 | todo | Complete release checklist, runbook, operator procedures, known-issues list, and content/mechanics evidence. |
+| P11-05 | todo | Re-run critical end-to-end scenarios and review all deferred/blocked tasks against R3 scope. |
 
 ## P12: Optional original-content public release
 
 Dependencies: R3 or a separately agreed product scope. Acceptance gate: [canonical phase](PROJECT_PLAN.md#p12-optional-original-content-public-release).
 
-| ID | Status | Outcome | Evidence | Notes |
-|---|---|---|---|---|
-| P12-01 | deferred | Define and implement the original-content profile with provenance for code, art, audio, names, text, maps, and data. | None | Optional public release is not authorized; not part of private R3 completion. |
-| P12-02 | deferred | Make the public build fail if reference-profile content or disallowed provenance is included. Verify the actual built bundle. | None | Optional public release is not authorized; not part of private R3 completion. |
-| P12-03 | deferred | Choose hosting, spending limits, domain, authentication recovery/email provider, moderation process, and release policies. | None | Optional public release is not authorized; not part of private R3 completion. |
-| P12-04 | deferred | Prepare deployment and rollback, test it in the authorized environment, and publish only when authorized. | None | Optional public release is not authorized; not part of private R3 completion. |
+| Task | State | Required outcome |
+|---|---|---|
+| P12-01 | deferred | Define and implement the original-content profile with provenance for code, art, audio, names, text, maps, and data. |
+| P12-02 | deferred | Make the public build fail if reference-profile content or disallowed provenance is included. Verify the actual built bundle. |
+| P12-03 | deferred | Choose hosting, spending limits, domain, authentication recovery/email provider, moderation process, and release policies. |
+| P12-04 | deferred | Prepare deployment and rollback, test it in the authorized environment, and publish only when authorized. |

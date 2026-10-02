@@ -1,3 +1,4 @@
+import { readFixtureBytes } from '../fixtures/io';
 /** Independent source-literal mechanics and portable recovery verification. */
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -23,7 +24,7 @@ async function child(command: string, args: string[], input = '', timeout = 6000
 }
 
 await child('.venv/Scripts/python.exe', ['tools/battle-route1/fixtures/generate_fixtures.py', '--check']);
-const fixtureBytes = await readFile('tools/battle-route1/fixtures/source-cases.json');
+const fixtureBytes = await readFixtureBytes('tools/battle-route1/fixtures/source-cases.json');
 const fixtures = JSON.parse(fixtureBytes.toString('utf8')) as Fixtures;
 const [module, rebuildBytes, profile, encounters] = await Promise.all([loadRoute1Module(), readFile('.local/battle-route1/rebuild/route1.wasm'),
   loadDevelopmentProfile(), loadEncounterCore()]);

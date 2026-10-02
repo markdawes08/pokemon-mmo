@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-02T14:37:05.428Z",
+  "checkedAt": "2026-10-02T16:23:49.535Z",
   "status": "passed",
   "wasmSha256": "4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9",
   "crossBuildHostBoundaries": 749,
@@ -7,9 +7,9 @@
   "replayedTransitions": 1282,
   "replayedRawTransitions": 1282,
   "freshProcess": {
-    "parentPid": 32552,
+    "parentPid": 36648,
     "status": "passed",
-    "pid": 15760,
+    "pid": 5996,
     "hostBoundaries": 749,
     "rawBoundaries": 749,
     "transitions": 1282,
@@ -18,7 +18,7 @@
   "candidateFailures": 6,
   "exhaustion": {
     "status": "passed",
-    "pid": 34644,
+    "pid": 33616,
     "checks": [
       "raw-depleted-slot-loop-traps",
       "raw-empty-slot-loop-traps",

@@ -1,3 +1,4 @@
+import { readFixtureBytes } from '../fixtures/io';
 /** Independent literal item/capture mechanics; no DB, room, user account or UI. */
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -22,7 +23,7 @@ async function child(command: string, args: string[], input = '', timeout = 1500
   });
 }
 await child('.venv/Scripts/python.exe', ['tools/battle-route1/fixtures/generate_items.py', '--check']);
-const fixtureBytes = await readFile('tools/battle-route1/fixtures/items-cases.json');
+const fixtureBytes = await readFixtureBytes('tools/battle-route1/fixtures/items-cases.json');
 const fixtures = JSON.parse(fixtureBytes.toString('utf8')) as ItemFixtures;
 const [module, rebuildBytes, profile, encounters] = await Promise.all([loadRoute1Module(), readFile('.local/battle-route1/rebuild/route1.wasm'),
   loadDevelopmentProfile(), loadEncounterCore()]);
@@ -32,7 +33,7 @@ assert.equal(createHash('sha256').update(rebuildBytes).digest('hex'), build.wasm
 assert.equal(fixtures.sourceFingerprint, profile.sourceFingerprint);
 // The prior literal expectations remain exact bytes; v2 supplies an empty bag
 // only in the test harness, never rewrites the retained source transcripts.
-assert.equal(createHash('sha256').update(await readFile('tools/battle-route1/fixtures/source-cases.json')).digest('hex'),
+assert.equal(createHash('sha256').update(await readFixtureBytes('tools/battle-route1/fixtures/source-cases.json')).digest('hex'),
   '6e8127ab6bac381bb62266c0d6df1f3d0814cda5ba54a026ad01e40e920f48ac');
 const jobs: ItemRecoveryJob[] = [], observations = [];
 let transitions = 0, boundaries = 0, restoredTransitions = 0, checkedDraws = 0;

@@ -33,11 +33,13 @@ Profiles are stored in PostgreSQL. Trainers with the explicit development fixtur
 can choose **Enter shared world** to see other signed-in trainers and move through
 the three supported maps. Shared positions save through checkpoints and Save;
 brief connection interruptions can resume within the fixed grace period.
-Isolated practice battles are playable with a development trainer. Normal wild
-encounters, opening story and battle rewards remain unfinished. Email verification
+Practice battles and temporary Route 1 wild encounters are playable with a development
+trainer. Enable wild encounters, walk into Route 1 grass, then Fight, Run or End
+encounter test. These tests preserve normal party/items; owned rewards and the
+opening story remain unfinished. Email verification
 and password recovery are not connected.
 Expand **Saved party & bag** in Account to inspect your persisted records. New
-trainers start empty. A separate [local developer fixture](docs/RUNBOOK.md#local-development-fixture)
+trainers start empty. A separate [local developer fixture](docs/RUNBOOK.md#optional-development-fixture)
 can supply a source-defined Squirtle and starting items for upcoming development.
 Walk north into Route 1 or enter the player's house through its door. The ground
 floor, return exit, route connections, and one-way ledges work in this preview.
@@ -67,16 +69,12 @@ npm.cmd run source:inventory
 npm.cmd run content:build -- --profile firered-private
 npm.cmd run doctor
 npm.cmd run battle:setup
-.\.venv\Scripts\python.exe tools/battle-pursuit/build.py
-.\.venv\Scripts\python.exe tools/battle-mirror/build.py
 npm.cmd run verify
 npm.cmd run dev
 ```
 
-The direct Pursuit and Mirror builds prepare the server-loaded WASMs before the unit
-and integration stages need them. The full gate later rebuilds and verifies all
-retained engine profiles. Run this prerequisite on a clean setup before `verify`
-or starting the backend.
+The verifier builds source engines before dependent application checks. Complete
+this gate on a clean setup before starting the backend.
 
 The scripts use project-local Node 24 and PostgreSQL 17. Setup preserves an existing
 `.env`. Database credentials stay in ignored local files. Keep `.env`, `.local/`,
@@ -88,7 +86,10 @@ the running browser preview.
 
 | Command | Purpose |
 | --- | --- |
-| `npm.cmd run verify` | Foundation, preview and current battle experiment checks |
+| `npm.cmd run verify:focus -- --area battle --profile mirror` | Current battle change: complete engine controls and focused application checks |
+| `npm.cmd run verify:focus -- --area tooling` | Workflow changes: lint, types, runner and fixture checks |
+| `npm.cmd run verify` | Full milestone gate; reuse unchanged deterministic results |
+| `npm.cmd run verify -- --force` | Full gate with deterministic checks executed afresh |
 | `npm.cmd run test:recovery` | Verify saved accounts/profiles across two built backend processes |
 | `npm.cmd run battle:setup` | Install the pinned local C-to-WASM experiment compiler |
 | `npm.cmd run battle:spike` | Rebuild and verify the bounded headless source battle prototype |
@@ -117,33 +118,20 @@ the running browser preview.
 See [environment](docs/ENVIRONMENT.md), [runbook](docs/RUNBOOK.md), and
 [importer notes](tools/content-import/README.md) for details and limitations.
 
-The completed bounded battle experiment supports source-driven attacks, switches,
-status, fainting and outcomes, with portable recovery and a private server adapter.
-ADR-001 selects C/WASM source commands with TypeScript turn scheduling. An isolated
-practice UI now uses the later Pursuit profile. Normal world encounters, owned-party
-management and reward application remain later work. Owned asset records and
-their read-only account view are implemented.
-See [the experiment notes](tools/battle-spike/README.md) for its verified scope
-and remaining mechanics and persistence requirements.
+The current **Practice battle** supports eight family species and 25 moves, with
+configurable temporary teams and presets. Choose **Mirror Move**, start a battle,
+then use it to copy Bubble. End an existing practice first; saved battles retain
+their original engine. Practice saves after each action and resumes after refresh
+or reconnect, without granting owned assets, rewards or world changes.
 
-Private Route 1 combat, victory progression, blackout, capture and evolution continuations
-build on that architecture. The retained family and party profiles verify eight-species
-combat, one-to-six-member switching and recoverable faint/replacement decisions.
-The separate [tactics profile](tools/battle-tactics/README.md) extends coverage to 21 family
-moves with Super Fang, Endeavor, Rapid Spin, Rain Dance and ordinary-wild Whirlwind.
-The [charge profile](tools/battle-charge/README.md) adds Skull Bash for 22 moves,
-including its recoverable two-turn lock and forced release with no second PP cost.
-The [Protect profile](tools/battle-protect/README.md) adds Protect for 23 moves,
-including a separately pinned ROM policy for repeated Protect attempts.
-The [Pursuit profile](tools/battle-pursuit/README.md) adds the 24th move, including
-source switch interception and selected-switch continuation after a knockout.
-The [Mirror profile](tools/battle-mirror/README.md) adds Mirror Move as the 25th,
-including copied effects, source move history and borrowed Skull Bash charging.
-The **Practice battle** button now exposes these mechanics through signed-in local development
-trainers. Choose a preset or configure a temporary team; battles save after each action and
-resume after refresh or reconnect. Practice grants no owned assets, rewards or world changes.
-Choose the **Mirror Move** preset and **Start battle** to try Pidgey copying Bubble.
-End any current practice first. Existing saved battles resume with their original engine.
-Complete party-aware results, durable ownership,
-arrival scripts and normal world-battle outcome application remain necessary. See [current status](docs/STATUS.md)
-for verified gates and remaining work.
+Verification has a single engine registry and timed, resumable runs. Unchanged
+deterministic checks may reuse matching input/output/tool/dependency evidence;
+database, browser and health checks always run. Immutable reports live under
+`reports/verification-runs/`; cache receipts live under `.local/verification/`.
+Use `--list` to inspect a plan and `--force` after manually modifying installed
+dependencies. Focused passes do not claim the full milestone gate. See the
+[verification runbook](docs/RUNBOOK.md#verification) for scope and commands.
+
+Complete party-aware results, durable ownership, arrival scripts and normal
+world-battle outcome application remain necessary. [Current status](docs/STATUS.md)
+records the exact next action; engine READMEs and reports retain source contracts.

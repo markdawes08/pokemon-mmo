@@ -1,3 +1,4 @@
+import { readFixtureBytes, readRetainedBytes } from '../fixtures/io';
 /** Independent source literals, rejection, candidate isolation and recovery. */
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -21,7 +22,7 @@ async function child(command:string,args:string[],input='',timeout=120000):Promi
 }
 const sha=(bytes:Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 await child('.venv/Scripts/python.exe',['tools/battle-protect/fixtures/generate_fixtures.py','--check']);
-const fixtureBytes=await readFile('tools/battle-protect/fixtures/source-cases.json'),fixtures=JSON.parse(fixtureBytes.toString('utf8')) as Fixtures;
+const fixtureBytes=await readFixtureBytes('tools/battle-protect/fixtures/source-cases.json'),fixtures=JSON.parse(fixtureBytes.toString('utf8')) as Fixtures;
 const [module,rebuildBytes,resources]=await Promise.all([loadProtectModule(),readFile('.local/battle-protect/rebuild/protect.wasm'),loadProtectResources()]);
 const rebuild=new WebAssembly.Module(rebuildBytes),build=JSON.parse(await readFile('reports/battle-protect-build.json','utf8')) as {wasmSha256:string};
 assert.equal(sha(rebuildBytes),build.wasmSha256);assert.equal(new Set(fixtures.cases.map(c => c.id)).size,fixtures.cases.length);
@@ -48,7 +49,7 @@ const retained={
   '.local/battle-party/primary/party.wasm':'4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9',
   '.local/battle-tactics/primary/tactics.wasm':'662633e05265663a20a02141939c4fdc78ef0be27d53df99507596280a216f5c',
 };
-for(const [path,hash]of Object.entries(retained))assert.equal(sha(await readFile(path)),hash,`Retained ${path}`);
+for(const [path,hash]of Object.entries(retained))assert.equal(sha(await readRetainedBytes(path)),hash,`Retained ${path}`);
 const policyFixture=fixtures.cases.find(c => c.id==='protect-policy-base-two-priority-speed')!;
 const policyTemplate=new ProtectDriver(module,resources,policyFixture.input).snapshot();
 const policyChecks=verifyPolicy(module,policyTemplate,fixtures.protectPolicy);
@@ -381,7 +382,7 @@ const protectPolicyVerification={status:'passed',uniqueThresholdWitnesses:fixtur
   contexts:['primary current process','independent rebuild current process','independent rebuild fresh OS process'],
   totalSourceCommandExecutions:(policyChecks.edgeCommands+policyChecks.resetCommands)*3,
   wrapWitnessesPerModule:policyChecks.wrapWitnesses,tableSha256:fixtures.protectPolicy.tableSha256,scope:policyChecks.scope};
-for(const [path,hash]of Object.entries(retained))assert.equal(sha(await readFile(path)),hash);
+for(const [path,hash]of Object.entries(retained))assert.equal(sha(await readRetainedBytes(path)),hash);
 const report={checkedAt:new Date().toISOString(),status:'passed',profile:'firered-family-protect-v1',wasmSha256:build.wasmSha256,
   fixtureSha256:sha(fixtureBytes),sourceFingerprint:fixtures.sourceFingerprint,independence:fixtures.independence,
   sourceCases:fixtures.cases.length,transitions,checkedDraws,hostBoundaries:jobs.length,rawBoundaries:jobs.length,replayedTransitions,replayedRawTransitions,

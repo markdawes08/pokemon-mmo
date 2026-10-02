@@ -1,8 +1,9 @@
+import { readFixtureText } from '../fixtures/io';
 /** Private integration: real fixture + encounter checkpoint + six-method engine.
  * Source fidelity is checked by the separate literal verifier. No database,
  * room, user account or browser mutation occurs here. */
 import assert from 'node:assert/strict';
-import { readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import type { BattleSnapshot } from '@pokewaterblue/battle-core';
 import { loadDevelopmentProfile } from '../../apps/server/src/development-profile';
 import { loadEncounterCore, checkpointDigest, type EncounterCheckpoint } from '../encounter-core/encounter';
@@ -11,7 +12,7 @@ import { loadRoute1Engine, createRoute1Initial, makeRoute1Rng, route1Config } fr
 const profile = await loadDevelopmentProfile();
 const encounterCore = await loadEncounterCore();
 const engine = await loadRoute1Engine();
-const fixtures = JSON.parse(await readFile('tools/encounter-core/fixtures/source-cases.json', 'utf8')) as {
+const fixtures = JSON.parse(await readFixtureText('tools/encounter-core/fixtures/source-cases.json')) as {
   factoryCases: { initial: { mainSeed: number; wildSeed: number; trainerId: number }; expected: { slot: number } }[];
 };
 const selected = new Map(fixtures.factoryCases.map(row => [row.expected.slot, row.initial]));

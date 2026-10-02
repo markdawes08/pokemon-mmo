@@ -1,3 +1,4 @@
+import { readFixtureText, readRetainedBytes } from '../fixtures/io';
 /** Coherent private capture -> extended two-member party diagnostics. No ownership,
  * account login, field acknowledgement or database mutation. */
 import assert from 'node:assert/strict';
@@ -195,7 +196,7 @@ checks.push('spent-potion-ball-and-both-depleted-creatures-survive-one-terminal-
 // These are explicit new diagnostics built from source continuation outputs,
 // not ownership or proof-bound capture admissions. The source learning decision
 // replaces Protect; no adapter strips an unsupported move on the caller's behalf.
-const progressionRows = JSON.parse(await readFile('tools/battle-progression/fixtures/source-cases.json', 'utf8')) as {
+const progressionRows = JSON.parse(await readFixtureText('tools/battle-progression/fixtures/source-cases.json')) as {
   cases: { id: string; initial: ProgressionDiagnostic }[] };
 const learnRow = structuredClone(progressionRows.cases.find(row => row.id === 'level-32-to-33-exact-threshold')!);
 assert(learnRow); learnRow.initial.creature.hp = learnRow.initial.creature.stats.hp;
@@ -252,7 +253,7 @@ checks.push('explicit-source-rain-learning-and-evolution-results-remain-unowned-
   'rain-timer-survives-switches-restores-failed-refresh-expiry-and-recast',
   'older-party-profile-rejects-new-moves-and-checkpoint-compatibility-in-both-directions');
 
-const evolutionRows = JSON.parse(await readFile('tools/battle-evolution/fixtures/source-cases.json', 'utf8')) as {
+const evolutionRows = JSON.parse(await readFixtureText('tools/battle-evolution/fixtures/source-cases.json')) as {
   cases: { id: string; input: { creature: EvolutionCreature & { nature: number; gender: number };
     context: Omit<EvolutionContext, 'targetDex'> & { targetSeen: boolean; targetCaught: boolean } } }[] };
 const birdRow = evolutionRows.cases.find(row => row.id === 'level-16-20'); assert(birdRow);
@@ -306,7 +307,7 @@ const retainedPins = { ...earlier.retainedPins,
   '.local/battle-party/primary/party.wasm': '4b6935d92251703975303d65a726078f3e9bd0a1c08a61f42acc4b72d83405c9',
   'tools/battle-party/fixtures/source-cases.json': '4db4ff56299e5b8ef5a5a77035c0419095333a61d40060a5997b612946b22c32' };
 for (const [path, expected] of Object.entries(retainedPins))
-  assert.equal(createHash('sha256').update(await readFile(path)).digest('hex'), expected, `Retained bytes changed: ${path}`);
+  assert.equal(createHash('sha256').update(await readRetainedBytes(path)).digest('hex'), expected, `Retained bytes changed: ${path}`);
 checks.push('nine-prior-artifacts-and-2628-retained-literal-cases-byte-identical');
 await writeFile('reports/battle-tactics-integration.json', JSON.stringify({ checkedAt: new Date().toISOString(), status: 'passed',
   scope: 'Actual private capture proofs feed diagnostic party battles only. No account ownership, field acknowledgement, live admission or database mutation.',

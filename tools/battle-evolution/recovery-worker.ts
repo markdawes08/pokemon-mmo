@@ -1,13 +1,13 @@
+import { readFixtureText } from '../fixtures/io';
 /** Fresh process recovery of every settled host and intermediate source boundary. */
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
 import { instantiateRawEvolution, loadEvolutionCore } from './evolution';
 import { assertRaw, assertView, hostDecision, importRaw, operateRaw, rawWords, type Fixtures, type HostJob, type RawJob } from './verify-support';
 const chunks: Buffer[] = [];
 for await (const chunk of process.stdin) chunks.push(Buffer.from(chunk));
 const input = JSON.parse(Buffer.concat(chunks).toString('utf8')) as { parentPid: number; host: HostJob[]; raw: RawJob[] };
 assert.notEqual(input.parentPid, process.pid);
-const fixtures = JSON.parse(await readFile('tools/battle-evolution/fixtures/source-cases.json', 'utf8')) as Fixtures;
+const fixtures = JSON.parse(await readFixtureText('tools/battle-evolution/fixtures/source-cases.json')) as Fixtures;
 const core = await loadEvolutionCore(); let hostTransitions = 0, rawTransitions = 0;
 for (const job of input.host) {
   const fixture = fixtures.cases[job.caseIndex]!, session = core.restore(job.checkpoint);
